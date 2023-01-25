@@ -126,6 +126,17 @@ Si tienes problemas y necesitas ayuda no dudes en solicitar un mentor en el cana
 
 > \*_IMPORTANTE PARA TUS ENTREGABLES:_ Una vez hayas terminado tu entregable y crees que está listo para su revisión definitiva por parte de tu mentor, deberás mergearlo a tu rama `dev`. Esta será la rama que tus mentores revisarán en cada entregable. \*
 
+## Presentando tus entregables
+
+Para presentar cada uno de tus entregables, sigue estos pasos:
+* Haz `push` de tu rama de desarrollo al repositorio remoto
+* Crea un [Pull Request para fusionar](https://docs.github.com/es/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/merging-a-pull-request-with-a-merge-queue) tus cambios a tu rama principal 
+* Agrega a los mentores para que revisen tu código
+* Copia la url de tu Pull Request e ingrésala en este [formulario](https://forms.gle/ighZmLG9htNEL2rd7)
+* Resuelve cualquier comentario que te dejen para mejorar tu código
+* Haz `merge` para incorporar tus cambios a tu rama principal y continua con tu siguiente entregable
+> \*_Importante:_ Si tienes problemas con conflictos en tus ramas no dudes en pedirle ayuda a tu mentor\*
+
 ### Primer entregable
 
 Construye una aplicacion con las siguientes características:
@@ -145,7 +156,7 @@ Construye una aplicacion con las siguientes características:
 Recuerda documentar, mantener buena legibilidad de código y otros [criterios de evaluación](code-review-rubric.md)
 
 Deberás subir tus cambios y crear un Pull request con tu mentor a más tardar:
-el día TODO: - 2pm CT
+el día 3 de Febrero TODO: - 2pm CT
 
 Sube tu entregable con correcciones antes de:
 el dia TODO: - 2pm CT
@@ -165,7 +176,7 @@ Usando lo construido en tu entregable anterior:
 Recuerda documentar, mantener buena legibilidad de código y otros [criterios de evaluación](code-review-rubric.md)
 
 Deberás subir tus cambios y crear un Pull request con tu mentor a más tardar:
-el día TODO: - 2pm CT
+el día 17 de Febrero TODO: - 2pm CT
 
 Sube tu entregable con correcciones antes de:
 el dia TODO: - 2pm CT
@@ -185,18 +196,8 @@ Termina o implementa la funcionalidad restante y resuelve cualquier comentario p
 Recuerda documentar, mantener buena legibilidad de código y otros [criterios de evaluación](code-review-rubric.md)
 
 Deberás subir tu entrega final:
-el dia Martes 15 de Noviembre - 2pm CT
+el dia Jueves 2 de Marzo - 2pm CT
 
-## Presentando tus entregables
-
-Para presentar cada uno de tus entregables, sigue estos pasos:
-* Haz `push` de tu rama de desarrollo al repositorio remoto
-* Crea un [Pull Request para fusionar](https://docs.github.com/es/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/merging-a-pull-request-with-a-merge-queue) tus cambios a tu rama principal 
-* Agrega a los mentores para que revisen tu código
-* Copia la url de tu Pull Request e ingrésala en este [formulario](https://forms.gle/1zzgvEjftSm1NacY9)
-* Resuelve cualquier comentario que te dejen para mejorar tu código
-* Haz `merge` para incorporar tus cambios a tu rama principal y continua con tu siguiente entregable
-> \*_Importante:_ Si tienes problemas con conflictos en tus ramas no dudes en pedirle ayuda a tu mentor\*
 
 # TheMovieDb API
 The Movie Database (TMDB) es una base de datos comunitaria muy popular que incluye películas y series de television. Accede a la [documentación](https://developers.themoviedb.org/3/) para conocer su funcionamiento.
