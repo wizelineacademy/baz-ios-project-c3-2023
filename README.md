@@ -179,7 +179,7 @@ Deberás subir tus cambios y crear un Pull request con tu mentor a más tardar:
 el día 17 de Febrero - 2pm CT
 
 Sube tu entregable con correcciones antes de:
-el dia 21 de Febreri - 2pm CT
+el dia 21 de Febrero - 2pm CT
 
 ### Entregable Final 
 
