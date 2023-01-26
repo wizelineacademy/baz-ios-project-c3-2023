@@ -25,7 +25,7 @@ class TrendingViewController: UIViewController, ErrorPageViewProtocol {
         moviesTableView.register(CellMovie.nib(), forCellReuseIdentifier: CellMovie.identifier)
         getData()
         navbarView.delegate = self
-        navbarView.addSearchBar(title: .trendingTitle, width: view.bounds.width, urlImageView: .urlLogo)
+        navbarView.setData(title: .trendingTitle, urlImageView: .urlLogo, width: view.bounds.width)
     }
 
     func getData() {

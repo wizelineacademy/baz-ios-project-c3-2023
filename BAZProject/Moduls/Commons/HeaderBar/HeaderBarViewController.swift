@@ -22,24 +22,34 @@ class HeaderBarViewController: CustomView, UISearchBarDelegate {
             }
         }
     }
+    @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var photoImageView: UIImageView!
+
+    var searchBar: UISearchBar?
     var delegate: HeaderBarViewControllerDelegate?
     
-    func addSearchBar(title: String, width: CGFloat, urlImageView: String) {
-        setData(title: title)
-        lazy var searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: width, height: searchView.bounds.height))
-        photoImageView.loadImage(id: urlImageView)
+    func addSearchBar() {
+        guard let searchBar = searchBar else { return }
         searchBar.backgroundColor = .red
         searchBar.delegate = self
         searchView.addSubview(searchBar)
-        delegate?.resizeView(heightHeader: containerView.bounds.height)
     }
     
-    func setData(title: String) {
+    func setData(title: String, urlImageView: String, width: CGFloat? = nil) {
         titleLabel.text = title
+        photoImageView.loadImage(id: urlImageView)
+        let heightView = width != nil ? containerView.bounds.height : headerView.bounds.height
+        if let width = width {
+            let customFrame = CGRect(x: 0, y: 0, width: width, height: searchView.bounds.height)
+            searchBar = UISearchBar(frame: customFrame)
+            addSearchBar()
+        } else {
+            searchView.isHidden = true
+        }
+        delegate?.resizeView(heightHeader: heightView)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
