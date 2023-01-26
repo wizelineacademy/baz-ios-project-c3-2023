@@ -8,23 +8,22 @@ import UIKit
 
 protocol TrendingViewProtocol: AnyObject {
     var presenter: TrendingPresenterProtocol? { get set }
-    
 }
 
 protocol TrendingPresenterProtocol: AnyObject {
     var router: TrendingRouterProtocol? { get set}
     var view: TrendingViewProtocol? { get set }
-    var interactor: TrendingRouterInteractorInputProtocol? { get set}
-    
+    var interactor: TrendingViewInteractorInputProtocol? { get set }
 }
 
 protocol TrendingRouterProtocol: AnyObject {
     static func createModule() -> UIViewController
 }
 
-protocol TrendingRouterInteractorOutputProtocol: AnyObject {
+protocol TrendingViewInteractorOutputProtocol: AnyObject {
 }
 
-protocol TrendingRouterInteractorInputProtocol: AnyObject {
-    var presenter: TrendingRouterInteractorOutputProtocol? { get set }
+protocol TrendingViewInteractorInputProtocol: AnyObject {
+    var presenter: TrendingViewInteractorOutputProtocol? { get set }
+    var providerNetworking: NetworkingProviderProtocol? { get set }
 }

@@ -27,6 +27,9 @@
 		D2B7A64A2980E2030028BC4E /* SizeImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B7A6492980E2030028BC4E /* SizeImageType.swift */; };
 		D2B7A64D2980EC260028BC4E /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B7A64C2980EC260028BC4E /* Loader.swift */; };
 		D2B7A6512980EC7B0028BC4E /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B7A6502980EC7B0028BC4E /* UIView+Extension.swift */; };
+		D2CFEC1B29831CFC0024D226 /* TrendingViewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFEC1A29831CFC0024D226 /* TrendingViewInteractor.swift */; };
+		D2CFEC1D29831F4E0024D226 /* TrendingViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFEC1C29831F4E0024D226 /* TrendingViewPresenter.swift */; };
+		D2CFEC1F2983207E0024D226 /* TrendingViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFEC1E2983207E0024D226 /* TrendingViewRouter.swift */; };
 		D2E241C5297F9158002675B4 /* NetworkingProvider+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E241C4297F9158002675B4 /* NetworkingProvider+Protocol.swift */; };
 		D2E241C7297F91A2002675B4 /* NetworkingProvider+RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E241C6297F91A2002675B4 /* NetworkingProvider+RequestType.swift */; };
 		D2E241C9297F923E002675B4 /* NetworkingProviderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E241C8297F923E002675B4 /* NetworkingProviderService.swift */; };
@@ -60,6 +63,9 @@
 		D2B7A6492980E2030028BC4E /* SizeImageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeImageType.swift; sourceTree = "<group>"; };
 		D2B7A64C2980EC260028BC4E /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		D2B7A6502980EC7B0028BC4E /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		D2CFEC1A29831CFC0024D226 /* TrendingViewInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingViewInteractor.swift; sourceTree = "<group>"; };
+		D2CFEC1C29831F4E0024D226 /* TrendingViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingViewPresenter.swift; sourceTree = "<group>"; };
+		D2CFEC1E2983207E0024D226 /* TrendingViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingViewRouter.swift; sourceTree = "<group>"; };
 		D2E241C4297F9158002675B4 /* NetworkingProvider+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkingProvider+Protocol.swift"; sourceTree = "<group>"; };
 		D2E241C6297F91A2002675B4 /* NetworkingProvider+RequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkingProvider+RequestType.swift"; sourceTree = "<group>"; };
 		D2E241C8297F923E002675B4 /* NetworkingProviderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingProviderService.swift; sourceTree = "<group>"; };
@@ -276,6 +282,7 @@
 		D2F32B16297F3FCE000DA5EE /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				D2CFEC1E2983207E0024D226 /* TrendingViewRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -291,6 +298,7 @@
 		D2F32B19297F3FEF000DA5EE /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
+				D2CFEC1A29831CFC0024D226 /* TrendingViewInteractor.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -298,6 +306,7 @@
 		D2F32B1A297F3FFD000DA5EE /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				D2CFEC1C29831F4E0024D226 /* TrendingViewPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -395,6 +404,7 @@
 				D20461022980F8DA000EAF42 /* CustomView.swift in Sources */,
 				D2E43E33297FA0E7000F9343 /* TrendingType.swift in Sources */,
 				D215C5002980EF9500D5670F /* ErrorPageViewController.swift in Sources */,
+				D2CFEC1B29831CFC0024D226 /* TrendingViewInteractor.swift in Sources */,
 				D29D511A298310870061ACCC /* TrendingViewProtocols.swift in Sources */,
 				C30893AE28A2F42B004B1860 /* AppDelegate.swift in Sources */,
 				D2E241CC297F9AC1002675B4 /* LocalizedKey.swift in Sources */,
@@ -403,7 +413,9 @@
 				D29F824C2982D208000F24BF /* HeaderBarViewController.swift in Sources */,
 				C30893E228A425E1004B1860 /* MovieAPI.swift in Sources */,
 				D2E241C7297F91A2002675B4 /* NetworkingProvider+RequestType.swift in Sources */,
+				D2CFEC1D29831F4E0024D226 /* TrendingViewPresenter.swift in Sources */,
 				D2E241C9297F923E002675B4 /* NetworkingProviderService.swift in Sources */,
+				D2CFEC1F2983207E0024D226 /* TrendingViewRouter.swift in Sources */,
 				C30893E328A425E1004B1860 /* Movie.swift in Sources */,
 				D2B7A64D2980EC260028BC4E /* Loader.swift in Sources */,
 			);

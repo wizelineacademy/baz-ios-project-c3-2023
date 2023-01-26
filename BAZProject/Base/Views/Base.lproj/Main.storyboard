@@ -30,7 +30,7 @@
         <!--Trending-->
         <scene sceneID="Ur3-Nh-Cy3">
             <objects>
-                <viewController id="ACI-wy-hby" customClass="TrendingViewController" customModule="BAZProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TrendingViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ACI-wy-hby" customClass="TrendingViewController" customModule="BAZProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZHm-xr-Etw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

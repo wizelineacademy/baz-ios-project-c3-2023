@@ -6,11 +6,14 @@
 
 import UIKit
 
-class TrendingViewController: UIViewController, ErrorPageViewProtocol {
+class TrendingViewController: UIViewController, TrendingViewProtocol, ErrorPageViewProtocol {
     
     var movies: [MovieResult] = []
     let mediaType: MediaType = .movie
     let movieApi = MovieAPI()
+
+    var presenter: TrendingPresenterProtocol?
+    static let nibName = "TrendingViewController"
     
     @IBOutlet weak var heightNavbarView: NSLayoutConstraint!
     @IBOutlet weak var navbarView: HeaderBarViewController!
