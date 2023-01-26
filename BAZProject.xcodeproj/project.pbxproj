@@ -21,6 +21,7 @@
 		D215C4FE2980EF1000D5670F /* ErrorPageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D215C4FD2980EF1000D5670F /* ErrorPageView.xib */; };
 		D215C5002980EF9500D5670F /* ErrorPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D215C4FF2980EF9500D5670F /* ErrorPageViewController.swift */; };
 		D27C6D2F2980DCFF003E45C7 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27C6D2E2980DCFF003E45C7 /* UIImage+Extension.swift */; };
+		D29D511A298310870061ACCC /* TrendingViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29D5119298310870061ACCC /* TrendingViewProtocols.swift */; };
 		D29F824C2982D208000F24BF /* HeaderBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29F824B2982D208000F24BF /* HeaderBarViewController.swift */; };
 		D29F824E2982D280000F24BF /* HeaderBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D29F824D2982D280000F24BF /* HeaderBarView.xib */; };
 		D2B7A64A2980E2030028BC4E /* SizeImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B7A6492980E2030028BC4E /* SizeImageType.swift */; };
@@ -53,6 +54,7 @@
 		D215C4FD2980EF1000D5670F /* ErrorPageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorPageView.xib; sourceTree = "<group>"; };
 		D215C4FF2980EF9500D5670F /* ErrorPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPageViewController.swift; sourceTree = "<group>"; };
 		D27C6D2E2980DCFF003E45C7 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		D29D5119298310870061ACCC /* TrendingViewProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingViewProtocols.swift; sourceTree = "<group>"; };
 		D29F824B2982D208000F24BF /* HeaderBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderBarViewController.swift; sourceTree = "<group>"; };
 		D29F824D2982D280000F24BF /* HeaderBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderBarView.xib; sourceTree = "<group>"; };
 		D2B7A6492980E2030028BC4E /* SizeImageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeImageType.swift; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 		D2F32B18297F3FE4000DA5EE /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				D29D5119298310870061ACCC /* TrendingViewProtocols.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 				D20461022980F8DA000EAF42 /* CustomView.swift in Sources */,
 				D2E43E33297FA0E7000F9343 /* TrendingType.swift in Sources */,
 				D215C5002980EF9500D5670F /* ErrorPageViewController.swift in Sources */,
+				D29D511A298310870061ACCC /* TrendingViewProtocols.swift in Sources */,
 				C30893AE28A2F42B004B1860 /* AppDelegate.swift in Sources */,
 				D2E241CC297F9AC1002675B4 /* LocalizedKey.swift in Sources */,
 				D2B7A64A2980E2030028BC4E /* SizeImageType.swift in Sources */,
