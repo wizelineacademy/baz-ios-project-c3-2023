@@ -30,6 +30,9 @@
 		D2CFEC1B29831CFC0024D226 /* TrendingViewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFEC1A29831CFC0024D226 /* TrendingViewInteractor.swift */; };
 		D2CFEC1D29831F4E0024D226 /* TrendingViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFEC1C29831F4E0024D226 /* TrendingViewPresenter.swift */; };
 		D2CFEC1F2983207E0024D226 /* TrendingViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFEC1E2983207E0024D226 /* TrendingViewRouter.swift */; };
+		D2CFEC2229832F760024D226 /* TrendingViewController+ErrorPageViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFEC2129832F760024D226 /* TrendingViewController+ErrorPageViewDelegate.swift */; };
+		D2CFEC2429832FEB0024D226 /* TrendingViewController+HeaderBarViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFEC2329832FEB0024D226 /* TrendingViewController+HeaderBarViewControllerDelegate.swift */; };
+		D2CFEC262983315A0024D226 /* TrendingViewController+UITableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFEC252983315A0024D226 /* TrendingViewController+UITableExtensions.swift */; };
 		D2E241C5297F9158002675B4 /* NetworkingProvider+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E241C4297F9158002675B4 /* NetworkingProvider+Protocol.swift */; };
 		D2E241C7297F91A2002675B4 /* NetworkingProvider+RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E241C6297F91A2002675B4 /* NetworkingProvider+RequestType.swift */; };
 		D2E241C9297F923E002675B4 /* NetworkingProviderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E241C8297F923E002675B4 /* NetworkingProviderService.swift */; };
@@ -66,6 +69,9 @@
 		D2CFEC1A29831CFC0024D226 /* TrendingViewInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingViewInteractor.swift; sourceTree = "<group>"; };
 		D2CFEC1C29831F4E0024D226 /* TrendingViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingViewPresenter.swift; sourceTree = "<group>"; };
 		D2CFEC1E2983207E0024D226 /* TrendingViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingViewRouter.swift; sourceTree = "<group>"; };
+		D2CFEC2129832F760024D226 /* TrendingViewController+ErrorPageViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrendingViewController+ErrorPageViewDelegate.swift"; sourceTree = "<group>"; };
+		D2CFEC2329832FEB0024D226 /* TrendingViewController+HeaderBarViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrendingViewController+HeaderBarViewControllerDelegate.swift"; sourceTree = "<group>"; };
+		D2CFEC252983315A0024D226 /* TrendingViewController+UITableExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrendingViewController+UITableExtensions.swift"; sourceTree = "<group>"; };
 		D2E241C4297F9158002675B4 /* NetworkingProvider+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkingProvider+Protocol.swift"; sourceTree = "<group>"; };
 		D2E241C6297F91A2002675B4 /* NetworkingProvider+RequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkingProvider+RequestType.swift"; sourceTree = "<group>"; };
 		D2E241C8297F923E002675B4 /* NetworkingProviderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingProviderService.swift; sourceTree = "<group>"; };
@@ -160,6 +166,16 @@
 				D215C4FF2980EF9500D5670F /* ErrorPageViewController.swift */,
 			);
 			path = ErrorPage;
+			sourceTree = "<group>";
+		};
+		D2CFEC2029832F510024D226 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D2CFEC2129832F760024D226 /* TrendingViewController+ErrorPageViewDelegate.swift */,
+				D2CFEC2329832FEB0024D226 /* TrendingViewController+HeaderBarViewControllerDelegate.swift */,
+				D2CFEC252983315A0024D226 /* TrendingViewController+UITableExtensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		D2E241C3297F8F05002675B4 /* NetworkingProvider */ = {
@@ -275,6 +291,7 @@
 				D2F32B12297F2939000DA5EE /* Entity */,
 				D2F32B16297F3FCE000DA5EE /* Router */,
 				D2F32B18297F3FE4000DA5EE /* Protocols */,
+				D2CFEC2029832F510024D226 /* Extensions */,
 			);
 			path = Trending;
 			sourceTree = "<group>";
@@ -398,10 +415,13 @@
 				D27C6D2F2980DCFF003E45C7 /* UIImage+Extension.swift in Sources */,
 				D2E241C5297F9158002675B4 /* NetworkingProvider+Protocol.swift in Sources */,
 				D2B7A6512980EC7B0028BC4E /* UIView+Extension.swift in Sources */,
+				D2CFEC2429832FEB0024D226 /* TrendingViewController+HeaderBarViewControllerDelegate.swift in Sources */,
 				D2E43E36297FA59C000F9343 /* String+Extension.swift in Sources */,
 				D2F3477229806F2700EFDB62 /* CellMovie.swift in Sources */,
+				D2CFEC262983315A0024D226 /* TrendingViewController+UITableExtensions.swift in Sources */,
 				C30893C428A2F845004B1860 /* TrendingViewController.swift in Sources */,
 				D20461022980F8DA000EAF42 /* CustomView.swift in Sources */,
+				D2CFEC2229832F760024D226 /* TrendingViewController+ErrorPageViewDelegate.swift in Sources */,
 				D2E43E33297FA0E7000F9343 /* TrendingType.swift in Sources */,
 				D215C5002980EF9500D5670F /* ErrorPageViewController.swift in Sources */,
 				D2CFEC1B29831CFC0024D226 /* TrendingViewInteractor.swift in Sources */,

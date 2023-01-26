@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol ErrorPageViewProtocol {
+protocol ErrorPageViewDelegate {
     func reintent()
 }
 
@@ -23,7 +23,7 @@ class ErrorPageViewController: CustomView {
         }
     }
     
-    var delegate: ErrorPageViewProtocol?
+    var delegate: ErrorPageViewDelegate?
 
     @IBAction func reintent(_ sender: Any) {
         delegate?.reintent()
