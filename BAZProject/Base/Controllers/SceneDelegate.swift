@@ -13,7 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        weak var dashboard = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "MainViewController")
+        weak var dashboard = UIStoryboard(name: "LaunchScreen", bundle: .main).instantiateViewController(withIdentifier: "LaunchScreen")
         window?.rootViewController = dashboard
         window?.makeKeyAndVisible()
     }
