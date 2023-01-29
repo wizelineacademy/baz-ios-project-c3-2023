@@ -9,7 +9,6 @@ import Foundation
 
 class NetworkingProviderService: NetworkingProviderProtocol {
     
-    
     static var shared: NetworkingProviderService = {
             let instance = NetworkingProviderService()
             return instance

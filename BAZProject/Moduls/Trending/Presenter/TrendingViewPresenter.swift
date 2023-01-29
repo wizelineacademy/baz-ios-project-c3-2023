@@ -11,7 +11,7 @@ typealias presenterProtocols = TrendingPresenterProtocol & TrendingViewInteracto
 class TrendingViewPresenter: presenterProtocols {
     
     var router: TrendingRouterProtocol?
-    var view: TrendingViewProtocol?
+    weak var view: TrendingViewProtocol?
     var interactor: TrendingViewInteractorInputProtocol?
     
     func getTrendingMedia(mediaType: MediaType, timeWindow: TimeWindowType) {

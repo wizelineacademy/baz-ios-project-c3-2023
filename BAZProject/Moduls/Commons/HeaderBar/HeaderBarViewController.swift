@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol HeaderBarViewControllerDelegate {
+protocol HeaderBarViewControllerDelegate: AnyObject {
     func resizeView(heightHeader: Double)
 }
 
@@ -29,7 +29,7 @@ class HeaderBarViewController: CustomView, UISearchBarDelegate {
     @IBOutlet weak var photoImageView: UIImageView!
 
     var searchBar: UISearchBar?
-    var delegate: HeaderBarViewControllerDelegate?
+    weak var delegate: HeaderBarViewControllerDelegate?
     
     func addSearchBar() {
         guard let searchBar = searchBar else { return }

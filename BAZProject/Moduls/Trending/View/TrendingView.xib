@@ -12,9 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TrendingViewController" customModule="BAZProject" customModuleProvider="target">
             <connections>
                 <outlet property="errorUIView" destination="cHU-hy-mp1" id="tlk-At-wjL"/>
-                <outlet property="heightNavbarView" destination="Dum-gY-Hlx" id="BLx-ez-NuR"/>
                 <outlet property="moviesTableView" destination="xaZ-Lb-59o" id="Cr2-72-D0t"/>
-                <outlet property="navbarView" destination="nFR-hk-xRy" id="g1c-4L-kJ0"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Y4v-F1-4Xf"/>
             </connections>
         </placeholder>
@@ -23,22 +21,15 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nFR-hk-xRy" customClass="HeaderBarViewController" customModule="BAZProject" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="50" id="Dum-gY-Hlx"/>
-                    </constraints>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c8e-4T-bZk">
-                    <rect key="frame" x="0.0" y="50" width="393" height="802"/>
+                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cHU-hy-mp1" customClass="ErrorPageViewController" customModule="BAZProject" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="802"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </view>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xaZ-Lb-59o">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="802"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </tableView>
                     </subviews>
@@ -58,13 +49,10 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="nFR-hk-xRy" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="7vg-Gg-c91"/>
                 <constraint firstItem="c8e-4T-bZk" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="HCm-gb-GhN"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="c8e-4T-bZk" secondAttribute="bottom" id="J1g-JV-qVS"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="nFR-hk-xRy" secondAttribute="trailing" id="PPR-tY-8O4"/>
-                <constraint firstItem="nFR-hk-xRy" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="QJr-9J-e9q"/>
-                <constraint firstItem="c8e-4T-bZk" firstAttribute="top" secondItem="nFR-hk-xRy" secondAttribute="bottom" id="Tdw-4c-nai"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="c8e-4T-bZk" secondAttribute="trailing" id="sWI-HQ-ZHL"/>
+                <constraint firstItem="c8e-4T-bZk" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="tSe-V6-zBU"/>
             </constraints>
             <point key="canvasLocation" x="-91" y="20"/>
         </view>

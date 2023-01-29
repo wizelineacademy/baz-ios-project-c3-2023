@@ -9,7 +9,8 @@ import Foundation
 
 typealias TrendingInteractorProtocol = TrendingViewInteractorInputProtocol & TrendingViewInteractorOutputProtocol
 class TrendingInteractor: TrendingInteractorProtocol {
-    var presenter: TrendingViewInteractorOutputProtocol?
+
+    weak var presenter: TrendingViewInteractorOutputProtocol?
     var providerNetworking: NetworkingProviderProtocol = NetworkingProviderService.shared
     
     func getTrendingMedia(mediaType: MediaType, timeWindow: TimeWindowType) {
@@ -19,7 +20,11 @@ class TrendingInteractor: TrendingInteractorProtocol {
         
         providerNetworking.sendRequest(
             requestType: RequestType(strUrl: strUrl, method: .GET)
-        ) { success, data in
+        ) { [weak self] success, data in
+            guard let self = self else {
+                self?.presenter?.getTrendingMedia(success: false, result: nil)
+                return
+            }
             DispatchQueue.main.async {
                 var result: [MovieResult]?
                 if let data = data {
