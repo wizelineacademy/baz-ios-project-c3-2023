@@ -22,9 +22,9 @@
 		D215D20329843EC000582CB5 /* TrendingDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D215D20229843EC000582CB5 /* TrendingDataManager.swift */; };
 		D215D20B29843F6D00582CB5 /* BAZProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D215D20A29843F6D00582CB5 /* BAZProjectTests.swift */; };
 		D215D21529843FE000582CB5 /* TrendingDataManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D215D21429843FE000582CB5 /* TrendingDataManagerTest.swift */; };
+		D248E468298633D300BC1281 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D248E467298633D300BC1281 /* MainViewController.swift */; };
 		D27C6D2F2980DCFF003E45C7 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27C6D2E2980DCFF003E45C7 /* UIImage+Extension.swift */; };
 		D2999CC8298478E200A7709F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2999CC7298478E200A7709F /* Main.storyboard */; };
-		D2999CCA2984A51E00A7709F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2999CC92984A51E00A7709F /* MainViewController.swift */; };
 		D29D511A298310870061ACCC /* TrendingViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29D5119298310870061ACCC /* TrendingViewProtocols.swift */; };
 		D29F824C2982D208000F24BF /* HeaderBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29F824B2982D208000F24BF /* HeaderBarViewController.swift */; };
 		D29F824E2982D280000F24BF /* HeaderBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D29F824D2982D280000F24BF /* HeaderBarView.xib */; };
@@ -77,9 +77,9 @@
 		D215D20829843F6D00582CB5 /* BAZProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BAZProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D215D20A29843F6D00582CB5 /* BAZProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAZProjectTests.swift; sourceTree = "<group>"; };
 		D215D21429843FE000582CB5 /* TrendingDataManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingDataManagerTest.swift; sourceTree = "<group>"; };
+		D248E467298633D300BC1281 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		D27C6D2E2980DCFF003E45C7 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		D2999CC7298478E200A7709F /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		D2999CC92984A51E00A7709F /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		D29D5119298310870061ACCC /* TrendingViewProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingViewProtocols.swift; sourceTree = "<group>"; };
 		D29F824B2982D208000F24BF /* HeaderBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderBarViewController.swift; sourceTree = "<group>"; };
 		D29F824D2982D280000F24BF /* HeaderBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderBarView.xib; sourceTree = "<group>"; };
@@ -331,7 +331,7 @@
 			children = (
 				C30893B828A2F42D004B1860 /* LaunchScreen.storyboard */,
 				D2999CC7298478E200A7709F /* Main.storyboard */,
-				D2999CC92984A51E00A7709F /* MainViewController.swift */,
+				D248E467298633D300BC1281 /* MainViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -524,6 +524,7 @@
 				D2E43E36297FA59C000F9343 /* String+Extension.swift in Sources */,
 				D2F3477229806F2700EFDB62 /* CellMovie.swift in Sources */,
 				D2CFEC262983315A0024D226 /* TrendingViewController+UITableExtensions.swift in Sources */,
+				D248E468298633D300BC1281 /* MainViewController.swift in Sources */,
 				C30893C428A2F845004B1860 /* TrendingViewController.swift in Sources */,
 				D20461022980F8DA000EAF42 /* CustomView.swift in Sources */,
 				D2CFEC2229832F760024D226 /* TrendingViewController+ErrorPageViewDelegate.swift in Sources */,
@@ -543,7 +544,6 @@
 				D2E241C9297F923E002675B4 /* NetworkingProviderService.swift in Sources */,
 				D2CFEC1F2983207E0024D226 /* TrendingViewRouter.swift in Sources */,
 				C30893E328A425E1004B1860 /* Movie.swift in Sources */,
-				D2999CCA2984A51E00A7709F /* MainViewController.swift in Sources */,
 				D2B7A64D2980EC260028BC4E /* Loader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
