@@ -13,21 +13,26 @@ class MainViewController: UITabBarController {
         super.viewDidLoad()
         
         view.backgroundColor = .systemBackground
-        UITabBar.appearance().barTintColor = .systemBackground
-        tabBar.tintColor = .label
-        initializeViewControllers()
-    }
-    
-    private func initializeViewControllers() {
-        var arrControllers:[UIViewController] = []
-        
+        tabBar.barTintColor = .systemBackground
+        tabBar.tintColor = .red
         tabBar.layer.shadowOffset = CGSize(width: 0, height: 0)
         tabBar.layer.shadowRadius = 4
         tabBar.layer.shadowColor = UIColor.black.cgColor
         tabBar.layer.shadowOpacity = 0.15
+        initializeViewControllers()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        tabBar.backgroundColor = .systemBackground
         tabBar.tintColor = .red
-        
-        
+        tabBar.barTintColor = .red
+        tabBar.backgroundImage = UIImage()
+        tabBar.shadowImage = UIImage()
+    }
+    
+    private func initializeViewControllers() {
+        var arrControllers:[UIViewController] = []
         arrControllers.append(createNavController(for: TrendingViewRouter.createModule(), title: "Search", image: UIImage(systemName: "magnifyingglass")!))
         arrControllers.append(createNavController(for: TrendingViewRouter.createModule(), title:  NSLocalizedString("Search", comment: ""), image: UIImage(systemName: "house")!))
         viewControllers = arrControllers
@@ -48,7 +53,7 @@ class MainViewController: UITabBarController {
         return navController
     }
     
-    func getUISearchController() -> UISearchController {
+    private func getUISearchController() -> UISearchController {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
