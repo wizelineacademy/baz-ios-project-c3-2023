@@ -12,25 +12,25 @@ class LaunchScreenViewController: UIViewController {
     @IBOutlet weak var logoUIImageView: UIImageView! {
         didSet {
             logoUIImageView.layer.cornerRadius = logoUIImageView.bounds.height / 4
+            logoUIImageView.rotate()
         }
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        logoUIImageView.rotate()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        UIView.transition(with: self.logoUIImageView,
-                                  duration: 3.0,
+        addAnimationLoader()
+    }
+    
+    fileprivate func addAnimationLoader() {
+        UIView.transition(with: logoUIImageView,
+                                  duration: 2.0,
                                   options: .transitionCrossDissolve,
-                                  animations: {
-                                    self.logoUIImageView.image = UIImage(systemName: "home")
-        }) { _ in
+                                  animations: { [weak self] in
+            self?.logoUIImageView.image = UIImage()
+        }) { [weak self] _ in
             let mainVC = MainViewController()
             mainVC.modalPresentationStyle = .fullScreen
-            self.present(mainVC, animated: true)
+            self?.present(mainVC, animated: true)
         }
     }
 }
