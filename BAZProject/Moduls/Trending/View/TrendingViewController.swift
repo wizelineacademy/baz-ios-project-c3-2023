@@ -10,10 +10,9 @@ class TrendingViewController: UIViewController, TrendingViewProtocol {
     
     var movies: [MovieResult] = []
     let mediaType: MediaType = .movie
-    let movieApi = MovieAPI()
-
+    
     var presenter: TrendingPresenterProtocol?
-    static let nibName = "TrendingViewController"
+    static let nibName = "TrendingView"
     
     @IBOutlet weak var heightNavbarView: NSLayoutConstraint!
     @IBOutlet weak var navbarView: HeaderBarViewController!
@@ -22,6 +21,7 @@ class TrendingViewController: UIViewController, TrendingViewProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         moviesTableView.delegate = self
         moviesTableView.dataSource = self
         errorUIView.delegate = self
@@ -30,24 +30,26 @@ class TrendingViewController: UIViewController, TrendingViewProtocol {
         navbarView.delegate = self
         navbarView.setData(title: .trendingTitle, urlImageView: .urlLogo, width: view.bounds.width)
     }
-
+    
     func getData() {
-        self.view.showLoader()
-        movieApi.getTrendingMedia(mediaType: mediaType,
-                                  timeWindow: .day,
-                                  completion: { success, resultMovies in
-            self.showErrorPage(showErrorPage: success)
-            self.view.removeLoader()
-            if success {
-                self.movies = resultMovies ?? []
-                self.moviesTableView.reloadData()
-            }
-        })
+        view.showLoader()
+        presenter?.getTrendingMedia(mediaType: mediaType, timeWindow: .day)
     }
     
-    func showErrorPage(showErrorPage: Bool) {
-        self.moviesTableView.isHidden = !showErrorPage
-        self.errorUIView.isHidden = showErrorPage
+    func updateView(data: [MovieResult]) {
+        movies = data
+        moviesTableView.reloadData()
+    }
+    
+    func stopLoading() {
+        view.removeLoader()
+    }
+    
+    func showErrorView() {
+        moviesTableView.isHidden = true
+        errorUIView.isHidden = false
     }
     
 }
+
+

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TrendingViewController" customModule="BAZProject" customModuleProvider="target">
+            <connections>
+                <outlet property="errorUIView" destination="cHU-hy-mp1" id="tlk-At-wjL"/>
+                <outlet property="heightNavbarView" destination="Dum-gY-Hlx" id="BLx-ez-NuR"/>
+                <outlet property="moviesTableView" destination="xaZ-Lb-59o" id="Cr2-72-D0t"/>
+                <outlet property="navbarView" destination="nFR-hk-xRy" id="g1c-4L-kJ0"/>
+                <outlet property="view" destination="iN0-l3-epB" id="Y4v-F1-4Xf"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nFR-hk-xRy" customClass="HeaderBarViewController" customModule="BAZProject" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="Dum-gY-Hlx"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c8e-4T-bZk">
+                    <rect key="frame" x="0.0" y="50" width="393" height="802"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cHU-hy-mp1" customClass="ErrorPageViewController" customModule="BAZProject" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="802"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        </view>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xaZ-Lb-59o">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="802"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        </tableView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="xaZ-Lb-59o" firstAttribute="top" secondItem="c8e-4T-bZk" secondAttribute="top" id="AlY-GZ-Cgv"/>
+                        <constraint firstAttribute="trailing" secondItem="xaZ-Lb-59o" secondAttribute="trailing" id="GI3-Dr-g4G"/>
+                        <constraint firstItem="cHU-hy-mp1" firstAttribute="top" secondItem="c8e-4T-bZk" secondAttribute="top" id="Qxd-Ru-aMc"/>
+                        <constraint firstAttribute="trailing" secondItem="cHU-hy-mp1" secondAttribute="trailing" id="Snz-9y-hMn"/>
+                        <constraint firstAttribute="bottom" secondItem="cHU-hy-mp1" secondAttribute="bottom" id="UJR-d4-13u"/>
+                        <constraint firstItem="xaZ-Lb-59o" firstAttribute="leading" secondItem="c8e-4T-bZk" secondAttribute="leading" id="gtd-7L-RGt"/>
+                        <constraint firstAttribute="bottom" secondItem="xaZ-Lb-59o" secondAttribute="bottom" id="xyd-FJ-jeE"/>
+                        <constraint firstItem="cHU-hy-mp1" firstAttribute="leading" secondItem="c8e-4T-bZk" secondAttribute="leading" id="yV7-80-vtx"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="nFR-hk-xRy" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="7vg-Gg-c91"/>
+                <constraint firstItem="c8e-4T-bZk" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="HCm-gb-GhN"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="c8e-4T-bZk" secondAttribute="bottom" id="J1g-JV-qVS"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="nFR-hk-xRy" secondAttribute="trailing" id="PPR-tY-8O4"/>
+                <constraint firstItem="nFR-hk-xRy" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="QJr-9J-e9q"/>
+                <constraint firstItem="c8e-4T-bZk" firstAttribute="top" secondItem="nFR-hk-xRy" secondAttribute="bottom" id="Tdw-4c-nai"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="c8e-4T-bZk" secondAttribute="trailing" id="sWI-HQ-ZHL"/>
+            </constraints>
+            <point key="canvasLocation" x="-91" y="20"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

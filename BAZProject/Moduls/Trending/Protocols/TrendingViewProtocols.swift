@@ -8,12 +8,17 @@ import UIKit
 
 protocol TrendingViewProtocol: AnyObject {
     var presenter: TrendingPresenterProtocol? { get set }
+    func updateView(data: [MovieResult])
+    func showErrorView()
+    func stopLoading()
 }
 
 protocol TrendingPresenterProtocol: AnyObject {
     var router: TrendingRouterProtocol? { get set}
     var view: TrendingViewProtocol? { get set }
     var interactor: TrendingViewInteractorInputProtocol? { get set }
+
+    func getTrendingMedia(mediaType: MediaType, timeWindow: TimeWindowType)
 }
 
 protocol TrendingRouterProtocol: AnyObject {
@@ -21,9 +26,15 @@ protocol TrendingRouterProtocol: AnyObject {
 }
 
 protocol TrendingViewInteractorOutputProtocol: AnyObject {
+    func getTrendingMedia(success: Bool, result: [MovieResult]?)
 }
 
 protocol TrendingViewInteractorInputProtocol: AnyObject {
     var presenter: TrendingViewInteractorOutputProtocol? { get set }
-    var providerNetworking: NetworkingProviderProtocol? { get set }
+    
+    func getTrendingMedia(mediaType: MediaType, timeWindow: TimeWindowType)
+}
+
+protocol TrendingDataManagerProtocol: AnyObject {
+    
 }
