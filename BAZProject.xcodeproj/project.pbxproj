@@ -141,7 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				D2EAE0BC29806E99005063FB /* Components */,
-				D2F32B13297F2C7D000DA5EE /* Moduls */,
+				D2F32B13297F2C7D000DA5EE /* Modules */,
 				D2F32B0F297F28A1000DA5EE /* Util */,
 				D2F32B0E297F2898000DA5EE /* Services */,
 				D2F32B0D297F282E000DA5EE /* Base */,
@@ -331,13 +331,13 @@
 			path = ../../Entity;
 			sourceTree = "<group>";
 		};
-		D2F32B13297F2C7D000DA5EE /* Moduls */ = {
+		D2F32B13297F2C7D000DA5EE /* Modules */ = {
 			isa = PBXGroup;
 			children = (
 				D29F82492982D1EB000F24BF /* Commons */,
 				D2F32B14297F3FB9000DA5EE /* Trending */,
 			);
-			path = Moduls;
+			path = Modules;
 			sourceTree = "<group>";
 		};
 		D2F32B14297F3FB9000DA5EE /* Trending */ = {

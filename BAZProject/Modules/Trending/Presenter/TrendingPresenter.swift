@@ -1,5 +1,5 @@
 //
-//  TrendingViewPresenter.swift
+//  TrendingPresenter.swift
 //  BAZProject
 //
 //  Created by 1058889 on 26/01/23.
