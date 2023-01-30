@@ -11,7 +11,16 @@ class MainViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setStyleView()
+        initializeViewControllers()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        setTabBarStyle()
+    }
+    
+    fileprivate func setStyleView() {
         view.backgroundColor = .systemBackground
         tabBar.barTintColor = .systemBackground
         tabBar.tintColor = .red
@@ -19,11 +28,9 @@ class MainViewController: UITabBarController {
         tabBar.layer.shadowRadius = 4
         tabBar.layer.shadowColor = UIColor.black.cgColor
         tabBar.layer.shadowOpacity = 0.15
-        initializeViewControllers()
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
+    fileprivate func setTabBarStyle() {
         tabBar.backgroundColor = .systemBackground
         tabBar.tintColor = .red
         tabBar.barTintColor = .red
@@ -33,8 +40,7 @@ class MainViewController: UITabBarController {
     
     private func initializeViewControllers() {
         var arrControllers:[UIViewController] = []
-        arrControllers.append(createNavController(for: TrendingViewRouter.createModule(), title: "Search", image: UIImage(systemName: "magnifyingglass")!))
-        arrControllers.append(createNavController(for: TrendingViewRouter.createModule(), title:  NSLocalizedString("Search", comment: ""), image: UIImage(systemName: "house")!))
+        arrControllers.append(createNavController(for: TrendingViewRouter.createModule(), title: "Trending", image: UIImage(systemName: "house") ?? UIImage()))
         viewControllers = arrControllers
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.red], for:.selected)
     }
@@ -57,9 +63,9 @@ class MainViewController: UITabBarController {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search artists"
-        self.navigationItem.searchController = searchController
-        self.definesPresentationContext = true
+        searchController.searchBar.placeholder = "Buscar.."
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
         return searchController
     }
 }

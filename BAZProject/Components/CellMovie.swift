@@ -11,13 +11,15 @@ class CellMovie: UITableViewCell {
     
     static let  identifier = "CellMovie"
     static func nib() -> UINib {
-        return UINib(nibName: self.identifier, bundle: Bundle(for: CellMovie.self))
+        return UINib(nibName: identifier, bundle: nil)
     }
+
     @IBOutlet weak var photoImageView: UIImageView! {
         didSet {
             photoImageView.layer.cornerRadius = photoImageView.bounds.height / 2
         }
     }
+
     @IBOutlet weak var lblTitle: UILabel! {
         didSet {
             lblTitle.layer.shadowOffset = CGSize(width: 0, height: 1)
@@ -25,7 +27,7 @@ class CellMovie: UITableViewCell {
             lblTitle.layer.cornerRadius = 10
         }
     }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }
