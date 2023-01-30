@@ -10,7 +10,7 @@ import UIKit
 extension UIView {
     func showLoader() {
         let loader = Loader(frame: frame)
-        self.addSubview(loader)
+        addSubview(loader)
     }
 
     func removeLoader() {

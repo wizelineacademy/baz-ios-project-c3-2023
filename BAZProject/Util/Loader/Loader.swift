@@ -9,7 +9,7 @@ import UIKit
 
 class Loader: UIView {
 
-    var blurEffectView: UIVisualEffectView?
+    weak var blurEffectView: UIVisualEffectView?
 
     override init(frame: CGRect) {
         let blurEffect = UIBlurEffect(style: .dark)

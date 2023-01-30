@@ -20,6 +20,7 @@ class TrendingViewController: UIViewController, TrendingViewProtocol {
     deinit {
         print("Data2 deinit")
     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         moviesTableView.delegate = self
@@ -28,7 +29,7 @@ class TrendingViewController: UIViewController, TrendingViewProtocol {
         moviesTableView.register(CellMovie.nib(), forCellReuseIdentifier: CellMovie.identifier)
         getData()
     }
-    
+
     func getData() {
         view.showLoader()
         presenter?.getTrendingMedia(mediaType: mediaType, timeWindow: .day)

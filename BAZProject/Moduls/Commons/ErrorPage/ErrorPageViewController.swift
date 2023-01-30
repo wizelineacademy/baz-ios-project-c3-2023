@@ -14,6 +14,7 @@ protocol ErrorPageViewDelegate: AnyObject {
 class ErrorPageViewController: CustomView {
     
     override var nameXIB: String {"ErrorPageView"}
+    weak var delegate: ErrorPageViewDelegate?
     
     @IBOutlet weak var imgErrorLogo: UIImageView! {
         didSet {
@@ -22,8 +23,6 @@ class ErrorPageViewController: CustomView {
             }
         }
     }
-    
-    weak var delegate: ErrorPageViewDelegate?
 
     @IBAction func reintent(_ sender: Any) {
         delegate?.reintent()
