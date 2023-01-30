@@ -11,20 +11,24 @@ class TrendingViewRouter: TrendingRouterProtocol {
     static func createModule() -> UIViewController {
         guard let view = TrendingViewController(
             nibName: TrendingViewController.nibName,
-            bundle: nil) as? TrendingViewProtocol
+            bundle: nil) as? TrendingProtocol
         else {
             return UIViewController()
         }
-        let interactor: TrendingInteractorProtocol = TrendingInteractor()
-        let presenter: presenterProtocols = TrendingViewPresenter()
+
+        let dataManager: TrendingDataManagerInputProtocol = TrendingDataManager(providerNetworking: NetworkingProviderService.shared)
+        let interactor: TrendingInteractorInputProtocol & TrendingDataManagerOutputProtocol = TrendingInteractor()
+        let presenter: TrendingPresenterProtocol & TrendingInteractorOutputProtocol = TrendingPresenter()
 
         let router: TrendingRouterProtocol = TrendingViewRouter()
 
+        view.presenter = presenter
+        interactor.dataManager = dataManager
         interactor.presenter = presenter
+        dataManager.interactor = interactor
         presenter.view = view
         presenter.interactor = interactor
         presenter.router = router
-        view.presenter = presenter
 
         guard let view = view as? UIViewController else { return UIViewController() }
         return view

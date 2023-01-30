@@ -6,7 +6,7 @@
 
 import UIKit
 
-class TrendingViewController: UIViewController, TrendingViewProtocol {
+class TrendingViewController: UIViewController, TrendingProtocol {
     
     var movies: [MovieResult] = []
     let mediaType: MediaType = .movie
@@ -16,10 +16,6 @@ class TrendingViewController: UIViewController, TrendingViewProtocol {
 
     @IBOutlet weak var errorUIView: ErrorPageViewController!
     @IBOutlet weak var moviesTableView: UITableView!
-
-    deinit {
-        print("Data2 deinit")
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

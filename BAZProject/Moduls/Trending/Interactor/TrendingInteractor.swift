@@ -7,45 +7,26 @@
 
 import Foundation
 
-typealias TrendingInteractorProtocol = TrendingViewInteractorInputProtocol & TrendingViewInteractorOutputProtocol
-class TrendingInteractor: TrendingInteractorProtocol {
+class TrendingInteractor {
+    weak var presenter: TrendingInteractorOutputProtocol?
+    var dataManager: TrendingDataManagerInputProtocol?
+}
 
-    weak var presenter: TrendingViewInteractorOutputProtocol?
-    var providerNetworking: NetworkingProviderProtocol = NetworkingProviderService.shared
-    
+
+extension TrendingInteractor: TrendingInteractorInputProtocol {
     func getTrendingMedia(mediaType: MediaType, timeWindow: TimeWindowType) {
-        
         let endPoint: String = "/trending/\(mediaType.rawValue)/\(timeWindow.rawValue)"
         let strUrl: String = endPoint.getStrUrlTheMovieDb()
-        
-        providerNetworking.sendRequest(
-            requestType: RequestType(strUrl: strUrl, method: .GET)
-        ) { [weak self] success, data in
-            guard let self = self else {
-                self?.presenter?.getTrendingMedia(success: false, result: nil)
-                return
-            }
-            DispatchQueue.main.async {
-                var result: [MovieResult]?
-                if let data = data {
-                    do {
-                        let response = try JSONDecoder().decode(MovieResponse.self, from: data)
-                        result = response.results
-                    } catch {
-                        result = nil
-                    }
-                }
-                self.presenter?.getTrendingMedia(success: success, result: result)
-                
-//                self.presenter.sucess()
-//                
-//                self.presenter.fail()
-//                dataManager -> 
-            }
-        }
+        dataManager?.requestTrendingMedia(strUrl)
+    }
+}
+
+extension TrendingInteractor: TrendingDataManagerOutputProtocol {
+    func handleGetTrendingMedia(_ result: [MovieResult]) {
+        presenter?.getTrendingMedia(result: result)
     }
     
-    func getTrendingMedia(success: Bool, result: [MovieResult]?) {
-        presenter?.getTrendingMedia(success: success, result: result)
+    func handleErrorService() {
+        presenter?.showViewError()
     }
 }
