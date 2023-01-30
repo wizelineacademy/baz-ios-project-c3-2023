@@ -170,18 +170,18 @@
 		D215D20929843F6D00582CB5 /* BAZProjectTests */ = {
 			isa = PBXGroup;
 			children = (
-				D215D21129843F8E00582CB5 /* Moduls */,
+				D215D21129843F8E00582CB5 /* Modules */,
 				D215D20A29843F6D00582CB5 /* BAZProjectTests.swift */,
 			);
 			path = BAZProjectTests;
 			sourceTree = "<group>";
 		};
-		D215D21129843F8E00582CB5 /* Moduls */ = {
+		D215D21129843F8E00582CB5 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
 				D215D21229843FBF00582CB5 /* Trending */,
 			);
-			path = Moduls;
+			path = Modules;
 			sourceTree = "<group>";
 		};
 		D215D21229843FBF00582CB5 /* Trending */ = {
