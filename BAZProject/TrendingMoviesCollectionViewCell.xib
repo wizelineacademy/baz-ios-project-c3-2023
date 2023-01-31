@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TrendingMoviesCollectionViewCell" id="CVT-p2-gU4" customClass="TrendingMoviesCollectionViewCell" customModule="BAZProject" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="351" height="200"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Xgs-Jv-H0t">
+                <rect key="frame" x="0.0" y="0.0" width="351" height="200"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ysw-Kg-FyD">
+                        <rect key="frame" x="0.0" y="0.0" width="351" height="200"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="poster" translatesAutoresizingMaskIntoConstraints="NO" id="IIf-b0-WWm">
+                                <rect key="frame" x="5" y="5" width="341" height="190"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="degrade" translatesAutoresizingMaskIntoConstraints="NO" id="tlT-5K-D7e">
+                                <rect key="frame" x="5" y="5" width="341" height="190"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h2A-uv-Gsl">
+                                <rect key="frame" x="16" y="152" width="319" height="30"/>
+                                <fontDescription key="fontDescription" name="KohinoorGujarati-Regular" family="Kohinoor Gujarati" pointSize="20"/>
+                                <color key="textColor" systemColor="systemBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="tlT-5K-D7e" secondAttribute="bottom" constant="5" id="5Qd-w9-gsh"/>
+                            <constraint firstAttribute="trailing" secondItem="IIf-b0-WWm" secondAttribute="trailing" constant="5" id="6UW-rH-v1A"/>
+                            <constraint firstAttribute="width" constant="351" id="858-BU-glg"/>
+                            <constraint firstAttribute="bottom" secondItem="h2A-uv-Gsl" secondAttribute="bottom" constant="18" id="PD5-Vo-MJL"/>
+                            <constraint firstItem="h2A-uv-Gsl" firstAttribute="leading" secondItem="Ysw-Kg-FyD" secondAttribute="leading" constant="16" id="RbO-tI-l5d"/>
+                            <constraint firstItem="tlT-5K-D7e" firstAttribute="leading" secondItem="Ysw-Kg-FyD" secondAttribute="leading" constant="5" id="YnV-N3-oal"/>
+                            <constraint firstItem="tlT-5K-D7e" firstAttribute="top" secondItem="Ysw-Kg-FyD" secondAttribute="top" constant="5" id="eJ9-v4-52u"/>
+                            <constraint firstAttribute="trailing" secondItem="h2A-uv-Gsl" secondAttribute="trailing" constant="16" id="fxE-HT-87A"/>
+                            <constraint firstAttribute="bottom" secondItem="IIf-b0-WWm" secondAttribute="bottom" constant="5" id="mjm-bA-mpl"/>
+                            <constraint firstItem="IIf-b0-WWm" firstAttribute="leading" secondItem="Ysw-Kg-FyD" secondAttribute="leading" constant="5" id="oNu-ss-3mX"/>
+                            <constraint firstAttribute="height" constant="200" id="qoZ-7K-49R"/>
+                            <constraint firstItem="IIf-b0-WWm" firstAttribute="top" secondItem="Ysw-Kg-FyD" secondAttribute="top" constant="5" id="rKC-YX-LXc"/>
+                            <constraint firstAttribute="trailing" secondItem="tlT-5K-D7e" secondAttribute="trailing" constant="5" id="vCp-le-VF5"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="Ysw-Kg-FyD" secondAttribute="trailing" id="JlM-m4-urv"/>
+                    <constraint firstAttribute="bottom" secondItem="Ysw-Kg-FyD" secondAttribute="bottom" id="MFY-uP-LKS"/>
+                    <constraint firstItem="Ysw-Kg-FyD" firstAttribute="top" secondItem="Xgs-Jv-H0t" secondAttribute="top" id="d8v-og-Iga"/>
+                    <constraint firstItem="Ysw-Kg-FyD" firstAttribute="leading" secondItem="Xgs-Jv-H0t" secondAttribute="leading" id="kEr-Fp-JOC"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <size key="customSize" width="351" height="200"/>
+            <connections>
+                <outlet property="titleTrendingMovieLabel" destination="h2A-uv-Gsl" id="pgd-gu-AbB"/>
+                <outlet property="trendingImageView" destination="IIf-b0-WWm" id="hbl-0w-krt"/>
+            </connections>
+            <point key="canvasLocation" x="31.297709923664122" y="-31.690140845070424"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="degrade" width="235" height="66"/>
+        <image name="poster" width="500" height="743"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
