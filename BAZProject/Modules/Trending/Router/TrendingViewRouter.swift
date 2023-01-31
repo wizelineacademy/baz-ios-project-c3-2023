@@ -11,7 +11,7 @@ class TrendingViewRouter: TrendingRouterProtocol {
     static func createModule() -> UIViewController {
         guard let view = TrendingViewController(
             nibName: TrendingViewController.nibName,
-            bundle: nil) as? TrendingProtocol
+            bundle: nil) as? TrendingViewProtocol
         else {
             return UIViewController()
         }

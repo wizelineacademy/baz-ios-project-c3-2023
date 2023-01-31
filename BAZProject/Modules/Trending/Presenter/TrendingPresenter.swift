@@ -9,7 +9,7 @@ import Foundation
 
 class TrendingPresenter {
     
-    weak var view: TrendingProtocol?
+    weak var view: TrendingViewProtocol?
     var interactor: TrendingInteractorInputProtocol?
     var router: TrendingRouterProtocol?
 }

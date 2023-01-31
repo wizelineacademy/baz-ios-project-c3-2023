@@ -6,7 +6,7 @@
 //
 import UIKit
 
-protocol TrendingProtocol: AnyObject {
+protocol TrendingViewProtocol: AnyObject {
     var presenter: TrendingPresenterProtocol? { get set }
 
     func updateView(data: [MovieResult])
@@ -16,7 +16,7 @@ protocol TrendingProtocol: AnyObject {
 
 protocol TrendingPresenterProtocol: AnyObject {
     var router: TrendingRouterProtocol? { get set}
-    var view: TrendingProtocol? { get set }
+    var view: TrendingViewProtocol? { get set }
     var interactor: TrendingInteractorInputProtocol? { get set }
 
     func getTrendingMedia(mediaType: MediaType, timeWindow: TimeWindowType)

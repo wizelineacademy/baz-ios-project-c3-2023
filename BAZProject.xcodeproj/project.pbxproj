@@ -17,6 +17,11 @@
 		C30893E328A425E1004B1860 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30893E128A425E1004B1860 /* Movie.swift */; };
 		C383356E28CA917400FCE0D5 /* code-review-rubric.md in Resources */ = {isa = PBXBuildFile; fileRef = C383356D28CA917400FCE0D5 /* code-review-rubric.md */; };
 		D20461022980F8DA000EAF42 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20461012980F8DA000EAF42 /* CustomView.swift */; };
+		D2073EA629898C22006A577A /* ErrorPageProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2073EA529898C22006A577A /* ErrorPageProtocols.swift */; };
+		D2073EAA29899160006A577A /* ErrorPagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2073EA929899160006A577A /* ErrorPagePresenter.swift */; };
+		D2073EAC29899539006A577A /* ErrorPageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2073EAB29899539006A577A /* ErrorPageRouter.swift */; };
+		D2073EAE29899696006A577A /* ErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2073EAD29899696006A577A /* ErrorType.swift */; };
+		D2073EB12989986A006A577A /* ErrorPageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2073EB02989986A006A577A /* ErrorPageInteractor.swift */; };
 		D215C4FE2980EF1000D5670F /* ErrorPageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D215C4FD2980EF1000D5670F /* ErrorPageView.xib */; };
 		D215C5002980EF9500D5670F /* ErrorPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D215C4FF2980EF9500D5670F /* ErrorPageViewController.swift */; };
 		D215D20329843EC000582CB5 /* TrendingDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D215D20229843EC000582CB5 /* TrendingDataManager.swift */; };
@@ -69,6 +74,11 @@
 		C30893E128A425E1004B1860 /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		C383356D28CA917400FCE0D5 /* code-review-rubric.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "code-review-rubric.md"; sourceTree = "<group>"; };
 		D20461012980F8DA000EAF42 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
+		D2073EA529898C22006A577A /* ErrorPageProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPageProtocols.swift; sourceTree = "<group>"; };
+		D2073EA929899160006A577A /* ErrorPagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPagePresenter.swift; sourceTree = "<group>"; };
+		D2073EAB29899539006A577A /* ErrorPageRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPageRouter.swift; sourceTree = "<group>"; };
+		D2073EAD29899696006A577A /* ErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorType.swift; sourceTree = "<group>"; };
+		D2073EB02989986A006A577A /* ErrorPageInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPageInteractor.swift; sourceTree = "<group>"; };
 		D215C4FD2980EF1000D5670F /* ErrorPageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorPageView.xib; sourceTree = "<group>"; };
 		D215C4FF2980EF9500D5670F /* ErrorPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPageViewController.swift; sourceTree = "<group>"; };
 		D215D20229843EC000582CB5 /* TrendingDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingDataManager.swift; sourceTree = "<group>"; };
@@ -159,6 +169,22 @@
 			path = CustomView;
 			sourceTree = "<group>";
 		};
+		D2073EA82989914B006A577A /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				D2073EA929899160006A577A /* ErrorPagePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		D2073EAF29899857006A577A /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				D2073EB02989986A006A577A /* ErrorPageInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
 		D215D20129843EAE00582CB5 /* DataManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +229,7 @@
 		D2AAE59629898B7400656AD3 /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				D2073EAB29899539006A577A /* ErrorPageRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -210,6 +237,7 @@
 		D2AAE59729898B7900656AD3 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				D2073EAD29899696006A577A /* ErrorType.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -217,20 +245,16 @@
 		D2AAE59829898B8000656AD3 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				D2073EA529898C22006A577A /* ErrorPageProtocols.swift */,
 			);
 			path = Protocols;
-			sourceTree = "<group>";
-		};
-		D2AAE59929898B8D00656AD3 /* Interactor */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Interactor;
 			sourceTree = "<group>";
 		};
 		D2AAE59A29898B9300656AD3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D215C4FD2980EF1000D5670F /* ErrorPageView.xib */,
+				D215C4FF2980EF9500D5670F /* ErrorPageViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -247,12 +271,11 @@
 			isa = PBXGroup;
 			children = (
 				D2AAE59A29898B9300656AD3 /* View */,
-				D2AAE59929898B8D00656AD3 /* Interactor */,
+				D2073EAF29899857006A577A /* Interactor */,
+				D2073EA82989914B006A577A /* Presenter */,
 				D2AAE59829898B8000656AD3 /* Protocols */,
 				D2AAE59729898B7900656AD3 /* Entity */,
 				D2AAE59629898B7400656AD3 /* Router */,
-				D215C4FD2980EF1000D5670F /* ErrorPageView.xib */,
-				D215C4FF2980EF9500D5670F /* ErrorPageViewController.swift */,
 			);
 			name = ErrorPage;
 			path = Commons/ErrorPage;
@@ -539,6 +562,7 @@
 				D2E241C5297F9158002675B4 /* NetworkingProvider+Protocol.swift in Sources */,
 				D2B7A6512980EC7B0028BC4E /* UIView+Extension.swift in Sources */,
 				D2E43E36297FA59C000F9343 /* String+Extension.swift in Sources */,
+				D2073EAA29899160006A577A /* ErrorPagePresenter.swift in Sources */,
 				D2F3477229806F2700EFDB62 /* CellMovie.swift in Sources */,
 				D2CFEC262983315A0024D226 /* TrendingViewController+UITableExtensions.swift in Sources */,
 				D248E468298633D300BC1281 /* MainViewController.swift in Sources */,
@@ -546,6 +570,9 @@
 				D20461022980F8DA000EAF42 /* CustomView.swift in Sources */,
 				D2CFEC2229832F760024D226 /* TrendingViewController+ErrorPageViewDelegate.swift in Sources */,
 				D2E43E33297FA0E7000F9343 /* TrendingType.swift in Sources */,
+				D2073EAC29899539006A577A /* ErrorPageRouter.swift in Sources */,
+				D2073EAE29899696006A577A /* ErrorType.swift in Sources */,
+				D2073EA629898C22006A577A /* ErrorPageProtocols.swift in Sources */,
 				D215C5002980EF9500D5670F /* ErrorPageViewController.swift in Sources */,
 				D2CFEC1B29831CFC0024D226 /* TrendingInteractor.swift in Sources */,
 				D29F2C522987168E004B96D1 /* LaunchScreenViewController.swift in Sources */,
@@ -553,6 +580,7 @@
 				C30893AE28A2F42B004B1860 /* AppDelegate.swift in Sources */,
 				D215D20329843EC000582CB5 /* TrendingDataManager.swift in Sources */,
 				D2E241CC297F9AC1002675B4 /* LocalizedKey.swift in Sources */,
+				D2073EB12989986A006A577A /* ErrorPageInteractor.swift in Sources */,
 				D2B7A64A2980E2030028BC4E /* SizeImageType.swift in Sources */,
 				C30893B028A2F42B004B1860 /* SceneDelegate.swift in Sources */,
 				C30893E228A425E1004B1860 /* MovieAPI.swift in Sources */,

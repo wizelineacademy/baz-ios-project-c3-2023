@@ -7,14 +7,7 @@
 
 import UIKit
 
-protocol ErrorPageViewDelegate: AnyObject {
-    func reintent()
-}
-
-class ErrorPageViewController: CustomView {
-    
-    override var nameXIB: String {"ErrorPageView"}
-    weak var delegate: ErrorPageViewDelegate?
+class ErrorPageViewController: UIViewController, ErrorPageViewProtocol {
     
     @IBOutlet weak var imgErrorLogo: UIImageView! {
         didSet {
@@ -23,8 +16,18 @@ class ErrorPageViewController: CustomView {
             }
         }
     }
-
+    
+    var presenter: ErrorPagePresenterProtocol?
+    var errorType: ErrorType?
+    
+    static let nibName: String = "ErrorPageView"
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
     @IBAction func reintent(_ sender: Any) {
-        delegate?.reintent()
+        presenter?.closeThisInstance()
     }
 }
+

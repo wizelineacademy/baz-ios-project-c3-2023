@@ -6,7 +6,7 @@
 
 import UIKit
 
-class TrendingViewController: UIViewController, TrendingProtocol {
+class TrendingViewController: UIViewController, TrendingViewProtocol {
     
     var movies: [MovieResult] = []
     let mediaType: MediaType = .movie
