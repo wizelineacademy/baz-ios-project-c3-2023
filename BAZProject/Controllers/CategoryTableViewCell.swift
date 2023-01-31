@@ -44,8 +44,17 @@ extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieGalleryCollectionViewCell", for: indexPath) as! MovieGalleryCollectionViewCell
-        collectionCell.movieImage.image = UIImage(named: "poster")
-        collectionCell.movieTitle.text = moviesToShow[indexPath.row].title
+        collectionCell.movieTitle.text = moviesToShow[indexPath.row].title        
+        let strImage =  moviesToShow[indexPath.row].poster_path
+        let imageURL =  "https://image.tmdb.org/t/p/w500\(strImage)"
+        if let url = URL(string: imageURL){
+            collectionCell.movieImage.fetchPhoto(url: url) { image, error in
+                if let image = image{
+                    collectionCell.movieImage.image = image
+                }
+            }
+        }
+        
         return collectionCell
     }
     
