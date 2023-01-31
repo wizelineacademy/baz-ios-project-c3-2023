@@ -11,7 +11,7 @@ typealias ErrorPagePresenterProtocols = ErrorPagePresenterProtocol & ErrorPageIn
 class ErrorPagePresenter: ErrorPagePresenterProtocols {
 
     var router: ErrorPageRouterProtocol?
-    var view: ErrorPageViewProtocol?
+    weak var view: ErrorPageViewProtocol?
     var interactor: ErrorPageInteractorInputProtocol?
     
     func closeThisInstance() {

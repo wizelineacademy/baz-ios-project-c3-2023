@@ -27,7 +27,8 @@ extension TrendingPresenter: TrendingInteractorOutputProtocol {
     }
     
     func showViewError(_ error: Error) {
-        view?.showErrorView(error)
-        view?.stopLoading()
+        guard let fetchedError: ServiceError = error as? ServiceError else { return }
+        let errorModel: ErrorType = ErrorType(serviceError: fetchedError)
+        router?.showViewError(errorModel)
     }
 }

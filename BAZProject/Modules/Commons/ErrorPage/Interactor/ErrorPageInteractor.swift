@@ -8,5 +8,5 @@
 import Foundation
 
 class ErrorPageInteractor: ErrorPageInteractorInputProtocol {
-    var presenter: ErrorPageInteractorOutputProtocol?
+    weak var presenter: ErrorPageInteractorOutputProtocol?
 }

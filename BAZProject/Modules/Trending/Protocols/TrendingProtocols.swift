@@ -10,7 +10,6 @@ protocol TrendingViewProtocol: AnyObject {
     var presenter: TrendingPresenterProtocol? { get set }
 
     func updateView(data: [MovieResult])
-    func showErrorView(_ error: Error)
     func stopLoading()
 }
 
@@ -23,7 +22,10 @@ protocol TrendingPresenterProtocol: AnyObject {
 }
 
 protocol TrendingRouterProtocol: AnyObject {
+    var view: TrendingViewProtocol? { get set }
+
     static func createModule() -> UIViewController
+    func showViewError(_ errorType: ErrorType)
 }
 
 protocol TrendingInteractorOutputProtocol: AnyObject {

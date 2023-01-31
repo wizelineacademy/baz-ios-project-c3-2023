@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ErrorPageViewController" customModule="BAZProject" customModuleProvider="target">
             <connections>
                 <outlet property="imgErrorLogo" destination="bqt-gd-fgX" id="8EY-wb-vbz"/>
+                <outlet property="view" destination="r6t-f2-kQE" id="B1B-uw-ZJ5"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

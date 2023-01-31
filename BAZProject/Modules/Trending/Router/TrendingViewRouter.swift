@@ -8,6 +8,9 @@
 import UIKit
 
 class TrendingViewRouter: TrendingRouterProtocol {
+    weak var view: TrendingViewProtocol?
+    
+    
     static func createModule() -> UIViewController {
         guard let view = TrendingViewController(
             nibName: TrendingViewController.nibName,
@@ -21,7 +24,7 @@ class TrendingViewRouter: TrendingRouterProtocol {
         let presenter: TrendingPresenterProtocol & TrendingInteractorOutputProtocol = TrendingPresenter()
 
         let router: TrendingRouterProtocol = TrendingViewRouter()
-
+        router.view = view
         view.presenter = presenter
         interactor.dataManager = dataManager
         interactor.presenter = presenter
@@ -33,4 +36,10 @@ class TrendingViewRouter: TrendingRouterProtocol {
         guard let view = view as? UIViewController else { return UIViewController() }
         return view
     }
+    
+    func showViewError(_ errorType: ErrorType) {
+        guard let view = view as? UIViewController, let errorPageVC = ErrorPageRouter.createModule(errorType: errorType) as? UIViewController else { return }
+        view.navigationController?.pushViewController(errorPageVC, animated: true)
+    }
+    
 }
