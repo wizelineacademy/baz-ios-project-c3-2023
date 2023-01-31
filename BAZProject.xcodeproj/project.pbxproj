@@ -38,7 +38,6 @@
 		D2CFEC1B29831CFC0024D226 /* TrendingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFEC1A29831CFC0024D226 /* TrendingInteractor.swift */; };
 		D2CFEC1D29831F4E0024D226 /* TrendingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFEC1C29831F4E0024D226 /* TrendingPresenter.swift */; };
 		D2CFEC1F2983207E0024D226 /* TrendingViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFEC1E2983207E0024D226 /* TrendingViewRouter.swift */; };
-		D2CFEC2229832F760024D226 /* TrendingViewController+ErrorPageViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFEC2129832F760024D226 /* TrendingViewController+ErrorPageViewDelegate.swift */; };
 		D2CFEC262983315A0024D226 /* TrendingViewController+UITableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFEC252983315A0024D226 /* TrendingViewController+UITableExtensions.swift */; };
 		D2D2F83629846BB000840F20 /* TrendingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2D2F83529846BB000840F20 /* TrendingView.xib */; };
 		D2E241C5297F9158002675B4 /* NetworkingProvider+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E241C4297F9158002675B4 /* NetworkingProvider+Protocol.swift */; };
@@ -96,7 +95,6 @@
 		D2CFEC1A29831CFC0024D226 /* TrendingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingInteractor.swift; sourceTree = "<group>"; };
 		D2CFEC1C29831F4E0024D226 /* TrendingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingPresenter.swift; sourceTree = "<group>"; };
 		D2CFEC1E2983207E0024D226 /* TrendingViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingViewRouter.swift; sourceTree = "<group>"; };
-		D2CFEC2129832F760024D226 /* TrendingViewController+ErrorPageViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrendingViewController+ErrorPageViewDelegate.swift"; sourceTree = "<group>"; };
 		D2CFEC252983315A0024D226 /* TrendingViewController+UITableExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrendingViewController+UITableExtensions.swift"; sourceTree = "<group>"; };
 		D2D2F83529846BB000840F20 /* TrendingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrendingView.xib; sourceTree = "<group>"; };
 		D2E241C4297F9158002675B4 /* NetworkingProvider+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkingProvider+Protocol.swift"; sourceTree = "<group>"; };
@@ -284,7 +282,6 @@
 		D2CFEC2029832F510024D226 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				D2CFEC2129832F760024D226 /* TrendingViewController+ErrorPageViewDelegate.swift */,
 				D2CFEC252983315A0024D226 /* TrendingViewController+UITableExtensions.swift */,
 			);
 			path = Extensions;
@@ -568,7 +565,6 @@
 				D248E468298633D300BC1281 /* MainViewController.swift in Sources */,
 				C30893C428A2F845004B1860 /* TrendingViewController.swift in Sources */,
 				D20461022980F8DA000EAF42 /* CustomView.swift in Sources */,
-				D2CFEC2229832F760024D226 /* TrendingViewController+ErrorPageViewDelegate.swift in Sources */,
 				D2E43E33297FA0E7000F9343 /* TrendingType.swift in Sources */,
 				D2073EAC29899539006A577A /* ErrorPageRouter.swift in Sources */,
 				D2073EAE29899696006A577A /* ErrorType.swift in Sources */,

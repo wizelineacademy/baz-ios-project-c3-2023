@@ -11,7 +11,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TrendingViewController" customModule="BAZProject" customModuleProvider="target">
             <connections>
-                <outlet property="errorUIView" destination="cHU-hy-mp1" id="tlk-At-wjL"/>
                 <outlet property="moviesTableView" destination="xaZ-Lb-59o" id="Cr2-72-D0t"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Y4v-F1-4Xf"/>
             </connections>
@@ -24,10 +23,6 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c8e-4T-bZk">
                     <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cHU-hy-mp1" customClass="ErrorPageViewController" customModule="BAZProject" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        </view>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xaZ-Lb-59o">
                             <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -37,12 +32,8 @@
                     <constraints>
                         <constraint firstItem="xaZ-Lb-59o" firstAttribute="top" secondItem="c8e-4T-bZk" secondAttribute="top" id="AlY-GZ-Cgv"/>
                         <constraint firstAttribute="trailing" secondItem="xaZ-Lb-59o" secondAttribute="trailing" id="GI3-Dr-g4G"/>
-                        <constraint firstItem="cHU-hy-mp1" firstAttribute="top" secondItem="c8e-4T-bZk" secondAttribute="top" id="Qxd-Ru-aMc"/>
-                        <constraint firstAttribute="trailing" secondItem="cHU-hy-mp1" secondAttribute="trailing" id="Snz-9y-hMn"/>
-                        <constraint firstAttribute="bottom" secondItem="cHU-hy-mp1" secondAttribute="bottom" id="UJR-d4-13u"/>
                         <constraint firstItem="xaZ-Lb-59o" firstAttribute="leading" secondItem="c8e-4T-bZk" secondAttribute="leading" id="gtd-7L-RGt"/>
                         <constraint firstAttribute="bottom" secondItem="xaZ-Lb-59o" secondAttribute="bottom" id="xyd-FJ-jeE"/>
-                        <constraint firstItem="cHU-hy-mp1" firstAttribute="leading" secondItem="c8e-4T-bZk" secondAttribute="leading" id="yV7-80-vtx"/>
                     </constraints>
                 </view>
             </subviews>
