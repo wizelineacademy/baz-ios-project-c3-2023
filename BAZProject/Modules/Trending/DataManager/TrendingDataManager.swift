@@ -22,21 +22,12 @@ extension TrendingDataManager: TrendingDataManagerInputProtocol {
         
         providerNetworking?.sendRequest(
             requestType: RequestType(strUrl: urlString, method: .GET)
-        ) { [weak self] success, data in
-            
-            guard let self = self else { return }
-    
-            DispatchQueue.main.async {
-                if success, let data = data {
-                    do {
-                        let response = try JSONDecoder().decode(MovieResponse.self, from: data)
-                        self.interactor?.handleGetTrendingMedia(response.results ?? [])
-                    } catch {
-                        self.interactor?.handleErrorService()
-                    }
-                } else {
-                    self.interactor?.handleErrorService()
-                }
+        ) { [weak self] (result: Result<MovieResponse, Error>) in
+            switch result {
+            case .success(let movie):
+                self?.interactor?.handleGetTrendingMedia(movie.results ?? [])
+            case .failure(let error):
+                self?.interactor?.handleErrorService(error)
             }
         }
     }

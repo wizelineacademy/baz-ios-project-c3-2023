@@ -10,7 +10,7 @@ protocol TrendingProtocol: AnyObject {
     var presenter: TrendingPresenterProtocol? { get set }
 
     func updateView(data: [MovieResult])
-    func showErrorView()
+    func showErrorView(_ error: Error)
     func stopLoading()
 }
 
@@ -28,7 +28,7 @@ protocol TrendingRouterProtocol: AnyObject {
 
 protocol TrendingInteractorOutputProtocol: AnyObject {
     func getTrendingMedia(result: [MovieResult])
-    func showViewError()
+    func showViewError(_ error: Error)
 }
 
 protocol TrendingInteractorInputProtocol: AnyObject {
@@ -46,5 +46,5 @@ protocol TrendingDataManagerInputProtocol: AnyObject {
 
 protocol TrendingDataManagerOutputProtocol: AnyObject {
     func handleGetTrendingMedia(_ result: [MovieResult])
-    func handleErrorService()
+    func handleErrorService(_ error: Error)
 }

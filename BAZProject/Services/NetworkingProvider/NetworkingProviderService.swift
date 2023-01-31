@@ -7,6 +7,14 @@
 
 import Foundation
 
+enum ServiceError: Error {
+    case noData
+    case response
+    case parsingData
+    case internalServer
+    case badRequest
+}
+
 class NetworkingProviderService: NetworkingProviderProtocol {
     
     static var shared: NetworkingProviderService = {
@@ -16,8 +24,11 @@ class NetworkingProviderService: NetworkingProviderProtocol {
         
         private init() {}
     
-    func sendRequest(requestType: RequestType, completion: @escaping (Bool, Data?) -> Void) {
-        guard let url = URL(string: requestType.strUrl) else { return }
+    func sendRequest<T: Decodable>(requestType: RequestType, completion: @escaping (Result<T, Error>) -> Void) {
+        guard let url = URL(string: requestType.strUrl) else {
+            completion(ServiceError.badRequest)
+            return
+        }
         var request = URLRequest(url: url)
         request.httpMethod = requestType.method.getTypeResponse()
 
@@ -29,16 +40,34 @@ class NetworkingProviderService: NetworkingProviderProtocol {
 
         request.httpBody = requestType.httpBody
         
-        let task = URLSession.shared.dataTask(with: request) { data, _, _ in
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {
-                guard let data = data else {
-                    print("Error: Did not receive data")
-                    completion(false, nil)
+                
+                if let error: Error = error {
+                    completion(.failure(error))
                     return
                 }
-                completion(true, data)
+                
+                guard let data: Data = data else {
+                    completion(.failure(ServiceError.noData))
+                    return
+                }
+                
+                guard let response: HTTPURLResponse = response as? HTTPURLResponse else {
+                    completion(.failure(ServiceError.response))
+                    return
+                }
+
+                do {
+                    let decodedData = try JSONDecoder().decode(T.self, from: data)
+                    completion(.success(decodedData))
+                    
+                } catch {
+                    completion(.failure(ServiceError.parsingData))
+                }
             }
         }
         task.resume()
     }
+  
 }

@@ -8,8 +8,6 @@
 import Foundation
 
 protocol NetworkingProviderProtocol: AnyObject {
-    func sendRequest(requestType: RequestType,
-                     completion: @escaping (_ success: Bool,
-                                            _ result: Data?
-                     ) -> Void )
+    func sendRequest<T: Decodable>(requestType: RequestType,
+                     completion: @escaping (Result<T,Error>) -> Void)
 }

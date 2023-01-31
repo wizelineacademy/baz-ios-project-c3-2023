@@ -26,7 +26,7 @@ extension TrendingInteractor: TrendingDataManagerOutputProtocol {
         presenter?.getTrendingMedia(result: result)
     }
     
-    func handleErrorService() {
-        presenter?.showViewError()
+    func handleErrorService(_ error: Error) {
+        presenter?.showViewError(error)
     }
 }

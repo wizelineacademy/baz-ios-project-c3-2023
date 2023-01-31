@@ -26,8 +26,8 @@ extension TrendingPresenter: TrendingInteractorOutputProtocol {
         view?.stopLoading()
     }
     
-    func showViewError() {
-        view?.showErrorView()
+    func showViewError(_ error: Error) {
+        view?.showErrorView(error)
         view?.stopLoading()
     }
 }

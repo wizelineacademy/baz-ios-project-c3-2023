@@ -40,7 +40,7 @@ class TrendingViewController: UIViewController, TrendingProtocol {
         view.removeLoader()
     }
     
-    func showErrorView() {
+    func showErrorView(_ error: Error) {
         moviesTableView.isHidden = true
         errorUIView.isHidden = false
     }
