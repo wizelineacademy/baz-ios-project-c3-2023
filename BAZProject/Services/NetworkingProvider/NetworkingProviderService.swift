@@ -26,7 +26,7 @@ class NetworkingProviderService: NetworkingProviderProtocol {
     
     func sendRequest<T: Decodable>(requestType: RequestType, completion: @escaping (Result<T, Error>) -> Void) {
         guard let url = URL(string: requestType.strUrl) else {
-            completion(ServiceError.badRequest)
+            completion(.failure(ServiceError.badRequest))
             return
         }
         var request = URLRequest(url: url)
