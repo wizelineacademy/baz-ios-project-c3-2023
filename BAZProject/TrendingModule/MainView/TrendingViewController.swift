@@ -8,7 +8,7 @@ import UIKit
 
 class TrendingViewController: UITableViewController {
 
-    var movies: [Movie] = []
+    var movies: [ResultMovies] = []
     let manageImgs = LoadRemotedata()
 
     @IBOutlet var tableMoviesView: UITableView!
@@ -18,9 +18,10 @@ class TrendingViewController: UITableViewController {
         let movieApi = MovieAPI()
         
         movies = movieApi.getMovies()
+        
         manageImgs.saveImages(from: movies)
-        self.registerTableViewCells()
-        self.tableMoviesView.reloadData()
+        registerTableViewCells()
+        tableMoviesView.reloadData()
     }
     func registerTableViewCells(){
         
@@ -43,8 +44,8 @@ extension TrendingViewController {
                                                          for: indexPath) as! TrendingTableViewCell
         
         cell.lblMovieTitle.text = movies[indexPath.row].title
-        cell.lblMovieRate.text = RateViewModel(movieRate: movies[indexPath.row].vote_average ).movieEmojiRate.rawValue
-        cell.imgImageMovie.image = manageImgs.loadImgsFromLocal(strPath: movies[indexPath.row].poster_path)
+        cell.lblMovieRate.text = RateViewModel(movieRate: movies[indexPath.row].voteAverage ).movieEmojiRate.rawValue
+        cell.imgImageMovie.image = manageImgs.loadImgsFromLocal(strPath: movies[indexPath.row].posterPath)
         return cell
     }
 
