@@ -1,35 +1,33 @@
 //
-//  MovieAPI.swift
+//  MovieProvider.swift
 //  BAZProject
 //
 //
 
 import UIKit
 
-class MovieAPI: WSRequestProtocol {
+final class MovieProvider: WSRequestProtocol {
     
-    private let filter: Filters
+    private let category: MovieCategory
     private let page: Int
     
     var request: URLRequest? {
-        guard let url = self.filter.getEndPoint(for: self.page) else { return nil }
+        guard let url = self.category.getEndPoint(for: self.page) else { return nil }
         return URLRequest(url: url)
     }
     
     var viewTitle: String {
-        self.filter.name
+        self.category.name
     }
     
-    init(filter: Filters, page: Int = 1) {
-        self.filter = filter
+    init(category: MovieCategory, page: Int = 1) {
+        self.category = category
         self.page = page
     }
     
     
-    /** Returns synchronously a list of movies from TheMovieDB API */
     func getMovies(completion: @escaping (Result<[Movie], Error>) -> Void) {
-        let manager = WebServiceManager(request: self)
-        manager.sendRequest { (result: Result<MoviesList, Error>) in
+        sendRequest { (result: Result<MoviesList, Error>) in
             switch result {
             case .success(let response):
                 completion(.success(response.movies))

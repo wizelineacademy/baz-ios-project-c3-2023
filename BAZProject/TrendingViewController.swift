@@ -9,7 +9,7 @@ import UIKit
 class TrendingViewController: UITableViewController {
 
     private var movies: [Movie] = []
-    private var movieAPI = MovieAPI(filter: .nowPlaying)
+    private var movieAPI = MovieProvider(category: .nowPlaying, page: 1)
 
     override func viewDidLoad() {
         super.viewDidLoad()

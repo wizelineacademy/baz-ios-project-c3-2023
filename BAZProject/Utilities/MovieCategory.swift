@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Filters {
+enum MovieCategory {
     case trending
     case nowPlaying
     case popular

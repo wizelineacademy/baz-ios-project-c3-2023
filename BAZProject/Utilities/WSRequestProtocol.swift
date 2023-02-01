@@ -9,4 +9,50 @@ import Foundation
 
 protocol WSRequestProtocol: AnyObject {
     var request: URLRequest? { get }
+    
+    func sendRequest<Response: Decodable>(completion: @escaping (Result<Response, Error>) -> Void)
+    func decodeJson<Response: Decodable>(from data: Data, decoder: JSONDecoder, completion: (Result<Response, Error>) -> Void)
+}
+
+extension WSRequestProtocol {
+    func sendRequest<Response: Decodable>(completion: @escaping (Result<Response, Error>) -> Void) {
+        guard let request = request else {
+            return completion(.failure(WSError.invalidRequest))
+        }
+
+        DispatchQueue.global(qos: .utility).async {
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                DispatchQueue.main.async {
+                    if let error = error {
+                        return completion(.failure(error))
+                    }
+                    
+                    if let httpResponse = response as? HTTPURLResponse,
+                       let data = data {
+                        switch httpResponse.statusCode {
+                        case 200...299:
+                            return self.decodeJson(
+                                from: data,
+                                completion: completion
+                            )
+                        default:
+                            return completion(.failure(WSError.nullResponse))
+                        }
+                    } else {
+                        return completion(.failure(WSError.nullResponse))
+                    }
+                }
+            }
+            task.resume()
+        }
+    }
+    
+    func decodeJson<Response: Decodable>(from data: Data, decoder: JSONDecoder = JSONDecoder(), completion: (Result<Response, Error>) -> Void) {
+        do {
+            let response = try decoder.decode(Response.self, from: data)
+            completion(.success(response))
+        } catch let error {
+            completion(.failure(error))
+        }
+    }
 }

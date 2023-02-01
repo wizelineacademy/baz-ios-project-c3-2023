@@ -25,6 +25,7 @@ struct Movie: Decodable {
     private let publishedDate: String
     
     var releaseDate: String {
+        /// hacer un metodo generico para reutilizar
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         let date = formatter.date(from: publishedDate)
@@ -32,15 +33,15 @@ struct Movie: Decodable {
         return formatter.string(from: date ?? Date())
     }
     
-    func getPosterURL(with zise: Int = 200) -> URL? {
-        self.baseURL?.appendingPathComponent("/w\(zise)\(self.posterPath)")
+    func getPosterURL(with size: Int = 200) -> URL? {
+        self.baseURL?.appendingPathComponent("/w\(size)\(self.posterPath)")
     }
     
-    func getBackgroundMovieURL(with zise: Int = 200) -> URL? {
+    func getBackgroundMovieURL(with size: Int = 200) -> URL? {
         guard let backgroundPath = self.backgroundImagePath else {
             return nil
         }
-        return self.baseURL?.appendingPathComponent("/w\(zise)\(backgroundPath)")
+        return self.baseURL?.appendingPathComponent("/w\(size)\(backgroundPath)")
     }
     
     private var baseURL: URL? {
