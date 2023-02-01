@@ -15,7 +15,7 @@ class TopRatedViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        movies = movieApi.getMovies(request: RequestType.topRated)
+        movies = movieApi.getMovies(ofType: .topRated)
         
         tableView.reloadData()
     }

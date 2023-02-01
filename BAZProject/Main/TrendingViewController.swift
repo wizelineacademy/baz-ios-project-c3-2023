@@ -14,7 +14,7 @@ class TrendingViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        movies = movieApi.getMovies(request: RequestType.trending)
+        movies = movieApi.getMovies(ofType: .trending)
         tableView.reloadData()
     }
 }
@@ -39,14 +39,9 @@ extension TrendingViewController {
 
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         var config = UIListContentConfiguration.cell()
-        config.text = movies[indexPath.row].title
         let urlImage = movies[indexPath.row].poster_path
-        guard let url = URL(string: urlImage) else {
-            cell.contentConfiguration = config
-            return
-        }
-        
-        config.image = UIImage(data: try! Data(contentsOf: url))  ?? UIImage()
+        config.image = movieApi.getImage(urlString: urlImage)
+        config.text = movies[indexPath.row].title
         cell.contentConfiguration = config
     }
     

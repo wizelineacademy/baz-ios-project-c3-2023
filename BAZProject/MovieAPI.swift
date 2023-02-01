@@ -12,9 +12,9 @@ class MovieAPI {
     private let apiKey: String = "api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
     var movies = [Movie]()
     
-    func getMovies(request: RequestType) -> [Movie] {
+    func getMovies(ofType: RequestType) -> [Movie] {
         
-        guard let url = URL(string: myUrls.basePath.rawValue + request.rawValue + apiKey),
+        guard let url = URL(string: myUrls.basePath.rawValue + ofType.rawValue + apiKey),
               let data = try? Data(contentsOf: url),
               let json = try? JSONSerialization.jsonObject(with: data) as? NSDictionary,
               let results = json.object(forKey: "results") as? [NSDictionary]
@@ -37,6 +37,13 @@ class MovieAPI {
         
     }
     
+    func getImage(urlString: String) -> UIImage {
+        let urlImage = urlString
+        guard let url = URL(string: urlImage) else { return UIImage() }
+        
+        return UIImage(data: try! Data(contentsOf: url))  ?? UIImage()
+    }
+
     func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
     }
