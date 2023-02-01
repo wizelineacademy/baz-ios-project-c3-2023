@@ -11,7 +11,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ErrorPageViewController" customModule="BAZProject" customModuleProvider="target">
             <connections>
+                <outlet property="descriptionErrorLabel" destination="Z0i-ZK-vPv" id="7tP-Q5-SYA"/>
                 <outlet property="imgErrorLogo" destination="bqt-gd-fgX" id="8EY-wb-vbz"/>
+                <outlet property="titleErrorLabel" destination="s7e-Th-cLp" id="nMb-4d-FVy"/>
                 <outlet property="view" destination="r6t-f2-kQE" id="B1B-uw-ZJ5"/>
             </connections>
         </placeholder>
@@ -21,20 +23,20 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bqt-gd-fgX">
-                    <rect key="frame" x="71.666666666666686" y="221.33333333333337" width="250" height="250"/>
+                    <rect key="frame" x="71.666666666666686" y="169" width="250" height="250"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="250" id="iVU-ID-N3y"/>
                         <constraint firstAttribute="height" constant="250" id="rtC-sY-LJS"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ups!, ocurrio un error." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21M-V3-g4s">
-                    <rect key="frame" x="16" y="139" width="361" height="42.333333333333343"/>
-                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="35"/>
-                    <color key="textColor" red="1" green="0.4273083862" blue="0.29877976280000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ups!, ha ocurrido un error..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21M-V3-g4s">
+                    <rect key="frame" x="16" y="99" width="361" height="30"/>
+                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="25"/>
+                    <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LNp-b8-fTd">
-                    <rect key="frame" x="16" y="496.33333333333331" width="361" height="41.666666666666686"/>
+                    <rect key="frame" x="16" y="552" width="361" height="41.666666666666629"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" image="arrowshape.turn.up.left.fill" catalog="system" titleAlignment="automatic">
                         <attributedString key="attributedTitle">
@@ -49,17 +51,35 @@
                         <action selector="reintent:" destination="-1" eventType="touchUpInside" id="Nud-g9-5sP"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s7e-Th-cLp">
+                    <rect key="frame" x="16" y="444" width="361" height="24"/>
+                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="20"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description error" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z0i-ZK-vPv">
+                    <rect key="frame" x="16" y="488" width="361" height="24"/>
+                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="20"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="uaZ-Ld-R4J"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="s7e-Th-cLp" firstAttribute="trailing" secondItem="21M-V3-g4s" secondAttribute="trailing" id="07F-X1-DbY"/>
+                <constraint firstItem="Z0i-ZK-vPv" firstAttribute="leading" secondItem="s7e-Th-cLp" secondAttribute="leading" id="0xj-jE-BUB"/>
+                <constraint firstItem="LNp-b8-fTd" firstAttribute="top" secondItem="Z0i-ZK-vPv" secondAttribute="bottom" constant="40" id="3pv-Dg-1tZ"/>
                 <constraint firstItem="bqt-gd-fgX" firstAttribute="top" secondItem="21M-V3-g4s" secondAttribute="bottom" constant="40" id="4Ai-oB-pe4"/>
-                <constraint firstItem="LNp-b8-fTd" firstAttribute="top" secondItem="bqt-gd-fgX" secondAttribute="bottom" constant="25" id="7Nc-g2-wQB"/>
+                <constraint firstItem="s7e-Th-cLp" firstAttribute="top" secondItem="bqt-gd-fgX" secondAttribute="bottom" constant="25" id="59o-Gd-iln"/>
                 <constraint firstItem="bqt-gd-fgX" firstAttribute="centerX" secondItem="r6t-f2-kQE" secondAttribute="centerX" id="94U-Qk-Jed"/>
                 <constraint firstItem="uaZ-Ld-R4J" firstAttribute="trailing" secondItem="LNp-b8-fTd" secondAttribute="trailing" constant="16" id="DV0-nH-d8k"/>
+                <constraint firstItem="Z0i-ZK-vPv" firstAttribute="top" secondItem="s7e-Th-cLp" secondAttribute="bottom" constant="20" id="Jgs-M4-FsR"/>
                 <constraint firstItem="21M-V3-g4s" firstAttribute="leading" secondItem="uaZ-Ld-R4J" secondAttribute="leading" constant="16" id="JoP-hN-fM7"/>
-                <constraint firstItem="21M-V3-g4s" firstAttribute="top" secondItem="uaZ-Ld-R4J" secondAttribute="top" constant="80" id="MrB-ol-cwT"/>
+                <constraint firstItem="21M-V3-g4s" firstAttribute="top" secondItem="uaZ-Ld-R4J" secondAttribute="top" constant="40" id="MrB-ol-cwT"/>
                 <constraint firstItem="uaZ-Ld-R4J" firstAttribute="trailing" secondItem="21M-V3-g4s" secondAttribute="trailing" constant="16" id="NRa-gl-jZA"/>
+                <constraint firstItem="s7e-Th-cLp" firstAttribute="leading" secondItem="21M-V3-g4s" secondAttribute="leading" id="ZUe-8o-aMH"/>
+                <constraint firstItem="Z0i-ZK-vPv" firstAttribute="trailing" secondItem="s7e-Th-cLp" secondAttribute="trailing" id="pHu-My-lvA"/>
                 <constraint firstItem="LNp-b8-fTd" firstAttribute="leading" secondItem="uaZ-Ld-R4J" secondAttribute="leading" constant="16" id="xnC-DR-iUD"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

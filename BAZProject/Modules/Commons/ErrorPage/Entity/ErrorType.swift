@@ -30,4 +30,9 @@ struct ErrorType {
             message = "Bad URL request"
         }
     }
+    
+    init(title: String, message: String) {
+        self.title = title
+        self.message = message
+    }
 }

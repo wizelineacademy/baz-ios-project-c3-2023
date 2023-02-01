@@ -7,14 +7,15 @@
 import UIKit
 
 class TrendingViewController: UIViewController, TrendingViewProtocol {
+
+    @IBOutlet weak var moviesTableView: UITableView!
     
     var movies: [MovieResult] = []
     let mediaType: MediaType = .movie
+    var errorGetData: Bool = false
     
     var presenter: TrendingPresenterProtocol?
     static let nibName = "TrendingView"
-
-    @IBOutlet weak var moviesTableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,13 @@ class TrendingViewController: UIViewController, TrendingViewProtocol {
         moviesTableView.dataSource = self
         moviesTableView.register(CellMovie.nib(), forCellReuseIdentifier: CellMovie.identifier)
         getData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if errorGetData {
+            getData()
+        }
     }
 
     func getData() {
@@ -38,6 +46,9 @@ class TrendingViewController: UIViewController, TrendingViewProtocol {
         view.removeLoader()
     }
     
+    func setErrorGettingData(_ status: Bool) {
+        errorGetData = status
+    }
 }
 
 

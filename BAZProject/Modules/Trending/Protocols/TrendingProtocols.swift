@@ -11,6 +11,7 @@ protocol TrendingViewProtocol: AnyObject {
 
     func updateView(data: [MovieResult])
     func stopLoading()
+    func setErrorGettingData(_ status: Bool)
 }
 
 protocol TrendingPresenterProtocol: AnyObject {

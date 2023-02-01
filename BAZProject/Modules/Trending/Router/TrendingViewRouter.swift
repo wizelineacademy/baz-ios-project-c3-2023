@@ -38,7 +38,8 @@ class TrendingViewRouter: TrendingRouterProtocol {
     }
     
     func showViewError(_ errorType: ErrorType) {
-        guard let view = view as? UIViewController, let errorPageVC = ErrorPageRouter.createModule(errorType: errorType) as? UIViewController else { return }
+        guard let view = view as? UIViewController,
+              let errorPageVC = ErrorPageRouter.createModule(errorType: errorType, titleNavBar: .trendingTitle) as? UIViewController else { return }
         view.navigationController?.pushViewController(errorPageVC, animated: true)
     }
     
