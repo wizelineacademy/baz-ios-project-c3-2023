@@ -43,18 +43,14 @@ extension TopRatedViewController {
         var config = UIListContentConfiguration.cell()
         config.text = movies[indexPath.row].title
         let urlImage = movies[indexPath.row].poster_path
-        guard let url = URL(string: urlImage) else {
-            cell.contentConfiguration = config
-            return
-        }
-        
-        config.image = UIImage(data: try! Data(contentsOf: url))  ?? UIImage()
+        config.image = movieApi.getImage(urlString: urlImage)
         cell.contentConfiguration = config
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         50
     }
+    
     
 }
 

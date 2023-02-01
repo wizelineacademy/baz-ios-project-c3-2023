@@ -36,14 +36,14 @@ class MovieAPI {
         return movies
         
     }
-    
+//    Syncronous
     func getImage(urlString: String) -> UIImage {
         let urlImage = urlString
         guard let url = URL(string: urlImage) else { return UIImage() }
         
         return UIImage(data: try! Data(contentsOf: url))  ?? UIImage()
     }
-
+//    Ascyncronous
     func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
     }
