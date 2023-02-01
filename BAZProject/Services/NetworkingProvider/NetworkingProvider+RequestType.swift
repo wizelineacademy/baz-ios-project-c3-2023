@@ -14,6 +14,23 @@ struct RequestType {
     var arrHeaders: [HeaderCustom]?
 }
 
+extension RequestType {
+    func getRequest() -> URLRequest {
+        var request: URLRequest
+        let url: URL = URL(string: self.strUrl)!
+    
+        request = URLRequest(url: url)
+        request.httpMethod = self.method.getTypeResponse()
+
+        if let arrHeaders = self.arrHeaders {
+            for header in arrHeaders {
+                request.setValue(header.value, forHTTPHeaderField: header.forHTTPHeaderField)
+            }
+        }
+        return request
+    }
+}
+
 enum MethodRequest {
     case GET, PUT, POST, DELETE
     

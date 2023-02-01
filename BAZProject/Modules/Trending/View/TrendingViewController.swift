@@ -39,11 +39,15 @@ class TrendingViewController: UIViewController, TrendingViewProtocol {
     
     func updateView(data: [MovieResult]) {
         movies = data
-        moviesTableView.reloadData()
+        guaranteeMainThread {
+            self.moviesTableView.reloadData()
+        }
     }
     
     func stopLoading() {
-        view.removeLoader()
+        guaranteeMainThread {
+            self.view.removeLoader()
+        }
     }
     
     func setErrorGettingData(_ status: Bool) {

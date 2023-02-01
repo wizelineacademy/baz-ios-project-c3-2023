@@ -18,8 +18,8 @@ class TrendingViewRouter: TrendingRouterProtocol {
         else {
             return UIViewController()
         }
-
-        let dataManager: TrendingDataManagerInputProtocol = TrendingDataManager(providerNetworking: NetworkingProviderService.shared)
+        let service: NetworkingProviderProtocol = NetworkingProviderService(session: URLSession.shared)
+        let dataManager: TrendingDataManagerInputProtocol = TrendingDataManager(providerNetworking: service)
         let interactor: TrendingInteractorInputProtocol & TrendingDataManagerOutputProtocol = TrendingInteractor()
         let presenter: TrendingPresenterProtocol & TrendingInteractorOutputProtocol = TrendingPresenter()
 

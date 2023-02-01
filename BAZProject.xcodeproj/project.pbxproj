@@ -40,7 +40,6 @@
 		D2CFEC1F2983207E0024D226 /* TrendingViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFEC1E2983207E0024D226 /* TrendingViewRouter.swift */; };
 		D2CFEC262983315A0024D226 /* TrendingViewController+UITableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFEC252983315A0024D226 /* TrendingViewController+UITableExtensions.swift */; };
 		D2D2F83629846BB000840F20 /* TrendingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2D2F83529846BB000840F20 /* TrendingView.xib */; };
-		D2E241C5297F9158002675B4 /* NetworkingProvider+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E241C4297F9158002675B4 /* NetworkingProvider+Protocol.swift */; };
 		D2E241C7297F91A2002675B4 /* NetworkingProvider+RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E241C6297F91A2002675B4 /* NetworkingProvider+RequestType.swift */; };
 		D2E241C9297F923E002675B4 /* NetworkingProviderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E241C8297F923E002675B4 /* NetworkingProviderService.swift */; };
 		D2E241CC297F9AC1002675B4 /* LocalizedKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E241CB297F9AC1002675B4 /* LocalizedKey.swift */; };
@@ -48,6 +47,7 @@
 		D2E43E36297FA59C000F9343 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E43E35297FA59C000F9343 /* String+Extension.swift */; };
 		D2F3477229806F2700EFDB62 /* CellMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F3477129806F2700EFDB62 /* CellMovie.swift */; };
 		D2F3477429806F4E00EFDB62 /* CellMovie.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2F3477329806F4E00EFDB62 /* CellMovie.xib */; };
+		D2F954D2298B0C0200F4CB4B /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F954D1298B0C0200F4CB4B /* UIViewController+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,7 +97,6 @@
 		D2CFEC1E2983207E0024D226 /* TrendingViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingViewRouter.swift; sourceTree = "<group>"; };
 		D2CFEC252983315A0024D226 /* TrendingViewController+UITableExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrendingViewController+UITableExtensions.swift"; sourceTree = "<group>"; };
 		D2D2F83529846BB000840F20 /* TrendingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrendingView.xib; sourceTree = "<group>"; };
-		D2E241C4297F9158002675B4 /* NetworkingProvider+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkingProvider+Protocol.swift"; sourceTree = "<group>"; };
 		D2E241C6297F91A2002675B4 /* NetworkingProvider+RequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkingProvider+RequestType.swift"; sourceTree = "<group>"; };
 		D2E241C8297F923E002675B4 /* NetworkingProviderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingProviderService.swift; sourceTree = "<group>"; };
 		D2E241CB297F9AC1002675B4 /* LocalizedKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedKey.swift; sourceTree = "<group>"; };
@@ -105,6 +104,7 @@
 		D2E43E35297FA59C000F9343 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		D2F3477129806F2700EFDB62 /* CellMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellMovie.swift; sourceTree = "<group>"; };
 		D2F3477329806F4E00EFDB62 /* CellMovie.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellMovie.xib; sourceTree = "<group>"; };
+		D2F954D1298B0C0200F4CB4B /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -290,7 +290,6 @@
 		D2E241C3297F8F05002675B4 /* NetworkingProvider */ = {
 			isa = PBXGroup;
 			children = (
-				D2E241C4297F9158002675B4 /* NetworkingProvider+Protocol.swift */,
 				D2E241C6297F91A2002675B4 /* NetworkingProvider+RequestType.swift */,
 				D2E241C8297F923E002675B4 /* NetworkingProviderService.swift */,
 			);
@@ -311,6 +310,7 @@
 				D2E43E35297FA59C000F9343 /* String+Extension.swift */,
 				D27C6D2E2980DCFF003E45C7 /* UIImage+Extension.swift */,
 				D2B7A6502980EC7B0028BC4E /* UIView+Extension.swift */,
+				D2F954D1298B0C0200F4CB4B /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -556,7 +556,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D27C6D2F2980DCFF003E45C7 /* UIImage+Extension.swift in Sources */,
-				D2E241C5297F9158002675B4 /* NetworkingProvider+Protocol.swift in Sources */,
 				D2B7A6512980EC7B0028BC4E /* UIView+Extension.swift in Sources */,
 				D2E43E36297FA59C000F9343 /* String+Extension.swift in Sources */,
 				D2073EAA29899160006A577A /* ErrorPagePresenter.swift in Sources */,
@@ -567,6 +566,7 @@
 				D20461022980F8DA000EAF42 /* CustomView.swift in Sources */,
 				D2E43E33297FA0E7000F9343 /* TrendingType.swift in Sources */,
 				D2073EAC29899539006A577A /* ErrorPageRouter.swift in Sources */,
+				D2F954D2298B0C0200F4CB4B /* UIViewController+Extension.swift in Sources */,
 				D2073EAE29899696006A577A /* ErrorType.swift in Sources */,
 				D2073EA629898C22006A577A /* ErrorPageProtocols.swift in Sources */,
 				D215C5002980EF9500D5670F /* ErrorPageViewController.swift in Sources */,

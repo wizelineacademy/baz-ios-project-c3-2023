@@ -9,9 +9,9 @@ import UIKit
 
 final class TrendingDataManager {
     weak var interactor: TrendingDataManagerOutputProtocol?
-    weak var providerNetworking: NetworkingProviderProtocol?
+    let providerNetworking: NetworkingProviderProtocol
     
-    init(providerNetworking: NetworkingProviderProtocol?) {
+    init(providerNetworking: NetworkingProviderProtocol) {
         self.providerNetworking = providerNetworking
     }
 }
@@ -20,9 +20,7 @@ extension TrendingDataManager: TrendingDataManagerInputProtocol {
 
     func requestTrendingMedia(_ urlString: String) {
         
-        providerNetworking?.sendRequest(
-            requestType: RequestType(strUrl: urlString, method: .GET)
-        ) { [weak self] (result: Result<MovieResponse, Error>) in
+        providerNetworking.sendRequest(RequestType(strUrl: urlString, method: .GET).getRequest()) { [weak self] (result: Result<MovieResponse, Error>) in
             switch result {
             case .success(let movie):
                 self?.interactor?.handleGetTrendingMedia(movie.results ?? [])
