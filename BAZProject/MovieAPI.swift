@@ -4,18 +4,17 @@
 //
 //
 
-import Foundation
+import UIKit
 
 
 class MovieAPI {
 
     private let apiKey: String = "api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
     var movies = [Movie]()
-    var urlBase = "https://api.themoviedb.org/3/"
     
     func getMovies(request: RequestType) -> [Movie] {
         
-        guard let url = URL(string: urlBase + request.rawValue + apiKey),
+        guard let url = URL(string: myUrls.basePath.rawValue + request.rawValue + apiKey),
               let data = try? Data(contentsOf: url),
               let json = try? JSONSerialization.jsonObject(with: data) as? NSDictionary,
               let results = json.object(forKey: "results") as? [NSDictionary]
@@ -34,12 +33,25 @@ class MovieAPI {
             }
         }
         
-        
         return movies
         
     }
     
-    func setUrl(){
+    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    }
+    
+    func downloadImage(from urlString: String) -> UIImage {
+        var myImage = UIImage()
+        guard let url = URL(string: urlString) else { return UIImage() }
+
+        let urlSessionConfiguration = URLSessionConfiguration.default
+        let urlSession = URLSession(configuration: urlSessionConfiguration)
+
+        urlSession.dataTask(with: url) { data, response, error in
+            myImage = UIImage(data: try! Data(contentsOf: url))  ?? UIImage()
+        }.resume()
         
+        return myImage
     }
 }

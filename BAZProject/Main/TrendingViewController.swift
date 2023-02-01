@@ -9,11 +9,11 @@ import UIKit
 class TrendingViewController: UITableViewController {
 
     var movies: [Movie] = []
+    let movieApi = MovieAPI()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let movieApi = MovieAPI()
         
         movies = movieApi.getMovies(request: RequestType.topRated)
         tableView.reloadData()
@@ -41,7 +41,13 @@ extension TrendingViewController {
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         var config = UIListContentConfiguration.cell()
         config.text = movies[indexPath.row].title
-        config.image = movies[indexPath.row].image
+        let urlImage = movies[indexPath.row].poster_path
+        guard let url = URL(string: urlImage) else {
+            cell.contentConfiguration = config
+            return
+        }
+        
+        config.image = UIImage(data: try! Data(contentsOf: url))  ?? UIImage()
         cell.contentConfiguration = config
     }
     
