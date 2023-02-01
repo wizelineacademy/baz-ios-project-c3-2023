@@ -13,48 +13,49 @@ class HomeMoviesView: UIViewController{
 
     // MARK: Properties
     
-    @IBOutlet weak var trendingMoviesCollectionView: UICollectionView!
+    @IBOutlet weak var categoriesMoviesCollectionView: UICollectionView!
+    @IBOutlet weak var moviesCollectionView: UICollectionView!
     
     var presenter: HomeMoviesPresenterProtocol?
+    internal let minimumInterItemSpacing: CGFloat = CGFloat(8.0)
+    internal let cellsPerRow = 2
+    internal let insets: CGFloat = CGFloat(8.0)
+    
     // MARK: Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTrendingCollectionView()
+        setupCategoriesCollectionView()
+        setupMoviesColletionView()
         presenter?.getTrendingMovies()
     }
     
-    func setupTrendingCollectionView(){
-        self.trendingMoviesCollectionView.dataSource = self
-        self.trendingMoviesCollectionView.register(UINib(nibName: "TrendingMoviesCollectionViewCell", bundle: Bundle(for: HomeMoviesView.self)), forCellWithReuseIdentifier: "TrendingMoviesCollectionViewCell")
-    }
-}
-
-// MARK: - TableView's DataSource
-
-extension HomeMoviesView: UICollectionViewDataSource{
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return presenter?.getTrendingMovieCount() ?? 0
+    func setupCategoriesCollectionView(){
+        self.categoriesMoviesCollectionView.delegate = self
+        self.categoriesMoviesCollectionView.dataSource = self
+        self.categoriesMoviesCollectionView.register(UINib(nibName: "CategoriesMoviesCollectionViewCell", bundle: Bundle(for: HomeMoviesView.self)), forCellWithReuseIdentifier: "CategoriesMoviesCollectionViewCell")
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TrendingMoviesCollectionViewCell", for: indexPath) as? TrendingMoviesCollectionViewCell
-        else { return UICollectionViewCell() }
-        
-        cell.setupTrendingImage(urlImage: presenter?.getOneTrendingMovie(index: indexPath.row).backdrop_path ?? "")
-        cell.titleTrendingMovieLabel.text = presenter?.getOneTrendingMovie(index: indexPath.row).title ?? ""
-        
-        return cell
+    func setupMoviesColletionView(){
+        self.moviesCollectionView.delegate = self
+        self.moviesCollectionView.dataSource = self
+        self.moviesCollectionView.register(UINib(nibName: "MovieCollectionViewCell", bundle: Bundle(for: HomeMoviesView.self)), forCellWithReuseIdentifier: "MovieCollectionViewCell")
     }
-    
 }
 
 extension HomeMoviesView: HomeMoviesViewProtocol {
+  
     // TODO: implement view output methods
     
     func loadTrendingMovies() {
         DispatchQueue.main.async {
-            self.trendingMoviesCollectionView.reloadData()
+            self.categoriesMoviesCollectionView.reloadData()
+        }
+    }
+    
+    func loadMovies() {
+        DispatchQueue.main.async {
+            self.moviesCollectionView.reloadData()
         }
     }
     
