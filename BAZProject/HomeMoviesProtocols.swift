@@ -14,6 +14,7 @@ protocol HomeMoviesViewProtocol: AnyObject {
     var presenter: HomeMoviesPresenterProtocol? { get set }
     
     func loadTrendingMovies()
+    func loadMovies()
 }
 
 protocol HomeMoviesRouterProtocol: AnyObject {
@@ -28,13 +29,20 @@ protocol HomeMoviesPresenterProtocol: AnyObject {
     var router: HomeMoviesRouterProtocol? { get set }
     
     func getTrendingMovies()
-    func getOneTrendingMovie(index: Int) -> Movie
-    func getTrendingMovieCount() -> Int
+    func getNowPlayingMovies()
+    func getOneCategorieMovie(index: Int) -> Movie
+    func getCategoriesMoviesCount() -> Int
+    func getOneMovie(index: Int) -> Movie
+    func getMoviesCount() -> Int
+    func selectFilterMovies(index: Int)
+    func getImage(index: Int, completion: @escaping (UIImage?) -> Void)
+    func getCategorieImage(index: Int,  completion: @escaping (UIImage?) -> Void) 
 }
 
 protocol HomeMoviesInteractorOutputProtocol: AnyObject {
 // INTERACTOR -> PRESENTER
     func pushTrendingMovieInfo(trendingMovies: [Movie])
+    func pushNowPlayingMovieInfo(nowPlayingMovies: [Movie])
 }
 
 protocol HomeMoviesInteractorInputProtocol: AnyObject {
@@ -44,6 +52,7 @@ protocol HomeMoviesInteractorInputProtocol: AnyObject {
     var remoteDatamanager: HomeMoviesRemoteDataManagerInputProtocol? { get set }
     
     func getTrendingMovies()
+    func getNowPlayingMovies()
 }
 
 protocol HomeMoviesDataManagerInputProtocol: AnyObject {
@@ -55,11 +64,13 @@ protocol HomeMoviesRemoteDataManagerInputProtocol: AnyObject {
     var remoteRequestHandler: HomeMoviesRemoteDataManagerOutputProtocol? { get set }
     
     func getTrendingMovies()
+    func getNowPlayingMovies()
 }
 
 protocol HomeMoviesRemoteDataManagerOutputProtocol: AnyObject {
     // REMOTEDATAMANAGER -> INTERACTOR
     func pushTrendingMovieInfo(trendingMovies: [Movie])
+    func pushNowPlayingMovieInfo(nowPlayingMovies: [Movie])
 }
 
 protocol HomeMoviesLocalDataManagerInputProtocol: AnyObject {

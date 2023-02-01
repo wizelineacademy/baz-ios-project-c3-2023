@@ -9,7 +9,7 @@
 import Foundation
 
 class HomeMoviesInteractor: HomeMoviesInteractorInputProtocol {
-    
+   
     // MARK: Properties
     weak var presenter: HomeMoviesInteractorOutputProtocol?
     var localDatamanager: HomeMoviesLocalDataManagerInputProtocol?
@@ -17,6 +17,10 @@ class HomeMoviesInteractor: HomeMoviesInteractorInputProtocol {
 
     func getTrendingMovies() {
         remoteDatamanager?.getTrendingMovies()
+    }
+    
+    func getNowPlayingMovies() {
+        remoteDatamanager?.getNowPlayingMovies()
     }
 }
 
@@ -27,4 +31,8 @@ extension HomeMoviesInteractor: HomeMoviesRemoteDataManagerOutputProtocol {
         presenter?.pushTrendingMovieInfo(trendingMovies: trendingMovies)
     }
     
+    func pushNowPlayingMovieInfo(nowPlayingMovies: [Movie]) {
+        presenter?.pushNowPlayingMovieInfo(nowPlayingMovies: nowPlayingMovies)
+    }
+ 
 }
