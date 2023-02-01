@@ -6,30 +6,40 @@
 
 import Foundation
 
+
 class MovieAPI {
 
-    private let apiKey: String = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
-
-    func getMovies() -> [Movie] {
-        guard let url = URL(string: "https://api.themoviedb.org/3/trending/movie/day?api_key=\(apiKey)"),
+    private let apiKey: String = "api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
+    var movies = [Movie]()
+    var urlBase = "https://api.themoviedb.org/3/"
+    
+    func getMovies(request: RequestType) -> [Movie] {
+        
+        guard let url = URL(string: urlBase + request.rawValue + apiKey),
               let data = try? Data(contentsOf: url),
               let json = try? JSONSerialization.jsonObject(with: data) as? NSDictionary,
               let results = json.object(forKey: "results") as? [NSDictionary]
         else {
             return []
         }
-
-        var movies: [Movie] = []
-
+        
         for result in results {
             if let id = result.object(forKey: "id") as? Int,
                let title = result.object(forKey: "title") as? String,
-               let poster_path = result.object(forKey: "poster_path") as? String {
-                movies.append(Movie(id: id, title: title, poster_path: poster_path))
+               let poster_path = result.object(forKey: "poster_path") as? String,
+               let original_title = result.object(forKey: "original_title") as? String,
+               let overview = result.object(forKey: "overview") as? String,
+               let backdrop_path = result.object(forKey: "backdrop_path") as? String {
+                self.movies.append(Movie(id: id, original_title: original_title, title: title, overview: overview, backdrop_path: backdrop_path, poster_path: poster_path))
             }
         }
-
+        
+        
         return movies
+        
     }
-
+    
+    func setUrl(){
+        
+    }
 }

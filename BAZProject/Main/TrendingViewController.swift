@@ -15,10 +15,9 @@ class TrendingViewController: UITableViewController {
 
         let movieApi = MovieAPI()
         
-        movies = movieApi.getMovies()
+        movies = movieApi.getMovies(request: RequestType.topRated)
         tableView.reloadData()
     }
-
 }
 
 // MARK: - TableView's DataSource
@@ -42,8 +41,12 @@ extension TrendingViewController {
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         var config = UIListContentConfiguration.cell()
         config.text = movies[indexPath.row].title
-        config.image = UIImage(named: "poster")
+        config.image = movies[indexPath.row].image
         cell.contentConfiguration = config
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        50
     }
 
 }
