@@ -6,8 +6,12 @@
 
 import Foundation
 
-struct Movie {
+struct Movies:Codable {
+    let page: Int
+    let results: [Results]
+}
+
+struct Results:Codable{
+    let title : String
     let id: Int
-    let title: String
-    let poster_path: String
 }

@@ -7,17 +7,26 @@
 import UIKit
 
 class TrendingViewController: UITableViewController {
-
-    var movies: [Movie] = []
+    
+    var movies: Movies?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        getData()
+    }
+    
+    private func getData(){
         let movieApi = MovieAPI()
         
-        tableView.reloadData()
+        movieApi.getMovies(url: .topRated(page: 10)) { [weak self] data in
+            do{
+                self?.movies =  DecodeUtility.decode(Movies.self, from: data)
+                DispatchQueue.main.async{
+                    self?.tableView.reloadData()
+                }
+            }
+        }
     }
-
 }
 
 // MARK: - TableView's DataSource
@@ -25,7 +34,7 @@ class TrendingViewController: UITableViewController {
 extension TrendingViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        movies.count
+        movies?.results.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -40,7 +49,7 @@ extension TrendingViewController {
 
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         var config = UIListContentConfiguration.cell()
-        config.text = movies[indexPath.row].title
+        config.text = movies?.results[indexPath.row].title
         config.image = UIImage(named: "poster")
         cell.contentConfiguration = config
     }
