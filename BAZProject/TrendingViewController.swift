@@ -8,15 +8,34 @@ import UIKit
 
 class TrendingViewController: UITableViewController {
 
-    var movies: [Movie] = []
+    private var movies: [Movie] = []
+    private var movieAPI = MovieAPI(filter: .nowPlaying)
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let movieApi = MovieAPI()
-        
-        movies = movieApi.getMovies()
-        tableView.reloadData()
+        self.setTable()
+        self.setMovies()
+    }
+    
+    private func setTable() {
+        self.tableView.register(
+            MovieTableViewCell.nib,
+            forCellReuseIdentifier: MovieTableViewCell.identifier
+        )
+    }
+    
+    private func setMovies() {
+        self.title = movieAPI.viewTitle
+        movieAPI.getMovies { (result: Result<[Movie], Error>) in
+            switch result {
+            case .success(let movies):
+                self.movies = movies
+                self.tableView.reloadData()
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 
 }
@@ -29,21 +48,15 @@ extension TrendingViewController {
         movies.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        tableView.dequeueReusableCell(withIdentifier: "TrendingTableViewCell")!
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        UITableView.automaticDimension
     }
-
-}
-
-// MARK: - TableView's Delegate
-
-extension TrendingViewController {
-
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        var config = UIListContentConfiguration.cell()
-        config.text = movies[indexPath.row].title
-        config.image = UIImage(named: "poster")
-        cell.contentConfiguration = config
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.identifier, for: indexPath)
+        let movie = movies[indexPath.row]
+        movieAPI.set(cell, with: movie)
+        return cell
     }
 
 }
