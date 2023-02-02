@@ -28,10 +28,22 @@ struct Movie: Decodable {
         publishedDate.convertDate(format: "yyyy-MM-dd", with: "dd MMMM yyyy")
     }
     
+    /**
+     Regresa la url de la imagen correspondiente al poster de la pelicula
+     - Parameters:
+        - size: es el tamaño de la imagen su valor por default es 200, los tamaños soportados son 200, 300, 400 y 500 siendo 200 el tamaño más pequeño
+     - Returns: regresa la URL construida a partir de la URL base
+     */
     func getPosterURL(with size: Int = 200) -> URL? {
         self.baseURL?.appendingPathComponent("/w\(size)\(self.posterPath)")
     }
     
+    /**
+     Regresa la url de la imagen correspondiente al background de la imagen de la pelicula
+     - Parameters:
+        - size: es el tamaño de la imagen su valor por default es 200, los tamaños soportados son 200, 300, 400 y 500 siendo 200 el tamaño más pequeño
+     - Returns: regresa la URL construida a partir de la URL base
+     */
     func getBackgroundMovieURL(with size: Int = 200) -> URL? {
         guard let backgroundPath = self.backgroundImagePath else {
             return nil
