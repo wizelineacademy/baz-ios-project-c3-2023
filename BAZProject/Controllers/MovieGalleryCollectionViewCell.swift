@@ -10,4 +10,5 @@ import UIKit
 class MovieGalleryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var movieImage: MovieImageView!
     @IBOutlet weak var movieTitle: UILabel!
+    @IBOutlet weak var voteAvarage: UILabel!
 }
