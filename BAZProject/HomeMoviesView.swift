@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+
+
 class HomeMoviesView: UIViewController{
 
     // MARK: Properties
@@ -18,9 +20,8 @@ class HomeMoviesView: UIViewController{
     
     var presenter: HomeMoviesPresenterProtocol?
     internal let minimumInterItemSpacing: CGFloat = CGFloat(8.0)
-    internal let cellsPerRow = 2
+    internal let cellsPerRow: Int = 2
     internal let insets: CGFloat = CGFloat(8.0)
-    
     // MARK: Lifecycle
 
     override func viewDidLoad() {
