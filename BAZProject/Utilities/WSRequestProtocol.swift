@@ -7,7 +7,10 @@
 
 import Foundation
 
-protocol WSRequestProtocol: AnyObject { }
+protocol WSRequestProtocol: AnyObject {
+    func sendRequest(request: URLRequest?, completion: @escaping (Result<Data, Error>) -> Void)
+    func decodeJson<Response: Decodable>(from data: Data, decoder: JSONDecoder) throws -> Response
+}
 
 extension WSRequestProtocol {
     
