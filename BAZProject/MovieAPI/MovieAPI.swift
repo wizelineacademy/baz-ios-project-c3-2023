@@ -12,11 +12,15 @@ class MovieAPI {
     private let apiKey: String = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
     private let language: String = "language=es"
     private let region = "region=MX"
-    var requestType: MovieAPICategory = .Top_Rated
-    
 
-    func getMovies() -> [Movie] {
-        guard let urlTrendingMovies = URL(string: "https://api.themoviedb.org/3/\(requestType.rawValue)?api_key=\(apiKey)&\(language)&\(region)"),
+    /// Consult the list of movies bye category in Mexico region and in spanish laguague.
+    ///
+    ///  - Parameter category: The category to be consulted
+    ///  - Returns: [Movie]
+    ///
+
+    func getMovies(category: MovieAPICategory) -> [Movie] {
+        guard let urlTrendingMovies = URL(string: "https://api.themoviedb.org/3/\(category.rawValue)?api_key=\(apiKey)&\(language)&\(region)"),
               let data = try? Data(contentsOf: urlTrendingMovies),
               let json = try? JSONDecoder().decode(MovieAPIResult.self, from: data)
         else {

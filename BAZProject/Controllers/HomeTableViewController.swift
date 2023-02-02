@@ -14,26 +14,26 @@ class HomeTableViewController: UITableViewController {
                                                           .Now_playing: [],
                                                           .Popular: [],
                                                           .Top_Rated: [],
-                                                          .Upcoming: []]
-
+                                                          .Upcoming: []]    
     override func viewDidLoad() {
         super.viewDidLoad()
                         
         let movieApi = MovieAPI()
-        movieApi.requestType = .Trending
-        listOfCategories[.Trending] = movieApi.getMovies()
-        movieApi.requestType = .Now_playing
-        listOfCategories[.Now_playing] = movieApi.getMovies()
-        movieApi.requestType = .Popular
-        listOfCategories[.Popular] = movieApi.getMovies()
-        movieApi.requestType = .Top_Rated
-        listOfCategories[.Top_Rated] = movieApi.getMovies()
-        movieApi.requestType = .Upcoming
-        listOfCategories[.Upcoming] = movieApi.getMovies()
+        listOfCategories[.Trending] = movieApi.getMovies(category: .Trending)
+        listOfCategories[.Now_playing] = movieApi.getMovies(category: .Now_playing)
+        listOfCategories[.Popular] = movieApi.getMovies(category: .Popular)
+        listOfCategories[.Top_Rated] = movieApi.getMovies(category: .Top_Rated)
+        listOfCategories[.Upcoming] = movieApi.getMovies(category: .Upcoming)
         
         tableView.reloadData()
     }
+    
+}
 
+// MARK: - TableView's DataSource
+
+extension HomeTableViewController{
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return categories.count
     }
@@ -41,7 +41,7 @@ class HomeTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return categories[section]
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
@@ -66,7 +66,15 @@ class HomeTableViewController: UITableViewController {
         return cell ?? CategoryTableViewCell()
     }
     
+}
+
+// MARK: - TableView's Delegate
+
+extension HomeTableViewController{
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 250
     }
+    
 }
+

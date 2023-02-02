@@ -39,12 +39,12 @@ class CategoryTableViewCell: UITableViewCell {
         self.collectionToCarrucel.setCollectionViewLayout(flowLayout, animated: false)
     }
     
-
 }
 
+// MARK: - CollectionView's DataSource
 
-extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource{
-    
+extension CategoryTableViewCell: UICollectionViewDataSource{
+        
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return moviesToShow.count
     }
@@ -66,7 +66,14 @@ extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
         guard let collectionCell = collectionCell else {return MovieGalleryCollectionViewCell() }
         return collectionCell
     }
-    
-    
 }
 
+// MARK: - CollectionView's Delegate
+
+extension CategoryTableViewCell: UICollectionViewDelegate{
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath.row)
+    }
+    
+}
