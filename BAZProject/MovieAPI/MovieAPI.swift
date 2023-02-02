@@ -35,9 +35,7 @@ class MovieAPI {
     {
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error{
-                DispatchQueue.main.async {
-                    completionHandler(nil, error)
-                }
+                completionHandler(nil, error)
             }
             if let data = data, let httpResponse = response as? HTTPURLResponse,
                httpResponse.statusCode == 200 {
