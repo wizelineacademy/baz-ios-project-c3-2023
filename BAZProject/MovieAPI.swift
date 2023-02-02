@@ -47,7 +47,7 @@ public enum URLAPI {
 }
 
 class MovieAPI {
-    func getMovies(url:URLAPI, handler: @escaping (Data) -> Void){
+    static func getMovies(url:URLAPI, handler: @escaping (Data) -> Void){
         guard let url = URL(string: url.URL) else{return}
         let task =  URLSession.shared.dataTask(with: url) { data, response, error in
             guard let datos = data else{return}

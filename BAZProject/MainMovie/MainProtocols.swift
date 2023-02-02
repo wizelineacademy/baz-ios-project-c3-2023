@@ -9,8 +9,6 @@ import UIKit
 
 protocol MainRouterProtocol: AnyObject {
     // PRESENTER -> Router
-    static func createLoginModule() -> UIViewController
-    func presentNewViewSignUp(from view : MainViewProtocol)
 }
 
 protocol MainViewProtocol: AnyObject {

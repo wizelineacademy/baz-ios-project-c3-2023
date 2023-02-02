@@ -26,10 +26,13 @@ class MainRouter: MainRouterProtocol{
         return UIViewController()
     }
     
-    func presentNewViewSignUp(from view: MainViewProtocol) {
+    func presentView(from view: MainViewProtocol) {
+        let newView = MovieDetailRouter.createLoginModule()
         
+        if let view = view as? UIViewController{
+            view.present(newView,animated: true)
+        }
     }
-    
     
     static var mainStoryboard: UIStoryboard {
         return UIStoryboard(name: "Main", bundle: Bundle.main)
