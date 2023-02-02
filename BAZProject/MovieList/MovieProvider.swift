@@ -6,15 +6,10 @@
 
 import UIKit
 
-final class MovieProvider: WSRequestProtocol {
+final class MovieProvider: WSRequest {
     
     private let category: MovieCategory
     private let page: Int
-    
-    var request: URLRequest? {
-        guard let url = self.category.getEndPoint(for: self.page) else { return nil }
-        return URLRequest(url: url)
-    }
     
     var viewTitle: String {
         self.category.name
@@ -25,12 +20,22 @@ final class MovieProvider: WSRequestProtocol {
         self.page = page
     }
     
+    private func getMoviesRequest() -> URLRequest? {
+        guard let url = self.category.getEndPoint(for: self.page) else { return nil }
+        return URLRequest(url: url)
+    }
     
     func getMovies(completion: @escaping (Result<[Movie], Error>) -> Void) {
-        sendRequest { (result: Result<MoviesList, Error>) in
+        sendRequest(request: getMoviesRequest()) { [weak self] result in
+            guard let self = self else { return }
             switch result {
-            case .success(let response):
-                completion(.success(response.movies))
+            case .success(let data):
+                do {
+                    let response: MoviesList = try self.decodeJson(from: data)
+                    completion(.success(response.movies))
+                } catch let error {
+                    completion(.failure(error))
+                }
             case .failure(let error):
                 completion(.failure(error))
             }
@@ -44,15 +49,13 @@ final class MovieProvider: WSRequestProtocol {
             movieCell.language.text = "Idioma original: \(movie.originalLanguage)"
             guard let url = movie.getPosterURL(with: 300) else { return }
             
-            DispatchQueue.global(qos: .utility).async {
-                let task = URLSession.shared.dataTask(with: url) { data, response, error in
-                    DispatchQueue.main.async {
-                        if let data = data {
-                            movieCell.posterImage.image = UIImage(data: data)
-                        }
-                    }
+            sendRequest(request: URLRequest(url: url)) { result in
+                switch result {
+                case .success(let data):
+                    movieCell.posterImage.image = UIImage(data: data)
+                default:
+                    break
                 }
-                task.resume()
             }
         }
     }

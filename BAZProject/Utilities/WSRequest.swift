@@ -1,5 +1,5 @@
 //
-//  WSRequestProtocol.swift
+//  WSRequest.swift
 //  BAZProject
 //
 //  Created by Luis Alberto Perez Villar on 30/01/23.
@@ -7,15 +7,8 @@
 
 import Foundation
 
-protocol WSRequestProtocol: AnyObject {
-    var request: URLRequest? { get }
-    
-    func sendRequest<Response: Decodable>(completion: @escaping (Result<Response, Error>) -> Void)
-    func decodeJson<Response: Decodable>(from data: Data, decoder: JSONDecoder, completion: (Result<Response, Error>) -> Void)
-}
-
-extension WSRequestProtocol {
-    func sendRequest<Response: Decodable>(completion: @escaping (Result<Response, Error>) -> Void) {
+class WSRequest {
+    func sendRequest(request: URLRequest?, completion: @escaping (Result<Data, Error>) -> Void) {
         guard let request = request else {
             return completion(.failure(WSError.invalidRequest))
         }
@@ -31,9 +24,7 @@ extension WSRequestProtocol {
                        let data = data {
                         switch httpResponse.statusCode {
                         case 200...299:
-                            return self.decodeJson(
-                                from: data,
-                                completion: completion
+                            return completion(.success(data)
                             )
                         default:
                             return completion(.failure(WSError.nullResponse))
@@ -47,12 +38,12 @@ extension WSRequestProtocol {
         }
     }
     
-    func decodeJson<Response: Decodable>(from data: Data, decoder: JSONDecoder = JSONDecoder(), completion: (Result<Response, Error>) -> Void) {
+    func decodeJson<Response: Decodable>(from data: Data, decoder: JSONDecoder = JSONDecoder()) throws -> Response {
         do {
             let response = try decoder.decode(Response.self, from: data)
-            completion(.success(response))
+            return response
         } catch let error {
-            completion(.failure(error))
+            throw error
         }
     }
 }
