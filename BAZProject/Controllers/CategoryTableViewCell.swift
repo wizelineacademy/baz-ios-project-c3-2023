@@ -50,20 +50,20 @@ extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieGalleryCollectionViewCell", for: indexPath) as! MovieGalleryCollectionViewCell
-        collectionCell.movieTitle.text = moviesToShow[indexPath.row].title
-        collectionCell.voteAvarage.text = moviesToShow[indexPath.row].averageStars
+        let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieGalleryCollectionViewCell", for: indexPath) as? MovieGalleryCollectionViewCell
+        collectionCell?.movieTitle.text = moviesToShow[indexPath.row].title
+        collectionCell?.voteAvarage.text = moviesToShow[indexPath.row].averageStars
         if let strImage =  moviesToShow[indexPath.row].poster_path,
             let url = URL(string: "https://image.tmdb.org/t/p/w500\(strImage)"){
             MovieAPI.fetchPhoto(url: url) { image, error in
                 if let image = image{
-                    collectionCell.movieImage.image = image
+                    collectionCell?.movieImage.image = image
                 }
             }
         }else{
-            collectionCell.movieImage.image = UIImage(named: "poster")
+            collectionCell?.movieImage.image = UIImage(named: "poster")
         }
-        
+        guard let collectionCell = collectionCell else {return MovieGalleryCollectionViewCell() }
         return collectionCell
     }
     

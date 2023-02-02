@@ -9,22 +9,16 @@ import UIKit
 
 class HomeTableViewController: UITableViewController {
     
-    var movies: [Movie] = []
-    var moviesNowPlaying: [Movie] = []
-    
+    var categories = ["Trending", "Now playing", "Popular", "Top Rated", "Upcoming"]
     var listOfCategories: [MovieAPICategory : [Movie]] = [.Trending: [],
                                                           .Now_playing: [],
                                                           .Popular: [],
                                                           .Top_Rated: [],
                                                           .Upcoming: []]
-    
-    var categories = ["Trending", "Now playing", "Popular", "Top Rated", "Upcoming"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.clearsSelectionOnViewWillAppear = false
-        
+                        
         let movieApi = MovieAPI()
         movieApi.requestType = .Trending
         listOfCategories[.Trending] = movieApi.getMovies()
