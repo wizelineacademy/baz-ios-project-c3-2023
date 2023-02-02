@@ -17,6 +17,7 @@ class MovieDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = myMovie?.title
         imgMovie.image = myMovie?.imagePrincipal
         lblMovieTitle.text = myMovie?.title
         lblDescription.text = myMovie?.overview
