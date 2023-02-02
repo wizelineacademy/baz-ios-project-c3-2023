@@ -6,7 +6,7 @@
 
 import UIKit
 
-final class MovieProvider: WSRequest {
+final class MovieProvider: WSRequestProtocol {
     
     private let category: MovieCategory
     private let page: Int

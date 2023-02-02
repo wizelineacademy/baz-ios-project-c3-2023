@@ -1,5 +1,5 @@
 //
-//  WSRequest.swift
+//  WSRequestProtocol.swift
 //  BAZProject
 //
 //  Created by Luis Alberto Perez Villar on 30/01/23.
@@ -7,7 +7,9 @@
 
 import Foundation
 
-class WSRequest {
+protocol WSRequestProtocol: AnyObject { }
+
+extension WSRequestProtocol {
     
     /**
      Crea una tarea de manera sincrona, que regresa contenido de la URL contenida en un objeto URLRequest
