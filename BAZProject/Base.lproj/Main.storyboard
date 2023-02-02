@@ -38,9 +38,23 @@
                             <outlet property="delegate" destination="DF1-ZG-ayL" id="5nR-er-hrx"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Trending Movies" id="8E9-i5-K0G"/>
+                    <navigationItem key="navigationItem" title="Trending Movies" id="8E9-i5-K0G">
+                        <barButtonItem key="rightBarButtonItem" id="klN-Ht-FSs">
+                            <button key="customView" hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Wl8-hj-Ml7">
+                                <rect key="frame" x="302" y="5" width="92" height="34.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title=" " image="magnifyingglass" catalog="system"/>
+                                <buttonConfiguration key="configuration" style="plain" image="magnifyingglass" catalog="system" title=" "/>
+                                <connections>
+                                    <action selector="actionButtonSearch:" destination="DF1-ZG-ayL" eventType="touchUpInside" id="uwV-Li-WhF"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="buttonsearch" destination="klN-Ht-FSs" id="i27-8G-cKa"/>
                         <outlet property="tableMoviesView" destination="7Ys-l1-YLU" id="ffZ-7b-0z0"/>
                     </connections>
                 </tableViewController>
@@ -70,6 +84,7 @@
     </scenes>
     <resources>
         <image name="chart.line.uptrend.xyaxis.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

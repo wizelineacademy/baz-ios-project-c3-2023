@@ -8,7 +8,9 @@
 import UIKit
 
 class TrendingTableViewCell: UITableViewCell {
-
+    
+    let manageImgs = LoadRemotedata()
+    
     @IBOutlet weak var imgImageMovie: UIImageView!
     
     @IBOutlet weak var lblMovieTitle: UILabel!{
@@ -22,13 +24,15 @@ class TrendingTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-    
+    func loadMoviesInfo(arrayMovies: [ResultMovie], index: IndexPath){
+        
+        lblMovieTitle.text = arrayMovies[index.row].title
+        lblMovieRate.text = RateViewModel(movieRate: arrayMovies[index.row].voteAverage ).movieEmojiRate.rawValue
+        imgImageMovie.image = manageImgs.loadImgsFromLocal(strPath: arrayMovies[index.row].posterPath)
+    }
 }

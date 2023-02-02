@@ -25,7 +25,7 @@ struct MovieModel: Codable {
 // MARK: - Result
 struct ResultMovie: Codable {
     let backdropPath: String
-    let title, originalLanguage, originalTitle, overview: String
+    let title, originalTitle, overview: String
     let posterPath: String
     let releaseDate: String
     let voteAverage: Double
@@ -33,7 +33,6 @@ struct ResultMovie: Codable {
     enum CodingKeys: String, CodingKey {
         case backdropPath = "backdrop_path"
         case title
-        case originalLanguage = "original_language"
         case originalTitle = "original_title"
         case overview
         case posterPath = "poster_path"

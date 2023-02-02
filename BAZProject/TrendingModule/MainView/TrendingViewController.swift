@@ -12,6 +12,12 @@ class TrendingViewController: UITableViewController {
     let manageImgs = LoadRemotedata()
 
     @IBOutlet var tableMoviesView: UITableView!
+    
+    @IBOutlet weak var buttonsearch: UIBarButtonItem!{
+        didSet{
+            buttonsearch.title = ""
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,9 +45,12 @@ class TrendingViewController: UITableViewController {
         let detailViewCell = UINib(nibName: "TrendingTableViewCell", bundle: nil)
         tableMoviesView.register(detailViewCell, forCellReuseIdentifier: "trendingTableViewCell")
     }
+    
+    @IBAction func actionButtonSearch(_ sender: Any) {
+        let vc = SearchViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
-
-// MARK: - TableView's DataSource
 
 extension TrendingViewController {
 
@@ -51,15 +60,13 @@ extension TrendingViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableMoviesView.dequeueReusableCell(withIdentifier: "trendingTableViewCell",
-                                                         for: indexPath) as! TrendingTableViewCell
-        
-        cell.lblMovieTitle.text = movies[indexPath.row].title
-        cell.lblMovieRate.text = RateViewModel(movieRate: movies[indexPath.row].voteAverage ).movieEmojiRate.rawValue
-        cell.imgImageMovie.image = manageImgs.loadImgsFromLocal(strPath: movies[indexPath.row].posterPath)
+        guard let cell = tableMoviesView.dequeueReusableCell(withIdentifier: "trendingTableViewCell",
+                                                          for: indexPath) as? TrendingTableViewCell else {
+            return UITableViewCell()
+        }
+        cell.loadMoviesInfo(arrayMovies: movies, index: indexPath)
         return cell
     }
-
 }
 
 // MARK: - TableView's Delegate

@@ -7,8 +7,16 @@
 
 import UIKit
 
+enum DetailTrendingConstants{
+    static let cellTitleMovie = "Título"
+    static let cellReleaseMovie = "Fecha Estreno"
+    static let cellOverviesMovie = "Sinopsis"
+}
+
 class DetailViewCell: UITableViewCell {
 
+    
+    private typealias Constants = DetailTrendingConstants
     
     @IBOutlet weak var lblElementName: UILabel!{
         didSet{
@@ -32,6 +40,22 @@ class DetailViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    func loadMovieInfo(objectMovie: ResultMovie, index: IndexPath){
+        switch index.row {
+        case 0:
+            lblElementName.text = Constants.cellTitleMovie
+            lblElementValue.text = objectMovie.originalTitle
+        case 1:
+            lblElementName.text = Constants.cellReleaseMovie
+            lblElementValue.text = objectMovie.releaseDate
+        case 2:
+            lblElementName.text = Constants.cellOverviesMovie
+            lblElementValue.text = objectMovie.overview
+        default:
+            lblElementName.text = "N/A"
+            lblElementValue.text = "N/A"
+        }
     }
     
 }
