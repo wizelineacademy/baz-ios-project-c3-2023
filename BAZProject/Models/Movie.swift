@@ -9,7 +9,7 @@ import Foundation
 struct Movie: Decodable {
     let id: Int
     let title: String
-    let poster_path: String
+    let poster_path: String?
     let vote_average: Double
     var averageStars: String {
         guard vote_average > 0 else {return " "}
