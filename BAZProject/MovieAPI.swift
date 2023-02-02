@@ -47,6 +47,8 @@ public enum URLAPI {
 }
 
 class MovieAPI {
+    var img: String = "https://image.tmdb.org/t/p/w500"
+    
     static func getMovies(url:URLAPI, handler: @escaping (Data) -> Void){
         guard let url = URL(string: url.URL) else{return}
         let task =  URLSession.shared.dataTask(with: url) { data, response, error in

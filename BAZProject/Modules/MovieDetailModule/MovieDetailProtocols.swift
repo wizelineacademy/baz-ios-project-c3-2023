@@ -9,6 +9,7 @@ import UIKit
 
 protocol MovieDetailRouterProtocol: AnyObject {
     //Presenter -> Router
+    static func createLoginModule() -> UIViewController
 }
 
 protocol MovieDetailViewProtocol: AnyObject {
