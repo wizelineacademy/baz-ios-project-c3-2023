@@ -24,13 +24,8 @@ struct Movie: Decodable {
     private let backgroundImagePath: String?
     private let publishedDate: String
     
-    var releaseDate: String {
-        /// hacer un metodo generico para reutilizar
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        let date = formatter.date(from: publishedDate)
-        formatter.dateFormat = "dd MMMM yyyy"
-        return formatter.string(from: date ?? Date())
+    var releaseDate: String? {
+        publishedDate.convertDate(format: "yyyy-MM-dd", with: "dd MMMM yyyy")
     }
     
     func getPosterURL(with size: Int = 200) -> URL? {

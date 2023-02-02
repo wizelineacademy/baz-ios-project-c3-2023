@@ -45,7 +45,7 @@ final class MovieProvider: WSRequest {
     func set(_ cell: UITableViewCell, with movie: Movie) {
         if let movieCell = cell as? MovieTableViewCell {
             movieCell.title.text = movie.title
-            movieCell.releaseDate.text = "Lazamiento: \(movie.releaseDate)"
+            movieCell.releaseDate.text = "Lazamiento: \(movie.releaseDate ?? "")"
             movieCell.language.text = "Idioma original: \(movie.originalLanguage)"
             guard let url = movie.getPosterURL(with: 300) else { return }
             
