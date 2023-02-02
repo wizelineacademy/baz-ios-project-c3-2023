@@ -16,5 +16,4 @@ extension UIViewController {
             DispatchQueue.main.async(execute: work)
         }
     }
-
 }
