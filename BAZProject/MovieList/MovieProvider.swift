@@ -43,7 +43,7 @@ final class MovieProvider: WSRequestProtocol {
      ````
      */
     func getMovies(completion: @escaping (Result<[Movie], Error>) -> Void) {
-        sendRequest(request: getMoviesRequest()) { [weak self] result in
+        fetch(request: getMoviesRequest()) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let data):
@@ -72,7 +72,7 @@ final class MovieProvider: WSRequestProtocol {
             movieCell.language.text = "Idioma original: \(movie.originalLanguage)"
             guard let url = movie.getPosterURL(with: 300) else { return }
             
-            sendRequest(request: URLRequest(url: url)) { result in
+            fetch(request: URLRequest(url: url)) { result in
                 switch result {
                 case .success(let data):
                     movieCell.posterImage.image = UIImage(data: data)

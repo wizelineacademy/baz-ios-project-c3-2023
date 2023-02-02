@@ -8,7 +8,7 @@
 import Foundation
 
 protocol WSRequestProtocol: AnyObject {
-    func sendRequest(request: URLRequest?, completion: @escaping (Result<Data, Error>) -> Void)
+    func fetch(request: URLRequest?, completion: @escaping (Result<Data, Error>) -> Void)
     func decodeJson<Response: Decodable>(from data: Data, decoder: JSONDecoder) throws -> Response
 }
 
@@ -34,7 +34,7 @@ extension WSRequestProtocol {
      }
      ````
      */
-    func sendRequest(request: URLRequest?, completion: @escaping (Result<Data, Error>) -> Void) {
+    func fetch(request: URLRequest?, completion: @escaping (Result<Data, Error>) -> Void) {
         guard let request = request else {
             return completion(.failure(WSError.invalidRequest))
         }
