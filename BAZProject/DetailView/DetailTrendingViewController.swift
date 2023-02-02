@@ -13,13 +13,13 @@ class DetailTrendingViewController: UIViewController {
     
     @IBOutlet weak var tableDetails: UITableView!
     
-    var objMovie: ResultMovies!
-    let manageImgs = LoadRemotedata()
+    var objectMovie: ResultMovie!
+    let manageImages = LoadRemotedata()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.imgImage.image = manageImgs.loadImgsFromLocal(strPath: objMovie.posterPath)
+        self.imgImage.image = manageImages.loadImgsFromLocal(strPath: objectMovie.posterPath)
         registerTableViewCells()
         
     }
@@ -29,14 +29,13 @@ class DetailTrendingViewController: UIViewController {
         let detailViewCell = UINib(nibName: "DetailViewCell", bundle: nil)
         tableDetails.register(detailViewCell, forCellReuseIdentifier: "detailViewCell")
     }
-
 }
 
 extension DetailTrendingViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
         if indexPath.row == 3 {
-            return 200.0
+            return 210.0
         }else{
             return 100.0
         }
@@ -50,29 +49,23 @@ extension DetailTrendingViewController: UITableViewDelegate, UITableViewDataSour
         let cell = tableDetails.dequeueReusableCell(withIdentifier: "detailViewCell",
                                                      for: indexPath) as! DetailViewCell
         
-        
         switch indexPath.row {
         case 0:
             cell.lblElementName.text = "Título"
-            cell.lblElementValue.text = objMovie.originalTitle
+            cell.lblElementValue.text = objectMovie.originalTitle
         case 1:
             cell.lblElementName.text = "Fecha Estreno"
-            cell.lblElementValue.text = objMovie.releaseDate
+            cell.lblElementValue.text = objectMovie.releaseDate
         case 2:
             cell.lblElementName.text = "Idioma"
-            cell.lblElementValue.text = objMovie.originalLanguage
+            cell.lblElementValue.text = objectMovie.originalLanguage
         case 3:
-            cell.lblElementName.text = "Sinápsis"
-            cell.lblElementName.text = objMovie.overview
+            cell.lblElementName.text = "Sinopsis"
+            cell.lblElementValue.text = objectMovie.overview
         default:
             cell.lblElementName.text = "N/A"
-            cell.lblElementName.text = "N/A"
+            cell.lblElementValue.text = "N/A"
         }
-        
-        
         return cell
     }
-
-    
-    
 }

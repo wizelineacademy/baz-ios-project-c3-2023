@@ -14,6 +14,7 @@ class TrendingTableViewCell: UITableViewCell {
     @IBOutlet weak var lblMovieTitle: UILabel!{
         didSet{
             lblMovieTitle.numberOfLines = 2
+            lblMovieTitle.font = UIFont(name: "ArialMT", size: 20.0)
         }
     }
     

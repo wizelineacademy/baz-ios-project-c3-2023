@@ -8,11 +8,12 @@ import UIKit
 
 class LoadRemotedata{
     /**
-     - `Int`
-     -
+     - The `saveImages(from movies: [ResultMovie])` load from the URL `https://image.tmdb.org/t/p/w500`
+     - the images from the atributte `posterPath` in the `movies` object.
+     - The image is saved locally to avoid the consume of images service more than the needed times
      */
     
-    func saveImages(from movies: [ResultMovies]){
+    func saveImages(from movies: [ResultMovie]){
         var imageResult = UIImage()
         var totalPath = ""
         movies.forEach { movie in
@@ -69,6 +70,12 @@ class LoadRemotedata{
                                                 in: FileManager.SearchPathDomainMask.userDomainMask).first else { return nil }
         return documentURL
     }
+    
+    /**
+     - Function `get<T: Codable>(_ endpoint: String, _ decodable: T.Type, completion: @escaping (Result<T,Error>) -> Void)` is ageneric method to get the the data from the endpoint especified and returning the data parsed to the especified `T.Type`
+     -
+     */
+    
     func get<T: Codable>(_ endpoint: String, _ decodable: T.Type, completion: @escaping (Result<T,Error>) -> Void) {
         
         guard let url = URL(string: endpoint) else{
@@ -81,17 +88,16 @@ class LoadRemotedata{
             completion(.failure(error))
             return
           }
-
           guard let data = data else {
             completion(.failure(DownloadError.emptyData))
             return
           }
-        do {
-            let objectFromData = try JSONDecoder().decode(decodable.self, from: data)
-            completion(.success(objectFromData) )
-        } catch {
-            completion(.failure(error))
-        }
+            do {
+                let objectFromData = try JSONDecoder().decode(decodable.self, from: data)
+                completion(.success(objectFromData) )
+            } catch {
+                completion(.failure(error))
+            }
         }
         task.resume()
     }

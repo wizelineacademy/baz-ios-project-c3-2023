@@ -8,7 +8,7 @@ import UIKit
 
 class TrendingViewController: UITableViewController {
 
-    var movies: [ResultMovies] = []
+    var movies: [ResultMovie] = []
     let manageImgs = LoadRemotedata()
 
     @IBOutlet var tableMoviesView: UITableView!
@@ -17,11 +17,22 @@ class TrendingViewController: UITableViewController {
 
         let movieApi = MovieAPI()
         
-        movies = movieApi.getMovies()
+        movieApi.getMovies(completion: { result in
+            switch result {
+            case .success(let arrayMovies):
+                if arrayMovies.count > 0 {
+                    DispatchQueue.main.async {
+                        self.movies = arrayMovies
+                        self.manageImgs.saveImages(from: self.movies)
+                        self.registerTableViewCells()
+                        self.tableMoviesView.reloadData()
+                    }
+                }
+            case .failure(_):
+                print("Error")
+            }
+        })
         
-        manageImgs.saveImages(from: movies)
-        registerTableViewCells()
-        tableMoviesView.reloadData()
     }
     func registerTableViewCells(){
         
@@ -54,17 +65,10 @@ extension TrendingViewController {
 // MARK: - TableView's Delegate
 
 extension TrendingViewController {
-
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        var config = UIListContentConfiguration.cell()
-//        config.text = movies[indexPath.row].title
-//        config.image = manageImgs.loadImgsFromLocal(strPath: movies[indexPath.row].poster_path)
-//        cell.contentConfiguration = config
-    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = DetailTrendingViewController()
-        vc.objMovie = movies[indexPath.row]
+        vc.objectMovie = movies[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
     }
 

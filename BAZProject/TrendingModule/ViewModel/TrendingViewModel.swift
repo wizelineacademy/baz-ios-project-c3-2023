@@ -11,7 +11,13 @@ final class TrendingViewModel {
     let api: MovieAPI
     
     init(api: MovieAPI?) {
-        self.api = api
+        self.api = api ?? MovieAPI()
+    }
+    
+    func requestMovies(){
+        api.getMovies { result in
+            print("-----> \(result)")
+        }
     }
     
     

@@ -13,12 +13,14 @@ class DetailViewCell: UITableViewCell {
     @IBOutlet weak var lblElementName: UILabel!{
         didSet{
             lblElementName.text = ""
+            lblElementName.font = UIFont(name: "ArialHebrew-Bold", size: 20.0)
         }
     }
     
     @IBOutlet weak var lblElementValue: UILabel!{
         didSet{
             lblElementValue.numberOfLines = 10
+            lblElementValue.font = UIFont(name: "ArialMT", size: 20.0)
         }
     }
     override func awakeFromNib() {

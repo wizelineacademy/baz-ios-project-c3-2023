@@ -7,15 +7,12 @@
 
 import Foundation
 
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
-// To parse the JSON, add this file to your project and do:
-//
-//   let welcome = try? JSONDecoder().decode(Welcome.self, from: jsonData)
+//   let movieModel = try? JSONDecoder().decode(MovieModel.self, from: jsonData)
 
-// MARK: - Welcome
-struct Welcome: Codable {
+// MARK: - MovieModel
+struct MovieModel: Codable {
     let page: Int
-    let results: [ResultMovies]
+    let results: [ResultMovie]
     let totalPages, totalResults: Int
 
     enum CodingKeys: String, CodingKey {
@@ -26,38 +23,21 @@ struct Welcome: Codable {
 }
 
 // MARK: - Result
-struct ResultMovies: Codable {
-    let adult: Bool
+struct ResultMovie: Codable {
     let backdropPath: String
-    let id: Int
     let title, originalLanguage, originalTitle, overview: String
     let posterPath: String
-    let mediaType: MediaType
-    let genreIDS: [Int]
-    let popularity: Double
     let releaseDate: String
-    let video: Bool
     let voteAverage: Double
-    let voteCount: Int
 
     enum CodingKeys: String, CodingKey {
-        case adult
         case backdropPath = "backdrop_path"
-        case id, title
+        case title
         case originalLanguage = "original_language"
         case originalTitle = "original_title"
         case overview
         case posterPath = "poster_path"
-        case mediaType = "media_type"
-        case genreIDS = "genre_ids"
-        case popularity
         case releaseDate = "release_date"
-        case video
         case voteAverage = "vote_average"
-        case voteCount = "vote_count"
     }
-}
-
-enum MediaType: String, Codable {
-    case movie = "movie"
 }
