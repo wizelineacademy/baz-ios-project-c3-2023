@@ -23,7 +23,7 @@ class ErrorPageViewController: CustomView {
         }
     }
     
-    var delegate: ErrorPageViewProtocol?
+    weak var delegate: ErrorPageViewProtocol?
 
     @IBAction func reintent(_ sender: Any) {
         delegate?.reintent()

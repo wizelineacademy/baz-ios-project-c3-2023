@@ -19,6 +19,8 @@ extension String {
     
     // MARK: - ErrorPageView
     static let nameIcon404 = "notFound"
+    static let errorPagePrincipalTitleLabel = " Ups!, ha ocurrido un error..."
+    static let retryTitleButton = "Reintentar"
     
     // MARK: - TrendingView
     static let trendingTitle = "Trending"

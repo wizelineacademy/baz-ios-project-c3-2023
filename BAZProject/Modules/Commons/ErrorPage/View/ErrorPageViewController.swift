@@ -16,6 +16,19 @@ class ErrorPageViewController: UIViewController, ErrorPageViewProtocol {
             }
         }
     }
+
+    @IBOutlet weak var retryButton: UIButton! {
+        didSet {
+            retryButton.titleLabel?.text = .retryTitleButton
+        }
+    }
+
+    @IBOutlet weak var principalTitleLabel: UILabel! {
+        didSet {
+            principalTitleLabel.text = .errorPagePrincipalTitleLabel
+        }
+    }
+
     @IBOutlet weak var titleErrorLabel: UILabel!
     @IBOutlet weak var descriptionErrorLabel: UILabel!
 

@@ -8,5 +8,5 @@
 import Foundation
 
 enum SizeImageType: String {
-    case original = "original", w500 = "w500"
+    case original, w500
 }

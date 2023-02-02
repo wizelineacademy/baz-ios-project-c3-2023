@@ -13,6 +13,8 @@
             <connections>
                 <outlet property="descriptionErrorLabel" destination="Z0i-ZK-vPv" id="7tP-Q5-SYA"/>
                 <outlet property="imgErrorLogo" destination="bqt-gd-fgX" id="8EY-wb-vbz"/>
+                <outlet property="principalTitleLabel" destination="21M-V3-g4s" id="9f3-6h-Gev"/>
+                <outlet property="retryButton" destination="LNp-b8-fTd" id="FbQ-vw-3no"/>
                 <outlet property="titleErrorLabel" destination="s7e-Th-cLp" id="nMb-4d-FVy"/>
                 <outlet property="view" destination="r6t-f2-kQE" id="B1B-uw-ZJ5"/>
             </connections>
@@ -29,7 +31,7 @@
                         <constraint firstAttribute="height" constant="250" id="rtC-sY-LJS"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ups!, ha ocurrido un error..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21M-V3-g4s">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Principal title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21M-V3-g4s">
                     <rect key="frame" x="16" y="99" width="361" height="30"/>
                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="25"/>
                     <nil key="textColor"/>
@@ -38,14 +40,8 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LNp-b8-fTd">
                     <rect key="frame" x="16" y="552" width="361" height="41.666666666666629"/>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" image="arrowshape.turn.up.left.fill" catalog="system" titleAlignment="automatic">
-                        <attributedString key="attributedTitle">
-                            <fragment content="Reintentar">
-                                <attributes>
-                                    <font key="NSFont" size="24" name="Helvetica-Bold"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
+                    <buttonConfiguration key="configuration" style="plain" image="arrowshape.turn.up.left.fill" catalog="system" title="Retry" titleAlignment="automatic">
+                        <fontDescription key="titleFontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="24"/>
                     </buttonConfiguration>
                     <connections>
                         <action selector="reintent:" destination="-1" eventType="touchUpInside" id="Nud-g9-5sP"/>
