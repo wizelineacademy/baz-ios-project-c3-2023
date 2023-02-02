@@ -16,10 +16,10 @@ struct Movie: Decodable {
     let release_date: String
     let popularity: Double
     var averageStars: String {
-        guard vote_average > 0 else {return " "}
+        guard vote_average > 0 else { return " " }
         let stars = (vote_average/2.0).rounded()
         var strStars: String = ""
-        for _ in 1...Int(stars){
+        for _ in 1...Int(stars) {
             strStars = strStars + "⭐️"
         }
         return strStars

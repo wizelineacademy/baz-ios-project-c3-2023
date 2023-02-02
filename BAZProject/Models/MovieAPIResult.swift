@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct MovieAPIResult: Decodable{
-    let results : [Movie]
+struct MovieAPIResult: Decodable {
+    let results: [Movie]
 }

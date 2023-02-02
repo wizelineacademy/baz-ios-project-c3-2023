@@ -13,7 +13,7 @@ class MovieAPI {
     private let language: String = "language=es"
     private let region = "region=MX"
 
-    /// Consult the list of movies bye category in Mexico region and in spanish laguague.
+    /// Returns the movies list of the category given in Mexico region and in spanish laguague.
     ///
     ///  - Parameter category: The category to be consulted
     ///  - Returns: [Movie]
@@ -29,27 +29,26 @@ class MovieAPI {
         return json.results
     }
     
-    /// Fetch movie poster with completion handler
+    /// Fetch movie poster of a given url.
     ///
     ///  - Parameter url: The given image URL
-    ///  - Returns: UIImage.
+    ///  - Returns: UIImage
     ///
     
-    static func fetchPhoto(url: URL, completionHandler: @escaping (UIImage?, Error?) -> Void)
-    {
+    static func fetchPhoto(url: URL, completionHandler: @escaping (UIImage?, Error?) -> Void) {
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if let error = error{
+            if let error = error {
                 completionHandler(nil, error)
             }
             if let data = data, let httpResponse = response as? HTTPURLResponse,
                httpResponse.statusCode == 200 {
-                if let imageToShow = UIImage(data: data){
+                if let imageToShow = UIImage(data: data) {
                     DispatchQueue.main.async {
-                        completionHandler(imageToShow,nil)
+                        completionHandler(imageToShow, nil)
                     }
-                }else{
+                } else {
                     DispatchQueue.main.async {
-                        completionHandler(UIImage(named: "poster"),nil)
+                        completionHandler(UIImage(named: "poster"), nil)
                     }
                 }
             }

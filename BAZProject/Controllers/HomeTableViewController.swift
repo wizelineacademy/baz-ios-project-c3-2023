@@ -10,11 +10,14 @@ import UIKit
 class HomeTableViewController: UITableViewController {
     
     var categories = ["Trending", "Now playing", "Popular", "Top Rated", "Upcoming"]
-    var listOfCategories: [MovieAPICategory : [Movie]] = [.Trending: [],
-                                                          .Now_playing: [],
-                                                          .Popular: [],
-                                                          .Top_Rated: [],
-                                                          .Upcoming: []]    
+    var listOfCategories: [MovieAPICategory: [Movie]] = [
+        .Trending: [],
+        .Now_playing: [],
+        .Popular: [],
+        .Top_Rated: [],
+        .Upcoming: [],
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
                         
@@ -49,7 +52,7 @@ extension HomeTableViewController{
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableViewCell", for: indexPath) as? CategoryTableViewCell
         cell?.setCollectionView()
-        switch indexPath.section{
+        switch indexPath.section {
         case 0:
             cell?.moviesToShow = listOfCategories[.Trending] ?? []
         case 1:

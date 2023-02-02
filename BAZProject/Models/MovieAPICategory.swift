@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum MovieAPICategory: String{
+enum MovieAPICategory: String {
     case Trending = "trending/movie/day"
     case Now_playing =  "movie/now_playing"
     case Popular = "movie/popular"
