@@ -18,9 +18,10 @@ final class TrendingDataManager {
 
 extension TrendingDataManager: TrendingDataManagerInputProtocol {
 
+    typealias ResponseProvider = Result<MovieResponse, Error>
+
     func requestTrendingMedia(_ urlString: String) {
-        
-        providerNetworking.sendRequest(RequestType(strUrl: urlString, method: .GET).getRequest()) { [weak self] (result: Result<MovieResponse, Error>) in
+        providerNetworking.sendRequest(RequestType(strUrl: urlString, method: .GET).getRequest()) { [weak self] (result: ResponseProvider) in
             switch result {
             case .success(let movie):
                 self?.interactor?.handleGetTrendingMedia(movie.results ?? [])

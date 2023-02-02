@@ -27,13 +27,15 @@ extension URLSession: URLSessionProtocol {
     }
 }
 
-protocol URLSessionProtocol { typealias DataTaskResult = (Data?, URLResponse?, Error?) -> Void
+protocol URLSessionProtocol {
+    typealias DataTaskResult = (Data?, URLResponse?, Error?) -> Void
     func performDataTask(with request: URLRequest, completionHandler: @escaping DataTaskResult) -> URLSessionDataTaskProtocol
 }
 
 protocol NetworkingProviderProtocol {
+    typealias Response<T> = (Result<T, Error>) -> Void where T: Decodable
     var session: URLSessionProtocol { get }
-    func sendRequest<T: Decodable>(_ request: URLRequest, callback: @escaping (Result<T,Error>) -> Void)
+    func sendRequest<T>(_ request: URLRequest, callback: @escaping Response<T>) where T: Decodable
 }
 
 class NetworkingProviderService: NetworkingProviderProtocol {
@@ -44,15 +46,15 @@ class NetworkingProviderService: NetworkingProviderProtocol {
         self.session = session
     }
     
-    func sendRequest<T: Decodable>(_ request: URLRequest, callback: @escaping (Result<T, Error>) -> Void) {
+    func sendRequest<T: Decodable>(_ request: URLRequest, callback: @escaping Response<T>) where T: Decodable {
         let task = session.performDataTask(with: request) { (data, response, error) in
             self.handleRequest(data: data, response: response, error: error, completion: callback)
         }
         task.resume()
     }
     
-    
-    private func handleRequest<T:Decodable>(data: Data?, response: URLResponse?, error: Error?, completion: (Result<T, Error>) -> Void) {
+    private func handleRequest<T:Decodable>(data: Data?, response: URLResponse?, error: Error?, completion: Response
+                                            <T>) where T: Decodable {
         
         if let error: Error = error {
             completion(.failure(error))
@@ -64,7 +66,7 @@ class NetworkingProviderService: NetworkingProviderProtocol {
             return
         }
         
-        guard let response: HTTPURLResponse = response as? HTTPURLResponse else {
+        guard let _: HTTPURLResponse = response as? HTTPURLResponse else {
             completion(.failure(ServiceError.response))
             return
         }
