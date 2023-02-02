@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LaunchScreenViewController: UIViewController {
+final class LaunchScreenViewController: UIViewController {
 
     @IBOutlet weak var logoUIImageView: UIImageView! {
         didSet {
