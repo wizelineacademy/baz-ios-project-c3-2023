@@ -21,10 +21,17 @@ class CategoryTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configCollectionView(){
+    func setCollectionView(){
+        setDelegates()
+        setFlowLayout()
+    }
+    
+    func setDelegates(){
         collectionToCarrucel.delegate = self
         collectionToCarrucel.dataSource = self
-        
+    }
+    
+    func setFlowLayout(){
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.itemSize = CGSize(width: 130, height: 220)
         flowLayout.sectionInset = UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 5)

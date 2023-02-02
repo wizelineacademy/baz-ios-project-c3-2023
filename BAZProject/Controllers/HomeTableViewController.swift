@@ -54,7 +54,7 @@ class HomeTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableViewCell", for: indexPath) as? CategoryTableViewCell
-        cell?.configCollectionView()
+        cell?.setCollectionView()
         switch indexPath.section{
         case 0:
             cell?.moviesToShow = listOfCategories[.Trending] ?? []
