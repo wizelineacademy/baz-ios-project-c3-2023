@@ -60,6 +60,7 @@
             <connections>
                 <outlet property="categoriesImageView" destination="IIf-b0-WWm" id="3Yo-ad-tt9"/>
                 <outlet property="categoriesMovieTitleLabel" destination="h2A-uv-Gsl" id="BgY-CX-eLa"/>
+                <outlet property="categoriesView" destination="Ysw-Kg-FyD" id="s8o-y1-WFi"/>
                 <outlet property="degradeImageview" destination="tlT-5K-D7e" id="1Pl-yW-QJE"/>
             </connections>
             <point key="canvasLocation" x="-122.90076335877862" y="-66.197183098591552"/>

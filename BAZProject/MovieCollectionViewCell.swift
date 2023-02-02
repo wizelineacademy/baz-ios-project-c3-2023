@@ -18,7 +18,7 @@ class MovieCollectionViewCell: UICollectionViewCell{
     func setupMovieImage(for image: UIImage){
         DispatchQueue.main.async {
             self.movieImageView.clipsToBounds = true
-            self.movieImageView.layer.cornerRadius = 20
+            self.movieImageView.layer.cornerRadius = 20.0
             self.movieImageView.image = image
         }
     }

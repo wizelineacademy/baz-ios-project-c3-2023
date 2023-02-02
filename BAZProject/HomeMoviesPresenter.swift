@@ -14,20 +14,18 @@ class HomeMoviesPresenter: HomeMoviesPresenterProtocol  {
     weak var view: HomeMoviesViewProtocol?
     var interactor: HomeMoviesInteractorInputProtocol?
     var router: HomeMoviesRouterProtocol?
-    private let movieApi = MovieAPI()
-    private var indexSelected = 0
+    private let movieApi : MovieAPI = MovieAPI()
+    private var indexSelected : Int = 0
+    private var firstLoad : Bool = true
     var categoriesMovies: [Movie] = []
     var toShowMovies: [Movie] = []
+
     
     // TODO: implement presenter methods
     func getTrendingMovies() {
         interactor?.getTrendingMovies()
     }
     
-    func getNowPlayingMovies() {
-        interactor?.getNowPlayingMovies()
-    }
-
     func getOneMovie(index: Int) -> Movie {
         return self.toShowMovies[index]
     }
@@ -73,7 +71,16 @@ class HomeMoviesPresenter: HomeMoviesPresenterProtocol  {
             getTrendingMovies()
         case 1:
             indexSelected = 1
-            getNowPlayingMovies()
+            interactor?.getNowPlayingMovies()
+        case 2:
+            indexSelected = 2
+            interactor?.getPopularMovies()
+        case 3:
+            indexSelected = 3
+            interactor?.getTopRatedMovies()
+        case 4:
+            indexSelected = 4
+            interactor?.getUpcomingMovies()
         default:
             break
         }
@@ -84,18 +91,36 @@ class HomeMoviesPresenter: HomeMoviesPresenterProtocol  {
 
 
 extension HomeMoviesPresenter: HomeMoviesInteractorOutputProtocol {
-    
+   
     // TODO: implement interactor output methods
     
     func pushTrendingMovieInfo(trendingMovies: [Movie]) {
         self.toShowMovies = trendingMovies
-        self.categoriesMovies = trendingMovies
-        view?.loadTrendingMovies()
         view?.loadMovies()
+        if firstLoad{
+            self.firstLoad = false
+            self.categoriesMovies = trendingMovies
+            view?.loadTrendingMovies()
+        }
     }
     
     func pushNowPlayingMovieInfo(nowPlayingMovies: [Movie]) {
         self.toShowMovies = nowPlayingMovies
+        view?.loadMovies()
+    }
+    
+    func pushPopularMovieInfo(popularMovies: [Movie]) {
+        self.toShowMovies = popularMovies
+        view?.loadMovies()
+    }
+    
+    func pushTopRatedMovieInfo(topRatedMovies: [Movie]) {
+        self.toShowMovies = topRatedMovies
+        view?.loadMovies()
+    }
+    
+    func pushUpcomingMovieInfo(upcomingMovies: [Movie]) {
+        self.toShowMovies = upcomingMovies
         view?.loadMovies()
     }
     

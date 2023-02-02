@@ -10,6 +10,7 @@ import UIKit
 class CategoriesMoviesCollectionViewCell: UICollectionViewCell{
     @IBOutlet weak var categoriesImageView: UIImageView!
     @IBOutlet weak var degradeImageview: UIImageView!
+    @IBOutlet weak var categoriesView: UIView!
     @IBOutlet weak var categoriesMovieTitleLabel: UILabel!
     
     override func prepareForReuse() {
@@ -41,5 +42,9 @@ class CategoriesMoviesCollectionViewCell: UICollectionViewCell{
         default:
             self.categoriesMovieTitleLabel.text = ""
         }
+    }
+    
+    func setSelected(){
+        
     }
 }

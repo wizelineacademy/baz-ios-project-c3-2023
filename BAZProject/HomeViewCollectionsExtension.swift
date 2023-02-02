@@ -49,6 +49,7 @@ extension HomeMoviesView: UICollectionViewDelegate{
         if collectionView == self.categoriesMoviesCollectionView{
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoriesMoviesCollectionViewCell", for: indexPath) as? CategoriesMoviesCollectionViewCell
             else { return }
+            cell.setSelected()
             presenter?.selectFilterMovies(index: indexPath.row)
         }
     }
