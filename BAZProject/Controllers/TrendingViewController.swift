@@ -13,9 +13,9 @@ class TrendingViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let movieApi = MovieAPI()
-        
-        movies = movieApi.getMovies()
+//        let movieApi = MovieAPI()
+//        
+//        movies = movieApi.getTrendingMovies()
         tableView.reloadData()
     }
 
