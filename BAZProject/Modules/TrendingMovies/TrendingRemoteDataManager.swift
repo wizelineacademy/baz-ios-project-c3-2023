@@ -34,10 +34,3 @@ class TrendingRemoteDataManager: TrendingRemoteDataManagerInputProtocol {
     }
 
 }
-
-struct Response<T: Codable>: Codable {
-    var page: Int?
-    var results: T?
-    var total_pages: Int?
-    var total_results: Int?
-}

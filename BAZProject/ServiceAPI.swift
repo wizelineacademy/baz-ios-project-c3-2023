@@ -100,3 +100,10 @@ class MovieRequest: NSObject {
 enum Endpoint: String {
     case trendingMovies = "trending/movie/day?api_key="
 }
+
+struct Response<T: Codable>: Codable {
+    var page: Int?
+    var results: T?
+    var total_pages: Int?
+    var total_results: Int?
+}
