@@ -28,7 +28,7 @@ protocol HomeMoviesPresenterProtocol: AnyObject {
     var interactor: HomeMoviesInteractorInputProtocol? { get set }
     var router: HomeMoviesRouterProtocol? { get set }
     
-    func getTrendingMovies()
+    func viewDidLoad()
     func getOneCategorieMovie(index: Int) -> Movie
     func getCategoriesMoviesCount() -> Int
     func getOneMovie(index: Int) -> Movie
@@ -50,7 +50,6 @@ protocol HomeMoviesInteractorOutputProtocol: AnyObject {
 protocol HomeMoviesInteractorInputProtocol: AnyObject {
     // PRESENTER -> INTERACTOR
     var presenter: HomeMoviesInteractorOutputProtocol? { get set }
-    var localDatamanager: HomeMoviesLocalDataManagerInputProtocol? { get set }
     var remoteDatamanager: HomeMoviesRemoteDataManagerInputProtocol? { get set }
     
     func getTrendingMovies()
@@ -82,8 +81,4 @@ protocol HomeMoviesRemoteDataManagerOutputProtocol: AnyObject {
     func pushPopularMovieInfo(popularMovies: [Movie])
     func pushTopRatedMovieInfo(topRatedMovies: [Movie])
     func pushUpcomingMovieInfo(upcomingMovies: [Movie])
-}
-
-protocol HomeMoviesLocalDataManagerInputProtocol: AnyObject {
-    // INTERACTOR -> LOCALDATAMANAGER
 }

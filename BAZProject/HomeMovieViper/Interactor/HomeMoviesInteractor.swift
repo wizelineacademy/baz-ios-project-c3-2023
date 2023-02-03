@@ -12,7 +12,6 @@ class HomeMoviesInteractor: HomeMoviesInteractorInputProtocol {
   
     // MARK: Properties
     weak var presenter: HomeMoviesInteractorOutputProtocol?
-    var localDatamanager: HomeMoviesLocalDataManagerInputProtocol?
     var remoteDatamanager: HomeMoviesRemoteDataManagerInputProtocol?
 
     func getTrendingMovies() {

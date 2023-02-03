@@ -26,8 +26,8 @@ extension HomeMoviesView: UICollectionViewDataSource{
             presenter?.getCategorieImage(index: indexPath.row, completion: { categoryImage in
                 cell.setupCategoryImage(for: categoryImage ?? UIImage())
             })
-            
-            cell.setupCategoryTitle(indexPath: indexPath.row)
+            cell.delegate = self
+            cell.setupCell(indexPath: indexPath.row)
             
             return cell
         }else{
@@ -44,16 +44,6 @@ extension HomeMoviesView: UICollectionViewDataSource{
 // MARK: - CollectionView's Delegate
 
 extension HomeMoviesView: UICollectionViewDelegate{
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == self.categoriesMoviesCollectionView{
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoriesMoviesCollectionViewCell", for: indexPath) as? CategoriesMoviesCollectionViewCell
-            else { return }
-            cell.setSelected()
-            presenter?.selectFilterMovies(index: indexPath.row)
-        }
-    }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: insets,
                             left: insets,

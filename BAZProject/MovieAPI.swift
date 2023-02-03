@@ -10,6 +10,11 @@ import UIKit
 
 class MovieAPI{
     
+    /// Get the movies from the API movies and parse the data to a dictionary array of type Movie
+    ///
+    /// - Parameter urlIdentifierMovie: String with the movie api url
+    /// - Parameter completion: Escaping closure that escapes the movie dictionary array or a nil
+    /// - Returns: escaping closure with the dictionary array of type Movie, if the parse fails, can return nil
     func getMovies(for urlIndentifierMovie: String, completion: @escaping ([Movie]?) -> Void){
         DispatchQueue.global(qos: .background).async {
             if let url = URL(string: urlIndentifierMovie),
@@ -30,6 +35,11 @@ class MovieAPI{
         }
     }
 
+    /// Get an image from the API movies and convert the url to an UIImage
+    ///
+    /// - Parameter urlIdentifierImage: String with the image url
+    /// - Parameter completion: Escaping closure that escapes a UIImage or a nil
+    /// - Returns: Escaping closure with the uiImage type, if the parse fails, can return nil
     func getImage(for urlIdentifierImage: String, completion: @escaping (UIImage?) -> Void) {
         let urlString = "https://image.tmdb.org/t/p/w500\(urlIdentifierImage)"
         DispatchQueue.global(qos: .background).async {

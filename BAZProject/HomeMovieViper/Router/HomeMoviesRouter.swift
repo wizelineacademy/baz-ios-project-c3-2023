@@ -16,7 +16,6 @@ class HomeMoviesRouter: HomeMoviesRouterProtocol {
         if let view = navController.children.first as? HomeMoviesView {
             let presenter: HomeMoviesPresenterProtocol & HomeMoviesInteractorOutputProtocol = HomeMoviesPresenter()
             let interactor: HomeMoviesInteractorInputProtocol & HomeMoviesRemoteDataManagerOutputProtocol = HomeMoviesInteractor()
-            let localDataManager: HomeMoviesLocalDataManagerInputProtocol = HomeMoviesLocalDataManager()
             let remoteDataManager: HomeMoviesRemoteDataManagerInputProtocol = HomeMoviesRemoteDataManager()
             let router: HomeMoviesRouterProtocol = HomeMoviesRouter()
             
@@ -25,7 +24,6 @@ class HomeMoviesRouter: HomeMoviesRouterProtocol {
             presenter.router = router
             presenter.interactor = interactor
             interactor.presenter = presenter
-            interactor.localDatamanager = localDataManager
             interactor.remoteDatamanager = remoteDataManager
             remoteDataManager.remoteRequestHandler = interactor
             
