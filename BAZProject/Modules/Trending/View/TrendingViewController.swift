@@ -11,8 +11,8 @@ class TrendingViewController: UIViewController, TrendingViewProtocol {
     @IBOutlet weak var moviesTableView: UITableView!
     
     var movies: [MovieResult] = []
-    let mediaType: MediaType = .movie
-    var errorGetData: Bool = false
+    private let mediaType: MediaType = .movie
+    private var errorGetData: Bool = false
     
     var presenter: TrendingPresenterProtocol?
     static let identifier: String = .trendingXibIdentifier
@@ -47,6 +47,10 @@ class TrendingViewController: UIViewController, TrendingViewProtocol {
     
     func setErrorGettingData(_ status: Bool) {
         errorGetData = status
+    }
+    
+    func getTableTitle() -> String {
+        return mediaType.getMediaTypeTitle()
     }
     
     // MARK: - Private methods
