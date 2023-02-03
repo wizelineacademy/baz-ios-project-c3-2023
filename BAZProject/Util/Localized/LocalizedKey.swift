@@ -29,4 +29,7 @@ extension String {
     static let mainPlaceholderSearchBar = "Buscar.."
     static let mainTitleView = "Trending"
     static let mainNameIconTabBar = "house"
+    
+    // MARK: - CellMovie
+    static let cellMovieXibIdentifier = "CellMovie"
 }

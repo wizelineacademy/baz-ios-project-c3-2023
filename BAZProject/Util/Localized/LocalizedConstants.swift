@@ -22,4 +22,10 @@ enum LocalizedConstants {
     static let uiImageAnimateDuration: Double = 1.5
     static let uiImageAlpha: Double = 0.2
     static let uiImageAlphaOnAnimate: Double = 1.0
+    
+    // MARK: - CellMovie
+    static let cellMovieDivisorNumberHeight: CGFloat = 2
+    static let cellMovieLayerShadowOpacity: Float = 0.3
+    static let cellMovieLayerCornerRadius: CGFloat = 10
+    static let cellMovieLayerShadowOffset: CGSize = CGSize(width: 0, height: 1)
 }
