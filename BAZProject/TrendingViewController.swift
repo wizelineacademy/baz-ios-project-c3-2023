@@ -14,11 +14,11 @@ class TrendingViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.setTable()
+        self.setupTable()
         self.setMovies()
     }
     
-    private func setTable() {
+    private func setupTable() {
         self.tableView.register(
             MovieTableViewCell.nib,
             forCellReuseIdentifier: MovieTableViewCell.identifier
@@ -55,7 +55,9 @@ extension TrendingViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.identifier, for: indexPath)
         let movie = movies[indexPath.row]
-        movieAPI.set(cell, with: movie)
+        if let movieCell = cell as? MovieTableViewCell {
+            movieCell.setCell(with: movie)
+        }
         return cell
     }
 
