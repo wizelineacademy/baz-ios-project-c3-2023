@@ -21,6 +21,7 @@ final class MovieProvider: WSRequestProtocol {
         self.page = page
     }
     
+    /** Regresa un objeto URLRequest a partir de la categoria recibida */
     private func getMoviesRequest() -> URLRequest? {
         guard let url = self.category.getEndPoint(for: self.page) else { return nil }
         return URLRequest(url: url)
@@ -55,30 +56,6 @@ final class MovieProvider: WSRequestProtocol {
                 }
             case .failure(let error):
                 completion(.failure(error))
-            }
-        }
-    }
-    
-    /**
-     Intenta castear un objeto de tipo UITableViewCell a un tipo MovieTableViewCell, dicha instancia se configura a partir de un objeto de tipo Movie
-     - Parameters:
-        - cell: un objeto de tipo UITableViewCell
-        - movie: un objeto de tipo Movie
-     */
-    func set(_ cell: UITableViewCell, with movie: Movie) {
-        if let movieCell = cell as? MovieTableViewCell {
-            movieCell.title.text = movie.title
-            movieCell.releaseDate.text = "Lazamiento: \(movie.releaseDate ?? "")"
-            movieCell.language.text = "Idioma original: \(movie.originalLanguage)"
-            guard let url = movie.getPosterURL(with: 300) else { return }
-            
-            fetch(request: URLRequest(url: url)) { result in
-                switch result {
-                case .success(let data):
-                    movieCell.posterImage.image = UIImage(data: data)
-                default:
-                    break
-                }
             }
         }
     }
