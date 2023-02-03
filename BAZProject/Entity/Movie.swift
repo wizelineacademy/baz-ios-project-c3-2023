@@ -16,7 +16,6 @@ struct Movie: Codable {
     let posterPath: String?
     let overView: String?
     let voteCount: Int?
-    let adult: Bool?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -24,7 +23,6 @@ struct Movie: Codable {
         case posterPath = "poster_path"
         case overView = "overview"
         case voteCount  = "vote_count"
-        case adult
     }
     
     init(from decoder: Decoder) throws {
@@ -34,21 +32,15 @@ struct Movie: Codable {
         self.posterPath = try container.decodeIfPresent(String.self, forKey: .posterPath)
         self.overView = try container.decodeIfPresent(String.self, forKey: .overView)
         self.voteCount = try container.decodeIfPresent(Int.self, forKey: .voteCount)
-        self.adult = try container.decodeIfPresent(Bool.self, forKey: .adult)
     }
     
-    init(id: Int? = nil, title: String? = nil, posterPath: String? = nil, overView: String? = nil, voteCount: Int? = nil, adult: Bool? = nil) {
+    init(id: Int? = nil, title: String? = nil, posterPath: String? = nil, overView: String? = nil, voteCount: Int? = nil) {
         self.id = id
         self.title = title
         self.posterPath = posterPath
         self.overView = overView
         self.voteCount = voteCount
-        self.adult = adult
     }
-}
-
-struct MovieDetail: Codable {
-    
 }
 
 enum TypeMovie: String {
@@ -59,12 +51,4 @@ enum TypeMovie: String {
     func getOptionMovie() -> String{
         return self.rawValue
     }
-}
-
-enum MethodType: String {
-    case get     = "GET"
-    case post    = "POST"
-    case put     = "PUT"
-    case patch   = "PATCH"
-    case delete  = "DELETE"
 }

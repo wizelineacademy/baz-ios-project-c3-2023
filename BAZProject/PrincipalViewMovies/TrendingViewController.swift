@@ -13,6 +13,7 @@ class TrendingViewController: UITableViewController {
     var movies: [Movie] = []
     var movie: Movie? = nil
     let movieApi = MovieAPI()
+    var typeMovie: TypeMovie = .popularity
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,13 +27,10 @@ class TrendingViewController: UITableViewController {
     }
     
     private func setupUITrendingView() {
-//        self.view.backgroundColor = .white
     }
     
     private func fetchMovies() {
-        movies = movieApi.getMovies(typeMovie: .popularity) ?? []
-        movie = movieApi.getDetailMovie(idMovie: 315162)
-        debugPrint(movie)
+        movies = movieApi.getMovies(typeMovie: typeMovie) ?? []
         tableView.reloadData()
     }
     
@@ -75,24 +73,5 @@ extension TrendingViewController {
 extension TrendingViewController {
 
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        var config = UIListContentConfiguration.cell()
-//        config.text = movies[indexPath.row].title
-//        config.image = UIImage(named: "poster")
-//        cell.contentConfiguration = config
-    }
-
-}
-
-extension UIImageView {
-    func load(url: URL) {
-        DispatchQueue.global().async { [weak self] in
-            if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self?.image = image
-                    }
-                }
-            }
-        }
     }
 }
