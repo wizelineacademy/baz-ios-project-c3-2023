@@ -1,0 +1,18 @@
+//
+//  HomePresenter.swift
+//  BAZProject
+//
+//  Created by 1034209 on 01/02/23.
+//
+
+import Foundation
+
+protocol HomePresentationLogic: AnyObject {
+    
+}
+
+class HomePresenter: HomePresentationLogic {
+    
+    // MARK: Properties VIP
+    weak var viewController: HomeDisplayLogic?
+}
