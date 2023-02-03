@@ -27,11 +27,11 @@ final class TrendingViewController: UITableViewController {
     
     private func requestMovies() {
         self.title = movieAPI.viewTitle
-        movieAPI.getMovies { (result: Result<[Movie], Error>) in
+        movieAPI.getMovies { [weak self] (result: Result<[Movie], Error>) in
             switch result {
             case .success(let movies):
-                self.movies = movies
-                self.tableView.reloadData()
+                self?.movies = movies
+                self?.tableView.reloadData()
             case .failure(let error):
                 print(error)
             }
