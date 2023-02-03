@@ -230,3 +230,6 @@ https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg
 Accede a la [documentación](https://developers.themoviedb.org/3/getting-started/images) para conocer su funcionamiento.
 
 > \*_Importante:_ No olvides incluir cualquier informacion necesaria para correr tu proyecto. Credenciales, variables de ambiente, archivos de configuración, etc. 
+
+
+Prueba
