@@ -9,24 +9,24 @@ import UIKit
 
 class HomeTableViewController: UITableViewController {
     
-    var categories = ["Trending", "Now playing", "Popular", "Top Rated", "Upcoming"]
+    var categories = MovieAPICategory.allMovieAPICategories
     var listOfCategories: [MovieAPICategory: [Movie]] = [
-        .Trending: [],
-        .Now_playing: [],
-        .Popular: [],
-        .Top_Rated: [],
-        .Upcoming: [],
+        .trending: [],
+        .nowPlaying: [],
+        .popular: [],
+        .topRated: [],
+        .upcoming: [],
     ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
                         
         let movieApi = MovieAPI()
-        listOfCategories[.Trending] = movieApi.getMovies(category: .Trending)
-        listOfCategories[.Now_playing] = movieApi.getMovies(category: .Now_playing)
-        listOfCategories[.Popular] = movieApi.getMovies(category: .Popular)
-        listOfCategories[.Top_Rated] = movieApi.getMovies(category: .Top_Rated)
-        listOfCategories[.Upcoming] = movieApi.getMovies(category: .Upcoming)
+        listOfCategories[.trending] = movieApi.getMovies(category: .trending)
+        listOfCategories[.nowPlaying] = movieApi.getMovies(category: .nowPlaying)
+        listOfCategories[.popular] = movieApi.getMovies(category: .popular)
+        listOfCategories[.topRated] = movieApi.getMovies(category: .topRated)
+        listOfCategories[.upcoming] = movieApi.getMovies(category: .upcoming)
         
         tableView.reloadData()
     }
@@ -53,16 +53,16 @@ extension HomeTableViewController{
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableViewCell", for: indexPath) as? CategoryTableViewCell
         cell?.setCollectionView()
         switch indexPath.section {
-        case 0:
-            cell?.moviesToShow = listOfCategories[.Trending] ?? []
-        case 1:
-            cell?.moviesToShow = listOfCategories[.Now_playing] ?? []
-        case 2:
-            cell?.moviesToShow = listOfCategories[.Popular] ?? []
-        case 3:
-            cell?.moviesToShow = listOfCategories[.Top_Rated] ?? []
-        case 4:
-            cell?.moviesToShow = listOfCategories[.Upcoming] ?? []
+        case MovieAPICategory.trending.rawValue:
+            cell?.moviesToShow = listOfCategories[.trending] ?? []
+        case MovieAPICategory.nowPlaying.rawValue:
+            cell?.moviesToShow = listOfCategories[.nowPlaying] ?? []
+        case MovieAPICategory.popular.rawValue:
+            cell?.moviesToShow = listOfCategories[.popular] ?? []
+        case MovieAPICategory.topRated.rawValue:
+            cell?.moviesToShow = listOfCategories[.topRated] ?? []
+        case MovieAPICategory.upcoming.rawValue:
+            cell?.moviesToShow = listOfCategories[.upcoming] ?? []
         default:
             cell?.moviesToShow = []
         }

@@ -20,7 +20,7 @@ class MovieAPI {
     ///
 
     func getMovies(category: MovieAPICategory) -> [Movie] {
-        guard let urlTrendingMovies = URL(string: "https://api.themoviedb.org/3/\(category.rawValue)?api_key=\(apiKey)&\(language)&\(region)"),
+        guard let urlTrendingMovies = URL(string: "https://api.themoviedb.org/3/\(category.endpointUrl)?api_key=\(apiKey)&\(language)&\(region)"),
               let data = try? Data(contentsOf: urlTrendingMovies),
               let json = try? JSONDecoder().decode(MovieAPIResult.self, from: data)
         else {
