@@ -4,7 +4,7 @@
 //
 //
 
-import UIKit
+import Foundation
 
 final class MovieProvider: WSRequestProtocol {
     
