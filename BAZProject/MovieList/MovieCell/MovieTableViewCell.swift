@@ -9,7 +9,7 @@ import UIKit
 
 final class MovieTableViewCell: UITableViewCell {
     
-    static let nib: UINib = UINib(nibName: "MovieTableViewCell", bundle: .main)
+    static let nib: UINib = UINib(nibName: String(describing: self), bundle: .main)
     static let identifier: String = "MovieCell"
     
     @IBOutlet weak var title: UILabel!
