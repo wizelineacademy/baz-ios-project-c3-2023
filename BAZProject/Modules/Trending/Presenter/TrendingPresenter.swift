@@ -37,6 +37,5 @@ extension TrendingPresenter: TrendingInteractorOutputProtocol {
         
         view?.setErrorGettingData(true)
         router?.showViewError(errorModel)
-        view?.stopLoading()
     }
 }

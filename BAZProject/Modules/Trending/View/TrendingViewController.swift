@@ -31,7 +31,11 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
             getData()
         }
     }
-    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        stopLoading()
+    }
+
     func updateView(data: [MovieResult]) {
         movies = data
         guaranteeMainThread {
