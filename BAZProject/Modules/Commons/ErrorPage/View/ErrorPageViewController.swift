@@ -59,7 +59,7 @@ final class ErrorPageViewController: UIViewController, ErrorPageViewProtocol {
         navigationItem.hidesBackButton = true
     }
     
-    @IBAction func reintent(_ sender: Any) {
+    @IBAction func retry(_ sender: Any) {
         presenter?.closeThisInstance()
     }
 }

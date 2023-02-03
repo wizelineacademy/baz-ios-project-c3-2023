@@ -25,36 +25,36 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bqt-gd-fgX">
-                    <rect key="frame" x="71.666666666666686" y="169" width="250" height="250"/>
+                    <rect key="frame" x="71.666666666666686" y="110" width="250" height="250"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="250" id="iVU-ID-N3y"/>
                         <constraint firstAttribute="height" constant="250" id="rtC-sY-LJS"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Principal title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21M-V3-g4s">
-                    <rect key="frame" x="16" y="99" width="361" height="30"/>
+                    <rect key="frame" x="16" y="40" width="361" height="30"/>
                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="25"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LNp-b8-fTd">
-                    <rect key="frame" x="16" y="552" width="361" height="41.666666666666629"/>
+                    <rect key="frame" x="16" y="493.00000000000006" width="361" height="41.666666666666686"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" image="arrowshape.turn.up.left.fill" catalog="system" title="Retry" titleAlignment="automatic">
                         <fontDescription key="titleFontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="24"/>
                     </buttonConfiguration>
                     <connections>
-                        <action selector="reintent:" destination="-1" eventType="touchUpInside" id="Nud-g9-5sP"/>
+                        <action selector="retry:" destination="-1" eventType="touchDown" id="r8V-iV-F29"/>
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s7e-Th-cLp">
-                    <rect key="frame" x="16" y="444" width="361" height="24"/>
+                    <rect key="frame" x="16" y="385" width="361" height="24"/>
                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="20"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description error" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z0i-ZK-vPv">
-                    <rect key="frame" x="16" y="488" width="361" height="24"/>
+                    <rect key="frame" x="16" y="429" width="361" height="24"/>
                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="20"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
