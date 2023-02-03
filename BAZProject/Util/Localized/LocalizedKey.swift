@@ -24,6 +24,7 @@ extension String {
     static let retryTitleButton = "Reintentar"
     
     // MARK: - TrendingView
+    static let trendingXibIdentifier = "TrendingView"
     static let trendingTitle = "Trending"
     
     // MARK: - Main

@@ -15,7 +15,7 @@ class TrendingViewController: UIViewController, TrendingViewProtocol {
     var errorGetData: Bool = false
     
     var presenter: TrendingPresenterProtocol?
-    static let nibName = "TrendingView"
+    static let identifier: String = .trendingXibIdentifier
 
     override func viewDidLoad() {
         super.viewDidLoad()

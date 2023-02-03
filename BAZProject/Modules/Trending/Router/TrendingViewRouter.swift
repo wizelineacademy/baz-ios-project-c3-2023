@@ -10,11 +10,9 @@ import UIKit
 class TrendingViewRouter: TrendingRouterProtocol {
     weak var view: TrendingViewProtocol?
     
-    
     static func createModule() -> UIViewController {
-        guard let view = TrendingViewController(
-            nibName: TrendingViewController.nibName,
-            bundle: nil) as? TrendingViewProtocol
+        guard let view = TrendingViewController( nibName: TrendingViewController.identifier,
+                                                 bundle: nil) as? TrendingViewProtocol
         else {
             return UIViewController()
         }
@@ -22,7 +20,7 @@ class TrendingViewRouter: TrendingRouterProtocol {
         let dataManager: TrendingDataManagerInputProtocol = TrendingDataManager(providerNetworking: service)
         let interactor: TrendingInteractorInputProtocol & TrendingDataManagerOutputProtocol = TrendingInteractor()
         let presenter: TrendingPresenterProtocol & TrendingInteractorOutputProtocol = TrendingPresenter()
-
+        
         let router: TrendingRouterProtocol = TrendingViewRouter()
         router.view = view
         view.presenter = presenter
@@ -32,14 +30,15 @@ class TrendingViewRouter: TrendingRouterProtocol {
         presenter.view = view
         presenter.interactor = interactor
         presenter.router = router
-
+        
         guard let view = view as? UIViewController else { return UIViewController() }
         return view
     }
     
     func showViewError(_ errorType: ErrorType) {
         guard let view = view as? UIViewController,
-              let errorPageVC = ErrorPageRouter.createModule(errorType: errorType, titleNavBar: .trendingTitle) as? UIViewController else { return }
+              let errorPageVC = ErrorPageRouter.createModule(errorType: errorType,
+                                                             titleNavBar: .trendingTitle) as? UIViewController else { return }
         view.guaranteeMainThread {
             view.navigationController?.pushViewController(errorPageVC, animated: true)
         }
