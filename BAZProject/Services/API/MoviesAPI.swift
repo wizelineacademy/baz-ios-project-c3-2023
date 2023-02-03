@@ -9,7 +9,7 @@ import Foundation
 
 protocol MovieServicesProtocol {
     func fetchMovies(type: fetchMoviesTypes, completionHandler: @escaping ([Movie], MovieServiceError?) -> Void)
-    func fetchReview(id: Int, completionHandler: @escaping([Review], MovieServiceError?) -> Void)
+    func fetchReviews(id: Int, completionHandler: @escaping([Review], MovieServiceError?) -> Void)
 }
 
 class MoviesAPI: MovieServicesProtocol {
@@ -23,15 +23,43 @@ class MoviesAPI: MovieServicesProtocol {
     let sessionShared = URLSession.shared
     
     func fetchMovies(type: fetchMoviesTypes, completionHandler: @escaping ([Movie], MovieServiceError?) -> Void) {
-    
+        
+        let request = URLRequest(url: getURL(endpoint: type.endpoint))
+        
+        sessionShared.dataTask(with: request) { data, error, response in
+            guard let data = data else {
+                completionHandler([], .fetchError(error as! Error))
+                return
+            }
+            do {
+                let movies = try JSONDecoder().decode(MovieFetchResponse.self, from: data).results
+                completionHandler(movies, nil)
+            } catch {
+                completionHandler([], .decodeError(error))
+            }
+        }.resume()
     }
     
-    func fetchReview(id: Int, completionHandler: @escaping ([Review], MovieServiceError?) -> Void) {
+    func fetchReviews(id: Int, completionHandler: @escaping ([Review], MovieServiceError?) -> Void) {
         
+        let request = URLRequest(url: getURL(endpoint: .movieReviews(id: id)))
+
+        sessionShared.dataTask(with: request) { data, error, response in
+            guard let data = data else {
+                completionHandler([], .fetchError(error as! Error))
+                return
+            }
+            do {
+                let reviews = try JSONDecoder().decode(ReviewResponse.self, from: data).results
+                completionHandler(reviews, nil)
+            } catch {
+                completionHandler([], .decodeError(error))
+            }
+        }.resume()
     }
     
     func getURL(endpoint: Endpoint) -> URL {
-        URL(string: "\(urlBaseString)\(endpoint.url)?api_key=\(apiKey)&language=\(language)&region=\(region)&page=\(page)")!
+        URL(string: "\(urlBaseString)\(endpoint.url)?api_key=\(apiKey)\(endpoint.queryString)&language=\(language)&region=\(region)&page=\(page)")!
     }
 }
 
@@ -64,4 +92,5 @@ enum fetchMoviesTypes {
 
 enum MovieServiceError: Error {
     case fetchError(Error)
+    case decodeError(Error)
 }

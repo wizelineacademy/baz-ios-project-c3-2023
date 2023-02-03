@@ -22,16 +22,27 @@ enum Endpoint {
             return "/movie/top_rated"
         case .upComing:
             return "/movie/upcoming"
-        case .byKeyword(let string):
-            return "/search/keyword?query=\(string)"
-        case .bySearch(let string):
-            return "/search/movie?query=\(string)"
+        case .byKeyword(_):
+            return "/search/keyword"
+        case .bySearch(_):
+            return "/search/movie"
         case .bySimilarMovie(let id):
             return "/movie/\(id)/similar"
         case .byRecommendationMovie(let id):
             return "/movie/\(id)/recommendations"
         case .movieReviews(let id):
             return "/movie/\(id)/reviews"
+        }
+    }
+    
+    var queryString: String {
+        switch self {
+        case .byKeyword(let string):
+            return "&query=\(string)"
+        case .bySearch(let string):
+            return "&query=\(string)"
+        default:
+            return ""
         }
     }
 }

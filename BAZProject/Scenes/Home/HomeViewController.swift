@@ -26,7 +26,17 @@ class HomeViewController: UIViewController {
     
     // MARK: Setup
     func setup() {
+
+    }
+    
+    override func viewDidLoad() {
+        MoviesAPI().fetchMovies(type: .byKeyword("Jojo")) { movies, error in
+            print(movies)
+        }
         
+        MoviesAPI().fetchReviews(id: 603) { reviews, error in
+            print(reviews)
+        }
     }
 }
 
