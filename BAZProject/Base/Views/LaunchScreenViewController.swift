@@ -15,7 +15,7 @@ final class LaunchScreenViewController: UIViewController {
             logoUIImageView.rotate()
         }
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         addAnimationLoader()
@@ -23,14 +23,15 @@ final class LaunchScreenViewController: UIViewController {
     
     fileprivate func addAnimationLoader() {
         UIView.transition(with: logoUIImageView,
-                          duration: 2.0,
+                          duration: LocalizedConstants.launchScreenAnimationDuration,
                           options: .transitionCrossDissolve,
                           animations: { [weak self] in
             self?.logoUIImageView.image = UIImage()
-        }) { [weak self] _ in
-            let mainVC = MainViewController()
+        },
+                          completion: { [weak self] _ in
+            let mainVC: UITabBarController = MainViewController()
             mainVC.modalPresentationStyle = .fullScreen
             self?.present(mainVC, animated: true)
-        }
+        })
     }
 }
