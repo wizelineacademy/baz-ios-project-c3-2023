@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ErrorPageViewController: UIViewController, ErrorPageViewProtocol {
+final class ErrorPageViewController: UIViewController, ErrorPageViewProtocol {
     
     @IBOutlet weak var imgErrorLogo: UIImageView! {
         didSet {
@@ -32,11 +32,10 @@ class ErrorPageViewController: UIViewController, ErrorPageViewProtocol {
     @IBOutlet weak var titleErrorLabel: UILabel!
     @IBOutlet weak var descriptionErrorLabel: UILabel!
 
+    static let identifier: String = .errorPageXibIdentifier
     var presenter: ErrorPagePresenterProtocol?
     var errorType: ErrorType?
     var titleNavBar: String?
-    
-    static let nibName: String = "ErrorPageView"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +49,7 @@ class ErrorPageViewController: UIViewController, ErrorPageViewProtocol {
             descriptionErrorLabel.text = errorType.message
         }
         
-        if let titleNavBar = titleNavBar as? String {
+        if titleNavBar != nil {
             self.title = titleNavBar
         }
     }
@@ -64,4 +63,3 @@ class ErrorPageViewController: UIViewController, ErrorPageViewProtocol {
         presenter?.closeThisInstance()
     }
 }
-

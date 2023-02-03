@@ -12,7 +12,7 @@ class ErrorPageRouter: ErrorPageRouterProtocol {
     
     static func createModule(errorType: ErrorType, titleNavBar: String?) -> UIViewController {
         guard let view = ErrorPageViewController(
-            nibName: ErrorPageViewController.nibName,
+            nibName: ErrorPageViewController.identifier,
             bundle: nil) as? ErrorPageViewProtocol
         else {
             return UIViewController()

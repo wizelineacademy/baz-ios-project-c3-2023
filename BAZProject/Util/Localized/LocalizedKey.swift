@@ -18,6 +18,7 @@ extension String {
     static let regionTheMovieDb = "MX"
     
     // MARK: - ErrorPageView
+    static let errorPageXibIdentifier = "ErrorPageView"
     static let nameIcon404 = "notFound"
     static let errorPagePrincipalTitleLabel = " Ups!, ha ocurrido un error..."
     static let retryTitleButton = "Reintentar"
