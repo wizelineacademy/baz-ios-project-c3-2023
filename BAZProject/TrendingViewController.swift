@@ -7,43 +7,85 @@
 import UIKit
 
 class TrendingViewController: UITableViewController {
-
+    
+    //MARK: - Properties
     var movies: [Movie] = []
-
+    var movieSelected:Movie?
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        //movies = movieApi.getMovies()
+        getMovies(type: .trending)
+    }
+    
+    //MARK: - Functions
+    func getMovies(type: TypeOfMovies){
         let movieApi = MovieAPI()
-        
-        movies = movieApi.getMovies()
-        tableView.reloadData()
+        movieApi.getMovies(forType: type, completion: { [weak self] pageResult in
+            self?.movies = pageResult.results ?? []
+            self?.tableView.reloadData()
+        })
     }
-
+    
+    func getMovies(byFilter filter:Int){
+        //TODO: Hacer que venga la info por el tag del boton
+                switch filter{
+                case 1:
+                    getMovies(type: .upcoming)
+                case 2:
+                    getMovies(type: .topRated)
+                case 3:
+                    getMovies(type: .trending)
+                default:
+                    getMovies(type: .nowPlaying)
+                }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let detailMovieVC = segue.destination as? DetailMovieViewController{
+            detailMovieVC.movie = self.movieSelected
+        }
+    }
+    
+    
 }
-
+//MARK: - Extensions
 // MARK: - TableView's DataSource
-
 extension TrendingViewController {
-
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+            return "Peliculas"
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        1
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        movies.count
+        return  movies.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        tableView.dequeueReusableCell(withIdentifier: "TrendingTableViewCell")!
+        return tableView.dequeueReusableCell(withIdentifier: "TrendingTableViewCell")!
     }
-
+    
 }
 
 // MARK: - TableView's Delegate
 
 extension TrendingViewController {
-
+    
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         var config = UIListContentConfiguration.cell()
-        config.text = movies[indexPath.row].title
-        config.image = UIImage(named: "poster")
+        let movie = movies[indexPath.row]
+        config.text = movie.title
+        config.image = movie.poster_Image
         cell.contentConfiguration = config
     }
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        movieSelected = movies[indexPath.row]
+        performSegue(withIdentifier: "ListMoviesVCToDetailVC", sender: nil)
+        
+    }
 }
