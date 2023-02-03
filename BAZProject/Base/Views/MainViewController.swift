@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainViewController: UITabBarController {
+final class MainViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +39,9 @@ class MainViewController: UITabBarController {
     
     private func initializeViewControllers() {
         var arrControllers:[UIViewController] = []
-        arrControllers.append(createNavController(for: TrendingViewRouter.createModule(), title: "Trending", image: UIImage(systemName: "house") ?? UIImage()))
+        arrControllers.append(createNavController(for: TrendingViewRouter.createModule(),
+                                                  title: .mainTitleView,
+                                                  image: getUIImage(for: .mainNameIconTabBar, type: .systemName)))
         viewControllers = arrControllers
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.red], for:.selected)
     }
@@ -62,7 +64,7 @@ class MainViewController: UITabBarController {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Buscar.."
+        searchController.searchBar.placeholder = .mainPlaceholderSearchBar
         navigationItem.searchController = searchController
         definesPresentationContext = true
         return searchController
@@ -73,6 +75,6 @@ extension MainViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         guard let textSearching = searchController.searchBar.text else { return }
-        print("Searching with: " + (searchController.searchBar.text ?? ""))
+        print("Searching with: " + (textSearching))
     }
 }

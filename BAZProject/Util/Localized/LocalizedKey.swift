@@ -24,4 +24,9 @@ extension String {
     
     // MARK: - TrendingView
     static let trendingTitle = "Trending"
+    
+    // MARK: - Main
+    static let mainPlaceholderSearchBar = "Buscar.."
+    static let mainTitleView = "Trending"
+    static let mainNameIconTabBar = "house"
 }
