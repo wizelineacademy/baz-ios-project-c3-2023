@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ErrorPageRouter: ErrorPageRouterProtocol {
+final class ErrorPageRouter: ErrorPageRouterProtocol {
     var view: ErrorPageViewProtocol?
     
     static func createModule(errorType: ErrorType, titleNavBar: String?) -> UIViewController {

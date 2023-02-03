@@ -6,7 +6,7 @@
 
 import UIKit
 
-class TrendingViewController: UIViewController, TrendingViewProtocol {
+final class TrendingViewController: UIViewController, TrendingViewProtocol {
 
     @IBOutlet weak var moviesTableView: UITableView!
     

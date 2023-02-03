@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TrendingViewRouter: TrendingRouterProtocol {
+final class TrendingRouter: TrendingRouterProtocol {
     weak var view: TrendingViewProtocol?
     
     static func createModule() -> UIViewController {
@@ -21,7 +21,7 @@ class TrendingViewRouter: TrendingRouterProtocol {
         let interactor: TrendingInteractorInputProtocol & TrendingDataManagerOutputProtocol = TrendingInteractor()
         let presenter: TrendingPresenterProtocol & TrendingInteractorOutputProtocol = TrendingPresenter()
         
-        let router: TrendingRouterProtocol = TrendingViewRouter()
+        let router: TrendingRouterProtocol = TrendingRouter()
         router.view = view
         view.presenter = presenter
         interactor.dataManager = dataManager

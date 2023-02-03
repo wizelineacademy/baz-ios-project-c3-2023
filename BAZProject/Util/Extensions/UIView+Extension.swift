@@ -12,21 +12,21 @@ extension UIView {
         let loader = Loader(frame: frame)
         addSubview(loader)
     }
-
+    
     func removeLoader() {
         if let loader = subviews.first(where: { $0 is Loader }) {
             loader.removeFromSuperview()
         }
     }
-
+    
     func rotate() {
-            let rotation : CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
-            rotation.toValue = NSNumber(value: Double.pi * 2)
-            rotation.duration = 1
-            rotation.isCumulative = true
-            rotation.repeatCount = Float.greatestFiniteMagnitude
-            layer.add(rotation, forKey: "rotationAnimation")
-        }
+        let rotation : CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        rotation.toValue = NSNumber(value: Double.pi * 2)
+        rotation.duration = 1
+        rotation.isCumulative = true
+        rotation.repeatCount = Float.greatestFiniteMagnitude
+        layer.add(rotation, forKey: "rotationAnimation")
+    }
     
     func addSkeletonAnimation(transparency: CGFloat = 0.5, velocity: CFTimeInterval = 1, startPoint: CGPoint = CGPoint(x: 0.0, y: 1.0), endPoint: CGPoint = CGPoint(x: 1.0, y: 1.0)) {
         layer.masksToBounds = true
@@ -65,9 +65,29 @@ extension UIView {
     }
     
     func removeSkeletonAnimation() {
-        for subview in self.subviews where subview.tag == 2104082 {
-            subview.removeFromSuperview()
-            subview.layer.mask = nil
+        guaranteeMainThread {
+            for subview in self.subviews where subview.tag == 2104082 {
+                subview.removeFromSuperview()
+                subview.layer.mask = nil
+            }
         }
+    }
+    
+    func guaranteeMainThread(_ work: @escaping () -> Void) {
+        if Thread.isMainThread {
+            work()
+        } else {
+            DispatchQueue.main.async(execute: work)
+        }
+    }
+    
+    func saveImageInCache(id: String, image: UIImage) {
+        let cache: NSCache = NSCache<NSString, UIImage>()
+        cache.setObject(image, forKey: NSString(string: id))
+    }
+    
+    func getImageFromCache(strUrl: String) -> UIImage? {
+        let cache: NSCache = NSCache<NSString, UIImage>()
+        return cache.object(forKey: NSString(string: strUrl))
     }
 }
