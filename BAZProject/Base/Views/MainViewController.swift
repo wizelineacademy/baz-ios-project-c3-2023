@@ -20,6 +20,8 @@ final class MainViewController: UITabBarController {
         setTabBarStyle()
     }
     
+    // MARK: - Private methods
+
     fileprivate func setStyleView() {
         view.backgroundColor = .systemBackground
         tabBar.barTintColor = .systemBackground

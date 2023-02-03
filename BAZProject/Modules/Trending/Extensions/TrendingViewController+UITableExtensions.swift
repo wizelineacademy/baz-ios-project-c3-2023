@@ -26,9 +26,7 @@ extension TrendingViewController: UITableViewDelegate, UITableViewDataSource {
         return UITableView.automaticDimension
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section:Int) -> String?
-    {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section:Int) -> String? {
         return mediaType.getMediaTypeTitle()
     }
-    
 }

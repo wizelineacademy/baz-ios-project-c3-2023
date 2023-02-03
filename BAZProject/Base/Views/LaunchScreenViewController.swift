@@ -21,6 +21,7 @@ final class LaunchScreenViewController: UIViewController {
         addAnimationLoader()
     }
     
+    // MARK: - Private methods
     fileprivate func addAnimationLoader() {
         UIView.transition(with: logoUIImageView,
                           duration: LocalizedConstants.launchScreenAnimationDuration,

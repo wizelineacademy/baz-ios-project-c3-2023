@@ -42,6 +42,11 @@ final class ErrorPageViewController: UIViewController, ErrorPageViewProtocol {
         configView()
     }
     
+    @IBAction func retry(_ sender: Any) {
+        presenter?.closeThisInstance()
+    }
+
+    // MARK: - Private methods
     private func configView() {
         hideBackItem()
         if let errorType = errorType {
@@ -57,9 +62,5 @@ final class ErrorPageViewController: UIViewController, ErrorPageViewProtocol {
     private func hideBackItem() {
         navigationItem.leftBarButtonItem = nil
         navigationItem.hidesBackButton = true
-    }
-    
-    @IBAction func retry(_ sender: Any) {
-        presenter?.closeThisInstance()
     }
 }

@@ -31,11 +31,6 @@ class TrendingViewController: UIViewController, TrendingViewProtocol {
             getData()
         }
     }
-
-    func getData() {
-        view.showLoader()
-        presenter?.getTrendingMedia(mediaType: mediaType, timeWindow: .day)
-    }
     
     func updateView(data: [MovieResult]) {
         movies = data
@@ -53,6 +48,10 @@ class TrendingViewController: UIViewController, TrendingViewProtocol {
     func setErrorGettingData(_ status: Bool) {
         errorGetData = status
     }
+    
+    // MARK: - Private methods
+    private func getData() {
+        view.showLoader()
+        presenter?.getTrendingMedia(mediaType: mediaType, timeWindow: .day)
+    }
 }
-
-
