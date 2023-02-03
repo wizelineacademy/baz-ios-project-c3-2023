@@ -9,6 +9,7 @@ import UIKit
 
 class HomeTableViewController: UITableViewController {
     
+    var heightRowTable: CGFloat = 250
     var categories = MovieAPICategory.allMovieAPICategories
     var listOfCategories: [MovieAPICategory: [Movie]] = [
         .trending: [],
@@ -76,7 +77,7 @@ extension HomeTableViewController{
 extension HomeTableViewController{
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 250
+        return heightRowTable
     }
     
 }
