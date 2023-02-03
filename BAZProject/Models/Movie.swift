@@ -25,7 +25,7 @@ struct Movie: Decodable {
     private let publishedDate: String
     
     var releaseDate: String? {
-        publishedDate.convertDate(format: "yyyy-MM-dd", with: "dd MMMM yyyy")
+        publishedDate.convertDate(format: "yyyy-MM-dd", to: "dd MMMM yyyy")
     }
     
     /**
