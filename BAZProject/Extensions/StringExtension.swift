@@ -18,10 +18,10 @@ extension String {
      - Returns: regresa una cadena con la fecha en el formato recibido, de no ser posible regresa un valor nulo
      
      ````
-     publishedDate.convertDate(format: "yyyy-MM-dd", with: "dd MMMM yyyy")
+     publishedDate.convertDate(format: "yyyy-MM-dd", to: "dd MMMM yyyy")
      ````
     */
-    func convertDate(format: String, with newFormat: String) -> String? {
+    func convertDate(format: String, to newFormat: String) -> String? {
         let formatter = DateFormatter()
         formatter.dateFormat = format
         guard let date = formatter.date(from: self) else {
