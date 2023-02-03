@@ -15,7 +15,7 @@ final class TrendingViewController: UITableViewController {
         super.viewDidLoad()
 
         self.setupTable()
-        self.setMovies()
+        self.requestMovies()
     }
     
     private func setupTable() {
@@ -25,7 +25,7 @@ final class TrendingViewController: UITableViewController {
         )
     }
     
-    private func setMovies() {
+    private func requestMovies() {
         self.title = movieAPI.viewTitle
         movieAPI.getMovies { (result: Result<[Movie], Error>) in
             switch result {
