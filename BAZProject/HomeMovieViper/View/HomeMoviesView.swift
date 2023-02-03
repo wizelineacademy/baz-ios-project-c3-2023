@@ -11,8 +11,7 @@ import UIKit
 
 
 
-class HomeMoviesView: UIViewController{
-
+class HomeMoviesView: UIViewController, CategoriesMoviesCellDelegate{
     // MARK: Properties
     
     @IBOutlet weak var categoriesMoviesCollectionView: UICollectionView!
@@ -22,13 +21,14 @@ class HomeMoviesView: UIViewController{
     internal let minimumInterItemSpacing: CGFloat = CGFloat(8.0)
     internal let cellsPerRow: Int = 2
     internal let insets: CGFloat = CGFloat(8.0)
+    weak var currentlySelected: CategoriesMoviesCollectionViewCell?
     // MARK: Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCategoriesCollectionView()
         setupMoviesColletionView()
-        presenter?.getTrendingMovies()
+        presenter?.viewDidLoad()
     }
     
     func setupCategoriesCollectionView(){
@@ -41,6 +41,12 @@ class HomeMoviesView: UIViewController{
         self.moviesCollectionView.delegate = self
         self.moviesCollectionView.dataSource = self
         self.moviesCollectionView.register(UINib(nibName: "MovieCollectionViewCell", bundle: Bundle(for: HomeMoviesView.self)), forCellWithReuseIdentifier: "MovieCollectionViewCell")
+    }
+    
+    func didSelectCell(indexPath: Int, cell: CategoriesMoviesCollectionViewCell) {
+        currentlySelected?.deselected()
+        currentlySelected = cell
+        presenter?.selectFilterMovies(index: indexPath)
     }
 }
 
