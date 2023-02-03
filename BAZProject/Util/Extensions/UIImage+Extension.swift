@@ -7,13 +7,16 @@
 
 import UIKit
 
-let cache = NSCache<NSString, UIImage>()
 extension UIImageView {
+
     func loadImage(id: String) {
+    
+        let cache: NSCache = NSCache<NSString, UIImage>()
+
         self.addSkeletonAnimation()
         image = UIImage()
         let defaultImage = UIImage(named: LocalizedConstants.uiImageNameDefaultImage)
-        let strUrl = id
+        let strUrl: String = id
         if let img = cache.object(forKey: NSString(string: strUrl)) {
             self.removeSkeletonAnimation()
             image = img

@@ -26,7 +26,7 @@ class MainViewController: UITabBarController {
         tabBar.tintColor = .red
         tabBar.layer.shadowRadius = LocalizedConstants.mainShadowRadius
         tabBar.layer.shadowColor = UIColor.black.cgColor
-        tabBar.layer.shadowOpacity = 0.15
+        tabBar.layer.shadowOpacity = LocalizedConstants.mainShadowOpacity
     }
     
     fileprivate func setTabBarStyle() {
