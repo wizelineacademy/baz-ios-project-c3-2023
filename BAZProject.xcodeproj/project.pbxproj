@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		AB2E3058298C2AD8009852C5 /* TrendingProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2E3057298C2AD8009852C5 /* TrendingProtocols.swift */; };
+		AB2E3066298DB199009852C5 /* TopRatedInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2E305F298DB199009852C5 /* TopRatedInteractor.swift */; };
+		AB2E3067298DB199009852C5 /* TopRatedRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2E3060298DB199009852C5 /* TopRatedRouter.swift */; };
+		AB2E3068298DB199009852C5 /* TopRatedLocalDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2E3061298DB199009852C5 /* TopRatedLocalDataManager.swift */; };
+		AB2E3069298DB199009852C5 /* TopRatedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2E3062298DB199009852C5 /* TopRatedPresenter.swift */; };
+		AB2E306A298DB199009852C5 /* TopRatedProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2E3063298DB199009852C5 /* TopRatedProtocols.swift */; };
+		AB2E306B298DB199009852C5 /* TopRatedRemoteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2E3064298DB199009852C5 /* TopRatedRemoteDataManager.swift */; };
+		AB2E306C298DB199009852C5 /* TopRatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2E3065298DB199009852C5 /* TopRatedView.swift */; };
 		AB5E7F8B29849722007DC537 /* TrendingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5E7F8A29849722007DC537 /* TrendingPresenter.swift */; };
 		AB5E7F8D29849735007DC537 /* TrendingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5E7F8C29849735007DC537 /* TrendingInteractor.swift */; };
 		AB5E7F9029849781007DC537 /* TrendingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5E7F8F29849781007DC537 /* TrendingRouter.swift */; };
@@ -26,6 +33,13 @@
 
 /* Begin PBXFileReference section */
 		AB2E3057298C2AD8009852C5 /* TrendingProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingProtocols.swift; sourceTree = "<group>"; };
+		AB2E305F298DB199009852C5 /* TopRatedInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopRatedInteractor.swift; sourceTree = "<group>"; };
+		AB2E3060298DB199009852C5 /* TopRatedRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopRatedRouter.swift; sourceTree = "<group>"; };
+		AB2E3061298DB199009852C5 /* TopRatedLocalDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopRatedLocalDataManager.swift; sourceTree = "<group>"; };
+		AB2E3062298DB199009852C5 /* TopRatedPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopRatedPresenter.swift; sourceTree = "<group>"; };
+		AB2E3063298DB199009852C5 /* TopRatedProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopRatedProtocols.swift; sourceTree = "<group>"; };
+		AB2E3064298DB199009852C5 /* TopRatedRemoteDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopRatedRemoteDataManager.swift; sourceTree = "<group>"; };
+		AB2E3065298DB199009852C5 /* TopRatedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopRatedView.swift; sourceTree = "<group>"; };
 		AB5E7F8A29849722007DC537 /* TrendingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingPresenter.swift; sourceTree = "<group>"; };
 		AB5E7F8C29849735007DC537 /* TrendingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingInteractor.swift; sourceTree = "<group>"; };
 		AB5E7F8F29849781007DC537 /* TrendingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingRouter.swift; sourceTree = "<group>"; };
@@ -55,9 +69,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB2E305E298DB199009852C5 /* TopRated */ = {
+			isa = PBXGroup;
+			children = (
+				AB2E305F298DB199009852C5 /* TopRatedInteractor.swift */,
+				AB2E3060298DB199009852C5 /* TopRatedRouter.swift */,
+				AB2E3061298DB199009852C5 /* TopRatedLocalDataManager.swift */,
+				AB2E3062298DB199009852C5 /* TopRatedPresenter.swift */,
+				AB2E3063298DB199009852C5 /* TopRatedProtocols.swift */,
+				AB2E3064298DB199009852C5 /* TopRatedRemoteDataManager.swift */,
+				AB2E3065298DB199009852C5 /* TopRatedView.swift */,
+			);
+			path = TopRated;
+			sourceTree = "<group>";
+		};
 		AB5E7F8829849418007DC537 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				AB2E305E298DB199009852C5 /* TopRated */,
 				AB5E7F8929849429007DC537 /* TrendingMovies */,
 			);
 			path = Modules;
@@ -186,6 +215,11 @@
 				C30893C428A2F845004B1860 /* TrendingView.swift in Sources */,
 				AB5E7F8B29849722007DC537 /* TrendingPresenter.swift in Sources */,
 				AB5E7F92298498B5007DC537 /* TrendingRemoteDataManager.swift in Sources */,
+				AB2E306C298DB199009852C5 /* TopRatedView.swift in Sources */,
+				AB2E306A298DB199009852C5 /* TopRatedProtocols.swift in Sources */,
+				AB2E3069298DB199009852C5 /* TopRatedPresenter.swift in Sources */,
+				AB2E3067298DB199009852C5 /* TopRatedRouter.swift in Sources */,
+				AB2E3068298DB199009852C5 /* TopRatedLocalDataManager.swift in Sources */,
 				AB2E3058298C2AD8009852C5 /* TrendingProtocols.swift in Sources */,
 				C30893AE28A2F42B004B1860 /* AppDelegate.swift in Sources */,
 				AB5E7F9029849781007DC537 /* TrendingRouter.swift in Sources */,
@@ -193,6 +227,8 @@
 				AB5E7F8D29849735007DC537 /* TrendingInteractor.swift in Sources */,
 				AB5E7F9629849A14007DC537 /* ServiceAPI.swift in Sources */,
 				AB5E7F94298498CF007DC537 /* TrendingEntity.swift in Sources */,
+				AB2E306B298DB199009852C5 /* TopRatedRemoteDataManager.swift in Sources */,
+				AB2E3066298DB199009852C5 /* TopRatedInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
