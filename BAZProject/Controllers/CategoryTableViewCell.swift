@@ -58,9 +58,8 @@ extension CategoryTableViewCell: UICollectionViewDataSource{
         let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieGalleryCollectionViewCell", for: indexPath) as? MovieGalleryCollectionViewCell
         collectionCell?.movieTitle.text = moviesToShow[indexPath.row].title
         collectionCell?.voteAvarage.text = moviesToShow[indexPath.row].averageStars
-        if let strImage =  moviesToShow[indexPath.row].posterPath,
-            let url = URL(string: "https://image.tmdb.org/t/p/w500\(strImage)") {
-            MovieAPI.fetchPhoto(url: url) { image, error in
+        if let partialURLImage =  moviesToShow[indexPath.row].posterPath {
+            MovieAPI.fetchPhoto(partialURLImage: partialURLImage) { image, error in
                 if let image = image {
                     collectionCell?.movieImage.image = image
                 }
