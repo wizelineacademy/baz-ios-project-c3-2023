@@ -11,12 +11,12 @@ struct MovieDetail: Decodable {
     let overview: String?
     let releaseDate: String
     let popularity: Double
-    let genres: MovieGenres?
+    let genres: [MovieGenres]?
     
     enum CodingKeys: String, CodingKey {
         case overview = "overview"
         case releaseDate = "release_date"
         case popularity = "popularity"
-        case genres
+        case genres = "genres"
     }
 }
