@@ -7,27 +7,25 @@
 
 import UIKit
 
-class MovieDetailRouter: MovieDetailRouterProtocol {
+class MovieDetailRouter: RouterProtocols {
+    typealias Router = MovieDetailRouter
+    
     static func createLoginModule() -> UIViewController {
         let viewController = mainStoryboard.instantiateViewController(withIdentifier: "MovieDetail")
         if let view = viewController as? MovieDetailView{
             let interceptor : MovieDetailInterceptorInputProtocol = MovieDetailInterceptor()
             let presenter : MovieDetailPresenterProtocol & MovieDetailInteractorOutputProtocol = MovieDetailPresenter()
-            let router : MovieDetailRouterProtocol = MovieDetailRouter()
+//            let router : MovieDetailRouterProtocol = MovieDetailRouter()
             
             view.presenter = presenter
             interceptor.presenter = presenter
             presenter.interceptor = interceptor
             presenter.view = view
-            presenter.router = router
+//            presenter.router = router
             return view
         }
         
         return UIViewController()
-    }
-    
-    func presentView(from view: MovieDetailViewProtocol) {
-        
     }
     
     

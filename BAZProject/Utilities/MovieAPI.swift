@@ -4,11 +4,12 @@
 //
 //
 
-import Foundation
-fileprivate let apiKey: String = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
-fileprivate let urlBase: String = "https://api.themoviedb.org/3"
+import UIKit
 
-public enum URLAPI {
+public enum URLApi {
+    private var apiKey: String { "f6cd5c1a9e6c6b965fdcab0fa6ddd38a" }
+    private var urlBase: String { "https://api.themoviedb.org/3" }
+    
     case upcoming
     case Trending(page: Int)
     case nowPlaying(page: Int)
@@ -46,15 +47,26 @@ public enum URLAPI {
     }
 }
 
-class MovieAPI {
-    var img: String = "https://image.tmdb.org/t/p/w500"
+final class MovieAPI {
+    private let imgBaseUrl: String = "https://image.tmdb.org/t/p/w500"
     
-    static func getMovies(url:URLAPI, handler: @escaping (Data) -> Void){
+    func getMovies(url:URLApi, handler: @escaping (Data) -> Void){
         guard let url = URL(string: url.URL) else{return}
         let task =  URLSession.shared.dataTask(with: url) { data, response, error in
             guard let datos = data else{return}
             handler(datos)
         }
         task.resume()
+    }
+    
+    func getImage(from imageUrl:String, handler: @escaping (UIImage) -> Void){
+        let url = URL(string: "\(imgBaseUrl)\(imageUrl)")
+        guard let url = url else {return}
+        let data = try? Data(contentsOf: url)
+        DispatchQueue.main.async {
+            guard let data = data else {return}
+            guard let image = UIImage(data: data) else {return}
+            handler(image)
+        }
     }
 }

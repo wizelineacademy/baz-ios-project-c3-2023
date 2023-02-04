@@ -10,8 +10,6 @@ import Foundation
 class MovieDetailPresenter  {
     var view: MovieDetailViewProtocol?
     
-    var router: MovieDetailRouterProtocol?
-    
     var interceptor: MovieDetailInterceptorInputProtocol?
 }
 

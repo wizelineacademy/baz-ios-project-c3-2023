@@ -16,7 +16,7 @@ class TrendingViewController: UITableViewController {
     }
     
     private func getData(){
-        MovieAPI.getMovies(url: .topRated(page: 10)) { [weak self] data in
+        MovieAPI().getMovies(url: .topRated(page: 10)) { [weak self] data in
             do{
                 self?.movies =  DecodeUtility.decode(Movies.self, from: data)
                 DispatchQueue.main.async{

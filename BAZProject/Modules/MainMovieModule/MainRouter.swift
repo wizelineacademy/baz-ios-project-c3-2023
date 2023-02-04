@@ -7,31 +7,25 @@
 
 import UIKit
 
-class MainRouter: MainRouterProtocol{
+class MainRouter: RouterProtocols{
+    typealias Router = MainRouter
+    
     static func createLoginModule() -> UIViewController {
         let navController = mainStoryboard.instantiateViewController(withIdentifier: "MainStoryboard")
         if let view = navController as? MainView{
             let presenter : MainPresenterProtocol & MainInteractorOutputProtocol = MainPresenter()
             let interactor : MainInteractorInputProtocol = MainInteractor()
-            let router : MainRouterProtocol  = MainRouter()
+//            let router : MainRouterProtocol  = MainRouter()
             
             view.presenter = presenter
             interactor.presenter = presenter
             presenter.interactor = interactor
-            presenter.router = router
+//            presenter.router = router
             presenter.view = view
             
             return navController
         }
         return UIViewController()
-    }
-    
-    func presentView(from view: MainViewProtocol) {
-        let newView = MovieDetailRouter.createLoginModule()
-        
-        if let view = view as? UIViewController{
-            view.present(newView,animated: true)
-        }
     }
     
     static var mainStoryboard: UIStoryboard {

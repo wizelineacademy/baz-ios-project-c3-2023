@@ -7,9 +7,8 @@
 
 import UIKit
 
-protocol MovieDetailRouterProtocol: AnyObject {
+protocol MovieDetailRouterProtocol: AnyObject, RouterProtocols {
     //Presenter -> Router
-    static func createLoginModule() -> UIViewController
 }
 
 protocol MovieDetailViewProtocol: AnyObject {
@@ -20,7 +19,6 @@ protocol MovieDetailViewProtocol: AnyObject {
 protocol MovieDetailPresenterProtocol: AnyObject {
     // View -> Presenter
     var view: MovieDetailViewProtocol? {get set}
-    var router: MovieDetailRouterProtocol? {get set}
     var interceptor : MovieDetailInterceptorInputProtocol? {get set}
 }
 

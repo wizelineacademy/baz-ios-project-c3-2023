@@ -9,8 +9,8 @@ import UIKit
 
 protocol MainRouterProtocol: AnyObject {
     // PRESENTER -> Router
-    static func createLoginModule() -> UIViewController
-    func presentView(from view: MainViewProtocol)
+    static func createModule() -> UIViewController
+    func presentView(from view: UIViewController)
 }
 
 protocol MainViewProtocol: AnyObject {
@@ -24,6 +24,7 @@ protocol MainPresenterProtocol: AnyObject {
     var view: MainViewProtocol? {get set}
     var interactor : MainInteractorInputProtocol? {get set}
     var router : MainRouterProtocol? {get set}
+    func goTo()
 }
 
 protocol MainInteractorInputProtocol: AnyObject {
