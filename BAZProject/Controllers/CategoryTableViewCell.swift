@@ -7,11 +7,16 @@
 
 import UIKit
 
+protocol CategoryTableCellDelegate {
+    func didSelectMovie(section: Int, movieId: Int, indexRow: Int)
+}
+
 class CategoryTableViewCell: UITableViewCell {
     
     @IBOutlet weak var collectionToCarrucel: UICollectionView!
     
     var moviesToShow: [Movie] = []
+    var categoryTableCellDelegate: CategoryTableCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -70,10 +75,10 @@ extension CategoryTableViewCell: UICollectionViewDataSource{
 
 // MARK: - CollectionView's Delegate
 
-extension CategoryTableViewCell: UICollectionViewDelegate{
+extension CategoryTableViewCell: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.row)
+        categoryTableCellDelegate?.didSelectMovie(section: indexPath.section, movieId: moviesToShow[indexPath.row].id, indexRow: indexPath.row)
     }
     
 }

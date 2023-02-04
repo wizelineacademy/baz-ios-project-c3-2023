@@ -149,18 +149,17 @@
                     <navigationItem key="navigationItem" title="movie CLUB" id="8E9-i5-K0G"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <segue destination="4Le-KZ-7uM" kind="presentation" id="1fe-y5-kbg"/>
+                        <segue destination="4Le-KZ-7uM" kind="presentation" identifier="homeToMovieDetail" id="1fe-y5-kbg"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Inw-fF-zPA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2002.5" y="-106.69014084507042"/>
         </scene>
-        <!--View Controller-->
+        <!--Movie Detail View Controller-->
         <scene sceneID="pRQ-cd-Rma">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Osw-R4-qIP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <viewController id="4Le-KZ-7uM" sceneMemberID="viewController">
+                <viewController id="4Le-KZ-7uM" customClass="MovieDetailViewController" customModule="BAZProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XcK-BH-NO5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="1180"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -300,7 +299,14 @@
                         </constraints>
                     </view>
                     <size key="freeformSize" width="320" height="1200"/>
+                    <connections>
+                        <outlet property="detailImage" destination="E37-cs-TI3" id="gSb-Ys-tPU"/>
+                        <outlet property="movieBackdrop" destination="lc0-W8-TyZ" id="8w6-Ae-Cr2"/>
+                        <outlet property="movieTitle" destination="MFF-9n-hXp" id="0Ra-h2-0Ow"/>
+                        <outlet property="movieYear" destination="Te8-he-J1n" id="uv0-53-Ntf"/>
+                    </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Osw-R4-qIP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2923.125" y="-86.619718309859152"/>
         </scene>

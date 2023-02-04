@@ -21,6 +21,7 @@
 		F84A4C6B29888D820015BDBD /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84A4C6A29888D820015BDBD /* HomeTableViewController.swift */; };
 		F84A4C6E29888F850015BDBD /* MovieAPIResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84A4C6D29888F850015BDBD /* MovieAPIResult.swift */; };
 		F84A4C7029888FA30015BDBD /* MovieAPICategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84A4C6F29888FA30015BDBD /* MovieAPICategory.swift */; };
+		F87AF518298EF0B500D5E06F /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87AF517298EF0B500D5E06F /* MovieDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		F84A4C6A29888D820015BDBD /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		F84A4C6D29888F850015BDBD /* MovieAPIResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAPIResult.swift; sourceTree = "<group>"; };
 		F84A4C6F29888FA30015BDBD /* MovieAPICategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAPICategory.swift; sourceTree = "<group>"; };
+		F87AF517298EF0B500D5E06F /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 				F84A4C6A29888D820015BDBD /* HomeTableViewController.swift */,
 				F84A4C6629888CF90015BDBD /* CategoryTableViewCell.swift */,
 				F84A4C6829888D1F0015BDBD /* MovieGalleryCollectionViewCell.swift */,
+				F87AF517298EF0B500D5E06F /* MovieDetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 				C30893B028A2F42B004B1860 /* SceneDelegate.swift in Sources */,
 				F84A4C6929888D1F0015BDBD /* MovieGalleryCollectionViewCell.swift in Sources */,
 				F84A4C6E29888F850015BDBD /* MovieAPIResult.swift in Sources */,
+				F87AF518298EF0B500D5E06F /* MovieDetailViewController.swift in Sources */,
 				C30893E228A425E1004B1860 /* MovieAPI.swift in Sources */,
 				C30893E328A425E1004B1860 /* Movie.swift in Sources */,
 				F84A4C6729888CF90015BDBD /* CategoryTableViewCell.swift in Sources */,
