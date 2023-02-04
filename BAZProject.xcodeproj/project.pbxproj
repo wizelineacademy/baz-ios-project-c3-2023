@@ -24,6 +24,7 @@
 		F87AF518298EF0B500D5E06F /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87AF517298EF0B500D5E06F /* MovieDetailViewController.swift */; };
 		F87AF51A298EF80F00D5E06F /* MovieDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87AF519298EF80F00D5E06F /* MovieDetail.swift */; };
 		F87AF51C298EF8C200D5E06F /* MovieGenres.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87AF51B298EF8C200D5E06F /* MovieGenres.swift */; };
+		F87AF520298F1B7600D5E06F /* MovieImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87AF51F298F1B7600D5E06F /* MovieImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		F87AF517298EF0B500D5E06F /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		F87AF519298EF80F00D5E06F /* MovieDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetail.swift; sourceTree = "<group>"; };
 		F87AF51B298EF8C200D5E06F /* MovieGenres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieGenres.swift; sourceTree = "<group>"; };
+		F87AF51F298F1B7600D5E06F /* MovieImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				F84A4C6629888CF90015BDBD /* CategoryTableViewCell.swift */,
 				F84A4C6829888D1F0015BDBD /* MovieGalleryCollectionViewCell.swift */,
 				F87AF517298EF0B500D5E06F /* MovieDetailViewController.swift */,
+				F87AF51F298F1B7600D5E06F /* MovieImageView.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F84A4C6B29888D820015BDBD /* HomeTableViewController.swift in Sources */,
+				F87AF520298F1B7600D5E06F /* MovieImageView.swift in Sources */,
 				C30893AE28A2F42B004B1860 /* AppDelegate.swift in Sources */,
 				F84A4C7029888FA30015BDBD /* MovieAPICategory.swift in Sources */,
 				C30893B028A2F42B004B1860 /* SceneDelegate.swift in Sources */,

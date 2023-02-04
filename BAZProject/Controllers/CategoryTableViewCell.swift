@@ -59,11 +59,7 @@ extension CategoryTableViewCell: UICollectionViewDataSource{
         collectionCell?.movieTitle.text = moviesToShow[indexPath.row].title
         collectionCell?.voteAvarage.text = moviesToShow[indexPath.row].averageStars
         if let partialURLImage =  moviesToShow[indexPath.row].posterPath {
-            MovieAPI.fetchPhoto(partialURLImage: partialURLImage) { image, error in
-                if let image = image {
-                    collectionCell?.movieImage.image = image
-                }
-            }
+            collectionCell?.movieImage.fetchImage(with: partialURLImage)
         } else {
             collectionCell?.movieImage.image = UIImage(named: "poster")
         }
