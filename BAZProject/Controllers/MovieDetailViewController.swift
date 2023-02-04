@@ -15,10 +15,13 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var movieYear: UILabel!
     
     var movieToShowDetail: Movie?
-    
+    var movieDetail: MovieDetail?
+    var movieApi = MovieAPI()
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         setTopMovieInfo()
+        getMovieDetail()
     }
     
     func setTopMovieInfo() {
@@ -28,6 +31,16 @@ class MovieDetailViewController: UIViewController {
         }
         if let partialURLPoster = movieToShowDetail?.posterPath {
             detailImage.fetchImage(with: partialURLPoster)
+        }
+    }
+    
+    func getMovieDetail() {
+        guard let id = movieToShowDetail?.id else { return }
+        movieApi.getMovieDetail(movieID: id){ detail, error in
+            if let detail = detail {
+                self.movieDetail = detail
+                self.movieYear.text = detail.releaseDate
+            }
         }
     }
 
