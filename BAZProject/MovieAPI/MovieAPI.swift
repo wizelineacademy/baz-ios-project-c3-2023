@@ -56,4 +56,29 @@ class MovieAPI {
         task.resume()
     }
     
+    /// Returns the movie detail of the id movie given.
+    ///
+    ///  - Parameter movieID: The given id movie.
+    ///  - Returns: MovieDetail
+    ///
+    ///
+    func getMovieDetail(movieID: Int, completionHandler: @escaping (MovieDetail?, Error?) -> Void) {
+        if let urlMovieDetail = URL(string: "https://api.themoviedb.org/3/movie/\(movieID)?api_key=\(apiKey)&\(language)&\(region)"){
+            let task = URLSession.shared.dataTask(with: urlMovieDetail) { data, response, error in
+                if let error = error {
+                    completionHandler(nil, error)
+                }
+                if let data = data,
+                   let json = try? JSONDecoder().decode(MovieDetail.self, from: data){
+                    DispatchQueue.main.async {
+                        completionHandler(json, nil)
+                    }
+                }
+            }
+            task.resume()
+        } else {
+            completionHandler(nil, nil)
+        }
+    }
+    
 }

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol CategoryTableCellDelegate {
-    func didSelectMovie(section: Int, movieId: Int, indexRow: Int)
+    func didSelectMovie(movieId: Int, indexRow: Int)
 }
 
 class CategoryTableViewCell: UITableViewCell {
@@ -78,7 +78,7 @@ extension CategoryTableViewCell: UICollectionViewDataSource{
 extension CategoryTableViewCell: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        categoryTableCellDelegate?.didSelectMovie(section: indexPath.section, movieId: moviesToShow[indexPath.row].id, indexRow: indexPath.row)
+        categoryTableCellDelegate?.didSelectMovie(movieId: moviesToShow[indexPath.row].id, indexRow: indexPath.row)
     }
     
 }

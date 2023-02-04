@@ -14,8 +14,15 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var movieTitle: UILabel!
     @IBOutlet weak var movieYear: UILabel!
     
+    var movieToShowDetail: Movie?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setTopMovieInfo()
+    }
+    
+    func setTopMovieInfo(){
+        movieTitle.text = movieToShowDetail?.title
     }
 
 }
