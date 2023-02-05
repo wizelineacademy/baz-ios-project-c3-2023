@@ -20,4 +20,25 @@ extension MainPresenter: MainInteractorOutputProtocol{
         MovieDetailRouter().presentView(from: view)
     }
     
+    func viewDidLoad() {
+        MovieAPI().getApiData(from: .recommendations(movieId: "603"), handler: { data in
+            do{
+                let movies =  DecodeUtility.decode(Movies.self, from: data)
+                print(movies)
+            }
+        })
+        
+        registerTableViewCells()
+    }
+    
+    private func registerTableViewCells() {
+        let textFieldCell = UINib(nibName: "MoviesTableViewCell",
+                                  bundle: nil)
+        view?.tableView.register(textFieldCell,
+                                forCellReuseIdentifier: "MoviesTableViewCell")
+    }
+    
+    
+    
+    
 }

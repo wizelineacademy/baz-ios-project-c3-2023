@@ -14,26 +14,9 @@ class MainView: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        MovieAPI().getMovies(url: .recommendations(movieId: "603"), handler: { [weak self] data in
-            do{
-                self?.movies =  DecodeUtility.decode(Movies.self, from: data)
-            }
-        })
-        
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        self.registerTableViewCells()
-    }
-    
-    private func registerTableViewCells() {
-        let textFieldCell = UINib(nibName: "MoviesTableViewCell",
-                                  bundle: nil)
-        self.tableView.register(textFieldCell,
-                                forCellReuseIdentifier: "MoviesTableViewCell")
-    }
-    
-    @IBAction func openView(){
-        presenter?.goTo()
+        presenter?.viewDidLoad()
     }
 }
 

@@ -16,6 +16,7 @@ protocol MainRouterProtocol: AnyObject {
 protocol MainViewProtocol: AnyObject {
     // Presenter -> View
     var presenter : MainPresenterProtocol? {get set}
+    var tableView:UITableView! {get set}
 }
 
 
@@ -25,6 +26,7 @@ protocol MainPresenterProtocol: AnyObject {
     var interactor : MainInteractorInputProtocol? {get set}
     var router : MainRouterProtocol? {get set}
     func goTo()
+    func viewDidLoad()
 }
 
 protocol MainInteractorInputProtocol: AnyObject {
