@@ -10,7 +10,7 @@ class TrendingViewController: UITableViewController {
 
     var movies: [Movie] = []
     let movieApi = MovieAPI()
-
+    let tableHeight: CGFloat = 150
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,20 +38,19 @@ extension TrendingViewController {
 
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         var config = UIListContentConfiguration.cell()
-        config.image = self.movies[indexPath.row].imagePrincipal
         config.text = movies[indexPath.row].title
+        config.image = movies[indexPath.row].imagePrincipal
         cell.contentConfiguration = config
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "MovieDetails", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "MovieDetailsViewController") as! MovieDetailsViewController
+        let storyboard = UIStoryboard(name: storyboards.details.rawValue, bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: viewControllers.details.rawValue) as? MovieDetailsViewController ?? MovieDetailsViewController()
         viewController.myMovie = movies[indexPath.row]
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        150
+        tableHeight
     }
-
 }

@@ -6,27 +6,27 @@
 
 import UIKit
 
-struct Movie{
+struct Movie {
     
     let id: Int
-    let original_title: String
+    let originalTitle: String
     let title: String
     let overview : String
-    let backdrop_path: String
+    let backdropPath: String
     var imagePrincipal: UIImage?
     var imageSecundary: UIImage?
-    init(id: Int, original_title: String, title: String, overview: String, backdrop_path: String, poster_path: String) {
+    init(id: Int, originalTitle: String, title: String, overview: String, backdropPath: String, posterPath: String) {
         self.id = id
-        self.original_title = original_title
+        self.originalTitle = originalTitle
         self.title = title
         self.overview = overview
-        self.backdrop_path = myUrls.imagePath.rawValue + backdrop_path
+        self.backdropPath = myUrls.imagePath.rawValue + backdropPath
         let api = MovieAPI()
         self.imagePrincipal = {
-            api.getImage(urlString: myUrls.imagePath.rawValue + poster_path)
+            api.getImage(from: myUrls.imagePath.rawValue + posterPath)
         }()
         self.imageSecundary = {
-            api.getImage(urlString: myUrls.imagePath.rawValue + backdrop_path)
+            api.getImage(from: myUrls.imagePath.rawValue + backdropPath)
         }()
     }
 }

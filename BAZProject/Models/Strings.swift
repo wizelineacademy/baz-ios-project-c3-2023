@@ -15,3 +15,11 @@ enum myUrls: String {
     case basePath = "https://api.themoviedb.org/3/"
     case imagePath = "https://image.tmdb.org/t/p/w500"
 }
+
+enum storyboards: String {
+    case details = "MovieDetails"
+}
+
+enum viewControllers: String {
+    case details = "MovieDetailsViewController"
+}

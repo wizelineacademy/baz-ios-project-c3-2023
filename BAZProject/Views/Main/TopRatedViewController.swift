@@ -11,12 +11,11 @@ class TopRatedViewController: UITableViewController {
     
     var movies: [Movie] = []
     let movieApi = MovieAPI()
-    
+    let tableHeight: CGFloat = 150
     
     override func viewDidLoad() {
         super.viewDidLoad()
         movies = movieApi.getMovies(ofType: .topRated)
-        
         tableView.reloadData()
     }
 }
@@ -32,10 +31,9 @@ extension TopRatedViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         tableView.dequeueReusableCell(withIdentifier: "TrendingTableViewCell")!
     }
-    
 }
 
-    // MARK: - TableView's Delegate
+// MARK: - TableView's Delegate
 
 extension TopRatedViewController {
     
@@ -47,16 +45,13 @@ extension TopRatedViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "MovieDetails", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "MovieDetailsViewController") as! MovieDetailsViewController
+        let storyboard = UIStoryboard(name: storyboards.details.rawValue, bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: viewControllers.details.rawValue) as? MovieDetailsViewController ?? MovieDetailsViewController()
         viewController.myMovie = movies[indexPath.row]
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        150
+        tableHeight
     }
-    
-    
 }
-
