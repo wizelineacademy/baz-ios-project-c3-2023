@@ -51,6 +51,7 @@ enum MovieCategory {
         }
     }
     
+    /** Regresa la URL base para las diferentes categorias */
     private func getBaseURL(for page: Int) -> URL? {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
