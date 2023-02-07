@@ -7,21 +7,25 @@
 
 import Foundation
 
-struct MovieDetail: Codable {
+/**
+ MovieDetail
+ Get details for each movie and implements protocol decodable for get data to struct
+ */
+
+struct MovieDetail: Decodable {
     let adult: Bool
     let originalLanguage: String
     let status: String
     
     enum CodingKeys: String, CodingKey {
-        case adult
+        case adult, status
         case originalLanguage = "original_language"
-        case status
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.adult = try container.decode(Bool.self, forKey: .adult)
-        self.originalLanguage = try container.decode(String.self, forKey: .originalLanguage)
         self.status = try container.decode(String.self, forKey: .status)
+        self.originalLanguage = try container.decode(String.self, forKey: .originalLanguage)
     }
 }

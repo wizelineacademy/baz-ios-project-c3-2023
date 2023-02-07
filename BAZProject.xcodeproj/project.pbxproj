@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		270515872992BEA10048F2FB /* Extension+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270515862992BEA10048F2FB /* Extension+UITableView.swift */; };
 		2756D3B4298D92060040E0B0 /* MovieDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2756D3B3298D92060040E0B0 /* MovieDetail.swift */; };
 		2756D3B8298D92B20040E0B0 /* Extension+UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2756D3B7298D92B20040E0B0 /* Extension+UIImageView.swift */; };
 		27A352FD298C2FBC00F2FEE8 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A352FB298C2FBC00F2FEE8 /* MovieTableViewCell.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		270515862992BEA10048F2FB /* Extension+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UITableView.swift"; sourceTree = "<group>"; };
 		2756D3B3298D92060040E0B0 /* MovieDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetail.swift; sourceTree = "<group>"; };
 		2756D3B7298D92B20040E0B0 /* Extension+UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIImageView.swift"; sourceTree = "<group>"; };
 		27A352FB298C2FBC00F2FEE8 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				2756D3B7298D92B20040E0B0 /* Extension+UIImageView.swift */,
+				270515862992BEA10048F2FB /* Extension+UITableView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 				27A352FD298C2FBC00F2FEE8 /* MovieTableViewCell.swift in Sources */,
 				C30893B028A2F42B004B1860 /* SceneDelegate.swift in Sources */,
 				C30893E228A425E1004B1860 /* MovieAPI.swift in Sources */,
+				270515872992BEA10048F2FB /* Extension+UITableView.swift in Sources */,
 				C30893E328A425E1004B1860 /* Movie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -6,11 +6,11 @@
 
 import Foundation
 
-struct ReponseMovies: Codable {
+struct ReponseMovies: Decodable {
     let results: [Movie]
 }
 
-struct Movie: Codable {
+struct Movie: Decodable {
     let id: Int?
     let title: String?
     let posterPath: String?
@@ -34,19 +34,21 @@ struct Movie: Codable {
         self.voteCount = try container.decodeIfPresent(Int.self, forKey: .voteCount)
     }
     
-    init(id: Int? = nil, title: String? = nil, posterPath: String? = nil, overView: String? = nil, voteCount: Int? = nil) {
-        self.id = id
-        self.title = title
-        self.posterPath = posterPath
-        self.overView = overView
-        self.voteCount = voteCount
+    func getUrlImg(posterPath: String) -> URL? {
+        return URL(string: "https://image.tmdb.org/t/p/original/\(posterPath)")
     }
 }
 
-enum TypeMovie: String {
-    case popularity     = "popular"
-    case nowPlaying    = "now_playing"
-    case latest    = "latest"
+/**
+ Enum for get list type movies from API
+ Example:
+ api.themoviedb.org/3/movie/popular
+ api.themoviedb.org/3/movie/now_playing
+ */
+enum TypeMovieList: String {
+    case popularity = "popular"
+    case nowPlaying = "now_playing"
+    case latest = "latest"
     
     func getOptionMovie() -> String{
         return self.rawValue

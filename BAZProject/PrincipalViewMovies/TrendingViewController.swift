@@ -13,7 +13,7 @@ class TrendingViewController: UITableViewController {
     var movies: [Movie] = []
     var movie: Movie? = nil
     let movieApi = MovieAPI()
-    var typeMovie: TypeMovie = .popularity
+    var typeMovieList: TypeMovieList = .popularity
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,11 +26,12 @@ class TrendingViewController: UITableViewController {
         fetchMovies()
     }
     
+    //TODO: Set UIUX for principal view
     private func setupUITrendingView() {
     }
     
     private func fetchMovies() {
-        movies = movieApi.getMovies(typeMovie: typeMovie) ?? []
+        movies = movieApi.getMovies(typeMovie: typeMovieList) ?? []
         tableView.reloadData()
     }
     
@@ -38,7 +39,7 @@ class TrendingViewController: UITableViewController {
         tableViewMovies.delegate = self
         tableViewMovies.dataSource = self
         tableViewMovies.separatorStyle = .none
-        tableViewMovies.register(UINib.init(nibName: "MovieTableViewCell", bundle: Bundle(for: MovieTableViewCell.self)), forCellReuseIdentifier: "MovieTableViewCell")
+        tableViewMovies.getBundleAndRegisterCell(MovieTableViewCell.self)
     }
 }
 
@@ -51,18 +52,12 @@ extension TrendingViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell") as? MovieTableViewCell else {
             return UITableViewCell()
         }
-        
         cell.titleMovie.text = movies[indexPath.row].title
-        let url = URL(string: "https://image.tmdb.org/t/p/original/\((movies[indexPath.row].posterPath) ?? "")")
-        
-        if let urlString = url {
-            cell.imgMovie.load(url: urlString)
-        }
-
+        let url = movies[indexPath.row].getUrlImg(posterPath: movies[indexPath.row].posterPath ?? "")
+        if let urlString = url { cell.imgMovie.load(url: urlString) }
         return cell
     }
 
