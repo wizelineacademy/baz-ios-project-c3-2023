@@ -10,21 +10,21 @@ import UIKit
 extension UIImageView {
     typealias ResponseProvider = Result<Data, Error>
     
-    func loadImage(id strUrl: String) {
+    func loadImage(id stringUrl: String) {
         self.addSkeletonAnimation()
         image = UIImage()
-        if let img = getImageFromCache(strUrl: strUrl) {
+        if let imageCache = getImageFromCache(strUrl: stringUrl) {
             self.removeSkeletonAnimation()
-            image = img
+            image = imageCache
             return
         }
         
-        guard URL(string: strUrl) != nil else {
+        guard URL(string: stringUrl) != nil else {
             self.addDefaultImage()
             return
         }
         
-        getImage(strUrl: strUrl)
+        getImage(strUrl: stringUrl)
     }
     
     func addAnimation(_ tempImg: UIImage) {
