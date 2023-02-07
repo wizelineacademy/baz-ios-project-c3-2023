@@ -23,15 +23,13 @@ final class MovieTableViewCell: UITableViewCell {
         language.text = "Idioma original: \(movie.originalLanguage)"
         guard let url = movie.getPosterURL(with: 300) else { return }
         
-        DispatchQueue.global(qos: .utility).async {
-            let task = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
-                DispatchQueue.main.async {
-                    if let data = data {
-                        self?.posterImage.image = UIImage(data: data)
-                    }
+        let task = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
+            DispatchQueue.main.async {
+                if let data = data {
+                    self?.posterImage.image = UIImage(data: data)
                 }
             }
-            task.resume()
         }
+        task.resume()
     }
 }
