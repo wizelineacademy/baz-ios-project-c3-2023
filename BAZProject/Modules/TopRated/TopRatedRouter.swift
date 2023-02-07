@@ -12,25 +12,23 @@ class TopRatedRouter: TopRatedRouterProtocol {
 
     class func createTopRatedModule() -> UIViewController {
         let navController = mainStoryboard.instantiateViewController(withIdentifier: "TopRatedView")
-        if let view = navController.children.first as? TopRatedView {
-            let presenter: TopRatedPresenterProtocol & TopRatedInteractorOutputProtocol = TopRatedPresenter()
-            let interactor: TopRatedInteractorInputProtocol & TopRatedRemoteDataManagerOutputProtocol = TopRatedInteractor()
-            let localDataManager: TopRatedLocalDataManagerInputProtocol = TopRatedLocalDataManager()
-            let remoteDataManager: TopRatedRemoteDataManagerInputProtocol = TopRatedRemoteDataManager()
-            let router: TopRatedRouterProtocol = TopRatedRouter()
+        let view = navController.children.first as! TopRatedView
+        let presenter: TopRatedPresenterProtocol & TopRatedInteractorOutputProtocol = TopRatedPresenter()
+        let interactor: TopRatedInteractorInputProtocol & TopRatedRemoteDataManagerOutputProtocol = TopRatedInteractor()
+        let localDataManager: TopRatedLocalDataManagerInputProtocol = TopRatedLocalDataManager()
+        let remoteDataManager: TopRatedRemoteDataManagerInputProtocol = TopRatedRemoteDataManager()
+        let router: TopRatedRouterProtocol = TopRatedRouter()
             
-            view.presenter = presenter
-            presenter.view = view
-            presenter.router = router
-            presenter.interactor = interactor
-            interactor.presenter = presenter
-            interactor.localDatamanager = localDataManager
-            interactor.remoteDatamanager = remoteDataManager
-            remoteDataManager.remoteRequestHandler = interactor
+        view.presenter = presenter
+        presenter.view = view
+        presenter.router = router
+        presenter.interactor = interactor
+        interactor.presenter = presenter
+        interactor.localDatamanager = localDataManager
+        interactor.remoteDatamanager = remoteDataManager
+        remoteDataManager.remoteRequestHandler = interactor
             
-            return navController
-        }
-        return UIViewController()
+        return navController
     }
     
     static var mainStoryboard: UIStoryboard {
