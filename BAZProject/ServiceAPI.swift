@@ -7,7 +7,6 @@
 
 import Foundation
 
-//TODO: file to add protocols
 protocol URLSessionDataTaskProtocol {
     func resume()
 }
@@ -39,7 +38,7 @@ class ServiceAPI: ServiceProtocol {
         self.session = session
     }
     
-    //TODO: function to consume gets
+    //MARK: function to consume gets
     func get<T: Decodable>(_ endpoint: URL, callback: @escaping (Result<T,Error>) -> Void) {
         let request: URLRequest = URLRequest(url: endpoint)
         let task = session.performDataTask(with: request) { (data, response, error) in
@@ -96,7 +95,7 @@ class MovieRequest: NSObject {
     }
 }
 
-//TODO: file to add enum
+//MARK: Enum para las diferentes URIs
 enum Endpoint: String {
     case trendingMovies = "trending/movie/day?api_key="
 }
