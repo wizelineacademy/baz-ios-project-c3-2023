@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A6BE8B7298D7D9E0002D920 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6BE8B6298D7D9E0002D920 /* MovieDetailViewController.swift */; };
+		9A6BE8B9298D80050002D920 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6BE8B8298D80050002D920 /* MovieCollectionViewCell.swift */; };
 		9A6BE8BC2992D7F00002D920 /* MovieResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6BE8BB2992D7F00002D920 /* MovieResult.swift */; };
 		9AE5FF1329886CE500FECB9A /* MovieEndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE5FF1229886CE500FECB9A /* MovieEndPoints.swift */; };
 		9AE5FF152989DD9900FECB9A /* GenericAPl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE5FF142989DD9900FECB9A /* GenericAPl.swift */; };
@@ -24,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9A6BE8B6298D7D9E0002D920 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
+		9A6BE8B8298D80050002D920 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
 		9A6BE8BB2992D7F00002D920 /* MovieResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieResult.swift; sourceTree = "<group>"; };
 		9AE5FF1229886CE500FECB9A /* MovieEndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieEndPoints.swift; sourceTree = "<group>"; };
 		9AE5FF142989DD9900FECB9A /* GenericAPl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericAPl.swift; sourceTree = "<group>"; };
@@ -97,12 +101,15 @@
 				C30893AD28A2F42B004B1860 /* AppDelegate.swift */,
 				C30893AF28A2F42B004B1860 /* SceneDelegate.swift */,
 				C30893C328A2F845004B1860 /* TrendingViewController.swift */,
+				C30893E128A425E1004B1860 /* Movie.swift */,
+				9A6BE8B8298D80050002D920 /* MovieCollectionViewCell.swift */,
 				C30893E028A425E1004B1860 /* MovieAPI.swift */,
 				9AE5FF1229886CE500FECB9A /* MovieEndPoints.swift */,
 				C30893B328A2F42B004B1860 /* Main.storyboard */,
 				C30893B828A2F42D004B1860 /* LaunchScreen.storyboard */,
 				C30893B628A2F42D004B1860 /* Assets.xcassets */,
 				C30893BB28A2F42D004B1860 /* Info.plist */,
+				9A6BE8B6298D7D9E0002D920 /* MovieDetailViewController.swift */,
 			);
 			path = BAZProject;
 			sourceTree = "<group>";
@@ -188,6 +195,8 @@
 				C30893E228A425E1004B1860 /* MovieAPI.swift in Sources */,
 				9AE5FF172989DDE900FECB9A /* APIError.swift in Sources */,
 				C30893E328A425E1004B1860 /* Movie.swift in Sources */,
+				9A6BE8B9298D80050002D920 /* MovieCollectionViewCell.swift in Sources */,
+				9A6BE8B7298D7D9E0002D920 /* MovieDetailViewController.swift in Sources */,
 				9AE5FF1329886CE500FECB9A /* MovieEndPoints.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
