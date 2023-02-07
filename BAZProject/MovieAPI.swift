@@ -28,36 +28,26 @@ class MovieAPI {
     private let rootURL:String     = "https://api.themoviedb.org/3"
     private let extraParams:String = "&language=es&page=1"
 
-//    func getMovies() -> [Movie] {
-//        guard let url = URL(string: "https://api.themoviedb.org/3/trending/movie/day?api_key=\(apiKey)"),
-//              let data = try? Data(contentsOf: url),
-//              let json = try? JSONSerialization.jsonObject(with: data) as? NSDictionary,
-//              let results = json.object(forKey: "results") as? [NSDictionary]
-//        else {
-//            return []
-//        }
-//
-//        var movies: [Movie] = []
-//
-//        for result in results {
-//            if let id = result.object(forKey: "id") as? Int,
-//               let title = result.object(forKey: "title") as? String,
-//               let poster_path = result.object(forKey: "poster_path") as? String {
-//                //movies.append(Movie(id: id, title: title, poster_path: poster_path))
-//            }
-//        }
-//
-//        return movies
-//    }
-    
-   func getMovies(forType typeOfMovies:TypeOfMovies, completion : @escaping (PageMoviesResult) -> Void ){
+    /**
+    Esta función permite traer un listado de peliculas dependiendo de los parametros de búsqueda.
+
+    :condiciones: Es importante tener en cuenta que tipo de peliculas quieres mostrar:
+        * trending
+        * nowPlaying
+        * popular
+        * topRated
+        * upcoming
+    :param: enum TypeOfMovies
+    :returns: @escaping listado de peliculas [Movie]
+    */
+   func getMovies(forType typeOfMovies:TypeOfMovies, completion : @escaping (PageMoviesResult) -> Void ) {
         guard let urlPath = URL(string: createURL(forType: typeOfMovies)) else {
             debugPrint("La URL esta mal")
             return
         }
         let session = URLSession.shared
         let dataTask = session.dataTask(with: urlPath){ data, response , error in
-            if error == nil && data != nil{
+            if error == nil && data != nil {
                 let decoder = JSONDecoder()
                 do {
                    let resultPage = try decoder.decode(PageMoviesResult.self, from: data ?? Data())
@@ -70,7 +60,13 @@ class MovieAPI {
         dataTask.resume()
     }
     
-    func createURL(forType typeOfMovies:TypeOfMovies, idMovie:Int? = nil, query:String? = nil) -> String{
+    /**
+    Esta función permite crear la URL que nos permitira hacer la búsqueda de las peliculas.
+    :condiciones: Es importante tener en cuenta que tipo de peliculas quieres mostrar con su respectivas caracteristicas
+    :param: enum TypeOfMovies para determinar si tipo idMovie: Int si es que se quiere una pelicula en particular, query : String si se requiere buscar una palabra en particular
+    :returns: @escaping listado de peliculas [Movie]
+    */
+    func createURL(forType typeOfMovies: TypeOfMovies, idMovie: Int? = nil, query: String? = nil) -> String {
         var strURL = ""
         switch typeOfMovies {
         case .trending , .nowPlaying, .popular, .topRated, .upcoming:

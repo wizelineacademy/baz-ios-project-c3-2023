@@ -25,11 +25,12 @@ class DetailMovieViewController: UIViewController {
     
     //MARK: - Functions
     func setData(){
-        imgMovieImage.image = movie?.poster_Image
+        if let url = URL(string: movie?.posterImagefullPath ?? "") ,let data = try? Data(contentsOf: url) {
+            imgMovieImage.image = UIImage(data: data)
+            }
         lblTitle.text = movie?.title?.uppercased()
         lblReview.text = movie?.overview
     }
-    
 }
 
 //MARK: - Extensions

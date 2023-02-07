@@ -14,7 +14,6 @@ class TrendingViewController: UITableViewController {
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        //movies = movieApi.getMovies()
         getMovies(type: .trending)
     }
     
@@ -22,7 +21,7 @@ class TrendingViewController: UITableViewController {
     func getMovies(type: TypeOfMovies){
         let movieApi = MovieAPI()
         movieApi.getMovies(forType: type, completion: { [weak self] pageResult in
-            self?.movies = pageResult.results ?? []
+            self?.movies = pageResult.results
             self?.tableView.reloadData()
         })
     }
@@ -42,7 +41,7 @@ class TrendingViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let detailMovieVC = segue.destination as? DetailMovieViewController{
+        if let detailMovieVC = segue.destination as? DetailMovieViewController {
             detailMovieVC.movie = self.movieSelected
         }
     }
@@ -79,7 +78,9 @@ extension TrendingViewController {
         var config = UIListContentConfiguration.cell()
         let movie = movies[indexPath.row]
         config.text = movie.title
-        config.image = movie.poster_Image
+        if let url = URL(string: movie.posterImagefullPath) ,let data = try? Data(contentsOf: url) {
+                config.image = UIImage(data: data)
+            }
         cell.contentConfiguration = config
     }
     
