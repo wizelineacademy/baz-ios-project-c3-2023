@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A6BE8BC2992D7F00002D920 /* MovieResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6BE8BB2992D7F00002D920 /* MovieResult.swift */; };
 		9AE5FF1329886CE500FECB9A /* MovieEndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE5FF1229886CE500FECB9A /* MovieEndPoints.swift */; };
 		9AE5FF152989DD9900FECB9A /* GenericAPl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE5FF142989DD9900FECB9A /* GenericAPl.swift */; };
 		9AE5FF172989DDE900FECB9A /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE5FF162989DDE900FECB9A /* APIError.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9A6BE8BB2992D7F00002D920 /* MovieResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieResult.swift; sourceTree = "<group>"; };
 		9AE5FF1229886CE500FECB9A /* MovieEndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieEndPoints.swift; sourceTree = "<group>"; };
 		9AE5FF142989DD9900FECB9A /* GenericAPl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericAPl.swift; sourceTree = "<group>"; };
 		9AE5FF162989DDE900FECB9A /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
@@ -51,6 +53,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A6BE8BA2992D7D10002D920 /* ModelMovie */ = {
+			isa = PBXGroup;
+			children = (
+				C30893E128A425E1004B1860 /* Movie.swift */,
+				9A6BE8BB2992D7F00002D920 /* MovieResult.swift */,
+			);
+			path = ModelMovie;
+			sourceTree = "<group>";
+		};
 		9AE5FF182989DDFE00FECB9A /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -81,11 +92,11 @@
 		C30893AC28A2F42B004B1860 /* BAZProject */ = {
 			isa = PBXGroup;
 			children = (
+				9A6BE8BA2992D7D10002D920 /* ModelMovie */,
 				9AE5FF182989DDFE00FECB9A /* Network */,
 				C30893AD28A2F42B004B1860 /* AppDelegate.swift */,
 				C30893AF28A2F42B004B1860 /* SceneDelegate.swift */,
 				C30893C328A2F845004B1860 /* TrendingViewController.swift */,
-				C30893E128A425E1004B1860 /* Movie.swift */,
 				C30893E028A425E1004B1860 /* MovieAPI.swift */,
 				9AE5FF1229886CE500FECB9A /* MovieEndPoints.swift */,
 				C30893B328A2F42B004B1860 /* Main.storyboard */,
@@ -173,6 +184,7 @@
 				C30893AE28A2F42B004B1860 /* AppDelegate.swift in Sources */,
 				9AE5FF152989DD9900FECB9A /* GenericAPl.swift in Sources */,
 				C30893B028A2F42B004B1860 /* SceneDelegate.swift in Sources */,
+				9A6BE8BC2992D7F00002D920 /* MovieResult.swift in Sources */,
 				C30893E228A425E1004B1860 /* MovieAPI.swift in Sources */,
 				9AE5FF172989DDE900FECB9A /* APIError.swift in Sources */,
 				C30893E328A425E1004B1860 /* Movie.swift in Sources */,
