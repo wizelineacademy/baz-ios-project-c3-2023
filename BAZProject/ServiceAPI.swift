@@ -89,8 +89,7 @@ class MovieRequest: NSObject {
     
     static func getURL(endpoint: Endpoint) -> URL? {
         let endpoint = endpoint.rawValue
-        let requestURL: String
-        requestURL = baseURL+endpoint+apiKey
+        let requestURL: String = baseURL+endpoint+apiKey
         return URL(string: requestURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")
     }
 }
