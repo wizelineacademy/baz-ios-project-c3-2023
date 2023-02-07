@@ -13,10 +13,26 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var detailImage: MovieImageView!
     @IBOutlet weak var movieTitle: UILabel!
     @IBOutlet weak var movieYear: UILabel!
+    @IBOutlet weak var movieOverview: UITextView!
+    @IBOutlet weak var movieGenres: UILabel!
     
     var movieToShowDetail: Movie?
     var movieDetail: MovieDetail?
     var movieApi = MovieAPI()
+    var genres = "" {
+        didSet {
+            movieGenres.text = genres
+        }
+    }
+    var movieGenresByID: [MovieGenres]? {
+        didSet{
+            var genresInList = ""
+            movieGenresByID?.forEach({ genre in
+                genresInList =  genresInList + " " + genre.name
+            })
+            genres = genresInList
+        }
+    }
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +56,8 @@ class MovieDetailViewController: UIViewController {
             if let detail = detail {
                 self.movieDetail = detail
                 self.movieYear.text = detail.releaseDate
+                self.movieOverview.text = detail.overview
+                self.movieGenresByID = detail.genres
             }
         }
     }
