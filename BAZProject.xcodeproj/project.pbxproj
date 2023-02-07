@@ -29,6 +29,7 @@
 		F87AF52E2992D76600D5E06F /* MovieAPICast.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87AF52D2992D76600D5E06F /* MovieAPICast.swift */; };
 		F87AF5312992E45600D5E06F /* MovieCastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87AF52F2992E45600D5E06F /* MovieCastCollectionViewCell.swift */; };
 		F87AF5322992E45600D5E06F /* MovieCastCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F87AF5302992E45600D5E06F /* MovieCastCollectionViewCell.xib */; };
+		F87AF5342992FDD600D5E06F /* MovieGalleryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F87AF5332992FDD600D5E06F /* MovieGalleryCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		F87AF52D2992D76600D5E06F /* MovieAPICast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAPICast.swift; sourceTree = "<group>"; };
 		F87AF52F2992E45600D5E06F /* MovieCastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCastCollectionViewCell.swift; sourceTree = "<group>"; };
 		F87AF5302992E45600D5E06F /* MovieCastCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieCastCollectionViewCell.xib; sourceTree = "<group>"; };
+		F87AF5332992FDD600D5E06F /* MovieGalleryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieGalleryCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 				C30893B328A2F42B004B1860 /* Main.storyboard */,
 				C30893B828A2F42D004B1860 /* LaunchScreen.storyboard */,
 				F87AF5302992E45600D5E06F /* MovieCastCollectionViewCell.xib */,
+				F87AF5332992FDD600D5E06F /* MovieGalleryCollectionViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 				C30893DB28A42481004B1860 /* README.md in Resources */,
 				F87AF5322992E45600D5E06F /* MovieCastCollectionViewCell.xib in Resources */,
 				C30893B728A2F42D004B1860 /* Assets.xcassets in Resources */,
+				F87AF5342992FDD600D5E06F /* MovieGalleryCollectionViewCell.xib in Resources */,
 				C383356E28CA917400FCE0D5 /* code-review-rubric.md in Resources */,
 				C30893B528A2F42B004B1860 /* Main.storyboard in Resources */,
 			);

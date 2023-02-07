@@ -27,6 +27,7 @@ class CategoryTableViewCell: UITableViewCell {
     }
     
     func setCollectionView() {
+        collectionToCarrucel.register(UINib(nibName: "MovieGalleryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MovieGallery")
         setDelegates()
         setFlowLayout()
     }
@@ -55,7 +56,7 @@ extension CategoryTableViewCell: UICollectionViewDataSource{
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieGalleryCollectionViewCell", for: indexPath) as? MovieGalleryCollectionViewCell
+        let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieGallery", for: indexPath) as? MovieGalleryCollectionViewCell
         collectionCell?.movieTitle.text = moviesToShow[indexPath.row].title
         collectionCell?.voteAvarage.text = moviesToShow[indexPath.row].averageStars
         if let partialURLImage =  moviesToShow[indexPath.row].posterPath {
