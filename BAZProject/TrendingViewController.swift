@@ -7,12 +7,15 @@
 import UIKit
 
 final class TrendingViewController: UITableViewController {
-    var movieAPI = MovieAPI()
+    let movieAPI = MovieAPI()
     var movies: [Movie] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        executeMovieService()
+    }
+    
+    private func executeMovieService() {
         movieAPI.getMovies(endpoint: .getPopular) { result in
             switch result {
             case .success(let response):
@@ -22,7 +25,6 @@ final class TrendingViewController: UITableViewController {
                 print(error)
             }
         }
-        
     }
 
 }

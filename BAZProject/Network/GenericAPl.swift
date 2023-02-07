@@ -11,8 +11,8 @@ import Foundation
 protocol GenericAPI {
     var baseURL: String {get}
     var apiKey: String {get}
-    func decodeJSON<T: Codable>(from data: Data, decoder: JSONDecoder) -> T?
-    func fetch<T: Codable>(urlRequest: URLRequest, onCompletion: @escaping (Result<T, Error>) -> Void)
+    func decodeJSON<T: Decodable>(from data: Data, decoder: JSONDecoder) -> T?
+    func fetch<T: Decodable>(urlRequest: URLRequest, onCompletion: @escaping (Result<T, Error>) -> Void)
 }
 
 extension GenericAPI {
@@ -23,7 +23,7 @@ extension GenericAPI {
           - urlRequest: the url to fetch data
           - onComplation: its a block code that recibe Result and returns void `(Result<T, Error>) -> Void`
      */
-    func fetch<T: Codable>(urlRequest: URLRequest, onCompletion: @escaping (Result<T, Error>) -> Void){
+    func fetch<T: Decodable>(urlRequest: URLRequest, onCompletion: @escaping (Result<T, Error>) -> Void){
         let task = URLSession.shared.dataTask(with: urlRequest) { data, _, error in
             DispatchQueue.main.async {
                 guard let data = data, let result: T = self.decodeJSON(from: data) else {
@@ -44,7 +44,7 @@ extension GenericAPI {
      
         - Returns: a object tha conforms Codable Protocol `T?`.
      */
-    func decodeJSON<T: Codable>(from data: Data, decoder: JSONDecoder = JSONDecoder()) -> T?{
+    func decodeJSON<T: Decodable>(from data: Data, decoder: JSONDecoder = JSONDecoder()) -> T?{
         do {
             let entity = try decoder.decode(T.self, from: data)
             return entity
