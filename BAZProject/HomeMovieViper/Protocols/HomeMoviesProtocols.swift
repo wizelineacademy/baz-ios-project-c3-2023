@@ -6,7 +6,6 @@
 //  
 //
 
-import Foundation
 import UIKit
 
 protocol HomeMoviesViewProtocol: AnyObject {
@@ -31,6 +30,7 @@ protocol HomeMoviesPresenterProtocol: AnyObject {
     func viewDidLoad()
     func getOneCategorieMovie(index: Int) -> Movie
     func getCategoriesMoviesCount() -> Int
+    func getCategorieTitle(index: Int) -> String
     func getOneMovie(index: Int) -> Movie
     func getMoviesCount() -> Int
     func selectFilterMovies(index: Int)
@@ -39,7 +39,7 @@ protocol HomeMoviesPresenterProtocol: AnyObject {
 }
 
 protocol HomeMoviesInteractorOutputProtocol: AnyObject {
-// INTERACTOR -> PRESENTER
+    // INTERACTOR -> PRESENTER
     func pushTrendingMovieInfo(trendingMovies: [Movie])
     func pushNowPlayingMovieInfo(nowPlayingMovies: [Movie])
     func pushPopularMovieInfo(popularMovies: [Movie])
@@ -57,10 +57,6 @@ protocol HomeMoviesInteractorInputProtocol: AnyObject {
     func getPopularMovies()
     func getTopRatedMovies()
     func getUpcomingMovies()
-}
-
-protocol HomeMoviesDataManagerInputProtocol: AnyObject {
-    // INTERACTOR -> DATAMANAGER
 }
 
 protocol HomeMoviesRemoteDataManagerInputProtocol: AnyObject {

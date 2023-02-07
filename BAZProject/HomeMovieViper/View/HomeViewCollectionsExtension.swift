@@ -13,7 +13,7 @@ extension HomeMoviesView: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.categoriesMoviesCollectionView{
             return presenter?.getCategoriesMoviesCount() ?? 0
-        }else{
+        } else {
             return presenter?.getMoviesCount() ?? 0
         }
     }
@@ -24,17 +24,17 @@ extension HomeMoviesView: UICollectionViewDataSource{
             else { return UICollectionViewCell() }
             
             presenter?.getCategorieImage(index: indexPath.row, completion: { categoryImage in
-                cell.setupCategoryImage(for: categoryImage ?? UIImage())
+                cell.setupCategoryImage(for: categoryImage ?? nil)
             })
             cell.delegate = self
-            cell.setupCell(indexPath: indexPath.row)
+            cell.setupCell(cellTitle: presenter?.getCategorieTitle(index: indexPath.row) ?? "", indexPath: indexPath.row)
             
             return cell
-        }else{
+        } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCollectionViewCell", for: indexPath) as? MovieCollectionViewCell else { return UICollectionViewCell() }
             
             presenter?.getImage(index: indexPath.row, completion: { imageMovie in
-                cell.setupMovieImage(for: imageMovie ?? UIImage())
+                cell.setupMovieImage(for: imageMovie ?? nil)
             })
             return cell
         }
@@ -67,7 +67,7 @@ extension HomeMoviesView: UICollectionViewDelegateFlowLayout{
             let cellHeight = 120.0
             let cellWidth = 200.0
             return CGSize(width: cellWidth, height: cellHeight)
-        }else{
+        } else {
             let marginsAndInsets = insets * 2 + collectionView.safeAreaInsets.left + collectionView.safeAreaInsets.right + minimumInterItemSpacing * CGFloat(cellsPerRow - 1)
             let itemWidth = ((collectionView.bounds.size.width - marginsAndInsets) / CGFloat(cellsPerRow)).rounded(.down)
             let cellHeight = itemWidth * 2.0

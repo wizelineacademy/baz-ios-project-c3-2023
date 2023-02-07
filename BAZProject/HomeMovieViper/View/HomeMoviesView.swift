@@ -6,12 +6,9 @@
 //  
 //
 
-import Foundation
 import UIKit
 
-
-
-class HomeMoviesView: UIViewController, CategoriesMoviesCellDelegate{
+class HomeMoviesView: UIViewController, CategoriesMoviesCellDelegate {
     // MARK: Properties
     
     @IBOutlet weak var categoriesMoviesCollectionView: UICollectionView!
@@ -31,20 +28,20 @@ class HomeMoviesView: UIViewController, CategoriesMoviesCellDelegate{
         presenter?.viewDidLoad()
     }
     
-    func setupCategoriesCollectionView(){
+    func setupCategoriesCollectionView() {
         self.categoriesMoviesCollectionView.delegate = self
         self.categoriesMoviesCollectionView.dataSource = self
         self.categoriesMoviesCollectionView.register(UINib(nibName: "CategoriesMoviesCollectionViewCell", bundle: Bundle(for: HomeMoviesView.self)), forCellWithReuseIdentifier: "CategoriesMoviesCollectionViewCell")
     }
     
-    func setupMoviesColletionView(){
+    func setupMoviesColletionView() {
         self.moviesCollectionView.delegate = self
         self.moviesCollectionView.dataSource = self
         self.moviesCollectionView.register(UINib(nibName: "MovieCollectionViewCell", bundle: Bundle(for: HomeMoviesView.self)), forCellWithReuseIdentifier: "MovieCollectionViewCell")
     }
     
     func didSelectCell(indexPath: Int, cell: CategoriesMoviesCollectionViewCell) {
-        currentlySelected?.deselected()
+        currentlySelected?.setCellDeselected()
         currentlySelected = cell
         presenter?.selectFilterMovies(index: indexPath)
     }
@@ -52,8 +49,6 @@ class HomeMoviesView: UIViewController, CategoriesMoviesCellDelegate{
 
 extension HomeMoviesView: HomeMoviesViewProtocol {
   
-    // TODO: implement view output methods
-    
     func loadTrendingMovies() {
         DispatchQueue.main.async {
             self.categoriesMoviesCollectionView.reloadData()

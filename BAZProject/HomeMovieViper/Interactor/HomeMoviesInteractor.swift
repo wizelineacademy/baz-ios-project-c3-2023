@@ -32,14 +32,11 @@ class HomeMoviesInteractor: HomeMoviesInteractorInputProtocol {
     
     func getUpcomingMovies() {
         remoteDatamanager?.getUpcomingMovies()
-    }
-    
-   
+    } 
 }
 
 extension HomeMoviesInteractor: HomeMoviesRemoteDataManagerOutputProtocol {
    
-    // TODO: Implement use case methods
     func pushTrendingMovieInfo(trendingMovies: [Movie]) {
         presenter?.pushTrendingMovieInfo(trendingMovies: trendingMovies)
     }

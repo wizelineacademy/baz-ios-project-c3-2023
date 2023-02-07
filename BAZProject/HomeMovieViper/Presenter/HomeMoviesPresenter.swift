@@ -20,8 +20,6 @@ class HomeMoviesPresenter: HomeMoviesPresenterProtocol  {
     var categoriesMovies: [Movie] = []
     var toShowMovies: [Movie] = []
 
-    
-    // TODO: implement presenter methods
     func viewDidLoad() {
         interactor?.getTrendingMovies()
     }
@@ -78,7 +76,7 @@ class HomeMoviesPresenter: HomeMoviesPresenterProtocol  {
     /// - Parameter completion: Escaping closure that escapes a UIImage or a nil
     /// - Returns: escaping closure with the UIImage type, if the parse fails, can return nil
     func getCategorieImage(index: Int, completion: @escaping (UIImage?) -> Void) {
-        if let urlImage = self.categoriesMovies[index].backdrop_path{
+        if let urlImage = self.categoriesMovies[index].backdrop_path {
             movieApi.getImage(for: urlImage) { categorieImage in
                 if let categorieImage = categorieImage{
                     completion(categorieImage)
@@ -87,9 +85,33 @@ class HomeMoviesPresenter: HomeMoviesPresenterProtocol  {
         }
     }
     
-    func selectFilterMovies(index: Int) {
-        if index == indexSelected {return}
+    /// Get the category title depending the index of the cell
+    ///
+    /// - Parameter index: Index of the array categoryMovies for get the string name
+    /// - Returns: name of the cell in string format
+    func getCategorieTitle(index: Int) -> String {
         switch index{
+            case 0:
+                return "Trending"
+            case 1:
+                return "Now Playing"
+            case 2:
+                return "Popular"
+            case 3:
+                return "Top rated"
+            case 4:
+                return "Upcoming"
+            default:
+                return ""
+        }
+    }
+    
+    /// Get the movies filters depending tha index of the cell
+    ///
+    /// - Parameter index: Index of the array categoryMovies for get the movies type
+    func selectFilterMovies(index: Int) {
+        if index == indexSelected { return }
+        switch index {
             case 0:
                 indexSelected = 0
                 interactor?.getTrendingMovies()
@@ -116,12 +138,10 @@ class HomeMoviesPresenter: HomeMoviesPresenterProtocol  {
 
 extension HomeMoviesPresenter: HomeMoviesInteractorOutputProtocol {
    
-    // TODO: implement interactor output methods
-    
     func pushTrendingMovieInfo(trendingMovies: [Movie]) {
         self.toShowMovies = trendingMovies
         view?.loadMovies()
-        if firstLoad{
+        if firstLoad {
             self.firstLoad = false
             self.categoriesMovies = trendingMovies
             view?.loadTrendingMovies()

@@ -25,45 +25,36 @@ class CategoriesMoviesCollectionViewCell: UICollectionViewCell {
         self.categoriesImageView.image = UIImage(named: "poster")
     }
     
-    func setupCell(indexPath: Int) {
+    func setupCell(cellTitle: String, indexPath: Int) {
         self.indexPath = indexPath
-        setupCategoryTitle(indexPath: indexPath)
-        categoriesView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selected)))
+        self.setupCategoryTitle(cellTitle: cellTitle)
+        categoriesView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(setCellSelected)))
     }
     
-    func setupCategoryImage(for image: UIImage) {
+    func setupCategoryImage(for image: UIImage?) {
         DispatchQueue.main.async {
             self.categoriesImageView.clipsToBounds = true
             self.categoriesImageView.layer.cornerRadius = 8.0
             self.degradeImageview.clipsToBounds = true
             self.degradeImageview.layer.cornerRadius = 8.0
-            self.categoriesImageView.image = image
+            if let image = image{
+                self.categoriesImageView.image = image
+            } else {
+                self.categoriesImageView.image = UIImage(named: "poster")
+            }
         }
     }
     
-    private func setupCategoryTitle(indexPath: Int) {
-        switch indexPath{
-        case 0:
-            self.categoriesMovieTitleLabel.text = "Trending"
-        case 1:
-            self.categoriesMovieTitleLabel.text = "Now Playing"
-        case 2:
-            self.categoriesMovieTitleLabel.text = "Popular"
-        case 3:
-            self.categoriesMovieTitleLabel.text = "Top rated"
-        case 4:
-            self.categoriesMovieTitleLabel.text = "Upcoming"
-        default:
-            self.categoriesMovieTitleLabel.text = ""
-        }
+    private func setupCategoryTitle(cellTitle: String) {
+        self.categoriesMovieTitleLabel.text = cellTitle
     }
     
-    @objc func selected(){
+    @objc func setCellSelected() {
         self.categoriesMovieTitleLabel.textColor = .systemBlue
         delegate?.didSelectCell(indexPath: self.indexPath, cell: self)
     }
     
-    func deselected(){
+    func setCellDeselected(){
         self.categoriesMovieTitleLabel.textColor = .white
     }
 }

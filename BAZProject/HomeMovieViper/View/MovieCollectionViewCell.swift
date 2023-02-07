@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MovieCollectionViewCell: UICollectionViewCell{
+class MovieCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var movieImageView: UIImageView!
     
     
@@ -15,11 +15,15 @@ class MovieCollectionViewCell: UICollectionViewCell{
         self.movieImageView.image = UIImage(named: "poster")
     }
     
-    func setupMovieImage(for image: UIImage){
+    func setupMovieImage(for image: UIImage?) {
         DispatchQueue.main.async {
             self.movieImageView.clipsToBounds = true
             self.movieImageView.layer.cornerRadius = 20.0
-            self.movieImageView.image = image
+            if let image = image {
+                self.movieImageView.image = image
+            } else {
+                self.movieImageView.image = UIImage(named: "poster")
+            }
         }
     }
 }
