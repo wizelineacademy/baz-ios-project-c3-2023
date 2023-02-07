@@ -12,6 +12,11 @@ class MovieAPI {
     private let apiKey: String = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
     private let language: String = "language=es"
     private let region = "region=MX"
+    
+    enum consult: String {
+        case similar
+        case recommendations
+    }
 
     /// Returns the movies list of the category given in Mexico region and in spanish laguague.
     ///
@@ -86,29 +91,56 @@ class MovieAPI {
         }
     }
     
-    /// Returns the movie detail of the id movie given.
+    /// Returns the cast of a movie given.
     ///
     ///  - Parameter movieID: The given id movie.
-    ///  - Returns: MovieDetail
+    ///  - Returns: MovieAPICast
     ///
     ///
     
-    func getMovieCast(movieID: Int, completionHndler: @escaping(MovieAPICast?, Error?) -> Void) {
+    func getMovieCast(movieID: Int, completionHandler: @escaping(MovieAPICast?, Error?) -> Void) {
         if let urlMovieCast = URL(string: "https://api.themoviedb.org/3/movie/\(movieID)/credits?api_key=\(apiKey)&\(language)&\(region)"){
             let task = URLSession.shared.dataTask(with: urlMovieCast) { data, response, error in
                 if let error = error{
-                    completionHndler(nil, error)
+                    completionHandler(nil, error)
                 }
                 if let data = data,
                    let cast = try?  JSONDecoder().decode(MovieAPICast.self, from: data){
                     DispatchQueue.main.async {
-                        completionHndler( cast, nil)
+                        completionHandler(cast, nil)
                     }
                 }
             }
             task.resume()
         } else {
-            completionHndler(nil, nil)
+            completionHandler(nil, nil)
+        }
+    }
+    
+    /// Returns recommendations or similar movies from movie given.
+    ///
+    ///  - Parameter movieID: The given id movie.
+    ///              queryType: recomendation or similar.
+    ///  - Returns: [Movie]?
+    ///
+    ///
+
+    func getMovies(movieID: Int, queryType: MovieAPI.consult, completionHandler: @escaping([Movie]?, Error?) -> Void) {
+        if let urlSimilarMovies = URL(string: "https://api.themoviedb.org/3/movie/\(movieID)/\(queryType)?api_key=\(apiKey)&\(language)&\(region)"){
+            let task = URLSession.shared.dataTask(with: urlSimilarMovies) { data, response, error in
+                if let error = error {
+                    completionHandler(nil, error)
+                }
+                if let data = data,
+                   let result =  try? JSONDecoder().decode(MovieAPIResult.self, from: data){
+                    DispatchQueue.main.async {
+                        completionHandler(result.results, nil )
+                    }
+                }
+            }
+            task.resume()
+        } else {
+            completionHandler(nil, nil)
         }
     }
 }
