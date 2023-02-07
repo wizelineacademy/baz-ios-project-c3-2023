@@ -32,6 +32,7 @@
 		D27C6D2F2980DCFF003E45C7 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27C6D2E2980DCFF003E45C7 /* UIImage+Extension.swift */; };
 		D28D62642992CAFF00FAC0FB /* TrendingInteractorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28D62632992CAFF00FAC0FB /* TrendingInteractorTest.swift */; };
 		D28D62672992CDD100FAC0FB /* TrendingDataManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28D62662992CDD100FAC0FB /* TrendingDataManagerMock.swift */; };
+		D28D626A2992D46F00FAC0FB /* TrendingPresenterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28D62692992D46F00FAC0FB /* TrendingPresenterMock.swift */; };
 		D2999CC8298478E200A7709F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2999CC7298478E200A7709F /* Main.storyboard */; };
 		D29D511A298310870061ACCC /* TrendingProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29D5119298310870061ACCC /* TrendingProtocols.swift */; };
 		D29F2C522987168E004B96D1 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29F2C512987168E004B96D1 /* LaunchScreenViewController.swift */; };
@@ -92,6 +93,7 @@
 		D27C6D2E2980DCFF003E45C7 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		D28D62632992CAFF00FAC0FB /* TrendingInteractorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingInteractorTest.swift; sourceTree = "<group>"; };
 		D28D62662992CDD100FAC0FB /* TrendingDataManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingDataManagerMock.swift; sourceTree = "<group>"; };
+		D28D62692992D46F00FAC0FB /* TrendingPresenterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingPresenterMock.swift; sourceTree = "<group>"; };
 		D2999CC7298478E200A7709F /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		D29D5119298310870061ACCC /* TrendingProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingProtocols.swift; sourceTree = "<group>"; };
 		D29F2C512987168E004B96D1 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				D28D62662992CDD100FAC0FB /* TrendingDataManagerMock.swift */,
+				D28D62692992D46F00FAC0FB /* TrendingPresenterMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -640,6 +643,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D28D626A2992D46F00FAC0FB /* TrendingPresenterMock.swift in Sources */,
 				D215D21529843FE000582CB5 /* TrendingDataManagerTest.swift in Sources */,
 				D215D20B29843F6D00582CB5 /* BAZProjectTests.swift in Sources */,
 				D28D62672992CDD100FAC0FB /* TrendingDataManagerMock.swift in Sources */,
