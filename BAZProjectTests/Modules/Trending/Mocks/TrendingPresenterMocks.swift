@@ -1,5 +1,5 @@
 //
-//  TrendingPresenterMock.swift
+//  TrendingPresenterMocks.swift
 //  BAZProjectTests
 //
 //  Created by 1058889 on 07/02/23.
@@ -11,7 +11,7 @@ enum TrendingPresenterCall {
     case getTrendingMedia
 }
 
-class TrendingPresenterMocks {
+final class TrendingPresenterMocks {
     var router: BAZProject.TrendingRouterProtocol?
     var view: BAZProject.TrendingViewProtocol?
     var interactor: BAZProject.TrendingInteractorInputProtocol?

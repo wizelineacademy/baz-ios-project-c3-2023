@@ -1,5 +1,5 @@
 //
-//  TrendingDataManagerMock.swift
+//  TrendingDataManagerMocks.swift
 //  BAZProjectTests
 //
 //  Created by 1058889 on 07/02/23.
@@ -12,12 +12,12 @@ enum TrendingDataManagerCall {
     case handleGetTrendingMedia
 }
 
-final class TrendingDataManagerMock {
+final class TrendingDataManagerMocks {
     var interactor: BAZProject.TrendingDataManagerOutputProtocol?
     var calls: [TrendingDataManagerCall] = []
 }
 
-extension TrendingDataManagerMock: TrendingDataManagerInputProtocol {
+extension TrendingDataManagerMocks: TrendingDataManagerInputProtocol {
     
     func requestTrendingMedia(_ urlString: String) {
         calls.append(.requestTrendingMedia)

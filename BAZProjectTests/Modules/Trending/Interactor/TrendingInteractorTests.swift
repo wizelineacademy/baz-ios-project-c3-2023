@@ -1,5 +1,5 @@
 //
-//  TrendingInteractorTest.swift
+//  TrendingInteractorTests.swift
 //  BAZProjectTests
 //
 //  Created by 1058889 on 07/02/23.
@@ -13,12 +13,12 @@ class TrendingInteractorTests: XCTestCase {
     private var sut: TrendingInteractor?
     private var presenterMock: TrendingPresenterMocks?
 
-    var dataManagerMock: TrendingDataManagerMock?
+    var dataManagerMock: TrendingDataManagerMocks?
     override func setUp() {
         super.setUp()
         self.sut = TrendingInteractor()
         self.presenterMock = TrendingPresenterMocks()
-        self.dataManagerMock = TrendingDataManagerMock()
+        self.dataManagerMock = TrendingDataManagerMocks()
         self.sut?.dataManager = self.dataManagerMock
         self.sut?.presenter = self.presenterMock
     }
@@ -66,4 +66,3 @@ class TrendingInteractorTests: XCTestCase {
                            voteCount: nil)]
     }
 }
-
