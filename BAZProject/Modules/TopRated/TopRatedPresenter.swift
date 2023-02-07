@@ -17,12 +17,9 @@ class TopRatedPresenter  {
     
 }
 
-extension TopRatedPresenter: TopRatedPresenterProtocol {
-    // TODO: implement presenter methods
+extension TopRatedPresenter: TopRatedPresenterProtocol { 
     func viewDidLoad() {
     }
 }
 
-extension TopRatedPresenter: TopRatedInteractorOutputProtocol {
-    // TODO: implement interactor output methods
-}
+extension TopRatedPresenter: TopRatedInteractorOutputProtocol { }
