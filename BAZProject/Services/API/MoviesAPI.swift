@@ -63,6 +63,7 @@ class MoviesAPI: MovieServicesProtocol {
     }
 }
 
+/// fetchMoviesTypes defines the type to fetch movies based on their type
 enum fetchMoviesTypes {
     case trending, nowPlaying, popular, topRated, upComing, byKeyword(String), bySearch(String), bySimilarMovie(id: Int), byRecommendationMovie(id: Int)
     

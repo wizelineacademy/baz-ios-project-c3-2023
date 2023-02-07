@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 
 protocol MovieDetailsDisplayLogic: AnyObject {
-    
+    // TODO: create functions to manage display logic
 }
 
-class MovieDetailsViewController: UIViewController {
-    
+class MovieDetailsViewController: UIViewController, MovieDetailsDisplayLogic {
+    // TODO: conform MovieDetailsDisplayLogic protocol
 }

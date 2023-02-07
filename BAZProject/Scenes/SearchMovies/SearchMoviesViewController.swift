@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 
 protocol SearchMoviesDisplayLogic: AnyObject {
-    
+    // TODO: create functions to manage display logic
 }
 
-class SearchMoviesViewController: UIViewController {
-    
+class SearchMoviesViewController: UIViewController, SearchMoviesDisplayLogic {
+    // TODO: conform SearchMoviesDisplayLogic protocol
 }

@@ -8,9 +8,9 @@
 import Foundation
 
 protocol SearchMoviesPresentationLogic: AnyObject {
-    
+    // TODO: create functions to manage presentation logic
 }
 
-class SearchMoviesPresenter {
-    
+class SearchMoviesPresenter: SearchMoviesPresentationLogic{
+    // TODO: conform MovieDetailsPresentationLogic protocol
 }

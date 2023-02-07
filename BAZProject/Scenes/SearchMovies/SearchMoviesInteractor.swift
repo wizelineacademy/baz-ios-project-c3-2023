@@ -8,9 +8,9 @@
 import Foundation
 
 protocol SearchMoviesBusinessLogic: AnyObject {
-    
+    // TODO: create functions to manage business logic
 }
 
-class SearchMoviesInteractor {
-    
+class SearchMoviesInteractor: SearchMoviesBusinessLogic {
+    // TODO: conform SearchMoviesBusinessLogic protocol
 }

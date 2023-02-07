@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol HomeDisplayLogic: AnyObject {
-    
+    // TODO: create functions to manage display logic
 }
 
 class HomeViewController: UIViewController {
@@ -26,7 +26,7 @@ class HomeViewController: UIViewController {
     
     // MARK: Setup
     func setup() {
-
+        // TODO: setup VIP Module
     }
     
     override func viewDidLoad() {
@@ -41,5 +41,5 @@ class HomeViewController: UIViewController {
 }
 
 extension HomeViewController: HomeDisplayLogic {
-    
+    // TODO: conform HomeDisplayLogic protocol
 }

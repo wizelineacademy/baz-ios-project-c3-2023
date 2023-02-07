@@ -8,5 +8,5 @@
 import Foundation
 
 class MoviesWorker {
-    
+    //TODO: create functions to be able to work with Movies
 }

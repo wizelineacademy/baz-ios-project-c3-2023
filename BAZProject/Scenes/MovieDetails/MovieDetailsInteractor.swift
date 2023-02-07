@@ -8,9 +8,9 @@
 import Foundation
 
 protocol MovieDetailsBusinessLogic: AnyObject {
-    
+    // TODO: create functions to manage business logic
 }
 
-class MovieDetailsInteractor {
-    
+class MovieDetailsInteractor: MovieDetailsBusinessLogic {
+    // TODO: conform HomeInteractor protocol
 }

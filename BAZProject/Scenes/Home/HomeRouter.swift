@@ -8,7 +8,7 @@
 import Foundation
 
 @objc protocol HomeRoutingLogic {
-    
+    // TODO: create functions to manage routing logic
 }
 
 protocol HomeDataPassing {
@@ -20,4 +20,6 @@ class HomeRouter: HomeRoutingLogic, HomeDataPassing {
     // MARK: Properties
     var dataStore: HomeDataStore?
     weak var viewController: HomeViewController?
+    
+    // TODO: conform HomePresenter protocol
 }

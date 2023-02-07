@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		513912C22992E21D002E4E4D /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513912C12992E21D002E4E4D /* Review.swift */; };
 		51883BB2298ACE31002B564A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51883BB1298ACE31002B564A /* HomeViewController.swift */; };
 		51883BB6298AD180002B564A /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51883BB5298AD180002B564A /* HomeInteractor.swift */; };
 		51883BB8298AD339002B564A /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51883BB7298AD339002B564A /* HomePresenter.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		513912C12992E21D002E4E4D /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		51883BB1298ACE31002B564A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		51883BB5298AD180002B564A /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
 		51883BB7298AD339002B564A /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				51AE6E6E298DCD0400AA42A2 /* Movie.swift */,
+				513912C12992E21D002E4E4D /* Review.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 				51883BC9298AFDD4002B564A /* SearchMoviesInteractor.swift in Sources */,
 				51883BBA298AD545002B564A /* HomeRouter.swift in Sources */,
 				51883BB8298AD339002B564A /* HomePresenter.swift in Sources */,
+				513912C22992E21D002E4E4D /* Review.swift in Sources */,
 				51B5CD60298C50080070656E /* MoviesEndpoints.swift in Sources */,
 				51883BC3298AEC67002B564A /* MovieDetailsInteractor.swift in Sources */,
 				51883BBF298ADB5F002B564A /* MoviesAPI.swift in Sources */,

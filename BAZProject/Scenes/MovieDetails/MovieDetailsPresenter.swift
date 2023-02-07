@@ -8,9 +8,9 @@
 import Foundation
 
 protocol MovieDetailsPresentationLogic {
-    
+    // TODO: create functions to manage presentation logic
 }
 
-class MovieDetailsPresenter {
-    
+class MovieDetailsPresenter: MovieDetailsPresentationLogic {
+    // TODO: conform MovieDetailsPresentationLogic protocol
 }
