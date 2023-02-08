@@ -24,7 +24,9 @@ class TrendingView: UITableViewController {
 //MARK: TrendingViewProtocols
 extension TrendingView: TrendingViewProtocol {
     func reloadData() {
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 }
 
