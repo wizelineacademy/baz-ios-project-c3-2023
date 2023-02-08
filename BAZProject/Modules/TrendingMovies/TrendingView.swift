@@ -6,27 +6,35 @@
 
 import UIKit
 
-class TrendingViewController: UITableViewController {
+class TrendingView: UITableViewController {
 
+    
+    // MARK: Properties
+    var presenter: TrendingPresenterProtocol?
     var movies: [Movie] = []
 
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let movieApi = MovieAPI()
-        
-        movies = movieApi.getMovies()
-        tableView.reloadData()
+        presenter?.notifyViewLoaded()
     }
 
 }
 
-// MARK: - TableView's DataSource
+//MARK: TrendingViewProtocols
+extension TrendingView: TrendingViewProtocol {
+    func reloadData() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+}
 
-extension TrendingViewController {
+// MARK: - TableView's DataSource
+extension TrendingView {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        movies.count
+        self.presenter?.movies?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -36,12 +44,11 @@ extension TrendingViewController {
 }
 
 // MARK: - TableView's Delegate
-
-extension TrendingViewController {
+extension TrendingView {
 
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         var config = UIListContentConfiguration.cell()
-        config.text = movies[indexPath.row].title
+        config.text = self.presenter?.movies?[indexPath.row].title
         config.image = UIImage(named: "poster")
         cell.contentConfiguration = config
     }
