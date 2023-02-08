@@ -7,27 +7,23 @@
 
 import UIKit
 
-protocol MovieDetailRouterProtocol: AnyObject, RouterProtocols {
-    //Presenter -> Router
-}
-
-protocol MovieDetailViewProtocol: AnyObject {
+protocol MovieDetailViewProtocol:AnyObject {
     // Presenter -> View
-    var presenter : MovieDetailPresenterProtocol? {get set}
+    var presenter:MovieDetailPresenterProtocol? {get set}
 }
 
-protocol MovieDetailPresenterProtocol: AnyObject {
+protocol MovieDetailPresenterProtocol:AnyObject {
     // View -> Presenter
     var view: MovieDetailViewProtocol? {get set}
-    var interceptor : MovieDetailInterceptorInputProtocol? {get set}
+    var interceptor:MovieDetailInterceptorInputProtocol? {get set}
 }
 
-protocol MovieDetailInterceptorInputProtocol: AnyObject {
+protocol MovieDetailInterceptorInputProtocol:AnyObject {
     // Presenter -> Interceptor
-    var presenter: MovieDetailInteractorOutputProtocol? {get set}
+    var presenter:MovieDetailInteractorOutputProtocol? {get set}
 }
 
-protocol MovieDetailInteractorOutputProtocol: AnyObject {
+protocol MovieDetailInteractorOutputProtocol:AnyObject {
     // INTERACTOR -> PRESENTER
 }
 

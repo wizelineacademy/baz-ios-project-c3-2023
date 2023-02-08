@@ -7,12 +7,6 @@
 
 import UIKit
 
-protocol MainRouterProtocol: AnyObject {
-    // PRESENTER -> Router
-    static func createModule() -> UIViewController
-    func presentView(from view: UIViewController)
-}
-
 protocol MainViewProtocol: AnyObject {
     // Presenter -> View
     var presenter : MainPresenterProtocol? {get set}
@@ -24,8 +18,7 @@ protocol MainPresenterProtocol: AnyObject {
     // View -> Presenter
     var view: MainViewProtocol? {get set}
     var interactor : MainInteractorInputProtocol? {get set}
-    var router : MainRouterProtocol? {get set}
-    func goTo()
+    func goToSearchMovieView()
     func viewDidLoad()
 }
 

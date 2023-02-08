@@ -18,17 +18,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Itj-aW-cEh">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gmJ-zI-3TE">
+                                <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                                <items>
+                                    <navigationItem title="Main" id="a2F-rg-e18">
+                                        <barButtonItem key="rightBarButtonItem" image="magnifyingglass" catalog="system" id="yZs-oa-Vw3">
+                                            <connections>
+                                                <action selector="goToSeachView" destination="Y6W-OH-hqX" id="IbB-zr-7xI"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Itj-aW-cEh" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Bvv-B9-4NZ"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Itj-aW-cEh" secondAttribute="trailing" id="GZ5-Qv-484"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Itj-aW-cEh" secondAttribute="bottom" id="RzL-iV-zuQ"/>
-                            <constraint firstItem="Itj-aW-cEh" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="ebW-s8-bK3"/>
+                            <constraint firstItem="gmJ-zI-3TE" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="8Wf-B4-exS"/>
+                            <constraint firstItem="Itj-aW-cEh" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="GYB-Di-orp"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="gmJ-zI-3TE" secondAttribute="trailing" id="L1L-LD-ks0"/>
+                            <constraint firstItem="Itj-aW-cEh" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="TlL-YI-tn7"/>
+                            <constraint firstItem="Itj-aW-cEh" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="b1l-Ib-8Yl"/>
+                            <constraint firstItem="Itj-aW-cEh" firstAttribute="top" secondItem="gmJ-zI-3TE" secondAttribute="bottom" id="jU8-N6-jJ5"/>
+                            <constraint firstItem="gmJ-zI-3TE" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="xPf-4j-9zK"/>
                         </constraints>
                     </view>
                     <connections>
@@ -41,6 +56,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

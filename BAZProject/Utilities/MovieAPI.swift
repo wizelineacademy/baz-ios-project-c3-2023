@@ -49,12 +49,12 @@ public enum URLApi {
 
 final class MovieAPI {
     private let imgBaseUrl: String = "https://image.tmdb.org/t/p/w500"
-    public var movies: [Movies]?
-/**    func to help to get Data of apis
-
-- Parameter url: url of api
-
-*/
+    public var getMultipleDataMovies: [Codable]?
+    public var getDataMovies: Codable?
+    /**    func to help to get Data of apis
+     - Parameter url: url of api
+     
+     */
     func getApiData(from url:URLApi, handler: @escaping (Data) -> Void){
         guard let url = URL(string: url.URL) else{return}
         let task =  URLSession.shared.dataTask(with: url) { data, response, error in
@@ -64,7 +64,7 @@ final class MovieAPI {
         task.resume()
     }
     
-    /**    func to help to get a ima
+    /**    func to help to get a image
 
     - Parameter imageUrl: url of image
 

@@ -10,11 +10,10 @@ import UIKit
 class MoviesTableViewCell: UITableViewCell {
     
     @IBOutlet var movieCategoryLbl: UILabel!
-    @IBOutlet var collectionView:UICollectionView!
+    @IBOutlet var collectionView: UICollectionView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         collectionView.delegate = self
         collectionView.dataSource = self
         registerCollectionViewCell()
@@ -29,15 +28,13 @@ class MoviesTableViewCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
 }
 
 extension MoviesTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 100
+        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -48,6 +45,6 @@ extension MoviesTableViewCell: UICollectionViewDataSource {
     }
 }
 
-extension MoviesTableViewCell : UICollectionViewDelegate {
+extension MoviesTableViewCell: UICollectionViewDelegate {
     
 }

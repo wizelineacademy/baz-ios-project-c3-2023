@@ -23,18 +23,18 @@ public class DecodeUtility {
         do {
             decodedData = try JSONDecoder().decode(T.self, from: data)
         } catch DecodingError.dataCorrupted( _) {
-            print( "Data is corrupted")
+            debugPrint( "Data is corrupted")
         } catch DecodingError.keyNotFound( _, let context) {
-            print("Key not found:", context.debugDescription)
-            print( "codingPath:", context.codingPath)
+            debugPrint("Key not found:", context.debugDescription)
+            debugPrint( "codingPath:", context.codingPath)
         } catch DecodingError.valueNotFound( _, let context) {
-            print("Value not found:", context.debugDescription)
-            print("codingPath:", context.codingPath)
+            debugPrint("Value not found:", context.debugDescription)
+            debugPrint("codingPath:", context.codingPath)
         } catch DecodingError.typeMismatch( _, let context) {
-            print("Type mismatch:", context.debugDescription)
-            print("codingPath:", context.codingPath)
+            debugPrint("Type mismatch:", context.debugDescription)
+            debugPrint("codingPath:", context.codingPath)
         } catch {
-            print( "error: ", error as CVarArg)
+            debugPrint( "error: ", error as CVarArg)
         }
         return decodedData
     }

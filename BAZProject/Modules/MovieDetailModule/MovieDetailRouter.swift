@@ -15,22 +15,18 @@ class MovieDetailRouter: RouterProtocols {
         if let view = viewController as? MovieDetailView{
             let interceptor : MovieDetailInterceptorInputProtocol = MovieDetailInterceptor()
             let presenter : MovieDetailPresenterProtocol & MovieDetailInteractorOutputProtocol = MovieDetailPresenter()
-//            let router : MovieDetailRouterProtocol = MovieDetailRouter()
             
             view.presenter = presenter
             interceptor.presenter = presenter
             presenter.interceptor = interceptor
             presenter.view = view
-//            presenter.router = router
             return view
         }
         
         return UIViewController()
     }
     
-    
     static var mainStoryboard: UIStoryboard {
         return UIStoryboard(name: "MovieDetail", bundle: Bundle.main)
     }
-    
 }

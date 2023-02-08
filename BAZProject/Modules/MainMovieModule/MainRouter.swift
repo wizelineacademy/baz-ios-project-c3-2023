@@ -15,12 +15,10 @@ class MainRouter: RouterProtocols{
         if let view = navController as? MainView{
             let presenter : MainPresenterProtocol & MainInteractorOutputProtocol = MainPresenter()
             let interactor : MainInteractorInputProtocol = MainInteractor()
-//            let router : MainRouterProtocol  = MainRouter()
             
             view.presenter = presenter
             interactor.presenter = presenter
             presenter.interactor = interactor
-//            presenter.router = router
             presenter.view = view
             
             return navController

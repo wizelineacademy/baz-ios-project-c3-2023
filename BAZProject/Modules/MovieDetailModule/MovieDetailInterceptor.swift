@@ -7,11 +7,6 @@
 
 import Foundation
 
-class MovieDetailInterceptor {
+class MovieDetailInterceptor: MovieDetailInterceptorInputProtocol {
     var presenter: MovieDetailInteractorOutputProtocol?
-    
-}
-
-extension MovieDetailInterceptor: MovieDetailInterceptorInputProtocol{
-    
 }

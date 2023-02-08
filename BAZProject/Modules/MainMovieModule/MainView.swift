@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainView: UIViewController{
+class MainView: UIViewController, MainViewProtocol{
     var presenter: MainPresenterProtocol?
     var movies: Movies?
     @IBOutlet var tableView:UITableView!
@@ -18,14 +18,13 @@ class MainView: UIViewController{
         self.tableView.delegate = self
         presenter?.viewDidLoad()
     }
+    
+    @IBAction func goToSeachView(){
+        presenter?.goToSearchMovieView()
+    }
 }
 
-extension MainView: MainViewProtocol{
-    
-    
-}
-
-extension MainView: UITableViewDataSource {
+extension MainView: UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
     }
@@ -36,9 +35,4 @@ extension MainView: UITableViewDataSource {
             }
         return UITableViewCell()
     }
-}
-
-extension MainView: UITableViewDelegate {
-    
-    
 }

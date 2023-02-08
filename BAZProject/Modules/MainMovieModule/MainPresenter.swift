@@ -11,23 +11,20 @@ class MainPresenter: MainPresenterProtocol {
    
     var view: MainViewProtocol?
     var interactor: MainInteractorInputProtocol?
-    var router: MainRouterProtocol?
 }
 
 extension MainPresenter: MainInteractorOutputProtocol{
-    func goTo() {
+    func goToSearchMovieView() {
         guard let view = view as? UIViewController else{return}
-        MovieDetailRouter().presentView(from: view)
+        SearchMovieRouter().presentView(from: view)
     }
     
     func viewDidLoad() {
         MovieAPI().getApiData(from: .recommendations(movieId: "603"), handler: { data in
             do{
                 let movies =  DecodeUtility.decode(Movies.self, from: data)
-                print(movies)
             }
         })
-        
         registerTableViewCells()
     }
     
@@ -37,8 +34,5 @@ extension MainPresenter: MainInteractorOutputProtocol{
         view?.tableView.register(textFieldCell,
                                 forCellReuseIdentifier: "MoviesTableViewCell")
     }
-    
-    
-    
     
 }

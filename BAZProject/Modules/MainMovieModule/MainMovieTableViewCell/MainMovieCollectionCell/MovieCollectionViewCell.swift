@@ -10,9 +10,5 @@ import UIKit
 class MovieCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet var image: UIImageView!
-    @IBOutlet var nameMovie:UILabel!
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+    @IBOutlet var nameMovie: UILabel!
 }

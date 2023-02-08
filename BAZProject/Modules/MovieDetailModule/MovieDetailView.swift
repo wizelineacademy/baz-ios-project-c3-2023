@@ -7,14 +7,10 @@
 
 import UIKit
 
-class MovieDetailView: UIViewController {
+class MovieDetailView: UIViewController, MovieDetailViewProtocol {
     var presenter: MovieDetailPresenterProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-}
-
-extension MovieDetailView: MovieDetailViewProtocol{
-    
 }
