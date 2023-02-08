@@ -42,27 +42,29 @@ class MovieDetailViewController: UIViewController {
         }
     }
     
-    var similarMovies: [Movie]?
-    {
+    var similarMovies: [Movie]? {
         didSet{
             similarMoviesCollection.reloadData()
         }
     }
     
-    var recomendationMovies: [Movie]?
-    {
+    var recomendationMovies: [Movie]? {
         didSet{
             recomendationCollection.reloadData()
         }
     }
-        
+    
+    enum collections: Int {
+        case cast = 1
+        case similar = 2
+        case recomendation = 3
+    }
+            
     override func viewDidLoad() {
         super.viewDidLoad()
         setTopMovieInfo()
         getMovieDetail()
-        setCollectionView()
-        setRecomendationCollectionView()
-        setSimilarMoviesCollectionView()
+        registerCollectionCells()
         getMovieCast()
         getSimilarMovies()
         getRecomendationMovies()
@@ -119,27 +121,11 @@ class MovieDetailViewController: UIViewController {
         }
     }
     
-    func setCollectionView() {
+    func registerCollectionCells() {
         castCollection.register(UINib(nibName: "MovieCastCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "movieCastPhoto")
-        setFlowLayout()
-    }
-    
-    func setFlowLayout() {
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.itemSize = CGSize(width: 100, height: 150)
-        flowLayout.sectionInset = UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 5)
-        flowLayout.scrollDirection = .horizontal
-        self.castCollection.setCollectionViewLayout(flowLayout, animated: false)
-    }
-    
-    func setRecomendationCollectionView(){
         similarMoviesCollection.register(UINib(nibName: "MovieGalleryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MovieGallery")
-    }
-    
-    func setSimilarMoviesCollectionView(){
         recomendationCollection.register(UINib(nibName: "MovieGalleryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MovieGallery")
     }
-
 }
 
 // MARK: - CollectionView's DataSource
@@ -147,28 +133,31 @@ class MovieDetailViewController: UIViewController {
 extension MovieDetailViewController: UICollectionViewDataSource {
         
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == self.castCollection{
-            return movieCast?.count ?? 0
-        } else if collectionView == self.similarMoviesCollection{
-            return similarMovies?.count ?? 0
-        } else if collectionView == self.recomendationCollection{
-            return recomendationMovies?.count ?? 0
+        switch collectionView.tag {
+        case collections.cast.rawValue:
+            return self.movieCast?.count ?? 0
+        case collections.similar.rawValue:
+            return self.similarMovies?.count ?? 0
+        case collections.recomendation.rawValue:
+            return self.recomendationMovies?.count ?? 0
+        default:
+            return 0
         }
-        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == self.castCollection{
-                let castCell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCastPhoto", for: indexPath) as? MovieCastCollectionViewCell
-                castCell?.castName.text = movieCast?[indexPath.row].name
-                if let partialURLImage =  movieCast?[indexPath.row].profilePath {
-                    castCell?.castPhoto.fetchImage(with: partialURLImage)
-                } else {
-                    castCell?.castPhoto.image = UIImage(named: "person")
-                }
-                guard let castCell = castCell else { return MovieCastCollectionViewCell() }
-                return castCell
-        } else if collectionView == self.similarMoviesCollection{
+        switch collectionView.tag {
+        case collections.cast.rawValue:
+            let castCell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCastPhoto", for: indexPath) as? MovieCastCollectionViewCell
+            castCell?.castName.text = movieCast?[indexPath.row].name
+            if let partialURLImage =  movieCast?[indexPath.row].profilePath {
+                castCell?.castPhoto.fetchImage(with: partialURLImage)
+            } else {
+                castCell?.castPhoto.image = UIImage(named: "person")
+            }
+            guard let castCell = castCell else { return MovieCastCollectionViewCell() }
+            return castCell
+        case collections.similar.rawValue:
             let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieGallery", for: indexPath) as? MovieGalleryCollectionViewCell
             collectionCell?.movieTitle.text = similarMovies?[indexPath.row].title
             collectionCell?.voteAvarage.text = similarMovies?[indexPath.row].averageStars
@@ -179,7 +168,7 @@ extension MovieDetailViewController: UICollectionViewDataSource {
             }
             guard let collectionCell = collectionCell else { return MovieGalleryCollectionViewCell() }
             return collectionCell
-        } else if collectionView == self.recomendationCollection {
+        case collections.recomendation.rawValue:
             let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieGallery", for: indexPath) as? MovieGalleryCollectionViewCell
             collectionCell?.movieTitle.text = recomendationMovies?[indexPath.row].title
             collectionCell?.voteAvarage.text = recomendationMovies?[indexPath.row].averageStars
@@ -190,8 +179,9 @@ extension MovieDetailViewController: UICollectionViewDataSource {
             }
             guard let collectionCell = collectionCell else { return MovieGalleryCollectionViewCell() }
             return collectionCell
+        default:
+            return UICollectionViewCell()
         }
-        return UICollectionViewCell()
     }
 }
 
