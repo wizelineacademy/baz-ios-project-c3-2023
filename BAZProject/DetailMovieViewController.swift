@@ -26,6 +26,5 @@ class DetailMovieViewController: UIViewController{
         movieNameLabel.text = "Megan"
         actorsMovie.text = "$ .00"
         rateMovie.text = "⭐️⭐️⭐️⭐️"
-       // datePremiere.downloaded(from: product!.images[0])
     }
 }

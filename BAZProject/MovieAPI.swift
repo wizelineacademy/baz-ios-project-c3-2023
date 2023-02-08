@@ -36,8 +36,8 @@ class MovieAPI {
     func getImageMovie(urlString: String, completion: @escaping (UIImage?) -> ()) {
         guard let url = URL(string: urlString) else {return}
         
-        URLSession.shared.dataTask(with: url) { data, response, err in
-            if err == nil{
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if error == nil{
                 guard let dataImage = data, let image = UIImage(data: dataImage) else {return}
                 completion(image)
             }
