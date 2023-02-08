@@ -26,9 +26,9 @@ class MoviesAPI: MovieServicesProtocol {
         
         let request = URLRequest(url: getURL(endpoint: type.endpoint))
         
-        sessionShared.dataTask(with: request) { data, error, response in
+        sessionShared.dataTask(with: request) { data, response, error in
             guard let data = data else {
-                completionHandler([], .fetchError(error as! Error))
+                completionHandler([], .fetchError(error!))
                 return
             }
             do {
