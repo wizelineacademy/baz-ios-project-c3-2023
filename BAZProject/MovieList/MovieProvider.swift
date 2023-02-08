@@ -4,17 +4,12 @@
 //
 //
 
-import Foundation
+import UIKit
 
 final class MovieProvider: WSRequestProtocol {
     
     private let category: MovieCategory
     private let page: Int
-    
-    /** Regresa el título de la vista según el nombre de la categoria recibida */
-    var viewTitle: String {
-        self.category.name
-    }
     
     init(category: MovieCategory, page: Int = 1) {
         self.category = category
@@ -25,6 +20,19 @@ final class MovieProvider: WSRequestProtocol {
     private func getMoviesRequest() -> URLRequest? {
         guard let url = self.category.getEndPoint(for: self.page) else { return nil }
         return URLRequest(url: url)
+    }
+}
+
+extension MovieProvider: MLProviderProtocol {
+    
+    /** Regresa el título de la vista según el nombre de la categoria recibida */
+    var viewTitle: String {
+        self.category.name
+    }
+    
+    /** Regresa el nombre del icono correspondiente a la categoria recibida */
+    var iconName: String {
+        self.category.itemName
     }
     
     /**
@@ -58,5 +66,18 @@ final class MovieProvider: WSRequestProtocol {
                 completion(.failure(error))
             }
         }
+    }
+    
+    /**
+     Regresa una instancia de un view controller con los detalles de la película recibida
+     - Parameters:
+        - movie: un objeto Movie con los detalles de dicha pelicula
+     - Returns: regresa una instancia de un view controller con los detalles de la película recibida
+     ````
+     let viewController = self.provider.getNextViewController(for: movie)
+     ````
+     */
+    func getNextViewController(for movie: Movie) -> UIViewController {
+        MDRouter.getEntry(with: movie)
     }
 }

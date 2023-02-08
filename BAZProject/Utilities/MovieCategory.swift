@@ -30,6 +30,21 @@ enum MovieCategory {
         }
     }
     
+    var itemName: String {
+        switch self {
+        case .trending:
+            return "magazine"
+        case .nowPlaying:
+            return "newspaper"
+        case .popular:
+            return "studentdesk"
+        case .topRated:
+            return "backpack"
+        case .upcoming:
+            return "lanyardcard"
+        }
+    }
+    
     /**
      Regresa la URL del end point correspondiente a cada categoria
      - Parameters:
