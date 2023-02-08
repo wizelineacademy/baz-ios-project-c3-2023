@@ -6,17 +6,25 @@
 
 import UIKit
 
-class TrendingViewController: UITableViewController {
-
+final class TrendingViewController: UITableViewController {
+    let movieAPI = MovieAPI()
     var movies: [Movie] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let movieApi = MovieAPI()
-        
-        movies = movieApi.getMovies()
-        tableView.reloadData()
+        executeMovieService()
+    }
+    
+    private func executeMovieService() {
+        movieAPI.getMovies(endpoint: .getPopular) { result in
+            switch result {
+            case .success(let response):
+                self.movies = response.results ?? []
+                self.tableView.reloadData()
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 
 }

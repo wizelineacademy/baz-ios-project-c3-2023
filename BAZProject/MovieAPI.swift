@@ -6,30 +6,21 @@
 
 import Foundation
 
-class MovieAPI {
-
-    private let apiKey: String = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
-
-    func getMovies() -> [Movie] {
-        guard let url = URL(string: "https://api.themoviedb.org/3/trending/movie/day?api_key=\(apiKey)"),
-              let data = try? Data(contentsOf: url),
-              let json = try? JSONSerialization.jsonObject(with: data) as? NSDictionary,
-              let results = json.object(forKey: "results") as? [NSDictionary]
-        else {
-            return []
+final class MovieAPI: GenericAPI {
+    var baseURL = "https://api.themoviedb.org"
+    var apiKey = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
+    /**
+       This function retrieves the data as  `MovieResult`   from  `url`
+       "https://api.themoviedb.org"
+     
+        - Parameters:
+          - endpoint: it´s an Enum `MovieServices` 
+          - onComplation: its a block code that recibe Result and returns void `(Result<MovieResult, Error>) -> Void`
+     */
+    func getMovies(endpoint: MovieServices, onCompletion: @escaping (Result<MovieResult, Error>) -> Void) {
+        guard let url = URL(string: "\(baseURL)\(endpoint.path)?api_key=\(apiKey)") else {
+          return onCompletion(.failure(APIError.urlError))
         }
-
-        var movies: [Movie] = []
-
-        for result in results {
-            if let id = result.object(forKey: "id") as? Int,
-               let title = result.object(forKey: "title") as? String,
-               let poster_path = result.object(forKey: "poster_path") as? String {
-                movies.append(Movie(id: id, title: title, poster_path: poster_path))
-            }
-        }
-
-        return movies
+        fetch(urlRequest: URLRequest(url: url), onCompletion: onCompletion)
     }
-
 }
