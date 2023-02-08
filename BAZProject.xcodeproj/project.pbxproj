@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		513912C22992E21D002E4E4D /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513912C12992E21D002E4E4D /* Review.swift */; };
+		5178A8382994193B0042687F /* ImagesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5178A8372994193A0042687F /* ImagesAPI.swift */; };
 		51883BB2298ACE31002B564A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51883BB1298ACE31002B564A /* HomeViewController.swift */; };
 		51883BB6298AD180002B564A /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51883BB5298AD180002B564A /* HomeInteractor.swift */; };
 		51883BB8298AD339002B564A /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51883BB7298AD339002B564A /* HomePresenter.swift */; };
@@ -33,6 +34,7 @@
 
 /* Begin PBXFileReference section */
 		513912C12992E21D002E4E4D /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		5178A8372994193A0042687F /* ImagesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesAPI.swift; sourceTree = "<group>"; };
 		51883BB1298ACE31002B564A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		51883BB5298AD180002B564A /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
 		51883BB7298AD339002B564A /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			children = (
 				51883BBE298ADB5F002B564A /* MoviesAPI.swift */,
 				51B5CD5F298C50080070656E /* MoviesEndpoints.swift */,
+				5178A8372994193A0042687F /* ImagesAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 				513912C22992E21D002E4E4D /* Review.swift in Sources */,
 				51B5CD60298C50080070656E /* MoviesEndpoints.swift in Sources */,
 				51883BC3298AEC67002B564A /* MovieDetailsInteractor.swift in Sources */,
+				5178A8382994193B0042687F /* ImagesAPI.swift in Sources */,
 				51883BBF298ADB5F002B564A /* MoviesAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

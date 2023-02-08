@@ -7,8 +7,10 @@
 
 import Foundation
 
-class MoviesWorker {    
+class MoviesWorker {
+    
     var movieService: MovieServicesProtocol
+    var imagesServices: ImagesServicesProtocol = ImageApi()
     
     init(movieService: MovieServicesProtocol) {
         self.movieService = movieService
@@ -17,7 +19,7 @@ class MoviesWorker {
     func getMoviesByType(_ type: fetchMoviesTypes, completionHandler: @escaping ([Movie], String?) -> Void) {
         movieService.fetchMovies(type: type) { movies, error in
             if let error = error {
-                completionHandler([], error.localizedDescription.description)
+                completionHandler([], error.description)
             }
             completionHandler(movies, nil)
         }
@@ -26,9 +28,18 @@ class MoviesWorker {
     func getReviewsByMovieId(_ id: Int, completionHandler: @escaping ([Review], String?) -> Void) {
         movieService.fetchReviews(id: id) { reviews, error in
             if let error = error {
-                completionHandler([], error.localizedDescription.description)
+                completionHandler([], error.description)
             }
             completionHandler(reviews, nil)
+        }
+    }
+    
+    func getImageByMovie(path: String, completionHandler: @escaping (Data?, String?) -> Void) {
+        imagesServices.fetchImage(path: path) {dataImage, error in
+            if let error = error {
+                completionHandler(nil, error.description)
+            }
+            completionHandler(dataImage, nil)
         }
     }
 }

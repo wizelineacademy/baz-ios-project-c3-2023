@@ -28,16 +28,6 @@ class HomeViewController: UIViewController {
     func setup() {
         // TODO: setup VIP Module
     }
-    
-    override func viewDidLoad() {
-        MoviesAPI().fetchMovies(type: .byKeyword("Jojo")) { movies, error in
-            print(movies)
-        }
-        
-        MoviesAPI().fetchReviews(id: 603) { reviews, error in
-            print(reviews)
-        }
-    }
 }
 
 extension HomeViewController: HomeDisplayLogic {

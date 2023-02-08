@@ -28,14 +28,14 @@ class MoviesAPI: MovieServicesProtocol {
         
         sessionShared.dataTask(with: request) { data, response, error in
             guard let data = data else {
-                completionHandler([], .fetchError(error!))
+                completionHandler([], .fetchError)
                 return
             }
             do {
                 let movies = try JSONDecoder().decode(MovieFetchResponse.self, from: data).results
                 completionHandler(movies, nil)
             } catch {
-                completionHandler([], .decodeError(error))
+                completionHandler([], .decodeError)
             }
         }.resume()
     }
@@ -46,14 +46,14 @@ class MoviesAPI: MovieServicesProtocol {
 
         sessionShared.dataTask(with: request) { data, error, response in
             guard let data = data else {
-                completionHandler([], .fetchError(error as! Error))
+                completionHandler([], .fetchError)
                 return
             }
             do {
                 let reviews = try JSONDecoder().decode(ReviewResponse.self, from: data).results
                 completionHandler(reviews, nil)
             } catch {
-                completionHandler([], .decodeError(error))
+                completionHandler([], .decodeError)
             }
         }.resume()
     }
@@ -92,6 +92,15 @@ enum fetchMoviesTypes {
 }
 
 enum MovieServiceError: Error {
-    case fetchError(Error)
-    case decodeError(Error)
+    case fetchError
+    case decodeError
+    
+    var description: String {
+        switch self {
+        case .fetchError:
+            return "Error al obtener respuesta de Peliculas"
+        case .decodeError:
+            return "Error al decodificar respuesta"
+        }
+    }
 }
