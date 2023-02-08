@@ -143,4 +143,30 @@ class MovieAPI {
             completionHandler(nil, nil)
         }
     }
+    
+    /// Returns reviews from movie given.
+    ///
+    ///  - Parameter movieID: The given id movie.
+    ///  - Returns: [Movie]?
+    ///
+    ///
+
+    func getMovieReviews(movieID: Int, completionHandler: @escaping([MovieReview]?, Error?) -> Void) {
+        if let urlSimilarMovies = URL(string: "https://api.themoviedb.org/3/movie/\(movieID)/reviews?api_key=\(apiKey)"){
+            let task = URLSession.shared.dataTask(with: urlSimilarMovies) { data, response, error in
+                if let error = error {
+                    completionHandler(nil, error)
+                }
+                if let data = data,
+                   let result =  try? JSONDecoder().decode(MovieAPIReviews.self, from: data){
+                    DispatchQueue.main.async {
+                        completionHandler(result.results, nil )
+                    }
+                }
+            }
+            task.resume()
+        } else {
+            completionHandler(nil, nil)
+        }
+    }
 }

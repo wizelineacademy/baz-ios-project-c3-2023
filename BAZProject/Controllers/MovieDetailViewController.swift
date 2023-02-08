@@ -13,11 +13,14 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var detailImage: MovieImageView!
     @IBOutlet weak var movieTitle: UILabel!
     @IBOutlet weak var movieYear: UILabel!
+    @IBOutlet weak var movieAvarage: UILabel!
+    @IBOutlet weak var movieStarsAvarage: UILabel!
     @IBOutlet weak var movieOverview: UITextView!
     @IBOutlet weak var movieGenres: UILabel!
     @IBOutlet weak var castCollection: UICollectionView!
     @IBOutlet weak var similarMoviesCollection: UICollectionView!
     @IBOutlet weak var recomendationCollection: UICollectionView!
+    @IBOutlet weak var reviewTableView: UITableView!
     
     var movieToShowDetail: Movie?
     var movieDetail: MovieDetail?
@@ -54,6 +57,12 @@ class MovieDetailViewController: UIViewController {
         }
     }
     
+    var movieReviews: [MovieReview]? {
+        didSet{
+            reviewTableView.reloadData()
+        }
+    }
+    
     enum collections: Int {
         case cast = 1
         case similar = 2
@@ -68,10 +77,13 @@ class MovieDetailViewController: UIViewController {
         getMovieCast()
         getSimilarMovies()
         getRecomendationMovies()
+        getMovieReview()
     }
     
     func setTopMovieInfo() {
         movieTitle.text = movieToShowDetail?.title
+        movieAvarage.text = movieToShowDetail?.voteAverage.description
+        movieStarsAvarage.text = movieToShowDetail?.averageStars
         if let partialURLBackdrop = movieToShowDetail?.backdropPath {
             movieBackdrop.fetchImage(with: partialURLBackdrop)
         }
@@ -117,6 +129,15 @@ class MovieDetailViewController: UIViewController {
         movieApi.getMovies(movieID: id, queryType: MovieAPI.consult.recommendations) { movies, error in
             if let movies = movies {
                 self.recomendationMovies = movies
+            }
+        }
+    }
+    
+    func getMovieReview() {
+        guard let id = movieToShowDetail?.id else { return }
+        movieApi.getMovieReviews(movieID: id) { reviews, error in
+            if let reviews = reviews {
+                self.movieReviews =  reviews
             }
         }
     }
@@ -191,6 +212,29 @@ extension MovieDetailViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(indexPath.row)
+    }
+    
+}
+
+// MARK: - TableView's DataSource
+
+extension MovieDetailViewController: UITableViewDataSource {
+        
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return movieReviews?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let reviewCell = tableView.dequeueReusableCell(withIdentifier: "reviewCell", for: indexPath) as? ReviewTableViewCell
+        if let username = movieReviews?[indexPath.row].authorDetail.name,
+               !username.isEmpty {
+            reviewCell?.authorUsername.text = username
+        }else{
+            reviewCell?.authorUsername.text = "Anónimo"
+        }
+        reviewCell?.reviewRating.text =  movieReviews?[indexPath.row].authorDetail.averageStars
+        
+        return reviewCell ?? ReviewTableViewCell()
     }
     
 }
