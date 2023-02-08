@@ -13,7 +13,7 @@ class TrendingInteractor {
 }
 
 extension TrendingInteractor: TrendingInteractorInputProtocol {
-    func getTrendingMedia(mediaType: MediaType, timeWindow: TimeWindowType) {
+    func fetchTrendingMedia(mediaType: MediaType, timeWindow: TimeWindowType) {
         let endPoint: String = "/trending/\(mediaType.rawValue)/\(timeWindow.rawValue)"
         let strUrl: String = endPoint.getStrUrlTheMovieDb()
         dataManager?.requestTrendingMedia(strUrl)
@@ -22,7 +22,7 @@ extension TrendingInteractor: TrendingInteractorInputProtocol {
 
 extension TrendingInteractor: TrendingDataManagerOutputProtocol {
     func handleGetTrendingMedia(_ result: [MovieResult]) {
-        presenter?.getTrendingMedia(result: result)
+        presenter?.onReceivedTrendingMedia(result: result)
     }
     
     func handleErrorService(_ error: Error) {

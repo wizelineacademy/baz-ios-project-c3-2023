@@ -15,13 +15,13 @@ class TrendingPresenter {
 }
 
 extension TrendingPresenter: TrendingPresenterProtocol {
-    func getTrendingMedia(mediaType: MediaType, timeWindow: TimeWindowType) {
-        interactor?.getTrendingMedia(mediaType: mediaType, timeWindow: timeWindow)
+    func willFetchTrendingMedia(mediaType: MediaType, timeWindow: TimeWindowType) {
+        interactor?.fetchTrendingMedia(mediaType: mediaType, timeWindow: timeWindow)
     }
 }
 
 extension TrendingPresenter: TrendingInteractorOutputProtocol {
-    func getTrendingMedia(result: [MovieResult]) {
+    func onReceivedTrendingMedia(result: [MovieResult]) {
         view?.setErrorGettingData(false)
         view?.updateView(data: result)
         view?.stopLoading()

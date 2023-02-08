@@ -60,6 +60,6 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
     // MARK: - Private methods
     private func getData() {
         view.showLoader()
-        presenter?.getTrendingMedia(mediaType: mediaType, timeWindow: .day)
+        presenter?.willFetchTrendingMedia(mediaType: mediaType, timeWindow: .day)
     }
 }
