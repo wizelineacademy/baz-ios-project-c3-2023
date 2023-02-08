@@ -32,11 +32,31 @@ class HomeTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    func searchMovieByID(movieID: Int) -> Movie? {
+        var movieFind: Movie?
+        for category in listOfCategories {
+            category.value.forEach { movie in
+                if movie.id ==  movieID{
+                    movieFind = movie
+                }
+            }
+        }
+        return movieFind
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "homeToMovieDetail",
+           let detailView = segue.destination as? MovieDetailViewController,
+           let movieDetail =  sender as? Movie{
+            detailView.movieToShowDetail = movieDetail
+        }
+    }
+    
 }
 
 // MARK: - TableView's DataSource
 
-extension HomeTableViewController{
+extension HomeTableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return categories.count
@@ -53,6 +73,7 @@ extension HomeTableViewController{
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableViewCell", for: indexPath) as? CategoryTableViewCell
         cell?.setCollectionView()
+        cell?.categoryTableCellDelegate = self
         switch indexPath.section {
         case MovieAPICategory.trending.rawValue:
             cell?.moviesToShow = listOfCategories[.trending] ?? []
@@ -74,11 +95,22 @@ extension HomeTableViewController{
 
 // MARK: - TableView's Delegate
 
-extension HomeTableViewController{
+extension HomeTableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return heightRowTable
     }
     
+}
+
+// MARK: - TableViewCell's Delegate
+
+extension HomeTableViewController: CategoryTableCellDelegate {
+    
+    func didSelectMovie(movieId: Int, indexRow: Int) {
+        let movieToShow = searchMovieByID(movieID: movieId)
+        performSegue(withIdentifier: "homeToMovieDetail", sender: movieToShow)
+    }
+
 }
 
