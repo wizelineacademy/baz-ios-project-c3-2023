@@ -75,15 +75,18 @@ Para empezar, sigue los estos pasos:
 
 **Paso 3:** Crea tu rama de desarrollo `dev` con tu nombre `dev-(nombre)-(apellido)`, ejemplo: dev-steve-jobs
 
-**Paso 4:** Crea tus ramas en cada tarea usando `task-(nombre)-(apellido)-descripcion`, ejemplo: task-steve-jobs-nueva-capa-de-network
-Debes crear un PR para mezclar tus cambios a tu rama de desarrollo.
+**Paso 4:** Eres libre de crear task branches y mezclarlas a tu dev branch sin pull request y sin revisión.
 
 **Paso 5:** Crea y empuja tus cambios (Commits) periodicamente.
 
 **Paso 6:** Cuando tus entregables esten listos crea un Pull Request de tu rama de desarrollo a tu rama principal.
 `main-(nombre)-(apellido) < dev-(nombre)-(apellido)`
 
-**Paso 7:** No olvides diviértete!
+**Paso 7:** Una vez que tu mentor evalue y mezcle tus cambios a `main`, no olvides actualizar tu rama `dev` para tener los ultimos cambios. 
+
+**Paso 8:** No olvides diviértete!
+
+<img width="100%" alt="Example Git Workflow" src="git-workflow.png">
 
 > \*_NOTA:_ Sigue este flujo de trabajo para tus colaboraciones 
 [https://docs.github.com/get-started/quickstart/github-flow](https://docs.github.com/get-started/quickstart/github-flow) \*
