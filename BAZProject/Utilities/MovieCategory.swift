@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum MovieCategory {
+enum MovieCategory: CaseIterable {
     case trending
     case nowPlaying
     case popular
@@ -54,29 +54,15 @@ enum MovieCategory {
     func getEndPoint(for page: Int) -> URL? {
         switch self {
         case .trending:
-            return getBaseURL(for: page)?.appendingPathComponent("/trending/movie/day")
+            return MovieAPI.getBaseURL(for: page)?.appendingPathComponent("/trending/movie/day")
         case .nowPlaying:
-            return getBaseURL(for: page)?.appendingPathComponent("/movie/now_playing")
+            return MovieAPI.getBaseURL(for: page)?.appendingPathComponent("/movie/now_playing")
         case .popular:
-            return getBaseURL(for: page)?.appendingPathComponent("/movie/popular")
+            return MovieAPI.getBaseURL(for: page)?.appendingPathComponent("/movie/popular")
         case .topRated:
-            return getBaseURL(for: page)?.appendingPathComponent("/movie/top_rated")
+            return MovieAPI.getBaseURL(for: page)?.appendingPathComponent("/movie/top_rated")
         case .upcoming:
-            return getBaseURL(for: page)?.appendingPathComponent("/movie/upcoming")
+            return MovieAPI.getBaseURL(for: page)?.appendingPathComponent("/movie/upcoming")
         }
-    }
-    
-    /** Regresa la URL base para las diferentes categorias */
-    private func getBaseURL(for page: Int) -> URL? {
-        var urlComponents = URLComponents()
-        urlComponents.scheme = "https"
-        urlComponents.host = "api.themoviedb.org"
-        urlComponents.path = "/3"
-        urlComponents.queryItems = [
-            URLQueryItem(name: "api_key", value: "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"),
-            URLQueryItem(name: "page", value: "\(page)"),
-            URLQueryItem(name: "language", value: "es")
-        ]
-        return urlComponents.url
     }
 }

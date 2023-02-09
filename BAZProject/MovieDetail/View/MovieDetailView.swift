@@ -37,7 +37,7 @@ final class MovieDetailView: UIViewController {
         self.releaseDate.text = movie.releaseDate
         self.backgroundImage.image = UIImage(named: "poster")
         
-        if let imageURL = movie.getBackgroundMovieURL(with: 500) {
+        if let imageURL = movie.getBackgroundMovieURL(size: .huge) {
             let task = URLSession.shared.dataTask(with: imageURL) { [weak self] (data, _, _) in
                 DispatchQueue.main.async {
                     if let data = data {

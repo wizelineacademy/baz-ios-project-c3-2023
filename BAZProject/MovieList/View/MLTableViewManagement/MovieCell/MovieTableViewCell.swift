@@ -21,7 +21,7 @@ final class MovieTableViewCell: UITableViewCell {
         title.text = movie.title
         releaseDate.text = "Lazamiento: \(movie.releaseDate ?? "")"
         language.text = "Idioma original: \(movie.originalLanguage)"
-        guard let url = movie.getPosterURL(with: 300) else { return }
+        guard let url = movie.getPosterURL(size: .medium) else { return }
         
         let task = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
             DispatchQueue.main.async {

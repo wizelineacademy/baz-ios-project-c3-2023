@@ -16,16 +16,10 @@ final class MovieCategories {
     }
     
     private class func getViewControllers() -> [UIViewController] {
-        let categories: [MovieCategory] = [
-            .trending,
-            .topRated,
-            .nowPlaying,
-            .popular,
-            .upcoming
-        ]
+        let categories: [MovieCategory] = MovieCategory.allCases
         
         let providers: [MLProviderProtocol] = categories.map({ MovieProvider(category: $0) })
-        let viewControllers = providers.map { provider in
+        var viewControllers = providers.map { provider in
             let viewController = MLRouter.getEntry(with: provider)
             let tabBarItem = UITabBarItem(
                 title: provider.viewTitle,
@@ -35,6 +29,13 @@ final class MovieCategories {
             viewController.tabBarItem = tabBarItem
             return UINavigationController(rootViewController: viewController)
         }
+        
+        let provider = MSProvider()
+        let seakerView = UINavigationController(rootViewController: MSRouter.getEntry(with: provider))
+        seakerView.tabBarItem.title = "Buscar"
+        seakerView.tabBarItem.image = UIImage(systemName: "magnifyingglass")
+        viewControllers.insert(seakerView, at: 3)
+        
         return viewControllers
     }
 }
