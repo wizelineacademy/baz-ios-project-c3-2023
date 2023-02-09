@@ -10,7 +10,7 @@ import UIKit
 protocol SearchMovieViewProtocol: AnyObject {
 //    Presenter -> View
     var presenter:SearchMoviePresenterProtocol? {get set}
-    var tableView:UITableView! {get set}
+    var collectionView:UICollectionView! {get set}
     
     func reloadData()
 }
@@ -22,6 +22,7 @@ protocol SearchMoviePresenterProtocol: AnyObject {
     
     func viewDidLoad()
     func getKeywordSearch(keyword:String)
+    func goToMovieDetail(data: Result)
 }
 
 protocol SearchMovieInterceptorInputProtocol: AnyObject {

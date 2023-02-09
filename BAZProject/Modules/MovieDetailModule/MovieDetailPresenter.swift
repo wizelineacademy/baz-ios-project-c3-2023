@@ -14,6 +14,16 @@ class MovieDetailPresenter: MovieDetailInteractorOutputProtocol {
 
 extension MovieDetailPresenter: MovieDetailPresenterProtocol{
     func viewDidLoad(){
-        
+        getUI()
+    }
+    
+    func getUI(){
+        if let data = interceptor?.data, let image = data.posterPath {
+            interceptor?.movieApi.getImage(from: image , handler: { image in
+                self.view?.poster.image = image
+            })
+            view?.overviewTextView.text = data.overview
+            view?.overviewTextView.isScrollEnabled = false
+        }
     }
 }

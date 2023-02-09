@@ -8,8 +8,8 @@
 import UIKit
 
 class MovieDetailView: UIViewController, MovieDetailViewProtocol {
-    @IBOutlet var poster: UIImageView!
-    @IBOutlet var titleMovie: UILabel!
+    @IBOutlet weak var poster: UIImageView!
+    @IBOutlet weak var overviewTextView: UITextView!
     
     var presenter: MovieDetailPresenterProtocol?
     

@@ -11,8 +11,8 @@ class MainView: UIViewController, MainViewProtocol{
     var presenter: MainPresenterProtocol?
     var movies: Movies?
     
-    @IBOutlet var tableView:UITableView!
-    @IBOutlet var segmentControl: UISegmentedControl!
+    @IBOutlet weak var tableView:UITableView!
+    @IBOutlet weak var segmentControl: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +58,7 @@ extension MainView: UITableViewDataSource,UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "MoviesTableViewCell") as? MoviesTableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: MoviesTableViewCell.reusableIdentifier) as? MoviesTableViewCell {
             if let dataMovies = presenter?.interactor?.movieApi.getDataMovies as? Movies,
                 let image = dataMovies.results[indexPath.row].posterPath {
                 cell.movieImage.image = UIImage(named: "poster")

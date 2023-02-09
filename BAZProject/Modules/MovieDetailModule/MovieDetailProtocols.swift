@@ -11,7 +11,7 @@ protocol MovieDetailViewProtocol:AnyObject {
     // Presenter -> View
     var presenter:MovieDetailPresenterProtocol? {get set}
     var poster: UIImageView! {get set}
-    var titleMovie: UILabel!  {get set}
+    var overviewTextView: UITextView! {get set}
 }
 
 protocol MovieDetailPresenterProtocol:AnyObject {

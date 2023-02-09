@@ -33,7 +33,7 @@ extension MainPresenter: MainPresenterProtocol {
         let textFieldCell = UINib(nibName: "MoviesTableViewCell",
                                   bundle: nil)
         view?.tableView.register(textFieldCell,
-                                forCellReuseIdentifier: "MoviesTableViewCell")
+                                 forCellReuseIdentifier: MoviesTableViewCell.reusableIdentifier)
     }
     
     func getMoviesData(from api: URLApi) {
