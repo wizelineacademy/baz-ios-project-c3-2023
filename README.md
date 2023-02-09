@@ -79,12 +79,12 @@ Para empezar, sigue los estos pasos:
 
 **Paso 5:** Crea y empuja tus cambios (Commits) periodicamente.
 
-**Paso 6:** Cuando tus entregables esten listos crea un Pull Request de tu rama de desarrollo a tu rama principal.
+**Paso 6:** Cuando tus entregables estén listos crea un Pull Request de tu rama de desarrollo a tu rama principal.
 `main-(nombre)-(apellido) < dev-(nombre)-(apellido)`
 
-**Paso 7:** Una vez que tu mentor evalue y mezcle tus cambios a `main`, no olvides actualizar tu rama `dev` para tener los ultimos cambios. 
+**Paso 7:** Una vez que tu mentor evalúe y mezcle tus cambios a `main`, no olvides actualizar tu rama `dev` para tener los últimos cambios. 
 
-**Paso 8:** No olvides diviértete!
+**Paso 8:** No olvides, diviértete!
 
 <img width="100%" alt="Example Git Workflow" src="git-workflow.png">
 
