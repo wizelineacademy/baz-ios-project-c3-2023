@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="100" id="I45-Sz-HWa" customClass="CellMovie" customModule="BAZProject" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="397" height="100"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="I45-Sz-HWa" id="Heu-zJ-P6o">
+                <rect key="frame" x="0.0" y="0.0" width="397" height="100"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="poster" translatesAutoresizingMaskIntoConstraints="NO" id="fdL-Yr-eAR">
+                        <rect key="frame" x="16" y="16" width="60" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="0Jj-6L-sZA"/>
+                            <constraint firstAttribute="height" constant="60" id="H8Q-CI-vIN"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JC7-V0-VLw">
+                        <rect key="frame" x="92" y="16" width="289" height="60"/>
+                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="20"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="JC7-V0-VLw" firstAttribute="leading" secondItem="fdL-Yr-eAR" secondAttribute="trailing" constant="16" id="CxZ-TJ-LlD"/>
+                    <constraint firstAttribute="bottom" secondItem="fdL-Yr-eAR" secondAttribute="bottom" priority="999" constant="16" id="LAv-G2-mMK"/>
+                    <constraint firstAttribute="trailing" secondItem="JC7-V0-VLw" secondAttribute="trailing" constant="16" id="MIP-WZ-dl3"/>
+                    <constraint firstItem="fdL-Yr-eAR" firstAttribute="top" secondItem="Heu-zJ-P6o" secondAttribute="top" constant="16" id="Uqh-nR-3OH"/>
+                    <constraint firstItem="fdL-Yr-eAR" firstAttribute="leading" secondItem="Heu-zJ-P6o" secondAttribute="leading" constant="16" id="fOk-yL-RYP"/>
+                    <constraint firstItem="JC7-V0-VLw" firstAttribute="centerY" secondItem="fdL-Yr-eAR" secondAttribute="centerY" id="jtt-zU-LK6"/>
+                    <constraint firstAttribute="trailing" secondItem="JC7-V0-VLw" secondAttribute="trailing" constant="16" id="sNS-rp-7xZ"/>
+                    <constraint firstItem="JC7-V0-VLw" firstAttribute="top" secondItem="Heu-zJ-P6o" secondAttribute="top" constant="16" id="sVk-ej-pzv"/>
+                </constraints>
+            </tableViewCellContentView>
+            <inset key="separatorInset" minX="80" minY="0.0" maxX="25" maxY="0.0"/>
+            <connections>
+                <outlet property="lblTitle" destination="JC7-V0-VLw" id="sKo-Js-XJC"/>
+                <outlet property="photoImageView" destination="fdL-Yr-eAR" id="QH8-fo-6EY"/>
+            </connections>
+            <point key="canvasLocation" x="142.74809160305344" y="34.507042253521128"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="poster" width="500" height="743"/>
+    </resources>
+</document>
