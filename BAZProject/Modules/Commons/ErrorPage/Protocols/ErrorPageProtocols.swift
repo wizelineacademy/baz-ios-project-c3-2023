@@ -10,7 +10,6 @@ import UIKit
 protocol ErrorPageViewProtocol: AnyObject {
     var presenter: ErrorPagePresenterProtocol? { get set }
     var errorType: ErrorType? { get set }
-    var titleNavBar: String? { get set }
 }
 
 protocol ErrorPagePresenterProtocol: AnyObject {
@@ -23,7 +22,7 @@ protocol ErrorPagePresenterProtocol: AnyObject {
 
 protocol ErrorPageRouterProtocol: AnyObject {
     var view: ErrorPageViewProtocol? { get set }
-    static func createModule(errorType: ErrorType, titleNavBar: String?) -> UIViewController
+    static func createModule(errorType: ErrorType) -> UIViewController
     func closeThisInstance()
 }
 

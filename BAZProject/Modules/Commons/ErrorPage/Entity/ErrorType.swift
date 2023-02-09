@@ -10,6 +10,7 @@ import Foundation
 struct ErrorType {
     let title: String
     let message: String
+    var titleNavBar: String?
     
     init(serviceError: ServiceError) {
         switch serviceError {
@@ -34,5 +35,9 @@ struct ErrorType {
     init(title: String, message: String) {
         self.title = title
         self.message = message
+    }
+    
+    mutating func setTitleNavBar(_ title: String) {
+        self.titleNavBar = title
     }
 }

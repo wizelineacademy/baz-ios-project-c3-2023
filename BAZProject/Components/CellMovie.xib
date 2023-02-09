@@ -12,31 +12,33 @@
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="100" id="I45-Sz-HWa" customClass="CellMovie" customModule="BAZProject" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="397" height="100"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="I45-Sz-HWa" id="Heu-zJ-P6o">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="I45-Sz-HWa" id="Heu-zJ-P6o">
                 <rect key="frame" x="0.0" y="0.0" width="397" height="100"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="poster" translatesAutoresizingMaskIntoConstraints="NO" id="fdL-Yr-eAR">
-                        <rect key="frame" x="16" y="8" width="60" height="60"/>
+                        <rect key="frame" x="16" y="16" width="60" height="60"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="60" id="DCP-dU-B77"/>
-                            <constraint firstAttribute="width" constant="60" id="dNo-lC-Bbg"/>
+                            <constraint firstAttribute="width" constant="60" id="0Jj-6L-sZA"/>
+                            <constraint firstAttribute="height" constant="60" id="H8Q-CI-vIN"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JC7-V0-VLw">
-                        <rect key="frame" x="92" y="26" width="289" height="24"/>
+                        <rect key="frame" x="92" y="16" width="289" height="60"/>
                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="20"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="fdL-Yr-eAR" secondAttribute="bottom" constant="8" id="VHJ-HL-ykY"/>
-                    <constraint firstItem="JC7-V0-VLw" firstAttribute="centerY" secondItem="fdL-Yr-eAR" secondAttribute="centerY" id="Xzw-eW-A6K"/>
-                    <constraint firstItem="fdL-Yr-eAR" firstAttribute="leading" secondItem="Heu-zJ-P6o" secondAttribute="leading" constant="16" id="gDV-bS-pDU"/>
-                    <constraint firstItem="fdL-Yr-eAR" firstAttribute="top" secondItem="Heu-zJ-P6o" secondAttribute="top" constant="8" id="kKD-IB-apS"/>
-                    <constraint firstItem="JC7-V0-VLw" firstAttribute="leading" secondItem="fdL-Yr-eAR" secondAttribute="trailing" constant="16" id="pky-5N-ppV"/>
+                    <constraint firstItem="JC7-V0-VLw" firstAttribute="leading" secondItem="fdL-Yr-eAR" secondAttribute="trailing" constant="16" id="CxZ-TJ-LlD"/>
+                    <constraint firstAttribute="bottom" secondItem="fdL-Yr-eAR" secondAttribute="bottom" priority="999" constant="16" id="LAv-G2-mMK"/>
+                    <constraint firstAttribute="trailing" secondItem="JC7-V0-VLw" secondAttribute="trailing" constant="16" id="MIP-WZ-dl3"/>
+                    <constraint firstItem="fdL-Yr-eAR" firstAttribute="top" secondItem="Heu-zJ-P6o" secondAttribute="top" constant="16" id="Uqh-nR-3OH"/>
+                    <constraint firstItem="fdL-Yr-eAR" firstAttribute="leading" secondItem="Heu-zJ-P6o" secondAttribute="leading" constant="16" id="fOk-yL-RYP"/>
+                    <constraint firstItem="JC7-V0-VLw" firstAttribute="centerY" secondItem="fdL-Yr-eAR" secondAttribute="centerY" id="jtt-zU-LK6"/>
                     <constraint firstAttribute="trailing" secondItem="JC7-V0-VLw" secondAttribute="trailing" constant="16" id="sNS-rp-7xZ"/>
+                    <constraint firstItem="JC7-V0-VLw" firstAttribute="top" secondItem="Heu-zJ-P6o" secondAttribute="top" constant="16" id="sVk-ej-pzv"/>
                 </constraints>
             </tableViewCellContentView>
             <inset key="separatorInset" minX="80" minY="0.0" maxX="25" maxY="0.0"/>

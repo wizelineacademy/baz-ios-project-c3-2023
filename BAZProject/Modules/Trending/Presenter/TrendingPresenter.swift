@@ -34,7 +34,7 @@ extension TrendingPresenter: TrendingInteractorOutputProtocol {
         } else {
             errorModel = ErrorType(title: error.localizedDescription, message: "Error code: \(error._code) - \(error._domain)")
         }
-        
+        errorModel.setTitleNavBar(.trendingTitle)
         view?.setErrorGettingData(true)
         router?.showViewError(errorModel)
         view?.stopLoading()

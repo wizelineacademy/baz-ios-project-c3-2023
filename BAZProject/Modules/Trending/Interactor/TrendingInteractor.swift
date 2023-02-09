@@ -12,7 +12,6 @@ class TrendingInteractor {
     var dataManager: TrendingDataManagerInputProtocol?
 }
 
-
 extension TrendingInteractor: TrendingInteractorInputProtocol {
     func getTrendingMedia(mediaType: MediaType, timeWindow: TimeWindowType) {
         let endPoint: String = "/trending/\(mediaType.rawValue)/\(timeWindow.rawValue)"

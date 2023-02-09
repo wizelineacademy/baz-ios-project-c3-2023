@@ -8,7 +8,7 @@
 import Foundation
 
 enum MediaType: String, Codable {
-    case all, movie = "movie", tv, person
+    case all, movie, tv, person
     
     func getMediaTypeTitle() -> String {
         switch self {
