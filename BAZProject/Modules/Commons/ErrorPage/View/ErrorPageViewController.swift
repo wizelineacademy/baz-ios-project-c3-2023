@@ -35,7 +35,6 @@ final class ErrorPageViewController: UIViewController, ErrorPageViewProtocol {
     static let identifier: String = .errorPageXibIdentifier
     var presenter: ErrorPagePresenterProtocol?
     var errorType: ErrorType?
-    var titleNavBar: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,10 +51,7 @@ final class ErrorPageViewController: UIViewController, ErrorPageViewProtocol {
         if let errorType = errorType {
             titleErrorLabel.text = errorType.title
             descriptionErrorLabel.text = errorType.message
-        }
-        
-        if titleNavBar != nil {
-            self.title = titleNavBar
+            title = errorType.titleNavBar ?? ""
         }
     }
     

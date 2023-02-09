@@ -10,13 +10,10 @@ import UIKit
 final class ErrorPageRouter: ErrorPageRouterProtocol {
     var view: ErrorPageViewProtocol?
     
-    static func createModule(errorType: ErrorType, titleNavBar: String?) -> UIViewController {
-        guard let view = ErrorPageViewController(
+    static func createModule(errorType: ErrorType) -> UIViewController {
+        let view: ErrorPageViewProtocol = ErrorPageViewController(
             nibName: ErrorPageViewController.identifier,
-            bundle: nil) as? ErrorPageViewProtocol
-        else {
-            return UIViewController()
-        }
+            bundle: nil)
 
         let interactor: ErrorPageInteractorInputProtocol = ErrorPageInteractor()
         let presenter: ErrorPagePresenterProtocols = ErrorPagePresenter()
@@ -24,7 +21,6 @@ final class ErrorPageRouter: ErrorPageRouterProtocol {
 
         view.presenter = presenter
         view.errorType = errorType
-        view.titleNavBar = titleNavBar
         router.view = view
         interactor.presenter = presenter
         presenter.view = view
@@ -36,7 +32,7 @@ final class ErrorPageRouter: ErrorPageRouterProtocol {
     }
     
     func closeThisInstance() {
-        guard let view = view as? UIViewController as? UIViewController else { return }
+        guard let view = view as? UIViewController else { return }
         view.navigationController?.popViewController(animated: true)
         view.dismiss(animated: true)
     }

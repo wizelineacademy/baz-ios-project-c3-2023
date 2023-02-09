@@ -11,11 +11,7 @@ final class TrendingRouter: TrendingRouterProtocol {
     weak var view: TrendingViewProtocol?
     
     static func createModule() -> UIViewController {
-        guard let view = TrendingViewController( nibName: TrendingViewController.identifier,
-                                                 bundle: nil) as? TrendingViewProtocol
-        else {
-            return UIViewController()
-        }
+        let view: TrendingViewProtocol = TrendingViewController(nibName: TrendingViewController.identifier, bundle: nil)
         let service: NetworkingProviderProtocol = NetworkingProviderService(session: URLSession.shared)
         let dataManager: TrendingDataManagerInputProtocol = TrendingDataManager(providerNetworking: service)
         let interactor: TrendingInteractorInputProtocol & TrendingDataManagerOutputProtocol = TrendingInteractor()
@@ -36,13 +32,18 @@ final class TrendingRouter: TrendingRouterProtocol {
     }
     
     func showViewError(_ errorType: ErrorType) {
-        guard let view = view as? UIViewController,
-              let errorPageVC = ErrorPageRouter.createModule(errorType: errorType,
-                                                             titleNavBar: .trendingTitle) as? UIViewController else { return }
-        view.guaranteeMainThread {
+        guaranteeMainThread {
+            guard let view = self.view as? UIViewController else { return }
+            let errorPageVC: UIViewController = ErrorPageRouter.createModule(errorType: errorType)
             view.navigationController?.pushViewController(errorPageVC, animated: true)
         }
-        
     }
     
+    private func guaranteeMainThread(_ work: @escaping () -> Void) {
+        if Thread.isMainThread {
+            work()
+        } else {
+            DispatchQueue.main.async(execute: work)
+        }
+    }
 }
