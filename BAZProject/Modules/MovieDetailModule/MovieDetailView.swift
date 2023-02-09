@@ -17,4 +17,8 @@ class MovieDetailView: UIViewController, MovieDetailViewProtocol {
         super.viewDidLoad()
         presenter?.viewDidLoad()
     }
+    
+    @IBAction func closeScreen(){
+        dismiss(animated: true)
+    }
 }

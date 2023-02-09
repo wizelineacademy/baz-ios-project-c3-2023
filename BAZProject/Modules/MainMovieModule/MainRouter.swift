@@ -12,7 +12,7 @@ class MainRouter: RouterProtocols{
     
     static func createModule() -> UIViewController {
         let navController = mainStoryboard.instantiateViewController(withIdentifier: "MainStoryboard")
-        if let view = navController as? MainView{
+        if let view = navController.children.first as? MainView{
             let presenter : MainPresenterProtocol & MainInteractorOutputProtocol = MainPresenter()
             let interactor : MainInteractorInputProtocol = MainInteractor()
             
@@ -25,6 +25,7 @@ class MainRouter: RouterProtocols{
         }
         return UIViewController()
     }
+    
     
     static var mainStoryboard: UIStoryboard {
         return UIStoryboard(name: "Main", bundle: Bundle.main)
