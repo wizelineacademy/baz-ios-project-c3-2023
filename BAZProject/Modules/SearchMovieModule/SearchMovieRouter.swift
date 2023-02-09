@@ -10,7 +10,7 @@ import UIKit
 class SearchMovieRouter: RouterProtocols{
     typealias Router = SearchMovieRouter
     
-    static func createLoginModule() -> UIViewController {
+    static func createModule() -> UIViewController {
         let viewController = SearchStoryboard.instantiateViewController(withIdentifier: "SearchMovie")
         if let view = viewController as? SearchMovieView{
             let interceptor: SearchMovieInterceptorInputProtocol = SearchMovieInterceptor()

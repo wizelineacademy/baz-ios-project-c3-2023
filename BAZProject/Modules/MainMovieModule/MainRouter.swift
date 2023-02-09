@@ -10,7 +10,7 @@ import UIKit
 class MainRouter: RouterProtocols{
     typealias Router = MainRouter
     
-    static func createLoginModule() -> UIViewController {
+    static func createModule() -> UIViewController {
         let navController = mainStoryboard.instantiateViewController(withIdentifier: "MainStoryboard")
         if let view = navController as? MainView{
             let presenter : MainPresenterProtocol & MainInteractorOutputProtocol = MainPresenter()

@@ -8,5 +8,7 @@
 import Foundation
 
 class MovieDetailInterceptor: MovieDetailInterceptorInputProtocol {
+    var movieApi: MovieAPI = MovieAPI.movieAPISharedInstance
+    var data: Result?
     var presenter: MovieDetailInteractorOutputProtocol?
 }

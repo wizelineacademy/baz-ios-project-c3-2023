@@ -7,7 +7,13 @@
 
 import Foundation
 
-class MovieDetailPresenter: MovieDetailPresenterProtocol, MovieDetailInteractorOutputProtocol {
+class MovieDetailPresenter: MovieDetailInteractorOutputProtocol {
     var view: MovieDetailViewProtocol?
     var interceptor: MovieDetailInterceptorInputProtocol?
+}
+
+extension MovieDetailPresenter: MovieDetailPresenterProtocol{
+    func viewDidLoad(){
+        
+    }
 }

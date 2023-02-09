@@ -42,6 +42,7 @@ extension SearchMovieView:UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "SearchMovie") as? SearchMovieTableViewCell, let dataMovies = presenter?.interceptor?.movieApi.getDataMovies as? SearchMovieData{
             cell.nameMovieLbl.text = dataMovies.results[indexPath.row].title
+            cell.imageMovie.image = UIImage(named: "poster")
             presenter?.interceptor?.movieApi.getImage(from: dataMovies.results[indexPath.row].posterPath ?? "", handler: { imagen in
                 DispatchQueue.main.async {
                     cell.imageMovie.image = imagen

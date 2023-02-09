@@ -9,7 +9,7 @@ import UIKit
 
 class SearchMovieInterceptor: SearchMovieInterceptorInputProtocol{
     var presenter: SearchMovieInterceptorOutputProtocol?
-    var movieApi: MovieAPI = MovieAPI()
+    var movieApi: MovieAPI = MovieAPI.movieAPISharedInstance
     
     func getKeywordSearch(keyword:String){
         movieApi.getApiData(from: .searchMovie(query: keyword, page: 1)) { [weak self] data in

@@ -12,7 +12,7 @@
         <!--Search Movie View-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="SearchMovie" modalPresentationStyle="fullScreen" id="Y6W-OH-hqX" customClass="SearchMovieView" customModule="BAZProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchMovie" modalPresentationStyle="overFullScreen" id="Y6W-OH-hqX" customClass="SearchMovieView" customModule="BAZProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                                 <items>
                                     <navigationItem title="Search" id="mJT-mu-WwY">
-                                        <barButtonItem key="leftBarButtonItem" title="Item" image="arrowshape.left" catalog="system" id="Cid-B0-gUM">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Cid-B0-gUM">
                                             <connections>
                                                 <action selector="goToMainMovie" destination="Y6W-OH-hqX" id="1Y4-7I-4RX"/>
                                             </connections>
@@ -63,11 +63,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="45" y="-2"/>
+            <point key="canvasLocation" x="43.511450381679388" y="-2.1126760563380285"/>
         </scene>
     </scenes>
     <resources>
-        <image name="arrowshape.left" catalog="system" width="128" height="104"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

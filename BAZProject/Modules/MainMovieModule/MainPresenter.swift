@@ -7,25 +7,26 @@
 
 import UIKit
 
-class MainPresenter: MainPresenterProtocol {
-   
+class MainPresenter {
     var view: MainViewProtocol?
     var interactor: MainInteractorInputProtocol?
 }
 
-extension MainPresenter: MainInteractorOutputProtocol{
+extension MainPresenter: MainPresenterProtocol {
+    func goToMovieDetail(data: Result) {
+        guard let view = view as? UIViewController else {return}
+        MovieDetailRouter().presentView(from: view, data: data)
+    }
+    
     func goToSearchMovieView() {
-        guard let view = view as? UIViewController else{return}
+        guard let view = view as? UIViewController else {return}
         SearchMovieRouter().presentView(from: view)
     }
     
     func viewDidLoad() {
-        MovieAPI().getApiData(from: .recommendations(movieId: "603"), handler: { data in
-            do{
-                let movies =  DecodeUtility.decode(Movies.self, from: data)
-            }
-        })
+        interactor?.getMoviesData(from: .trending(page: 1))
         registerTableViewCells()
+        getSectionSegmentedControl()
     }
     
     private func registerTableViewCells() {
@@ -35,4 +36,22 @@ extension MainPresenter: MainInteractorOutputProtocol{
                                 forCellReuseIdentifier: "MoviesTableViewCell")
     }
     
+    func getMoviesData(from api: URLApi) {
+        interactor?.getMoviesData(from: api)
+    }
+    
+    private func getSectionSegmentedControl(){
+        view?.segmentControl.setTitle("Trending", forSegmentAt: 0)
+        view?.segmentControl.setTitle("Now Playing", forSegmentAt: 1)
+        view?.segmentControl.setTitle("Popular", forSegmentAt: 2)
+        view?.segmentControl.setTitle("Top Rated", forSegmentAt: 3)
+        view?.segmentControl.setTitle("Upcoming", forSegmentAt: 4)
+    }
+    
+}
+
+extension MainPresenter: MainInteractorOutputProtocol{
+    func reloadData(){
+        view?.reloadData()
+    }
 }

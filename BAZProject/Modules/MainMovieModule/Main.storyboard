@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="retina6_12" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -18,14 +18,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Itj-aW-cEh">
-                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <rect key="frame" x="0.0" y="134" width="393" height="684"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gmJ-zI-3TE">
                                 <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                                 <items>
                                     <navigationItem title="Main" id="a2F-rg-e18">
-                                        <barButtonItem key="rightBarButtonItem" image="magnifyingglass" catalog="system" id="yZs-oa-Vw3">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="yZs-oa-Vw3">
                                             <connections>
                                                 <action selector="goToSeachView" destination="Y6W-OH-hqX" id="IbB-zr-7xI"/>
                                             </connections>
@@ -33,20 +33,37 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="hp8-9i-uFY">
+                                <rect key="frame" x="0.0" y="103" width="393" height="32"/>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                    <segment title=""/>
+                                    <segment title=""/>
+                                    <segment title=""/>
+                                </segments>
+                                <connections>
+                                    <action selector="didChangeSegmentControl:" destination="Y6W-OH-hqX" eventType="valueChanged" id="DXA-fn-YgN"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Itj-aW-cEh" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="2Br-rn-x5g"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="hp8-9i-uFY" secondAttribute="trailing" id="393-f5-G4u"/>
                             <constraint firstItem="gmJ-zI-3TE" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="8Wf-B4-exS"/>
-                            <constraint firstItem="Itj-aW-cEh" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="GYB-Di-orp"/>
+                            <constraint firstItem="Itj-aW-cEh" firstAttribute="top" secondItem="hp8-9i-uFY" secondAttribute="bottom" id="Hwb-Il-Z8G"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="gmJ-zI-3TE" secondAttribute="trailing" id="L1L-LD-ks0"/>
-                            <constraint firstItem="Itj-aW-cEh" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="TlL-YI-tn7"/>
-                            <constraint firstItem="Itj-aW-cEh" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="b1l-Ib-8Yl"/>
-                            <constraint firstItem="Itj-aW-cEh" firstAttribute="top" secondItem="gmJ-zI-3TE" secondAttribute="bottom" id="jU8-N6-jJ5"/>
+                            <constraint firstItem="hp8-9i-uFY" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="V9E-hu-gLR"/>
+                            <constraint firstItem="hp8-9i-uFY" firstAttribute="top" secondItem="gmJ-zI-3TE" secondAttribute="bottom" id="gzn-sB-0Vv"/>
+                            <constraint firstItem="Itj-aW-cEh" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="kKl-n1-Ljf"/>
+                            <constraint firstItem="Itj-aW-cEh" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="mFe-FH-WeI"/>
                             <constraint firstItem="gmJ-zI-3TE" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="xPf-4j-9zK"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="segmentControl" destination="hp8-9i-uFY" id="Yp8-Df-zFa"/>
                         <outlet property="tableView" destination="Itj-aW-cEh" id="sqf-fy-pyE"/>
                     </connections>
                 </viewController>
@@ -56,7 +73,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

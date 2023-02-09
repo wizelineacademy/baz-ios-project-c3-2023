@@ -7,22 +7,22 @@
 
 import UIKit
 
-class MovieDetailRouter: RouterProtocols {
+class MovieDetailRouter: RouterCreateModuleWithDataProtocol, RouterPresentViewWithDataProtocol{
     typealias Router = MovieDetailRouter
     
-    static func createLoginModule() -> UIViewController {
+    static func createModule<T>(data: T) -> UIViewController {
         let viewController = mainStoryboard.instantiateViewController(withIdentifier: "MovieDetail")
         if let view = viewController as? MovieDetailView{
-            let interceptor : MovieDetailInterceptorInputProtocol = MovieDetailInterceptor()
-            let presenter : MovieDetailPresenterProtocol & MovieDetailInteractorOutputProtocol = MovieDetailPresenter()
+            let interactor : MovieDetailInterceptorInputProtocol = MovieDetailInterceptor()
+            let presenter : MovieDetailInteractorOutputProtocol & MovieDetailPresenterProtocol = MovieDetailPresenter()
             
             view.presenter = presenter
-            interceptor.presenter = presenter
-            presenter.interceptor = interceptor
+            interactor.presenter = presenter
+            if let data = data as? Result { interactor.data = data }
             presenter.view = view
+            presenter.interceptor = interactor
             return view
         }
-        
         return UIViewController()
     }
     
