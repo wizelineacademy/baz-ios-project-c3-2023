@@ -6,9 +6,9 @@
 
 import UIKit
 
-class TrendingViewController: UITableViewController {
+class TrendingViewController: UIViewController {
     
-    @IBOutlet var tableViewMovies: UITableView!
+    @IBOutlet weak var tableViewMovies: UITableView!
     
     var movies: [Movie] = []
     var movie: Movie? = nil
@@ -17,7 +17,6 @@ class TrendingViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUITrendingView()
         settingsForTableBtc()
     }
     
@@ -32,7 +31,7 @@ class TrendingViewController: UITableViewController {
     
     private func fetchMovies() {
         movies = movieApi.getMovies(typeMovie: typeMovieList) ?? []
-        tableView.reloadData()
+        tableViewMovies.reloadData()
     }
     
     private func settingsForTableBtc() {
@@ -45,13 +44,13 @@ class TrendingViewController: UITableViewController {
 
 // MARK: - TableView's DataSource
 
-extension TrendingViewController {
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension TrendingViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         movies.count
     }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell") as? MovieTableViewCell else {
             return UITableViewCell()
         }
@@ -60,13 +59,5 @@ extension TrendingViewController {
         if let urlString = url { cell.imgMovie.load(url: urlString) }
         return cell
     }
-
-}
-
-// MARK: - TableView's Delegate
-//
-extension TrendingViewController {
-
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-    }
+    
 }

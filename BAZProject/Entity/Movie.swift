@@ -18,8 +18,7 @@ struct Movie: Decodable {
     let voteCount: Int?
     
     enum CodingKeys: String, CodingKey {
-        case id
-        case title
+        case id, title
         case posterPath = "poster_path"
         case overView = "overview"
         case voteCount  = "vote_count"

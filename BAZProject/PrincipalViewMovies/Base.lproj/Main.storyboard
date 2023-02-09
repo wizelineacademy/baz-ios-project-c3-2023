@@ -1,57 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="AmD-HI-UXs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jAr-PA-3du">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
-        <scene sceneID="6us-hv-43n">
+        <!--Navigation Controller-->
+        <scene sceneID="dV2-aH-6Tt">
             <objects>
-                <tabBarController id="AmD-HI-UXs" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GU8-yx-jeK">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                <navigationController id="jAr-PA-3du" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eDt-M0-ehZ">
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBar>
+                    </navigationBar>
                     <connections>
-                        <segue destination="DF1-ZG-ayL" kind="relationship" relationship="viewControllers" id="5Rs-jK-EFi"/>
+                        <segue destination="42P-1A-zzu" kind="relationship" relationship="rootViewController" id="A3H-4f-xzh"/>
                     </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vZs-3s-K8D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R1D-kY-J10" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="62" y="-106"/>
+            <point key="canvasLocation" x="-2833" y="435"/>
         </scene>
-        <!--Trending Movies-->
-        <scene sceneID="Jof-f8-uDg">
+        <!--Trending View Controller-->
+        <scene sceneID="Sqj-Rg-3BV">
             <objects>
-                <tableViewController storyboardIdentifier="TrendingViewController" title="Trending Movies" id="DF1-ZG-ayL" customClass="TrendingViewController" customModule="BAZProject" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="7Ys-l1-YLU">
+                <viewController id="42P-1A-zzu" customClass="TrendingViewController" customModule="BAZProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="11b-zX-rS8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="c3f-Nx-WiC">
+                                <rect key="frame" x="0.0" y="92" width="414" height="770"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="5is-Ka-zOF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <connections>
-                            <outlet property="dataSource" destination="DF1-ZG-ayL" id="J2U-Qh-E3n"/>
-                            <outlet property="delegate" destination="DF1-ZG-ayL" id="5nR-er-hrx"/>
-                        </connections>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="Trending" image="chart.line.uptrend.xyaxis.circle.fill" catalog="system" id="g6Q-u2-bk6"/>
-                    <navigationItem key="navigationItem" title="Trending Movies" id="8E9-i5-K0G"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                        <constraints>
+                            <constraint firstItem="c3f-Nx-WiC" firstAttribute="top" secondItem="5is-Ka-zOF" secondAttribute="top" id="0Z7-IJ-Za0"/>
+                            <constraint firstItem="c3f-Nx-WiC" firstAttribute="leading" secondItem="5is-Ka-zOF" secondAttribute="leading" id="Qrk-b7-Ief"/>
+                            <constraint firstItem="5is-Ka-zOF" firstAttribute="bottom" secondItem="c3f-Nx-WiC" secondAttribute="bottom" id="Y5V-Hc-4CR"/>
+                            <constraint firstItem="5is-Ka-zOF" firstAttribute="trailing" secondItem="c3f-Nx-WiC" secondAttribute="trailing" id="dr7-hs-1Fs"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="nAV-JM-DFB"/>
                     <connections>
-                        <outlet property="tableViewMovies" destination="7Ys-l1-YLU" id="ibQ-be-0ZS"/>
+                        <outlet property="tableViewMovies" destination="c3f-Nx-WiC" id="hs1-wV-UCE"/>
                     </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Inw-fF-zPA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X1i-DH-NsB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1006" y="-106"/>
+            <point key="canvasLocation" x="-2009" y="435"/>
         </scene>
     </scenes>
     <resources>
-        <image name="chart.line.uptrend.xyaxis.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
