@@ -10,7 +10,7 @@ import UIKit
 final class MovieListView: UIViewController {
     
     weak var eventHandler: MLEventHandler?
-    var movies: [Movie] = []
+    var tableViewDelegate: MovieListDelegate?
     
     @IBOutlet weak var movieListTbv: UITableView!
     
@@ -29,8 +29,8 @@ final class MovieListView: UIViewController {
     }
     
     private func setupTable() {
-        self.movieListTbv.dataSource = self
-        self.movieListTbv.delegate = self
+        self.movieListTbv.dataSource = tableViewDelegate
+        self.movieListTbv.delegate = tableViewDelegate
         self.movieListTbv.register(MovieTableViewCell.nib, forCellReuseIdentifier: MovieTableViewCell.identifier)
     }
     
@@ -39,7 +39,7 @@ final class MovieListView: UIViewController {
     }
     
     func setMovies(_ movies: [Movie]) {
-        self.movies = movies
+        self.tableViewDelegate?.movies = movies
         self.movieListTbv.reloadData()
     }
     

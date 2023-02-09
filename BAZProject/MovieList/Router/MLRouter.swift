@@ -26,6 +26,7 @@ final class MLRouter {
         )
         
         view.eventHandler = presenter
+        view.tableViewDelegate = MLTableViewManagement(eventHandler: presenter)
         interactor.output = presenter
         router.presenter = presenter
         

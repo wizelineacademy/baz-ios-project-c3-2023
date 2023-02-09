@@ -7,7 +7,14 @@
 
 import UIKit
 
-extension MovieListView: UITableViewDataSource {
+final class MLTableViewManagement: NSObject, MovieListDelegate {
+    var movies: [Movie]
+    weak var eventHandler: MLEventHandler?
+    
+    init(movies: [Movie] = [], eventHandler: MLEventHandler?) {
+        self.movies = movies
+        self.eventHandler = eventHandler
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         self.movies.count
@@ -25,9 +32,7 @@ extension MovieListView: UITableViewDataSource {
         }
         return cell
     }
-}
-
-extension MovieListView: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let movie = movies[indexPath.row]
         self.eventHandler?.didSelect(movie: movie)
