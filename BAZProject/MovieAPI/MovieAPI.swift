@@ -169,4 +169,32 @@ class MovieAPI {
             completionHandler(nil, nil)
         }
     }
+
+    /// Returns movies from a text given.
+    ///
+    ///  - Parameter movieID: The text given to search movies.
+    ///  - Returns: [Movie]?
+    ///
+
+    func searchMovie(textEncoded: String, completionHandler: @escaping([Movie]?, Error?) -> Void) {
+        let textEncoded = textEncoded.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)        
+        if  let textEncoded = textEncoded,
+            let urlSimilarMovies = URL(string: "https://api.themoviedb.org/3/search/movie?api_key=\(apiKey)&\(language)&\(region)&query=\(textEncoded)"){
+            let task = URLSession.shared.dataTask(with: urlSimilarMovies) { data, response, error in
+                if let error = error {
+                    completionHandler(nil, error)
+                }
+                if let data = data,
+                   let result =  try? JSONDecoder().decode(MovieAPIResult.self, from: data){
+                    DispatchQueue.main.async {
+                        completionHandler(result.results, nil )
+                    }
+                }
+            }
+            task.resume()
+        } else {
+            completionHandler(nil, nil)
+        }
+    }
+    
 }
