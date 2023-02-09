@@ -30,7 +30,7 @@ protocol MainPresenterProtocol: AnyObject {
 protocol MainInteractorInputProtocol: AnyObject {
     // PRESENTER -> INTERACTOR
     var presenter : MainInteractorOutputProtocol? {get set}
-    var movieApi : MovieAPI {get set}
+    var movieApiData : DataHelper {get set}
     
     func getMoviesData(from api:URLApi)
 }

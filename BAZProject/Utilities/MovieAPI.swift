@@ -15,13 +15,14 @@ public enum URLApi: Hashable {
     case nowPlaying(page: Int)
     case popular(page: Int)
     case topRated(page: Int)
-    case keyword(query:String)
-    case searchMovie(query:String, page: Int)
-    case reviews(movieId:String)
-    case similar(movieId:String)
-    case recommendations(movieId:String)
+    case keyword(query: String)
+    case searchMovie(query: String, page: Int)
+    case reviews(movieId: String)
+    case similar(movieId: String)
+    case recommendations(movieId: String)
+    case creditMovie(movieId: String)
     
-    var URL: String{
+    var URL: String {
         switch self {
         case .upcoming:
             return "\(urlBase)/movie/upcoming?api_key=\(apiKey)&language=es&region=MX&page=1"
@@ -43,23 +44,23 @@ public enum URLApi: Hashable {
             return "\(urlBase)/movie/\(movieId)/similar?api_key=\(apiKey)&language=es"
         case .recommendations(let movieId):
             return "\(urlBase)/movie/\(movieId)/recommendations?api_key=\(apiKey)&language=es"
+        case .creditMovie(let movieId):
+            return "\(urlBase)/movie/\(movieId)/credits?api_key=\(apiKey)&language=en-US"
         }
     }
 }
 
 final class MovieAPI {
-    private let imgBaseUrl: String = "https://image.tmdb.org/t/p/w500"
-    public var getDataMovies: Codable?
-    public var dictionaryUrls: [URLApi]?
-    static let movieAPISharedInstance = MovieAPI()
+    static private let imgBaseUrl: String = "https://image.tmdb.org/t/p/w500"
+    
     /**    func to help to get Data of apis
      - Parameter url: url of api
      
      */
-    func getApiData(from url:URLApi, handler: @escaping (Data) -> Void){
-       guard let url = URL(string: url.URL) else{return}
+    static func getApiData(from url:URLApi, handler: @escaping (Data) -> Void) {
+       guard let url = URL(string: url.URL) else { return }
         let task =  URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let datos = data else{return}
+            guard let datos = data else { return }
             handler(datos)
         }
         task.resume()
@@ -70,13 +71,13 @@ final class MovieAPI {
     - Parameter imageUrl: url of image
 
     */
-    func getImage(from imageUrl:String, handler: @escaping (UIImage) -> Void){
-        DispatchQueue.global(qos: .default).async { [weak self] in
-            guard let baseUrl = self?.imgBaseUrl, let url = URL(string: "\(baseUrl)\(imageUrl)") else { return }
+    static func getImage(from imageUrl: String, handler: @escaping (UIImage) -> Void) {
+        DispatchQueue.global(qos: .default).async {
+            guard let url = URL(string: "\(imgBaseUrl)\(imageUrl)") else { return }
             let data = try? Data(contentsOf: url)
             DispatchQueue.main.async {
                 guard let data = data else {return}
-                guard let image = UIImage(data: data) else {return}
+                guard let image = UIImage(data: data) else { return }
                 handler(image)
             }
         }

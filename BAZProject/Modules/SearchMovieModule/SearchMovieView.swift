@@ -7,12 +7,12 @@
 
 import UIKit
 
-class SearchMovieView:UIViewController, SearchMovieViewProtocol{
+class SearchMovieView: UIViewController, SearchMovieViewProtocol {
     var presenter: SearchMoviePresenterProtocol?
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    override func viewDidLoad(){
+    override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.viewDidLoad()
         collectionView.dataSource = self
@@ -21,6 +21,7 @@ class SearchMovieView:UIViewController, SearchMovieViewProtocol{
     }
     
     @IBAction func goToMainMovie(){
+        self.presenter?.getKeywordSearch(keyword: "")
         dismiss(animated: true)
     }
     
@@ -33,28 +34,32 @@ class SearchMovieView:UIViewController, SearchMovieViewProtocol{
 
 extension SearchMovieView:UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let getCount = presenter?.interceptor?.movieApi.getDataMovies as? SearchMovieData{
+        if let getCount = presenter?.interceptor?.movieApiData.getDataMovies as? SearchMovieData{
             return getCount.results.count
         }
         return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchMovieCollectionViewCell.reusableIdentifier, for: indexPath) as? SearchMovieCollectionViewCell, let dataMovies = presenter?.interceptor?.movieApi.getDataMovies as? SearchMovieData{
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GenericCollectionViewCell.reusableIdentifier, for: indexPath) as? GenericCollectionViewCell,
+            let dataMovies = presenter?.interceptor?.movieApiData.getDataMovies as? SearchMovieData{
+            
             cell.title.text = dataMovies.results[indexPath.row].title
             cell.imageMovie.image = UIImage(named: "poster")
-            presenter?.interceptor?.movieApi.getImage(from: dataMovies.results[indexPath.row].posterPath ?? "", handler: { imagen in
+            
+            MovieAPI.getImage(from: dataMovies.results[indexPath.row].posterPath ?? "", handler: { imagen in
                 DispatchQueue.main.async {
                     cell.imageMovie.image = imagen
                 }
             })
+            
             return cell
         }
         return UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let dataMovies = presenter?.interceptor?.movieApi.getDataMovies as? SearchMovieData{
+        if let dataMovies = presenter?.interceptor?.movieApiData.getDataMovies as? SearchMovieData{
             presenter?.goToMovieDetail(data: dataMovies.results[indexPath.row])
         }
     }

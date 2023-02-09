@@ -13,7 +13,7 @@ class SearchMovieRouter: RouterProtocols{
     static func createModule() -> UIViewController {
         let viewController = SearchStoryboard.instantiateViewController(withIdentifier: "SearchMovie")
         if let view = viewController as? SearchMovieView{
-            let interceptor: SearchMovieInterceptorInputProtocol = SearchMovieInterceptor()
+            let interceptor: SearchMovieInterceptorInputProtocol = SearchMovieInteractor()
             let presenter: SearchMoviePresenterProtocol & SearchMovieInterceptorOutputProtocol  = SearchMoviePresenter()
             
             view.presenter = presenter

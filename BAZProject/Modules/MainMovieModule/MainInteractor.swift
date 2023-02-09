@@ -9,14 +9,13 @@ import Foundation
 
 final class MainInteractor: MainInteractorInputProtocol {
     var presenter: MainInteractorOutputProtocol?
-    var movieApi: MovieAPI = MovieAPI()
+    var movieApiData: DataHelper = DataHelper()
     
-    func getMoviesData(from api:URLApi){
-        movieApi.getApiData(from: api) { [weak self] data in
-            do{
-                if let movies =  DecodeUtility.decode(Movies.self, from: data){
-                    print(movies)
-                    self?.movieApi.getDataMovies = movies
+    func getMoviesData(from api:URLApi) {
+        MovieAPI.getApiData(from: api) { [weak self] data in
+            do {
+                if let movies =  DecodeUtility.decode(Movies.self, from: data) {
+                    self?.movieApiData.getDataMovies = movies
                     self?.presenter?.reloadData()
                 }
             }

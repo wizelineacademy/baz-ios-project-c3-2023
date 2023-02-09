@@ -12,14 +12,14 @@ class MovieDetailPresenter: MovieDetailInteractorOutputProtocol {
     var interceptor: MovieDetailInterceptorInputProtocol?
 }
 
-extension MovieDetailPresenter: MovieDetailPresenterProtocol{
-    func viewDidLoad(){
+extension MovieDetailPresenter: MovieDetailPresenterProtocol {
+    func viewDidLoad() {
         getUI()
     }
     
-    func getUI(){
+    func getUI() {
         if let data = interceptor?.data, let image = data.posterPath {
-            interceptor?.movieApi.getImage(from: image , handler: { image in
+            MovieAPI.getImage(from: image , handler: { image in
                 self.view?.poster.image = image
             })
             view?.overviewTextView.text = data.overview

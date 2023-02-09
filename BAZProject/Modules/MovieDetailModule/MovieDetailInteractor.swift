@@ -7,8 +7,8 @@
 
 import Foundation
 
-class MovieDetailInterceptor: MovieDetailInterceptorInputProtocol {
-    var movieApi: MovieAPI = MovieAPI.movieAPISharedInstance
+class MovieDetailInteractor: MovieDetailInterceptorInputProtocol {
+    var movieApiData: DataHelper = DataHelper()
     var data: Result?
     var presenter: MovieDetailInteractorOutputProtocol?
 }

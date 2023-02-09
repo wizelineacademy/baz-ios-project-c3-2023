@@ -12,23 +12,23 @@ class SearchMoviePresenter {
     var interceptor: SearchMovieInterceptorInputProtocol?
 }
 
-extension SearchMoviePresenter: SearchMoviePresenterProtocol{
+extension SearchMoviePresenter: SearchMoviePresenterProtocol {
     func goToMovieDetail(data: Result) {
-        guard let view = view as? UIViewController else {return}
+        guard let view = view as? UIViewController else { return }
         MovieDetailRouter().presentView(from: view, data: data)
     }
-    
     
     func viewDidLoad() {
         registertableViewCell()
     }
     
-    func registertableViewCell(){
-        let cell = UINib(nibName: "SearchMovieCollectionViewCell", bundle: nil)
-        view?.collectionView.register(cell, forCellWithReuseIdentifier: SearchMovieCollectionViewCell.reusableIdentifier)
+//    mandar como parametro el collectionView
+    private func registertableViewCell() {
+        let cell = UINib(nibName: "GenericCollectionViewCell", bundle: nil)
+        view?.collectionView.register(cell, forCellWithReuseIdentifier: GenericCollectionViewCell.reusableIdentifier)
     }
     
-    func getKeywordSearch(keyword:String){
+    func getKeywordSearch(keyword:String) {
         interceptor?.getKeywordSearch(keyword: keyword)
     }
     

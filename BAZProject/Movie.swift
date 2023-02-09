@@ -9,7 +9,7 @@ import Foundation
 struct Movies: Codable {
     let page: Int
     let results: [Result]
-
+    
 }
 
 // MARK: - Result

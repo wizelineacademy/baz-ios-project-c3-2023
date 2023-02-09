@@ -7,29 +7,29 @@
 
 import UIKit
 
-protocol MovieDetailViewProtocol:AnyObject {
+protocol MovieDetailViewProtocol: AnyObject {
     // Presenter -> View
-    var presenter:MovieDetailPresenterProtocol? {get set}
-    var poster: UIImageView! {get set}
-    var overviewTextView: UITextView! {get set}
+    var presenter: MovieDetailPresenterProtocol? { get set }
+    var poster: UIImageView! { get set }
+    var overviewTextView: UITextView! { get set }
 }
 
-protocol MovieDetailPresenterProtocol:AnyObject {
+protocol MovieDetailPresenterProtocol: AnyObject {
     // View -> Presenter
-    var view: MovieDetailViewProtocol? {get set}
-    var interceptor: MovieDetailInterceptorInputProtocol? {get set}
+    var view: MovieDetailViewProtocol? { get set }
+    var interceptor: MovieDetailInterceptorInputProtocol? { get set }
     
     func viewDidLoad()
 }
 
-protocol MovieDetailInterceptorInputProtocol:AnyObject {
+protocol MovieDetailInterceptorInputProtocol: AnyObject {
     // Presenter -> Interceptor
-    var presenter:MovieDetailInteractorOutputProtocol? {get set}
-    var data:Result? {get set}
-    var movieApi:MovieAPI {get set}
+    var presenter: MovieDetailInteractorOutputProtocol? { get set }
+    var data: Result? { get set }
+    var movieApiData: DataHelper { get set }
 }
 
-protocol MovieDetailInteractorOutputProtocol:AnyObject {
+protocol MovieDetailInteractorOutputProtocol: AnyObject {
     // INTERACTOR -> PRESENTER
 }
 

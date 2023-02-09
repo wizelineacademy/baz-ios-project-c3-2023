@@ -7,9 +7,10 @@
 
 import UIKit
 
-class SearchMovieCollectionViewCell: UICollectionViewCell {
-    static let reusableIdentifier = String(describing: SearchMovieCollectionViewCell.self)
+class GenericCollectionViewCell: UICollectionViewCell {
+    static let reusableIdentifier = String(describing: GenericCollectionViewCell.self)
     
     @IBOutlet weak var imageMovie: UIImageView!
     @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var secondTitle: UILabel!
 }
