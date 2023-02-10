@@ -15,6 +15,7 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var movieYear: UILabel!
     @IBOutlet weak var movieAvarage: UILabel!
     @IBOutlet weak var movieStarsAvarage: UILabel!
+    @IBOutlet weak var movieAvarageTitle: UILabel!
     @IBOutlet weak var movieOverview: UITextView!
     @IBOutlet weak var movieGenres: UILabel!
     @IBOutlet weak var castCollection: UICollectionView!
@@ -82,6 +83,7 @@ class MovieDetailViewController: UIViewController {
     
     func setTopMovieInfo() {
         movieTitle.text = movieToShowDetail?.title
+        movieAvarageTitle.text = movieToShowDetail?.title
         movieAvarage.text = movieToShowDetail?.voteAverage.description
         movieStarsAvarage.text = movieToShowDetail?.averageStars
         if let partialURLBackdrop = movieToShowDetail?.backdropPath {

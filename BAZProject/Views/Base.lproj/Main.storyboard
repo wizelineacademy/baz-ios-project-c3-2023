@@ -269,11 +269,11 @@
             <objects>
                 <viewController id="k0U-GE-lc1" customClass="MovieDetailViewController" customModule="BAZProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tYs-UQ-8uE">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="2250"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ROc-5E-tZ5">
-                                <rect key="frame" x="0.0" y="44" width="320" height="475"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="2157"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W5r-HJ-7Tb" userLabel="Scroll Container">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="2123"/>
@@ -618,12 +618,12 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="41" id="8sh-Y8-IxB"/>
                                                                 </constraints>
-                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⭐️⭐️⭐️⭐️⭐️" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v7U-gk-XZ9">
-                                                                <rect key="frame" x="72" y="111" width="232" height="24"/>
+                                                                <rect key="frame" x="91" y="111" width="125" height="24"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="24" id="4y9-Tb-KgH"/>
                                                                 </constraints>
@@ -631,10 +631,9 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3.2" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cp5-gx-sOs">
-                                                                <rect key="frame" x="16" y="111" width="40" height="24"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.00" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cp5-gx-sOs">
+                                                                <rect key="frame" x="16" y="111" width="59" height="24"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="40" id="lYY-Ss-Aed"/>
                                                                     <constraint firstAttribute="height" constant="24" id="uYH-Re-Qz3"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
@@ -644,9 +643,9 @@
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
+                                                            <constraint firstItem="gNG-T6-5j6" firstAttribute="top" secondItem="Cp5-gx-sOs" secondAttribute="bottom" constant="16" id="5XT-ZM-zYI"/>
                                                             <constraint firstAttribute="bottom" secondItem="gNG-T6-5j6" secondAttribute="bottom" constant="-1" id="5dp-te-ZrW"/>
                                                             <constraint firstItem="gNG-T6-5j6" firstAttribute="leading" secondItem="7qW-ME-wl3" secondAttribute="leading" id="7Ms-cb-4IN"/>
-                                                            <constraint firstAttribute="trailing" secondItem="v7U-gk-XZ9" secondAttribute="trailing" constant="16" id="Agb-i9-hZO"/>
                                                             <constraint firstItem="caQ-nt-kY7" firstAttribute="top" secondItem="7qW-ME-wl3" secondAttribute="top" constant="16" id="Fa3-te-C1H"/>
                                                             <constraint firstItem="Cp5-gx-sOs" firstAttribute="leading" secondItem="7qW-ME-wl3" secondAttribute="leading" constant="16" id="JYX-Im-J32"/>
                                                             <constraint firstItem="v7U-gk-XZ9" firstAttribute="leading" secondItem="Cp5-gx-sOs" secondAttribute="trailing" constant="16" id="KpY-c9-URt"/>
@@ -655,6 +654,7 @@
                                                             <constraint firstAttribute="trailing" secondItem="caQ-nt-kY7" secondAttribute="trailing" constant="16" id="chY-Vv-5jB"/>
                                                             <constraint firstItem="Cp5-gx-sOs" firstAttribute="top" secondItem="LXJ-MT-qMy" secondAttribute="bottom" constant="8" id="cxQ-bn-EVP"/>
                                                             <constraint firstItem="gNG-T6-5j6" firstAttribute="top" secondItem="v7U-gk-XZ9" secondAttribute="bottom" constant="16" id="f3a-Th-Tmf"/>
+                                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="v7U-gk-XZ9" secondAttribute="trailing" constant="20" symbolic="YES" id="fXr-wJ-ISv"/>
                                                             <constraint firstItem="v7U-gk-XZ9" firstAttribute="top" secondItem="LXJ-MT-qMy" secondAttribute="bottom" constant="8" id="gLj-2p-AoR"/>
                                                             <constraint firstItem="caQ-nt-kY7" firstAttribute="leading" secondItem="7qW-ME-wl3" secondAttribute="leading" constant="16" id="ipY-Qd-P5Q"/>
                                                             <constraint firstAttribute="trailing" secondItem="LXJ-MT-qMy" secondAttribute="trailing" constant="16" id="jmT-3J-sIS"/>
@@ -701,25 +701,26 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="movie CUB" id="06k-sr-coa"/>
-                    <size key="freeformSize" width="320" height="568"/>
+                    <size key="freeformSize" width="320" height="2250"/>
                     <connections>
-                        <outlet property="RecomendationCollection" destination="Gxq-L7-4Nq" id="aey-HN-fBq"/>
                         <outlet property="castCollection" destination="tID-Xk-ert" id="coj-ir-o45"/>
                         <outlet property="detailImage" destination="NgQ-R5-ISF" id="hUk-re-hrC"/>
                         <outlet property="movieAvarage" destination="Cp5-gx-sOs" id="H99-kz-93K"/>
+                        <outlet property="movieAvarageTitle" destination="LXJ-MT-qMy" id="PuA-LT-8fa"/>
                         <outlet property="movieBackdrop" destination="YSj-CR-Sl6" id="Dsm-ny-XAX"/>
                         <outlet property="movieGenres" destination="jfj-pj-aKi" id="cnv-2T-ZFl"/>
                         <outlet property="movieOverview" destination="b2S-rr-ULn" id="3Vc-lW-BkC"/>
                         <outlet property="movieStarsAvarage" destination="v7U-gk-XZ9" id="qAu-2m-OW7"/>
-                        <outlet property="movieTitle" destination="LXJ-MT-qMy" id="gYH-3B-SNG"/>
+                        <outlet property="movieTitle" destination="QsW-6r-7Ge" id="PGU-Hi-N6q"/>
                         <outlet property="movieYear" destination="jDm-eT-WR1" id="Rwk-nX-gZV"/>
+                        <outlet property="recomendationCollection" destination="Gxq-L7-4Nq" id="nu4-hd-jvW"/>
                         <outlet property="reviewTableView" destination="gNG-T6-5j6" id="RDH-P0-eO0"/>
                         <outlet property="similarMoviesCollection" destination="MN9-SF-Q4b" id="PfX-FY-WUS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="be2-wE-lhn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2809" y="-107"/>
+            <point key="canvasLocation" x="2803" y="-1006"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xx5-9n-NWM">
