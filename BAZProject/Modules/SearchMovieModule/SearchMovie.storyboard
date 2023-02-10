@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Search Movie View-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="SearchMovie" modalPresentationStyle="overFullScreen" id="Y6W-OH-hqX" customClass="SearchMovieView" customModule="BAZProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q4u-m4-eF7">
+                                <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                                <items>
+                                    <navigationItem title="Search" id="mJT-mu-WwY">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Cid-B0-gUM">
+                                            <connections>
+                                                <action selector="goToMainMovie" destination="Y6W-OH-hqX" id="1Y4-7I-4RX"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="9Bk-yx-PrB">
+                                <rect key="frame" x="0.0" y="103" width="393" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="XeE-C6-lmJ"/>
+                                </connections>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="pSU-bM-uVa">
+                                <rect key="frame" x="0.0" y="159" width="393" height="659"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="pSU-bM-uVa" secondAttribute="trailing" id="9gZ-Rv-jx4"/>
+                            <constraint firstItem="pSU-bM-uVa" firstAttribute="top" secondItem="9Bk-yx-PrB" secondAttribute="bottom" id="ETL-bA-Ic0"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="q4u-m4-eF7" secondAttribute="trailing" id="Qg8-oc-ul7"/>
+                            <constraint firstItem="q4u-m4-eF7" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="V80-a7-Ton"/>
+                            <constraint firstItem="9Bk-yx-PrB" firstAttribute="top" secondItem="q4u-m4-eF7" secondAttribute="bottom" id="WZZ-Cd-lIc"/>
+                            <constraint firstItem="9Bk-yx-PrB" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="XM2-iY-qoV"/>
+                            <constraint firstItem="q4u-m4-eF7" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="Zac-7i-1Cm"/>
+                            <constraint firstItem="9Bk-yx-PrB" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="gaz-sY-x8G"/>
+                            <constraint firstItem="pSU-bM-uVa" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="iNW-MZ-Yt1"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="pSU-bM-uVa" secondAttribute="bottom" id="mT1-Av-w6y"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="searchBar" destination="9Bk-yx-PrB" id="qnV-YE-h8V"/>
+                        <outlet property="tableView" destination="pSU-bM-uVa" id="uxX-3K-iuY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="43.511450381679388" y="-2.1126760563380285"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
