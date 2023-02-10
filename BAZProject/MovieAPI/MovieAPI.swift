@@ -197,4 +197,30 @@ class MovieAPI {
         }
     }
     
+    /// Returns keywords from a text given.
+    ///
+    ///  - Parameter movieID: The text given to search movies.
+    ///  - Returns: [Movie]?
+    ///
+
+    func searchKeywords(textEncoded: String, completionHandler: @escaping([MovieKeyword]?, Error?) -> Void) {
+        let textEncoded = textEncoded.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+        if  let textEncoded = textEncoded,
+            let urlSimilarMovies = URL(string: "https://api.themoviedb.org/3/search/keyword?api_key=\(apiKey)&page=1&query=\(textEncoded)"){
+            let task = URLSession.shared.dataTask(with: urlSimilarMovies) { data, response, error in
+                if let error = error {
+                    completionHandler(nil, error)
+                }
+                if let data = data,
+                   let result =  try? JSONDecoder().decode(MovieAPIKeyword.self, from: data){
+                    DispatchQueue.main.async {
+                        completionHandler(result.results, nil )
+                    }
+                }
+            }
+            task.resume()
+        } else {
+            completionHandler(nil, nil)
+        }
+    }
 }

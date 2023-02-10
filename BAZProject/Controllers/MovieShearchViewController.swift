@@ -9,76 +9,98 @@ import UIKit
 
 class MovieShearchViewController: UIViewController {
     
-    @IBOutlet weak var searchMovieCollection: UICollectionView!
     @IBOutlet weak var movieSearcher: UISearchBar!
+    @IBOutlet weak var keyworkTable: UITableView!
+    @IBOutlet weak var noResults: UILabel!
     
     var movieApi = MovieAPI()
-    var moviesToShow: [Movie]?{
+    var keywordsToShow: [MovieKeyword]? {
         didSet{
-            searchMovieCollection.reloadData()
+            keyworkTable.reloadData()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        movieSearcher.searchTextField.becomeFirstResponder()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        noResultsInvisible()
         movieSearcher.searchTextField.delegate = self
-        registerCollectionCell()
-        hideKeyboardWhenTappedAround()
     }
     
-    func searchMovies(from text: String){
-        movieApi.searchMovie(textEncoded: text) { movies, error in
-            if let movies = movies {
-                self.moviesToShow = movies
+    func searchMovies(from text: String) {
+        movieApi.searchKeywords(textEncoded: text) { keywords, error in
+            if let keywords = keywords,
+               keywords.count > 0 {
+                self.keywordsToShow = keywords
+            } else {
+                self.noResultTextVisible()
             }
         }
     }
     
-    func registerCollectionCell() {
-        searchMovieCollection.register(UINib(nibName: "MovieGalleryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MovieGallery")
-    }
-    
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc public func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
-}
-
-// MARK: - CollectionView's DataSource
-
-extension MovieShearchViewController: UICollectionViewDataSource {
-        
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return moviesToShow?.count ?? 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieGallery", for: indexPath) as? MovieGalleryCollectionViewCell
-        collectionCell?.movieTitle.text = moviesToShow?[indexPath.row].title
-        collectionCell?.voteAvarage.text = moviesToShow?[indexPath.row].averageStars
-        if let partialURLImage =  moviesToShow?[indexPath.row].posterPath {
-            collectionCell?.movieImage.fetchImage(with: partialURLImage)
-        } else {
-            collectionCell?.movieImage.image = UIImage(named: "poster")
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "searchToCatolog",
+           let catalog =  segue.destination as? MovieSearchCatalogViewController,
+           let keywordSelected = sender as? MovieKeyword {
+            catalog.keywordToSearch = keywordSelected
         }
-        guard let collectionCell = collectionCell else { return MovieGalleryCollectionViewCell() }
-        return collectionCell
     }
+    
+    func noResultTextVisible() {
+        noResults.isHidden = false
+        keyworkTable.isHidden = true
+        let text = movieSearcher.searchTextField.text ?? " "
+        noResults.text = "No encontramos nada relacionado con \"\(text)\".\nPuedes buscar por palabra clave o título"
+    }
+    
+    func noResultsInvisible() {
+        noResults.isHidden = true
+        keyworkTable.isHidden = false
+        noResults.text = ""
+    }
+    
 }
 
-extension MovieShearchViewController: UISearchBarDelegate{
+// MARK: - TableView's DataSource
+
+extension MovieShearchViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return keywordsToShow?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let keywordCell =  tableView.dequeueReusableCell(withIdentifier: "keywordCell", for: indexPath)
+        keywordCell.textLabel?.text = keywordsToShow?[indexPath.row].name
+        return keywordCell
+     }
+}
+
+// MARK: - TableView's Delegate
+
+extension MovieShearchViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let keywordSelected = keywordsToShow?[indexPath.row]
+        tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "searchToCatolog", sender: keywordSelected)
+    }
+    
+}
+
+// MARK: - SearchBar's Delegate
+
+extension MovieShearchViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.isEmpty{
-            moviesToShow = []
+        if searchText.isEmpty {
+            keywordsToShow = []
+            noResultsInvisible()
+        }else{
+            searchMovies(from: searchText)
         }
-        searchMovies(from: searchText)
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
@@ -91,20 +113,28 @@ extension MovieShearchViewController: UISearchBarDelegate{
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
-        searchBar.resignFirstResponder()
-        moviesToShow = []
+        keywordsToShow = []
+        noResultsInvisible()
+        if let _ = self.navigationController?.tabBarController?.viewControllers?.first as? UINavigationController {
+            navigationController?.tabBarController?.selectedIndex = 0
+        }
     }
 }
 
-extension MovieShearchViewController: UITextFieldDelegate{
+// MARK: - TextField's Delegate
+
+extension MovieShearchViewController: UITextFieldDelegate {
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         movieSearcher.resignFirstResponder()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        guard let text  =  movieSearcher.text else { return true }
-        searchMovies(from: text)
+        guard let text  =  movieSearcher.searchTextField.text,
+              text != "" else { return true }
         movieSearcher.resignFirstResponder()
+        let keywordSelected = MovieKeyword(id: 0, name: text)
+        performSegue(withIdentifier: "searchToCatolog", sender: keywordSelected)
         return true
     }
 }
