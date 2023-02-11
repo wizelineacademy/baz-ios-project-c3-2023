@@ -14,7 +14,7 @@ extension MovieSeakerView: UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.eventHandler?.seakMovies(by: searchText)
+        self.output?.seakMovies(by: searchText)
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

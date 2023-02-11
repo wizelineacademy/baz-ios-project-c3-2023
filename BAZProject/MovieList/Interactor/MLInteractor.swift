@@ -9,7 +9,7 @@ import Foundation
 
 final class MLInteractor {
     let provider: MLProviderProtocol
-    weak var presenter: MLInteractorOutputProtocol?
+    weak var output: MLInteractorOutputProtocol?
     
     init(provider: MLProviderProtocol) {
         self.provider = provider
@@ -18,13 +18,13 @@ final class MLInteractor {
 
 extension MLInteractor: MLInteractorInputProtocol {
     func fetchData() {
-        self.presenter?.set(title: provider.viewTitle)
+        self.output?.set(title: provider.viewTitle)
         self.provider.getMovies { [weak self] result in
             switch result {
             case .success(let movies):
-                self?.presenter?.didFind(movies: movies)
+                self?.output?.didFind(movies: movies)
             case .failure(let error):
-                self?.presenter?.didFind(error: error)
+                self?.output?.didFind(error: error)
             }
         }
     }

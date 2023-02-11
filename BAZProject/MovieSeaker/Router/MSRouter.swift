@@ -8,10 +8,10 @@
 import UIKit
 
 final class MSRouter {
-    let view: UIViewController
-    var presenter: MSPresenter?
     
-    init(view: UIViewController) {
+    weak var view: MSViewInputProtocol?
+    
+    init(view: MSViewInputProtocol?) {
         self.view = view
     }
     
@@ -21,17 +21,20 @@ final class MSRouter {
         let interactor = MSInteractor(provider: provider)
         let presenter = MSPresenter(
             view: view,
-            router: router,
-            interactor: interactor)
+            interactor: interactor,
+            router: router
+        )
         
-        view.eventHandler = presenter
+        view.output = presenter
         interactor.output = presenter
-        router.presenter = presenter
         
         return view
     }
-    
-    func goNext(_ viewController: UIViewController) {
-        self.view.navigationController?.pushViewController(viewController, animated: true)
+}
+
+extension MSRouter: MSRouterProtocol {
+    func goNextViewController(with movie: Movie) {
+        let viewController = MDRouter.getEntry(with: movie)
+        self.view?.navigationController?.pushViewController(viewController, animated: true)
     }
 }

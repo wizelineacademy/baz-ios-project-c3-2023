@@ -7,17 +7,19 @@
 
 import UIKit
 
-protocol MLViewOutputProtocol: AnyObject {
+protocol MLPresenterProtocol: AnyObject {
     var view: MLViewInputProtocol? { get }
     var interactor: MLInteractorInputProtocol { get }
     var router: MLRouterProtocol { get }
-    
+}
+
+protocol MLViewOutputProtocol: MLPresenterProtocol {
     func didLoadView()
     func didSelect(_ movie: Movie)
 }
 
 protocol MLViewInputProtocol: UIViewController {
-    var presenter: MLViewOutputProtocol? { get set }
+    var output: MLViewOutputProtocol? { get set }
     
     func setTitle(_ title: String)
     func setMovies(_ movies: [Movie])
@@ -25,7 +27,7 @@ protocol MLViewInputProtocol: UIViewController {
 }
 
 protocol MLInteractorInputProtocol {
-    var presenter: MLInteractorOutputProtocol? { get set }
+    var output: MLInteractorOutputProtocol? { get set }
     
     func fetchData()
 }

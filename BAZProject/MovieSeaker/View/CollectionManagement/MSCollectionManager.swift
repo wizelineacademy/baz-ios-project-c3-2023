@@ -38,6 +38,6 @@ extension MovieSeakerView: UICollectionViewDelegateFlowLayout {
 extension MovieSeakerView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let movie = movies[indexPath.row]
-        self.eventHandler?.didSelect(movie)
+        self.output?.didSelect(movie)
     }
 }

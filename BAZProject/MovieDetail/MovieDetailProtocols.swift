@@ -7,10 +7,12 @@
 
 import Foundation
 
-protocol MDViewOutputProtocol {
+protocol MDPresenterProtocol {
     var view: MDViewInputProtocol? { get }
     var interactor: MDInteractorInputProtocol { get }
-    
+}
+
+protocol MDViewOutputProtocol: MDPresenterProtocol {
     func didLoadView()
 }
 

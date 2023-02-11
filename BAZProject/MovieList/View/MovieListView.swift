@@ -9,7 +9,7 @@ import UIKit
 
 final class MovieListView: UIViewController {
     
-    var presenter: MLViewOutputProtocol?
+    var output: MLViewOutputProtocol?
     var tableViewDelegate: MovieListDelegate?
     
     @IBOutlet weak var movieListTbv: UITableView!
@@ -17,7 +17,7 @@ final class MovieListView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTable()
-        presenter?.didLoadView()
+        output?.didLoadView()
     }
     
     private func setupTable() {

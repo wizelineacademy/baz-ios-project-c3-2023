@@ -8,7 +8,7 @@
 import Foundation
 
 final class MSInteractor {
-    weak var output: MSOutputProtocol?
+    weak var output: MSInteractorOutputProtocol?
     private let provider: MSProviderProtocol
     
     init(provider: MSProviderProtocol) {
@@ -16,7 +16,7 @@ final class MSInteractor {
     }
 }
 
-extension MSInteractor: MSInteractorProtocol {
+extension MSInteractor: MSInteractorInputProtocol {
     func fetchViewData() {
         let data = provider.getViewData()
         self.output?.setView(with: data)
@@ -31,10 +31,5 @@ extension MSInteractor: MSInteractorProtocol {
                 self?.output?.didReceive(error)
             }
         }
-    }
-    
-    func check(_ movie: Movie) {
-        let viewController = self.provider.getNextViewController(with: movie)
-        self.output?.goNext(viewController)
     }
 }

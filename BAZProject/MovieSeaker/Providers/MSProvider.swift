@@ -31,8 +31,4 @@ final class MSProvider: WSRequestProtocol, MSProviderProtocol {
             }
         }
     }
-    
-    func getNextViewController(with movie: Movie) -> UIViewController {
-        MDRouter.getEntry(with: movie)
-    }
 }

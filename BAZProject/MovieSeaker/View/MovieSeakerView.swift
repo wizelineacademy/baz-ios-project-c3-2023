@@ -9,28 +9,18 @@ import UIKit
 
 final class MovieSeakerView: UIViewController {
     
-    weak var eventHandler: MSEventHandler?
+    var output: MSViewOutputProtocol?
     var movies: [Movie] = []
-    var searchBar: UISearchBar
+    var searchBar: UISearchBar = UISearchBar()
     
     @IBOutlet weak var moviesCollection: UICollectionView!
-    
-    init() {
-        self.searchBar = UISearchBar()
-        super.init(nibName: String(describing: MovieSeakerView.self), bundle: .main)
-    }
-    
-    required init?(coder: NSCoder) {
-        self.searchBar = UISearchBar()
-        super.init(coder: coder)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.setupSeaker()
         self.setupCollection()
-        self.eventHandler?.didLoadView()
+        self.output?.didLoadView()
     }
     
     private func setupCollection() {
@@ -57,6 +47,10 @@ final class MovieSeakerView: UIViewController {
         self.navigationItem.titleView = searchBar
     }
 
+    
+}
+
+extension MovieSeakerView: MSViewInputProtocol {
     func setView(with data: MSEntity) {
         self.title = data.viewTitle
         MSMovieCollectionViewCell.setSizeForRow(items: data.itemsForRow)

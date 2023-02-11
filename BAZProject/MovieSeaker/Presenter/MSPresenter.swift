@@ -8,18 +8,18 @@
 import UIKit
 
 final class MSPresenter {
-    private let view: MovieSeakerView
-    private let router: MSRouter
-    private let interactor: MSInteractorProtocol
+    weak var view: MSViewInputProtocol?
+    let interactor: MSInteractorInputProtocol
+    let router: MSRouterProtocol
     
-    init(view: MovieSeakerView, router: MSRouter, interactor: MSInteractorProtocol) {
+    init(view: MSViewInputProtocol?, interactor: MSInteractorInputProtocol, router: MSRouterProtocol) {
         self.view = view
-        self.router = router
         self.interactor = interactor
+        self.router = router
     }
 }
 
-extension MSPresenter: MSEventHandler {
+extension MSPresenter: MSViewOutputProtocol {
     func didLoadView() {
         self.interactor.fetchViewData()
     }
@@ -29,24 +29,20 @@ extension MSPresenter: MSEventHandler {
     }
     
     func didSelect(_ movie: Movie) {
-        self.interactor.check(movie)
+        self.router.goNextViewController(with: movie)
     }
 }
 
-extension MSPresenter: MSOutputProtocol {
+extension MSPresenter: MSInteractorOutputProtocol {
     func setView(with data: MSEntity) {
-        self.view.setView(with: data)
+        self.view?.setView(with: data)
     }
     
     func didReceive(_ movies: [Movie]) {
-        self.view.set(movies: movies)
+        self.view?.set(movies: movies)
     }
     
     func didReceive(_ error: Error) {
-        self.view.show(error)
-    }
-    
-    func goNext(_ viewController: UIViewController) {
-        self.router.goNext(viewController)
+        self.view?.show(error)
     }
 }
