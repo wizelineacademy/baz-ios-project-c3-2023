@@ -9,27 +9,21 @@ import UIKit
 
 final class MovieDetailView: UIViewController {
     
-    weak var eventHandler: MDEventHandler?
+    var output: MDViewOutputProtocol?
     
     @IBOutlet weak var movieTitle: UILabel!
     @IBOutlet weak var movieDescription: UILabel!
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var releaseDate: UILabel!
     
-    init() {
-        super.init(nibName: String(describing: MovieDetailView.self), bundle: .main)
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.eventHandler?.didLoadView()
+        self.output?.didLoadView()
     }
-    
+}
+
+extension MovieDetailView: MDViewInputProtocol {
     func setView(with movie: Movie) {
         self.title = movie.title
         self.movieTitle.text = movie.title
@@ -48,5 +42,4 @@ final class MovieDetailView: UIViewController {
             task.resume()
         }
     }
-
 }

@@ -25,10 +25,7 @@
 		C2AEBBBB299306C6009B3EEE /* MovieCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AEBBBA299306C6009B3EEE /* MovieCategories.swift */; };
 		C2AEBBBF29930AB6009B3EEE /* MovieDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AEBBBD29930AB6009B3EEE /* MovieDetailView.swift */; };
 		C2AEBBC029930AB6009B3EEE /* MovieDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2AEBBBE29930AB6009B3EEE /* MovieDetailView.xib */; };
-		C2AEBBC229930B1C009B3EEE /* MDEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AEBBC129930B1C009B3EEE /* MDEventHandler.swift */; };
 		C2AEBBC429931AE0009B3EEE /* MDInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AEBBC329931AE0009B3EEE /* MDInteractor.swift */; };
-		C2AEBBC629931AF4009B3EEE /* MDInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AEBBC529931AF4009B3EEE /* MDInteractorProtocol.swift */; };
-		C2AEBBC829931B41009B3EEE /* MDOutputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AEBBC729931B41009B3EEE /* MDOutputProtocol.swift */; };
 		C2AEBBCA29931BAC009B3EEE /* MDPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AEBBC929931BAC009B3EEE /* MDPresenter.swift */; };
 		C2AEBBCC29931BFD009B3EEE /* MDRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AEBBCB29931BFD009B3EEE /* MDRouter.swift */; };
 		C2BDDEA929881C5400A02E62 /* MoviesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BDDEA829881C5400A02E62 /* MoviesList.swift */; };
@@ -49,6 +46,7 @@
 		C2D7634B2994074000E5303D /* MovieAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D7634A2994074000E5303D /* MovieAPI.swift */; };
 		C2D9DCE0298C10F200E42D28 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D9DCDF298C10F200E42D28 /* StringExtension.swift */; };
 		C2EFF03A2996ECEE00BD340E /* MovieListProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EFF0392996ECEE00BD340E /* MovieListProtocols.swift */; };
+		C2EFF03C29971E0200BD340E /* MovieDetailProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EFF03B29971E0200BD340E /* MovieDetailProtocols.swift */; };
 		C30893AE28A2F42B004B1860 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30893AD28A2F42B004B1860 /* AppDelegate.swift */; };
 		C30893B028A2F42B004B1860 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30893AF28A2F42B004B1860 /* SceneDelegate.swift */; };
 		C30893B728A2F42D004B1860 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C30893B628A2F42D004B1860 /* Assets.xcassets */; };
@@ -78,10 +76,7 @@
 		C2AEBBBA299306C6009B3EEE /* MovieCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCategories.swift; sourceTree = "<group>"; };
 		C2AEBBBD29930AB6009B3EEE /* MovieDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailView.swift; sourceTree = "<group>"; };
 		C2AEBBBE29930AB6009B3EEE /* MovieDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieDetailView.xib; sourceTree = "<group>"; };
-		C2AEBBC129930B1C009B3EEE /* MDEventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDEventHandler.swift; sourceTree = "<group>"; };
 		C2AEBBC329931AE0009B3EEE /* MDInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDInteractor.swift; sourceTree = "<group>"; };
-		C2AEBBC529931AF4009B3EEE /* MDInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDInteractorProtocol.swift; sourceTree = "<group>"; };
-		C2AEBBC729931B41009B3EEE /* MDOutputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDOutputProtocol.swift; sourceTree = "<group>"; };
 		C2AEBBC929931BAC009B3EEE /* MDPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDPresenter.swift; sourceTree = "<group>"; };
 		C2AEBBCB29931BFD009B3EEE /* MDRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDRouter.swift; sourceTree = "<group>"; };
 		C2BDDEA829881C5400A02E62 /* MoviesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesList.swift; sourceTree = "<group>"; };
@@ -102,6 +97,7 @@
 		C2D7634A2994074000E5303D /* MovieAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAPI.swift; sourceTree = "<group>"; };
 		C2D9DCDF298C10F200E42D28 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		C2EFF0392996ECEE00BD340E /* MovieListProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListProtocols.swift; sourceTree = "<group>"; };
+		C2EFF03B29971E0200BD340E /* MovieDetailProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailProtocols.swift; sourceTree = "<group>"; };
 		C30893AA28A2F42B004B1860 /* BAZProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BAZProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C30893AD28A2F42B004B1860 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C30893AF28A2F42B004B1860 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -248,7 +244,6 @@
 		C2AEBBB42992D6F0009B3EEE /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				C2AEBBC729931B41009B3EEE /* MDOutputProtocol.swift */,
 				C2AEBBC929931BAC009B3EEE /* MDPresenter.swift */,
 			);
 			path = Presenter;
@@ -258,7 +253,6 @@
 			isa = PBXGroup;
 			children = (
 				C2AEBBC329931AE0009B3EEE /* MDInteractor.swift */,
-				C2AEBBC529931AF4009B3EEE /* MDInteractorProtocol.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -266,7 +260,6 @@
 		C2AEBBB72992D715009B3EEE /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C2AEBBC129930B1C009B3EEE /* MDEventHandler.swift */,
 				C2AEBBBD29930AB6009B3EEE /* MovieDetailView.swift */,
 				C2AEBBBE29930AB6009B3EEE /* MovieDetailView.xib */,
 			);
@@ -276,6 +269,7 @@
 		C2AEBBBC299307EE009B3EEE /* MovieDetail */ = {
 			isa = PBXGroup;
 			children = (
+				C2EFF03B29971E0200BD340E /* MovieDetailProtocols.swift */,
 				C2AEBBB72992D715009B3EEE /* View */,
 				C2AEBBB62992D709009B3EEE /* Interactor */,
 				C2AEBBB42992D6F0009B3EEE /* Presenter */,
@@ -485,7 +479,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2D763442993FAA400E5303D /* MSEntity.swift in Sources */,
-				C2AEBBC829931B41009B3EEE /* MDOutputProtocol.swift in Sources */,
 				C2D763402993F94700E5303D /* MSOutputProtocol.swift in Sources */,
 				C2BDDEB229888A0100A02E62 /* MovieTableViewCell.swift in Sources */,
 				C20BECC4299487ED0043E043 /* MSSeakerManager.swift in Sources */,
@@ -501,9 +494,7 @@
 				C2AEBBB12992CC81009B3EEE /* MLTableViewManagement.swift in Sources */,
 				C2BDDEAD298868D600A02E62 /* WSRequestProtocol.swift in Sources */,
 				C30893B028A2F42B004B1860 /* SceneDelegate.swift in Sources */,
-				C2AEBBC229930B1C009B3EEE /* MDEventHandler.swift in Sources */,
 				C2D7634B2994074000E5303D /* MovieAPI.swift in Sources */,
-				C2AEBBC629931AF4009B3EEE /* MDInteractorProtocol.swift in Sources */,
 				C2D763422993FA0B00E5303D /* MSEventHandler.swift in Sources */,
 				C2AEBBCA29931BAC009B3EEE /* MDPresenter.swift in Sources */,
 				C2645588298D7AEF0000CC0B /* MovieListView.swift in Sources */,
@@ -521,6 +512,7 @@
 				C264558F298D7CBB0000CC0B /* MLInteractor.swift in Sources */,
 				C21F9F0D2994162400953C50 /* MSCollectionManager.swift in Sources */,
 				C2AEBBC429931AE0009B3EEE /* MDInteractor.swift in Sources */,
+				C2EFF03C29971E0200BD340E /* MovieDetailProtocols.swift in Sources */,
 				C2D9DCE0298C10F200E42D28 /* StringExtension.swift in Sources */,
 				C2AEBBCC29931BFD009B3EEE /* MDRouter.swift in Sources */,
 				C24A7A21299554550024F5FE /* ImageSize.swift in Sources */,

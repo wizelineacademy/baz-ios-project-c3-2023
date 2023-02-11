@@ -9,25 +9,23 @@ import Foundation
 
 final class MDPresenter {
     
-    private let view: MovieDetailView
-    private let router: MDRouter
-    private let interactor: MDInteractorProtocol
+    weak var view: MDViewInputProtocol?
+    let interactor: MDInteractorInputProtocol
     
-    init(view: MovieDetailView, router: MDRouter, interactor: MDInteractorProtocol) {
+    init(view: MDViewInputProtocol?, interactor: MDInteractorInputProtocol) {
         self.view = view
-        self.router = router
         self.interactor = interactor
     }
 }
 
-extension MDPresenter: MDEventHandler {
+extension MDPresenter: MDViewOutputProtocol {
     func didLoadView() {
         self.interactor.fetchData()
     }
 }
 
-extension MDPresenter: MDOutputProtocol {
-    func find(_ movie: Movie) {
-        self.view.setView(with: movie)
+extension MDPresenter: MDInteractorOutputProtocol {
+    func present(_ movie: Movie) {
+        self.view?.setView(with: movie)
     }
 }

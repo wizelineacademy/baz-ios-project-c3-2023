@@ -8,7 +8,7 @@
 import Foundation
 
 final class MDInteractor {
-    weak var output: MDOutputProtocol?
+    weak var output: MDInteractorOutputProtocol?
     private let movie: Movie
     
     init(movie: Movie) {
@@ -16,8 +16,8 @@ final class MDInteractor {
     }
 }
 
-extension MDInteractor: MDInteractorProtocol {
+extension MDInteractor: MDInteractorInputProtocol {
     func fetchData() {
-        self.output?.find(movie)
+        self.output?.present(movie)
     }
 }
