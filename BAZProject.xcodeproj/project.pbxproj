@@ -16,13 +16,10 @@
 		C24A7A21299554550024F5FE /* ImageSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24A7A20299554550024F5FE /* ImageSize.swift */; };
 		C2645588298D7AEF0000CC0B /* MovieListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2645586298D7AEF0000CC0B /* MovieListView.swift */; };
 		C2645589298D7AEF0000CC0B /* MovieListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2645587298D7AEF0000CC0B /* MovieListView.xib */; };
-		C264558B298D7BE20000CC0B /* MLOutputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C264558A298D7BE20000CC0B /* MLOutputProtocol.swift */; };
 		C264558D298D7BF30000CC0B /* MLPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C264558C298D7BF30000CC0B /* MLPresenter.swift */; };
 		C264558F298D7CBB0000CC0B /* MLInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C264558E298D7CBB0000CC0B /* MLInteractor.swift */; };
-		C2645591298D7CDB0000CC0B /* MLInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2645590298D7CDB0000CC0B /* MLInteractorProtocol.swift */; };
 		C2645593298D7DD90000CC0B /* MLRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2645592298D7DD90000CC0B /* MLRouter.swift */; };
 		C2645595298D7E510000CC0B /* MLProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2645594298D7E510000CC0B /* MLProviderProtocol.swift */; };
-		C2645597298D7EB00000CC0B /* MLEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2645596298D7EB00000CC0B /* MLEventHandler.swift */; };
 		C2A877A52995895A0045EC1B /* MovieListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A877A42995895A0045EC1B /* MovieListDelegate.swift */; };
 		C2AEBBB12992CC81009B3EEE /* MLTableViewManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AEBBB02992CC81009B3EEE /* MLTableViewManagement.swift */; };
 		C2AEBBBB299306C6009B3EEE /* MovieCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AEBBBA299306C6009B3EEE /* MovieCategories.swift */; };
@@ -51,6 +48,7 @@
 		C2D763492993FBD100E5303D /* MSProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D763482993FBD100E5303D /* MSProvider.swift */; };
 		C2D7634B2994074000E5303D /* MovieAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D7634A2994074000E5303D /* MovieAPI.swift */; };
 		C2D9DCE0298C10F200E42D28 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D9DCDF298C10F200E42D28 /* StringExtension.swift */; };
+		C2EFF03A2996ECEE00BD340E /* MovieListProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EFF0392996ECEE00BD340E /* MovieListProtocols.swift */; };
 		C30893AE28A2F42B004B1860 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30893AD28A2F42B004B1860 /* AppDelegate.swift */; };
 		C30893B028A2F42B004B1860 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30893AF28A2F42B004B1860 /* SceneDelegate.swift */; };
 		C30893B728A2F42D004B1860 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C30893B628A2F42D004B1860 /* Assets.xcassets */; };
@@ -71,13 +69,10 @@
 		C24A7A20299554550024F5FE /* ImageSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSize.swift; sourceTree = "<group>"; };
 		C2645586298D7AEF0000CC0B /* MovieListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListView.swift; sourceTree = "<group>"; };
 		C2645587298D7AEF0000CC0B /* MovieListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieListView.xib; sourceTree = "<group>"; };
-		C264558A298D7BE20000CC0B /* MLOutputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLOutputProtocol.swift; sourceTree = "<group>"; };
 		C264558C298D7BF30000CC0B /* MLPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLPresenter.swift; sourceTree = "<group>"; };
 		C264558E298D7CBB0000CC0B /* MLInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLInteractor.swift; sourceTree = "<group>"; };
-		C2645590298D7CDB0000CC0B /* MLInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLInteractorProtocol.swift; sourceTree = "<group>"; };
 		C2645592298D7DD90000CC0B /* MLRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLRouter.swift; sourceTree = "<group>"; };
 		C2645594298D7E510000CC0B /* MLProviderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLProviderProtocol.swift; sourceTree = "<group>"; };
-		C2645596298D7EB00000CC0B /* MLEventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLEventHandler.swift; sourceTree = "<group>"; };
 		C2A877A42995895A0045EC1B /* MovieListDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListDelegate.swift; sourceTree = "<group>"; };
 		C2AEBBB02992CC81009B3EEE /* MLTableViewManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLTableViewManagement.swift; sourceTree = "<group>"; };
 		C2AEBBBA299306C6009B3EEE /* MovieCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCategories.swift; sourceTree = "<group>"; };
@@ -106,6 +101,7 @@
 		C2D763482993FBD100E5303D /* MSProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSProvider.swift; sourceTree = "<group>"; };
 		C2D7634A2994074000E5303D /* MovieAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAPI.swift; sourceTree = "<group>"; };
 		C2D9DCDF298C10F200E42D28 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		C2EFF0392996ECEE00BD340E /* MovieListProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListProtocols.swift; sourceTree = "<group>"; };
 		C30893AA28A2F42B004B1860 /* BAZProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BAZProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C30893AD28A2F42B004B1860 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C30893AF28A2F42B004B1860 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -200,7 +196,6 @@
 		C2645583298D7A7C0000CC0B /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				C264558A298D7BE20000CC0B /* MLOutputProtocol.swift */,
 				C264558C298D7BF30000CC0B /* MLPresenter.swift */,
 			);
 			path = Presenter;
@@ -210,7 +205,6 @@
 			isa = PBXGroup;
 			children = (
 				C264558E298D7CBB0000CC0B /* MLInteractor.swift */,
-				C2645590298D7CDB0000CC0B /* MLInteractorProtocol.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -218,7 +212,6 @@
 		C2645585298D7A9D0000CC0B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C2645596298D7EB00000CC0B /* MLEventHandler.swift */,
 				C2645586298D7AEF0000CC0B /* MovieListView.swift */,
 				C2645587298D7AEF0000CC0B /* MovieListView.xib */,
 				C2AEBBAF2992CB40009B3EEE /* MLTableViewManagement */,
@@ -296,6 +289,7 @@
 			children = (
 				C30893E028A425E1004B1860 /* MovieProvider.swift */,
 				C2645594298D7E510000CC0B /* MLProviderProtocol.swift */,
+				C2EFF0392996ECEE00BD340E /* MovieListProtocols.swift */,
 				C2645585298D7A9D0000CC0B /* View */,
 				C2645584298D7A890000CC0B /* Interactor */,
 				C2645583298D7A7C0000CC0B /* Presenter */,
@@ -497,13 +491,11 @@
 				C20BECC4299487ED0043E043 /* MSSeakerManager.swift in Sources */,
 				C2D763472993FB9F00E5303D /* MSProviderProtocol.swift in Sources */,
 				C2D7633E2993F90E00E5303D /* MSInteractorProtocol.swift in Sources */,
-				C264558B298D7BE20000CC0B /* MLOutputProtocol.swift in Sources */,
 				C30893AE28A2F42B004B1860 /* AppDelegate.swift in Sources */,
 				C2D763492993FBD100E5303D /* MSProvider.swift in Sources */,
 				C2645593298D7DD90000CC0B /* MLRouter.swift in Sources */,
 				C2A877A52995895A0045EC1B /* MovieListDelegate.swift in Sources */,
 				C2645595298D7E510000CC0B /* MLProviderProtocol.swift in Sources */,
-				C2645597298D7EB00000CC0B /* MLEventHandler.swift in Sources */,
 				C2AEBBBF29930AB6009B3EEE /* MovieDetailView.swift in Sources */,
 				C21F9F09299415F500953C50 /* MSMovieCollectionViewCell.swift in Sources */,
 				C2AEBBB12992CC81009B3EEE /* MLTableViewManagement.swift in Sources */,
@@ -518,11 +510,11 @@
 				C22C48F1298303E90017472E /* MovieCategory.swift in Sources */,
 				C2358457298B013F00BCCCEC /* WSError.swift in Sources */,
 				C2D763382993EABC00E5303D /* MSRouter.swift in Sources */,
+				C2EFF03A2996ECEE00BD340E /* MovieListProtocols.swift in Sources */,
 				C2D7633C2993F85C00E5303D /* MSInteractor.swift in Sources */,
 				C264558D298D7BF30000CC0B /* MLPresenter.swift in Sources */,
 				C2BDDEA929881C5400A02E62 /* MoviesList.swift in Sources */,
 				C2AEBBBB299306C6009B3EEE /* MovieCategories.swift in Sources */,
-				C2645591298D7CDB0000CC0B /* MLInteractorProtocol.swift in Sources */,
 				C2D7633A2993ED4700E5303D /* MSPresenter.swift in Sources */,
 				C30893E228A425E1004B1860 /* MovieProvider.swift in Sources */,
 				C2D763352993EA0100E5303D /* MovieSeakerView.swift in Sources */,

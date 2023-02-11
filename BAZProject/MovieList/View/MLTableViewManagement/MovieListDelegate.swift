@@ -9,5 +9,5 @@ import UIKit
 
 protocol MovieListDelegate: UITableViewDataSource, UITableViewDelegate {
     var movies: [Movie] { get set }
-    var eventHandler: MLEventHandler? { get set }
+    var eventHandler: MLViewOutputProtocol? { get }
 }

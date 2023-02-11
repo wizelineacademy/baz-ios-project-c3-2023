@@ -9,13 +9,16 @@ import UIKit
 
 final class MLTableViewManagement: NSObject, MovieListDelegate {
     var movies: [Movie]
-    weak var eventHandler: MLEventHandler?
+    weak var eventHandler: MLViewOutputProtocol?
     
-    init(movies: [Movie] = [], eventHandler: MLEventHandler?) {
+    init(movies: [Movie] = [], eventHandler: MLViewOutputProtocol?) {
         self.movies = movies
         self.eventHandler = eventHandler
     }
-    
+}
+
+// MARK: - Data source management
+extension MLTableViewManagement {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         self.movies.count
     }
@@ -32,9 +35,12 @@ final class MLTableViewManagement: NSObject, MovieListDelegate {
         }
         return cell
     }
-    
+}
+
+// MARK: - Table view delegate
+extension MLTableViewManagement {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let movie = movies[indexPath.row]
-        self.eventHandler?.didSelect(movie: movie)
+        self.eventHandler?.didSelect(movie)
     }
 }

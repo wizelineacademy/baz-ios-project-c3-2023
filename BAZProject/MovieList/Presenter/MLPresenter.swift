@@ -8,41 +8,37 @@
 import UIKit
 
 final class MLPresenter {
-    let interactor: MLInteractorProtocol
-    let view: MovieListView
-    let router: MLRouter
+    weak var view: MLViewInputProtocol?
+    let interactor: MLInteractorInputProtocol
+    let router: MLRouterProtocol
     
-    init(interactor: MLInteractorProtocol, view: MovieListView, router: MLRouter) {
-        self.interactor = interactor
+    init(view: MLViewInputProtocol? = nil, interactor: MLInteractorInputProtocol, router: MLRouterProtocol) {
         self.view = view
+        self.interactor = interactor
         self.router = router
     }
 }
 
-extension MLPresenter: MLEventHandler {
+extension MLPresenter: MLViewOutputProtocol {
     func didLoadView() {
         self.interactor.fetchData()
     }
     
-    func didSelect(movie: Movie) {
-        self.interactor.check(movie: movie)
+    func didSelect(_ movie: Movie) {
+        self.router.goNextViewController(with: movie)
     }
 }
 
-extension MLPresenter: MLOutputProtocol {
+extension MLPresenter: MLInteractorOutputProtocol {
     func set(title: String) {
-        self.view.setTitle(title)
+        self.view?.setTitle(title)
     }
     
     func didFind(movies: [Movie]) {
-        self.view.setMovies(movies)
+        self.view?.setMovies(movies)
     }
     
     func didFind(error: Error) {
-        self.view.show(error)
-    }
-    
-    func goNext(_ viewController: UIViewController) {
-        self.router.goNext(viewController)
+        self.view?.show(error)
     }
 }

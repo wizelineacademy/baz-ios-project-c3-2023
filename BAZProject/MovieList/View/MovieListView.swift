@@ -9,23 +9,15 @@ import UIKit
 
 final class MovieListView: UIViewController {
     
-    weak var eventHandler: MLEventHandler?
+    var presenter: MLViewOutputProtocol?
     var tableViewDelegate: MovieListDelegate?
     
     @IBOutlet weak var movieListTbv: UITableView!
-    
-    init() {
-        super.init(nibName: String(describing: MovieListView.self), bundle: .main)
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTable()
-        eventHandler?.didLoadView()
+        presenter?.didLoadView()
     }
     
     private func setupTable() {
@@ -33,7 +25,9 @@ final class MovieListView: UIViewController {
         self.movieListTbv.delegate = tableViewDelegate
         self.movieListTbv.register(MovieTableViewCell.nib, forCellReuseIdentifier: MovieTableViewCell.identifier)
     }
-    
+}
+
+extension MovieListView: MLViewInputProtocol {
     func setTitle(_ title: String) {
         self.title = title
     }

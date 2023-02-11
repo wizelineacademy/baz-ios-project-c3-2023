@@ -61,17 +61,4 @@ extension MovieProvider: MLProviderProtocol {
             }
         }
     }
-    
-    /**
-     Regresa una instancia de un view controller con los detalles de la película recibida
-     - Parameters:
-        - movie: un objeto Movie con los detalles de dicha pelicula
-     - Returns: regresa una instancia de un view controller con los detalles de la película recibida
-     ````
-     let viewController = self.provider.getNextViewController(for: movie)
-     ````
-     */
-    func getNextViewController(for movie: Movie) -> UIViewController {
-        MDRouter.getEntry(with: movie)
-    }
 }

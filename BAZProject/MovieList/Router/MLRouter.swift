@@ -8,10 +8,10 @@
 import UIKit
 
 final class MLRouter {
-    let view: UIViewController
-    var presenter: MLPresenter?
     
-    init(view: UIViewController) {
+    weak var view: MLViewInputProtocol?
+    
+    init(view: MLViewInputProtocol) {
         self.view = view
     }
     
@@ -20,20 +20,22 @@ final class MLRouter {
         let router = MLRouter(view: view)
         let interactor = MLInteractor(provider: provider)
         let presenter = MLPresenter(
-            interactor: interactor,
             view: view,
+            interactor: interactor,
             router: router
         )
         
-        view.eventHandler = presenter
+        view.presenter = presenter
         view.tableViewDelegate = MLTableViewManagement(eventHandler: presenter)
-        interactor.output = presenter
-        router.presenter = presenter
+        interactor.presenter = presenter
         
         return view
     }
-    
-    func goNext(_ viewController: UIViewController) {
-        self.view.navigationController?.pushViewController(viewController, animated: true)
+}
+
+extension MLRouter: MLRouterProtocol {
+    func goNextViewController(with movie: Movie) {
+        let viewController = MDRouter.getEntry(with: movie)
+        self.view?.navigationController?.pushViewController(viewController, animated: true)
     }
 }
