@@ -7,6 +7,7 @@
 
 import UIKit
 
+//MARK: - Data source management
 extension MovieSeakerView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         movies.count
@@ -25,6 +26,7 @@ extension MovieSeakerView: UICollectionViewDataSource {
     }
 }
 
+//MARK: - Collection view layout management
 extension MovieSeakerView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         MSMovieCollectionViewCell.sizeForRow
@@ -35,6 +37,7 @@ extension MovieSeakerView: UICollectionViewDelegateFlowLayout {
     }
 }
 
+//MARK: - UICollectionViewDelegate
 extension MovieSeakerView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let movie = movies[indexPath.row]

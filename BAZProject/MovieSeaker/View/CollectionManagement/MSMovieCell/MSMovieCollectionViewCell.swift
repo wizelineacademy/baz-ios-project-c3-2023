@@ -16,6 +16,11 @@ class MSMovieCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var movieImage: UIImageView!
 
+    /**
+     Set the cell appearance with the received Movie object
+     - Parameters:
+        - movie: a Movie object
+     */
     func setCell(with movie: Movie) {
         self.movieImage.image = UIImage(named: "poster")
         if let imageURL = movie.getPosterURL(size: .medium) {
@@ -30,9 +35,14 @@ class MSMovieCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    static func setSizeForRow(items: Int) {
+    /**
+     Set a standar size for item
+     - Parameters:
+        - itemsForRow: an integer tha define the number of items per row in the collection view
+     */
+    static func setSizeForItem(itemsForRow: Int) {
         let bounds = UIScreen.main.bounds
-        let itemsForRow: CGFloat = CGFloat(integerLiteral: items)
+        let itemsForRow: CGFloat = CGFloat(integerLiteral: itemsForRow)
         let spaces = itemsForRow + 1
         let width = (bounds.width - (minimumSpace * spaces)) / itemsForRow
         let height = width * 4.5 / 3

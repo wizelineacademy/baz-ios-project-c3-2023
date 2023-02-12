@@ -20,28 +20,54 @@ final class MSPresenter {
 }
 
 extension MSPresenter: MSViewOutputProtocol {
+    /** Call an interactor method to fetch the needed data */
     func didLoadView() {
         self.interactor.fetchViewData()
     }
     
+    /**
+     Call an interactor method to fetch movies by the given text
+     - Parameters:
+        - text: a string wich the search is performed
+     */
     func seakMovies(by text: String?) {
         self.interactor.fetchMovies(by: text)
     }
     
+    /**
+     Call a router method to show the next view controller wuth the given movie
+     - Parameters:
+        - movie: a Movie object
+     */
     func didSelect(_ movie: Movie) {
         self.router.goNextViewController(with: movie)
     }
 }
 
 extension MSPresenter: MSInteractorOutputProtocol {
+    /**
+     Call a view method to set it with the given data
+     - Parameters:
+        - data: a MSEntity object
+     */
     func setView(with data: MSEntity) {
         self.view?.setView(with: data)
     }
     
+    /**
+     Call a view method to set the received movies
+     - Parameters:
+        - movies: a movie array
+     */
     func didReceive(_ movies: [Movie]) {
         self.view?.set(movies: movies)
     }
     
+    /**
+     Call a view method to show the given error
+     - Parameters:
+        - error: an Error object
+     */
     func didReceive(_ error: Error) {
         self.view?.show(error)
     }

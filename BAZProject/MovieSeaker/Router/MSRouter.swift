@@ -15,6 +15,12 @@ final class MSRouter {
         self.view = view
     }
     
+    /**
+     Create each needed component of the movie seaker view controller and connect its references
+     - Parameters:
+        - provider: an object that inherits from the MSProviderProtocol
+     - Returns: a view controller wich you can use to search a movie by any text
+     */
     class func getEntry(with provider: MSProviderProtocol) -> UIViewController {
         let view = MovieSeakerView()
         let router = MSRouter(view: view)
@@ -33,6 +39,7 @@ final class MSRouter {
 }
 
 extension MSRouter: MSRouterProtocol {
+    /** Show the next view controller with the detail of de received movie using the view's navigation controller */
     func goNextViewController(with movie: Movie) {
         let viewController = MDRouter.getEntry(with: movie)
         self.view?.navigationController?.pushViewController(viewController, animated: true)

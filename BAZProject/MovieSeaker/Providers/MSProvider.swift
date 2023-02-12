@@ -8,10 +8,21 @@
 import UIKit
 
 final class MSProvider: WSRequestProtocol, MSProviderProtocol {
+    /**
+     Create an object with the view title and number of items per row
+     - Returns: a MSEntity object
+     */
     func getViewData() -> MSEntity {
         MSEntity(viewTitle: "Buscar", itemsForRow: 3)
     }
     
+    /**
+     Create a URLRequest object with the base url to search a movie by the received string
+     - Parameters:
+        - text: a string used to search a movie
+        - completion: a closure that it's called when the task is completed
+     - Returns: a Result object that, when on success case returns a movie array, otherwise an error object
+     */
     func getMovies(by text: String?, completion: @escaping (Result<[Movie], Error>) -> Void) {
         guard let text = text,
               !text.isEmpty

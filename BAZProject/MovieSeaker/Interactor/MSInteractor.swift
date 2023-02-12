@@ -17,11 +17,17 @@ final class MSInteractor {
 }
 
 extension MSInteractor: MSInteractorInputProtocol {
+    /** Gets the needed data from the provider and call the interactor output method to set the view with the received data */
     func fetchViewData() {
         let data = provider.getViewData()
         self.output?.setView(with: data)
     }
     
+    /**
+     Call the interactor output methods to return the received movies on success case, otherwise return an error
+     - Parameters:
+        - text: a string witch the search is performed with
+     */
     func fetchMovies(by text: String?) {
         provider.getMovies(by: text) { [weak self] result in
             switch result {
