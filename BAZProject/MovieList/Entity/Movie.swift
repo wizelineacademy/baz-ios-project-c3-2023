@@ -34,8 +34,8 @@ struct Movie: Decodable {
         - size: es el tamaño de la imagen su valor por default es 200, los tamaños soportados son 200, 300, 400 y 500 siendo 200 el tamaño más pequeño
      - Returns: regresa la URL construida a partir de la URL base
      */
-    func getPosterURL(with size: Int = 200) -> URL? {
-        self.baseURL?.appendingPathComponent("/w\(size)\(self.posterPath)")
+    func getPosterURL(size: ImageSize = .small) -> URL? {
+        self.baseURL?.appendingPathComponent("/w\(size.rawValue)\(self.posterPath)")
     }
     
     /**
@@ -44,11 +44,11 @@ struct Movie: Decodable {
         - size: es el tamaño de la imagen su valor por default es 200, los tamaños soportados son 200, 300, 400 y 500 siendo 200 el tamaño más pequeño
      - Returns: regresa la URL construida a partir de la URL base
      */
-    func getBackgroundMovieURL(with size: Int = 200) -> URL? {
+    func getBackgroundMovieURL(size: ImageSize = .small) -> URL? {
         guard let backgroundPath = self.backgroundImagePath else {
             return nil
         }
-        return self.baseURL?.appendingPathComponent("/w\(size)\(backgroundPath)")
+        return self.baseURL?.appendingPathComponent("/w\(size.rawValue)\(backgroundPath)")
     }
     
     private var baseURL: URL? {
