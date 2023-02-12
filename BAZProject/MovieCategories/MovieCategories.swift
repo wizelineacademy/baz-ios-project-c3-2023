@@ -8,6 +8,10 @@
 import UIKit
 
 final class MovieCategories {
+    
+    /**
+     Returns a tab bar controller with a list of view controllers, each of them with a different movie category and one more with a movie seaker view controller
+     */
     class func getEntry() -> UIViewController {
         let movieCategories = UITabBarController()
         movieCategories.setViewControllers(self.getViewControllers(), animated: false)
@@ -15,6 +19,9 @@ final class MovieCategories {
         return movieCategories
     }
     
+    /**
+     Returns an array of view controllers, each of them with a different movie category and one more with a movie seaker view controller
+     */
     private class func getViewControllers() -> [UIViewController] {
         let categories: [MovieCategory] = MovieCategory.allCases
         
