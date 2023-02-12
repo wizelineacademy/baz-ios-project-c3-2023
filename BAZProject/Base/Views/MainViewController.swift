@@ -41,7 +41,7 @@ final class MainViewController: UITabBarController {
     
     private func initializeViewControllers() {
         var arrControllers:[UIViewController] = []
-        arrControllers.append(createNavController(for: TrendingViewRouter.createModule(),
+        arrControllers.append(createNavController(for: TrendingRouter.createModule(),
                                                   title: .mainTitleView,
                                                   image: getUIImage(for: .mainNameIconTabBar, type: .systemName)))
         viewControllers = arrControllers

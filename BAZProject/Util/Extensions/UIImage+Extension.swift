@@ -8,52 +8,59 @@
 import UIKit
 
 extension UIImageView {
-
-    func loadImage(id: String) {
+    typealias ResponseProvider = Result<Data, Error>
     
-        let cache: NSCache = NSCache<NSString, UIImage>()
-
+    func loadImage(id stringUrl: String) {
         self.addSkeletonAnimation()
         image = UIImage()
-        let defaultImage = UIImage(named: LocalizedConstants.uiImageNameDefaultImage)
-        let strUrl: String = id
-        if let img = cache.object(forKey: NSString(string: strUrl)) {
+        if let imageCache = getImageFromCache(strUrl: stringUrl) {
             self.removeSkeletonAnimation()
-            image = img
+            image = imageCache
             return
         }
         
-        guard let url = URL(string: strUrl) else {
-            self.removeSkeletonAnimation()
-            image = defaultImage
+        guard URL(string: stringUrl) != nil else {
+            self.addDefaultImage()
             return
         }
         
-        URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
-            if error != nil {
-                self?.removeSkeletonAnimation()
-                self?.image = defaultImage
-            } else {
-                self?.guaranteeMainThread {
-                    self?.removeSkeletonAnimation()
-                    guard let data = data,
-                          let tempImg = UIImage(data: data) else { return }
-                    self?.alpha = LocalizedConstants.uiImageAlpha
-                    self?.image = tempImg
-                    UIView.animate(withDuration: LocalizedConstants.uiImageAnimateDuration) {
-                        self?.alpha = LocalizedConstants.uiImageAlphaOnAnimate
-                    }
-                    cache.setObject(tempImg, forKey: NSString(string: strUrl))
-                }
-            }
-        }.resume()
+        getImage(strUrl: stringUrl)
     }
     
-    private func guaranteeMainThread(_ work: @escaping () -> Void) {
-        if Thread.isMainThread {
-            work()
-        } else {
-            DispatchQueue.main.async(execute: work)
+    func addAnimation(_ tempImg: UIImage) {
+        guaranteeMainThread {
+            self.alpha = LocalizedConstants.uiImageAlpha
+            self.image = tempImg
+            UIView.animate(withDuration: LocalizedConstants.uiImageAnimateDuration) {
+                self.alpha = LocalizedConstants.uiImageAlphaOnAnimate
+            }
+        }
+    }
+    
+    // MARK: - Private methods
+    private func getImage(strUrl: String) {
+        let providerNetworking: NetworkingProviderProtocol = NetworkingProviderService(session: URLSession.shared)
+        providerNetworking.sendRequest(RequestType(strUrl: strUrl, method: .GET).getRequest()) { [weak self] (result: ResponseProvider) in
+            self?.handleResponse(result, strUrl: strUrl)
+        }
+    }
+    
+    private func addDefaultImage() {
+        guaranteeMainThread {
+            self.removeSkeletonAnimation()
+            self.image = UIImage(named: LocalizedConstants.uiImageNameDefaultImage)
+        }
+    }
+    
+    private func handleResponse(_ response: ResponseProvider, strUrl: String) {
+        self.removeSkeletonAnimation()
+        switch response {
+        case .success(let data):
+            guard let tempImg = UIImage(data: data) else { return }
+            self.addAnimation(tempImg)
+            self.saveImageInCache(id: strUrl, image: tempImg)
+        case .failure:
+            self.addDefaultImage()
         }
     }
 }

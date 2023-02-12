@@ -6,7 +6,7 @@
 
 import UIKit
 
-class TrendingViewController: UIViewController, TrendingViewProtocol {
+final class TrendingViewController: UIViewController, TrendingViewProtocol {
 
     @IBOutlet weak var moviesTableView: UITableView!
     
@@ -31,7 +31,11 @@ class TrendingViewController: UIViewController, TrendingViewProtocol {
             getData()
         }
     }
-    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        stopLoading()
+    }
+
     func updateView(data: [MovieResult]) {
         movies = data
         guaranteeMainThread {
@@ -56,6 +60,6 @@ class TrendingViewController: UIViewController, TrendingViewProtocol {
     // MARK: - Private methods
     private func getData() {
         view.showLoader()
-        presenter?.getTrendingMedia(mediaType: mediaType, timeWindow: .day)
+        presenter?.willFetchTrendingMedia(mediaType: mediaType, timeWindow: .day)
     }
 }
