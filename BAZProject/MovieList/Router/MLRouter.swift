@@ -16,9 +16,10 @@ final class MLRouter {
     }
     
     /**
-     Return an instance of the view that contains the list of movies with the received provider
+     Create each needed component of the movie list view controller and connect its references
      - Parameters:
         - provider: an object that inherits from the MLProviderProtocol
+     - Returns: a view controller that contains the list of movies with the received provider
      */
     class func getEntry(with provider: MLProviderProtocol) -> UIViewController {
         let view = MovieListView()

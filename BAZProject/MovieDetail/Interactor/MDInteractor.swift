@@ -17,6 +17,7 @@ final class MDInteractor {
 }
 
 extension MDInteractor: MDInteractorInputProtocol {
+    /** Call the interactor output method to present the received movie */
     func fetchData() {
         self.output?.present(movie)
     }

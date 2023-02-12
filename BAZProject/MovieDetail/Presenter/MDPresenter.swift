@@ -19,12 +19,18 @@ final class MDPresenter {
 }
 
 extension MDPresenter: MDViewOutputProtocol {
+    /** Call a interactor method to fetch the needed data */
     func didLoadView() {
         self.interactor.fetchData()
     }
 }
 
 extension MDPresenter: MDInteractorOutputProtocol {
+    /**
+     Call a view method to configure the view with the received movie
+     - Parameters:
+        - movie: a Movie object
+     */
     func present(_ movie: Movie) {
         self.view?.setView(with: movie)
     }

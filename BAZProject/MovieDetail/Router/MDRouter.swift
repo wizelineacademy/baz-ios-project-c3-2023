@@ -9,6 +9,12 @@ import UIKit
 
 final class MDRouter {
     
+    /**
+     Create each needed component of the movie detail view controller and connect its references
+     - Parameters:
+        - movie: a Movie object
+     - Returns: a view controller with the detail of the received movie object
+     */
     class func getEntry(with movie: Movie) -> UIViewController {
         let view = MovieDetailView()
         let interactor = MDInteractor(movie: movie)

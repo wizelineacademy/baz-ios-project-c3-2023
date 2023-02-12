@@ -16,6 +16,7 @@ final class MovieDetailView: UIViewController {
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var releaseDate: UILabel!
     
+    //MARK: - Lifecycle management
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,6 +25,11 @@ final class MovieDetailView: UIViewController {
 }
 
 extension MovieDetailView: MDViewInputProtocol {
+    /**
+     Configure the complete view que received Movie object
+     - Parameters:
+        - movie: a Movie object
+     */
     func setView(with movie: Movie) {
         self.title = movie.title
         self.movieTitle.text = movie.title
