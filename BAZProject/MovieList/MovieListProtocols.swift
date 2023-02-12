@@ -7,13 +7,13 @@
 
 import UIKit
 
-protocol MLPresenterProtocol: AnyObject {
+protocol MLPresenterProtocol {
     var view: MLViewInputProtocol? { get }
     var interactor: MLInteractorInputProtocol { get }
     var router: MLRouterProtocol { get }
 }
 
-protocol MLViewOutputProtocol: MLPresenterProtocol {
+protocol MLViewOutputProtocol: AnyObject {
     func didLoadView()
     func didSelect(_ movie: Movie)
 }

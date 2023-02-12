@@ -17,6 +17,11 @@ final class MovieTableViewCell: UITableViewCell {
     @IBOutlet weak var language: UILabel!
     @IBOutlet weak var posterImage: UIImageView!
 
+    /**
+     Configures the cell apearance with the received object
+     - Parameters:
+        - movie: a Movie object 
+     */
     func setCell(with movie: Movie) {
         title.text = movie.title
         releaseDate.text = "Lazamiento: \(movie.releaseDate ?? "")"

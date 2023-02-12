@@ -17,6 +17,7 @@ final class MLInteractor {
 }
 
 extension MLInteractor: MLInteractorInputProtocol {
+    /** Calls interactor output methods to configure the view title with the received string and get the movies from the provider methods */
     func fetchData() {
         self.output?.set(title: provider.viewTitle)
         self.provider.getMovies { [weak self] result in

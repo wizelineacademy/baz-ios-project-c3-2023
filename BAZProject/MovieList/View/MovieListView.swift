@@ -14,12 +14,15 @@ final class MovieListView: UIViewController {
     
     @IBOutlet weak var movieListTbv: UITableView!
 
+    //MARK: - Lifecycle management
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTable()
         output?.didLoadView()
     }
     
+    //MARK: - Settings methods
+    /** Configures the table view that shows a list of movies */
     private func setupTable() {
         self.movieListTbv.dataSource = tableViewDelegate
         self.movieListTbv.delegate = tableViewDelegate
@@ -27,16 +30,32 @@ final class MovieListView: UIViewController {
     }
 }
 
+//MARK: - Input methods implementation
 extension MovieListView: MLViewInputProtocol {
+    /**
+     Sets the view title in its navigation bar component
+     - Parameters:
+        - title: a string tha have name of the view
+     */
     func setTitle(_ title: String) {
         self.title = title
     }
     
+    /**
+     Sets the list of received movies the needs to display
+     - Parameters:
+        - movies: a Movie array
+     */
     func setMovies(_ movies: [Movie]) {
         self.tableViewDelegate?.movies = movies
         self.movieListTbv.reloadData()
     }
     
+    /**
+     Show the received error in an alert components
+     - Parameters:
+        - error: an Error object
+     */
     func show(_ error: Error) {
         let alert = UIAlertController(title: "Movies", message: error.localizedDescription, preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "Aceptar", style: .default)

@@ -15,6 +15,11 @@ final class MLRouter {
         self.view = view
     }
     
+    /**
+     Return an instance of the view that contains the list of movies with the received provider
+     - Parameters:
+        - provider: an object that inherits from the MLProviderProtocol
+     */
     class func getEntry(with provider: MLProviderProtocol) -> UIViewController {
         let view = MovieListView()
         let router = MLRouter(view: view)
@@ -34,6 +39,9 @@ final class MLRouter {
 }
 
 extension MLRouter: MLRouterProtocol {
+    /**
+     Show the next view controller with the detail of de received movie using the view's navigation controller
+     */
     func goNextViewController(with movie: Movie) {
         let viewController = MDRouter.getEntry(with: movie)
         self.view?.navigationController?.pushViewController(viewController, animated: true)
