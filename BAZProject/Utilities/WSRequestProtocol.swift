@@ -8,8 +8,8 @@
 import Foundation
 
 protocol WSRequestProtocol: AnyObject {
-    func fetch(request: URLRequest?, completion: @escaping (Result<Data, Error>) -> Void)
-    func decodeJson<Response: Decodable>(from data: Data, decoder: JSONDecoder) throws -> Response
+    func fetch<Response: Decodable>(request: URLRequest?, completion: @escaping (Result<Response, Error>) -> Void)
+    func decodeJson<Response: Decodable>(from data: Data, decoder: JSONDecoder, completion: (Result<Response, Error>) -> Void)
 }
 
 extension WSRequestProtocol {
@@ -34,13 +34,13 @@ extension WSRequestProtocol {
      }
      ````
      */
-    func fetch(request: URLRequest?, completion: @escaping (Result<Data, Error>) -> Void) {
+    func fetch<Response: Decodable>(request: URLRequest?, completion: @escaping (Result<Response, Error>) -> Void) {
         guard let request = request else {
             return completion(.failure(WSError.invalidRequest))
         }
 
         DispatchQueue.global(qos: .utility).async {
-            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            let task = URLSession.shared.dataTask(with: request) { [weak self] (data, response, error) in
                 DispatchQueue.main.async {
                     if let error = error {
                         return completion(.failure(error))
@@ -50,8 +50,7 @@ extension WSRequestProtocol {
                        let data = data {
                         switch httpResponse.statusCode {
                         case 200...299:
-                            return completion(.success(data)
-                            )
+                            self?.decodeJson(from: data, completion: completion)
                         default:
                             return completion(.failure(WSError.nullResponse))
                         }
@@ -69,21 +68,17 @@ extension WSRequestProtocol {
      - Parameters:
         - data: un objeto tipo Data
         - decoder: un objeto tipo JSONDecoder
-     - Returns: regresa un objeto del tipo especificado, en caso de error propaga el error correspondiente
+     - Returns: regresa un objeto del tipo Result, donde el caso de exito regresa el dato esperado y en caso contrario regresa un error
      ````
-     do {
-         let response: MoviesList = try decodeJson(from: data)
-     } catch let error {
-         ... your code on error
-     }
+     self.decodeJson(from: data, completion: (Result<MovieList, Error>) -> Void)
      ````
      */
-    func decodeJson<Response: Decodable>(from data: Data, decoder: JSONDecoder = JSONDecoder()) throws -> Response {
+    func decodeJson<Response: Decodable>(from data: Data, decoder: JSONDecoder = JSONDecoder(), completion: (Result<Response, Error>) -> Void) {
         do {
             let response = try decoder.decode(Response.self, from: data)
-            return response
+            completion(.success(response))
         } catch let error {
-            throw error
+            completion(.failure(error))
         }
     }
 }
