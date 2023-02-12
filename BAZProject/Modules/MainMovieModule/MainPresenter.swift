@@ -14,12 +14,12 @@ class MainPresenter {
 
 extension MainPresenter: MainPresenterProtocol {
     func goToMovieDetail(data: Result) {
-        guard let view = view as? UIViewController else {return}
+        guard let view = view as? UIViewController else { return }
         MovieDetailRouter().presentView(from: view, data: data)
     }
     
     func goToSearchMovieView() {
-        guard let view = view as? UIViewController else {return}
+        guard let view = view as? UIViewController else { return }
         SearchMovieRouter().presentView(from: view)
     }
     

@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="f6X-M8-7jA">
-                                        <rect key="frame" x="0.0" y="0.0" width="430" height="1628"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="430" height="1788"/>
                                         <subviews>
                                             <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="fDU-YN-Lor">
                                                 <rect key="frame" x="0.0" y="0.0" width="430" height="550"/>
@@ -64,7 +64,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="70J-MO-dO9">
-                                                <rect key="frame" x="0.0" y="550" width="430" height="160"/>
+                                                <rect key="frame" x="0.0" y="550" width="430" height="320"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Review:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eqH-6e-2Dh">
                                                         <rect key="frame" x="16" y="8.0000000000000018" width="65.333333333333329" height="21.666666666666671"/>
@@ -73,7 +73,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="seu-t4-aVQ">
-                                                        <rect key="frame" x="4" y="34" width="422" height="122"/>
+                                                        <rect key="frame" x="4" y="34" width="422" height="282"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                         <color key="textColor" systemColor="labelColor"/>
@@ -85,55 +85,36 @@
                                                 <constraints>
                                                     <constraint firstItem="eqH-6e-2Dh" firstAttribute="leading" secondItem="70J-MO-dO9" secondAttribute="leading" constant="16" id="CBf-Oq-aSK"/>
                                                     <constraint firstItem="eqH-6e-2Dh" firstAttribute="top" secondItem="70J-MO-dO9" secondAttribute="top" constant="8" id="O7g-25-pHU"/>
-                                                    <constraint firstAttribute="height" constant="160" id="X9o-lu-eYg"/>
+                                                    <constraint firstAttribute="height" constant="320" id="X9o-lu-eYg"/>
                                                     <constraint firstItem="seu-t4-aVQ" firstAttribute="leading" secondItem="70J-MO-dO9" secondAttribute="leading" constant="4" id="iO1-j5-8cp"/>
                                                     <constraint firstItem="seu-t4-aVQ" firstAttribute="top" secondItem="eqH-6e-2Dh" secondAttribute="top" constant="26" id="jDJ-R8-v4z"/>
                                                     <constraint firstAttribute="trailing" secondItem="seu-t4-aVQ" secondAttribute="trailing" constant="4" id="qEq-FW-lYq"/>
                                                     <constraint firstAttribute="bottom" secondItem="seu-t4-aVQ" secondAttribute="bottom" constant="4" id="snC-yV-9ZG"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vrv-QV-lEN">
-                                                <rect key="frame" x="0.0" y="710" width="430" height="238"/>
-                                                <subviews>
-                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="avr-a5-TEz">
-                                                        <rect key="frame" x="0.0" y="34" width="430" height="204"/>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="204" id="oUF-je-XnU"/>
-                                                        </constraints>
-                                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="XhQ-Nn-rRC">
-                                                            <size key="itemSize" width="128" height="128"/>
-                                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                        </collectionViewFlowLayout>
-                                                        <cells/>
-                                                    </collectionView>
-                                                </subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vrv-QV-lEN" customClass="GenericCollectionDataView" customModule="BAZProject" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="870" width="430" height="238"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="238" id="LMz-tm-Qf6"/>
-                                                    <constraint firstAttribute="trailing" secondItem="avr-a5-TEz" secondAttribute="trailing" id="QTU-i5-aFA"/>
-                                                    <constraint firstItem="avr-a5-TEz" firstAttribute="leading" secondItem="Vrv-QV-lEN" secondAttribute="leading" id="ZJo-An-4PT"/>
-                                                    <constraint firstAttribute="bottom" secondItem="avr-a5-TEz" secondAttribute="bottom" id="dAu-9q-MQf"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="htU-qr-Wov">
-                                                <rect key="frame" x="0.0" y="948" width="430" height="238"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="htU-qr-Wov" customClass="GenericCollectionDataView" customModule="BAZProject" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="1108" width="430" height="238"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="238" id="ztM-Ld-j7o"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jqY-aF-l5b">
-                                                <rect key="frame" x="0.0" y="1186" width="430" height="238"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jqY-aF-l5b" customClass="GenericCollectionDataView" customModule="BAZProject" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="1346" width="430" height="238"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="238" id="Dz8-x8-Xtn"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PjM-nG-nMh">
-                                                <rect key="frame" x="0.0" y="1424" width="430" height="204"/>
+                                                <rect key="frame" x="0.0" y="1584" width="430" height="204"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="204" id="5MO-Bl-1CZ"/>
@@ -162,8 +143,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="castView" destination="Vrv-QV-lEN" id="c9u-cx-wAm"/>
                         <outlet property="overviewTextView" destination="seu-t4-aVQ" id="naw-oA-nV7"/>
                         <outlet property="poster" destination="CHX-Dq-V7W" id="eT0-V2-GJo"/>
+                        <outlet property="recomendedMovie" destination="jqY-aF-l5b" id="cdF-Oo-gkJ"/>
+                        <outlet property="similarMoviesView" destination="htU-qr-Wov" id="uLh-FU-mMJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

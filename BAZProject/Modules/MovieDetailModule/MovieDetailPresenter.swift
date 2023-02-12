@@ -5,7 +5,7 @@
 //  Created by Leobardo Gama Muñoz on 02/02/23.
 //
 
-import Foundation
+import UIKit
 
 class MovieDetailPresenter: MovieDetailInteractorOutputProtocol {
     var view: MovieDetailViewProtocol?
@@ -18,12 +18,12 @@ extension MovieDetailPresenter: MovieDetailPresenterProtocol {
     }
     
     func getUI() {
-        if let data = interceptor?.data, let image = data.posterPath {
+        if let data = interceptor?.data, let image = data.posterPath, let overviewTextView =  view?.overviewTextView {
             MovieAPI.getImage(from: image , handler: { image in
                 self.view?.poster.image = image
             })
-            view?.overviewTextView.text = data.overview
-            view?.overviewTextView.isScrollEnabled = false
+            overviewTextView.text = data.overview
         }
     }
+
 }
