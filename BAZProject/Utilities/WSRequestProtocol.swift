@@ -68,13 +68,9 @@ extension WSRequestProtocol {
      - Parameters:
         - data: un objeto tipo Data
         - decoder: un objeto tipo JSONDecoder
-     - Returns: regresa un objeto del tipo especificado, en caso de error propaga el error correspondiente
+     - Returns: regresa un objeto del tipo Result, donde el caso de exito regresa el dato esperado y en caso contrario regresa un error
      ````
-     do {
-         let response: MoviesList = try decodeJson(from: data)
-     } catch let error {
-         ... your code on error
-     }
+     self.decodeJson(from: data, completion: (Result<MovieList, Error>) -> Void)
      ````
      */
     func decodeJson<Response: Decodable>(from data: Data, decoder: JSONDecoder = JSONDecoder(), completion: (Result<Response, Error>) -> Void) {

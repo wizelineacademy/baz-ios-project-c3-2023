@@ -49,7 +49,7 @@ enum MovieCategory: CaseIterable {
      Regresa la URL del end point correspondiente a cada categoria
      - Parameters:
         - page: un entero que representa la página del listado de peliculas
-     - Returns: la URL correspondiente al end point construida a partir de la URL base, tiene como atributos la pagina, el api key y el idioma, siendo estos ultimos valores constantes
+     - Returns: la URL correspondiente al end point construida a partir de la URL base
      */
     func getEndPoint(for page: Int) -> URL? {
         switch self {

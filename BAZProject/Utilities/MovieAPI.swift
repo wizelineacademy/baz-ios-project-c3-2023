@@ -9,7 +9,16 @@ import Foundation
 
 struct MovieAPI {
     
-    /** Regresa la URL base de The MovieDB API */
+    /**
+     Regresa la URL base de The MovieDB API
+     
+     La URL contiene como atributos predefinidos el api_key, page y language, sin embargo con query items se pueden incluir mas atributos
+     
+     - Parameters:
+        - page: un entero que indica el número de pagina
+        - queryItems: un diccionario donde cada elemento se transforma en un objeto URLQueryItem y es usado como atributo de la URL retornada
+     - Returns: regresa un objeto de tipo URL
+     */
     static func getBaseURL(for page: Int = 1, queryItems: [String: String] = [:]) -> URL? {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
