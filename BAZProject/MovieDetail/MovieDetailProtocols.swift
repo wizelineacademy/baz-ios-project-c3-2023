@@ -19,7 +19,7 @@ protocol MDViewOutputProtocol: MDPresenterProtocol {
 protocol MDViewInputProtocol: AnyObject {
     var output: MDViewOutputProtocol? { get set }
     
-    func setView(with movie: Movie)
+    func setupView(with movie: Movie)
 }
 
 protocol MDInteractorInputProtocol {
