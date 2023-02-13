@@ -7,6 +7,7 @@
 import UIKit
 
 public enum URLApi: Hashable {
+    
     private var apiKey: String { "f6cd5c1a9e6c6b965fdcab0fa6ddd38a" }
     private var urlBase: String { "https://api.themoviedb.org/3" }
     

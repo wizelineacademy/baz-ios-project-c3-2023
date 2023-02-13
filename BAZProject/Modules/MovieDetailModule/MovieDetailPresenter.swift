@@ -33,5 +33,14 @@ extension MovieDetailPresenter: MovieDetailPresenterProtocol {
             overviewTextView.text = data.overview
         }
     }
+    
+    func getMoviesData(from api: URLApi){
+        
+    }
+    
+    
+    func reloadData() {
+        
+    }
 
 }

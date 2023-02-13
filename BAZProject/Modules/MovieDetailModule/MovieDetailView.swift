@@ -24,6 +24,12 @@ class MovieDetailView: UIViewController, MovieDetailViewProtocol {
     @IBAction func closeScreen() {
         dismiss(animated: true)
     }
+    
+    func reloadData(){
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.reloadData()
+        }
+    }
 }
 
 extension MovieDetailView: UITableViewDelegate, UITableViewDataSource {
@@ -34,7 +40,11 @@ extension MovieDetailView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if let title = presenter?.interactor?.movieApiData.getArrayDataMovie {
-            debugPrint("")
+            switch section {
+            case 0:
+                presenter?.getMoviesData(from: title[.creditMovie(movieId: "0")])
+            default: debugPrint("value not Found")
+            }
         }
         return ""
     }
