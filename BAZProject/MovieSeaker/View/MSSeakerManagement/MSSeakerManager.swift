@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension MovieSeakerView: UISearchBarDelegate {
+extension MovieSearchView: UISearchBarDelegate {
     /** Hide the keyboard  and restore the current search */
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.searchBar.resignFirstResponder()
@@ -16,7 +16,7 @@ extension MovieSeakerView: UISearchBarDelegate {
     
     /** Call the output seakMovies method with the received text */
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.output?.seakMovies(by: searchText)
+        self.output?.searchMovies(by: searchText)
     }
     
     /** Hide the keyboard */
