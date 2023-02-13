@@ -15,7 +15,7 @@ protocol MSPresenterProtocol {
 
 protocol MSViewOutputProtocol: MSPresenterProtocol {
     func didLoadView()
-    func seakMovies(by text: String?)
+    func searchMovies(by text: String?)
     func didSelect(_ movie: Movie)
 }
 
