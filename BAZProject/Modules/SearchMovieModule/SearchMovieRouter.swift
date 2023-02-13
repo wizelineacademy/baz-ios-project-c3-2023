@@ -26,7 +26,7 @@ class SearchMovieRouter: RouterProtocols {
         return UIViewController()
     }
     
-    static var SearchStoryboard: UIStoryboard{
+    static var SearchStoryboard: UIStoryboard {
         return UIStoryboard(name: "SearchMovie", bundle: Bundle.main)
     }
 }

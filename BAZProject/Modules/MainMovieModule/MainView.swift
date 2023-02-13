@@ -59,15 +59,19 @@ extension MainView: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: MoviesTableViewCell.reusableIdentifier) as? MoviesTableViewCell {
+            
             if let dataMovies = presenter?.interactor?.movieApiData.getDataMovies as? Movies,
                let image = dataMovies.results[indexPath.row].posterPath {
+                
                 cell.movieImage.image = UIImage(named: "poster")
                 cell.movieTitle.text = dataMovies.results[indexPath.row].title
+                
                 MovieAPI.getImage(from:  image, handler: { imagen in
                     DispatchQueue.main.async {
                         cell.movieImage.image = imagen
                     }
                 })
+                
                 return cell
             }
         }
@@ -75,7 +79,7 @@ extension MainView: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let dataMovies = presenter?.interactor?.movieApiData.getDataMovies as? Movies{
+        if let dataMovies = presenter?.interactor?.movieApiData.getDataMovies as? Movies {
             presenter?.goToMovieDetail(data: dataMovies.results[indexPath.row])
         }
     }

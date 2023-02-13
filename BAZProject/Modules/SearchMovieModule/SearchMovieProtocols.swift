@@ -27,8 +27,8 @@ protocol SearchMoviePresenterProtocol: AnyObject {
 
 protocol SearchMovieInterceptorInputProtocol: AnyObject {
     // Presenter -> Interceptor
-    var presenter: SearchMovieInterceptorOutputProtocol? {get set}
-    var movieApiData: DataHelper {get set}
+    var presenter: SearchMovieInterceptorOutputProtocol? { get set }
+    var movieApiData: DataHelper { get set }
     
     func getKeywordSearch(keyword: String)
 }
