@@ -7,6 +7,7 @@
 
 import Foundation
 
-class DataHelper {
+struct DataHelper {
     public var getDataMovies: Codable?
+    public var getArrayDataMovie: [URLApi: Codable?]?
 }

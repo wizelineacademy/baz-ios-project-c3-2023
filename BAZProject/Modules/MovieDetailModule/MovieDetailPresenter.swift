@@ -8,17 +8,25 @@
 import UIKit
 
 class MovieDetailPresenter: MovieDetailInteractorOutputProtocol {
-    var view: MovieDetailViewProtocol?
-    var interceptor: MovieDetailInterceptorInputProtocol?
+    weak var view: MovieDetailViewProtocol?
+    var interactor: MovieDetailInterceptorInputProtocol?
 }
 
 extension MovieDetailPresenter: MovieDetailPresenterProtocol {
     func viewDidLoad() {
+        if let idMovie = interactor?.data?.id {
+            interactor?.movieApiData.getArrayDataMovie = [
+                                                            .creditMovie(movieId: "\(idMovie)"): nil,
+                                                            .similar(movieId: "\(idMovie)"): nil,
+                                                            .recommendations(movieId: "\(idMovie)"): nil,
+                                                            .reviews(movieId: "\(idMovie)"): nil
+                                                            ]
+        } else { debugPrint("idMovie not found") }
         getUI()
     }
     
     func getUI() {
-        if let data = interceptor?.data, let image = data.posterPath, let overviewTextView =  view?.overviewTextView {
+        if let data = interactor?.data, let image = data.posterPath, let overviewTextView =  view?.overviewTextView {
             MovieAPI.getImage(from: image , handler: { image in
                 self.view?.poster.image = image
             })

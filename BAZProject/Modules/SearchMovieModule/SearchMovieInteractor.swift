@@ -8,7 +8,7 @@
 import UIKit
 
 class SearchMovieInteractor: SearchMovieInterceptorInputProtocol {
-    var presenter: SearchMovieInterceptorOutputProtocol?
+    weak var presenter: SearchMovieInterceptorOutputProtocol?
     var movieApiData: DataHelper = DataHelper()
     
     func getKeywordSearch(keyword: String) {

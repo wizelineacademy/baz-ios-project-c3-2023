@@ -8,7 +8,7 @@
 import Foundation
 
 final class MainInteractor: MainInteractorInputProtocol {
-    var presenter: MainInteractorOutputProtocol?
+    weak var presenter: MainInteractorOutputProtocol?
     var movieApiData: DataHelper = DataHelper()
     
     func getMoviesData(from api:URLApi) {

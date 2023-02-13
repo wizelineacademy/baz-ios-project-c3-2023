@@ -17,7 +17,7 @@ protocol MovieDetailViewProtocol: AnyObject {
 protocol MovieDetailPresenterProtocol: AnyObject {
     // View -> Presenter
     var view: MovieDetailViewProtocol? { get set }
-    var interceptor: MovieDetailInterceptorInputProtocol? { get set }
+    var interactor: MovieDetailInterceptorInputProtocol? { get set }
     
     func viewDidLoad()
 }

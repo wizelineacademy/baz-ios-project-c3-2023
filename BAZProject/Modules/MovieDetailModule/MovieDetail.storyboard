@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="f6X-M8-7jA">
-                                        <rect key="frame" x="0.0" y="0.0" width="430" height="1788"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="430" height="1374"/>
                                         <subviews>
                                             <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="fDU-YN-Lor">
                                                 <rect key="frame" x="0.0" y="0.0" width="430" height="550"/>
@@ -92,34 +92,20 @@
                                                     <constraint firstAttribute="bottom" secondItem="seu-t4-aVQ" secondAttribute="bottom" constant="4" id="snC-yV-9ZG"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vrv-QV-lEN" customClass="GenericCollectionDataView" customModule="BAZProject" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="870" width="430" height="238"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="238" id="LMz-tm-Qf6"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="htU-qr-Wov" customClass="GenericCollectionDataView" customModule="BAZProject" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="1108" width="430" height="238"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="238" id="ztM-Ld-j7o"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jqY-aF-l5b" customClass="GenericCollectionDataView" customModule="BAZProject" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="1346" width="430" height="238"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="238" id="Dz8-x8-Xtn"/>
-                                                </constraints>
-                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PjM-nG-nMh">
-                                                <rect key="frame" x="0.0" y="1584" width="430" height="204"/>
+                                                <rect key="frame" x="0.0" y="870" width="430" height="204"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="204" id="5MO-Bl-1CZ"/>
                                                 </constraints>
                                             </view>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="YEA-sG-3c8">
+                                                <rect key="frame" x="0.0" y="1074" width="430" height="300"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="300" id="uKd-Qn-B3L"/>
+                                                </constraints>
+                                            </tableView>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -143,11 +129,9 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="castView" destination="Vrv-QV-lEN" id="c9u-cx-wAm"/>
                         <outlet property="overviewTextView" destination="seu-t4-aVQ" id="naw-oA-nV7"/>
                         <outlet property="poster" destination="CHX-Dq-V7W" id="eT0-V2-GJo"/>
-                        <outlet property="recomendedMovie" destination="jqY-aF-l5b" id="cdF-Oo-gkJ"/>
-                        <outlet property="similarMoviesView" destination="htU-qr-Wov" id="uLh-FU-mMJ"/>
+                        <outlet property="tableView" destination="YEA-sG-3c8" id="GUo-ua-wk5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -8,7 +8,7 @@
 import UIKit
 
 class SearchMoviePresenter {
-    var view: SearchMovieViewProtocol?
+    weak var view: SearchMovieViewProtocol?
     var interceptor: SearchMovieInterceptorInputProtocol?
 }
 

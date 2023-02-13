@@ -10,21 +10,36 @@ import UIKit
 class MovieDetailView: UIViewController, MovieDetailViewProtocol {
     @IBOutlet weak var poster: UIImageView!
     @IBOutlet weak var overviewTextView: UITextView!
-    @IBOutlet weak var castView: GenericCollectionDataView!
-    @IBOutlet weak var similarMoviesView: GenericCollectionDataView!
-    @IBOutlet weak var recomendedMovie: GenericCollectionDataView!
+    @IBOutlet weak var tableView: UITableView!
     
     var presenter: MovieDetailPresenterProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.viewDidLoad()
-        castView.label.text = "Reparto:"
-        similarMoviesView.label.text = "Peliculas similares:"
-        recomendedMovie.label.text = "Peliculas recomendadas:"
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
     @IBAction func closeScreen() {
         dismiss(animated: true)
+    }
+}
+
+extension MovieDetailView: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let rows = presenter?.interactor?.movieApiData.getArrayDataMovie?.count else { return 0 }
+        return rows
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if let title = presenter?.interactor?.movieApiData.getArrayDataMovie {
+            debugPrint("")
+        }
+        return ""
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
     }
 }

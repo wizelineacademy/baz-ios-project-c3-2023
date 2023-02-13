@@ -8,7 +8,7 @@
 import UIKit
 
 class MainPresenter {
-    var view: MainViewProtocol?
+    weak var view: MainViewProtocol?
     var interactor: MainInteractorInputProtocol?
 }
 

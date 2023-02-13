@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MovieDetailRouter: RouterCreateModuleWithDataProtocol, RouterPresentViewWithDataProtocol {
+final class MovieDetailRouter: RouterCreateModuleWithDataProtocol, RouterPresentViewWithDataProtocol {
     typealias Router = MovieDetailRouter
     
     static func createModule<T>(data: T) -> UIViewController {
@@ -20,7 +20,7 @@ class MovieDetailRouter: RouterCreateModuleWithDataProtocol, RouterPresentViewWi
             interactor.presenter = presenter
             if let data = data as? Result { interactor.data = data }
             presenter.view = view
-            presenter.interceptor = interactor
+            presenter.interactor = interactor
             return view
         }
         return UIViewController()
