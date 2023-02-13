@@ -22,7 +22,7 @@ final class MovieCategories {
     /**
      Returns an array of view controllers, each of them with a different movie category and one more with a movie seaker view controller
      */
-    private class func getViewControllers() -> [UIViewController] {
+    private static func getViewControllers() -> [UIViewController] {
         let categories: [MovieCategory] = MovieCategory.allCases
         
         let providers: [MLProviderProtocol] = categories.map({ MovieProvider(category: $0) })
