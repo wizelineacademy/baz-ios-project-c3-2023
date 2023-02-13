@@ -8,6 +8,9 @@
 import UIKit
 
 enum LocalizedConstants {
+    
+    // MARK: - Common
+    static let commonTitleFont: UIFont = UIFont(name: "AppleSDGothicNeo-Bold", size: 20) ?? UIFont()
 
     // MARK: - LaunchScreen
     static let launchScreenDivisorNumer: CGFloat = 4.0
@@ -28,4 +31,9 @@ enum LocalizedConstants {
     static let cellMovieLayerShadowOpacity: Float = 0.3
     static let cellMovieLayerCornerRadius: CGFloat = 10
     static let cellMovieLayerShadowOffset: CGSize = CGSize(width: 0, height: 1)
+    
+    // MARK: - InfiniteScrollActivityView
+    static let infiniteScrollActivityViewDefaultHeight: CGFloat = 60.0
+    static let infiniteScrollActivityViewDivisorNumberHeightAndWidth: CGFloat = 2
+    static let infiniteScrollActivityViewSpaceTop: CGFloat = 30
 }

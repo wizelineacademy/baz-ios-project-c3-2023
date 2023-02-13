@@ -20,30 +20,18 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c8e-4T-bZk">
-                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
-                    <subviews>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xaZ-Lb-59o">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        </tableView>
-                    </subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xaZ-Lb-59o">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <constraints>
-                        <constraint firstItem="xaZ-Lb-59o" firstAttribute="top" secondItem="c8e-4T-bZk" secondAttribute="top" id="AlY-GZ-Cgv"/>
-                        <constraint firstAttribute="trailing" secondItem="xaZ-Lb-59o" secondAttribute="trailing" id="GI3-Dr-g4G"/>
-                        <constraint firstItem="xaZ-Lb-59o" firstAttribute="leading" secondItem="c8e-4T-bZk" secondAttribute="leading" id="gtd-7L-RGt"/>
-                        <constraint firstAttribute="bottom" secondItem="xaZ-Lb-59o" secondAttribute="bottom" id="xyd-FJ-jeE"/>
-                    </constraints>
-                </view>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="c8e-4T-bZk" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="HCm-gb-GhN"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="c8e-4T-bZk" secondAttribute="bottom" id="J1g-JV-qVS"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="c8e-4T-bZk" secondAttribute="trailing" id="sWI-HQ-ZHL"/>
-                <constraint firstItem="c8e-4T-bZk" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="tSe-V6-zBU"/>
+                <constraint firstItem="xaZ-Lb-59o" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="ABC-Gu-1zh"/>
+                <constraint firstItem="xaZ-Lb-59o" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="KYR-WA-boe"/>
+                <constraint firstAttribute="bottom" secondItem="xaZ-Lb-59o" secondAttribute="bottom" id="VVM-bK-k8w"/>
+                <constraint firstItem="xaZ-Lb-59o" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="txe-MT-8yL"/>
             </constraints>
             <point key="canvasLocation" x="-91" y="20"/>
         </view>

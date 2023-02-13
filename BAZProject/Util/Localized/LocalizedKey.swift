@@ -26,6 +26,7 @@ extension String {
     // MARK: - TrendingView
     static let trendingXibIdentifier = "TrendingView"
     static let trendingTitle = "Trending"
+    static let trendingTitleUpdateTable = "Actualizando.."
     
     // MARK: - Main
     static let mainPlaceholderSearchBar = "Buscar.."
@@ -34,4 +35,7 @@ extension String {
     
     // MARK: - CellMovie
     static let cellMovieXibIdentifier = "CellMovie"
+    
+    // MARK: - InfiniteScrollActivityView
+    static let infiniteScrollActivityViewTitleLoading = "Cargando más..."
 }

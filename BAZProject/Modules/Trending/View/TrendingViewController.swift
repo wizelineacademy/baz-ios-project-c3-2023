@@ -7,30 +7,35 @@
 import UIKit
 
 final class TrendingViewController: UIViewController, TrendingViewProtocol {
-
+    
     @IBOutlet weak var moviesTableView: UITableView!
     
-    var movies: [MovieResult] = []
-    private let mediaType: MediaType = .movie
-    private var errorGetData: Bool = false
-    
-    var presenter: TrendingPresenterProtocol?
     static let identifier: String = .trendingXibIdentifier
 
+    // MARK: - Protocol properties
+    var presenter: TrendingPresenterProtocol?
+    
+    // MARK: - Private properties
+    private let mediaType: MediaType = .movie
+    private var errorGetData: Bool = false
+    private var refreshControl: UIRefreshControl?
+    private var loadingMoreView: InfiniteScrollActivityView?
+    private var isMoreDataLoading = false
+    private var movies: [MovieResult] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        moviesTableView.delegate = self
-        moviesTableView.dataSource = self
-        moviesTableView.register(CellMovie.nib(), forCellReuseIdentifier: CellMovie.identifier)
-        getData()
+        setupView()
+        callServiceAndShowLoader()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if errorGetData {
-            getData()
+            callServiceAndShowLoader()
         }
     }
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         stopLoading()
@@ -46,7 +51,10 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
     func stopLoading() {
         guaranteeMainThread {
             self.view.removeLoader()
+            self.refreshControl?.endRefreshing()
+            self.loadingMoreView?.stopAnimating()
         }
+        self.isMoreDataLoading = false
     }
     
     func setErrorGettingData(_ status: Bool) {
@@ -57,9 +65,90 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
         return mediaType.getMediaTypeTitle()
     }
     
+    func getDataCount() -> Int {
+        return movies.count
+    }
+    
+    func getMovie(_ index: Int) -> MovieResult? {
+        return movies[index]
+    }
+    
     // MARK: - Private methods
-    private func getData() {
+    
+    private func callServiceAndShowLoader() {
         view.showLoader()
+        getData()
+    }
+    
+    private func setupView() {
+        initRegister()
+        setupRefreshControl()
+        setupInfiniteScrollLoadingIndicator()
+    }
+    private func setupInfiniteScrollLoadingIndicator() {
+        loadingMoreView = InfiniteScrollActivityView(frame: getUIFrame())
+        loadingMoreView!.isHidden = true
+        moviesTableView.addSubview(loadingMoreView!)
+    }
+
+    private func getUIFrame() -> CGRect {
+        let frame: CGRect = CGRect(x: 0,
+                                   y: getMoviesTableViewContentSizeHeight(),
+                                   width: moviesTableView.bounds.size.width,
+                                   height: InfiniteScrollActivityView.defaultHeight)
+        return frame
+    }
+
+    private func initRegister() {
+        setTableViewDelegates()
+        registerCell()
+    }
+    
+    private func setTableViewDelegates() {
+        moviesTableView.delegate = self
+        moviesTableView.dataSource = self
+    }
+    
+    private func registerCell() {
+        moviesTableView.register(CellMovie.nib(),
+                                 forCellReuseIdentifier: CellMovie.identifier)
+    }
+
+    private func setupRefreshControl() {
+        refreshControl = UIRefreshControl()
+        guard let refreshControl = refreshControl else { return }
+        refreshControl.tintColor = .blue
+        refreshControl.attributedTitle = String.trendingTitleUpdateTable.getColoredString(color: .blue)
+        refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControl.Event.valueChanged)
+        moviesTableView.insertSubview(refreshControl, at: 0)
+    }
+
+    private func getData() {
         presenter?.willFetchTrendingMedia(mediaType: mediaType, timeWindow: .day)
+    }
+    
+    @objc func refreshControlAction(_ refreshControl: UIRefreshControl) {
+        getData()
+    }
+    
+    private func getMoviesTableViewContentSizeHeight() -> CGFloat {
+        return moviesTableView.contentSize.height
+    }
+}
+
+// MARK: - UIScrollViewDelegate
+extension TrendingViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if !isMoreDataLoading {
+            let scrollOffsetThreshold = getMoviesTableViewContentSizeHeight() - moviesTableView.bounds.size.height
+            
+            // When the user has scrolled past the threshold, start requesting
+            if (scrollView.contentOffset.y > scrollOffsetThreshold) && moviesTableView.isDragging {
+                isMoreDataLoading = true
+                loadingMoreView?.frame = getUIFrame()
+                loadingMoreView?.startAnimating()
+                getData()
+            }
+        }
     }
 }
