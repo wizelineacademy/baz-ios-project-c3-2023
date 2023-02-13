@@ -12,7 +12,7 @@ final class MovieCategories {
     /**
      Returns a tab bar controller with a list of view controllers, each of them with a different movie category and one more with a movie seaker view controller
      */
-    class func getEntry() -> UIViewController {
+    static func createMoviesTabBarController() -> UIViewController {
         let movieCategories = UITabBarController()
         movieCategories.setViewControllers(self.getViewControllers(), animated: false)
         
