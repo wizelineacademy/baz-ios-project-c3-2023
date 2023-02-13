@@ -29,7 +29,7 @@ final class MLTableViewManagement: NSObject, MovieListDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.identifier, for: indexPath)
         let movie = movies[indexPath.row]
         if let movieCell = cell as? MovieTableViewCell {
-            movieCell.setCell(with: movie)
+            movieCell.setupCell(with: movie)
         }
         return cell
     }
