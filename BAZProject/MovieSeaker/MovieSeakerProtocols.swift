@@ -22,7 +22,7 @@ protocol MSViewOutputProtocol: MSPresenterProtocol {
 protocol MSViewInputProtocol: UIViewController {
     var output: MSViewOutputProtocol? { get set }
     
-    func setView(with data: MSEntity)
+    func setupView(with data: MSEntity)
     func set(movies: [Movie])
     func clearSearch()
     func show(_ error: Error)
