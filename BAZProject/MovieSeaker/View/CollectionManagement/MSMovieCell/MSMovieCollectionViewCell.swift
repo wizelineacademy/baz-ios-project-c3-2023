@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MSMovieCollectionViewCell: UICollectionViewCell {
+final class MSMovieCollectionViewCell: UICollectionViewCell {
 
     static let nib: UINib = UINib(nibName: String(describing: MSMovieCollectionViewCell.self), bundle: .main)
     static let identifier: String = "MovieCollectionCell"
@@ -21,7 +21,7 @@ class MSMovieCollectionViewCell: UICollectionViewCell {
      - Parameters:
         - movie: a Movie object
      */
-    func setCell(with movie: Movie) {
+    func setupCell(with movie: Movie) {
         self.movieImage.image = UIImage(named: "poster")
         if let imageURL = movie.getPosterURL(size: .medium) {
             let task = URLSession.shared.dataTask(with: imageURL) { [weak self] (data, _, _) in
