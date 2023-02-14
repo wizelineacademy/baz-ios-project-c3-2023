@@ -8,6 +8,7 @@ import UIKit
 
 final class TrendingViewController: UIViewController, TrendingViewProtocol {
     
+    @IBOutlet weak var filterSegmentedControl: UISegmentedControl!
     @IBOutlet weak var moviesTableView: UITableView!
     
     static let identifier: String = .trendingXibIdentifier
@@ -41,6 +42,9 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
         stopLoading()
     }
 
+    @IBAction func switchedFilterSegmented(_ sender: Any) {
+        print("Data2", filterSegmentedControl.selectedSegmentIndex)
+    }
     func updateView(data: [MovieResult]) {
         movies = data
         guaranteeMainThread {
@@ -84,7 +88,17 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
         initRegister()
         setupRefreshControl()
         setupInfiniteScrollLoadingIndicator()
+        setupFilterSegmentedControl()
     }
+
+    private func setupFilterSegmentedControl() {
+        filterSegmentedControl.removeAllSegments()
+        String.trendingFilterTitles.enumerated().forEach { title in
+            filterSegmentedControl.insertSegment(withTitle: title.element, at: title.offset, animated: true)
+        }
+        filterSegmentedControl.selectedSegmentIndex = 0
+    }
+    
     private func setupInfiniteScrollLoadingIndicator() {
         loadingMoreView = InfiniteScrollActivityView(frame: getUIFrame())
         loadingMoreView!.isHidden = true

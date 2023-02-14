@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TrendingViewController" customModule="BAZProject" customModuleProvider="target">
             <connections>
+                <outlet property="filterSegmentedControl" destination="LU4-bg-lLR" id="Mz9-cN-GhD"/>
                 <outlet property="moviesTableView" destination="xaZ-Lb-59o" id="Cr2-72-D0t"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Y4v-F1-4Xf"/>
             </connections>
@@ -20,18 +21,46 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xaZ-Lb-59o">
-                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rSe-6o-CHW">
+                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                    <subviews>
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="LU4-bg-lLR">
+                            <rect key="frame" x="16" y="0.0" width="361" height="41"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="sGo-7B-KCJ"/>
+                            </constraints>
+                            <segments>
+                                <segment title="First"/>
+                                <segment title="Second"/>
+                            </segments>
+                            <connections>
+                                <action selector="switchedFilterSegmented:" destination="-1" eventType="valueChanged" id="YCz-CE-i1w"/>
+                            </connections>
+                        </segmentedControl>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xaZ-Lb-59o">
+                            <rect key="frame" x="0.0" y="48" width="393" height="711"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        </tableView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="xaZ-Lb-59o" secondAttribute="bottom" id="2q3-KO-7N5"/>
+                        <constraint firstItem="LU4-bg-lLR" firstAttribute="top" secondItem="rSe-6o-CHW" secondAttribute="top" id="BHs-Ry-5aa"/>
+                        <constraint firstAttribute="trailing" secondItem="LU4-bg-lLR" secondAttribute="trailing" constant="16" id="LvL-gv-vcr"/>
+                        <constraint firstItem="LU4-bg-lLR" firstAttribute="leading" secondItem="rSe-6o-CHW" secondAttribute="leading" constant="16" id="SXv-YF-P8Z"/>
+                        <constraint firstItem="xaZ-Lb-59o" firstAttribute="top" secondItem="LU4-bg-lLR" secondAttribute="bottom" constant="8" id="U6U-Fq-lOg"/>
+                        <constraint firstAttribute="trailing" secondItem="xaZ-Lb-59o" secondAttribute="trailing" id="cO3-m0-4VD"/>
+                        <constraint firstItem="xaZ-Lb-59o" firstAttribute="leading" secondItem="rSe-6o-CHW" secondAttribute="leading" id="cka-IO-RRk"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="xaZ-Lb-59o" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="ABC-Gu-1zh"/>
-                <constraint firstItem="xaZ-Lb-59o" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="KYR-WA-boe"/>
-                <constraint firstAttribute="bottom" secondItem="xaZ-Lb-59o" secondAttribute="bottom" id="VVM-bK-k8w"/>
-                <constraint firstItem="xaZ-Lb-59o" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="txe-MT-8yL"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="rSe-6o-CHW" secondAttribute="bottom" id="NUE-XB-BgI"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="rSe-6o-CHW" secondAttribute="trailing" id="eLS-Nk-Rmu"/>
+                <constraint firstItem="rSe-6o-CHW" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="mCW-lS-wUb"/>
+                <constraint firstItem="rSe-6o-CHW" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="nGP-1L-1zq"/>
             </constraints>
             <point key="canvasLocation" x="-91" y="20"/>
         </view>
