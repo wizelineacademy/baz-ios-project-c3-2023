@@ -10,8 +10,8 @@ import UIKit
 class MoviesTableViewCell: UITableViewCell {
     static let reusableIdentifier = String(describing: MoviesTableViewCell.self)
     
-    @IBOutlet var movieTitle: UILabel!
-    @IBOutlet var movieImage: UIImageView!
+    @IBOutlet weak var movieTitle: UILabel!
+    @IBOutlet weak var movieImage: UIImageView!
     
     
     override func awakeFromNib() {

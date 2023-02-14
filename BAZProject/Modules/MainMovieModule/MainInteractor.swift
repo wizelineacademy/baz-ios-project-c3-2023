@@ -10,6 +10,7 @@ import Foundation
 final class MainInteractor: MainInteractorInputProtocol {
     weak var presenter: MainInteractorOutputProtocol?
     var movieApiData: DataHelper = DataHelper()
+    var countMovieWatched: Int = 0
     
     func getMoviesData(from api:URLApi) {
         MovieAPI.getApiData(from: api) { [weak self] data in

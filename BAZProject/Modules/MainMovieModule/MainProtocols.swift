@@ -33,6 +33,7 @@ protocol MainInteractorInputProtocol: AnyObject {
     // PRESENTER -> INTERACTOR
     var presenter: MainInteractorOutputProtocol? { get set }
     var movieApiData: DataHelper { get set }
+    var countMovieWatched: Int { get set }
     
     func getMoviesData(from api: URLApi)
 }

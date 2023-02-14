@@ -20,7 +20,7 @@ protocol MovieDetailPresenterProtocol: AnyObject {
     var view: MovieDetailViewProtocol? { get set }
     var interactor: MovieDetailInterceptorInputProtocol? { get set }
     
-    func viewDidLoad( textOverview: inout UILabel)
+    func viewDidLoad(textOverview: inout UILabel, poster: inout UIImageView)
     func getMoviesData(from api: URLApi)
     func getTableViewDataSource() -> UITableViewDataSource
     func getTableViewDelegate() -> UITableViewDelegate

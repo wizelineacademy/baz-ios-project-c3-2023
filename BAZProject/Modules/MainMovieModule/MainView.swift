@@ -28,13 +28,13 @@ class MainView: UIViewController, MainViewProtocol {
     @IBAction func didChangeSegmentControl(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-            presenter?.getMoviesData(from: .trending(page: 1))
+            presenter?.getMoviesData(from: .trending)
         case 1:
-            presenter?.getMoviesData(from: .nowPlaying(page: 1))
+            presenter?.getMoviesData(from: .nowPlaying)
         case 2:
-            presenter?.getMoviesData(from: .popular(page: 1))
+            presenter?.getMoviesData(from: .popular)
         case 3:
-            presenter?.getMoviesData(from: .topRated(page: 1))
+            presenter?.getMoviesData(from: .topRated)
         case 4:
             presenter?.getMoviesData(from: .upcoming)
         default:

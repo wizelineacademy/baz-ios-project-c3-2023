@@ -18,20 +18,20 @@ class SearchMovieView: UIViewController {
         getDelegates()
     }
     
-    private func getDelegates(){
+    private func getDelegates() {
         collectionView.dataSource = presenter?.getTableViewDataSource()
         collectionView.delegate = presenter?.getTableViewDelegate()
         searchBar.delegate = presenter?.getUISearchBarDelegate()
     }
     
-    @IBAction func goToMainMovie(){
+    @IBAction func goToMainMovie() {
         self.presenter?.getKeywordSearch(keyword: "")
         dismiss(animated: true)
     }
 }
 
 extension SearchMovieView: SearchMovieViewProtocol {
-    func reloadData(){
+    func reloadData() {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }

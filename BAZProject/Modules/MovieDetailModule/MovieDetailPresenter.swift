@@ -13,23 +13,24 @@ class MovieDetailPresenter: NSObject {
 }
 
 extension MovieDetailPresenter: MovieDetailPresenterProtocol {
-    func viewDidLoad(textOverview: inout UILabel) {
-        if let idMovie = interactor?.data?.id {
+    func viewDidLoad(textOverview: inout UILabel, poster: inout UIImageView) {
+        NotificationCenter.default.post(name: .countMovieWatch, object: nil)
             interactor?.movieApiData.getArrayDataMovie = [
-                                                            .creditMovie(movieId: "\(idMovie)"): nil,
-                                                            .similar(movieId: "\(idMovie)"): nil,
-                                                            .recommendations(movieId: "\(idMovie)"): nil,
-                                                            .reviews(movieId: "\(idMovie)"): nil
+                                                            .creditMovie: nil,
+                                                            .similar: nil,
+                                                            .recommendations: nil,
+                                                            .reviews: nil
                                                             ]
-        } else { debugPrint("idMovie not found") }
         textOverview.text = interactor?.data?.overview
-        getUI()
+        getPosterImage(poster: poster)
     }
     
-    func getUI() {
+    private func getPosterImage(poster: UIImageView) {
         if let data = interactor?.data, let image = data.posterPath{
             MovieAPI.getImage(from: image , handler: { image in
-                self.view?.poster.image = image
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                    poster.image = image
+                }
             })
         }
     }

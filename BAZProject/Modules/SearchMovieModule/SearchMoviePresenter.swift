@@ -22,7 +22,6 @@ extension SearchMoviePresenter: SearchMoviePresenterProtocol {
         registerCollectionViewCell(collection: collection)
     }
     
-//    mandar como parametro el collectionView
     private func registerCollectionViewCell(collection: UICollectionView) {
         let cell = UINib(nibName: "GenericCollectionViewCell", bundle: nil)
         collection.register(cell, forCellWithReuseIdentifier: GenericCollectionViewCell.reusableIdentifier)
@@ -67,7 +66,7 @@ extension SearchMoviePresenter: UICollectionViewDataSource {
             cell.imageMovie.image = UIImage(named: "poster")
             
             MovieAPI.getImage(from: dataMovies.results[indexPath.row].posterPath ?? "", handler: { imagen in
-                DispatchQueue.main.async {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
                     cell.imageMovie.image = imagen
                 }
             })

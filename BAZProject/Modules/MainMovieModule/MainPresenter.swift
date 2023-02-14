@@ -10,6 +10,10 @@ import UIKit
 class MainPresenter: NSObject {
     weak var view: MainViewProtocol?
     var interactor: MainInteractorInputProtocol?
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .countMovieWatch, object: nil)
+    }
 }
 
 extension MainPresenter: MainPresenterProtocol {
@@ -24,9 +28,14 @@ extension MainPresenter: MainPresenterProtocol {
     }
     
     func viewDidLoad() {
-        interactor?.getMoviesData(from: .trending(page: 1))
+        interactor?.getMoviesData(from: .trending)
         registerTableViewCells()
         getSectionSegmentedControl()
+        NotificationCenter.default.addObserver(self, selector: #selector(countMovieWatched), name: .countMovieWatch, object: nil)
+    }
+    
+    @objc func countMovieWatched() {
+        interactor?.countMovieWatched += 1
     }
     
     private func registerTableViewCells() {
@@ -82,7 +91,7 @@ extension MainPresenter: UITableViewDataSource, UITableViewDelegate {
                 cell.movieTitle.text = dataMovies.results[indexPath.row].title
                 
                 MovieAPI.getImage(from:  image, handler: { imagen in
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
                         cell.movieImage.image = imagen
                     }
                 })
