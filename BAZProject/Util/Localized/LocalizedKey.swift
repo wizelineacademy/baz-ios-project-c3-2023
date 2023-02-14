@@ -40,4 +40,7 @@ extension String {
     
     // MARK: - InfiniteScrollActivityView
     static let infiniteScrollActivityViewTitleLoading = "Cargando más..."
+    
+    // MARK: - DetailView
+    static let detailXibIdentifier = "DetailView"
 }
