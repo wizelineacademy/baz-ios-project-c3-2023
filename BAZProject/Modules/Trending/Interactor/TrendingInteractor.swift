@@ -14,9 +14,7 @@ class TrendingInteractor {
 
 extension TrendingInteractor: TrendingInteractorInputProtocol {
     func fetchTrendingMedia(mediaType: MediaType, timeWindow: TimeWindowType) {
-        let endPoint: String = "/trending/\(mediaType.rawValue)/\(timeWindow.rawValue)"
-        let strUrl: String = endPoint.getStrUrlTheMovieDb()
-        dataManager?.requestTrendingMedia(strUrl)
+        dataManager?.requestTrendingMedia(Endpoint.trending(mediaType: mediaType, timeWindow: timeWindow).urlString)
     }
 }
 

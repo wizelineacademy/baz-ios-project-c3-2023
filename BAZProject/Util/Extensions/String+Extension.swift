@@ -8,18 +8,6 @@
 import UIKit
 
 extension String {
-    
-    func getStrUrlTheMovieDb(withRegion: Bool = true, wihtLanguage: Bool = true) -> String {
-        var stringUrl: String = .theMovieDbBasePath + self + "?api_key=" + .apiKeyTheMovieDb
-        stringUrl += wihtLanguage ? "&language=\(String.languageTheMovieDb)" : ""
-        stringUrl += withRegion ? "&region=\(String.regionTheMovieDb)" : ""
-        return stringUrl
-    }
-    
-    func getUrlImage(sizeImage: SizeImageType) -> String {
-        return .theMovieDBBasePathImages + "/" + sizeImage.rawValue + self
-    }
-    
     func getColoredString(color: UIColor) -> NSMutableAttributedString {
         let range = NSString(string: self).range(of: self)
         let mutableAttributedString = NSMutableAttributedString.init(string: self)

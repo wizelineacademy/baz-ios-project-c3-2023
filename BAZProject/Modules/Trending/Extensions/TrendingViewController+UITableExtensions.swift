@@ -29,8 +29,8 @@ extension TrendingViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: CellMovie.identifier) as? CellMovie, let movie = getMovie(indexPath.row) {
-            let imageUrl: String = (movie.backdropPath ?? "").getUrlImage(sizeImage: .w500)
-            cell.setData(title: movie.title ?? "", imageUrl: imageUrl)
+            let idImage: String = movie.backdropPath ?? ""
+            cell.setData(title: movie.title ?? "", imageUrl: Endpoint.img(idImage: idImage, sizeImage: .w500).urlString)
             return cell
         }
         return UITableViewCell()

@@ -14,6 +14,7 @@ extension String {
     static let theMovieDBBasePathImages = "https://image.tmdb.org/t/p"
     static let languageTheMovieDb = "es"
     static let regionTheMovieDb = "MX"
+    static let apiKeyEndPointTrending = "/trending"
     
     // MARK: - ErrorPageView
     static let errorPageXibIdentifier = "ErrorPageView"
