@@ -18,10 +18,21 @@ class HomeViewController: UIViewController {
     var interactor: HomeBusinessLogic?
     var router: (HomeRoutingLogic & HomeDataPassing)?
     
+    // MARK: IBOutlet
+    @IBOutlet weak var section1: MoviesSectionView!
+    
     // MARK: Init
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setup()
+    }
+    
+    // MARK: Life Cycle
+    override func viewDidLoad() {
+
+    }
+    override func viewWillAppear(_ animated: Bool) {
+
     }
     
     // MARK: Setup
