@@ -55,7 +55,7 @@ final class MovieSearchView: UIViewController {
 }
 
 //MARK: - Input methods implementation
-extension MovieSeakerView: MSViewInputProtocol {
+extension MovieSearchView: MSViewInputProtocol {
     /**
      Configure the view title and call the setSizeForRow method of the MSMovieColletionViewCell object
      - Parameters:
