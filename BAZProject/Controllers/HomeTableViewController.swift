@@ -46,7 +46,7 @@ class HomeTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "homeToMovieDetail",
-           let detailView = segue.destination as? MovieDetailViewController,
+           let detailView = segue.destination as? MovieDetailPViewController,
            let movieDetail =  sender as? Movie{
             detailView.movieToShowDetail = movieDetail
         }

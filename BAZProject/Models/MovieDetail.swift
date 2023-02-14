@@ -20,3 +20,13 @@ struct MovieDetail: Decodable {
         case genres = "genres"
     }
 }
+
+extension MovieDetail{
+    var listGenres: String {
+        var genresInList = ""
+        genres?.forEach({ genre in
+            genresInList =  genresInList + " " + genre.name
+        })
+        return genresInList
+    }
+}
