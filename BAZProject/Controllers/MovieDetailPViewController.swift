@@ -23,8 +23,7 @@ class MovieDetailPViewController: UIViewController {
         stackView.backgroundColor = UIColor.red
         return stackView
     }()
-    
-    var topDetail: TopDetailView!
+    var topDetail: TopDetailView?
     var castView: CastView!
     
     var movieApi = MovieAPI()
@@ -71,9 +70,13 @@ class MovieDetailPViewController: UIViewController {
         movieApi.getMovieDetail(movieID: id){ detail, error in
             if let detail = detail {
                 self.movieDetail = detail
-                self.topDetail.releseDate.text = detail.releaseDate
-                self.topDetail.genre.text = detail.listGenres
-                self.topDetail.overview.text = detail.overview
+                self.topDetail?.releseDate.text = detail.releaseDate
+                self.topDetail?.genre.text = detail.listGenres
+                if (detail.overview == nil) || detail.overview == ""{
+                    self.topDetail?.overview.text = "Lo sentimos, aún no tenemos una reseña disponible para esta pelicula."
+                }else{
+                    self.topDetail?.overview.text = detail.overview
+                }
             }
         }
     }
@@ -136,6 +139,7 @@ class MovieDetailPViewController: UIViewController {
     
     func createTopDetail(){
         topDetail = TopDetailView.intitTopDetail(movie: movieToShowDetail) as? TopDetailView
+        guard let topDetail = topDetail else { return }
         stack.addArrangedSubview(topDetail)
     }
     
