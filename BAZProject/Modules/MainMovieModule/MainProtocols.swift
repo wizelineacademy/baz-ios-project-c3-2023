@@ -25,6 +25,8 @@ protocol MainPresenterProtocol: AnyObject {
     func goToMovieDetail(data: Result)
     func viewDidLoad()
     func getMoviesData(from api: URLApi)
+    func getTableViewDataSource() -> UITableViewDataSource
+    func getTableViewDelegate() -> UITableViewDelegate
 }
 
 protocol MainInteractorInputProtocol: AnyObject {

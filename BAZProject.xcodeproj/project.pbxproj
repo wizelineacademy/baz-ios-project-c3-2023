@@ -27,8 +27,6 @@
 		CD54A90729956046004F8774 /* GenericCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD54A90529956046004F8774 /* GenericCollectionViewCell.swift */; };
 		CD54A90829956046004F8774 /* GenericCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD54A90629956046004F8774 /* GenericCollectionViewCell.xib */; };
 		CD54A90C29956CBA004F8774 /* MovieCredits.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD54A90B29956CBA004F8774 /* MovieCredits.swift */; };
-		CD54A90F29957A9C004F8774 /* GenericCollectionDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD54A90E29957A9C004F8774 /* GenericCollectionDataView.swift */; };
-		CD54A91129957AB1004F8774 /* GenericCollectionDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD54A91029957AB1004F8774 /* GenericCollectionDataView.xib */; };
 		CD54A91529958A91004F8774 /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD54A91429958A91004F8774 /* DataHelper.swift */; };
 		CDDE29B2299AB5D900D81ECC /* TableViewCellProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDE29B1299AB5D900D81ECC /* TableViewCellProtocols.swift */; };
 		CDE6ABDA298AECF100D6DB5C /* DecodableUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE6ABD9298AECF100D6DB5C /* DecodableUtility.swift */; };
@@ -71,8 +69,6 @@
 		CD54A90529956046004F8774 /* GenericCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericCollectionViewCell.swift; sourceTree = "<group>"; };
 		CD54A90629956046004F8774 /* GenericCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenericCollectionViewCell.xib; sourceTree = "<group>"; };
 		CD54A90B29956CBA004F8774 /* MovieCredits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCredits.swift; sourceTree = "<group>"; };
-		CD54A90E29957A9C004F8774 /* GenericCollectionDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericCollectionDataView.swift; sourceTree = "<group>"; };
-		CD54A91029957AB1004F8774 /* GenericCollectionDataView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenericCollectionDataView.xib; sourceTree = "<group>"; };
 		CD54A91429958A91004F8774 /* DataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHelper.swift; sourceTree = "<group>"; };
 		CDDE29B1299AB5D900D81ECC /* TableViewCellProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellProtocols.swift; sourceTree = "<group>"; };
 		CDE6ABD9298AECF100D6DB5C /* DecodableUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodableUtility.swift; sourceTree = "<group>"; };
@@ -159,15 +155,6 @@
 			path = GenericCollectionViewCell;
 			sourceTree = "<group>";
 		};
-		CD54A90D29957A3A004F8774 /* GenericView */ = {
-			isa = PBXGroup;
-			children = (
-				CD54A90E29957A9C004F8774 /* GenericCollectionDataView.swift */,
-				CD54A91029957AB1004F8774 /* GenericCollectionDataView.xib */,
-			);
-			path = GenericView;
-			sourceTree = "<group>";
-		};
 		CDDE29B3299AB5E000D81ECC /* MovieDetailTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,7 +167,6 @@
 			isa = PBXGroup;
 			children = (
 				CD54A8F22992F854004F8774 /* GenericCollectionViewCell */,
-				CD54A90D29957A3A004F8774 /* GenericView */,
 				CDE6ABD9298AECF100D6DB5C /* DecodableUtility.swift */,
 				CD54A91429958A91004F8774 /* DataHelper.swift */,
 				C30893E028A425E1004B1860 /* MovieAPI.swift */,
@@ -310,7 +296,6 @@
 				C30893DB28A42481004B1860 /* README.md in Resources */,
 				CDE6AC37298C6DBF00D6DB5C /* MoviesTableViewCell.xib in Resources */,
 				C30893B728A2F42D004B1860 /* Assets.xcassets in Resources */,
-				CD54A91129957AB1004F8774 /* GenericCollectionDataView.xib in Resources */,
 				CDE6AC08298B72BF00D6DB5C /* Main.storyboard in Resources */,
 				CD54A90829956046004F8774 /* GenericCollectionViewCell.xib in Resources */,
 				C383356E28CA917400FCE0D5 /* code-review-rubric.md in Resources */,
@@ -329,7 +314,6 @@
 				CDE6AC36298C6DBF00D6DB5C /* MoviesTableViewCell.swift in Sources */,
 				CDDE29B2299AB5D900D81ECC /* TableViewCellProtocols.swift in Sources */,
 				CDE6AC0A298B742800D6DB5C /* MainView.swift in Sources */,
-				CD54A90F29957A9C004F8774 /* GenericCollectionDataView.swift in Sources */,
 				CDE6AC1D298C04C200D6DB5C /* MovieDetailPresenter.swift in Sources */,
 				CDE6AC0C298B7EB100D6DB5C /* MainInteractor.swift in Sources */,
 				CDE6AC04298B71E900D6DB5C /* MainRouter.swift in Sources */,

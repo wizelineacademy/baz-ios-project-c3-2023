@@ -20,9 +20,12 @@ protocol SearchMoviePresenterProtocol: AnyObject {
     var view: SearchMovieViewProtocol? { get set }
     var interceptor: SearchMovieInterceptorInputProtocol? { get set }
     
-    func viewDidLoad()
+    func viewDidLoad(collection: UICollectionView)
     func getKeywordSearch(keyword: String)
     func goToMovieDetail(data: Result)
+    func getTableViewDataSource() -> UICollectionViewDataSource
+    func getTableViewDelegate() -> UICollectionViewDelegate
+    func getUISearchBarDelegate() -> UISearchBarDelegate
 }
 
 protocol SearchMovieInterceptorInputProtocol: AnyObject {

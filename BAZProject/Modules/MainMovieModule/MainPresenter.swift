@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainPresenter {
+class MainPresenter: NSObject {
     weak var view: MainViewProtocol?
     var interactor: MainInteractorInputProtocol?
 }
@@ -48,10 +48,54 @@ extension MainPresenter: MainPresenterProtocol {
         view?.segmentControl.setTitle("Upcoming", forSegmentAt: 4)
     }
     
+    func getTableViewDataSource() -> UITableViewDataSource {
+        return self
+    }
+    
+    func getTableViewDelegate() -> UITableViewDelegate {
+        return self
+    }
+    
 }
 
 extension MainPresenter: MainInteractorOutputProtocol{
     func reloadData(){
         view?.reloadData()
+    }
+}
+
+extension MainPresenter: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let data = interactor?.movieApiData.getDataMovies as? Movies {
+            return data.results.count
+        }
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: MoviesTableViewCell.reusableIdentifier) as? MoviesTableViewCell {
+            
+            if let dataMovies = interactor?.movieApiData.getDataMovies as? Movies,
+               let image = dataMovies.results[indexPath.row].posterPath {
+                
+                cell.movieImage.image = UIImage(named: "poster")
+                cell.movieTitle.text = dataMovies.results[indexPath.row].title
+                
+                MovieAPI.getImage(from:  image, handler: { imagen in
+                    DispatchQueue.main.async {
+                        cell.movieImage.image = imagen
+                    }
+                })
+                
+                return cell
+            }
+        }
+        return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let dataMovies = interactor?.movieApiData.getDataMovies as? Movies {
+            goToMovieDetail(data: dataMovies.results[indexPath.row])
+        }
     }
 }
