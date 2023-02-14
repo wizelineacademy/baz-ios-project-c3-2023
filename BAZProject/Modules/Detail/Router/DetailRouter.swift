@@ -10,7 +10,7 @@ import UIKit
 final class DetailRouter: DetailRouterProtocol {
     weak var view: DetailViewProtocol?
     
-    static func createModule() -> UIViewController {
+    static func createModule(detailType: DetailType) -> UIViewController {
         let view: DetailViewProtocol = DetailViewController(
             nibName: DetailViewController.identifier,
             bundle: nil)
@@ -20,6 +20,7 @@ final class DetailRouter: DetailRouterProtocol {
         let router: DetailRouterProtocol = DetailRouter()
 
         view.presenter = presenter
+        view.detailType = detailType
         router.view = view
         interactor.presenter = presenter
         presenter.view = view

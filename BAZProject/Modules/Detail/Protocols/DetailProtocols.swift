@@ -9,6 +9,7 @@ import UIKit
 
 protocol DetailViewProtocol: AnyObject {
     var presenter: DetailPresenterProtocol? { get set }
+    var detailType: DetailType? { get set }
 }
 
 protocol DetailPresenterProtocol: AnyObject {
@@ -19,7 +20,7 @@ protocol DetailPresenterProtocol: AnyObject {
 
 protocol DetailRouterProtocol: AnyObject {
     var view: DetailViewProtocol? { get set }
-    static func createModule() -> UIViewController
+    static func createModule(detailType: DetailType) -> UIViewController
 }
 
 protocol DetailInteractorOutputProtocol: AnyObject { }

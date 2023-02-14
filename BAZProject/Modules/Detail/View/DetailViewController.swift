@@ -9,6 +9,7 @@ import UIKit
 
 final class DetailViewController: UIViewController, DetailViewProtocol {
     var presenter: DetailPresenterProtocol?
+    var detailType: DetailType?
     
     static let identifier: String = .detailXibIdentifier
 }
