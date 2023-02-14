@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MSProvider: WSRequestProtocol, MSProviderProtocol {
+final class MovieSearchProvider: WSRequestProtocol, MSProviderProtocol {
     /**
      Create an object with the view title and number of items per row
      - Returns: a MSEntity object
