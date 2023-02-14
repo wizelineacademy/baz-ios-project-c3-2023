@@ -16,29 +16,14 @@
                     <view key="view" contentMode="scaleToFill" id="oNp-kN-WB0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VYB-In-I4W" customClass="MoviesSectionView" customModule="BAZProject" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="414" height="224"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="2zr-kE-QfS"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="VYB-In-I4W" firstAttribute="height" secondItem="oNp-kN-WB0" secondAttribute="height" multiplier="0.25" id="1pT-AV-wDq"/>
-                            <constraint firstItem="VYB-In-I4W" firstAttribute="top" secondItem="2zr-kE-QfS" secondAttribute="top" id="WGW-cP-gHn"/>
-                            <constraint firstItem="VYB-In-I4W" firstAttribute="leading" secondItem="2zr-kE-QfS" secondAttribute="leading" id="ofj-B8-KJf"/>
-                            <constraint firstItem="2zr-kE-QfS" firstAttribute="trailing" secondItem="VYB-In-I4W" secondAttribute="trailing" id="vT6-r7-nLb"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="4xe-KZ-206"/>
-                    <connections>
-                        <outlet property="section1" destination="VYB-In-I4W" id="hlf-Mh-iRy"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fng-SX-tqF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1415.9420289855072" y="61.607142857142854"/>
+            <point key="canvasLocation" x="1414.4927536231885" y="61.607142857142854"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QMM-1E-1LT">
