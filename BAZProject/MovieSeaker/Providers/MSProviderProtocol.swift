@@ -9,5 +9,5 @@ import Foundation
 
 protocol MSProviderProtocol: AnyObject {
     func getViewData() -> MSEntity
-    func getMovies(by text: String?, completion: @escaping (Result<[Movie], Error>) -> Void)
+    func searchMovies(by text: String?, completion: @escaping (Result<[Movie], Error>) -> Void)
 }
