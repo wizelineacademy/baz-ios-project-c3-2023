@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MovieSearchView: UIViewController {
+final class MovieSeakerView: UIViewController {
     
     var output: MSViewOutputProtocol?
     var movies: [Movie] = []
@@ -55,7 +55,7 @@ final class MovieSearchView: UIViewController {
 }
 
 //MARK: - Input methods implementation
-extension MovieSearchView: MSViewInputProtocol {
+extension MovieSeakerView: MSViewInputProtocol {
     /**
      Configure the view title and call the setSizeForRow method of the MSMovieColletionViewCell object
      - Parameters:
