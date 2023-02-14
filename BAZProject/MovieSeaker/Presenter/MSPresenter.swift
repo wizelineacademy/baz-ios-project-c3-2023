@@ -51,7 +51,7 @@ extension MSPresenter: MSInteractorOutputProtocol {
         - data: a MSEntity object
      */
     func setView(with data: MSEntity) {
-        self.view?.setView(with: data)
+        self.view?.setupView(with: data)
     }
     
     /**
