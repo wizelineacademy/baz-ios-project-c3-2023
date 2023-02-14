@@ -24,27 +24,30 @@ class MovieDetailPViewController: UIViewController {
         return stackView
     }()
     var topDetail: TopDetailView?
-    var castView: CastView!
+    var castView: CastView?
+    var similarMoviesView: MovieListView?
+    var recommendationView: MovieListView?
     
     var movieApi = MovieAPI()
     var movieToShowDetail: Movie?
     var movieDetail: MovieDetail?
     var movieCast: [MovieCast]? {
         didSet{
-            guard let castView = castView else{ return }
-            castView.castCollection.reloadData()
+            castView?.castCollection.reloadData()
         }
     }
-    var similarMovies: [Movie]?
-    var recomendationMovies: [Movie]?
+    var similarMovies: [Movie]? {
+        didSet{
+            similarMoviesView?.movieCollection.reloadData()
+        }
+    }
+    var recommendationMovies: [Movie]? {
+        didSet{
+            recommendationView?.movieCollection.reloadData()
+        }
+    }
     var movieReviews: [MovieReview]?
     
-    enum collections: Int {
-        case cast = 1
-        case similar = 2
-        case recomendation = 3
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
@@ -56,13 +59,15 @@ class MovieDetailPViewController: UIViewController {
         createStack()
         createTopDetail()
         createCastView()
+        createSimilarMovies()
     }
     
     func services(){
         getMovieDetail()
         getMovieCast()
         getSimilarMovies()
-        getRecomendationMovies()
+        getRecommendationMovies()
+        createRecommendation()
     }
     
     func getMovieDetail() {
@@ -95,18 +100,26 @@ class MovieDetailPViewController: UIViewController {
     func getSimilarMovies(){
         guard let id = movieToShowDetail?.id else { return }
         movieApi.getMovies(movieID: id, queryType: MovieAPI.consult.similar) { movies, error in
-            if let movies = movies {
+            if let movies = movies,
+               movies.count > 0 {
                 self.similarMovies = movies
+                self.similarMoviesView?.isHidden = false
+            } else {
+                self.similarMoviesView?.isHidden = true
             }
         }
     }
     
-    func getRecomendationMovies(){
+    func getRecommendationMovies(){
         guard let id = movieToShowDetail?.id else { return }
         movieApi.getMovies(movieID: id, queryType: MovieAPI.consult.recommendations) { movies, error in
             if let movies = movies {
-                self.recomendationMovies = movies
+                self.recommendationMovies = movies
+                self.recommendationView?.isHidden = false
+            } else {
+                self.recommendationView?.isHidden = true
             }
+            
         }
     }
     
@@ -145,14 +158,43 @@ class MovieDetailPViewController: UIViewController {
     
     func createCastView(){
         castView = CastView.initCastView() as? CastView
-        castView.castCollection.register(UINib(nibName: "MovieCastCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "movieCastPhoto")
-        castView.castCollection.dataSource = self
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.itemSize = CGSize(width: 120, height: 180)
-        flowLayout.sectionInset = UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 5)
-        flowLayout.scrollDirection = .horizontal
-        castView.castCollection.setCollectionViewLayout(flowLayout, animated: false)
+        castView?.castCollection.register(UINib(nibName: "MovieCastCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "movieCastPhoto")
+        castView?.castCollection.dataSource = self
+        let flowLayout = cellFlowlayout(size: CGSize(width: 120, height: 180))
+        castView?.castCollection.setCollectionViewLayout(flowLayout, animated: false)
+        guard let castView = castView else { return }
         stack.addArrangedSubview(castView)
+    }
+    
+    func createSimilarMovies(){
+        similarMoviesView = MovieListView.initMovieCollection() as? MovieListView
+        similarMoviesView?.movieCollection.register(UINib(nibName: "MovieGalleryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MovieGallery")
+        similarMoviesView?.movieCollection.dataSource = self
+        similarMoviesView?.sectionTitle.text = MovieDetailSections.similar.title
+        let flowLayout = cellFlowlayout(size: CGSize(width: 130, height: 220))
+        similarMoviesView?.movieCollection.setCollectionViewLayout(flowLayout, animated: false)
+        guard let similarMoviesView = similarMoviesView else { return }
+        stack.addArrangedSubview(similarMoviesView)
+    }
+    
+    func createRecommendation(){
+        recommendationView = MovieListView.initMovieCollection() as? MovieListView
+        recommendationView?.movieCollection.register(UINib(nibName: "MovieGalleryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MovieGallery")
+        recommendationView?.movieCollection.dataSource =  self
+        recommendationView?.movieCollection.tag = 3
+        recommendationView?.sectionTitle.text = MovieDetailSections.recommendation.title
+        let flowLayout = cellFlowlayout(size: CGSize(width: 130, height: 220))
+        recommendationView?.movieCollection.setCollectionViewLayout(flowLayout, animated: false)
+        guard let recommendationView = recommendationView else { return }
+        stack.addArrangedSubview(recommendationView)
+    }
+    
+    func cellFlowlayout(size: CGSize) -> UICollectionViewFlowLayout {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.itemSize = size
+        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 5)
+        flowLayout.scrollDirection = .horizontal
+        return flowLayout
     }
     
 }
@@ -163,12 +205,12 @@ extension MovieDetailPViewController: UICollectionViewDataSource {
         
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView.tag {
-        case collections.cast.rawValue:
+        case MovieDetailSections.cast.rawValue:
             return self.movieCast?.count ?? 0
-        case collections.similar.rawValue:
+        case MovieDetailSections.similar.rawValue:
             return self.similarMovies?.count ?? 0
-        case collections.recomendation.rawValue:
-            return self.recomendationMovies?.count ?? 0
+        case MovieDetailSections.recommendation.rawValue:
+            return self.recommendationMovies?.count ?? 0
         default:
             return 0
         }
@@ -176,7 +218,7 @@ extension MovieDetailPViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch collectionView.tag {
-        case collections.cast.rawValue:
+        case MovieDetailSections.cast.rawValue:
             let castCell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCastPhoto", for: indexPath) as? MovieCastCollectionViewCell
             castCell?.castName.text = movieCast?[indexPath.row].name
             if let partialURLImage =  movieCast?[indexPath.row].profilePath {
@@ -186,7 +228,7 @@ extension MovieDetailPViewController: UICollectionViewDataSource {
             }
             guard let castCell = castCell else { return MovieCastCollectionViewCell() }
             return castCell
-        case collections.similar.rawValue:
+        case MovieDetailSections.similar.rawValue:
             let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieGallery", for: indexPath) as? MovieGalleryCollectionViewCell
             collectionCell?.movieTitle.text = similarMovies?[indexPath.row].title
             collectionCell?.voteAvarage.text = similarMovies?[indexPath.row].averageStars
@@ -197,11 +239,11 @@ extension MovieDetailPViewController: UICollectionViewDataSource {
             }
             guard let collectionCell = collectionCell else { return MovieGalleryCollectionViewCell() }
             return collectionCell
-        case collections.recomendation.rawValue:
+        case MovieDetailSections.recommendation.rawValue:
             let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieGallery", for: indexPath) as? MovieGalleryCollectionViewCell
-            collectionCell?.movieTitle.text = recomendationMovies?[indexPath.row].title
-            collectionCell?.voteAvarage.text = recomendationMovies?[indexPath.row].averageStars
-            if let partialURLImage =  recomendationMovies?[indexPath.row].posterPath {
+            collectionCell?.movieTitle.text = recommendationMovies?[indexPath.row].title
+            collectionCell?.voteAvarage.text = recommendationMovies?[indexPath.row].averageStars
+            if let partialURLImage =  recommendationMovies?[indexPath.row].posterPath {
                 collectionCell?.movieImage.fetchImage(with: partialURLImage)
             } else {
                 collectionCell?.movieImage.image = UIImage(named: "poster")
