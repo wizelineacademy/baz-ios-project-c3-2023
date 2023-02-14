@@ -37,7 +37,7 @@ final class MovieCategories {
             return UINavigationController(rootViewController: viewController)
         }
         
-        let provider = MSProvider()
+        let provider = MovieSearchProvider()
         let searchView = UINavigationController(rootViewController: MSRouter.getEntry(with: provider))
         searchView.tabBarItem.title = "Buscar"
         searchView.tabBarItem.image = UIImage(systemName: "magnifyingglass")
