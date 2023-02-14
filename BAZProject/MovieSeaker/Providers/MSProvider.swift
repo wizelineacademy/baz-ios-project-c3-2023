@@ -23,7 +23,7 @@ final class MovieSearchProvider: WSRequestProtocol, MSProviderProtocol {
         - completion: a closure that it's called when the task is completed
      - Returns: a Result object that, when on success case returns a movie array, otherwise an error object
      */
-    func getMovies(by text: String?, completion: @escaping (Result<[Movie], Error>) -> Void) {
+    func searchMovies(by text: String?, completion: @escaping (Result<[Movie], Error>) -> Void) {
         guard let text = text,
               !text.isEmpty
         else { return completion(.success([])) }
