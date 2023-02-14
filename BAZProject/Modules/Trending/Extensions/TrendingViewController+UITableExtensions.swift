@@ -7,7 +7,22 @@
 
 import UIKit
 
-extension TrendingViewController: UITableViewDelegate, UITableViewDataSource {
+extension TrendingViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section:Int) -> String? {
+        return getTableTitle()
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedMovie = getMovie(indexPath.row)
+        // TODO: add router to detail
+    }
+}
+
+extension TrendingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return getDataCount()
     }
@@ -19,13 +34,5 @@ extension TrendingViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
         return UITableViewCell()
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section:Int) -> String? {
-        return getTableTitle()
     }
 }
