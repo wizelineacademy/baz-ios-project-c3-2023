@@ -21,7 +21,7 @@ final class MLRouter {
         - provider: an object that inherits from the MLProviderProtocol
      - Returns: a view controller that contains the list of movies with the received provider
      */
-    class func getEntry(with provider: MLProviderProtocol) -> UIViewController {
+    static func getEntry(with provider: MLProviderProtocol) -> UIViewController {
         let view = MovieListView()
         let router = MLRouter(view: view)
         let interactor = MLInteractor(provider: provider)

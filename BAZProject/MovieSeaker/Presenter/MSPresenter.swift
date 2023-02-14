@@ -30,7 +30,7 @@ extension MSPresenter: MSViewOutputProtocol {
      - Parameters:
         - text: a string wich the search is performed
      */
-    func seakMovies(by text: String?) {
+    func searchMovies(by text: String?) {
         self.interactor.fetchMovies(by: text)
     }
     
@@ -51,7 +51,7 @@ extension MSPresenter: MSInteractorOutputProtocol {
         - data: a MSEntity object
      */
     func setView(with data: MSEntity) {
-        self.view?.setView(with: data)
+        self.view?.setupView(with: data)
     }
     
     /**

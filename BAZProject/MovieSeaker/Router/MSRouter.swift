@@ -21,8 +21,8 @@ final class MSRouter {
         - provider: an object that inherits from the MSProviderProtocol
      - Returns: a view controller wich you can use to search a movie by any text
      */
-    class func getEntry(with provider: MSProviderProtocol) -> UIViewController {
-        let view = MovieSeakerView()
+    static func getEntry(with provider: MSProviderProtocol) -> UIViewController {
+        let view = MovieSearchView()
         let router = MSRouter(view: view)
         let interactor = MSInteractor(provider: provider)
         let presenter = MSPresenter(

@@ -15,14 +15,14 @@ protocol MSPresenterProtocol {
 
 protocol MSViewOutputProtocol: MSPresenterProtocol {
     func didLoadView()
-    func seakMovies(by text: String?)
+    func searchMovies(by text: String?)
     func didSelect(_ movie: Movie)
 }
 
 protocol MSViewInputProtocol: UIViewController {
     var output: MSViewOutputProtocol? { get set }
     
-    func setView(with data: MSEntity)
+    func setupView(with data: MSEntity)
     func set(movies: [Movie])
     func clearSearch()
     func show(_ error: Error)

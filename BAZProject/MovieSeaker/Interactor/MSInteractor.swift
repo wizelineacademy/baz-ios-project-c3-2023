@@ -29,7 +29,7 @@ extension MSInteractor: MSInteractorInputProtocol {
         - text: a string witch the search is performed with
      */
     func fetchMovies(by text: String?) {
-        provider.getMovies(by: text) { [weak self] result in
+        provider.searchMovies(by: text) { [weak self] result in
             switch result {
             case .success(let movies):
                 self?.output?.didReceive(movies)

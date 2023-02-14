@@ -15,7 +15,7 @@ final class MDRouter {
         - movie: a Movie object
      - Returns: a view controller with the detail of the received movie object
      */
-    class func getEntry(with movie: Movie) -> UIViewController {
+    static func getEntry(with movie: Movie) -> UIViewController {
         let view = MovieDetailView()
         let interactor = MDInteractor(movie: movie)
         let presenter = MDPresenter(

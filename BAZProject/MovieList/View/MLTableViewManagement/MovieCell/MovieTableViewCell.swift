@@ -22,7 +22,7 @@ final class MovieTableViewCell: UITableViewCell {
      - Parameters:
         - movie: a Movie object 
      */
-    func setCell(with movie: Movie) {
+    func setupCell(with movie: Movie) {
         title.text = movie.title
         releaseDate.text = "Lazamiento: \(movie.releaseDate ?? "")"
         language.text = "Idioma original: \(movie.originalLanguage)"

@@ -32,6 +32,6 @@ extension MDPresenter: MDInteractorOutputProtocol {
         - movie: a Movie object
      */
     func present(_ movie: Movie) {
-        self.view?.setView(with: movie)
+        self.view?.setupView(with: movie)
     }
 }

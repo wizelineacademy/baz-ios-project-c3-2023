@@ -8,7 +8,7 @@
 import UIKit
 
 //MARK: - Data source management
-extension MovieSeakerView: UICollectionViewDataSource {
+extension MovieSearchView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         movies.count
     }
@@ -20,14 +20,14 @@ extension MovieSeakerView: UICollectionViewDataSource {
         )
         if let movieCell = cell as? MSMovieCollectionViewCell {
             let movie = movies[indexPath.row]
-            movieCell.setCell(with: movie)
+            movieCell.setupCell(with: movie)
         }
         return cell
     }
 }
 
 //MARK: - Collection view layout management
-extension MovieSeakerView: UICollectionViewDelegateFlowLayout {
+extension MovieSearchView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         MSMovieCollectionViewCell.sizeForRow
     }
@@ -38,7 +38,7 @@ extension MovieSeakerView: UICollectionViewDelegateFlowLayout {
 }
 
 //MARK: - UICollectionViewDelegate
-extension MovieSeakerView: UICollectionViewDelegate {
+extension MovieSearchView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let movie = movies[indexPath.row]
         self.output?.didSelect(movie)

@@ -30,7 +30,7 @@ extension MovieDetailView: MDViewInputProtocol {
      - Parameters:
         - movie: a Movie object
      */
-    func setView(with movie: Movie) {
+    func setupView(with movie: Movie) {
         self.title = movie.title
         self.movieTitle.text = movie.title
         self.movieDescription.text = movie.overview

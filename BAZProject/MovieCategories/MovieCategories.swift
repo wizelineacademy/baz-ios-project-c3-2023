@@ -12,7 +12,7 @@ final class MovieCategories {
     /**
      Returns a tab bar controller with a list of view controllers, each of them with a different movie category and one more with a movie seaker view controller
      */
-    class func getEntry() -> UIViewController {
+    static func createMoviesTabBarController() -> UIViewController {
         let movieCategories = UITabBarController()
         movieCategories.setViewControllers(self.getViewControllers(), animated: false)
         
@@ -22,7 +22,7 @@ final class MovieCategories {
     /**
      Returns an array of view controllers, each of them with a different movie category and one more with a movie seaker view controller
      */
-    private class func getViewControllers() -> [UIViewController] {
+    private static func getViewControllers() -> [UIViewController] {
         let categories: [MovieCategory] = MovieCategory.allCases
         
         let providers: [MLProviderProtocol] = categories.map({ MovieProvider(category: $0) })
@@ -37,10 +37,10 @@ final class MovieCategories {
             return UINavigationController(rootViewController: viewController)
         }
         
-        let provider = MSProvider()
-        let seakerView = UINavigationController(rootViewController: MSRouter.getEntry(with: provider))
-        seakerView.tabBarItem.title = "Buscar"
-        seakerView.tabBarItem.image = UIImage(systemName: "magnifyingglass")
+        let provider = MovieSearchProvider()
+        let searchView = UINavigationController(rootViewController: MSRouter.getEntry(with: provider))
+        searchView.tabBarItem.title = "Buscar"
+        searchView.tabBarItem.image = UIImage(systemName: "magnifyingglass")
         viewControllers.insert(seakerView, at: 3)
         
         return viewControllers

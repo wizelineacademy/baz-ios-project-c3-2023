@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MovieSeakerView: UIViewController {
+final class MovieSearchView: UIViewController {
     
     var output: MSViewOutputProtocol?
     var movies: [Movie] = []
@@ -61,7 +61,7 @@ extension MovieSeakerView: MSViewInputProtocol {
      - Parameters:
         - data: a MSEntity object
      */
-    func setView(with data: MSEntity) {
+    func setupView(with data: MSEntity) {
         self.title = data.viewTitle
         MSMovieCollectionViewCell.setSizeForItem(itemsForRow: data.itemsForRow)
     }

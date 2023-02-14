@@ -15,10 +15,8 @@ final class MLTableViewManagement: NSObject, MovieListDelegate {
         self.movies = movies
         self.eventHandler = eventHandler
     }
-}
 
 // MARK: - Data source management
-extension MLTableViewManagement {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         self.movies.count
     }
@@ -31,14 +29,12 @@ extension MLTableViewManagement {
         let cell = tableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.identifier, for: indexPath)
         let movie = movies[indexPath.row]
         if let movieCell = cell as? MovieTableViewCell {
-            movieCell.setCell(with: movie)
+            movieCell.setupCell(with: movie)
         }
         return cell
     }
-}
 
 // MARK: - Table view delegate
-extension MLTableViewManagement {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let movie = movies[indexPath.row]
         self.eventHandler?.didSelect(movie)
