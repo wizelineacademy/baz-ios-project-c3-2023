@@ -20,7 +20,7 @@ extension MovieSearchView: UICollectionViewDataSource {
         )
         if let movieCell = cell as? MSMovieCollectionViewCell {
             let movie = movies[indexPath.row]
-            movieCell.setCell(with: movie)
+            movieCell.setupCell(with: movie)
         }
         return cell
     }
