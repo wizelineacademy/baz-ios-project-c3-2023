@@ -39,6 +39,13 @@ class MovieSearchCatalogViewController: UIViewController {
         }
     }
     
+    func showDetailMovieViewController(sender: Any?){
+        let detailView = MovieDetailPViewController()
+        guard let movieDetail =  sender as? Movie else { return }
+        detailView.movieToShowDetail = movieDetail
+        navigationController?.pushViewController(detailView, animated: true)
+    }
+    
 }
 
 // MARK: - CollectionView's DataSource
@@ -61,4 +68,15 @@ extension MovieSearchCatalogViewController: UICollectionViewDataSource {
         guard let collectionCell = collectionCell else { return MovieGalleryCollectionViewCell() }
         return collectionCell
     }
+}
+
+// MARK: - CollectionView's Delegate
+
+extension MovieSearchCatalogViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let movieToShow = moviesToShow?[indexPath.row]
+        showDetailMovieViewController(sender: movieToShow)
+    }
+    
 }
