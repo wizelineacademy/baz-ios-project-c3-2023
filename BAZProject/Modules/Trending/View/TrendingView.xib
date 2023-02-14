@@ -12,7 +12,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TrendingViewController" customModule="BAZProject" customModuleProvider="target">
             <connections>
                 <outlet property="filterSegmentedControl" destination="LU4-bg-lLR" id="Mz9-cN-GhD"/>
+                <outlet property="filterTimeSegmentedControl" destination="Tyh-UF-NUW" id="8dQ-v6-xB2"/>
                 <outlet property="moviesTableView" destination="xaZ-Lb-59o" id="Cr2-72-D0t"/>
+                <outlet property="titleFilterLabel" destination="EiN-47-7Ki" id="Yea-zp-mHJ"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Y4v-F1-4Xf"/>
             </connections>
         </placeholder>
@@ -38,17 +40,52 @@
                             </connections>
                         </segmentedControl>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xaZ-Lb-59o">
-                            <rect key="frame" x="0.0" y="48" width="393" height="711"/>
+                            <rect key="frame" x="0.0" y="86" width="393" height="673"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </tableView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ehp-eL-bWY">
+                            <rect key="frame" x="16" y="48" width="361" height="30"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title filter: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EiN-47-7Ki">
+                                    <rect key="frame" x="0.0" y="3" width="172.66666666666666" height="24"/>
+                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="20"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Tyh-UF-NUW">
+                                    <rect key="frame" x="180.66666666666663" y="0.0" width="180.33333333333337" height="31"/>
+                                    <segments>
+                                        <segment title="First"/>
+                                        <segment title="Second"/>
+                                    </segments>
+                                    <connections>
+                                        <action selector="switchedFilterTimeSegmented:" destination="-1" eventType="valueChanged" id="NwK-4k-V6J"/>
+                                    </connections>
+                                </segmentedControl>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="Tyh-UF-NUW" firstAttribute="width" secondItem="Ehp-eL-bWY" secondAttribute="width" multiplier="0.5" id="0Oi-X1-FNl"/>
+                                <constraint firstItem="EiN-47-7Ki" firstAttribute="centerY" secondItem="Tyh-UF-NUW" secondAttribute="centerY" id="6LH-mw-e4V"/>
+                                <constraint firstItem="Tyh-UF-NUW" firstAttribute="top" secondItem="Ehp-eL-bWY" secondAttribute="top" id="DyM-dr-zM1"/>
+                                <constraint firstAttribute="bottom" secondItem="Tyh-UF-NUW" secondAttribute="bottom" id="Na6-PS-A0x"/>
+                                <constraint firstAttribute="trailing" secondItem="Tyh-UF-NUW" secondAttribute="trailing" id="epy-Lf-G0I"/>
+                                <constraint firstAttribute="height" constant="30" id="kvw-oa-M5Q"/>
+                                <constraint firstItem="EiN-47-7Ki" firstAttribute="leading" secondItem="Ehp-eL-bWY" secondAttribute="leading" id="njc-Dp-Ub8"/>
+                                <constraint firstItem="Tyh-UF-NUW" firstAttribute="leading" secondItem="EiN-47-7Ki" secondAttribute="trailing" constant="8" id="u35-7R-sdv"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="xaZ-Lb-59o" secondAttribute="bottom" id="2q3-KO-7N5"/>
+                        <constraint firstItem="Ehp-eL-bWY" firstAttribute="trailing" secondItem="LU4-bg-lLR" secondAttribute="trailing" id="8L7-rc-Tdg"/>
                         <constraint firstItem="LU4-bg-lLR" firstAttribute="top" secondItem="rSe-6o-CHW" secondAttribute="top" id="BHs-Ry-5aa"/>
+                        <constraint firstItem="Ehp-eL-bWY" firstAttribute="leading" secondItem="LU4-bg-lLR" secondAttribute="leading" id="HQW-lO-Vuh"/>
+                        <constraint firstItem="xaZ-Lb-59o" firstAttribute="top" secondItem="Ehp-eL-bWY" secondAttribute="bottom" constant="8" id="JcE-Bl-1m5"/>
                         <constraint firstAttribute="trailing" secondItem="LU4-bg-lLR" secondAttribute="trailing" constant="16" id="LvL-gv-vcr"/>
                         <constraint firstItem="LU4-bg-lLR" firstAttribute="leading" secondItem="rSe-6o-CHW" secondAttribute="leading" constant="16" id="SXv-YF-P8Z"/>
-                        <constraint firstItem="xaZ-Lb-59o" firstAttribute="top" secondItem="LU4-bg-lLR" secondAttribute="bottom" constant="8" id="U6U-Fq-lOg"/>
+                        <constraint firstItem="Ehp-eL-bWY" firstAttribute="top" secondItem="LU4-bg-lLR" secondAttribute="bottom" constant="8" id="TVm-CM-qAy"/>
                         <constraint firstAttribute="trailing" secondItem="xaZ-Lb-59o" secondAttribute="trailing" id="cO3-m0-4VD"/>
                         <constraint firstItem="xaZ-Lb-59o" firstAttribute="leading" secondItem="rSe-6o-CHW" secondAttribute="leading" id="cka-IO-RRk"/>
                     </constraints>

@@ -8,7 +8,13 @@ import UIKit
 
 final class TrendingViewController: UIViewController, TrendingViewProtocol {
     
+    @IBOutlet weak var titleFilterLabel: UILabel! {
+        didSet {
+            titleFilterLabel.text = .trendingTitleFilterTime
+        }
+    }
     @IBOutlet weak var filterSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var filterTimeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var moviesTableView: UITableView!
     
     static let identifier: String = .trendingXibIdentifier
@@ -18,6 +24,7 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
     
     // MARK: - Private properties
     private let mediaType: MediaType = .movie
+    private let timeWindowType: TimeWindowType = .day
     private var errorGetData: Bool = false
     private var refreshControl: UIRefreshControl?
     private var loadingMoreView: InfiniteScrollActivityView?
@@ -43,8 +50,13 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
     }
 
     @IBAction func switchedFilterSegmented(_ sender: Any) {
-        print("Data2", filterSegmentedControl.selectedSegmentIndex)
+        // TODO: add logic in switched
     }
+    
+    @IBAction func switchedFilterTimeSegmented(_ sender: Any) {
+        // TODO: add logic in switched
+    }
+    
     func updateView(data: [MovieResult]) {
         movies = data
         guaranteeMainThread {
@@ -93,10 +105,16 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
 
     private func setupFilterSegmentedControl() {
         filterSegmentedControl.removeAllSegments()
+        filterTimeSegmentedControl.removeAllSegments()
         String.trendingFilterTitles.enumerated().forEach { title in
             filterSegmentedControl.insertSegment(withTitle: title.element, at: title.offset, animated: true)
         }
-        filterSegmentedControl.selectedSegmentIndex = 0
+        String.trendingFilterByTimeTitles.enumerated().forEach { title in
+            filterTimeSegmentedControl.insertSegment(withTitle: title.element, at: title.offset, animated: true)
+        }
+        filterSegmentedControl.selectedSegmentIndex = mediaType.getRawValue()
+        filterTimeSegmentedControl.selectedSegmentIndex = timeWindowType.getRawValue()
+        
     }
     
     private func setupInfiniteScrollLoadingIndicator() {
@@ -134,11 +152,11 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
         refreshControl.tintColor = .blue
         refreshControl.attributedTitle = String.trendingTitleUpdateTable.getColoredString(color: .blue)
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControl.Event.valueChanged)
-        moviesTableView.insertSubview(refreshControl, at: 0)
+        moviesTableView.insertSubview(refreshControl, at: LocalizedConstants.trendingFirstSubview)
     }
 
     private func getData() {
-        presenter?.willFetchTrendingMedia(mediaType: mediaType, timeWindow: .day)
+        presenter?.willFetchTrendingMedia(mediaType: mediaType, timeWindow: timeWindowType)
     }
     
     @objc func refreshControlAction(_ refreshControl: UIRefreshControl) {

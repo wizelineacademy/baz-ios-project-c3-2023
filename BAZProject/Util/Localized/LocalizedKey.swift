@@ -27,7 +27,9 @@ extension String {
     static let trendingXibIdentifier = "TrendingView"
     static let trendingTitle = "Trending"
     static let trendingTitleUpdateTable = "Actualizando.."
+    static let trendingTitleFilterTime = "Filtrar por:"
     static let trendingFilterTitles = ["🍿Pelis", "📺TV", "👀🔝", "Todo"]
+    static let trendingFilterByTimeTitles = ["📆Día", "🗓Semana"]
     
     // MARK: - Main
     static let mainPlaceholderSearchBar = "Buscar.."

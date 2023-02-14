@@ -36,4 +36,7 @@ enum LocalizedConstants {
     static let infiniteScrollActivityViewDefaultHeight: CGFloat = 60.0
     static let infiniteScrollActivityViewDivisorNumberHeightAndWidth: CGFloat = 2
     static let infiniteScrollActivityViewSpaceTop: CGFloat = 30
+    
+    // MARK: - Trending
+    static let trendingFirstSubview: Int = 0
 }
