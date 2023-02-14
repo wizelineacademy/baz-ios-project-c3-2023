@@ -22,7 +22,7 @@ final class MSRouter {
      - Returns: a view controller wich you can use to search a movie by any text
      */
     static func getEntry(with provider: MSProviderProtocol) -> UIViewController {
-        let view = MovieSearchView()
+        let view = MovieSeakerView()
         let router = MSRouter(view: view)
         let interactor = MSInteractor(provider: provider)
         let presenter = MSPresenter(
