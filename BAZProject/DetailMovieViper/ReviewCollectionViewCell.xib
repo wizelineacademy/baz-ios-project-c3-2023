@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ReviewCollectionViewCell" id="iJX-rE-YkY" customClass="ReviewCollectionViewCell" customModule="BAZProject" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="106"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="yoc-WF-Ccb">
+                <rect key="frame" x="0.0" y="0.0" width="200" height="106"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="CommentsCommentsCommentsCommentsCommentsComments" translatesAutoresizingMaskIntoConstraints="NO" id="WQ1-tB-Fzy">
+                        <rect key="frame" x="0.0" y="20" width="200" height="86"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="10"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="53I-43-XiS">
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="20"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="WQ1-tB-Fzy" firstAttribute="leading" secondItem="yoc-WF-Ccb" secondAttribute="leading" id="2Dv-s3-wuY"/>
+                    <constraint firstAttribute="bottom" secondItem="WQ1-tB-Fzy" secondAttribute="bottom" id="8vM-Bg-KPn"/>
+                    <constraint firstAttribute="trailing" secondItem="53I-43-XiS" secondAttribute="trailing" id="Jeg-Ty-3RI"/>
+                    <constraint firstAttribute="trailing" secondItem="WQ1-tB-Fzy" secondAttribute="trailing" id="WcW-jt-xS8"/>
+                    <constraint firstAttribute="trailing" secondItem="WQ1-tB-Fzy" secondAttribute="trailing" id="oZY-q0-V9V"/>
+                    <constraint firstAttribute="bottom" secondItem="WQ1-tB-Fzy" secondAttribute="bottom" id="rmX-Se-DUu"/>
+                    <constraint firstItem="53I-43-XiS" firstAttribute="leading" secondItem="yoc-WF-Ccb" secondAttribute="leading" id="tYd-r2-Ozd"/>
+                    <constraint firstItem="WQ1-tB-Fzy" firstAttribute="leading" secondItem="yoc-WF-Ccb" secondAttribute="leading" id="vsJ-h0-NGD"/>
+                    <constraint firstItem="WQ1-tB-Fzy" firstAttribute="top" secondItem="53I-43-XiS" secondAttribute="bottom" id="wOn-Ym-U7d"/>
+                    <constraint firstItem="53I-43-XiS" firstAttribute="top" secondItem="yoc-WF-Ccb" secondAttribute="top" id="x9v-fm-los"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <size key="customSize" width="200" height="106"/>
+            <connections>
+                <outlet property="nameReviewLabel" destination="53I-43-XiS" id="Odc-vO-WeL"/>
+                <outlet property="reviewTextView" destination="WQ1-tB-Fzy" id="d0S-eq-vtM"/>
+            </connections>
+            <point key="canvasLocation" x="-45.801526717557252" y="42.253521126760567"/>
+        </collectionViewCell>
+    </objects>
+</document>

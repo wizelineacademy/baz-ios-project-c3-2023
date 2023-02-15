@@ -9,7 +9,7 @@
 import UIKit
 
 class HomeMoviesRouter: HomeMoviesRouterProtocol {
-
+   
     class func createHomeMoviesModule() -> UIViewController {
         let navController = mainStoryboard.instantiateViewController(withIdentifier: "NavigationMovies")
         if let view = navController.children.first as? HomeMoviesView {
@@ -35,4 +35,13 @@ class HomeMoviesRouter: HomeMoviesRouterProtocol {
         return UIStoryboard(name: "HomeMoviesView", bundle: Bundle.main)
     }
     
+    func goToDetails(from view: HomeMoviesViewProtocol, idMovie: Int) {
+        let newDetailView = DetailMovieRouter.createDetailMovieModule(idMovie: idMovie)
+        
+        if let newView = view as? UIViewController{
+            newView.present(newDetailView, animated: true)
+        }
+    }
+    
+
 }

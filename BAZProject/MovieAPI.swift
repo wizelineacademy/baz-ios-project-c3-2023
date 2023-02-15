@@ -20,21 +20,80 @@ class MovieAPI{
             if let url = URL(string: urlIndentifierMovie),
                let data = try? Data(contentsOf: url),
                let json = try? JSONSerialization.jsonObject(with: data) as? NSDictionary,
-               let results = json.object(forKey: "results") as? [NSDictionary], results.count > 0{
-                do{
+               let results = json.object(forKey: "results") as? [NSDictionary], results.count > 0 {
+                do {
                     let movieData = try JSONSerialization.data(withJSONObject: results, options: [])
                     let movieDecode = try? JSONDecoder().decode([Movie].self, from: movieData)
                     let movies = movieDecode ?? [Movie]()
                     completion(movies)
-                }catch{
+                } catch {
                     completion(nil)
                 }
-            }else{
+            } else {
                 completion(nil)
             }
         }
     }
-
+    
+    func getDetails(for urlIndentifierDetailMovie: String, completion: @escaping (DetailMovie?) -> Void){
+        DispatchQueue.global(qos: .background).async {
+            if let url = URL(string: urlIndentifierDetailMovie),
+               let data = try? Data(contentsOf: url),
+               let json = try? JSONSerialization.jsonObject(with: data) as? NSDictionary {
+                do {
+                    let detailMovieData = try JSONSerialization.data(withJSONObject: json, options: [])
+                    let detailMovieDecode = try? JSONDecoder().decode(DetailMovie.self, from: detailMovieData)
+                    let detailMovie = detailMovieDecode
+                    completion(detailMovie)
+                } catch {
+                    completion(nil)
+                }
+            } else {
+                completion(nil)
+            }
+        }
+    }
+    
+    func getReviews(for urlIndentifierReviewMovie: String, completion: @escaping ([Reviews]?) -> Void){
+        DispatchQueue.global(qos: .background).async {
+            if let url = URL(string: urlIndentifierReviewMovie),
+               let data = try? Data(contentsOf: url),
+               let json = try? JSONSerialization.jsonObject(with: data) as? NSDictionary,
+               let results = json.object(forKey: "results") as? [NSDictionary], results.count > 0{
+                do{
+                    let reviewsData = try JSONSerialization.data(withJSONObject: results, options: [])
+                    let reviewsDecode = try? JSONDecoder().decode([Reviews].self, from: reviewsData)
+                    let reviews = reviewsDecode
+                    completion(reviews)
+                } catch {
+                    completion(nil)
+                }
+            } else {
+                completion(nil)
+            }
+        }
+    }
+    
+    func getCast(for urlIdentifierCastMovie: String, completion: @escaping ([Cast]?) -> Void){
+        DispatchQueue.global(qos: .background).async {
+            if let url = URL(string: urlIdentifierCastMovie),
+               let data = try? Data(contentsOf: url),
+               let json = try? JSONSerialization.jsonObject(with: data) as? NSDictionary,
+               let results = json.object(forKey: "cast") as? [NSDictionary], results.count > 0{
+                do{
+                    let castData = try JSONSerialization.data(withJSONObject: results, options: [])
+                    let castDecode = try? JSONDecoder().decode([Cast].self, from: castData)
+                    let cast = castDecode
+                    completion(cast)
+                } catch {
+                    completion(nil)
+                }
+            } else {
+                completion(nil)
+            }
+        }
+    }
+    
     /// Get an image from the API movies and convert the url to an UIImage
     ///
     /// - Parameter urlIdentifierImage: String with the image url
@@ -45,9 +104,9 @@ class MovieAPI{
         DispatchQueue.global(qos: .background).async {
             if let url = URL(string: urlString),
                let data = try? Data(contentsOf: url ),
-               let image: UIImage = UIImage(data: data){
+               let image: UIImage = UIImage(data: data) {
                  completion(image)
-            }else{
+            } else {
                 completion(nil)
             }
         }

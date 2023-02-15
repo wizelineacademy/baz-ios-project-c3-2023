@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Detail Movie View-->
+        <scene sceneID="vqc-tD-XL6">
+            <objects>
+                <viewController storyboardIdentifier="DetailMovieView" modalPresentationStyle="pageSheet" id="ARP-Qj-5QL" customClass="DetailMovieView" customModule="BAZProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UMn-mP-Qt6">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="vkm-2E-su5">
+                                <rect key="frame" x="0.0" y="368" width="393" height="484"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="poster" translatesAutoresizingMaskIntoConstraints="NO" id="KPT-Ex-6mg">
+                                <rect key="frame" x="0.0" y="59" width="393" height="309"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="309" id="vHp-Xh-pNB"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ua7-nY-DX7">
+                                <rect key="frame" x="0.0" y="59" width="393" height="24"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vgB-Gq-VMI"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Ua7-nY-DX7" firstAttribute="leading" secondItem="vgB-Gq-VMI" secondAttribute="leading" id="0HV-Ht-its"/>
+                            <constraint firstItem="KPT-Ex-6mg" firstAttribute="leading" secondItem="vgB-Gq-VMI" secondAttribute="leading" id="9NT-cT-PqF"/>
+                            <constraint firstItem="vkm-2E-su5" firstAttribute="top" secondItem="KPT-Ex-6mg" secondAttribute="bottom" id="C32-us-ZfX"/>
+                            <constraint firstItem="Ua7-nY-DX7" firstAttribute="trailing" secondItem="vgB-Gq-VMI" secondAttribute="trailing" id="Cly-f7-b0U"/>
+                            <constraint firstItem="vkm-2E-su5" firstAttribute="trailing" secondItem="vgB-Gq-VMI" secondAttribute="trailing" id="HYP-RT-dYl"/>
+                            <constraint firstItem="KPT-Ex-6mg" firstAttribute="top" secondItem="vgB-Gq-VMI" secondAttribute="top" id="ce0-F4-M6q"/>
+                            <constraint firstItem="Ua7-nY-DX7" firstAttribute="top" secondItem="vgB-Gq-VMI" secondAttribute="top" id="fNh-8d-fnI"/>
+                            <constraint firstItem="KPT-Ex-6mg" firstAttribute="trailing" secondItem="vgB-Gq-VMI" secondAttribute="trailing" id="ihY-KJ-sSz"/>
+                            <constraint firstItem="vkm-2E-su5" firstAttribute="leading" secondItem="vgB-Gq-VMI" secondAttribute="leading" id="lQl-8C-0YL"/>
+                            <constraint firstAttribute="bottom" secondItem="vkm-2E-su5" secondAttribute="bottom" id="qGf-gG-U3C"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="detailMovieImageView" destination="KPT-Ex-6mg" id="9BS-OT-Jp7"/>
+                        <outlet property="detailTableViewCell" destination="vkm-2E-su5" id="nrG-CT-4H0"/>
+                        <outlet property="nameMovieLabel" destination="Ua7-nY-DX7" id="c5p-WL-eSp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7h3-wF-4oR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="89.312977099236633" y="19.718309859154932"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="poster" width="500" height="743"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

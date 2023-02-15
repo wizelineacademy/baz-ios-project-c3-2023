@@ -9,7 +9,7 @@
 import UIKit
 
 class HomeMoviesPresenter: HomeMoviesPresenterProtocol  {
- 
+   
     // MARK: Properties
     weak var view: HomeMoviesViewProtocol?
     var interactor: HomeMoviesInteractorInputProtocol?
@@ -132,7 +132,11 @@ class HomeMoviesPresenter: HomeMoviesPresenterProtocol  {
         }
     }
     
-    
+    func goToDetails(index: Int) {
+        if let view = view{
+            router?.goToDetails(from: view,idMovie: self.toShowMovies[index].id)
+        }
+    }
 }
 
 

@@ -44,6 +44,13 @@ extension HomeMoviesView: UICollectionViewDataSource{
 // MARK: - CollectionView's Delegate
 
 extension HomeMoviesView: UICollectionViewDelegate{
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == self.moviesCollectionView{
+            presenter?.goToDetails(index: indexPath.row)
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: insets,
                             left: insets,
