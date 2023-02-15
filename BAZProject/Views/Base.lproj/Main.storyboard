@@ -232,7 +232,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gcc-ZT-2wL">
-                                <rect key="frame" x="8" y="44" width="304" height="475"/>
+                                <rect key="frame" x="24" y="44" width="272" height="475"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="J42-Cx-81e">
                                     <size key="itemSize" width="130" height="220"/>
@@ -242,7 +242,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Xz0-MD-XKi">
-                                        <rect key="frame" x="5" y="5" width="130" height="220"/>
+                                        <rect key="frame" x="71" y="5" width="130" height="220"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="oN5-2l-RUv">
                                             <rect key="frame" x="0.0" y="0.0" width="130" height="220"/>
@@ -261,8 +261,8 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="c8D-hE-erg" firstAttribute="bottom" secondItem="gcc-ZT-2wL" secondAttribute="bottom" id="58B-Yl-H3M"/>
-                            <constraint firstItem="gcc-ZT-2wL" firstAttribute="leading" secondItem="c8D-hE-erg" secondAttribute="leading" constant="8" id="Ayd-Mg-rhR"/>
-                            <constraint firstItem="c8D-hE-erg" firstAttribute="trailing" secondItem="gcc-ZT-2wL" secondAttribute="trailing" constant="8" id="Ezg-Kj-5Ew"/>
+                            <constraint firstItem="c8D-hE-erg" firstAttribute="trailing" secondItem="gcc-ZT-2wL" secondAttribute="trailing" constant="24" id="9zm-G9-Edz"/>
+                            <constraint firstItem="gcc-ZT-2wL" firstAttribute="leading" secondItem="c8D-hE-erg" secondAttribute="leading" constant="24" id="GDF-Ro-EAT"/>
                             <constraint firstItem="gcc-ZT-2wL" firstAttribute="top" secondItem="c8D-hE-erg" secondAttribute="top" id="iwz-Hu-TeM"/>
                         </constraints>
                     </view>

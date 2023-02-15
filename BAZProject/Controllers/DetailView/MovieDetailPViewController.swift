@@ -95,10 +95,14 @@ class MovieDetailPViewController: UIViewController {
     func getMovieCast() {
         guard let id = movieToShowDetail?.id else { return }
         movieApi.getMovieCast(movieID: id) { cast, error in
-            if let cast = cast {
+            if let cast = cast,
+               cast.cast.count > 0{
                 self.movieCast = cast.cast.sorted {
                     $0.order < $1.order
                 }
+                self.castView?.isHidden = false
+            } else {
+                self.castView?.isHidden = true
             }
         }
     }
@@ -293,7 +297,7 @@ extension MovieDetailPViewController: UICollectionViewDelegate {
         switch collectionView.tag {
         case MovieDetailSections.similar.rawValue:
             showDetailMovieViewController(movie: similarMovies?[indexPath.row])
-        case MovieDetailSections.similar.rawValue:
+        case MovieDetailSections.recommendation.rawValue:
             showDetailMovieViewController(movie: recommendationMovies?[indexPath.row])
         default:
             return

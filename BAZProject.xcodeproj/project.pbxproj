@@ -211,6 +211,7 @@
 			children = (
 				F8A1EF66299AF44E00D57F71 /* TopDetailView.xib */,
 				F8A1EF68299B033700D57F71 /* CastView.xib */,
+				F87AF5302992E45600D5E06F /* MovieCastCollectionViewCell.xib */,
 				F8A1EF6E299B4EAF00D57F71 /* MovieListView.xib */,
 				F8A1EF79299C44F100D57F71 /* ReviewView.xib */,
 				F8A1EF7C299C563A00D57F71 /* ReviewTableViewCell.xib */,
@@ -254,7 +255,6 @@
 		F8A1EF80299D488600D57F71 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				F87AF5302992E45600D5E06F /* MovieCastCollectionViewCell.xib */,
 				F87AF5332992FDD600D5E06F /* MovieGalleryCollectionViewCell.xib */,
 			);
 			path = Home;

@@ -22,6 +22,7 @@ class MovieSearchCatalogViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         registerCollectionCell()
+        cellFlowlayout()
         if let keyword = keywordToSearch?.name {
             searchMovies(from: keyword)
         }
@@ -29,6 +30,14 @@ class MovieSearchCatalogViewController: UIViewController {
     
     func registerCollectionCell() {
         searchMovieCollection.register(UINib(nibName: "MovieGalleryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MovieGallery")
+    }
+    
+    func cellFlowlayout(){
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.itemSize =  CGSize(width: 130, height: 220)
+        flowLayout.sectionInset = UIEdgeInsets(top: 16, left: 8, bottom: 16, right: 8)
+        flowLayout.scrollDirection = .vertical
+        searchMovieCollection.setCollectionViewLayout(flowLayout, animated: false)
     }
     
     func searchMovies(from text: String) {

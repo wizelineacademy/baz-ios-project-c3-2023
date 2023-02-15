@@ -35,6 +35,7 @@ class MovieShearchViewController: UIViewController {
             if let keywords = keywords,
                keywords.count > 0 {
                 self.keywordsToShow = keywords
+                self.noResultsInvisible()
             } else {
                 self.noResultTextVisible()
             }
@@ -95,6 +96,9 @@ extension MovieShearchViewController: UITableViewDelegate {
 extension MovieShearchViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { timer in
+//            print("Timer fired!")
+//        }
         if searchText.isEmpty {
             keywordsToShow = []
             noResultsInvisible()
