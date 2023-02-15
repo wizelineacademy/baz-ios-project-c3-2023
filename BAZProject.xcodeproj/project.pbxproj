@@ -46,6 +46,7 @@
 		D2CFEC1F2983207E0024D226 /* TrendingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFEC1E2983207E0024D226 /* TrendingRouter.swift */; };
 		D2CFEC262983315A0024D226 /* TrendingViewController+UITableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFEC252983315A0024D226 /* TrendingViewController+UITableExtensions.swift */; };
 		D2D2F83629846BB000840F20 /* TrendingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2D2F83529846BB000840F20 /* TrendingView.xib */; };
+		D2D916DB299C8199009E0BE2 /* MovieDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D916DA299C8199009E0BE2 /* MovieDetail.swift */; };
 		D2E241C7297F91A2002675B4 /* NetworkingProvider+RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E241C6297F91A2002675B4 /* NetworkingProvider+RequestType.swift */; };
 		D2E241C9297F923E002675B4 /* NetworkingProviderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E241C8297F923E002675B4 /* NetworkingProviderService.swift */; };
 		D2E241CC297F9AC1002675B4 /* LocalizedKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E241CB297F9AC1002675B4 /* LocalizedKey.swift */; };
@@ -117,6 +118,7 @@
 		D2CFEC1E2983207E0024D226 /* TrendingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingRouter.swift; sourceTree = "<group>"; };
 		D2CFEC252983315A0024D226 /* TrendingViewController+UITableExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrendingViewController+UITableExtensions.swift"; sourceTree = "<group>"; };
 		D2D2F83529846BB000840F20 /* TrendingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrendingView.xib; sourceTree = "<group>"; };
+		D2D916DA299C8199009E0BE2 /* MovieDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetail.swift; sourceTree = "<group>"; };
 		D2E241C6297F91A2002675B4 /* NetworkingProvider+RequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkingProvider+RequestType.swift"; sourceTree = "<group>"; };
 		D2E241C8297F923E002675B4 /* NetworkingProviderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingProviderService.swift; sourceTree = "<group>"; };
 		D2E241CB297F9AC1002675B4 /* LocalizedKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedKey.swift; sourceTree = "<group>"; };
@@ -415,6 +417,7 @@
 			isa = PBXGroup;
 			children = (
 				D2F08D45299C46A1009BA149 /* DetailType.swift */,
+				D2D916DA299C8199009E0BE2 /* MovieDetail.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -719,6 +722,7 @@
 				D2073EAE29899696006A577A /* ErrorType.swift in Sources */,
 				D20AECCB299AA93E00292C76 /* InfiniteScrollActivityView.swift in Sources */,
 				D2073EA629898C22006A577A /* ErrorPageProtocols.swift in Sources */,
+				D2D916DB299C8199009E0BE2 /* MovieDetail.swift in Sources */,
 				D2F08D41299C399B009BA149 /* DetailProtocols.swift in Sources */,
 				D215C5002980EF9500D5670F /* ErrorPageViewController.swift in Sources */,
 				D2F08D46299C46A1009BA149 /* DetailType.swift in Sources */,
