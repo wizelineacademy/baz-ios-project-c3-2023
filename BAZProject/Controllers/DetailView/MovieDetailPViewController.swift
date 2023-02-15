@@ -179,6 +179,7 @@ class MovieDetailPViewController: UIViewController {
     func createSimilarMovies() {
         similarMoviesView = MovieListView.initMovieCollection() as? MovieListView
         similarMoviesView?.movieCollection.register(UINib(nibName: "MovieGalleryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MovieGallery")
+        similarMoviesView?.movieCollection.delegate = self
         similarMoviesView?.movieCollection.dataSource = self
         similarMoviesView?.sectionTitle.text = MovieDetailSections.similar.title
         let flowLayout = cellFlowlayout(size: CGSize(width: 130, height: 220))
@@ -190,6 +191,7 @@ class MovieDetailPViewController: UIViewController {
     func createRecommendation() {
         recommendationView = MovieListView.initMovieCollection() as? MovieListView
         recommendationView?.movieCollection.register(UINib(nibName: "MovieGalleryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MovieGallery")
+        recommendationView?.movieCollection.delegate = self
         recommendationView?.movieCollection.dataSource =  self
         recommendationView?.movieCollection.tag = 3
         recommendationView?.sectionTitle.text = MovieDetailSections.recommendation.title
@@ -216,6 +218,13 @@ class MovieDetailPViewController: UIViewController {
         flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 5)
         flowLayout.scrollDirection = .horizontal
         return flowLayout
+    }
+    
+    func showDetailMovieViewController(movie: Movie?) {
+        let detailView = MovieDetailPViewController()
+        guard let movie = movie else { return }
+        detailView.movieToShowDetail = movie
+        navigationController?.pushViewController(detailView, animated: true)
     }
     
 }
@@ -277,9 +286,25 @@ extension MovieDetailPViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: - CollectionView's Delegate
+
+extension MovieDetailPViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch collectionView.tag {
+        case MovieDetailSections.similar.rawValue:
+            showDetailMovieViewController(movie: similarMovies?[indexPath.row])
+        case MovieDetailSections.similar.rawValue:
+            showDetailMovieViewController(movie: recommendationMovies?[indexPath.row])
+        default:
+            return
+        }
+    }
+}
+
 // MARK: - ReviewTableView's DataSource
 
 extension MovieDetailPViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         movieReviews?.count ?? 0
     }
