@@ -6,7 +6,7 @@
 
 import Foundation
 
-struct Movie: Decodable {
+struct Movie: Codable, Hashable {
     let id: Int
     let title: String
     let isAdult: Bool
@@ -19,6 +19,7 @@ struct Movie: Decodable {
     let video: Bool
     let voteAverage: Double
     let voteCount: Int
+    var movieSeenCount: Int?
     
     private let posterPath: String
     private let backgroundImagePath: String?
@@ -26,6 +27,14 @@ struct Movie: Decodable {
     
     var releaseDate: String? {
         publishedDate.convertDate(format: "yyyy-MM-dd", to: "dd MMMM yyyy")
+    }
+    
+    var timesSeen: String? {
+        if let movieSeenCount = movieSeenCount {
+            let subfix = movieSeenCount == 1 ? "vez" : "veces"
+            return "Vista \(movieSeenCount) \(subfix)"
+        }
+        return nil
     }
     
     /**
@@ -75,5 +84,6 @@ struct Movie: Decodable {
         case video = "video"
         case voteAverage = "vote_average"
         case voteCount = "vote_count"
+        case movieSeenCount
     }
 }

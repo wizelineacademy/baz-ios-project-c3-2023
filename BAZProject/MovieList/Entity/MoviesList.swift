@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct MoviesList: Decodable {
-    let movies: [Movie]
+struct MoviesList: Codable {
+    var movies: [Movie]
     
     enum CodingKeys: String, CodingKey {
         case movies = "results"

@@ -16,7 +16,8 @@ final class MovieTableViewCell: UITableViewCell {
     @IBOutlet weak var releaseDate: UILabel!
     @IBOutlet weak var language: UILabel!
     @IBOutlet weak var posterImage: UIImageView!
-
+    @IBOutlet weak var movieSeenCounter: UILabel!
+    
     /**
      Configures the cell apearance with the received object
      - Parameters:
@@ -26,6 +27,8 @@ final class MovieTableViewCell: UITableViewCell {
         title.text = movie.title
         releaseDate.text = "Lazamiento: \(movie.releaseDate ?? "")"
         language.text = "Idioma original: \(movie.originalLanguage)"
+        movieSeenCounter.isHidden = movie.movieSeenCount == nil
+        movieSeenCounter.text = movie.timesSeen
         guard let url = movie.getPosterURL(size: .medium) else { return }
         
         let task = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in

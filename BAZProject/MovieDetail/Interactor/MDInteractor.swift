@@ -17,8 +17,10 @@ final class MDInteractor {
 }
 
 extension MDInteractor: MDInteractorInputProtocol {
-    /** Call the interactor output method to present the received movie */
+    /** Call the interactor output method to present the received movie and post a notification with the given movie */
     func fetchData() {
+        let movieInfo: [String: Any] = [StoredMovies.movieNotificationKey: movie]
+        NotificationCenter.default.post(name: .seenMovie, object: nil, userInfo: movieInfo)
         self.output?.present(movie)
     }
 }
