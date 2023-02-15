@@ -65,6 +65,9 @@ class HomeViewController: UIViewController {
     
     private func addMoviesSectionView(section: fetchMoviesTypes) {
         let sectionView = MoviesSectionView()
+        let moviesSectionModel = MoviesSectionModel(title: "Popular Movies", imageString: [])
+        sectionView.model = moviesSectionModel
+        
         sectionView.heightAnchor.constraint(equalToConstant: view.frame.height / 3).isActive = true
         scrollViewContainer.addArrangedSubview(sectionView)
     }

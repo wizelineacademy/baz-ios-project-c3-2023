@@ -11,6 +11,7 @@
 		515B71852996CFC70066A482 /* MoviesSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515B71842996CFC70066A482 /* MoviesSectionView.swift */; };
 		515B718D2996D3490066A482 /* MoviesSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 515B718C2996D3490066A482 /* MoviesSectionView.xib */; };
 		5178A8382994193B0042687F /* ImagesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5178A8372994193A0042687F /* ImagesAPI.swift */; };
+		517C2305299C68A6009B2047 /* CarruselCollectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517C2304299C68A6009B2047 /* CarruselCollectionManager.swift */; };
 		51883BB2298ACE31002B564A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51883BB1298ACE31002B564A /* HomeViewController.swift */; };
 		51883BB6298AD180002B564A /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51883BB5298AD180002B564A /* HomeInteractor.swift */; };
 		51883BB8298AD339002B564A /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51883BB7298AD339002B564A /* HomePresenter.swift */; };
@@ -41,6 +42,7 @@
 		515B71842996CFC70066A482 /* MoviesSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesSectionView.swift; sourceTree = "<group>"; };
 		515B718C2996D3490066A482 /* MoviesSectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoviesSectionView.xib; sourceTree = "<group>"; };
 		5178A8372994193A0042687F /* ImagesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesAPI.swift; sourceTree = "<group>"; };
+		517C2304299C68A6009B2047 /* CarruselCollectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarruselCollectionManager.swift; sourceTree = "<group>"; };
 		51883BB1298ACE31002B564A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		51883BB5298AD180002B564A /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
 		51883BB7298AD339002B564A /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 			children = (
 				519C41EA29955ADB004F142F /* CarruselCollectionView.swift */,
 				519C41EC29955D1A004F142F /* CarruselCollectionViewCell.swift */,
+				517C2304299C68A6009B2047 /* CarruselCollectionManager.swift */,
 			);
 			path = CarruselCollection;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				51883BBC298ADAE0002B564A /* MoviesWorker.swift in Sources */,
 				51AE6E6F298DCD0400AA42A2 /* Movie.swift in Sources */,
 				515B71852996CFC70066A482 /* MoviesSectionView.swift in Sources */,
+				517C2305299C68A6009B2047 /* CarruselCollectionManager.swift in Sources */,
 				51883BCB298AFE51002B564A /* SearchMoviesPresenter.swift in Sources */,
 				51883BB6298AD180002B564A /* HomeInteractor.swift in Sources */,
 				51883BC1298AEBDE002B564A /* MovieDetailsViewController.swift in Sources */,

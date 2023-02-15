@@ -13,9 +13,9 @@ protocol MoviesSectionDelegate: AnyObject {
     func didTapItem()
 }
 
-struct MoviesSectionViewModel {
+struct MoviesSectionModel {
     let title: String
-    let movies: [String]
+    let imageString: [String]
 }
 
 class MoviesSectionView: UIView {
@@ -25,11 +25,20 @@ class MoviesSectionView: UIView {
     @IBOutlet weak var carruselMoviesView: UIView!
     
     // MARK: Properties
-    var viewModel: MoviesSectionViewModel? 
+    var manager: CarruselCollectionManager!
+    let carruselCollection = CarruselCollectionView()
+    var model: MoviesSectionModel? {
+        didSet {
+            titleSectionMovies.text = model?.title
+            manager.dataItem = model?.imageString
+        }
+    }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init() {
+        super.init(frame: .zero)
         self.configurateView()
+        configureCarruselMoviesView()
+
     }
     
     required init?(coder: NSCoder) {
@@ -41,6 +50,15 @@ class MoviesSectionView: UIView {
         guard let view = loadViewFromNib(nibName: "MoviesSectionView") else { return }
         view.frame = self.bounds
         self.addSubview(view)
+    }
+    
+    private func configureCarruselMoviesView() {
+        carruselMoviesView.addSubview(carruselCollection)
+        carruselCollection.leadingAnchor.constraint(equalTo: carruselMoviesView.leadingAnchor).isActive = true
+        carruselCollection.trailingAnchor.constraint(equalTo: carruselMoviesView.trailingAnchor).isActive = true
+        carruselCollection.topAnchor.constraint(equalTo: carruselMoviesView.topAnchor).isActive = true
+        carruselCollection.bottomAnchor.constraint(equalTo: carruselMoviesView.bottomAnchor).isActive = true
+        manager = CarruselCollectionManager(collection: carruselCollection)
     }
 }
 
