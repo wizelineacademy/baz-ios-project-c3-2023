@@ -25,6 +25,7 @@ protocol TrendingPresenterProtocol: AnyObject {
     var interactor: TrendingInteractorInputProtocol? { get set }
 
     func willFetchTrendingMedia(mediaType: MediaType, timeWindow: TimeWindowType)
+    func showDetail(of detailType: DetailType)
 }
 
 // Presenter > Router
@@ -33,6 +34,7 @@ protocol TrendingRouterProtocol: AnyObject {
 
     static func createModule() -> UIViewController
     func showViewError(_ errorType: ErrorType)
+    func showDetail(of detailType: DetailType)
 }
 
 // Presenter > Interactor

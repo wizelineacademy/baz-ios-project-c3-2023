@@ -23,7 +23,7 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
     var presenter: TrendingPresenterProtocol?
     
     // MARK: - Private properties
-    private let mediaType: MediaType = .movie
+    let mediaType: MediaType = .movie
     private let timeWindowType: TimeWindowType = .day
     private var errorGetData: Bool = false
     private var refreshControl: UIRefreshControl?

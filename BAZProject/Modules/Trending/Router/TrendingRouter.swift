@@ -39,6 +39,14 @@ final class TrendingRouter: TrendingRouterProtocol {
         }
     }
     
+    func showDetail(of detailType: DetailType) {
+        guaranteeMainThread {
+            guard let view = self.view as? UIViewController else { return }
+            let detailView: UIViewController = DetailRouter.createModule(detailType: detailType)
+            view.navigationController?.pushViewController(detailView, animated: true)
+        }
+    }
+    
     private func guaranteeMainThread(_ work: @escaping () -> Void) {
         if Thread.isMainThread {
             work()

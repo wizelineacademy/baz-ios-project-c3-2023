@@ -38,4 +38,8 @@ extension TrendingPresenter: TrendingInteractorOutputProtocol {
         view?.setErrorGettingData(true)
         router?.showViewError(errorModel)
     }
+    
+    func showDetail(of detailType: DetailType) {
+        router?.showDetail(of: detailType)
+    }
 }

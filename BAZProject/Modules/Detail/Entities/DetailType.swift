@@ -9,5 +9,5 @@ import Foundation
 
 struct DetailType {
     var mediaType: MediaType
-    var idMedia: String
+    var idMedia: Int
 }

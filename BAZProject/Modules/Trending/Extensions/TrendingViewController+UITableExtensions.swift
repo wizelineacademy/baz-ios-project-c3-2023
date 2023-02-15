@@ -17,9 +17,9 @@ extension TrendingViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let _ = getMovie(indexPath.row)
-//        self.navigationController?.present(DetailRouter.createModule(), animated: true)
-        // TODO: add router to detail
+        guard let id = getMovie(indexPath.row)?.id else { return }
+        let detail: DetailType = DetailType(mediaType: mediaType, idMedia: id)
+        presenter?.showDetail(of: detail)
     }
 }
 
