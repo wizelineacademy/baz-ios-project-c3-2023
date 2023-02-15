@@ -23,6 +23,15 @@ struct Movie: Decodable {
 }
 
 extension Movie{
+    
+    var avarageRounded: String {
+        if self.voteAverage >= 1 {
+            return String(format: "%.2f", self.voteAverage)
+        } else {
+            return ""
+        }
+    }
+    
     var averageStars: String {
         guard self.voteAverage > 0 else { return " " }
         let stars = (self.voteAverage/2.0).rounded()

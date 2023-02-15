@@ -27,7 +27,7 @@ class MovieDetailPViewController: UIViewController {
     var castView: CastView?
     var similarMoviesView: MovieListView?
     var recommendationView: MovieListView?
-    
+    var reviewView: ReviewView?
     var movieApi = MovieAPI()
     var movieToShowDetail: Movie?
     var movieDetail: MovieDetail?
@@ -46,7 +46,11 @@ class MovieDetailPViewController: UIViewController {
             recommendationView?.movieCollection.reloadData()
         }
     }
-    var movieReviews: [MovieReview]?
+    var movieReviews: [MovieReview]? {
+        didSet{
+            reviewView?.reviewTable.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +64,8 @@ class MovieDetailPViewController: UIViewController {
         createTopDetail()
         createCastView()
         createSimilarMovies()
+        createRecommendation()
+        createReviewView()
     }
     
     func services(){
@@ -67,7 +73,7 @@ class MovieDetailPViewController: UIViewController {
         getMovieCast()
         getSimilarMovies()
         getRecommendationMovies()
-        createRecommendation()
+        getMovieReview()
     }
     
     func getMovieDetail() {
@@ -79,17 +85,17 @@ class MovieDetailPViewController: UIViewController {
                 self.topDetail?.genre.text = detail.listGenres
                 if (detail.overview == nil) || detail.overview == ""{
                     self.topDetail?.overview.text = "Lo sentimos, aún no tenemos una reseña disponible para esta pelicula."
-                }else{
+                } else {
                     self.topDetail?.overview.text = detail.overview
                 }
             }
         }
     }
     
-    func getMovieCast(){
+    func getMovieCast() {
         guard let id = movieToShowDetail?.id else { return }
         movieApi.getMovieCast(movieID: id) { cast, error in
-            if let cast = cast{
+            if let cast = cast {
                 self.movieCast = cast.cast.sorted {
                     $0.order < $1.order
                 }
@@ -97,7 +103,7 @@ class MovieDetailPViewController: UIViewController {
         }
     }
     
-    func getSimilarMovies(){
+    func getSimilarMovies() {
         guard let id = movieToShowDetail?.id else { return }
         movieApi.getMovies(movieID: id, queryType: MovieAPI.consult.similar) { movies, error in
             if let movies = movies,
@@ -110,10 +116,11 @@ class MovieDetailPViewController: UIViewController {
         }
     }
     
-    func getRecommendationMovies(){
+    func getRecommendationMovies() {
         guard let id = movieToShowDetail?.id else { return }
         movieApi.getMovies(movieID: id, queryType: MovieAPI.consult.recommendations) { movies, error in
-            if let movies = movies {
+            if let movies = movies,
+               movies.count > 0  {
                 self.recommendationMovies = movies
                 self.recommendationView?.isHidden = false
             } else {
@@ -126,8 +133,11 @@ class MovieDetailPViewController: UIViewController {
     func getMovieReview() {
         guard let id = movieToShowDetail?.id else { return }
         movieApi.getMovieReviews(movieID: id) { reviews, error in
-            if let reviews = reviews {
+            if let reviews = reviews,
+               reviews.count > 0 {
                 self.movieReviews =  reviews
+            } else {
+                self.reviewView?.noReview.text = "Aún no hay comentario para esta pelicula."
             }
         }
     }
@@ -150,13 +160,13 @@ class MovieDetailPViewController: UIViewController {
         stack.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
     }
     
-    func createTopDetail(){
+    func createTopDetail() {
         topDetail = TopDetailView.intitTopDetail(movie: movieToShowDetail) as? TopDetailView
         guard let topDetail = topDetail else { return }
         stack.addArrangedSubview(topDetail)
     }
     
-    func createCastView(){
+    func createCastView() {
         castView = CastView.initCastView() as? CastView
         castView?.castCollection.register(UINib(nibName: "MovieCastCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "movieCastPhoto")
         castView?.castCollection.dataSource = self
@@ -166,7 +176,7 @@ class MovieDetailPViewController: UIViewController {
         stack.addArrangedSubview(castView)
     }
     
-    func createSimilarMovies(){
+    func createSimilarMovies() {
         similarMoviesView = MovieListView.initMovieCollection() as? MovieListView
         similarMoviesView?.movieCollection.register(UINib(nibName: "MovieGalleryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MovieGallery")
         similarMoviesView?.movieCollection.dataSource = self
@@ -177,7 +187,7 @@ class MovieDetailPViewController: UIViewController {
         stack.addArrangedSubview(similarMoviesView)
     }
     
-    func createRecommendation(){
+    func createRecommendation() {
         recommendationView = MovieListView.initMovieCollection() as? MovieListView
         recommendationView?.movieCollection.register(UINib(nibName: "MovieGalleryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MovieGallery")
         recommendationView?.movieCollection.dataSource =  self
@@ -187,6 +197,17 @@ class MovieDetailPViewController: UIViewController {
         recommendationView?.movieCollection.setCollectionViewLayout(flowLayout, animated: false)
         guard let recommendationView = recommendationView else { return }
         stack.addArrangedSubview(recommendationView)
+    }
+    
+    func createReviewView() {
+        reviewView =  ReviewView.initReviewView() as? ReviewView
+        reviewView?.reviewTable.register(UINib(nibName: "ReviewTableViewCell", bundle: nil), forCellReuseIdentifier: "reviewCell")
+        reviewView?.reviewTable.dataSource = self
+        reviewView?.movieTitle.text = movieToShowDetail?.title
+        reviewView?.rating.text = movieToShowDetail?.avarageRounded
+        reviewView?.stars.text = movieToShowDetail?.averageStars
+        guard let reviewView = reviewView else { return }
+        stack.addArrangedSubview(reviewView)
     }
     
     func cellFlowlayout(size: CGSize) -> UICollectionViewFlowLayout {
@@ -254,4 +275,25 @@ extension MovieDetailPViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
     }
+}
+
+// MARK: - ReviewTableView's DataSource
+
+extension MovieDetailPViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        movieReviews?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let reviewCell = tableView.dequeueReusableCell(withIdentifier: "reviewCell", for: indexPath) as? ReviewTableViewCell else { return UITableViewCell() }
+        if let username = movieReviews?[indexPath.row].authorDetail.name,
+               !username.isEmpty {
+            reviewCell.authorUsername.text = username
+        }else{
+            reviewCell.authorUsername.text = "Anónimo"
+        }
+        reviewCell.reviewRating.text = movieReviews?[indexPath.row].authorDetail.averageStars
+        return reviewCell
+    }
+    
 }
