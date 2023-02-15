@@ -30,3 +30,9 @@ struct MovieCast: Decodable {
         case knownForDepartment = "known_for_department"
     }
 }
+
+extension MovieCast {
+    var nameAndCharacter: String {
+        "\(self.name) \n \(self.character)"
+    }
+}

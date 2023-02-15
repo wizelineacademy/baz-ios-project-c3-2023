@@ -241,7 +241,7 @@ extension MovieDetailPViewController: UICollectionViewDataSource {
         switch collectionView.tag {
         case MovieDetailSections.cast.rawValue:
             let castCell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCastPhoto", for: indexPath) as? MovieCastCollectionViewCell
-            castCell?.castName.text = movieCast?[indexPath.row].name
+            castCell?.castName.text = movieCast?[indexPath.row].nameAndCharacter
             if let partialURLImage =  movieCast?[indexPath.row].profilePath {
                 castCell?.castPhoto.fetchImage(with: partialURLImage)
             } else {
