@@ -133,10 +133,18 @@ class HomeMoviesPresenter: HomeMoviesPresenterProtocol  {
     }
     
     func goToDetails(index: Int) {
-        if let view = view{
-            router?.goToDetails(from: view,idMovie: self.toShowMovies[index].id)
+        if let view = view {
+            router?.goToDetails(from: view, idMovie: self.toShowMovies[index].id)
         }
     }
+    
+    func goToSearch() {
+        if let view = view {
+            router?.goToSearch(from: view)
+        }
+    }
+    
+   
 }
 
 

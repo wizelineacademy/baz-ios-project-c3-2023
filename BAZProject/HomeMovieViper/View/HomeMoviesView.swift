@@ -45,6 +45,11 @@ class HomeMoviesView: UIViewController, CategoriesMoviesCellDelegate {
         currentlySelected = cell
         presenter?.selectFilterMovies(index: indexPath)
     }
+    
+    @IBAction func didSelectSearchButton(_ sender: Any) {
+        presenter?.goToSearch()
+    }
+    
 }
 
 extension HomeMoviesView: HomeMoviesViewProtocol {

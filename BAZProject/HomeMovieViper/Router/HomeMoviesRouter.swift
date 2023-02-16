@@ -43,5 +43,13 @@ class HomeMoviesRouter: HomeMoviesRouterProtocol {
         }
     }
     
-
+    func goToSearch(from view: HomeMoviesViewProtocol) {
+        let newSearchView = SearchMovieRouter.createSearchMovieModule()
+        
+        if let newView = view as? UIViewController{
+            newView.navigationController?.pushViewController(newSearchView, animated: true)
+        }
+    }
+    
+   
 }

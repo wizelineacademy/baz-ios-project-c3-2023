@@ -20,6 +20,7 @@ protocol HomeMoviesRouterProtocol: AnyObject {
     // PRESENTER -> ROUTER
     static func createHomeMoviesModule() -> UIViewController
     func goToDetails(from view: HomeMoviesViewProtocol, idMovie: Int)
+    func goToSearch(from view: HomeMoviesViewProtocol)
 }
 
 protocol HomeMoviesPresenterProtocol: AnyObject {
@@ -38,6 +39,7 @@ protocol HomeMoviesPresenterProtocol: AnyObject {
     func getImage(index: Int, completion: @escaping (UIImage?) -> Void)
     func getCategorieImage(index: Int,  completion: @escaping (UIImage?) -> Void)
     func goToDetails(index: Int)
+    func goToSearch()
 }
 
 protocol HomeMoviesInteractorOutputProtocol: AnyObject {
