@@ -14,12 +14,19 @@ class TopRatedPresenter  {
     weak var view: TopRatedViewProtocol?
     var interactor: TopRatedInteractorInputProtocol?
     var router: TopRatedRouterProtocol?
+    var movies: [Movie]?
     
 }
 
-extension TopRatedPresenter: TopRatedPresenterProtocol { 
-    func viewDidLoad() {
+extension TopRatedPresenter: TopRatedPresenterProtocol {
+    func notifyViewLoaded() {
+        self.interactor?.fetchMovies()
     }
 }
 
-extension TopRatedPresenter: TopRatedInteractorOutputProtocol { }
+extension TopRatedPresenter: TopRatedInteractorOutputProtocol {
+    func moviesFetched(movies: [Movie]) {
+        self.movies = movies
+        self.view?.reloadData()
+    }
+}

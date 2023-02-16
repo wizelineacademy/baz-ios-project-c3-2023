@@ -96,7 +96,9 @@ class MovieRequest: NSObject {
 
 //MARK: Enum para las diferentes URIs
 enum Endpoint: String {
+    
     case trendingMovies = "trending/movie/day?api_key="
+    case topRatedMovies = "/movie/top_rated?api_key="
 }
 
 struct Response<T: Codable>: Codable {

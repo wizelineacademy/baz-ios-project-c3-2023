@@ -11,6 +11,8 @@ import UIKit
 protocol TopRatedViewProtocol: AnyObject {
     // PRESENTER -> VIEW
     var presenter: TopRatedPresenterProtocol? { get set }
+    
+    func reloadData()
 }
 
 protocol TopRatedRouterProtocol: AnyObject {
@@ -23,19 +25,22 @@ protocol TopRatedPresenterProtocol: AnyObject {
     var view: TopRatedViewProtocol? { get set }
     var interactor: TopRatedInteractorInputProtocol? { get set }
     var router: TopRatedRouterProtocol? { get set }
+    var movies: [Movie]? { get set }
     
-    func viewDidLoad()
+    func notifyViewLoaded()
 }
 
 protocol TopRatedInteractorOutputProtocol: AnyObject {
-// INTERACTOR -> PRESENTER
+    // INTERACTOR -> PRESENTER
+    func moviesFetched(movies: [Movie])
 }
 
 protocol TopRatedInteractorInputProtocol: AnyObject {
     // PRESENTER -> INTERACTOR
     var presenter: TopRatedInteractorOutputProtocol? { get set }
-    var localDatamanager: TopRatedLocalDataManagerInputProtocol? { get set }
     var remoteDatamanager: TopRatedRemoteDataManagerInputProtocol? { get set }
+    
+    func fetchMovies()
 }
 
 protocol TopRatedDataManagerInputProtocol: AnyObject {
@@ -45,12 +50,11 @@ protocol TopRatedDataManagerInputProtocol: AnyObject {
 protocol TopRatedRemoteDataManagerInputProtocol: AnyObject {
     // INTERACTOR -> REMOTEDATAMANAGER
     var remoteRequestHandler: TopRatedRemoteDataManagerOutputProtocol? { get set }
+    
+    func fetchMovies()
 }
 
 protocol TopRatedRemoteDataManagerOutputProtocol: AnyObject {
     // REMOTEDATAMANAGER -> INTERACTOR
-}
-
-protocol TopRatedLocalDataManagerInputProtocol: AnyObject {
-    // INTERACTOR -> LOCALDATAMANAGER
+    func moviesFetched(_ movies: [Movie])
 }
