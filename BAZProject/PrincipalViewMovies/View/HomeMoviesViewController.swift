@@ -10,8 +10,8 @@ import UIKit
 class HomeMoviesViewController: UIViewController {
     
     //    MARK: Outlets
-    @IBOutlet weak var tableViewMovies: UITableView!
-//    @IBOutlet weak var viewContainerVCTabBar: UIView!
+    @IBOutlet weak var stackVerticalContainer: UIStackView!
+    
     
     //    MARK: Vars and Constants
     var movies: [Movie] = []
@@ -19,53 +19,31 @@ class HomeMoviesViewController: UIViewController {
     let movieApi = MovieAPI()
     var typeMovieList: TypeMovieList = .popularity
     
+    let bannerView: BannerMovieView = BannerMovieView()
+    let carouselView: CarouselTypeMovie = CarouselTypeMovie()
+    
     //    MARK: Life cycle VC
     override func viewDidLoad() {
         super.viewDidLoad()
-        settingsForTableBtc()
+        self.title = "Movies+"
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchMovies()
-//        let module = TabBarNavigationViewController()
-//        self.addChild(module)
-//        module.view.frame = viewContainerVCTabBar.bounds
-//        viewContainerVCTabBar.addSubview(module.view)
+        setupUITrendingView()
     }
     
     //TODO: Set UIUX for principal view
     private func setupUITrendingView() {
+        bannerView.setImageBanner(nameAsset: UIImage(systemName: "house")!)
+        stackVerticalContainer.addArrangedSubview(bannerView)
+        stackVerticalContainer.addArrangedSubview(carouselView)
     }
     
     private func fetchMovies() {
         movies = movieApi.getMovies(typeMovie: typeMovieList) ?? []
-        tableViewMovies.reloadData()
-    }
-    
-    private func settingsForTableBtc() {
-        tableViewMovies.delegate = self
-        tableViewMovies.dataSource = self
-        tableViewMovies.separatorStyle = .none
-        tableViewMovies.getBundleAndRegisterCell(MovieTableViewCell.self)
-    }
-}
-
-// MARK: - TableView's DataSource
-
-extension HomeMoviesViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        movies.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell") as? MovieTableViewCell else {
-            return UITableViewCell()
-        }
-        //        cell.titleMovie.text = movies[indexPath.row].title
-        //        let url = movies[indexPath.row].getUrlImg(posterPath: movies[indexPath.row].posterPath ?? "")
-        //        if let urlString = url { cell.imgMovie.load(url: urlString) }
-        return cell
+        carouselView.moviesType = movies
+        carouselView.collectionCarouselMovies.reloadData()
     }
 }

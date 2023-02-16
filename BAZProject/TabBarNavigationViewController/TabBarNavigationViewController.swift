@@ -16,8 +16,8 @@ class TabBarNavigationViewController: UITabBarController {
     
     func setupVCs() {
         viewControllers = [
-            createNavController(for: DetailsMovieViewController(), title: NSLocalizedString("Home", comment: ""), image: UIImage(systemName: "house")!),
-            createNavController(for: HomeMoviesViewController(), title: NSLocalizedString("Search", comment: ""), image: UIImage(systemName: "magnifyingglass")!)
+            createNavController(for: HomeMoviesViewController(), title: NSLocalizedString("Home", comment: ""), image: UIImage(systemName: "house")!),
+            createNavController(for: DetailsMovieViewController(), title: NSLocalizedString("Search", comment: ""), image: UIImage(systemName: "magnifyingglass")!)
         ]
     }
     
