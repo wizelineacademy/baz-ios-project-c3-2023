@@ -28,6 +28,7 @@ enum Endpoint {
 
     case img(idImage: String, sizeImage: SizeImageType)
     case trending(mediaType: MediaType, timeWindow: TimeWindowType)
+    case details(mediaType: MediaType, idMedia: Int)
 }
 
 extension Endpoint {
@@ -38,6 +39,8 @@ extension Endpoint {
         case .trending(mediaType: let media, timeWindow: let time):
             let url: String = "\(String.apiKeyEndPointTrending)/\(media.rawValue)/\(time.rawValue)"
             return BaseUrl.apiWithEndPoint(endPoint: url).url
+        case .details(mediaType: let media, idMedia: let id):
+            return BaseUrl.apiWithEndPoint(endPoint: "/\(media)/\(id)").url
         }
     }
 }

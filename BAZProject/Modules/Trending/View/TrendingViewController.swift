@@ -90,7 +90,6 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
     }
     
     // MARK: - Private methods
-    
     private func callServiceAndShowLoader() {
         view.showLoader()
         getData()
