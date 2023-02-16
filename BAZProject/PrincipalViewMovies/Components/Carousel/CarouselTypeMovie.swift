@@ -15,6 +15,7 @@ class CarouselTypeMovie: UIView {
     let NUMBER_ONE = 1
     let WIDTH_CELL: CGFloat = 150
     public var moviesType: [Movie] = []
+    weak var delegate: TapGestureImgMovieProtocol?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -50,6 +51,10 @@ class CarouselTypeMovie: UIView {
         collectionCarouselMovies.dataSource = self
         collectionCarouselMovies.register(UINib(nibName: "CarouselCollectionViewCell", bundle: bundle), forCellWithReuseIdentifier: "CarouselCollectionViewCell")
     }
+    
+    private func getNumberItemsCarousel() -> Int {
+        moviesType.count > 5 ? 5 : moviesType.count
+    }
 }
 
 extension CarouselTypeMovie: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
@@ -59,7 +64,7 @@ extension CarouselTypeMovie: UICollectionViewDelegate, UICollectionViewDelegateF
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return moviesType.count
+        return getNumberItemsCarousel()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -69,6 +74,7 @@ extension CarouselTypeMovie: UICollectionViewDelegate, UICollectionViewDelegateF
         if let urlString = url { cell.imgMovie.load(url: urlString) }
         
         cell.imgMovie.contentMode = .scaleAspectFill
+        cell.delegate = self
         
         return cell
     }
@@ -76,5 +82,11 @@ extension CarouselTypeMovie: UICollectionViewDelegate, UICollectionViewDelegateF
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
         return CGSize(width: WIDTH_CELL, height: collectionView.frame.size.height)
+    }
+}
+
+extension CarouselTypeMovie: TapGestureImgMovieProtocol {
+    func tapGestureImgMovie() {
+        delegate?.tapGestureImgMovie()
     }
 }

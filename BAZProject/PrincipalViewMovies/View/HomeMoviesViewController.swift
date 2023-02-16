@@ -26,12 +26,15 @@ class HomeMoviesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Movies+"
+        setupUITrendingView()
+        carouselView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchMovies()
-        setupUITrendingView()
+        setUICarousel()
+        setUIBanner()
     }
     
     //TODO: Set UIUX for principal view
@@ -42,8 +45,27 @@ class HomeMoviesViewController: UIViewController {
     }
     
     private func fetchMovies() {
-        movies = movieApi.getMovies(typeMovie: typeMovieList) ?? []
+        movieApi.getMovies(typeMovie: typeMovieList, completion: { moviesArray in
+            self.movies = moviesArray ?? []
+        })
+    }
+    
+    private func setUICarousel() {
         carouselView.moviesType = movies
         carouselView.collectionCarouselMovies.reloadData()
+        carouselView.lblTitleMoview.text = "Popular+"
+    }
+    
+    private func setUIBanner() {
+        let url = movies.first?.getUrlImg(posterPath: movies.first?.posterPath ?? "")
+        if let urlString = url { bannerView.imageBanner.load(url: urlString) }
+        bannerView.imageBanner.contentMode = .scaleAspectFill
+    }
+}
+
+extension HomeMoviesViewController: TapGestureImgMovieProtocol {
+    func tapGestureImgMovie() {
+        let module = DetailsMovieViewController()
+        self.navigationController?.pushViewController(module, animated: false)
     }
 }

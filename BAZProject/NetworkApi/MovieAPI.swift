@@ -19,14 +19,14 @@ final class MovieAPI {
      - Returns: An array type Movie
      */
     
-    func getMovies(typeMovie: TypeMovieList) -> [Movie]? {
+    func getMovies(typeMovie: TypeMovieList, completion: @escaping(([Movie]?) -> Void)){
         guard let url = URL(string: "\(urlBase)/movie/\(typeMovie.getOptionMovie())?api_key=\(apiKey)"),
               let data = try? Data(contentsOf: url),
               let responseMovies = try? JSONDecoder().decode(ReponseMovies.self, from: data)
         else {
-            return nil
+            return completion(nil)
         }
-        return responseMovies.results
+        completion(responseMovies.results)
     }
     
     /**
