@@ -12,7 +12,8 @@ class MainTabBarRouter {
     class func createMainTabBarModule() -> UITabBarController {
         let mainTabBar = UITabBarController()
         let trendingView = TrendingRouter.createTrendingModule()
-        mainTabBar.viewControllers = [trendingView]
+        let topRatedView = TopRatedRouter.createTopRatedModule()
+        mainTabBar.viewControllers = [trendingView, topRatedView]
         return mainTabBar
     }
 }
