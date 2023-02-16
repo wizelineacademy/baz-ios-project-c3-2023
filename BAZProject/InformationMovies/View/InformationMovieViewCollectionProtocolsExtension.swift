@@ -42,9 +42,6 @@ extension InformationMoviesView: UICollectionViewDelegate {
 
 // MARK: - UICollectionViewDelegateFlowLayout
 extension InformationMoviesView: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: MovieConstants.insets, left: MovieConstants.insets, bottom: MovieConstants.insets, right: MovieConstants.insets)
-    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return MovieConstants.minimumLineSpacing
@@ -57,8 +54,9 @@ extension InformationMoviesView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let marginAndInsets : CGFloat
         marginAndInsets = MovieConstants.minimumInteritemSpacing * 2 + collectionView.safeAreaInsets.left + collectionView.safeAreaInsets.right + MovieConstants.insets * CGFloat(MovieConstants.cellsPerRow - 1)
+        
         let itemWidth = ((collectionView.bounds.size.width - marginAndInsets) / CGFloat(MovieConstants.cellsPerRow)).rounded(.down)
         
-        return CGSize(width: itemWidth, height: itemWidth + MovieConstants.heightAditionalConstant)
+        return CGSize(width: itemWidth, height: itemWidth)
     }
 }

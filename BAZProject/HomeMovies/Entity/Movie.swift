@@ -11,38 +11,18 @@ struct MovieResult: Codable {
 }
 
 struct Movie: Codable {
-    let adult: Bool?
-    let backdrop_path: String?
     let id: Int?
     let title: String?
-    let original_language: String?
     let original_title: String?
-    let overview: String?
     let poster_path: String?
     let media_type: String?
-    let genre_ids: [Int]?
-    let popularity: Double?
-    let release_date: String?
-    let video: Bool?
-    let vote_average: Double?
-    let vote_count: Int?
     
-    init(adult: Bool? = true, backdrop_path: String? = "", id: Int? = 0, title: String? = "", original_language: String? = "", original_title: String? = "", overview: String? = "", poster_path: String? = "", media_type: String? = "", genre_ids: [Int]? = [], popularity: Double = 0, release_date: String? = "", video: Bool? = true, vote_average: Double? = 0, vote_count: Int? = 0) {
-        self.adult = adult
-        self.backdrop_path = backdrop_path
+    init(id: Int? = 0, title: String? = "", original_title: String? = "", poster_path: String? = "", media_type: String? = "") {
         self.id = id
         self.title = title
-        self.original_language = original_language
         self.original_title = original_title
-        self.overview = overview
         self.poster_path = poster_path
         self.media_type = media_type
-        self.genre_ids = genre_ids
-        self.popularity = popularity
-        self.release_date = release_date
-        self.video = video
-        self.vote_average = vote_average
-        self.vote_count = vote_count
     }
 }
 

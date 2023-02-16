@@ -11,7 +11,7 @@ import UIKit
 extension InformationMoviesView: InformationMoviesViewProtocol {
 
     /**
-     Function that reloads the collectionMovieRelated and assigns his delegates.
+     Function that reloads the collectionMovieSimilar and assigns his delegates.
      */
     func reloadCollectionViewData() {
         DispatchQueue.main.async {
@@ -22,7 +22,7 @@ extension InformationMoviesView: InformationMoviesViewProtocol {
     }
     
     /**
-     Function that removes the loading animation and shows an alert in case of an error ocurred in the api response.
+     Function that show an alert in case of an error ocurred in the api response.
      */
     func catchResponse(withMessage: String?) {
         DispatchQueue.main.async {

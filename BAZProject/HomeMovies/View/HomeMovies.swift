@@ -9,6 +9,7 @@ import UIKit
 
 class HomeMoviesView: UIViewController {
     
+    // MARK: - IBOutlet
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var btnAddFilters: UIButton!
     @IBOutlet weak var headerView: HeaderView!
@@ -40,6 +41,7 @@ class HomeMoviesView: UIViewController {
 
         collectionHomeMovie.register(UINib(nibName: MovieCollectionCell.cellIdentifier, bundle: Bundle(for: MovieCollectionCell.self)),
                                      forCellWithReuseIdentifier: MovieCollectionCell.cellIdentifier)
+        hideKeyboardWhenTappedAround()
     }
 
     @IBAction func filterPicker(_ sender: UIButton) {

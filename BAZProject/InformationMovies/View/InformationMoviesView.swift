@@ -9,6 +9,7 @@ import UIKit
 
 class InformationMoviesView: UIViewController {
 
+    // MARK: - IBOutlet
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageMovie: UIImageView!
     @IBOutlet weak var labelTitle: UILabel!

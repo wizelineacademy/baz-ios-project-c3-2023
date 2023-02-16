@@ -44,7 +44,7 @@ extension HomeMoviesView: HomeMoviesViewProtocol {
     }
     
     /**
-     Function that removes the loading animation and shows an alert in case of an error ocurred in the api response.
+     Function that show an alert in case of an error ocurred in the api response.
      */
     func catchResponse(withMessage: String?) {
         DispatchQueue.main.async {
@@ -83,14 +83,13 @@ extension HomeMoviesView: SelectedFilterProtocol {
 extension HomeMoviesView {
     
     func createPickerView(){
-        self.picker = UIPickerView.init()
+        self.picker.frame = CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 300)
         self.picker.delegate = self
         self.picker.dataSource = self
         self.picker.backgroundColor = UIColor.white
         self.picker.setValue(UIColor.black, forKey: "textColor")
         self.picker.autoresizingMask = .flexibleWidth
         self.picker.contentMode = .center
-        self.picker.frame = CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 300)
     }
     
     func createToolbar(){
