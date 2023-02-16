@@ -48,7 +48,7 @@ extension TopRatedView {
         if let posterPath = self.presenter?.movies?[indexPath.row].posterPath, let imageURL = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)") {
             imageURL.toImage() { image in
                 DispatchQueue.main.async {
-                    config.image = image ?? UIImage(named: "poster")
+                    config.image = image
                     cell.contentConfiguration = config
                 }
             }
