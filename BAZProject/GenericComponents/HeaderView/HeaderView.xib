@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeaderView" customModule="BAZProject" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="ROC-kq-UU1"/>
+                <outlet property="dateLabel" destination="Tvr-PE-Tc8" id="PLi-XI-6V1"/>
+                <outlet property="movieIcon" destination="zhW-0H-Glq" id="STt-Ow-vrV"/>
+                <outlet property="titleLabel" destination="YxS-0T-YOr" id="YBm-ba-zv3"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="570" height="90"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tvr-PE-Tc8">
+                    <rect key="frame" x="20" y="9" width="530" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="M9i-m8-cZO"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="Lfx-Vt-kXO">
+                    <rect key="frame" x="20" y="38" width="515" height="45"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YxS-0T-YOr">
+                            <rect key="frame" x="0.0" y="0.0" width="434.66666666666669" height="45"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zhW-0H-Glq">
+                            <rect key="frame" x="465" y="0.0" width="50" height="45"/>
+                        </imageView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="zhW-0H-Glq" firstAttribute="leading" secondItem="YxS-0T-YOr" secondAttribute="trailing" constant="30.329999999999998" id="heB-JP-JJT"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Tvr-PE-Tc8" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="12H-lZ-E7A"/>
+                <constraint firstItem="Tvr-PE-Tc8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="9" id="3Zg-bG-DMh"/>
+                <constraint firstItem="Tvr-PE-Tc8" firstAttribute="trailing" secondItem="Lfx-Vt-kXO" secondAttribute="trailing" constant="15" id="TSB-0K-fEB"/>
+                <constraint firstAttribute="bottom" secondItem="Lfx-Vt-kXO" secondAttribute="bottom" constant="7" id="UdR-V1-oFp"/>
+                <constraint firstItem="Tvr-PE-Tc8" firstAttribute="leading" secondItem="Lfx-Vt-kXO" secondAttribute="leading" id="btN-mP-7I7"/>
+                <constraint firstItem="Lfx-Vt-kXO" firstAttribute="top" secondItem="Tvr-PE-Tc8" secondAttribute="bottom" constant="8" id="mvt-hy-gws"/>
+                <constraint firstItem="Tvr-PE-Tc8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="tNz-xn-qOe"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="164.8854961832061" y="-248.59154929577466"/>
+        </view>
+    </objects>
+</document>
