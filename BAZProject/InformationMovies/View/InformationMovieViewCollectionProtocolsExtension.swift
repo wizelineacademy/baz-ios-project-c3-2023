@@ -10,7 +10,7 @@ import UIKit
 // MARK: -  UICollectionViewDataSource
 extension InformationMoviesView: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return numberOfSections
+        return MovieConstants.numberOfSections
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -21,7 +21,7 @@ extension InformationMoviesView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCollectionCell.cellIdentifier, for: indexPath) as? MovieCollectionCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCollectionSimilarCell.cellIdentifier, for: indexPath) as? MovieCollectionSimilarCell else {
             return UICollectionViewCell()
         }
         
@@ -43,18 +43,22 @@ extension InformationMoviesView: UICollectionViewDelegate {
 // MARK: - UICollectionViewDelegateFlowLayout
 extension InformationMoviesView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: insets, left: insets, bottom: insets, right: insets)
+        return UIEdgeInsets(top: MovieConstants.insets, left: MovieConstants.insets, bottom: MovieConstants.insets, right: MovieConstants.insets)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return minimumLineSpacing
+        return MovieConstants.minimumLineSpacing
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return minimumInteritemSpacing
+        return MovieConstants.minimumInteritemSpacing
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.bounds.size.width, height: 60 + MovieConstants.heightAditionalConstant)
+        let marginAndInsets : CGFloat
+        marginAndInsets = MovieConstants.minimumInteritemSpacing * 2 + collectionView.safeAreaInsets.left + collectionView.safeAreaInsets.right + MovieConstants.insets * CGFloat(MovieConstants.cellsPerRow - 1)
+        let itemWidth = ((collectionView.bounds.size.width - marginAndInsets) / CGFloat(MovieConstants.cellsPerRow)).rounded(.down)
+        
+        return CGSize(width: itemWidth, height: itemWidth + MovieConstants.heightAditionalConstant)
     }
 }

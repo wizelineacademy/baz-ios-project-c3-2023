@@ -13,7 +13,7 @@ extension UIImageView {
     /**
      A function that download an image in a UIImageView.
      - Parameters:
-        - urlStr: A string representing the url of the image
+        - urlStr: The url of the remote image
      */
     func loadImage(urlStr: String) {
         image = UIImage()

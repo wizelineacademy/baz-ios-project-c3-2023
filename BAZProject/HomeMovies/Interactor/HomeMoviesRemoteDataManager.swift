@@ -17,7 +17,7 @@ class HomeMoviesRemoteDataManager: HomeMoviesRemoteDataManagerInputProtocol {
      Function that calls the get method
      
      - Parameters:
-       - categoryMovieType: A CategoryMovieType value referencing the type of category to consult.
+       - categoryMovieType: A categoryMovieType value referencing the type of category to consult.
      */
     func getMovies(categoryMovieType category: MovieCategory) {
         guard let url = URL(string: "https://api.themoviedb.org/3\(category.endpoint)?api_key=\(apiKey)&language=es&page=1") else { return }

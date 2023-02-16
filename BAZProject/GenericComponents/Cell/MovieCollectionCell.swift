@@ -9,10 +9,10 @@ import UIKit
 
 class MovieCollectionCell: UICollectionViewCell{
     
-    @IBOutlet private weak var contentViewCell: UIView!
-    @IBOutlet private weak var movieImageView: UIImageView!
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var subTitleLabel: UILabel!
+    @IBOutlet weak var contentViewCell: UIView!
+    @IBOutlet weak var movieImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var subTitleLabel: UILabel!
     
     static var cellIdentifier: String = "MovieCollectionCell"
  
