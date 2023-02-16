@@ -102,11 +102,17 @@ final class MovieAPI {
         DispatchQueue.global(qos: .default).async {
             guard let url = URL(string: "\(imgBaseUrl)\(imageUrl)") else { return }
             let data = try? Data(contentsOf: url)
-            DispatchQueue.main.async {
-                guard let data = data else {return}
-                guard let image = UIImage(data: data) else { return }
+            guard let data = data else { return }
+            self.getDataImage(data: data) { image in
                 handler(image)
             }
+        }
+    }
+    
+    static private func getDataImage(data: Data, handler: @escaping (UIImage) -> Void) {
+        DispatchQueue.main.async {
+            guard let image = UIImage(data: data) else { return }
+            handler(image)
         }
     }
 }

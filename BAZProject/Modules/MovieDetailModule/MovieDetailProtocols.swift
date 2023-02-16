@@ -19,11 +19,13 @@ protocol MovieDetailPresenterProtocol: AnyObject {
     // View -> Presenter
     var view: MovieDetailViewProtocol? { get set }
     var interactor: MovieDetailInterceptorInputProtocol? { get set }
+    var isFavorite: Bool { get set }
     
-    func viewDidLoad(textOverview: inout UILabel, poster: inout UIImageView)
-    func getMoviesData(from api: URLApi)
+    func viewDidLoad(poster: inout UIImageView, tableView: UITableView)
     func getTableViewDataSource() -> UITableViewDataSource
     func getTableViewDelegate() -> UITableViewDelegate
+    func saveMovie()
+    func goToMovieDetail(data: Result)
 }
 
 protocol MovieDetailInterceptorInputProtocol: AnyObject {
@@ -32,7 +34,9 @@ protocol MovieDetailInterceptorInputProtocol: AnyObject {
     var data: Result? { get set }
     var movieApiData: DataHelper { get set }
     
-    func getMoviesData(from api: URLApi)
+    func getMoviesData(from api: URLApi, structure: Codable.Type)
+    func getMoviesDataWithId(from api: URLApi, id idMovie: Int, structure: Codable.Type)
+    func saveMovie()
 }
 
 protocol MovieDetailInteractorOutputProtocol: AnyObject {

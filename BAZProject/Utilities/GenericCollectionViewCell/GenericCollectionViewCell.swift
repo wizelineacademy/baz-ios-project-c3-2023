@@ -13,4 +13,5 @@ class GenericCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageMovie: UIImageView!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var secondTitle: UILabel!
+    
 }

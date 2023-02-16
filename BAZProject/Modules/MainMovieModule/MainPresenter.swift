@@ -86,13 +86,14 @@ extension MainPresenter: UITableViewDataSource, UITableViewDelegate {
             
             if let dataMovies = interactor?.movieApiData.getDataMovies as? Movies,
                let image = dataMovies.results[indexPath.row].posterPath {
-                
+                UIView.fillSkeletons(onView: cell)
                 cell.movieImage.image = UIImage(named: "poster")
                 cell.movieTitle.text = dataMovies.results[indexPath.row].title
                 
                 MovieAPI.getImage(from:  image, handler: { imagen in
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
-                        cell.movieImage.image = imagen
+                        cell.movieImage.image  = imagen
+                        UIView.removeSkeletons(onView: cell)
                     }
                 })
                 
