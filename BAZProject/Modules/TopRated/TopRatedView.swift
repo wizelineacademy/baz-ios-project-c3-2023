@@ -35,7 +35,8 @@ extension TopRatedView {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        tableView.dequeueReusableCell(withIdentifier: "TopRatedTableViewCell")!
+        guard let tableViewCell = tableView.dequeueReusableCell(withIdentifier: "TopRatedTableViewCell") else { return UITableViewCell() }
+        return tableViewCell
     }
 }
 
