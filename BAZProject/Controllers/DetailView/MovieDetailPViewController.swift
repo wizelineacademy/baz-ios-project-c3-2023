@@ -9,6 +9,7 @@ import UIKit
 
 class MovieDetailPViewController: UIViewController {
     
+    var heightRowTable: CGFloat = 82
     var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -208,6 +209,7 @@ class MovieDetailPViewController: UIViewController {
     func createReviewView() {
         reviewView =  ReviewView.initReviewView() as? ReviewView
         reviewView?.reviewTable.register(UINib(nibName: "ReviewTableViewCell", bundle: nil), forCellReuseIdentifier: "reviewCell")
+        reviewView?.reviewTable.delegate = self
         reviewView?.reviewTable.dataSource = self
         reviewView?.movieTitle.text = movieToShowDetail?.title
         reviewView?.rating.text = movieToShowDetail?.avarageRounded
@@ -323,6 +325,16 @@ extension MovieDetailPViewController: UITableViewDataSource {
         }
         reviewCell.reviewRating.text = movieReviews?[indexPath.row].authorDetail.averageStars
         return reviewCell
+    }
+    
+}
+
+// MARK: - MovieDetailPViewController's Delegate
+
+extension MovieDetailPViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return heightRowTable
     }
     
 }
