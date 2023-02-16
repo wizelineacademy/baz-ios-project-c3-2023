@@ -54,7 +54,7 @@ extension MovieDetailPresenter: MovieDetailPresenterProtocol {
         registerCastTableViewCells(tableView: tableView)
         registerShowMoviesTableViewCells(tableView: tableView)
         regiterReviewsTableViewCell(tableView: tableView)
-//        tableView.rowHeight = 220
+        tableView.rowHeight = 220
         NotificationCenter.default.post(name: .countMovieWatch, object: nil)
         getDataIdMovie()
         getPosterImage(poster: poster)
@@ -148,7 +148,9 @@ extension MovieDetailPresenter: UITableViewDataSource {
 //             "Reseñas de Pelicula:"
             if let cell = tableView.dequeueReusableCell(withIdentifier: ReviewsTableViewCell.reusableCell, for: indexPath) as? ReviewsTableViewCell, let data = interactor?.movieApiData.getArrayDataMovie?[.reviews], let data = data as? Reviews {
                 if data.results.count > 0 {
-                    cell.review.text = data.results[indexPath.row].content
+                    cell.nameAuthor.text = "\(data.results[indexPath.row].author):"
+                    let split = data.results[indexPath.row].content.split(separator: "_")
+                    cell.review.text = String(split[1])
                 }
                 return cell
             }

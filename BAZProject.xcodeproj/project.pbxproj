@@ -36,8 +36,6 @@
 		CDB772C0299D942600949A32 /* ShowMoviesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB772BE299D942600949A32 /* ShowMoviesTableViewCell.xib */; };
 		CDB772C4299DE08200949A32 /* ReviewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB772C2299DE08200949A32 /* ReviewsTableViewCell.swift */; };
 		CDB772C5299DE08200949A32 /* ReviewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB772C3299DE08200949A32 /* ReviewsTableViewCell.xib */; };
-		CDB772C9299DE23B00949A32 /* ReviewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB772C7299DE23B00949A32 /* ReviewsCollectionViewCell.swift */; };
-		CDB772CA299DE23B00949A32 /* ReviewsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB772C8299DE23B00949A32 /* ReviewsCollectionViewCell.xib */; };
 		CDB772CF299E02FC00949A32 /* MovieSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB772CE299E02FC00949A32 /* MovieSave.swift */; };
 		CDDE29B5299B59AC00D81ECC /* NSNotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDE29B4299B59AC00D81ECC /* NSNotificationNameExtension.swift */; };
 		CDDE29B8299BD3A400D81ECC /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDE29B7299BD3A400D81ECC /* UIViewExtension.swift */; };
@@ -92,8 +90,6 @@
 		CDB772BE299D942600949A32 /* ShowMoviesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShowMoviesTableViewCell.xib; sourceTree = "<group>"; };
 		CDB772C2299DE08200949A32 /* ReviewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsTableViewCell.swift; sourceTree = "<group>"; };
 		CDB772C3299DE08200949A32 /* ReviewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewsTableViewCell.xib; sourceTree = "<group>"; };
-		CDB772C7299DE23B00949A32 /* ReviewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsCollectionViewCell.swift; sourceTree = "<group>"; };
-		CDB772C8299DE23B00949A32 /* ReviewsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewsCollectionViewCell.xib; sourceTree = "<group>"; };
 		CDB772CE299E02FC00949A32 /* MovieSave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSave.swift; sourceTree = "<group>"; };
 		CDDE29B4299B59AC00D81ECC /* NSNotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSNotificationNameExtension.swift; sourceTree = "<group>"; };
 		CDDE29B7299BD3A400D81ECC /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
@@ -216,20 +212,10 @@
 		CDB772C1299DE06400949A32 /* ReviewsTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				CDB772C6299DE21600949A32 /* ReviewsCollectionViewCell */,
 				CDB772C2299DE08200949A32 /* ReviewsTableViewCell.swift */,
 				CDB772C3299DE08200949A32 /* ReviewsTableViewCell.xib */,
 			);
 			path = ReviewsTableViewCell;
-			sourceTree = "<group>";
-		};
-		CDB772C6299DE21600949A32 /* ReviewsCollectionViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				CDB772C7299DE23B00949A32 /* ReviewsCollectionViewCell.swift */,
-				CDB772C8299DE23B00949A32 /* ReviewsCollectionViewCell.xib */,
-			);
-			path = ReviewsCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		CDB772CB299E023100949A32 /* Memento */ = {
@@ -392,7 +378,6 @@
 				C30893BA28A2F42D004B1860 /* LaunchScreen.storyboard in Resources */,
 				CDB77275299CB5DE00949A32 /* GenericTableViewCell.xib in Resources */,
 				CDB772C0299D942600949A32 /* ShowMoviesTableViewCell.xib in Resources */,
-				CDB772CA299DE23B00949A32 /* ReviewsCollectionViewCell.xib in Resources */,
 				CDB772C5299DE08200949A32 /* ReviewsTableViewCell.xib in Resources */,
 				CDFEC20C299EAA6500A6FD76 /* ResumeTableViewCell.xib in Resources */,
 				CD54A8E92992BDD7004F8774 /* SearchMovie.storyboard in Resources */,
@@ -443,7 +428,6 @@
 				CDE6AC0E298B7F3300D6DB5C /* MainPresenter.swift in Sources */,
 				CD54A8E72992BDC8004F8774 /* SearchMovieView.swift in Sources */,
 				CD54A8ED2992BDF6004F8774 /* SearchMoviePresenter.swift in Sources */,
-				CDB772C9299DE23B00949A32 /* ReviewsCollectionViewCell.swift in Sources */,
 				C30893E328A425E1004B1860 /* Movie.swift in Sources */,
 				CD54A8E3298DEA8E004F8774 /* GeneriRouterProtocol.swift in Sources */,
 				CD54A8EF2992BE00004F8774 /* SearchMovieProtocols.swift in Sources */,
