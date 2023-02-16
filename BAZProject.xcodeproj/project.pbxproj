@@ -22,6 +22,12 @@
 		AB5E7F92298498B5007DC537 /* TrendingRemoteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5E7F91298498B5007DC537 /* TrendingRemoteDataManager.swift */; };
 		AB5E7F94298498CF007DC537 /* MovieEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5E7F93298498CF007DC537 /* MovieEntity.swift */; };
 		AB5E7F9629849A14007DC537 /* ServiceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5E7F9529849A14007DC537 /* ServiceAPI.swift */; };
+		ABD7435F299E924D000DC816 /* SearchingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD7435E299E924D000DC816 /* SearchingRouter.swift */; };
+		ABD74361299E9264000DC816 /* SearchingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD74360299E9264000DC816 /* SearchingInteractor.swift */; };
+		ABD74363299E9270000DC816 /* SearchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD74362299E9270000DC816 /* SearchingView.swift */; };
+		ABD74365299E927E000DC816 /* SearchingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD74364299E927E000DC816 /* SearchingPresenter.swift */; };
+		ABD74367299E929E000DC816 /* SearchingRemoteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD74366299E929E000DC816 /* SearchingRemoteDataManager.swift */; };
+		ABD74369299E92A8000DC816 /* SearchingProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD74368299E92A8000DC816 /* SearchingProtocols.swift */; };
 		C30893AE28A2F42B004B1860 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30893AD28A2F42B004B1860 /* AppDelegate.swift */; };
 		C30893B028A2F42B004B1860 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30893AF28A2F42B004B1860 /* SceneDelegate.swift */; };
 		C30893B528A2F42B004B1860 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C30893B328A2F42B004B1860 /* Main.storyboard */; };
@@ -48,6 +54,12 @@
 		AB5E7F91298498B5007DC537 /* TrendingRemoteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingRemoteDataManager.swift; sourceTree = "<group>"; };
 		AB5E7F93298498CF007DC537 /* MovieEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieEntity.swift; sourceTree = "<group>"; };
 		AB5E7F9529849A14007DC537 /* ServiceAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAPI.swift; sourceTree = "<group>"; };
+		ABD7435E299E924D000DC816 /* SearchingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingRouter.swift; sourceTree = "<group>"; };
+		ABD74360299E9264000DC816 /* SearchingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingInteractor.swift; sourceTree = "<group>"; };
+		ABD74362299E9270000DC816 /* SearchingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingView.swift; sourceTree = "<group>"; };
+		ABD74364299E927E000DC816 /* SearchingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingPresenter.swift; sourceTree = "<group>"; };
+		ABD74366299E929E000DC816 /* SearchingRemoteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingRemoteDataManager.swift; sourceTree = "<group>"; };
+		ABD74368299E92A8000DC816 /* SearchingProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingProtocols.swift; sourceTree = "<group>"; };
 		C30893AA28A2F42B004B1860 /* BAZProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BAZProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C30893AD28A2F42B004B1860 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C30893AF28A2F42B004B1860 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -112,6 +124,7 @@
 		AB5E7F8829849418007DC537 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				ABD7435D299E8EBE000DC816 /* Searching */,
 				AB2E305E298DB199009852C5 /* TopRated */,
 				AB5E7F8929849429007DC537 /* Trending */,
 			);
@@ -129,6 +142,19 @@
 				AB5E7F91298498B5007DC537 /* TrendingRemoteDataManager.swift */,
 			);
 			path = Trending;
+			sourceTree = "<group>";
+		};
+		ABD7435D299E8EBE000DC816 /* Searching */ = {
+			isa = PBXGroup;
+			children = (
+				ABD74368299E92A8000DC816 /* SearchingProtocols.swift */,
+				ABD74362299E9270000DC816 /* SearchingView.swift */,
+				ABD74360299E9264000DC816 /* SearchingInteractor.swift */,
+				ABD74364299E927E000DC816 /* SearchingPresenter.swift */,
+				ABD7435E299E924D000DC816 /* SearchingRouter.swift */,
+				ABD74366299E929E000DC816 /* SearchingRemoteDataManager.swift */,
+			);
+			path = Searching;
 			sourceTree = "<group>";
 		};
 		C30893A128A2F42B004B1860 = {
@@ -243,11 +269,15 @@
 				AB5E7F8B29849722007DC537 /* TrendingPresenter.swift in Sources */,
 				AB5E7F92298498B5007DC537 /* TrendingRemoteDataManager.swift in Sources */,
 				AB2E306C298DB199009852C5 /* TopRatedView.swift in Sources */,
+				ABD74363299E9270000DC816 /* SearchingView.swift in Sources */,
 				AB2E306A298DB199009852C5 /* TopRatedProtocols.swift in Sources */,
 				AB28133E299577DB006C44C4 /* UIImageExtension.swift in Sources */,
+				ABD74367299E929E000DC816 /* SearchingRemoteDataManager.swift in Sources */,
 				AB2E3069298DB199009852C5 /* TopRatedPresenter.swift in Sources */,
+				ABD74361299E9264000DC816 /* SearchingInteractor.swift in Sources */,
 				AB2E3067298DB199009852C5 /* TopRatedRouter.swift in Sources */,
 				AB2E3058298C2AD8009852C5 /* TrendingProtocols.swift in Sources */,
+				ABD74369299E92A8000DC816 /* SearchingProtocols.swift in Sources */,
 				C30893AE28A2F42B004B1860 /* AppDelegate.swift in Sources */,
 				AB5E7F9029849781007DC537 /* TrendingRouter.swift in Sources */,
 				AB2813372994048C006C44C4 /* MainTabRouter.swift in Sources */,
@@ -256,6 +286,8 @@
 				AB5E7F9629849A14007DC537 /* ServiceAPI.swift in Sources */,
 				AB5E7F94298498CF007DC537 /* MovieEntity.swift in Sources */,
 				AB2E306B298DB199009852C5 /* TopRatedRemoteDataManager.swift in Sources */,
+				ABD74365299E927E000DC816 /* SearchingPresenter.swift in Sources */,
+				ABD7435F299E924D000DC816 /* SearchingRouter.swift in Sources */,
 				AB2E3066298DB199009852C5 /* TopRatedInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
