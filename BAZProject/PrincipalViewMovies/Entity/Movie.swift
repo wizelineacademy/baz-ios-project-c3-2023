@@ -16,12 +16,14 @@ struct Movie: Decodable {
     let posterPath: String?
     let overView: String?
     let voteCount: Int?
+    let originalLanguage: String?
     
     enum CodingKeys: String, CodingKey {
         case id, title
         case posterPath = "poster_path"
         case overView = "overview"
         case voteCount  = "vote_count"
+        case originalLanguage = "original_language"
     }
     
     init(from decoder: Decoder) throws {
@@ -31,6 +33,7 @@ struct Movie: Decodable {
         self.posterPath = try container.decodeIfPresent(String.self, forKey: .posterPath)
         self.overView = try container.decodeIfPresent(String.self, forKey: .overView)
         self.voteCount = try container.decodeIfPresent(Int.self, forKey: .voteCount)
+        self.originalLanguage = try container.decodeIfPresent(String.self, forKey: .originalLanguage)
     }
     
     func getUrlImg(posterPath: String) -> URL? {

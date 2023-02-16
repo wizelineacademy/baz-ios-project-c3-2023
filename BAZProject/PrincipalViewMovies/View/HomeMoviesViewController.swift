@@ -1,20 +1,25 @@
 //
-//  TrendingViewController.swift
+//  HomeMoviesViewController.swift
 //  BAZProject
 //
+//  Created by nsanchezj on 16/02/23.
 //
 
 import UIKit
 
-class TrendingViewController: UIViewController {
+class HomeMoviesViewController: UIViewController {
     
+    //    MARK: Outlets
     @IBOutlet weak var tableViewMovies: UITableView!
+//    @IBOutlet weak var viewContainerVCTabBar: UIView!
     
+    //    MARK: Vars and Constants
     var movies: [Movie] = []
     var movie: Movie? = nil
     let movieApi = MovieAPI()
     var typeMovieList: TypeMovieList = .popularity
     
+    //    MARK: Life cycle VC
     override func viewDidLoad() {
         super.viewDidLoad()
         settingsForTableBtc()
@@ -23,6 +28,10 @@ class TrendingViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchMovies()
+//        let module = TabBarNavigationViewController()
+//        self.addChild(module)
+//        module.view.frame = viewContainerVCTabBar.bounds
+//        viewContainerVCTabBar.addSubview(module.view)
     }
     
     //TODO: Set UIUX for principal view
@@ -44,7 +53,7 @@ class TrendingViewController: UIViewController {
 
 // MARK: - TableView's DataSource
 
-extension TrendingViewController: UITableViewDelegate, UITableViewDataSource {
+extension HomeMoviesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         movies.count
@@ -54,10 +63,9 @@ extension TrendingViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell") as? MovieTableViewCell else {
             return UITableViewCell()
         }
-        cell.titleMovie.text = movies[indexPath.row].title
-        let url = movies[indexPath.row].getUrlImg(posterPath: movies[indexPath.row].posterPath ?? "")
-        if let urlString = url { cell.imgMovie.load(url: urlString) }
+        //        cell.titleMovie.text = movies[indexPath.row].title
+        //        let url = movies[indexPath.row].getUrlImg(posterPath: movies[indexPath.row].posterPath ?? "")
+        //        if let urlString = url { cell.imgMovie.load(url: urlString) }
         return cell
     }
-    
 }
