@@ -26,7 +26,7 @@ class TrendingRemoteDataManager: TrendingRemoteDataManagerInputProtocol {
                 self?.remoteRequestHandler?.moviesFetched(response.results ?? [])
                 break
             case .failure(_):
-//                self?.remoteRequestHandler?.funcionparagestionarerrores(error)
+                //TODO: Implement error handler
                 break
             }
             

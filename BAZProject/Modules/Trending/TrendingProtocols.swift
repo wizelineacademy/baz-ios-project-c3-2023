@@ -37,7 +37,6 @@ protocol TrendingInteractorOutputProtocol: AnyObject {
 protocol TrendingInteractorInputProtocol: AnyObject {
     // PRESENTER -> INTERACTOR
     var presenter: TrendingInteractorOutputProtocol? { get set }
-    var localDatamanager: TrendingLocalDataManagerInputProtocol? { get set }
     var remoteDatamanager: TrendingRemoteDataManagerInputProtocol? { get set }
     
     func fetchMovies()
@@ -57,8 +56,4 @@ protocol TrendingRemoteDataManagerInputProtocol: AnyObject {
 protocol TrendingRemoteDataManagerOutputProtocol: AnyObject {
     // REMOTEDATAMANAGER -> INTERACTOR
     func moviesFetched(_ movies: [Movie])
-}
-
-protocol TrendingLocalDataManagerInputProtocol: AnyObject {
-    // INTERACTOR -> LOCALDATAMANAGER
 }
