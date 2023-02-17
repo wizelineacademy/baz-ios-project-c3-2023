@@ -15,7 +15,7 @@ class MovieCollectionSimilarCell: UICollectionViewCell{
     static var cellIdentifier: String = "MovieCollectionSimilarCell"
     
     func setupCell(movie: Movie){
-        self.imageView.loadImage(urlStr: CellPath.imageUrl(urlString: movie.poster_path ?? "").completeImageURL)
+        self.imageView.loadImage(urlStr: CellPath.imageUrl(urlString: movie.posterPath ?? "").completeImageURL)
         self.labelTitle.text = movie.title
     }
 }

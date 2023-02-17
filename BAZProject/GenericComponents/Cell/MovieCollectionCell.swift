@@ -19,8 +19,8 @@ class MovieCollectionCell: UICollectionViewCell{
     static var cellIdentifier: String = "MovieCollectionCell"
  
     func setupCell(movie: Movie){
-        self.movieImageView.loadImage(urlStr: CellPath.imageUrl(urlString: movie.poster_path ?? "").completeImageURL)
+        self.movieImageView.loadImage(urlStr: CellPath.imageUrl(urlString: movie.posterPath ?? "").completeImageURL)
         self.titleLabel.text = movie.title
-        self.subTitleLabel.text = movie.original_title
+        self.subTitleLabel.text = movie.originalTitle
     }
 }

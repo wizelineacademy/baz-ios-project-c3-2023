@@ -53,7 +53,7 @@ class HomeMoviesRemoteDataManager: HomeMoviesRemoteDataManagerInputProtocol {
             do {
                 guard let data = data else { return }
                 let result = try JSONDecoder().decode(MovieResult.self, from: data)
-                self.remoteRequestHandler?.pushSearchedMoviesData(moviesData: result.results.filter({$0.media_type == "movie"}))
+                self.remoteRequestHandler?.pushSearchedMoviesData(moviesData: result.results.filter({$0.mediaType == "movie"}))
             }catch {
                 self.remoteRequestHandler?.catchResponse(withMessage: "error: \(error.localizedDescription)")
             }

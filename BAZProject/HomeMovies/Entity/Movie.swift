@@ -15,16 +15,24 @@ struct MovieResult: Codable {
 struct Movie: Codable {
     let id: Int?
     let title: String?
-    let original_title: String?
-    let poster_path: String?
-    let media_type: String?
+    let originalTitle: String?
+    let posterPath: String?
+    let mediaType: String?
     
     init(id: Int? = 0, title: String? = "", original_title: String? = "", poster_path: String? = "", media_type: String? = "") {
         self.id = id
         self.title = title
-        self.original_title = original_title
-        self.poster_path = poster_path
-        self.media_type = media_type
+        self.originalTitle = original_title
+        self.posterPath = poster_path
+        self.mediaType = media_type
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case title
+        case originalTitle = "original_title"
+        case posterPath = "poster_path"
+        case mediaType = "media_type"
     }
 }
 
