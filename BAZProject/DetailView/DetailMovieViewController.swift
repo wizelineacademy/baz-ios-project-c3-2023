@@ -17,12 +17,30 @@ enum SectionsDetailMovie: Int, CaseIterable {
 class DetailMovieViewController: UIViewController {
     
     @IBOutlet weak var tblDetailMovie: UITableView!
+    let group = DispatchGroup()
+    let movieAPI = MovieAPI()
     var movie: Movie?
+    var similarMovies: [Movie]?
+    var recomendationsMovies: [Movie]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = movie?.title
+        self.title = "Detail Movie"
         setupTable()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        group.enter()
+        group.enter()
+        executeRecomendations()
+        executeSimilarMovies()
+        group.notify(queue: .main) {
+            self.tblDetailMovie.reloadData()
+            print("Se cargaron")
+        }
     }
     
     private func setupTable(){
@@ -33,6 +51,29 @@ class DetailMovieViewController: UIViewController {
         tblDetailMovie.register(ReviewsTableViewCell.nib, forCellReuseIdentifier: ReviewsTableViewCell.identifier)
     }
     
+    func executeSimilarMovies(){
+        movieAPI.getMovies(endpoint: .getRecommendations(id: movie?.id ?? 0)) { result in
+            self.group.leave()
+            switch result {
+            case .success(let response):
+                self.similarMovies = response.results ?? []
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func executeRecomendations(){
+        movieAPI.getMovies(endpoint: .getSimilars(id: movie?.id ?? 0)) { result in
+            self.group.leave()
+            switch result {
+            case .success(let response):
+                self.recomendationsMovies = response.results ?? []
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }
 
 // MARK: - TableView's DataSource
@@ -56,7 +97,6 @@ extension DetailMovieViewController: UITableViewDataSource {
         case .recommendations, .similar:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CarruselMovieTableViewCell.identifier, for: indexPath) as? CarruselMovieTableViewCell else{return UITableViewCell()}
             
-      
             return cell
         case .reviews:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ReviewsTableViewCell.identifier, for: indexPath) as? ReviewsTableViewCell else{return UITableViewCell()}

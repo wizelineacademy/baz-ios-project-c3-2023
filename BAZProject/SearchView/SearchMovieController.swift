@@ -29,7 +29,6 @@ class SearchMovieController: UIViewController {
         collectionMovieSearch.delegate = self
         collectionMovieSearch.register(SearchMovieViewCollectioCell.nib, forCellWithReuseIdentifier: SearchMovieViewCollectioCell.identifier)
     }
-    
 }
 
 
@@ -74,12 +73,11 @@ extension SearchMovieController: UICollectionViewDelegateFlowLayout {
       let numberOfItems: CGFloat = 3
       let collectionViewWidth = collectionView.bounds.width
       let spaceBetweenCells = flowLayout.minimumInteritemSpacing
-      let adjustedWidth = (collectionViewWidth - spaceBetweenCells)/numberOfItems
-      let height: CGFloat = 280
+      let adjustedWidth = (collectionViewWidth - (spaceBetweenCells * numberOfItems - 1) - sectionInsets.left - sectionInsets.right)/numberOfItems
+      let height: CGFloat = 200
       return CGSize(width: adjustedWidth, height: height)
   }
   
- 
   func collectionView(
     _ collectionView: UICollectionView,
     layout collectionViewLayout: UICollectionViewLayout,
@@ -87,13 +85,11 @@ extension SearchMovieController: UICollectionViewDelegateFlowLayout {
   ) -> UIEdgeInsets {
     return sectionInsets
   }
-  
- 
-  func collectionView(
-    _ collectionView: UICollectionView,
-    layout collectionViewLayout: UICollectionViewLayout,
-    minimumLineSpacingForSectionAt section: Int
-  ) -> CGFloat {
-    return sectionInsets.left
-  }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 8
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 8
+    }
 }

@@ -30,7 +30,7 @@
                     </tableView>
                 </subviews>
                 <viewLayoutGuide key="safeArea" id="Qfr-6c-o0U"/>
-                <color key="backgroundColor" red="0.11713851345229374" green="0.13140345580279139" blue="0.29172987790451832" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                <color key="backgroundColor" red="0.11764705882352941" green="0.13333333333333333" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                 <constraints>
                     <constraint firstItem="Qfr-6c-o0U" firstAttribute="trailing" secondItem="oRa-ES-CrN" secondAttribute="trailing" id="E6E-7g-PPE"/>
                     <constraint firstItem="540-wd-7J5" firstAttribute="leading" secondItem="Qfr-6c-o0U" secondAttribute="leading" id="HNC-eg-kpG"/>

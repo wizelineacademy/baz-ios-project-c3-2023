@@ -19,18 +19,26 @@ final class HomeViewController: UIViewController, NibInstantiatable {
         searchController.showsCancelButton = !searchController.isSearchBarEmpty
         return searchController
     }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
    
-       
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
-        navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Home Movies"
         navigationItem.searchController = searchController
         definesPresentationContext = true
 
         setupTable()
         executeMovieService()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        for view in self.navigationController?.navigationBar.subviews ?? [] {
+             let subviews = view.subviews
+             if subviews.count > 0, let label = subviews[0] as? UILabel {
+                 label.textColor = .white
+             }
+        }
     }
     
     private func executeMovieService() {
@@ -104,7 +112,7 @@ extension HomeViewController: SearchBarDelegate {
     
     func updateSearchResults(for text: String) {
         
-        self.movieAPI.searchMovie(endpoint: .search(searchText: text, page: 1)) { result in
+        self.movieAPI.getMovies(endpoint: .search(searchText: text, page: 1)) { result in
             switch result {
             case .success(let response):
                 self.showMoviesList(arrMovie: response.results ?? [])

@@ -7,7 +7,9 @@
 
 import Foundation
 
-
+/**
+   `MovieServices`is an enum that  contains all the posible endpoints in the MovieDB API
+ */
 enum MovieServices {
     case getTrending
     case getNowPlaying
@@ -20,9 +22,16 @@ enum MovieServices {
     case getSimilars(id: Int)
     case getRecommendations(id: Int)
 }
- 
-extension MovieServices {
+
+extension MovieServices: Endpoint {
+    private var apiKey: URLQueryItem {
+        return URLQueryItem(name: "api_key", value: "f6cd5c1a9e6c6b965fdcab0fa6ddd38a")
+    }
     
+    var base: String {
+        return "https://api.themoviedb.org"
+    }
+
     var path: String {
         switch self {
         case .getTrending:
@@ -58,5 +67,27 @@ extension MovieServices {
             return [:]
 
         }
+    }
+    
+    var urlComponents: URLComponents {
+        var components = URLComponents(string: base)!
+        components.path = path
+        var queryItems = [URLQueryItem]()
+        // The api key is added as base query item
+        queryItems.append(apiKey)
+        // If a endpoint need extra query items, these are defined below.
+        switch self {
+        case .search(let text, _):
+            let queryItem = URLQueryItem(name: "query", value: text.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))
+            queryItems.append(queryItem)
+        default: break
+        }
+        components.queryItems = queryItems
+        return components
+    }
+    
+    var request: URLRequest {
+        let url = urlComponents.url!
+        return URLRequest(url: url)
     }
 }
