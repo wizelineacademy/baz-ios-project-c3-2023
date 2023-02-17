@@ -32,24 +32,11 @@ class HomeTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
-    func searchMovieByID(movieID: Int) -> Movie? {
-        var movieFind: Movie?
-        for category in listOfCategories {
-            category.value.forEach { movie in
-                if movie.id ==  movieID{
-                    movieFind = movie
-                }
-            }
-        }
-        return movieFind
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "homeToMovieDetail",
-           let detailView = segue.destination as? MovieDetailViewController,
-           let movieDetail =  sender as? Movie{
-            detailView.movieToShowDetail = movieDetail
-        }
+    func showDetailMovieViewController(sender: Any?){
+        let detailView = MovieDetailPViewController()
+        guard let movieDetail =  sender as? Movie else { return }
+        detailView.movieToShowDetail = movieDetail
+        navigationController?.pushViewController(detailView, animated: true)
     }
     
 }
@@ -108,8 +95,8 @@ extension HomeTableViewController {
 extension HomeTableViewController: CategoryTableCellDelegate {
     
     func didSelectMovie(movieId: Int, indexRow: Int) {
-        let movieToShow = searchMovieByID(movieID: movieId)
-        performSegue(withIdentifier: "homeToMovieDetail", sender: movieToShow)
+        let movieToShow = Movie.searchMovieByID(movieID: movieId, listOfCategories: listOfCategories)
+        showDetailMovieViewController(sender: movieToShow)
     }
 
 }

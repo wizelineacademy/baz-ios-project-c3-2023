@@ -26,7 +26,6 @@ class MovieShearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        noResultsInvisible()
         movieSearcher.searchTextField.delegate = self
     }
     
@@ -36,7 +35,10 @@ class MovieShearchViewController: UIViewController {
                keywords.count > 0 {
                 self.keywordsToShow = keywords
             } else {
-                self.noResultTextVisible()
+                DispatchQueue.main.async {
+                    guard let text = self.movieSearcher.searchTextField.text else { return }
+                    self.keywordsToShow = [MovieKeyword.init(id: 0, name: "\(text)")]
+                }
             }
         }
     }
@@ -47,19 +49,6 @@ class MovieShearchViewController: UIViewController {
            let keywordSelected = sender as? MovieKeyword {
             catalog.keywordToSearch = keywordSelected
         }
-    }
-    
-    func noResultTextVisible() {
-        noResults.isHidden = false
-        keyworkTable.isHidden = true
-        let text = movieSearcher.searchTextField.text ?? " "
-        noResults.text = "No encontramos nada relacionado con \"\(text)\".\nPuedes buscar por palabra clave o título"
-    }
-    
-    func noResultsInvisible() {
-        noResults.isHidden = true
-        keyworkTable.isHidden = false
-        noResults.text = ""
     }
     
 }
@@ -97,7 +86,6 @@ extension MovieShearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
             keywordsToShow = []
-            noResultsInvisible()
         }else{
             searchMovies(from: searchText)
         }
@@ -114,7 +102,6 @@ extension MovieShearchViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         keywordsToShow = []
-        noResultsInvisible()
         if let _ = self.navigationController?.tabBarController?.viewControllers?.first as? UINavigationController {
             navigationController?.tabBarController?.selectedIndex = 0
         }
