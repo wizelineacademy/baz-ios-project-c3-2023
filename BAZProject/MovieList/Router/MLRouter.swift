@@ -32,7 +32,8 @@ final class MLRouter {
         )
         
         view.output = presenter
-        view.tableViewDelegate = MLTableViewManagement(eventHandler: presenter)
+        view.tableViewDelegate = MovieListTableViewDelegate(output: view)
+        view.tableViewDataSource = MovieListDataSource()
         interactor.output = presenter
         
         return view

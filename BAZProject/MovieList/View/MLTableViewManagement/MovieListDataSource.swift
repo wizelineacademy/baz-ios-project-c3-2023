@@ -1,22 +1,21 @@
 //
-//  MLTableViewManagement.swift
+//  MovieListDataSource.swift
 //  BAZProject
 //
-//  Created by Luis Alberto Perez Villar on 07/02/23.
+//  Created by Luis Alberto Perez Villar on 09/02/23.
 //
 
 import UIKit
 
-final class MLTableViewManagement: NSObject, MovieListDelegate {
+final class MovieListDataSource: NSObject {
     var movies: [Movie]
-    weak var eventHandler: MLViewOutputProtocol?
     
-    init(movies: [Movie] = [], eventHandler: MLViewOutputProtocol?) {
+    init(movies: [Movie] = []) {
         self.movies = movies
-        self.eventHandler = eventHandler
     }
+}
 
-// MARK: - Data source management
+extension MovieListDataSource: MLTableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         self.movies.count
     }
@@ -32,11 +31,5 @@ final class MLTableViewManagement: NSObject, MovieListDelegate {
             movieCell.setupCell(with: movie)
         }
         return cell
-    }
-
-// MARK: - Table view delegate
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let movie = movies[indexPath.row]
-        self.eventHandler?.didSelect(movie)
     }
 }

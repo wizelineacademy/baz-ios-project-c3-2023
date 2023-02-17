@@ -10,7 +10,8 @@ import UIKit
 final class MovieListView: UIViewController {
     
     var output: MLViewOutputProtocol?
-    var tableViewDelegate: MovieListDelegate?
+    var tableViewDataSource: MLTableViewDataSource?
+    var tableViewDelegate: MLTableViewDelegate?
     
     @IBOutlet weak var movieListTbv: UITableView!
 
@@ -27,9 +28,17 @@ final class MovieListView: UIViewController {
     //MARK: - Settings methods
     /** Configures the table view that shows a list of movies */
     private func setupTable() {
-        self.movieListTbv.dataSource = tableViewDelegate
+        self.movieListTbv.dataSource = tableViewDataSource
         self.movieListTbv.delegate = tableViewDelegate
         self.movieListTbv.register(MovieTableViewCell.nib, forCellReuseIdentifier: MovieTableViewCell.identifier)
+    }
+}
+
+//MARK: - TableViewDelegate
+extension MovieListView: MLTableViewOutputProtocol {
+    func didSelect(indexPath: IndexPath) {
+        guard let movie = tableViewDataSource?.movies[indexPath.row] else { return }
+        self.output?.didSelect(movie)
     }
 }
 
@@ -50,7 +59,7 @@ extension MovieListView: MLViewInputProtocol {
         - movies: a Movie array
      */
     func setMovies(_ movies: [Movie]) {
-        self.tableViewDelegate?.movies = movies
+        self.tableViewDataSource?.movies = movies
         self.movieListTbv.reloadData()
     }
     
