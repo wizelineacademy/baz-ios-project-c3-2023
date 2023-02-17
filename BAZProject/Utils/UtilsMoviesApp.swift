@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UtilsMoviesApp {
+final class UtilsMoviesApp {
     static let shared = UtilsMoviesApp()
     
     // colorBackgroundApp defines the color for general app

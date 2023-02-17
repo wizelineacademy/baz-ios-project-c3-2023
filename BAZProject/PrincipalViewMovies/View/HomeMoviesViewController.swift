@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeMoviesViewController: UIViewController {
+final class HomeMoviesViewController: UIViewController {
     
     //    MARK: Outlets
     @IBOutlet weak var viewContainerTopLbls: UIView!

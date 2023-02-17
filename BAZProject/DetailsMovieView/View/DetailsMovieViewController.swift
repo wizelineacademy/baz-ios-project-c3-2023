@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailsMovieViewController: UIViewController {
+final class DetailsMovieViewController: UIViewController {
 
     @IBOutlet weak var stackVerticalContainer: UIStackView!
     @IBOutlet weak var imgMovie: UIImageView!
