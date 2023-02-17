@@ -14,7 +14,7 @@ enum LocalizedConstants {
 
     // MARK: - LaunchScreen
     static let launchScreenDivisorNumer: CGFloat = 4.0
-    static let launchScreenAnimationDuration: Double = 2.0
+    static let launchScreenAnimationDuration: Double = 0.0
     
     // MARK: - Main
     static let mainShadowRadius: CGFloat = 4
@@ -39,4 +39,11 @@ enum LocalizedConstants {
     
     // MARK: - Trending
     static let trendingFirstSubview: Int = 0
+    
+    // MARK: - ImageSlider
+    static let imageSliderTimeInterval: Double = 2.0
+    static let imageSliderInitCurrentPageSlider: Int = 0
+    static let imageSliderMinimunSpacingForSection: Double = 0.0
+    static let imageSliderIncrementShowImage: Int = 1
+    static let imageSliderNumberSections: Int = 0
 }

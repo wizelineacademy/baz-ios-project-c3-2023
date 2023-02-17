@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailViewController" customModule="BAZProject" customModuleProvider="target">
             <connections>
+                <outlet property="imageSlider" destination="0FR-aM-gL9" id="95D-xX-qVb"/>
                 <outlet property="view" destination="iN0-l3-epB" id="1vn-VC-947"/>
             </connections>
         </placeholder>
@@ -18,8 +19,23 @@
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0FR-aM-gL9" customClass="ImageSlider" customModule="BAZProject" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="59" width="375" height="180"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="180" id="pjm-nk-wAH"/>
+                    </constraints>
+                </view>
+            </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="0FR-aM-gL9" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="5El-F0-FnA"/>
+                <constraint firstItem="0FR-aM-gL9" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="66u-7m-cuq"/>
+                <constraint firstItem="0FR-aM-gL9" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="qGR-tG-OoW"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="123" y="21"/>
         </view>
     </objects>

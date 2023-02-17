@@ -34,13 +34,13 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        callServiceAndShowLoader()
+        getData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if errorGetData {
-            callServiceAndShowLoader()
+            showLoader()
         }
     }
 
@@ -90,9 +90,10 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
     }
     
     // MARK: - Private methods
-    private func callServiceAndShowLoader() {
-        view.showLoader()
-        getData()
+    private func showLoader() {
+        guaranteeMainThread {
+            self.view.showLoader()
+        }
     }
     
     private func setupView() {

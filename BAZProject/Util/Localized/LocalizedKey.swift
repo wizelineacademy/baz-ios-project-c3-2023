@@ -38,6 +38,12 @@ extension String {
     // MARK: - CellMovie
     static let cellMovieXibIdentifier = "CellMovie"
     
+    // MARK: - CellSlider
+    static let cellSliderXibIdentifier = "CellSlider"
+    
+    // MARK: ImageSlider
+    static let imageSliderXibIdentifier = "ImageSlider"
+    
     // MARK: - InfiniteScrollActivityView
     static let infiniteScrollActivityViewTitleLoading = "Cargando más..."
     

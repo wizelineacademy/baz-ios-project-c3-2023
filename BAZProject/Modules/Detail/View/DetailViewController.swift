@@ -14,25 +14,41 @@ final class DetailViewController: UIViewController {
     var presenter: DetailPresenterProtocol?
     var detailType: DetailType?
     
-    // MARK: - Private properties
+    // MARK: - Private methods
     private var errorGetData: Bool = false
     
+    @IBOutlet weak var imageSlider: ImageSlider!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        callServiceAndShowLoader()
+        navigationController?.navigationBar.prefersLargeTitles = false
+        setupView()
+        getData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        guaranteeMainThread {
+            self.view.showLoader()
+        }
         if errorGetData {
-            callServiceAndShowLoader()
+            getData()
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        imageSlider.stopTimmer()
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
     // MARK: - Private methods
-    private func callServiceAndShowLoader() {
-        view.showLoader()
-        getData()
+    private func showLoader() {
+        guaranteeMainThread {
+            self.view.showLoader()
+        }
+    }
+    private func setupView() {
+        imageSlider.setUp(imageUrlArray: ["/lnO6QqaCoHsEOJtsqclATT7cJiM.jpg", "/3ENw07WLY75AmTBaLa5TZFYbH1l.jpg", "/sLN0BfRalbhyQBw6ictV3gVr4Dc.jpg","/p9jmVtmm29dCHDHBFrOR6WNNaeO.jpg"])
     }
     
     private func getData() {

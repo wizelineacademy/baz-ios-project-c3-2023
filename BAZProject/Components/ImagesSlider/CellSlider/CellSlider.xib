@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="JRr-pD-wZ7" customClass="CellSlider" customModule="BAZProject" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="571" height="222"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="vMK-FT-Hcx">
+                <rect key="frame" x="0.0" y="0.0" width="571" height="222"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TKl-wA-BzJ">
+                        <rect key="frame" x="0.0" y="0.0" width="571" height="222"/>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="TKl-wA-BzJ" secondAttribute="trailing" id="LtF-OZ-R9v"/>
+                    <constraint firstAttribute="bottom" secondItem="TKl-wA-BzJ" secondAttribute="bottom" id="QNF-5A-qKb"/>
+                    <constraint firstItem="TKl-wA-BzJ" firstAttribute="top" secondItem="vMK-FT-Hcx" secondAttribute="top" id="S3D-Ow-gLH"/>
+                    <constraint firstItem="TKl-wA-BzJ" firstAttribute="leading" secondItem="vMK-FT-Hcx" secondAttribute="leading" id="h2x-Au-PEi"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <size key="customSize" width="571" height="222"/>
+            <connections>
+                <outlet property="photoImageView" destination="TKl-wA-BzJ" id="J5x-Dr-qQq"/>
+            </connections>
+            <point key="canvasLocation" x="43.511450381679388" y="73.239436619718319"/>
+        </collectionViewCell>
+    </objects>
+</document>
