@@ -24,25 +24,35 @@ protocol SearchingPresenterProtocol: AnyObject {
     var view: SearchingViewProtocol? { get set }
     var interactor: SearchingInteractorInputProtocol? { get set }
     var router: SearchingRouterProtocol? { get set }
+    var searchResults: [SearchResult] { get set }
     
     func notifyViewLoaded()
+    func searchMovies(with query: String)
 }
 
 protocol SearchingInteractorOutputProtocol: AnyObject {
     // INTERACTOR -> PRESENTER
+    
+    func searchResultsFecthed(searchResults: [SearchResult])
 }
 
 protocol SearchingInteractorInputProtocol: AnyObject {
     // PRESENTER -> INTERACTOR
     var presenter: SearchingInteractorOutputProtocol? { get set }
     var remoteDatamanager: SearchingRemoteDataManagerInputProtocol? { get set }
+    
+    func fetchSearchResults(with query: String)
 }
 
 protocol SearchingRemoteDataManagerInputProtocol: AnyObject {
     // INTERACTOR -> REMOTEDATAMANAGER
-    var remoteRequestHandler: TopRatedRemoteDataManagerOutputProtocol? { get set }
+    var remoteRequestHandler: SearchingRemoteDataManagerOutputProtocol? { get set }
+    
+    func fetchSearchResults(with query: String)
 }
 
 protocol SearchingRemoteDataManagerOutputProtocol: AnyObject {
     // REMOTEDATAMANAGER -> INTERACTOR
+    
+    func searchResultsFecthed(searchResults: [SearchResult])
 }
