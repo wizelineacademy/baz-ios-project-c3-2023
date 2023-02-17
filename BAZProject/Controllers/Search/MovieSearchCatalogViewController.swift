@@ -10,6 +10,7 @@ import UIKit
 class MovieSearchCatalogViewController: UIViewController {
     
     @IBOutlet weak var searchMovieCollection: UICollectionView!
+    @IBOutlet weak var resultText: UILabel!
     
     var keywordToSearch: MovieKeyword?
     var movieApi = MovieAPI()
@@ -42,8 +43,12 @@ class MovieSearchCatalogViewController: UIViewController {
     
     func searchMovies(from text: String) {
         movieApi.searchMovie(textEncoded: text) { movies, error in
-            if let movies = movies {
+            if let movies = movies,
+               movies.count > 0{
+                self.hideNoResultText()
                 self.moviesToShow = movies
+            }else{
+                self.showNoResultText()
             }
         }
     }
@@ -53,6 +58,20 @@ class MovieSearchCatalogViewController: UIViewController {
         guard let movieDetail =  sender as? Movie else { return }
         detailView.movieToShowDetail = movieDetail
         navigationController?.pushViewController(detailView, animated: true)
+    }
+    
+    func showNoResultText() {
+        resultText.isHidden = false
+        searchMovieCollection.isHidden = true
+        if let keyword = keywordToSearch?.name {
+            resultText.text = "No encontramos nada relacionado con \n\"\(keyword)\".\nRecuerda que puedes buscar por palabra clave o título"
+        }
+    }
+    
+    func hideNoResultText() {
+        resultText.isHidden = true
+        searchMovieCollection.isHidden = false
+        resultText.text = ""
     }
     
 }

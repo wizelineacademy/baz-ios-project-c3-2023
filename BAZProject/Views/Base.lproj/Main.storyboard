@@ -256,13 +256,22 @@
                                     <outlet property="delegate" destination="AWJ-li-gCv" id="J6L-Rh-6xI"/>
                                 </connections>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BZA-t2-9Ff">
+                                <rect key="frame" x="32" y="76" width="256" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="c8D-hE-erg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="c8D-hE-erg" firstAttribute="bottom" secondItem="gcc-ZT-2wL" secondAttribute="bottom" id="58B-Yl-H3M"/>
+                            <constraint firstItem="c8D-hE-erg" firstAttribute="trailing" secondItem="BZA-t2-9Ff" secondAttribute="trailing" constant="32" id="8ZN-Z4-EBT"/>
                             <constraint firstItem="c8D-hE-erg" firstAttribute="trailing" secondItem="gcc-ZT-2wL" secondAttribute="trailing" constant="24" id="9zm-G9-Edz"/>
                             <constraint firstItem="gcc-ZT-2wL" firstAttribute="leading" secondItem="c8D-hE-erg" secondAttribute="leading" constant="24" id="GDF-Ro-EAT"/>
+                            <constraint firstItem="BZA-t2-9Ff" firstAttribute="leading" secondItem="c8D-hE-erg" secondAttribute="leading" constant="32" id="GxV-c9-2eH"/>
+                            <constraint firstItem="BZA-t2-9Ff" firstAttribute="top" secondItem="c8D-hE-erg" secondAttribute="top" constant="32" id="Ocb-7s-eBC"/>
                             <constraint firstItem="gcc-ZT-2wL" firstAttribute="top" secondItem="c8D-hE-erg" secondAttribute="top" id="iwz-Hu-TeM"/>
                         </constraints>
                     </view>
@@ -270,6 +279,7 @@
                         <barButtonItem key="backBarButtonItem" title="  " id="YM2-4a-q9B"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="resultText" destination="BZA-t2-9Ff" id="ERC-dL-Q9B"/>
                         <outlet property="searchMovieCollection" destination="gcc-ZT-2wL" id="ncQ-GJ-qOH"/>
                     </connections>
                 </viewController>
