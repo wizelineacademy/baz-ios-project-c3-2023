@@ -32,6 +32,8 @@ final class MSRouter {
         )
         
         view.output = presenter
+        view.collectionDataSource = MovieSearchDataSource()
+        view.collectionDelegate = MovieSearchCollectionDelegate(output: view)
         interactor.output = presenter
         
         return view
