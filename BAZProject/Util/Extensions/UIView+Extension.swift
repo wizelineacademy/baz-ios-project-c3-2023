@@ -90,4 +90,10 @@ extension UIView {
         let cache: NSCache = NSCache<NSString, UIImage>()
         return cache.object(forKey: NSString(string: strUrl))
     }
+    
+    func addShadow() {
+        self.layer.shadowOffset = LocalizedConstants.commonLayerShadowOffset
+        self.layer.shadowOpacity = LocalizedConstants.commonLayerShadowOpacity
+        self.layer.cornerRadius = LocalizedConstants.commonLayerCornerRadius
+    }
 }

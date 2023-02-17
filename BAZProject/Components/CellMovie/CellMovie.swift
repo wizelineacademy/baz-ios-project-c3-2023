@@ -22,9 +22,7 @@ class CellMovie: UITableViewCell {
 
     @IBOutlet weak var lblTitle: UILabel! {
         didSet {
-            lblTitle.layer.shadowOffset = LocalizedConstants.cellMovieLayerShadowOffset
-            lblTitle.layer.shadowOpacity = LocalizedConstants.cellMovieLayerShadowOpacity
-            lblTitle.layer.cornerRadius = LocalizedConstants.cellMovieLayerCornerRadius
+            lblTitle.addShadow()
         }
     }
 

@@ -20,9 +20,7 @@ final class DetailViewController: UIViewController {
     @IBOutlet weak var imageSlider: ImageSlider!
     @IBOutlet weak var titleLabelText: UILabel! {
         didSet {
-            titleLabelText.layer.shadowOffset = LocalizedConstants.cellMovieLayerShadowOffset
-            titleLabelText.layer.shadowOpacity = LocalizedConstants.cellMovieLayerShadowOpacity
-            titleLabelText.layer.cornerRadius = LocalizedConstants.cellMovieLayerCornerRadius
+            titleLabelText.addShadow()
         }
     }
     override func viewDidLoad() {
