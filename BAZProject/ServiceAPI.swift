@@ -92,6 +92,12 @@ class MovieRequest: NSObject {
         let requestURL: String = baseURL+endpoint+apiKey
         return URL(string: requestURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")
     }
+    
+    static func searchMovie(search query: String, allowAdultResults: Bool = false) -> URL? {
+        let endpoint = Endpoint.searchMovies.rawValue+"?api_key=\(apiKey)"
+        let requestURL: String = endpoint+"&query=\(query)&include_adult=\(allowAdultResults)"
+        return URL(string: requestURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")
+    }
 }
 
 //MARK: Enum para las diferentes URIs
