@@ -23,6 +23,8 @@ final class DetailViewController: UIViewController {
             titleLabelText.addShadow()
         }
     }
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = false
@@ -70,6 +72,9 @@ extension DetailViewController: DetailViewProtocol {
         }
         guaranteeMainThread {
             self.titleLabelText.text = data.title
+        }
+        guaranteeMainThread {
+            self.descriptionLabel.text = data.overview
         }
     }
     
