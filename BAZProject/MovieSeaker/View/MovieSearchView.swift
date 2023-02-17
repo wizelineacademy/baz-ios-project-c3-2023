@@ -12,7 +12,6 @@ final class MovieSearchView: UIViewController {
     var output: MSViewOutputProtocol?
     var collectionDataSource: MSCollectionDataSource?
     var collectionDelegate: MSCollectionDelegate?
-    var searchBar: UISearchBar = UISearchBar()
     
     @IBOutlet weak var moviesCollection: UICollectionView!
     
@@ -43,6 +42,7 @@ final class MovieSearchView: UIViewController {
     
     /** Configures the search bar controller */
     private func setupSeaker() {
+        let searchBar = UISearchBar()
         searchBar.delegate = self
         searchBar.showsCancelButton = true
         searchBar.returnKeyType = .continue
@@ -85,8 +85,7 @@ extension MovieSearchView: MSViewInputProtocol {
     }
     
     /** Clear the search bar textfield and restore the collection view */
-    func clearSearch() {
-        self.searchBar.text = ""
+    func clearCollection() {
         self.collectionDataSource?.movies = []
         self.moviesCollection.reloadData()
     }

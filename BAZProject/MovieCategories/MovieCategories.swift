@@ -26,7 +26,7 @@ final class MovieCategories {
         let categories: [MovieCategory] = MovieCategory.allCases
         
         let providers: [MLProviderProtocol] = categories.map({ MovieProvider(category: $0) })
-        var viewControllers = providers.map { provider in
+        var viewControllers: [UIViewController] = providers.map { provider in
             let viewController = MLRouter.getEntry(with: provider)
             let tabBarItem = UITabBarItem(
                 title: provider.viewTitle,
