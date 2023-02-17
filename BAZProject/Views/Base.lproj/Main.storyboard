@@ -122,10 +122,13 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="Arg-CC-td5"/>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="j7o-0Q-ytx" kind="show" identifier="toCatalloge" id="U7f-tZ-2lr"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Inw-fF-zPA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2002.5" y="-106.69014084507042"/>
+            <point key="canvasLocation" x="1941" y="-107"/>
         </scene>
         <!--Movie DetailP View Controller-->
         <scene sceneID="wyI-JG-tHm">
@@ -263,7 +266,7 @@
                                     <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="5"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Xz0-MD-XKi">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MovieGallery" id="Xz0-MD-XKi">
                                         <rect key="frame" x="71" y="5" width="130" height="220"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="oN5-2l-RUv">
@@ -297,8 +300,8 @@
                             <constraint firstItem="gcc-ZT-2wL" firstAttribute="top" secondItem="c8D-hE-erg" secondAttribute="top" id="iwz-Hu-TeM"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Peliculas" id="k2b-0F-jVb">
-                        <barButtonItem key="backBarButtonItem" title="  " id="YM2-4a-q9B"/>
+                    <navigationItem key="navigationItem" title="movie CLUB" id="k2b-0F-jVb">
+                        <barButtonItem key="backBarButtonItem" title=" " id="YM2-4a-q9B"/>
                     </navigationItem>
                     <connections>
                         <outlet property="resultText" destination="BZA-t2-9Ff" id="ERC-dL-Q9B"/>
