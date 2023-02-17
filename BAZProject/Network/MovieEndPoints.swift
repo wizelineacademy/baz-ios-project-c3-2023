@@ -47,4 +47,16 @@ extension MovieServices {
             return "/3/movie/\(id)/recommendations"
         }
     }
+    
+    var params: [String: Any]? {
+        switch self {
+        case .serachKeyword(let searchText):
+            return ["query": searchText]
+        case .search(let searchText, let page):
+            return ["query": searchText, "page": page]
+        default:
+            return [:]
+
+        }
+    }
 }

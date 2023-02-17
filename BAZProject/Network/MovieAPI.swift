@@ -23,4 +23,17 @@ final class MovieAPI: GenericAPI {
         }
         fetch(urlRequest: URLRequest(url: url), onCompletion: onCompletion)
     }
+    
+    
+    func searchMovie(endpoint: MovieServices, onCompletion: @escaping (Result<MovieResult, Error>) -> Void) {
+        
+        let queryItems = [URLQueryItem(name: "api_key", value: apiKey), URLQueryItem(name: "query", value: endpoint.params?["query"] as? String ?? "")]
+        var urlComps = URLComponents(string: "\(baseURL)\(endpoint.path)")
+        urlComps?.queryItems = queryItems
+        guard let url = urlComps?.url else {
+          return onCompletion(.failure(APIError.urlError))
+        }
+        
+        fetch(urlRequest: URLRequest(url: url), onCompletion: onCompletion)
+    }
 }
