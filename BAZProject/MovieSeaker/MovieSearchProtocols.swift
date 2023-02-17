@@ -24,7 +24,7 @@ protocol MSViewInputProtocol: AnyObject {
     
     func setupView(with data: MSEntity)
     func set(movies: [Movie])
-    func clearSearch()
+    func clearCollection()
     func show(_ error: Error)
 }
 
