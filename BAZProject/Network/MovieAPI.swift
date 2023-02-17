@@ -18,9 +18,7 @@ final class MovieAPI: GenericAPI {
           - onComplation: its a block code that recibe Result and returns void `(Result<MovieResult, Error>) -> Void`
      */
     func getMovies(endpoint: MovieServices, onCompletion: @escaping (Result<MovieResult, Error>) -> Void) {
-        guard let url = URL(string: "\(baseURL)\(endpoint.path)?api_key=\(apiKey)") else {
-          return onCompletion(.failure(APIError.urlError))
-        }
-        fetch(urlRequest: URLRequest(url: url), onCompletion: onCompletion)
+        fetch(urlRequest: endpoint.request, onCompletion: onCompletion)
     }
+    
 }
