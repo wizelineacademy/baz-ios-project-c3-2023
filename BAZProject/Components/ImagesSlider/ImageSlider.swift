@@ -21,6 +21,10 @@ final class ImageSlider: CustomView {
     private var counter: Int = 0
     private var positionScroll: CGFloat = 0
     private var isIncreaseScroll: Bool = true
+    private let initCurrentPage: Int = LocalizedConstants.imageSliderInitCurrentPageSlider
+    private let numberSections: Int = LocalizedConstants.imageSliderNumberSections
+    private let numberIncrementPage: Int = LocalizedConstants.imageSliderIncrementShowImage
+    private let minimunSpacingForSection: Double = LocalizedConstants.imageSliderMinimunSpacingForSection
     
     @IBOutlet weak var slidePageControl: UIPageControl!
     @IBOutlet weak var imageCollection: UICollectionView!
@@ -52,7 +56,7 @@ final class ImageSlider: CustomView {
     }
     
     private func setupPageControl() {
-        slidePageControl.numberOfPages = imageUrlArray?.count ?? 0
+        slidePageControl.numberOfPages = imageUrlArray?.count ?? initCurrentPage
         slidePageControl.currentPage = LocalizedConstants.imageSliderInitCurrentPageSlider
         initTimer()
     }
@@ -68,25 +72,25 @@ final class ImageSlider: CustomView {
     
     private func incrementOrDecrementCounter() {
         if isIncreaseScroll {
-           counter += 1
+           counter += numberIncrementPage
         } else {
-            counter -= 1
-            if counter < 0 {
-                counter = 0
+            counter -= numberIncrementPage
+            if counter < initCurrentPage {
+                counter = initCurrentPage
             }
         }
     }
     
     @objc private func slide() {
         guard let imageUrlArray = imageUrlArray else { return }
-        var index: IndexPath = IndexPath(item: counter, section: 0)
+        var index: IndexPath = IndexPath(item: counter, section: numberSections)
         var animated: Bool = true
         if counter >= imageUrlArray.count {
-            counter = 0
+            counter = initCurrentPage
             animated = false
-            index = IndexPath(item: counter, section: 0)
+            index = IndexPath(item: counter, section: numberSections)
         } else {
-            counter += 1
+            counter += numberIncrementPage
         }
         guaranteeMainThread {
             self.imageCollection.scrollToItem(at: index, at: .centeredHorizontally, animated: animated)
@@ -97,7 +101,7 @@ final class ImageSlider: CustomView {
 // MARK: - UICollectionViewDataSource
 extension ImageSlider: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imageUrlArray?.count ?? 0
+        return imageUrlArray?.count ?? numberSections
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -113,11 +117,11 @@ extension ImageSlider: UICollectionViewDelegate { }
 
 extension ImageSlider: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return LocalizedConstants.imageSliderMinimunSpacingForSection
+        return minimunSpacingForSection
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return LocalizedConstants.imageSliderMinimunSpacingForSection
+        return minimunSpacingForSection
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
