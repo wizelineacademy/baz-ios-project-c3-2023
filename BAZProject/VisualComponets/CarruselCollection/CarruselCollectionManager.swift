@@ -13,9 +13,11 @@ typealias CollectionManager = UICollectionViewDelegate & UICollectionViewDataSou
 class CarruselCollectionManager: NSObject, CollectionManager {
     
     let collection: CarruselCollectionView
-    var dataItem: [String]? {
+    var dataCollection: [Home.FetchMoviesBySection.ViewModel.Movie]? {
         didSet {
-            collection.reloadData()
+            DispatchQueue.main.async {
+                self.collection.reloadData()
+            }
         }
     }
     
@@ -31,7 +33,7 @@ class CarruselCollectionManager: NSObject, CollectionManager {
         collection.register(CarruselCollectionViewCell.self, forCellWithReuseIdentifier: CarruselCollectionViewCell.indentifier)
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dataItem?.count ?? 0
+        return dataCollection?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -41,11 +43,13 @@ class CarruselCollectionManager: NSObject, CollectionManager {
         ) as? CarruselCollectionViewCell else {
             fatalError()
         }
-        
+        cell.imageView?.byURL(path: dataCollection?[indexPath.row].imageURL ?? "")
+        cell.labelTitle?.text = dataCollection?[indexPath.row].title
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collection.bounds.width / 3, height: collection.bounds.height * 0.9)
      }
+    
 }

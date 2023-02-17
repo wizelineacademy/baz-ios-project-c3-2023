@@ -9,8 +9,8 @@ import Foundation
 
 class MoviesWorker {
     
-    var movieService: MovieServicesProtocol
-    var imagesServices: ImagesServicesProtocol = ImageApi()
+    private var movieService: MovieServicesProtocol
+    private var imagesServices: ImagesServicesProtocol = ImageApi()
     
     init(movieService: MovieServicesProtocol) {
         self.movieService = movieService

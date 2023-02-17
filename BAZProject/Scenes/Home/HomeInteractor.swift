@@ -9,18 +9,36 @@ import Foundation
 import UIKit
 
 protocol HomeBusinessLogic: AnyObject {
-    // TODO: create functions to manage business logic
+    func fetchMoviesBySection(request: Home.FetchMoviesBySection.Request)
+    func getMoviesSection()
 }
 
 protocol HomeDataStore {
-    // TODO: create data to be used in HomeInteractor
 }
 
-class HomeInteractor: HomeBusinessLogic {
+class HomeInteractor: HomeBusinessLogic, HomeDataStore{
+    
+    // MARK: Properties
+    let moviesWorker = MoviesWorker(movieService: MoviesAPI())
     
     // MARK: Properties VIP
     var presenter: HomePresentationLogic?
+        
+    func fetchMoviesBySection(request: Home.FetchMoviesBySection.Request) {
+        moviesWorker.getMoviesByType(request.section) { [weak self] movies, message in
+            guard let self = self else {
+                return
+            }
+            if let message = message {
+                self.presenter?.presentErrorMessage(error: Home.FetchMoviesBySection.Error(message: message))
+            }
+            self.presenter?.presentFechedMoviesForSection(response: Home.FetchMoviesBySection.Response(section: request.section, movies: movies, numberOfMoviesToShow: 10))
+        }
+    }
     
-    // TODO: conform HomeInteractor protocol
+    func getMoviesSection() {
+        let sections: [fetchMoviesTypes] = [.popular, .nowPlaying, .topRated, .trending, .upComing]
+        presenter?.presentMovieSections(response: Home.GetMoviesSection.Response(sections: sections))
+    }
 }
 

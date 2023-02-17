@@ -9,7 +9,8 @@ import Foundation
 import UIKit
 
 protocol HomeDisplayLogic: AnyObject {
-    // TODO: create functions to manage display logic
+    func displayFetchedMoives(viewModel: Home.FetchMoviesBySection.ViewModel)
+    func displaySectionViews(viewModel: Home.GetMoviesSection.ViewModel)
 }
 
 class HomeViewController: UIViewController {
@@ -33,8 +34,6 @@ class HomeViewController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-    private let sections: [fetchMoviesTypes] = [.nowPlaying, .popular, .topRated, .trending, .upComing]
-    
     
     // MARK: Init
     required init?(coder: NSCoder) {
@@ -46,7 +45,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addScrollViewToView()
-        loadMoviesSectionViews()
+        interactor?.getMoviesSection()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -54,22 +53,21 @@ class HomeViewController: UIViewController {
     
     // MARK: Setup
     func setup() {
-        // TODO: setup VIP Module
+        let viewController = self
+        let interactor = HomeInteractor()
+        let presenter = HomePresenter()
+        let router = HomeRouter()
+        viewController.interactor = interactor
+        viewController.router = router
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+        router.viewController = viewController
+        router.dataStore = interactor
     }
-    
-    private func loadMoviesSectionViews() {
-        sections.forEach { section in
-            addMoviesSectionView(section: section)
-        }
-    }
-    
-    private func addMoviesSectionView(section: fetchMoviesTypes) {
-        let sectionView = MoviesSectionView()
-        let moviesSectionModel = MoviesSectionModel(title: "Popular Movies", imageString: [])
-        sectionView.model = moviesSectionModel
-        
-        sectionView.heightAnchor.constraint(equalToConstant: view.frame.height / 3).isActive = true
-        scrollViewContainer.addArrangedSubview(sectionView)
+
+    private func addMoviesSectionView(moviesSectionView: MoviesSectionView) {
+        moviesSectionView.heightAnchor.constraint(equalToConstant: view.frame.height / 3).isActive = true
+        scrollViewContainer.addArrangedSubview(moviesSectionView)
     }
     
     private func addScrollViewToView() {
@@ -89,5 +87,14 @@ class HomeViewController: UIViewController {
 }
 
 extension HomeViewController: HomeDisplayLogic {
-    // TODO: conform HomeDisplayLogic protocol
+    func displayFetchedMoives(viewModel: Home.FetchMoviesBySection.ViewModel) {
+        addMoviesSectionView(moviesSectionView: viewModel.displayedMovies.view)
+        viewModel.displayedMovies.view.model = viewModel.displayedMovies.movies
+    }
+    
+    func displaySectionViews(viewModel: Home.GetMoviesSection.ViewModel) {
+        viewModel.displayedSections.forEach { section in
+            interactor?.fetchMoviesBySection(request: Home.FetchMoviesBySection.Request(section: section))
+        }
+    }
 }

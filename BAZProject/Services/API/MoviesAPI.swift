@@ -89,6 +89,29 @@ enum fetchMoviesTypes {
             return Endpoint.byRecommendationMovie(id: id)
         }
     }
+    
+    var title: String {
+        switch self {
+        case .trending:
+            return "Trending Movies"
+        case .nowPlaying:
+            return "Now Playing Movies"
+        case .popular:
+            return "Popular Movies"
+        case .topRated:
+            return "Top Rated Movies"
+        case .upComing:
+            return "Up Coming Movies"
+        case .byKeyword(let string):
+            return "Search by \(string)"
+        case .bySearch(let string):
+            return "Search by \(string)"
+        case .bySimilarMovie(_):
+            return "Similar Movies"
+        case .byRecommendationMovie(_):
+            return "Recommendation Movies"
+        }
+    }
 }
 
 enum MovieServiceError: Error {

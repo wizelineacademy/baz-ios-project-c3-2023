@@ -15,36 +15,46 @@ protocol MoviesSectionDelegate: AnyObject {
 
 struct MoviesSectionModel {
     let title: String
-    let imageString: [String]
+    let images: [UIImage]
 }
 
 class MoviesSectionView: UIView {
 
     // MARK: IBOutlets
-    @IBOutlet weak var titleSectionMovies: UILabel!
+    @IBOutlet weak var titleSectionMovies: UILabel! {
+        didSet {
+            titleSectionMovies.text = typeSection.title
+        }
+    }
     @IBOutlet weak var carruselMoviesView: UIView!
     
     // MARK: Properties
     var manager: CarruselCollectionManager!
+    let typeSection: fetchMoviesTypes
     let carruselCollection = CarruselCollectionView()
-    var model: MoviesSectionModel? {
+
+    var model: [Home.FetchMoviesBySection.ViewModel.Movie]? {
         didSet {
-            titleSectionMovies.text = model?.title
-            manager.dataItem = model?.imageString
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else {
+                    return
+                }
+                self.configureCarruselMoviesView()
+                self.manager.dataCollection = self.model
+            }
         }
     }
     
-    init() {
+    init(typeSection: fetchMoviesTypes) {
+        self.typeSection = typeSection
         super.init(frame: .zero)
         self.configurateView()
-        configureCarruselMoviesView()
-
     }
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        self.configurateView()
+        fatalError("init(coder:) has not been implemented")
     }
+
     
     private func configurateView() {
         guard let view = loadViewFromNib(nibName: "MoviesSectionView") else { return }
