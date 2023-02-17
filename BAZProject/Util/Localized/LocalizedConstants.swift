@@ -46,4 +46,5 @@ enum LocalizedConstants {
     static let imageSliderMinimunSpacingForSection: Double = 0.0
     static let imageSliderIncrementShowImage: Int = 1
     static let imageSliderNumberSections: Int = 0
+    static let imageSliderScrollViewContentOffsetDefaultX: CGFloat = 0.0
 }

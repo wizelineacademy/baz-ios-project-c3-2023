@@ -20,11 +20,11 @@ final class ImageSlider: CustomView {
     private var timer: Timer?
     private var counter: Int = 0
     private var positionScroll: CGFloat = 0
-    private var isIncreaseScroll: Bool = true
     private let initCurrentPage: Int = LocalizedConstants.imageSliderInitCurrentPageSlider
     private let numberSections: Int = LocalizedConstants.imageSliderNumberSections
     private let numberIncrementPage: Int = LocalizedConstants.imageSliderIncrementShowImage
     private let minimunSpacingForSection: Double = LocalizedConstants.imageSliderMinimunSpacingForSection
+    private var scrolledRight: Bool = false
     
     @IBOutlet weak var slidePageControl: UIPageControl!
     @IBOutlet weak var imageCollection: UICollectionView!
@@ -45,6 +45,11 @@ final class ImageSlider: CustomView {
         slidePageControl.currentPage = Int(scrollPosition)
     }
     
+    func stopTimmer() {
+        timer?.invalidate()
+        timer = nil
+    }
+    
     // MARK: - Private methods
     private func getImageUrl(_ index: Int) -> String? {
         return imageUrlArray?[index]
@@ -60,40 +65,38 @@ final class ImageSlider: CustomView {
         slidePageControl.currentPage = LocalizedConstants.imageSliderInitCurrentPageSlider
         initTimer()
     }
-
-    func stopTimmer() {
-        timer?.invalidate()
-        timer = nil
-    }
     
     private func initTimer() {
         timer = Timer.scheduledTimer(timeInterval: LocalizedConstants.imageSliderTimeInterval, target: self, selector: #selector(slide), userInfo: nil, repeats: true)
     }
-    
-    private func incrementOrDecrementCounter() {
-        if isIncreaseScroll {
-           counter += numberIncrementPage
-        } else {
-            counter -= numberIncrementPage
-            if counter < initCurrentPage {
-                counter = initCurrentPage
-            }
-        }
-    }
-    
+
     @objc private func slide() {
         guard let imageUrlArray = imageUrlArray else { return }
         var index: IndexPath = IndexPath(item: counter, section: numberSections)
-        var animated: Bool = true
         if counter >= imageUrlArray.count {
             counter = initCurrentPage
-            animated = false
             index = IndexPath(item: counter, section: numberSections)
         } else {
             counter += numberIncrementPage
         }
+        updatePositionItemOfImageCollection(for: index)
+    }
+    
+    private func updateItemOfImageCollectionByScroll() {
+        guard let imageUrlArray = imageUrlArray else { return }
+        if scrolledRight {
+            counter = initCurrentPage
+        } else if !scrolledRight && counter == initCurrentPage {
+            counter = imageUrlArray.count - numberIncrementPage
+        }
+        
+        updatePositionItemOfImageCollection(for: IndexPath(item: counter,
+                                                           section: numberSections))
+    }
+    
+    private func updatePositionItemOfImageCollection(for index: IndexPath) {
         guaranteeMainThread {
-            self.imageCollection.scrollToItem(at: index, at: .centeredHorizontally, animated: animated)
+            self.imageCollection.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
         }
     }
 }
@@ -113,8 +116,7 @@ extension ImageSlider: UICollectionViewDataSource {
     }
 }
 
-extension ImageSlider: UICollectionViewDelegate { }
-
+// MARK: - UICollectionViewDelegateFlowLayout
 extension ImageSlider: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return minimunSpacingForSection
@@ -135,23 +137,22 @@ extension ImageSlider: UICollectionViewDelegateFlowLayout {
 
 // MARK: - UIScrollViewDelegate
 extension ImageSlider: UIScrollViewDelegate {
-
+    
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         positionScroll = scrollView.contentOffset.x
         stopTimmer()
     }
-
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        isIncreaseScroll = !(positionScroll > scrollView.contentOffset.x)
-    }
-
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let contentScrollViewX: Double = scrollView.contentOffset.x
-        if (contentScrollViewX >= positionScroll) && (contentScrollViewX <= positionScroll) {
-            return
-        }
     
-        incrementOrDecrementCounter()
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        scrolledRight = scrollView.contentOffset.x > LocalizedConstants.imageSliderScrollViewContentOffsetDefaultX
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.x == positionScroll {
+            updateItemOfImageCollectionByScroll()
+        } else {
+            counter = slidePageControl.currentPage
+        }
         initTimer()
     }
 }
