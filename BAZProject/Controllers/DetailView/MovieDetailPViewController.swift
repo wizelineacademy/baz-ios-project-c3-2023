@@ -55,8 +55,15 @@ class MovieDetailPViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configNavBar()
         setUpView()
         services()
+    }
+    
+    func configNavBar(){
+        let backButton = UIBarButtonItem()
+        backButton.title = ""
+        navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
     }
     
     func setUpView(){
