@@ -10,7 +10,8 @@ import UIKit
 final class MovieSearchView: UIViewController {
     
     var output: MSViewOutputProtocol?
-    var movies: [Movie] = []
+    var collectionDataSource: MSCollectionDataSource?
+    var collectionDelegate: MSCollectionDelegate?
     var searchBar: UISearchBar = UISearchBar()
     
     @IBOutlet weak var moviesCollection: UICollectionView!
@@ -27,8 +28,8 @@ final class MovieSearchView: UIViewController {
     //MARK: - Settings methods
     /** Configures the UICollectionView thar shows the received movies */
     private func setupCollection() {
-        moviesCollection.dataSource = self
-        moviesCollection.delegate = self
+        moviesCollection.dataSource = collectionDataSource
+        moviesCollection.delegate = collectionDelegate
         moviesCollection.showsVerticalScrollIndicator = false
         moviesCollection.allowsMultipleSelection = false
         moviesCollection.contentInset = UIEdgeInsets(
@@ -54,6 +55,13 @@ final class MovieSearchView: UIViewController {
     
 }
 
+extension MovieSearchView: MSCollectionOutputProtocol {
+    func didSelectItem(at indexPath: IndexPath) {
+        guard let movie = collectionDataSource?.movies[indexPath.row] else { return }
+        self.output?.didSelect(movie)
+    }
+}
+
 //MARK: - Input methods implementation
 extension MovieSearchView: MSViewInputProtocol {
     /**
@@ -72,14 +80,14 @@ extension MovieSearchView: MSViewInputProtocol {
         - movies: a Movie array
      */
     func set(movies: [Movie]) {
-        self.movies = movies
+        self.collectionDataSource?.movies = movies
         self.moviesCollection.reloadData()
     }
     
     /** Clear the search bar textfield and restore the collection view */
     func clearSearch() {
         self.searchBar.text = ""
-        self.movies = []
+        self.collectionDataSource?.movies = []
         self.moviesCollection.reloadData()
     }
     
