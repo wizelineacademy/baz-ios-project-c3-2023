@@ -88,7 +88,7 @@ class MovieRequest: NSObject {
     static let apiKey: String = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
     
     static func getURL(endpoint: Endpoint) -> URL? {
-        let endpoint = endpoint.rawValue
+        let endpoint = endpoint.rawValue+"?api_key=\(apiKey)"
         let requestURL: String = baseURL+endpoint+apiKey
         return URL(string: requestURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")
     }
@@ -97,8 +97,8 @@ class MovieRequest: NSObject {
 //MARK: Enum para las diferentes URIs
 enum Endpoint: String {
     
-    case trendingMovies = "trending/movie/day?api_key="
-    case topRatedMovies = "/movie/top_rated?api_key="
+    case trendingMovies = "trending/movie/day"
+    case topRatedMovies = "movie/top_rated"
 }
 
 struct Response<T: Codable>: Codable {
