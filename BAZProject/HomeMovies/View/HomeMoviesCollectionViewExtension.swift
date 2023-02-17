@@ -11,7 +11,7 @@ import UIKit
 extension HomeMoviesView: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return MovieConstants.numberOfSections
+        return Constants.numberOfSections
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -44,14 +44,14 @@ extension HomeMoviesView: UICollectionViewDelegate {
 extension HomeMoviesView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return MovieConstants.minimumLineSpacing
+        return Constants.minimumLineSpacing
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return MovieConstants.minimumInteritemSpacing
+        return Constants.minimumInteritemSpacing
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.bounds.size.width, height: 60 + MovieConstants.heightAditionalConstant)
+        return CGSize(width: collectionView.bounds.size.width, height: 60 + Constants.heightAditionalConstant)
     }
 }

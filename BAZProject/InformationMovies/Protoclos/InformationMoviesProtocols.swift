@@ -8,7 +8,7 @@
 import UIKit
 
 protocol InformationMoviesViewProtocol: AnyObject {
-    // PRESENTER -> VIEW
+    // Presenter -> View
     var presenter: InformationMoviesPresenterProtocol? { get set }
     
     func reloadCollectionViewData()
@@ -16,14 +16,14 @@ protocol InformationMoviesViewProtocol: AnyObject {
 }
 
 protocol InformationMoviesRouterProtocol: AnyObject {
-    // PRESENTER -> ROUTER
+    // Presenter -> Router
     static func createInformationMovieModule(informationMovieData: InformationMovie) -> UIViewController
     
     func goToInformationMovie(informationMovieData: InformationMovie, view: InformationMoviesViewProtocol)
 }
 
 protocol InformationMoviesPresenterProtocol: AnyObject {
-    // VIEW -> PRESENTER
+    // View -> Presenter
     var view: InformationMoviesViewProtocol? { get set }
     var interactor: InformationMoviesInteractorInputProtocol? { get set }
     var router: InformationMoviesRouterProtocol? { get set }
@@ -37,7 +37,7 @@ protocol InformationMoviesPresenterProtocol: AnyObject {
 }
 
 protocol InformationMoviesInteractorOutputProtocol: AnyObject {
-// INTERACTOR -> PRESENTER
+    // Interactor -> Presenter
     func pushSimilarMoviesData(similarMoviesData: [Movie])
     func pushInformationMovieData(movieData: InformationMovie)
     
@@ -45,7 +45,7 @@ protocol InformationMoviesInteractorOutputProtocol: AnyObject {
 }
 
 protocol InformationMoviesInteractorInputProtocol: AnyObject {
-    // PRESENTER -> INTERACTOR
+    // Presenter -> Interactor
     var presenter: InformationMoviesInteractorOutputProtocol? { get set }
     var remoteDatamanager: InformationMoviesRemoteDataManagerInputProtocol? { get set }
     
@@ -53,12 +53,8 @@ protocol InformationMoviesInteractorInputProtocol: AnyObject {
     func getInformationMovie(idMovie: Int)
 }
 
-protocol InformationMoviesDataManagerInputProtocol: AnyObject {
-    // INTERACTOR -> DATAMANAGER
-}
-
 protocol InformationMoviesRemoteDataManagerInputProtocol: AnyObject {
-    // INTERACTOR -> REMOTEDATAMANAGER
+    // Interactor -> RemoteDataManager
     var remoteRequestHandler: InformationMoviesRemoteDataManagerOutputProtocol? { get set }
     
     func getMovieSimilar(idMovie: Int)
@@ -66,7 +62,7 @@ protocol InformationMoviesRemoteDataManagerInputProtocol: AnyObject {
 }
 
 protocol InformationMoviesRemoteDataManagerOutputProtocol: AnyObject {
-    // REMOTEDATAMANAGER -> INTERACTOR
+    // RemoteDataManager -> Interactor
     func pushSimilarMoviesData(similarMoviesData: [Movie])
     func pushInformationMovieData(movieData: InformationMovie)
     func catchResponse(withMessage: String)

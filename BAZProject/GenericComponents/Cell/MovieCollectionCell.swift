@@ -9,11 +9,13 @@ import UIKit
 
 class MovieCollectionCell: UICollectionViewCell{
     
+    // MARK: - IBOutlet
     @IBOutlet weak var contentViewCell: UIView!
     @IBOutlet weak var movieImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subTitleLabel: UILabel!
     
+    // MARK: - Properties
     static var cellIdentifier: String = "MovieCollectionCell"
  
     func setupCell(movie: Movie){

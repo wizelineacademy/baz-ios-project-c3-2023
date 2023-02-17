@@ -19,6 +19,7 @@ class InformationMoviesView: UIViewController {
 
     // MARK: - Properties
     var presenter: InformationMoviesPresenterProtocol?
+    typealias Constants = MovieConstants
 
     // MARK: - Lifecycle
     override func viewDidLoad() {

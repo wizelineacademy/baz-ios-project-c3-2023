@@ -34,8 +34,8 @@ extension HomeMoviesView: HomeMoviesViewProtocol {
             }
         }else{
             DispatchQueue.main.async {
-                let alert = UIAlertController(title: MovieConstants.notFoundAlertResult, message: MovieConstants.notFoundResult, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: MovieConstants.done, style: .cancel, handler: { UIAlertAction in
+                let alert = UIAlertController(title: Constants.notFoundAlertResult, message: Constants.notFoundResult, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: Constants.done, style: .cancel, handler: { UIAlertAction in
                     self.searchBar.text = ""
                 }))
                 self.present(alert, animated: true, completion: nil)
@@ -50,8 +50,8 @@ extension HomeMoviesView: HomeMoviesViewProtocol {
         DispatchQueue.main.async {
             self.title = "\(self.presenter?.selectedCategory?.typeName ?? MovieCategory.trending.typeName)"
             if let message = withMessage, message != "" {
-                let alert = UIAlertController(title: MovieConstants.errorAlertResult, message: message, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: MovieConstants.done, style: .cancel, handler: nil))
+                let alert = UIAlertController(title: Constants.errorAlertResult, message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: Constants.done, style: .cancel, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
         }
@@ -94,7 +94,7 @@ extension HomeMoviesView {
     
     func createToolbar(){
         self.toolBar = UIToolbar.init(frame: CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 50))
-        self.toolBar.items = [UIBarButtonItem.init(title: MovieConstants.done, style: .done, target: self, action: #selector(onDoneButtonTapped))]
+        self.toolBar.items = [UIBarButtonItem.init(title: Constants.done, style: .done, target: self, action: #selector(onDoneButtonTapped))]
     }
     
     @objc func onDoneButtonTapped() {

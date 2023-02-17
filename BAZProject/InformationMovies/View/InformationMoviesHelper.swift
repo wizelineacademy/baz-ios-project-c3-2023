@@ -27,8 +27,8 @@ extension InformationMoviesView: InformationMoviesViewProtocol {
     func catchResponse(withMessage: String?) {
         DispatchQueue.main.async {
             if let message = withMessage, message != "" {
-                let alert = UIAlertController(title: MovieConstants.errorAlertResult, message: message, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: MovieConstants.done, style: .cancel, handler: nil))
+                let alert = UIAlertController(title: Constants.errorAlertResult, message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: Constants.done, style: .cancel, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
         }

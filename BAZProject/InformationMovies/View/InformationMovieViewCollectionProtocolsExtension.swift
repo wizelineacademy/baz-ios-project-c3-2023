@@ -10,7 +10,7 @@ import UIKit
 // MARK: -  UICollectionViewDataSource
 extension InformationMoviesView: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return MovieConstants.numberOfSections
+        return Constants.numberOfSections
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -44,18 +44,18 @@ extension InformationMoviesView: UICollectionViewDelegate {
 extension InformationMoviesView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return MovieConstants.minimumLineSpacing
+        return Constants.minimumLineSpacing
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return MovieConstants.minimumInteritemSpacing
+        return Constants.minimumInteritemSpacing
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let marginAndInsets : CGFloat
-        marginAndInsets = MovieConstants.minimumInteritemSpacing * 2 + collectionView.safeAreaInsets.left + collectionView.safeAreaInsets.right + MovieConstants.insets * CGFloat(MovieConstants.cellsPerRow - 1)
+        marginAndInsets = Constants.minimumInteritemSpacing * 2 + collectionView.safeAreaInsets.left + collectionView.safeAreaInsets.right + Constants.insets * CGFloat(Constants.cellsPerRow - 1)
         
-        let itemWidth = ((collectionView.bounds.size.width - marginAndInsets) / CGFloat(MovieConstants.cellsPerRow)).rounded(.down)
+        let itemWidth = ((collectionView.bounds.size.width - marginAndInsets) / CGFloat(Constants.cellsPerRow)).rounded(.down)
         
         return CGSize(width: itemWidth, height: itemWidth)
     }

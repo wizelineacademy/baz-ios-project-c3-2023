@@ -6,10 +6,12 @@
 
 import Foundation
 
+// MARK: MovieResult
 struct MovieResult: Codable {
     let results: [Movie]
 }
 
+// MARK: Movie
 struct Movie: Codable {
     let id: Int?
     let title: String?
@@ -26,6 +28,7 @@ struct Movie: Codable {
     }
 }
 
+// MARK: MovieCategory
 enum MovieCategory: String {
     case trending
     case nowPlaying
@@ -64,6 +67,7 @@ enum MovieCategory: String {
     }
 }
 
+// MARK: CellPath
 enum CellPath {
     static let baseImageURL = "https://image.tmdb.org/t/p/w500"
 

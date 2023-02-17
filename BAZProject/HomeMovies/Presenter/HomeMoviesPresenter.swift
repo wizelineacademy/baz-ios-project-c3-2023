@@ -75,5 +75,4 @@ extension HomeMoviesPresenter: HomeMoviesInteractorOutputProtocol {
     func catchResponse(withMessage: String) {
         self.view?.catchResponse(withMessage: withMessage)
     }
-    
 }

@@ -8,8 +8,7 @@
 import Foundation
 
 class InformationMoviesPresenter: InformationMoviesPresenterProtocol {
-    
-    
+
     // MARK: Properties
     weak var view: InformationMoviesViewProtocol?
     var interactor: InformationMoviesInteractorInputProtocol?
@@ -33,7 +32,6 @@ class InformationMoviesPresenter: InformationMoviesPresenterProtocol {
     func getInformationMovie(idMovie: Int) {
         interactor?.getInformationMovie(idMovie: idMovie)
     }
-    
 }
 
 // MARK: - InformationMoviesInteractorOutputProtocol

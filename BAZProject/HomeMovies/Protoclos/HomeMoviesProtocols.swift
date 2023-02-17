@@ -8,7 +8,7 @@
 import UIKit
 
 protocol HomeMoviesViewProtocol: AnyObject {
-    // PRESENTER -> VIEW
+    // Presenter -> View
     var presenter: HomeMoviesPresenterProtocol? { get set }
     
     func reloadCollectionViewData()
@@ -17,14 +17,14 @@ protocol HomeMoviesViewProtocol: AnyObject {
 }
 
 protocol HomeMoviesRouterProtocol: AnyObject {
-    // PRESENTER -> ROUTER
+    // Presenter -> Router
     static func createHomeMoviesModule() -> UIViewController
     
     func goToInformationMovie(informationMovieData: InformationMovie, view: HomeMoviesViewProtocol)
 }
 
 protocol HomeMoviesPresenterProtocol: AnyObject {
-    // VIEW -> PRESENTER
+    // View -> Presenter
     var view: HomeMoviesViewProtocol? { get set }
     var interactor: HomeMoviesInteractorInputProtocol? { get set }
     var router: HomeMoviesRouterProtocol? { get set }
@@ -42,7 +42,7 @@ protocol HomeMoviesPresenterProtocol: AnyObject {
 }
 
 protocol HomeMoviesInteractorOutputProtocol: AnyObject {
-// INTERACTOR -> PRESENTER
+    // Interactor -> Presenter
     func pushMoviesData(moviesData: [Movie])
     func pushSearchedMoviesData(moviesData: [Movie])
     func pushInformationMovieData(movieData: InformationMovie)
@@ -51,7 +51,7 @@ protocol HomeMoviesInteractorOutputProtocol: AnyObject {
 }
 
 protocol HomeMoviesInteractorInputProtocol: AnyObject {
-    // PRESENTER -> INTERACTOR
+    // Presenter -> Interactor
     var presenter: HomeMoviesInteractorOutputProtocol? { get set }
     var remoteDatamanager: HomeMoviesRemoteDataManagerInputProtocol? { get set }
     
@@ -60,12 +60,8 @@ protocol HomeMoviesInteractorInputProtocol: AnyObject {
     func getInformationMovie(idMovie: Int)
 }
 
-protocol HomeMoviesDataManagerInputProtocol: AnyObject {
-    // INTERACTOR -> DATAMANAGER
-}
-
 protocol HomeMoviesRemoteDataManagerInputProtocol: AnyObject {
-    // INTERACTOR -> REMOTEDATAMANAGER
+    // Interactor -> RemoteDataManager
     var remoteRequestHandler: HomeMoviesRemoteDataManagerOutputProtocol? { get set }
     func getMovies(categoryMovieType: MovieCategory)
     func getSearchedMovies(searchTerm: String)
@@ -73,7 +69,7 @@ protocol HomeMoviesRemoteDataManagerInputProtocol: AnyObject {
 }
 
 protocol HomeMoviesRemoteDataManagerOutputProtocol: AnyObject {
-    // REMOTEDATAMANAGER -> INTERACTOR
+    // RemoteDataManager -> Interactor
     func pushMoviesData(moviesData: [Movie])
     func pushSearchedMoviesData(moviesData: [Movie])
     func pushInformationMovieData(movieData: InformationMovie)
