@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C20BECC4299487ED0043E043 /* MSSeakerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20BECC3299487ED0043E043 /* MSSeakerManager.swift */; };
+		C20BECC4299487ED0043E043 /* MSSearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20BECC3299487ED0043E043 /* MSSearchManager.swift */; };
 		C21F9F09299415F500953C50 /* MSMovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21F9F07299415F500953C50 /* MSMovieCollectionViewCell.swift */; };
 		C21F9F0A299415F500953C50 /* MSMovieCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C21F9F08299415F500953C50 /* MSMovieCollectionViewCell.xib */; };
 		C21F9F0D2994162400953C50 /* MSCollectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21F9F0C2994162400953C50 /* MSCollectionManager.swift */; };
@@ -56,7 +56,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C20BECC3299487ED0043E043 /* MSSeakerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSSeakerManager.swift; sourceTree = "<group>"; };
+		C20BECC3299487ED0043E043 /* MSSearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSSearchManager.swift; sourceTree = "<group>"; };
 		C21F9F07299415F500953C50 /* MSMovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSMovieCollectionViewCell.swift; sourceTree = "<group>"; };
 		C21F9F08299415F500953C50 /* MSMovieCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MSMovieCollectionViewCell.xib; sourceTree = "<group>"; };
 		C21F9F0C2994162400953C50 /* MSCollectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSCollectionManager.swift; sourceTree = "<group>"; };
@@ -120,7 +120,7 @@
 		C20BECC2299487CB0043E043 /* MSSeakerManagement */ = {
 			isa = PBXGroup;
 			children = (
-				C20BECC3299487ED0043E043 /* MSSeakerManager.swift */,
+				C20BECC3299487ED0043E043 /* MSSearchManager.swift */,
 			);
 			path = MSSeakerManagement;
 			sourceTree = "<group>";
@@ -474,7 +474,7 @@
 			files = (
 				C2D763442993FAA400E5303D /* MSEntity.swift in Sources */,
 				C2BDDEB229888A0100A02E62 /* MovieTableViewCell.swift in Sources */,
-				C20BECC4299487ED0043E043 /* MSSeakerManager.swift in Sources */,
+				C20BECC4299487ED0043E043 /* MSSearchManager.swift in Sources */,
 				C2D763472993FB9F00E5303D /* MSProviderProtocol.swift in Sources */,
 				C30893AE28A2F42B004B1860 /* AppDelegate.swift in Sources */,
 				C2D763492993FBD100E5303D /* MovieSearchProvider.swift in Sources */,

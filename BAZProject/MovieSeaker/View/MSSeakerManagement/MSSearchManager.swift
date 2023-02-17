@@ -1,5 +1,5 @@
 //
-//  MSSeakerManager.swift
+//  MSSearchManager.swift
 //  BAZProject
 //
 //  Created by Luis Alberto Perez Villar on 08/02/23.
