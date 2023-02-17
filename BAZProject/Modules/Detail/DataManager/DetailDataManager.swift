@@ -23,7 +23,8 @@ extension DetailDataManager: DetailDataManagerInputProtocol {
     func requestMedia(_ urlString: String) {
         providerNetworking.sendRequest(RequestType(strUrl: urlString, method: .GET).getRequest()) { [weak self] (result: ResponseProvider) in
             switch result {
-            case .success(let movie):
+            case .success(var movie):
+                movie.decrypt()
                 self?.interactor?.handleGetMediaMovie(movie)
             case .failure(let error):
                 self?.interactor?.handleErrorService(error)

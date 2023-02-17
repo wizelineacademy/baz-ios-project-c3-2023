@@ -22,7 +22,6 @@ final class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = false
-        setupView()
         getData()
     }
     
@@ -47,8 +46,10 @@ final class DetailViewController: UIViewController {
             self.view.showLoader()
         }
     }
-    private func setupView() {
-        imageSlider.setUp(imageUrlArray: ["/lnO6QqaCoHsEOJtsqclATT7cJiM.jpg", "/3ENw07WLY75AmTBaLa5TZFYbH1l.jpg", "/sLN0BfRalbhyQBw6ictV3gVr4Dc.jpg","/p9jmVtmm29dCHDHBFrOR6WNNaeO.jpg"])
+    private func setupView(imageUrlArray: [String]) {
+        guaranteeMainThread {
+            self.imageSlider.setUp(imageUrlArray: imageUrlArray)
+        }
     }
     
     private func getData() {
@@ -60,7 +61,9 @@ final class DetailViewController: UIViewController {
 
 extension DetailViewController: DetailViewProtocol {
     func updateView(data: MovieDetailResult) {
-        
+        if let data = data.imagesArrayUrlString, !data.isEmpty {
+            setupView(imageUrlArray: data)
+        }
     }
     
     func stopLoading() {

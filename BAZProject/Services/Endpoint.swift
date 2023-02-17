@@ -40,7 +40,7 @@ extension Endpoint {
             let url: String = "\(String.apiKeyEndPointTrending)/\(media.rawValue)/\(time.rawValue)"
             return BaseUrl.apiWithEndPoint(endPoint: url).url
         case .details(mediaType: let media, idMedia: let id):
-            return BaseUrl.apiWithEndPoint(endPoint: "/\(media)/\(id)").url
+            return "\(BaseUrl.api.url)/\(media)/\(id)?api_key=\(String.apiKeyTheMovieDb)&language=\(String.languageTheMovieDb)&region=\(String.regionTheMovieDb)&append_to_response=images&include_image_language=es,null"
         }
     }
 }

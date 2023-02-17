@@ -38,6 +38,7 @@ final class ImageSlider: CustomView {
         registerCell()
         imageCollection.delegate = self
         setupPageControl()
+        imageCollection.reloadData()
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

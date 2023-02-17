@@ -28,6 +28,7 @@ struct MovieDetailResult: Codable {
     var voteAverage: Double?
     var voteCount: Int?
     var images: Images?
+    var imagesArrayUrlString: [String]?
 
     enum CodingKeys: String, CodingKey {
         case adult
@@ -48,6 +49,17 @@ struct MovieDetailResult: Codable {
         case voteAverage = "vote_average"
         case voteCount = "vote_count"
         case images
+    }
+    
+    mutating func decrypt() {
+        guard let backdrops = images?.backdrops as? [Backdrop] else { return }
+        var imagesUrl: [String] = []
+        backdrops.forEach { backdrop in
+            if let filePath = backdrop.filePath {
+                imagesUrl.append(filePath)
+            }
+        }
+        imagesArrayUrlString = imagesUrl.uniqued()
     }
 }
 
