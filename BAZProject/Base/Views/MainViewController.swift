@@ -64,19 +64,10 @@ final class MainViewController: UITabBarController {
     
     private func getUISearchController() -> UISearchController {
         let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = .mainPlaceholderSearchBar
         navigationItem.searchController = searchController
         definesPresentationContext = true
         return searchController
-    }
-}
-
-extension MainViewController: UISearchResultsUpdating {
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let textSearching = searchController.searchBar.text else { return }
-        print("Searching with: " + (textSearching))
     }
 }
