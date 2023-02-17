@@ -8,6 +8,13 @@
 import Foundation
 
 struct PageMoviesResult : Codable {
+    internal init(page: Int, results: [Movie], totalPages: Int, totalResults: Int) {
+        self.page = page
+        self.results = results
+        self.totalPages = totalPages
+        self.totalResults = totalResults
+    }
+    
     let page: Int
     let results: [Movie]
     let totalPages: Int

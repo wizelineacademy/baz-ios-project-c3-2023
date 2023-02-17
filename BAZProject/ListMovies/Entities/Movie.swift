@@ -27,8 +27,6 @@ struct Movie: Codable {
         return "https://image.tmdb.org/t/p/w500\(posterPath ?? "")"
     }
     
-    
-    
     enum CodingKeys: String, CodingKey {
         case adult            = "adult"
         case backdropPath     = "backdrop_path"

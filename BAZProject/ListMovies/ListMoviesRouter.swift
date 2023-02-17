@@ -6,3 +6,18 @@
 //
 
 import Foundation
+import UIKit
+
+class ListMoviesRouter {
+    
+    func showListMovies(window: UIWindow?) {
+        let listMoviesView = ListMoviesView()
+        let listMoviesInteractor = ListMoviesInteractor()
+        let listMoviesPresenter = ListMoviesPresenter(listMoviesInteractor: listMoviesInteractor)
+        listMoviesPresenter.modelPageProtocol = listMoviesView
+        listMoviesView.listMoviesPresenter = listMoviesPresenter
+        
+        window?.rootViewController = listMoviesView
+        window?.makeKeyAndVisible()
+    }
+}
