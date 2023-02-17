@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailViewController" customModule="BAZProject" customModuleProvider="target">
             <connections>
                 <outlet property="imageSlider" destination="0FR-aM-gL9" id="95D-xX-qVb"/>
+                <outlet property="titleLabelText" destination="ZjG-S9-3Je" id="hYq-y0-zY4"/>
                 <outlet property="view" destination="iN0-l3-epB" id="1vn-VC-947"/>
             </connections>
         </placeholder>
@@ -26,12 +27,21 @@
                         <constraint firstAttribute="height" constant="180" id="pjm-nk-wAH"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZjG-S9-3Je">
+                    <rect key="frame" x="16" y="255" width="343" height="30"/>
+                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="25"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="0FR-aM-gL9" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="5El-F0-FnA"/>
                 <constraint firstItem="0FR-aM-gL9" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="66u-7m-cuq"/>
+                <constraint firstItem="ZjG-S9-3Je" firstAttribute="top" secondItem="0FR-aM-gL9" secondAttribute="bottom" constant="16" id="Aqp-oo-hlL"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ZjG-S9-3Je" secondAttribute="trailing" constant="16" id="CyS-M8-Co7"/>
+                <constraint firstItem="ZjG-S9-3Je" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="P3w-4G-kNT"/>
                 <constraint firstItem="0FR-aM-gL9" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="qGR-tG-OoW"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

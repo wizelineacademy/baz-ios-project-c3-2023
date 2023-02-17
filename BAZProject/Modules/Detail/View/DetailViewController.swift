@@ -18,7 +18,13 @@ final class DetailViewController: UIViewController {
     private var errorGetData: Bool = false
     
     @IBOutlet weak var imageSlider: ImageSlider!
-
+    @IBOutlet weak var titleLabelText: UILabel! {
+        didSet {
+            titleLabelText.layer.shadowOffset = LocalizedConstants.cellMovieLayerShadowOffset
+            titleLabelText.layer.shadowOpacity = LocalizedConstants.cellMovieLayerShadowOpacity
+            titleLabelText.layer.cornerRadius = LocalizedConstants.cellMovieLayerCornerRadius
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = false
@@ -63,6 +69,9 @@ extension DetailViewController: DetailViewProtocol {
     func updateView(data: MovieDetailResult) {
         if let data = data.imagesArrayUrlString, !data.isEmpty {
             setupView(imageUrlArray: data)
+        }
+        guaranteeMainThread {
+            self.titleLabelText.text = data.title
         }
     }
     
