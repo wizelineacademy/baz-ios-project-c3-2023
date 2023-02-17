@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-Bold.ttf">
+            <string>Poppins-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MovieCollectionCell" translatesAutoresizingMaskIntoConstraints="NO" id="agx-lG-MTy" userLabel="MovieItemCollectionViewCell" customClass="MovieCollectionCell" customModule="BAZProject" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="292" height="98"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="292" height="98"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="63F-s2-Elm">
+                        <rect key="frame" x="0.0" y="0.0" width="292" height="98"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NDV-0h-nrD">
+                                <rect key="frame" x="8" y="8" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="Gdf-63-1FC"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="14.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BRn-U8-YEr">
+                                <rect key="frame" x="88" y="15" width="188" height="38"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <color key="textColor" red="0.1333333333" green="0.18039215689999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odQ-RX-pP0">
+                                <rect key="frame" x="88" y="58" width="188" height="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="14" id="su0-kG-NVr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="12"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="NDV-0h-nrD" secondAttribute="bottom" constant="10" id="8ya-r1-hLr"/>
+                            <constraint firstAttribute="trailing" secondItem="odQ-RX-pP0" secondAttribute="trailing" constant="16" id="Egi-23-h9Q"/>
+                            <constraint firstItem="odQ-RX-pP0" firstAttribute="trailing" secondItem="BRn-U8-YEr" secondAttribute="trailing" id="IBD-qb-kly"/>
+                            <constraint firstItem="odQ-RX-pP0" firstAttribute="top" secondItem="BRn-U8-YEr" secondAttribute="bottom" constant="5" id="KDo-MD-HLq"/>
+                            <constraint firstItem="BRn-U8-YEr" firstAttribute="top" secondItem="63F-s2-Elm" secondAttribute="top" constant="15" id="MNV-z0-jpZ"/>
+                            <constraint firstAttribute="bottom" secondItem="odQ-RX-pP0" secondAttribute="bottom" constant="26" id="fp0-fE-TgN"/>
+                            <constraint firstItem="BRn-U8-YEr" firstAttribute="leading" secondItem="NDV-0h-nrD" secondAttribute="trailing" id="kBg-6D-WES"/>
+                            <constraint firstItem="NDV-0h-nrD" firstAttribute="leading" secondItem="63F-s2-Elm" secondAttribute="leading" constant="8" id="om8-B0-SkG"/>
+                            <constraint firstItem="NDV-0h-nrD" firstAttribute="top" secondItem="63F-s2-Elm" secondAttribute="top" constant="8" id="ss5-La-H5u"/>
+                            <constraint firstItem="odQ-RX-pP0" firstAttribute="leading" secondItem="NDV-0h-nrD" secondAttribute="trailing" id="uO5-XF-A1R"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="lZz-mR-htJ"/>
+            <constraints>
+                <constraint firstItem="63F-s2-Elm" firstAttribute="leading" secondItem="agx-lG-MTy" secondAttribute="leading" id="F8M-pl-EXY"/>
+                <constraint firstAttribute="trailing" secondItem="63F-s2-Elm" secondAttribute="trailing" id="LMb-wY-uNk"/>
+                <constraint firstItem="63F-s2-Elm" firstAttribute="top" secondItem="agx-lG-MTy" secondAttribute="top" id="MLG-j4-sIQ"/>
+                <constraint firstAttribute="bottom" secondItem="63F-s2-Elm" secondAttribute="bottom" id="pi7-Bj-qJv"/>
+            </constraints>
+            <size key="customSize" width="287" height="98"/>
+            <connections>
+                <outlet property="contentViewCell" destination="63F-s2-Elm" id="NBn-cn-g4k"/>
+                <outlet property="movieImageView" destination="NDV-0h-nrD" id="frA-ON-NYh"/>
+                <outlet property="subTitleLabel" destination="odQ-RX-pP0" id="xh7-Cc-dP1"/>
+                <outlet property="titleLabel" destination="BRn-U8-YEr" id="dZA-y8-zO7"/>
+            </connections>
+            <point key="canvasLocation" x="91.603053435114504" y="50.70422535211268"/>
+        </collectionViewCell>
+    </objects>
+</document>
