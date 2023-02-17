@@ -16,6 +16,7 @@ class CarruselCollectionViewCell: UICollectionViewCell {
         let view = UIImageView(frame: bounds)
         view.image = UIImage(named: "poster")
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.contentMode = .scaleAspectFill
         return view
     }()
     
