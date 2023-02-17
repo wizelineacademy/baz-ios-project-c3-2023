@@ -39,7 +39,7 @@
 		C2D7633C2993F85C00E5303D /* MSInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D7633B2993F85C00E5303D /* MSInteractor.swift */; };
 		C2D763442993FAA400E5303D /* MSEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D763432993FAA400E5303D /* MSEntity.swift */; };
 		C2D763472993FB9F00E5303D /* MSProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D763462993FB9F00E5303D /* MSProviderProtocol.swift */; };
-		C2D763492993FBD100E5303D /* MSProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D763482993FBD100E5303D /* MSProvider.swift */; };
+		C2D763492993FBD100E5303D /* MovieSearchProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D763482993FBD100E5303D /* MovieSearchProvider.swift */; };
 		C2D7634B2994074000E5303D /* MovieAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D7634A2994074000E5303D /* MovieAPI.swift */; };
 		C2D9DCE0298C10F200E42D28 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D9DCDF298C10F200E42D28 /* StringExtension.swift */; };
 		C2EFF03A2996ECEE00BD340E /* MovieListProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EFF0392996ECEE00BD340E /* MovieListProtocols.swift */; };
@@ -88,7 +88,7 @@
 		C2D7633B2993F85C00E5303D /* MSInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSInteractor.swift; sourceTree = "<group>"; };
 		C2D763432993FAA400E5303D /* MSEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSEntity.swift; sourceTree = "<group>"; };
 		C2D763462993FB9F00E5303D /* MSProviderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSProviderProtocol.swift; sourceTree = "<group>"; };
-		C2D763482993FBD100E5303D /* MSProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSProvider.swift; sourceTree = "<group>"; };
+		C2D763482993FBD100E5303D /* MovieSearchProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchProvider.swift; sourceTree = "<group>"; };
 		C2D7634A2994074000E5303D /* MovieAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAPI.swift; sourceTree = "<group>"; };
 		C2D9DCDF298C10F200E42D28 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		C2EFF0392996ECEE00BD340E /* MovieListProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListProtocols.swift; sourceTree = "<group>"; };
@@ -345,7 +345,7 @@
 		C2D763452993FB8100E5303D /* Providers */ = {
 			isa = PBXGroup;
 			children = (
-				C2D763482993FBD100E5303D /* MSProvider.swift */,
+				C2D763482993FBD100E5303D /* MovieSearchProvider.swift */,
 				C2D763462993FB9F00E5303D /* MSProviderProtocol.swift */,
 			);
 			path = Providers;
@@ -477,7 +477,7 @@
 				C20BECC4299487ED0043E043 /* MSSeakerManager.swift in Sources */,
 				C2D763472993FB9F00E5303D /* MSProviderProtocol.swift in Sources */,
 				C30893AE28A2F42B004B1860 /* AppDelegate.swift in Sources */,
-				C2D763492993FBD100E5303D /* MSProvider.swift in Sources */,
+				C2D763492993FBD100E5303D /* MovieSearchProvider.swift in Sources */,
 				C2645593298D7DD90000CC0B /* MLRouter.swift in Sources */,
 				C2A877A52995895A0045EC1B /* MovieListDelegate.swift in Sources */,
 				C2645595298D7E510000CC0B /* MLProviderProtocol.swift in Sources */,
