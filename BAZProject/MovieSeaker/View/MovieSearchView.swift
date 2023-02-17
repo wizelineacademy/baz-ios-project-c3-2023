@@ -1,5 +1,5 @@
 //
-//  MovieSeakerView.swift
+//  MovieSearchView.swift
 //  BAZProject
 //
 //  Created by Luis Alberto Perez Villar on 08/02/23.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MovieSeakerView: UIViewController {
+final class MovieSearchView: UIViewController {
     
     var output: MSViewOutputProtocol?
     var movies: [Movie] = []
@@ -55,7 +55,7 @@ final class MovieSeakerView: UIViewController {
 }
 
 //MARK: - Input methods implementation
-extension MovieSeakerView: MSViewInputProtocol {
+extension MovieSearchView: MSViewInputProtocol {
     /**
      Configure the view title and call the setSizeForRow method of the MSMovieColletionViewCell object
      - Parameters:

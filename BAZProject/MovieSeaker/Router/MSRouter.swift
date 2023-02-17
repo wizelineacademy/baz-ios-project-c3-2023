@@ -9,9 +9,9 @@ import UIKit
 
 final class MSRouter {
     
-    weak var view: MSViewInputProtocol?
+    weak var view: UIViewController?
     
-    init(view: MSViewInputProtocol?) {
+    init(view: UIViewController) {
         self.view = view
     }
     
@@ -22,7 +22,7 @@ final class MSRouter {
      - Returns: a view controller wich you can use to search a movie by any text
      */
     static func getEntry(with provider: MSProviderProtocol) -> UIViewController {
-        let view = MovieSeakerView()
+        let view = MovieSearchView()
         let router = MSRouter(view: view)
         let interactor = MSInteractor(provider: provider)
         let presenter = MSPresenter(
