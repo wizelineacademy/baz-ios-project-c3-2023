@@ -14,6 +14,9 @@ class TabBarNavigationViewController: UITabBarController {
         setupVCs()
     }
     
+    /**
+     set ViewControllers in TabBar for navigation in app
+     */
     func setupVCs() {
         viewControllers = [
             createNavController(for: HomeMoviesViewController(), title: NSLocalizedString("Home", comment: ""), image: UIImage(systemName: "house")!),
@@ -21,6 +24,13 @@ class TabBarNavigationViewController: UITabBarController {
         ]
     }
     
+    /**
+     set UI for TabBar
+     - Parameter rootViewController: UIVC for navigation in TabBar
+     - Parameter title: name option navigation TabBar
+     - Parameter image: image for icon option navigation TabBar
+     - Returns: UIViewController for navigation
+     */
     fileprivate func createNavController(for rootViewController: UIViewController, title: String, image: UIImage) -> UIViewController {
         let navController = UINavigationController(rootViewController: rootViewController)
         navController.tabBarItem.title = title

@@ -22,7 +22,10 @@ class CarouselCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         addGestureImg()
     }
-
+    
+    /**
+     add gesture image collectionViewCell
+     */
     func addGestureImg() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onClickedImage(_:)))
         imgMovie.isUserInteractionEnabled = true

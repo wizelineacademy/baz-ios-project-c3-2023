@@ -19,7 +19,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         let vc = TabBarNavigationViewController()
         vc.title = "MOVIES"
-//        let navigationController = UINavigationController(rootViewController: vc)
         window?.rootViewController = vc
         window?.makeKeyAndVisible()
     }
