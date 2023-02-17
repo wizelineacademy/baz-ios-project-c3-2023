@@ -20,7 +20,7 @@ final class MovieAPI {
      */
     
     func getMovies(typeMovie: TypeMovieList, completion: @escaping(([Movie]?) -> Void)){
-        guard let url = URL(string: "\(urlBase)/movie/\(typeMovie.getOptionMovie())?api_key=\(apiKey)"),
+        guard let url = URL(string: "\(urlBase)/movie/\(typeMovie.getOptionMovie())?api_key=\(apiKey)&page=1"),
               let data = try? Data(contentsOf: url),
               let responseMovies = try? JSONDecoder().decode(ReponseMovies.self, from: data)
         else {
@@ -35,15 +35,14 @@ final class MovieAPI {
      - Returns: A estruct MovieDetail with more info about movie
      */
     
-    func getDetailMovie(idMovie : Int) -> MovieDetail? {
+    func getDetailMovie(idMovie : Int, completion: @escaping((MovieDetail?) -> Void)) {
         guard let url = URL(string: "\(urlBase)/movie/\(idMovie))?api_key=\(apiKey)"),
               let data = try? Data(contentsOf: url),
               let responseDetailMovie = try? JSONDecoder().decode(MovieDetail.self, from: data)
         else {
-            return nil
+            return completion(nil)
         }
-        
-        return responseDetailMovie
+        completion(responseDetailMovie)
     }
 }
 

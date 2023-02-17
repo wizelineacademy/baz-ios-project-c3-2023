@@ -4,13 +4,15 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailsMovieViewController" customModule="BAZProject" customModuleProvider="target">
             <connections>
+                <outlet property="imgMovie" destination="8rF-O2-LSm" id="vX2-jh-cTT"/>
+                <outlet property="stackVerticalContainer" destination="9x5-jI-DzQ" id="soZ-qb-iqc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,15 +20,93 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KNv-56-Y8P">
+                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                    <subviews>
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vq0-kU-4Eg">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2F7-AO-mvi">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DPk-r6-xYJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="400"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8rF-O2-LSm">
+                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="400"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" name="DarkStar"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="8rF-O2-LSm" secondAttribute="trailing" id="HGS-tg-lGc"/>
+                                                <constraint firstItem="8rF-O2-LSm" firstAttribute="top" secondItem="DPk-r6-xYJ" secondAttribute="top" id="Rig-cr-OTq"/>
+                                                <constraint firstAttribute="height" constant="400" id="VWt-lG-yQl"/>
+                                                <constraint firstItem="8rF-O2-LSm" firstAttribute="leading" secondItem="DPk-r6-xYJ" secondAttribute="leading" id="ZXt-du-XrT"/>
+                                                <constraint firstAttribute="bottom" secondItem="8rF-O2-LSm" secondAttribute="bottom" id="dAm-ND-jQG"/>
+                                            </constraints>
+                                        </view>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="9x5-jI-DzQ">
+                                            <rect key="frame" x="32" y="410" width="329" height="1"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pO7-uR-kUL">
+                                                    <rect key="frame" x="0.0" y="0.0" width="329" height="1"/>
+                                                    <color key="backgroundColor" name="DarkStar"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="xYY-z6-aI4"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" name="DarkStar"/>
+                                        </stackView>
+                                    </subviews>
+                                    <color key="backgroundColor" name="DarkStar"/>
+                                    <constraints>
+                                        <constraint firstItem="DPk-r6-xYJ" firstAttribute="leading" secondItem="2F7-AO-mvi" secondAttribute="leading" id="3kn-Fi-sqh"/>
+                                        <constraint firstItem="9x5-jI-DzQ" firstAttribute="leading" secondItem="2F7-AO-mvi" secondAttribute="leading" constant="32" id="5tQ-ly-Y3v"/>
+                                        <constraint firstAttribute="trailing" secondItem="9x5-jI-DzQ" secondAttribute="trailing" constant="32" id="GIJ-7e-kEW"/>
+                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="9x5-jI-DzQ" secondAttribute="bottom" id="TNT-LQ-nPS"/>
+                                        <constraint firstItem="DPk-r6-xYJ" firstAttribute="top" secondItem="2F7-AO-mvi" secondAttribute="top" id="YSA-kv-vVt"/>
+                                        <constraint firstAttribute="trailing" secondItem="DPk-r6-xYJ" secondAttribute="trailing" id="lS2-ET-Hlw"/>
+                                        <constraint firstItem="9x5-jI-DzQ" firstAttribute="top" secondItem="DPk-r6-xYJ" secondAttribute="bottom" constant="10" id="xgU-yC-c5M"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" name="DarkStar"/>
+                            <constraints>
+                                <constraint firstItem="2F7-AO-mvi" firstAttribute="leading" secondItem="Vq0-kU-4Eg" secondAttribute="leading" id="C2g-JW-GL7"/>
+                                <constraint firstItem="2F7-AO-mvi" firstAttribute="top" secondItem="Vq0-kU-4Eg" secondAttribute="top" id="ash-VQ-xJE"/>
+                                <constraint firstAttribute="bottom" secondItem="2F7-AO-mvi" secondAttribute="bottom" id="cgK-NP-v2z"/>
+                                <constraint firstAttribute="trailing" secondItem="2F7-AO-mvi" secondAttribute="trailing" id="hmk-qy-Byg"/>
+                            </constraints>
+                        </scrollView>
+                    </subviews>
+                    <color key="backgroundColor" name="DarkStar"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="Vq0-kU-4Eg" secondAttribute="bottom" id="5sN-wd-Nzy"/>
+                        <constraint firstItem="Vq0-kU-4Eg" firstAttribute="leading" secondItem="KNv-56-Y8P" secondAttribute="leading" id="DaU-OA-9Sq"/>
+                        <constraint firstItem="Vq0-kU-4Eg" firstAttribute="top" secondItem="KNv-56-Y8P" secondAttribute="top" id="mS0-qk-cyL"/>
+                        <constraint firstAttribute="trailing" secondItem="Vq0-kU-4Eg" secondAttribute="trailing" id="yox-83-2hG"/>
+                    </constraints>
+                </view>
+            </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" name="DarkStar"/>
+            <constraints>
+                <constraint firstItem="KNv-56-Y8P" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="16S-Ka-uQE"/>
+                <constraint firstItem="2F7-AO-mvi" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" priority="250" id="Bpz-DU-Nyg"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="KNv-56-Y8P" secondAttribute="trailing" id="Mko-7q-T8L"/>
+                <constraint firstItem="KNv-56-Y8P" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Trq-Ch-9uf"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="KNv-56-Y8P" secondAttribute="bottom" id="UzK-z4-nWv"/>
+                <constraint firstItem="2F7-AO-mvi" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="d9q-m4-opG"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-21" y="20"/>
         </view>
     </objects>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <namedColor name="DarkStar">
+            <color red="0.066000000000000003" green="0.035000000000000003" blue="0.10000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

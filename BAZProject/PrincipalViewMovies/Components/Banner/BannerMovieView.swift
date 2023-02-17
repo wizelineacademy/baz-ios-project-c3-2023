@@ -9,6 +9,7 @@ import UIKit
 
 class BannerMovieView: UIView {
     
+    @IBOutlet weak var viewContainer: UIView!
     @IBOutlet weak var imageBanner: UIImageView!
     
     override init(frame: CGRect) {
@@ -26,6 +27,8 @@ class BannerMovieView: UIView {
         let view = UINib(nibName: "BannerMovieView",
                          bundle: bundleCustomBannerView).instantiate(withOwner: self, options: nil).first as! UIView
         view.frame = self.bounds
+        viewContainer.backgroundColor = UIColor(named: "DarkSecondaryStar")
+        imageBanner.layer.cornerRadius = 10
         addSubview(view)
     }
     

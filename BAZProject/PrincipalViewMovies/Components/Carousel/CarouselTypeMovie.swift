@@ -32,6 +32,8 @@ class CarouselTypeMovie: UIView {
         let view = UINib(nibName: "CarouselTypeMovie",
                          bundle: bundleCustomCarouselView).instantiate(withOwner: self, options: nil).first as! UIView
         view.frame = self.bounds
+        view.backgroundColor = UtilsMoviesApp.shared.colorBackgroundApp
+        collectionCarouselMovies.backgroundColor = UtilsMoviesApp.shared.colorBackgroundApp
         registerCollectionViewCell()
         loadLayoutForCV()
         addSubview(view)
@@ -75,6 +77,8 @@ extension CarouselTypeMovie: UICollectionViewDelegate, UICollectionViewDelegateF
         
         cell.imgMovie.contentMode = .scaleAspectFill
         cell.delegate = self
+        cell.idMovie = moviesType[indexPath.row].id ?? 0
+        cell.layer.cornerRadius = 10
         
         return cell
     }
@@ -86,7 +90,7 @@ extension CarouselTypeMovie: UICollectionViewDelegate, UICollectionViewDelegateF
 }
 
 extension CarouselTypeMovie: TapGestureImgMovieProtocol {
-    func tapGestureImgMovie() {
-        delegate?.tapGestureImgMovie()
+    func tapGestureImgMovie(idMovie: Int?) {
+        delegate?.tapGestureImgMovie(idMovie: idMovie)
     }
 }

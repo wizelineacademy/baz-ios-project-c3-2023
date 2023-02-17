@@ -8,7 +8,7 @@
 import UIKit
 
 protocol TapGestureImgMovieProtocol: AnyObject {
-    func tapGestureImgMovie()
+    func tapGestureImgMovie(idMovie: Int?)
 }
 
 class CarouselCollectionViewCell: UICollectionViewCell {
@@ -16,6 +16,7 @@ class CarouselCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imgMovie: UIImageView!
     
     weak var delegate: TapGestureImgMovieProtocol?
+    var idMovie: Int = 0
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,6 +30,6 @@ class CarouselCollectionViewCell: UICollectionViewCell {
     }
     
     @objc func onClickedImage(_ senderAny: Any) {
-        delegate?.tapGestureImgMovie()
+        delegate?.tapGestureImgMovie(idMovie: idMovie)
     }
 }

@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BannerMovieView" customModule="BAZProject" customModuleProvider="target">
             <connections>
                 <outlet property="imageBanner" destination="ZwF-j8-dqb" id="Eg5-2z-TJq"/>
+                <outlet property="viewContainer" destination="sA3-VF-ier" id="wIG-Lo-mw9"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -25,7 +27,7 @@
                             <rect key="frame" x="32" y="0.0" width="543" height="300"/>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                    <color key="backgroundColor" name="DarkSecondaryStar"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="ZwF-j8-dqb" secondAttribute="trailing" constant="32" id="Pyf-1G-JlG"/>
                         <constraint firstItem="ZwF-j8-dqb" firstAttribute="leading" secondItem="sA3-VF-ier" secondAttribute="leading" constant="32" id="dUA-Kg-aEE"/>
@@ -47,11 +49,11 @@
         </view>
     </objects>
     <resources>
+        <namedColor name="DarkSecondaryStar">
+            <color red="0.19600000000000001" green="0.184" blue="0.24299999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGroupedBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

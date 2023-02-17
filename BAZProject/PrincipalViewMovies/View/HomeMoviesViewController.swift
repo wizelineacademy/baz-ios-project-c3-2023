@@ -10,8 +10,9 @@ import UIKit
 class HomeMoviesViewController: UIViewController {
     
     //    MARK: Outlets
+    @IBOutlet weak var viewContainerTopLbls: UIView!
+    @IBOutlet weak var scrollConatiner: UIScrollView!
     @IBOutlet weak var stackVerticalContainer: UIStackView!
-    
     
     //    MARK: Vars and Constants
     var movies: [Movie] = []
@@ -26,6 +27,8 @@ class HomeMoviesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Movies+"
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = textAttributes
         setupUITrendingView()
         carouselView.delegate = self
     }
@@ -39,7 +42,9 @@ class HomeMoviesViewController: UIViewController {
     
     //TODO: Set UIUX for principal view
     private func setupUITrendingView() {
-        bannerView.setImageBanner(nameAsset: UIImage(systemName: "house")!)
+        viewContainerTopLbls.backgroundColor = UtilsMoviesApp.shared.colorBackgroundApp
+        scrollConatiner.backgroundColor = UtilsMoviesApp.shared.colorBackgroundApp
+        self.view.backgroundColor = UtilsMoviesApp.shared.colorBackgroundApp
         stackVerticalContainer.addArrangedSubview(bannerView)
         stackVerticalContainer.addArrangedSubview(carouselView)
     }
@@ -60,12 +65,17 @@ class HomeMoviesViewController: UIViewController {
         let url = movies.first?.getUrlImg(posterPath: movies.first?.posterPath ?? "")
         if let urlString = url { bannerView.imageBanner.load(url: urlString) }
         bannerView.imageBanner.contentMode = .scaleAspectFill
+        bannerView.viewContainer.backgroundColor = UIColor(named: "DarkStar")
     }
+    
+    
 }
 
 extension HomeMoviesViewController: TapGestureImgMovieProtocol {
-    func tapGestureImgMovie() {
+    func tapGestureImgMovie(idMovie: Int?) {
         let module = DetailsMovieViewController()
+        module.specificMovie = movies.first(where: { $0.id == idMovie
+        })
         self.navigationController?.pushViewController(module, animated: false)
     }
 }

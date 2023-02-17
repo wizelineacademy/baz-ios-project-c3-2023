@@ -16,10 +16,13 @@
 		2753679B299EA405006C15AD /* HomeMoviesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27536799299EA405006C15AD /* HomeMoviesViewController.xib */; };
 		2756D3B4298D92060040E0B0 /* MovieDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2756D3B3298D92060040E0B0 /* MovieDetail.swift */; };
 		2756D3B8298D92B20040E0B0 /* Extension+UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2756D3B7298D92B20040E0B0 /* Extension+UIImageView.swift */; };
+		276D0A25299F42C3008CBD1F /* UtilsMoviesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276D0A24299F42C3008CBD1F /* UtilsMoviesApp.swift */; };
 		276DA7C1299EC0F8005B6CD3 /* CarouselCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276DA7BF299EC0F8005B6CD3 /* CarouselCollectionViewCell.swift */; };
 		276DA7C2299EC0F8005B6CD3 /* CarouselCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 276DA7C0299EC0F8005B6CD3 /* CarouselCollectionViewCell.xib */; };
 		276DA7C6299EDC75005B6CD3 /* SearchMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276DA7C4299EDC75005B6CD3 /* SearchMovieViewController.swift */; };
 		276DA7C7299EDC75005B6CD3 /* SearchMovieViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 276DA7C5299EDC75005B6CD3 /* SearchMovieViewController.xib */; };
+		276DA7D1299EF673005B6CD3 /* LabelsMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276DA7D0299EF673005B6CD3 /* LabelsMovie.swift */; };
+		276DA7D3299EF686005B6CD3 /* LabelsMovie.xib in Resources */ = {isa = PBXBuildFile; fileRef = 276DA7D2299EF686005B6CD3 /* LabelsMovie.xib */; };
 		27BB59E2299EA76600227118 /* TabBarNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BB59E1299EA76600227118 /* TabBarNavigationViewController.swift */; };
 		27BB59E7299EACE500227118 /* DetailsMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BB59E5299EACE500227118 /* DetailsMovieViewController.swift */; };
 		27BB59E8299EACE500227118 /* DetailsMovieViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27BB59E6299EACE500227118 /* DetailsMovieViewController.xib */; };
@@ -43,10 +46,13 @@
 		27536799299EA405006C15AD /* HomeMoviesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeMoviesViewController.xib; sourceTree = "<group>"; };
 		2756D3B3298D92060040E0B0 /* MovieDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetail.swift; sourceTree = "<group>"; };
 		2756D3B7298D92B20040E0B0 /* Extension+UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIImageView.swift"; sourceTree = "<group>"; };
+		276D0A24299F42C3008CBD1F /* UtilsMoviesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsMoviesApp.swift; sourceTree = "<group>"; };
 		276DA7BF299EC0F8005B6CD3 /* CarouselCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselCollectionViewCell.swift; sourceTree = "<group>"; };
 		276DA7C0299EC0F8005B6CD3 /* CarouselCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarouselCollectionViewCell.xib; sourceTree = "<group>"; };
 		276DA7C4299EDC75005B6CD3 /* SearchMovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieViewController.swift; sourceTree = "<group>"; };
 		276DA7C5299EDC75005B6CD3 /* SearchMovieViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchMovieViewController.xib; sourceTree = "<group>"; };
+		276DA7D0299EF673005B6CD3 /* LabelsMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsMovie.swift; sourceTree = "<group>"; };
+		276DA7D2299EF686005B6CD3 /* LabelsMovie.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LabelsMovie.xib; sourceTree = "<group>"; };
 		27BB59E1299EA76600227118 /* TabBarNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarNavigationViewController.swift; sourceTree = "<group>"; };
 		27BB59E5299EACE500227118 /* DetailsMovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsMovieViewController.swift; sourceTree = "<group>"; };
 		27BB59E6299EACE500227118 /* DetailsMovieViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsMovieViewController.xib; sourceTree = "<group>"; };
@@ -107,6 +113,14 @@
 			path = NetworkApi;
 			sourceTree = "<group>";
 		};
+		276D0A23299F42B0008CBD1F /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				276D0A24299F42C3008CBD1F /* UtilsMoviesApp.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		276DA7BE299EC0CE005B6CD3 /* CarouselCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +155,23 @@
 			path = Entity;
 			sourceTree = "<group>";
 		};
+		276DA7CE299EF648005B6CD3 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				276DA7CF299EF658005B6CD3 /* LabelsMovie */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		276DA7CF299EF658005B6CD3 /* LabelsMovie */ = {
+			isa = PBXGroup;
+			children = (
+				276DA7D0299EF673005B6CD3 /* LabelsMovie.swift */,
+				276DA7D2299EF686005B6CD3 /* LabelsMovie.xib */,
+			);
+			path = LabelsMovie;
+			sourceTree = "<group>";
+		};
 		27A352F9298C2F6C00F2FEE8 /* PrincipalViewMovies */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +185,7 @@
 		27BB59E3299EACA700227118 /* DetailsMovieView */ = {
 			isa = PBXGroup;
 			children = (
+				276DA7CE299EF648005B6CD3 /* Components */,
 				27BB59EA299EB49E00227118 /* Entity */,
 				27BB59E4299EACC400227118 /* View */,
 			);
@@ -234,6 +266,7 @@
 		C30893AC28A2F42B004B1860 /* BAZProject */ = {
 			isa = PBXGroup;
 			children = (
+				276D0A23299F42B0008CBD1F /* Utils */,
 				2756D3B6298D929D0040E0B0 /* Extensions */,
 				2756D3B9298D947E0040E0B0 /* NetworkApi */,
 				27BB59E9299EB06100227118 /* TabBarNavigationViewController */,
@@ -311,6 +344,7 @@
 				C30893DB28A42481004B1860 /* README.md in Resources */,
 				2700B686299EB5C600DFBE06 /* BannerMovieView.xib in Resources */,
 				276DA7C7299EDC75005B6CD3 /* SearchMovieViewController.xib in Resources */,
+				276DA7D3299EF686005B6CD3 /* LabelsMovie.xib in Resources */,
 				27BB59E8299EACE500227118 /* DetailsMovieViewController.xib in Resources */,
 				C30893B728A2F42D004B1860 /* Assets.xcassets in Resources */,
 				C383356E28CA917400FCE0D5 /* code-review-rubric.md in Resources */,
@@ -331,8 +365,10 @@
 				C30893AE28A2F42B004B1860 /* AppDelegate.swift in Sources */,
 				2700B68A299EBF4E00DFBE06 /* CarouselTypeMovie.swift in Sources */,
 				27BB59E7299EACE500227118 /* DetailsMovieViewController.swift in Sources */,
+				276D0A25299F42C3008CBD1F /* UtilsMoviesApp.swift in Sources */,
 				2700B684299EB5A900DFBE06 /* BannerMovieView.swift in Sources */,
 				276DA7C6299EDC75005B6CD3 /* SearchMovieViewController.swift in Sources */,
+				276DA7D1299EF673005B6CD3 /* LabelsMovie.swift in Sources */,
 				27BB59E2299EA76600227118 /* TabBarNavigationViewController.swift in Sources */,
 				2756D3B8298D92B20040E0B0 /* Extension+UIImageView.swift in Sources */,
 				2753679A299EA405006C15AD /* HomeMoviesViewController.swift in Sources */,
