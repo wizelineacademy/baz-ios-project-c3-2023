@@ -17,7 +17,9 @@ class ListMoviesRouter {
         listMoviesPresenter.modelPageProtocol = listMoviesView
         listMoviesView.listMoviesPresenter = listMoviesPresenter
         
-        window?.rootViewController = listMoviesView
+        let navigationController = UINavigationController()
+        navigationController.viewControllers = [listMoviesView]
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
 }

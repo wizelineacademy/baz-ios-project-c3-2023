@@ -17,8 +17,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="203" height="263"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pZI-CA-aq6">
-                        <rect key="frame" x="0.0" y="0.0" width="203" height="200"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pZI-CA-aq6">
+                        <rect key="frame" x="0.0" y="0.5" width="203" height="198.5"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="200" id="R3U-jJ-8ND"/>
                         </constraints>
@@ -48,4 +48,7 @@
             <point key="canvasLocation" x="248.55072463768118" y="112.83482142857142"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+    </resources>
 </document>

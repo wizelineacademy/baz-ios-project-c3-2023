@@ -35,6 +35,29 @@ class MovieDetailInteractor {
     private let extraParams:String = "&language=es&region=MX&page=1"
     
     
+    func getCredits(forIdMovie idMovie:Int, urlDetail:URLMovieDetails, completion: @escaping (Credits) -> Void ){
+        guard let url = URL(string: createURL(forMovieDetail: urlDetail, idMovie: idMovie)) else {return}
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if error == nil && data != nil{
+                let decoder = JSONDecoder()
+                do{
+                    let credits = try decoder.decode(Credits.self, from: data ?? Data())
+                    completion(credits)
+                }catch{
+                    
+                }
+            }
+        }.resume()
+    }
+    
+    /**
+    Esta función permite crear la URL que nos permitira hacer la búsqueda de las apis para los detalles de la pelicula.
+    :condiciones: Es importante mandar que tipo de detalles quieres obtener
+    :param: enum URLMovieDetails para determinar si tipo detalle por url que quieres y un idMovie :Int de la pelicula ,
+    :returns: @escaping listado de peliculas [Movie]
+    */
+    
     func createURL(forMovieDetail typeDetail: URLMovieDetails, idMovie: Int) -> String {
         let strURL = "\(rootURL)/movie/\(idMovie)\(typeDetail.url)\(apiKey)\(extraParams)"
         return  strURL

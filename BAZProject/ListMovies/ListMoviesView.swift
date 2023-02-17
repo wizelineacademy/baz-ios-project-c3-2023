@@ -15,22 +15,42 @@ class ListMoviesView: UIViewController {
 //MARK: - Properties
     var listMoviesPresenter : ListMoviesPresenter?
     var arrMovies: [AllMovieTypes] = []
+    lazy var btnSearch : UIButton = {
+        let searchImage = UIImage(named: "magnifyingglass")
+        let searchImageView = UIImageView(image: searchImage)
+        searchImageView.frame.size = CGSize(width: 100, height: 50)
+        let rightBarButton = UIButton(type: .system)
+        rightBarButton.setImage(searchImage, for: .normal)
+        rightBarButton.setTitle("Búsqueda", for: .normal)
+        rightBarButton.setTitleColor(UIColor.black, for: .normal)
+        rightBarButton.frame = CGRect.init(x: 0, y: 0, width: 100, height: 50)
+        rightBarButton.addTarget(self, action: #selector(didTapButtonSearch), for: .touchUpInside)
+        return rightBarButton
+    }()
 
 //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         listMoviesPresenter?.onViewAppear()
+        self.title = "RWMovies"
         tblMovies.delegate = self
         tblMovies.dataSource = self
         tblMovies.register(MovieTableViewCell.nib(), forCellReuseIdentifier: MovieTableViewCell.identifier)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: btnSearch)
+    }
+                                                                   
+ //MARK: - Functions
+@objc func didTapButtonSearch(){print("Mandar a búsqueda")}
 
 }
 
 //MARK: - Extensions
 extension ListMoviesView : ListMoviesViewProtocol{
     func update(movies: [AllMovieTypes]) {
-        print("Datos Recibidos \(movies)")
         arrMovies = movies
         DispatchQueue.main.async {
             self.tblMovies.reloadData()

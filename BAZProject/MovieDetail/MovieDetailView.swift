@@ -9,6 +9,7 @@ import UIKit
 
 class MovieDetailView: UIViewController {
 
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
 

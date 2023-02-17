@@ -67,7 +67,17 @@ class ListMoviesInteractor {
            }
         }
     
-    
+    /**
+    Esta función permite traer el modelo  con las peliculas  en una sola llamada:
+         * trending
+         * nowPlaying
+         * popular
+         * topRated
+         * upcoming
+    :condiciones:
+    :param:
+    :returns: @escaping listado de peliculas [AllMovieTypes]
+    */
     func getMoviesAllCategories(completion: @escaping ([AllMovieTypes]) -> Void){
         var arrAllCategories: [AllMovieTypes] = []
         getMovies(forType: .trending) { trendingMovies in
