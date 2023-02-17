@@ -1,11 +1,11 @@
 //
-//  MovieSeakerProtocols.swift
+//  MovieSearchProtocols.swift
 //  BAZProject
 //
 //  Created by Luis Alberto Perez Villar on 10/02/23.
 //
 
-import UIKit
+import Foundation
 
 protocol MSPresenterProtocol {
     var view: MSViewInputProtocol? { get }
@@ -19,7 +19,7 @@ protocol MSViewOutputProtocol: MSPresenterProtocol {
     func didSelect(_ movie: Movie)
 }
 
-protocol MSViewInputProtocol: UIViewController {
+protocol MSViewInputProtocol: AnyObject {
     var output: MSViewOutputProtocol? { get set }
     
     func setupView(with data: MSEntity)
@@ -43,7 +43,5 @@ protocol MSInteractorOutputProtocol: AnyObject {
 }
 
 protocol MSRouterProtocol {
-    var view: MSViewInputProtocol? { get }
-    
     func goNextViewController(with movie: Movie)
 }

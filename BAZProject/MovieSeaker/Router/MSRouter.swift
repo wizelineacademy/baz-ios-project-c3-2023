@@ -9,9 +9,9 @@ import UIKit
 
 final class MSRouter {
     
-    weak var view: MSViewInputProtocol?
+    weak var view: UIViewController?
     
-    init(view: MSViewInputProtocol?) {
+    init(view: UIViewController) {
         self.view = view
     }
     
