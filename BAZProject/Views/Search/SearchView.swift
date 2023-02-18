@@ -23,6 +23,7 @@ class SearchView: UIViewController {
     @IBOutlet weak var moviesCollectionView: UICollectionView!
     
     @IBAction func searchByWord(_ sender: Any) {
+        moviesCollectionView.backgroundColor = .white
         movieApi.searchText = searchBar.text ?? ""
         moviesArray.removeAll()
         images.removeAll()
@@ -83,7 +84,7 @@ extension SearchView: UICollectionViewDelegateFlowLayout {
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
         
-        return CGSize(width: widthPerItem, height: widthPerItem)
+        return CGSize(width: widthPerItem, height: widthPerItem * 1.5)
     }
 //    SpacingForSection
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

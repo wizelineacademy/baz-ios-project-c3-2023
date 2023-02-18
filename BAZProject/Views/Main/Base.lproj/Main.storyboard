@@ -166,7 +166,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4hU-nX-TWe">
-                                <rect key="frame" x="16" y="108" width="275" height="34"/>
+                                <rect key="frame" x="16" y="108" width="300.5" height="34"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" searchField="YES"/>
                                 </accessibility>
@@ -175,7 +175,7 @@
                             </textField>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="j4h-C2-pBG">
                                 <rect key="frame" x="0.0" y="158" width="414" height="655"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="systemCyanColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bwm-sh-ySy">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -185,10 +185,11 @@
                                 <cells/>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eTX-9w-ZDE">
-                                <rect key="frame" x="295" y="108" width="103" height="34"/>
-                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                <rect key="frame" x="320.5" y="96" width="77.5" height="54.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" image="magnifyingglass" catalog="system" imagePlacement="trailing" title="Search">
+                                <buttonConfiguration key="configuration" style="tinted" image="magnifyingglass" catalog="system" imagePlacement="bottom" title="Search">
                                     <color key="baseForegroundColor" systemColor="labelColor"/>
                                 </buttonConfiguration>
                                 <userDefinedRuntimeAttributes>
@@ -212,7 +213,7 @@
                             <constraint firstItem="onk-jK-pzF" firstAttribute="trailing" secondItem="eTX-9w-ZDE" secondAttribute="trailing" constant="16" id="dRg-EO-RGC"/>
                             <constraint firstItem="4hU-nX-TWe" firstAttribute="top" secondItem="onk-jK-pzF" secondAttribute="top" constant="16" id="gwq-zK-DzG"/>
                             <constraint firstItem="onk-jK-pzF" firstAttribute="bottom" secondItem="j4h-C2-pBG" secondAttribute="bottom" id="hrM-sk-ldn"/>
-                            <constraint firstItem="eTX-9w-ZDE" firstAttribute="top" secondItem="onk-jK-pzF" secondAttribute="top" constant="16" id="peb-EE-hpQ"/>
+                            <constraint firstItem="eTX-9w-ZDE" firstAttribute="top" secondItem="onk-jK-pzF" secondAttribute="top" constant="4" id="peb-EE-hpQ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Search Movies" id="9dC-gt-ZU4"/>
@@ -253,12 +254,6 @@
         <image name="trophy" catalog="system" width="128" height="128"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

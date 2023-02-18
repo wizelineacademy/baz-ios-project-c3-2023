@@ -145,8 +145,8 @@
 		C89E3E65299E8BF7001B9F6B /* MovieCollectionCell */ = {
 			isa = PBXGroup;
 			children = (
-				C89E3E66299E8C24001B9F6B /* MovieCollectionCell.swift */,
 				C89E3E67299E8C24001B9F6B /* MovieCollectionCell.xib */,
+				C89E3E66299E8C24001B9F6B /* MovieCollectionCell.swift */,
 			);
 			path = MovieCollectionCell;
 			sourceTree = "<group>";
