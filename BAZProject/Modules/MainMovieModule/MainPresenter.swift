@@ -22,6 +22,32 @@ final class MainPresenter: NSObject {
         tableView.rowHeight = 150
     }
     
+    private func makeTableViewCell(cell:inout UITableViewCell, typeUrl: URLApi) -> UITableViewCell {
+        if let dataMovies = interactor?.movieApiData.getArrayDataMovie?[typeUrl] as? Movies, let cell = cell as? MoviesTableViewCell {
+            UIView.fillSkeletons(onView: cell)
+            cell.data = dataMovies
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                UIView.removeSkeletons(onView: cell)
+            }
+        }
+        return cell
+    }
+    
+    private func getDataMovies() {
+        interactor?.movieApiData.getArrayDataMovie = [
+            .trending: nil,
+            .nowPlaying: nil,
+            .popular: nil,
+            .topRated: nil,
+            .upcoming: nil]
+        
+        interactor?.getMoviesData(from: .trending)
+        interactor?.getMoviesData(from: .nowPlaying)
+        interactor?.getMoviesData(from: .popular)
+        interactor?.getMoviesData(from: .topRated)
+        interactor?.getMoviesData(from: .upcoming)
+    }
+    
     deinit {
         NotificationCenter.default.removeObserver(self, name: .countMovieWatch, object: nil)
     }
@@ -43,6 +69,7 @@ extension MainPresenter: MainPresenterProtocol {
         registerTableViewCells(tableView: tableView)
         NotificationCenter.default.addObserver(self, selector: #selector(countMovieWatched), name: .countMovieWatch, object: nil)
         setupUI(tableView: tableView)
+        getDataMovies()
     }
     
     @objc func countMovieWatched() {
@@ -95,16 +122,53 @@ extension MainPresenter: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: MoviesTableViewCell.reusableIdentifier) as? MoviesTableViewCell {
             
-            if let dataMovies = interactor?.movieApiData.getDataMovies as? Movies,
-               let image = dataMovies.results[indexPath.row].posterPath {
-                UIView.fillSkeletons(onView: cell)
-                
-                MovieAPI.getImage(from:  image, handler: { imagen in
+            switch indexPath.section {
+            case 0:
+                if let dataMovies = interactor?.movieApiData.getArrayDataMovie?[.trending] as? Movies {
+                    UIView.fillSkeletons(onView: cell)
+                    cell.data = dataMovies
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
                         UIView.removeSkeletons(onView: cell)
                     }
-                })
-                
+                }
+                return cell
+            case 1:
+                if let dataMovies = interactor?.movieApiData.getArrayDataMovie?[.nowPlaying] as? Movies {
+                    UIView.fillSkeletons(onView: cell)
+                    cell.data = dataMovies
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                        UIView.removeSkeletons(onView: cell)
+                    }
+                }
+                return cell
+            case 2:
+                if let dataMovies = interactor?.movieApiData.getArrayDataMovie?[.popular] as? Movies {
+                    UIView.fillSkeletons(onView: cell)
+                    cell.data = dataMovies
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                        UIView.removeSkeletons(onView: cell)
+                    }
+                }
+                return cell
+            case 3:
+                if let dataMovies = interactor?.movieApiData.getArrayDataMovie?[.topRated] as? Movies {
+                    UIView.fillSkeletons(onView: cell)
+                    cell.data = dataMovies
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                        UIView.removeSkeletons(onView: cell)
+                    }
+                }
+                return cell
+            case 4:
+                if let dataMovies = interactor?.movieApiData.getArrayDataMovie?[.upcoming] as? Movies {
+                    UIView.fillSkeletons(onView: cell)
+                    cell.data = dataMovies
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                        UIView.removeSkeletons(onView: cell)
+                    }
+                }
+                return cell
+            default:
                 return cell
             }
         }

@@ -16,7 +16,7 @@ final class MainInteractor: MainInteractorInputProtocol {
         MovieAPI.getApiData(from: api) { [weak self] data in
             do {
                 if let movies =  DecodeUtility.decode(Movies.self, from: data) {
-                    self?.movieApiData.getDataMovies = movies
+                    self?.movieApiData.getArrayDataMovie?[api] = movies
                     self?.presenter?.reloadData()
                 }
             }

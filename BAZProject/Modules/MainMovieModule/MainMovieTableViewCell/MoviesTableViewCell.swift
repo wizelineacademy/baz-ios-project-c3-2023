@@ -27,14 +27,15 @@ final class MoviesTableViewCell: UITableViewCell {
     }
 }
 
-extension MoviesTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
+extension MoviesTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GenericCollectionViewCell.reusableIdentifier, for: indexPath) as? GenericCollectionViewCell, let data = data as? Movies {
+            UIView.fillSkeletons(onView: cell)
             DispatchQueue.main.async {
-                
                 if let image = data.results[indexPath.row].posterPath {
                     MovieAPI.getImage(from: image, handler: { imagen in
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                            UIView.removeSkeletons(onView: cell)
                             cell.imageMovie.image = imagen
                         }
                     })
@@ -50,5 +51,13 @@ extension MoviesTableViewCell: UICollectionViewDataSource, UICollectionViewDeleg
             return data.results.count
         }
         return 0
+    }
+}
+
+extension MoviesTableViewCell: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let dataMovies = data as? Movies  {
+            MainPresenter().goToMovieDetail(data: dataMovies.results[indexPath.row])
+        }
     }
 }
