@@ -16,7 +16,6 @@ class SearchMovieRouter: SearchMovieRouterProtocol {
         if let view = viewController as? SearchMovieView {
             let presenter: SearchMoviePresenterProtocol & SearchMovieInteractorOutputProtocol = SearchMoviePresenter()
             let interactor: SearchMovieInteractorInputProtocol & SearchMovieRemoteDataManagerOutputProtocol = SearchMovieInteractor()
-            let localDataManager: SearchMovieLocalDataManagerInputProtocol = SearchMovieLocalDataManager()
             let remoteDataManager: SearchMovieRemoteDataManagerInputProtocol = SearchMovieRemoteDataManager()
             let router: SearchMovieRouterProtocol = SearchMovieRouter()
             
@@ -25,7 +24,6 @@ class SearchMovieRouter: SearchMovieRouterProtocol {
             presenter.router = router
             presenter.interactor = interactor
             interactor.presenter = presenter
-            interactor.localDatamanager = localDataManager
             interactor.remoteDatamanager = remoteDataManager
             remoteDataManager.remoteRequestHandler = interactor
             

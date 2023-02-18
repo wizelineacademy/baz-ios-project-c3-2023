@@ -80,6 +80,14 @@ extension SearchMovieView: UISearchBarDelegate{
 }
 
 extension SearchMovieView: SearchMovieViewProtocol {
+    func showAlert() {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Error", message: "Movie not found", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
     func reloadView() {
         DispatchQueue.main.async {
             self.movieSearchTableView.reloadData()

@@ -132,12 +132,16 @@ class HomeMoviesPresenter: HomeMoviesPresenterProtocol  {
         }
     }
     
+    /// Go to initial the router detailsController and present the view
+    ///
+    /// - Parameter index: Index of the collectionCell pressed
     func goToDetails(index: Int) {
         if let view = view {
             router?.goToDetails(from: view, idMovie: self.toShowMovies[index].id)
         }
     }
     
+    /// Go to initial the router searchController and present the view
     func goToSearch() {
         if let view = view {
             router?.goToSearch(from: view)

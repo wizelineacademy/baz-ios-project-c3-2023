@@ -26,6 +26,10 @@ protocol DetailMoviePresenterProtocol: AnyObject {
     var view: DetailMovieViewProtocol? { get set }
     var interactor: DetailMovieInteractorInputProtocol? { get set }
     var router: DetailMovieRouterProtocol? { get set }
+    var presenterCast: DetailMovieCastPresenterProtocol? { get set }
+    var presenterReview: DetailMovieReviewPresenterProtocol? { get set }
+    var presenterSimilar: DetailMovieSimilarPresenterProtocol? { get set }
+    var presenterRecommendation: DetailMovieRecommendationPresenterProtocol? { get set }
     var idMovie: Int? { get set }
     var detailsMovie: DetailMovie? { get set }
     
@@ -33,45 +37,38 @@ protocol DetailMoviePresenterProtocol: AnyObject {
     func getDetailImage(completion: @escaping (UIImage?) -> Void)
     func getTableSize() -> Int
     func getTableCout() -> Int
-    func getCastCount() -> Int
-    func getCast(index: Int) -> Cast
-    func getReviewCount() -> Int
-    func getReview(index: Int) -> Reviews
-    func getCastImage(index: Int, completion: @escaping (UIImage?) -> Void)
-    func getSimilarCount() -> Int
-    func getSimilarImage(index: Int, completion: @escaping (UIImage?) -> Void)
-    func getRecommendationCount() -> Int
-    func getRecommendationImage(index: Int, completion: @escaping (UIImage?) -> Void)
+    func getTableSize(indexPath: Int) -> CGSize
+    func getCollectionCount(indexPath: Int) -> Int?
+    func getCell(collectionView: UICollectionView, indexPath: IndexPath, indexPathTable: Int, nameLabel: UILabel) -> UICollectionViewCell
+}
+
+protocol DetailMovieCastProtocol: AnyObject {
+    func informSuccesfulPresenterCast()
+}
+
+protocol DetailMovieReviewProtocol: AnyObject {
+    func informSuccesfulPresenterReview()
+}
+
+protocol DetailMovieSimilarProtocol: AnyObject {
+    func informSuccesfulPresenterSimilar()
+}
+
+protocol DetailMovieRecommendationProtocol: AnyObject {
+    func informSuccesfulPresenterRecommendation()
 }
 
 protocol DetailMovieInteractorOutputProtocol: AnyObject {
     // INTERACTOR -> PRESENTER
     func pushDetailMovie(detailMovie: DetailMovie)
-    func pushCast(cast: [Cast])
-    func pushNotCast()
-    func pushReviews(reviews: [Reviews])
-    func pushNotRewiews()
-    func pushSimilar(similar: [Movie])
-    func pushNotSimilar()
-    func pushRecommendations(recommendations: [Movie])
-    func pushNotRecommentations()
 }
 
 protocol DetailMovieInteractorInputProtocol: AnyObject {
     // PRESENTER -> INTERACTOR
     var presenter: DetailMovieInteractorOutputProtocol? { get set }
-    var localDatamanager: DetailMovieLocalDataManagerInputProtocol? { get set }
     var remoteDatamanager: DetailMovieRemoteDataManagerInputProtocol? { get set }
     
     func getDetails(idMovie: Int?)
-    func getCast(idMovie: Int?)
-    func getReviews(idMovie: Int?)
-    func getSimilar(idMovie: Int?)
-    func getRecommendations(idMovie: Int?)
-}
-
-protocol DetailMovieDataManagerInputProtocol: AnyObject {
-    // INTERACTOR -> DATAMANAGER
 }
 
 protocol DetailMovieRemoteDataManagerInputProtocol: AnyObject {
@@ -79,26 +76,11 @@ protocol DetailMovieRemoteDataManagerInputProtocol: AnyObject {
     var remoteRequestHandler: DetailMovieRemoteDataManagerOutputProtocol? { get set }
     
     func getDetails(idMovie: Int?)
-    func getCast(idMovie: Int?)
-    func getReviews(idMovie: Int?)
-    func getSimilar(idMovie: Int?)
-    func getRecommendations(idMovie: Int?)
 }
 
 protocol DetailMovieRemoteDataManagerOutputProtocol: AnyObject {
     // REMOTEDATAMANAGER -> INTERACTOR
     
     func pushDetailMovie(detailMovie: DetailMovie)
-    func pushCast(cast: [Cast])
-    func pushNotCast()
-    func pushReviews(reviews: [Reviews])
-    func pushNotRewiews()
-    func pushSimilar(similar: [Movie])
-    func pushNotSimilar()
-    func pushRecommendations(recommendations: [Movie])
-    func pushNotRecommentations()
 }
 
-protocol DetailMovieLocalDataManagerInputProtocol: AnyObject {
-    // INTERACTOR -> LOCALDATAMANAGER
-}

@@ -11,10 +11,6 @@ class MoviesCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var movieImageView: UIImageView!
     
-    override func prepareForReuse() {
-        self.movieImageView.image = UIImage(named: "poster")
-    }
-    
     func setupCell(image: UIImage?){
         DispatchQueue.main.async {
             self.movieImageView.clipsToBounds = true

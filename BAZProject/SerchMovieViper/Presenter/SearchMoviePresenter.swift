@@ -110,6 +110,7 @@ class SearchMoviePresenter: SearchMoviePresenterProtocol {
 }
 
 extension SearchMoviePresenter: SearchMovieInteractorOutputProtocol {
+  
     func pushKeyword(keyword: [Keyword]) {
         self.keywords = keyword
         view?.reloadView()
@@ -120,5 +121,9 @@ extension SearchMoviePresenter: SearchMovieInteractorOutputProtocol {
         view?.reloadView()
     }
     
+    func pushNotSearched() {
+        self.isSearching = true
+        view?.showAlert()
+    }
     
 }

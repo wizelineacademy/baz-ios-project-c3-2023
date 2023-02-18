@@ -35,6 +35,9 @@ class DetailMovieView: UIViewController {
         detailTableViewCell.register(UINib(nibName: "DetailTableViewCell", bundle: Bundle(for: DetailMovieView.self)), forCellReuseIdentifier: "DetailTableViewCell")
     }
     
+    @IBAction func exitDetailPress(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
 }
 
 extension DetailMovieView: UITableViewDataSource{
@@ -69,7 +72,7 @@ extension DetailMovieView:UITableViewDelegate{
 }
 
 extension DetailMovieView: DetailMovieViewProtocol {
-
+  
     func setupDetailsView() {
         DispatchQueue.main.async {
             self.presenter?.getDetailImage(completion: { detailImage in

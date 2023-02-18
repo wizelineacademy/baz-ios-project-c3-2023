@@ -35,6 +35,11 @@ class MovieAPI{
         }
     }
     
+    /// Get the details from the API movies and parse the data to a dictionary array of type DetailMovie
+    ///
+    /// - Parameter urlIdentifierDetailMovie: String with the detailMovie api url
+    /// - Parameter completion: Escaping closure that escapes the detailMovie dictionary array or a nil
+    /// - Returns: escaping closure with the dictionary array of type DetailMovie, if the parse fails, can return nil
     func getDetails(for urlIndentifierDetailMovie: String, completion: @escaping (DetailMovie?) -> Void) {
         DispatchQueue.global(qos: .background).async {
             if let url = URL(string: urlIndentifierDetailMovie),
@@ -54,6 +59,11 @@ class MovieAPI{
         }
     }
     
+    /// Get the reviews from the API movies and parse the data to a dictionary array of type DetailMovie
+    ///
+    /// - Parameter urlIdentifierReviewMovie: String with the reviewMovie api url
+    /// - Parameter completion: Escaping closure that escapes the reviewMovie dictionary array or a nil
+    /// - Returns: escaping closure with the dictionary array of type ReviewMovie, if the parse fails, can return nil
     func getReviews(for urlIndentifierReviewMovie: String, completion: @escaping ([Reviews]?) -> Void) {
         DispatchQueue.global(qos: .background).async {
             if let url = URL(string: urlIndentifierReviewMovie),
@@ -74,6 +84,11 @@ class MovieAPI{
         }
     }
     
+    /// Get the cast from the API movies and parse the data to a dictionary array of type DetailMovie
+    ///
+    /// - Parameter urlIdentifierCastMovie: String with the castMovie api url
+    /// - Parameter completion: Escaping closure that escapes the castMovie dictionary array or a nil
+    /// - Returns: escaping closure with the dictionary array of type CastMovie, if the parse fails, can return nil
     func getCast(for urlIdentifierCastMovie: String, completion: @escaping ([Cast]?) -> Void) {
         DispatchQueue.global(qos: .background).async {
             if let url = URL(string: urlIdentifierCastMovie),
@@ -94,6 +109,11 @@ class MovieAPI{
         }
     }
     
+    /// Get the keyword from the API movies and parse the data to a dictionary array of type DetailMovie
+    ///
+    /// - Parameter urlIdentifierKeyword: String with the keywordMovie api url
+    /// - Parameter completion: Escaping closure that escapes the keywordMovie dictionary array or a nil
+    /// - Returns: escaping closure with the dictionary array of type KeywordMovie, if the parse fails, can return nil
     func getKeyword(for urlIndentifierKeyword: String, completion: @escaping ([Keyword]?) -> Void) {
         DispatchQueue.global(qos: .background).async {
             if let url = URL(string: urlIndentifierKeyword),
@@ -114,6 +134,11 @@ class MovieAPI{
         }
     }
     
+    /// Get the search from the API movies and parse the data to a dictionary array of type DetailMovie
+    ///
+    /// - Parameter urlIdentifierSearch: String with the searchMovie api url
+    /// - Parameter completion: Escaping closure that escapes the searchMovie dictionary array or a nil
+    /// - Returns: escaping closure with the dictionary array of type SearchMovie, if the parse fails, can return nil
     func getSearch(for urlIdentifierSearch: String, completion: @escaping ([SearchMovie]?) -> Void) {
         DispatchQueue.global(qos: .background).async {
             if let url = URL(string: urlIdentifierSearch),

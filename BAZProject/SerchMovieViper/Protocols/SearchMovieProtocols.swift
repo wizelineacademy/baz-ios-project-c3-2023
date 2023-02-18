@@ -13,6 +13,7 @@ protocol SearchMovieViewProtocol: AnyObject {
     // PRESENTER -> VIEW
     var presenter: SearchMoviePresenterProtocol? { get set }
     func reloadView()
+    func showAlert()
 }
 
 protocol SearchMovieRouterProtocol: AnyObject {
@@ -41,21 +42,17 @@ protocol SearchMoviePresenterProtocol: AnyObject {
 protocol SearchMovieInteractorOutputProtocol: AnyObject {
 // INTERACTOR -> PRESENTER
     func pushSearchedMovies(searchedMovies: [SearchMovie])
+    func pushNotSearched()
     func pushKeyword(keyword: [Keyword])
 }
 
 protocol SearchMovieInteractorInputProtocol: AnyObject {
     // PRESENTER -> INTERACTOR
     var presenter: SearchMovieInteractorOutputProtocol? { get set }
-    var localDatamanager: SearchMovieLocalDataManagerInputProtocol? { get set }
     var remoteDatamanager: SearchMovieRemoteDataManagerInputProtocol? { get set }
     
     func getSearched(searchTerm: String)
     func getKeyword(keyword: String)
-}
-
-protocol SearchMovieDataManagerInputProtocol: AnyObject {
-    // INTERACTOR -> DATAMANAGER
 }
 
 protocol SearchMovieRemoteDataManagerInputProtocol: AnyObject {
@@ -69,9 +66,6 @@ protocol SearchMovieRemoteDataManagerInputProtocol: AnyObject {
 protocol SearchMovieRemoteDataManagerOutputProtocol: AnyObject {
     // REMOTEDATAMANAGER -> INTERACTOR
     func pushSearchedMovies(searchedMovies: [SearchMovie])
+    func pushNotSearched()
     func pushKeyword(keyword: [Keyword])
-}
-
-protocol SearchMovieLocalDataManagerInputProtocol: AnyObject {
-    // INTERACTOR -> LOCALDATAMANAGER
 }

@@ -24,13 +24,13 @@ class SearchMovieRemoteDataManager:SearchMovieRemoteDataManagerInputProtocol {
         }
     }
     
- 
-    
     func getSearched(searchTerm: String) {
         let urlSearchMovie = "https://api.themoviedb.org/3/search/movie?api_key=\(apiKey)&query=\(searchTerm)"
         movieApi.getSearch(for: urlSearchMovie) { searchedMovies in
             if let searchedMovies = searchedMovies{
                 self.remoteRequestHandler?.pushSearchedMovies(searchedMovies: searchedMovies)
+            } else {
+                self.remoteRequestHandler?.pushNotSearched()
             }
         }
     }

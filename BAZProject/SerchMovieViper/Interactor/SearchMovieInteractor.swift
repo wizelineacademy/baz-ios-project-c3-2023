@@ -12,7 +12,6 @@ class SearchMovieInteractor: SearchMovieInteractorInputProtocol {
    
     // MARK: Properties
     weak var presenter: SearchMovieInteractorOutputProtocol?
-    var localDatamanager: SearchMovieLocalDataManagerInputProtocol?
     var remoteDatamanager: SearchMovieRemoteDataManagerInputProtocol?
 
     func getSearched(searchTerm: String) {
@@ -25,6 +24,7 @@ class SearchMovieInteractor: SearchMovieInteractorInputProtocol {
 }
 
 extension SearchMovieInteractor: SearchMovieRemoteDataManagerOutputProtocol {
+   
     func pushKeyword(keyword: [Keyword]) {
         presenter?.pushKeyword(keyword: keyword)
     }
@@ -33,5 +33,8 @@ extension SearchMovieInteractor: SearchMovieRemoteDataManagerOutputProtocol {
         presenter?.pushSearchedMovies(searchedMovies: searchedMovies)
     }
     
-   
+    func pushNotSearched() {
+        presenter?.pushNotSearched()
+    }
+    
 }
