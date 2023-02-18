@@ -16,6 +16,7 @@
 		C30893E328A425E1004B1860 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30893E128A425E1004B1860 /* Movie.swift */; };
 		C383356E28CA917400FCE0D5 /* code-review-rubric.md in Resources */ = {isa = PBXBuildFile; fileRef = C383356D28CA917400FCE0D5 /* code-review-rubric.md */; };
 		CD3BB2CB299CA53C0078C0FB /* Reviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3BB2CA299CA53C0078C0FB /* Reviews.swift */; };
+		CD4EDDD729A09BC80006C742 /* HelperMakeSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4EDDD629A09BC80006C742 /* HelperMakeSearchView.swift */; };
 		CD54A8E3298DEA8E004F8774 /* GeneriRouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD54A8E2298DEA8E004F8774 /* GeneriRouterProtocol.swift */; };
 		CD54A8E72992BDC8004F8774 /* SearchMovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD54A8E62992BDC8004F8774 /* SearchMovieView.swift */; };
 		CD54A8E92992BDD7004F8774 /* SearchMovie.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD54A8E82992BDD7004F8774 /* SearchMovie.storyboard */; };
@@ -70,6 +71,7 @@
 		C30893E128A425E1004B1860 /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		C383356D28CA917400FCE0D5 /* code-review-rubric.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "code-review-rubric.md"; sourceTree = "<group>"; };
 		CD3BB2CA299CA53C0078C0FB /* Reviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reviews.swift; sourceTree = "<group>"; };
+		CD4EDDD629A09BC80006C742 /* HelperMakeSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperMakeSearchView.swift; sourceTree = "<group>"; };
 		CD54A8E2298DEA8E004F8774 /* GeneriRouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneriRouterProtocol.swift; sourceTree = "<group>"; };
 		CD54A8E62992BDC8004F8774 /* SearchMovieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieView.swift; sourceTree = "<group>"; };
 		CD54A8E82992BDD7004F8774 /* SearchMovie.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchMovie.storyboard; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				CD54A8E82992BDD7004F8774 /* SearchMovie.storyboard */,
+				CD4EDDD629A09BC80006C742 /* HelperMakeSearchView.swift */,
 				CD54A8E62992BDC8004F8774 /* SearchMovieView.swift */,
 				CD54A8EA2992BDEF004F8774 /* SearchMovieInteractor.swift */,
 				CD54A8EC2992BDF6004F8774 /* SearchMoviePresenter.swift */,
@@ -397,6 +400,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD4EDDD729A09BC80006C742 /* HelperMakeSearchView.swift in Sources */,
 				CDDE29B8299BD3A400D81ECC /* UIViewExtension.swift in Sources */,
 				CDE6AC06298B71F100D6DB5C /* MainProtocols.swift in Sources */,
 				CD54A90729956046004F8774 /* GenericCollectionViewCell.swift in Sources */,

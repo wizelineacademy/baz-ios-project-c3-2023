@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class DecodeUtility {
+public final class DecodeUtility {
     /**
      func to help to decode data
 

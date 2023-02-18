@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MovieDetailView: UIViewController {
+final class MovieDetailView: UIViewController {
     @IBOutlet weak var poster: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var closeView: UIView!
@@ -23,7 +23,7 @@ class MovieDetailView: UIViewController {
         setupUI()
     }
     
-    private func setupUI(){
+    private func setupUI() {
         closeView.makeRound(divide: 2)
         posterView.makeRound(divide: 100)
         favoriteView.makeRound(divide: 2)

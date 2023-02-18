@@ -18,6 +18,7 @@ final class MovieDetailInteractor {
 
 extension MovieDetailInteractor: MovieDetailInterceptorInputProtocol {
     func saveMovie() {
+        debugPrint("test of saveMovie")
         var allDataMovie: [Result]?
         do {
             allDataMovie = try? saveData.load(title: saveData.moviesWatched)

@@ -7,26 +7,22 @@
 
 import UIKit
 
-class SearchMovieView: UIViewController {
+final class SearchMovieView: UIViewController {
     var presenter: SearchMoviePresenterProtocol?
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var searchBar: UISearchBar!
+    private var makeView = MakeSearchView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.viewDidLoad(collection: collectionView)
         getDelegates()
+        self.navigationItem.rightBarButtonItem = presenter?.searchBar(searchBar: makeView.searchBar)
     }
     
     private func getDelegates() {
         collectionView.dataSource = presenter?.getTableViewDataSource()
         collectionView.delegate = presenter?.getTableViewDelegate()
-        searchBar.delegate = presenter?.getUISearchBarDelegate()
-    }
-    
-    @IBAction func goToMainMovie() {
-        self.presenter?.getKeywordSearch(keyword: "")
-        dismiss(animated: true)
+        makeView.searchBar.delegate = presenter?.getUISearchBarDelegate()
     }
 }
 
@@ -37,5 +33,3 @@ extension SearchMovieView: SearchMovieViewProtocol {
         }
     }
 }
-
-

@@ -7,9 +7,20 @@
 
 import UIKit
 
-class MainPresenter: NSObject {
+final class MainPresenter: NSObject {
     weak var view: MainViewProtocol?
     var interactor: MainInteractorInputProtocol?
+    
+    private func registerTableViewCells(tableView: UITableView) {
+        let textFieldCell = UINib(nibName: "MoviesTableViewCell",
+                                  bundle: nil)
+        tableView.register(textFieldCell,
+                                 forCellReuseIdentifier: MoviesTableViewCell.reusableIdentifier)
+    }
+    
+    private func setupUI(tableView: UITableView) {
+        tableView.rowHeight = 150
+    }
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: .countMovieWatch, object: nil)
@@ -27,34 +38,20 @@ extension MainPresenter: MainPresenterProtocol {
         SearchMovieRouter().presentView(from: view)
     }
     
-    func viewDidLoad() {
+    func viewDidLoad(tableView: UITableView) {
         interactor?.getMoviesData(from: .trending)
-        registerTableViewCells()
-        getSectionSegmentedControl()
+        registerTableViewCells(tableView: tableView)
         NotificationCenter.default.addObserver(self, selector: #selector(countMovieWatched), name: .countMovieWatch, object: nil)
+        setupUI(tableView: tableView)
     }
     
     @objc func countMovieWatched() {
         interactor?.countMovieWatched += 1
     }
     
-    private func registerTableViewCells() {
-        let textFieldCell = UINib(nibName: "MoviesTableViewCell",
-                                  bundle: nil)
-        view?.tableView.register(textFieldCell,
-                                 forCellReuseIdentifier: MoviesTableViewCell.reusableIdentifier)
-    }
     
     func getMoviesData(from api: URLApi) {
         interactor?.getMoviesData(from: api)
-    }
-    
-    private func getSectionSegmentedControl(){
-        view?.segmentControl.setTitle("Trending", forSegmentAt: 0)
-        view?.segmentControl.setTitle("Now Playing", forSegmentAt: 1)
-        view?.segmentControl.setTitle("Popular", forSegmentAt: 2)
-        view?.segmentControl.setTitle("Top Rated", forSegmentAt: 3)
-        view?.segmentControl.setTitle("Upcoming", forSegmentAt: 4)
     }
     
     func getTableViewDataSource() -> UITableViewDataSource {
@@ -75,10 +72,24 @@ extension MainPresenter: MainInteractorOutputProtocol{
 
 extension MainPresenter: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let data = interactor?.movieApiData.getDataMovies as? Movies {
-            return data.results.count
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "Tendencia:"
+        case 1:
+            return "En cines:"
+        case 2:
+            return "Popular:"
+        case 3:
+            return "Mejor valoradas: "
+        case 4:
+            return "Proximamente: "
+        default:
+            return "not Found"
         }
-        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -87,12 +98,9 @@ extension MainPresenter: UITableViewDataSource, UITableViewDelegate {
             if let dataMovies = interactor?.movieApiData.getDataMovies as? Movies,
                let image = dataMovies.results[indexPath.row].posterPath {
                 UIView.fillSkeletons(onView: cell)
-                cell.movieImage.image = UIImage(named: "poster")
-                cell.movieTitle.text = dataMovies.results[indexPath.row].title
                 
                 MovieAPI.getImage(from:  image, handler: { imagen in
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
-                        cell.movieImage.image  = imagen
                         UIView.removeSkeletons(onView: cell)
                     }
                 })
@@ -101,6 +109,10 @@ extension MainPresenter: UITableViewDataSource, UITableViewDelegate {
             }
         }
         return UITableViewCell()
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 5
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -11,7 +11,6 @@ protocol MainViewProtocol: AnyObject {
     // Presenter -> View
     var presenter: MainPresenterProtocol? { get set }
     var tableView: UITableView! { get set }
-    var segmentControl: UISegmentedControl! { get set }
     
     func reloadData()
 }
@@ -23,7 +22,7 @@ protocol MainPresenterProtocol: AnyObject {
     
     func goToSearchMovieView()
     func goToMovieDetail(data: Result)
-    func viewDidLoad()
+    func viewDidLoad(tableView: UITableView)
     func getMoviesData(from api: URLApi)
     func getTableViewDataSource() -> UITableViewDataSource
     func getTableViewDelegate() -> UITableViewDelegate

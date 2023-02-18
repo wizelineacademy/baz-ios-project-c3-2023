@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ReviewsTableViewCell: UITableViewCell {
+final class ReviewsTableViewCell: UITableViewCell {
     static let reusableCell = String(describing: ReviewsTableViewCell.self)
     var data: Codable?
     @IBOutlet weak var nameAuthor: UILabel!

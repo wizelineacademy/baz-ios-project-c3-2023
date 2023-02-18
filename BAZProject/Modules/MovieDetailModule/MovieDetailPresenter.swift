@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MovieDetailPresenter: NSObject {
+final class MovieDetailPresenter: NSObject {
     weak var view: MovieDetailViewProtocol?
     var interactor: MovieDetailInterceptorInputProtocol?
     var isFavorite: Bool = false
@@ -50,14 +50,23 @@ extension MovieDetailPresenter: MovieDetailPresenterProtocol {
     }
     
     func viewDidLoad(poster: inout UIImageView, tableView: UITableView) {
+        
+        pushObserver()
+        registerTables(tableView: tableView)
+        tableView.rowHeight = 220
+        getDataIdMovie()
+        getPosterImage(poster: poster)
+    }
+    
+    private func registerTables(tableView: UITableView) {
         registerResumeTableViewCells(tableView: tableView)
         registerCastTableViewCells(tableView: tableView)
         registerShowMoviesTableViewCells(tableView: tableView)
         regiterReviewsTableViewCell(tableView: tableView)
-        tableView.rowHeight = 220
+    }
+    
+    private func pushObserver() {
         NotificationCenter.default.post(name: .countMovieWatch, object: nil)
-        getDataIdMovie()
-        getPosterImage(poster: poster)
     }
     
     private func getPosterImage(poster: UIImageView) {

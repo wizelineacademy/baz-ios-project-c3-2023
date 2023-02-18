@@ -18,33 +18,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Itj-aW-cEh">
-                                <rect key="frame" x="0.0" y="134" width="393" height="684"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="hp8-9i-uFY">
-                                <rect key="frame" x="0.0" y="103" width="393" height="32"/>
-                                <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
-                                    <segment title=""/>
-                                    <segment title=""/>
-                                    <segment title=""/>
-                                </segments>
-                                <connections>
-                                    <action selector="didChangeSegmentControl:" destination="Y6W-OH-hqX" eventType="valueChanged" id="DXA-fn-YgN"/>
-                                </connections>
-                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Itj-aW-cEh" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="2Br-rn-x5g"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="hp8-9i-uFY" secondAttribute="trailing" id="393-f5-G4u"/>
-                            <constraint firstItem="Itj-aW-cEh" firstAttribute="top" secondItem="hp8-9i-uFY" secondAttribute="bottom" id="Hwb-Il-Z8G"/>
-                            <constraint firstItem="hp8-9i-uFY" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="V9E-hu-gLR"/>
+                            <constraint firstItem="Itj-aW-cEh" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="GwB-78-Vax"/>
                             <constraint firstItem="Itj-aW-cEh" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="kKl-n1-Ljf"/>
                             <constraint firstItem="Itj-aW-cEh" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="mFe-FH-WeI"/>
-                            <constraint firstItem="hp8-9i-uFY" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="ojh-4Q-cHg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Main" id="0l4-j6-vwx">
@@ -55,7 +39,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="segmentControl" destination="hp8-9i-uFY" id="Yp8-Df-zFa"/>
                         <outlet property="tableView" destination="Itj-aW-cEh" id="sqf-fy-pyE"/>
                     </connections>
                 </viewController>

@@ -13,6 +13,10 @@ class SearchMoviePresenter: NSObject {
 }
 
 extension SearchMoviePresenter: SearchMoviePresenterProtocol {
+    func searchBar(searchBar: UISearchBar) -> UIBarButtonItem {
+        UIBarButtonItem(customView: searchBar)
+    }
+    
     func goToMovieDetail(data: Result) {
         guard let view = view as? UIViewController else { return }
         MovieDetailRouter().presentView(from: view, data: data)
@@ -63,9 +67,6 @@ extension SearchMoviePresenter: UICollectionViewDataSource {
             let dataMovies = interceptor?.movieApiData.getDataMovies as? SearchMovieData {
             UIView.fillSkeletons(onView: cell)
             DispatchQueue.main.async {
-                cell.title.text = dataMovies.results[indexPath.row].title
-                cell.imageMovie.image = UIImage(named: "poster")
-                
                 MovieAPI.getImage(from: dataMovies.results[indexPath.row].posterPath ?? "", handler: { imagen in
                     cell.imageMovie.image = imagen
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {

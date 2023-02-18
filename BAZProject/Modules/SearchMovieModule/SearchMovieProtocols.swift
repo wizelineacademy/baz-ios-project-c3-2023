@@ -26,6 +26,7 @@ protocol SearchMoviePresenterProtocol: AnyObject {
     func getTableViewDataSource() -> UICollectionViewDataSource
     func getTableViewDelegate() -> UICollectionViewDelegate
     func getUISearchBarDelegate() -> UISearchBarDelegate
+    func searchBar(searchBar: UISearchBar) -> UIBarButtonItem
 }
 
 protocol SearchMovieInterceptorInputProtocol: AnyObject {

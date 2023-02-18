@@ -23,12 +23,12 @@ public class SaveMovies {
         guard let data = userDefaults.data(forKey: title),
               let movie = try? decoder.decode([Result].self, from: data)
         else {
-            throw Error.gameNotFound
+            throw Error.dataNotFound
         }
         return movie
     }
     
     public enum Error: String, Swift.Error {
-        case gameNotFound
+        case dataNotFound
     }
 }

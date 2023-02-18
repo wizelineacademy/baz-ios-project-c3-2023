@@ -16,7 +16,7 @@ protocol RouterProtocols: AnyObject {
 extension RouterProtocols{
     func presentView(from view: UIViewController) {
         let newView = Router.createModule()
-        view.present(newView, animated: true)
+        view.navigationController?.pushViewController(newView, animated: true)
     }
 }
 

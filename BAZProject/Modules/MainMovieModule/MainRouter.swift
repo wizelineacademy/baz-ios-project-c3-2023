@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainRouter: RouterProtocols{
+final class MainRouter: RouterProtocols{
     typealias Router = MainRouter
     
     static func createModule() -> UIViewController {
@@ -27,7 +27,7 @@ class MainRouter: RouterProtocols{
     }
     
     
-    static var mainStoryboard: UIStoryboard {
+    static private var mainStoryboard: UIStoryboard {
         return UIStoryboard(name: "Main", bundle: Bundle.main)
     }
 }

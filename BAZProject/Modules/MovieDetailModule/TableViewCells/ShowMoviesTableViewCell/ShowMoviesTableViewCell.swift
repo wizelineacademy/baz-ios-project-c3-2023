@@ -7,18 +7,14 @@
 
 import UIKit
 
-protocol showScreen {
-    func goto(data: Codable?)
-}
-
-class ShowMoviesTableViewCell: UITableViewCell {
+final class ShowMoviesTableViewCell: UITableViewCell {
     static let reusableCell = String(describing: ShowMoviesTableViewCell.self)
     var data: Codable?
-    var presenter: MovieDetailPresenterProtocol?
+    
     @IBOutlet weak var collectionView: UICollectionView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         collectionView.delegate = self
         collectionView.dataSource = self
         registerCollectionViewCell()
@@ -31,17 +27,9 @@ class ShowMoviesTableViewCell: UITableViewCell {
     
 }
 
-extension ShowMoviesTableViewCell: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let data = data as? Movies {
-            presenter?.goToMovieDetail(data: data.results[indexPath.row])
-        }
-    }
-}
-
-extension ShowMoviesTableViewCell: UICollectionViewDataSource {
+extension ShowMoviesTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let data = data as? Movies{
+        if let data = data as? Movies {
             return data.results.count
         }
         return 0
