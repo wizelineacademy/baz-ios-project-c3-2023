@@ -15,6 +15,8 @@ class TrendingViewController: UITableViewController {
         super.viewDidLoad()
         configTableview()
         movies = movieApi.getMovies()
+     //   movies = movieApi.getImageMovie(urlString: <#T##String#>, completion: <#T##(UIImage?) -> Void#>)
+        
         tableView.reloadData()
     }
     
@@ -48,14 +50,20 @@ extension TrendingViewController {
         if let custom = cell as? HomeTableViewCell{
             custom.labelTitle.text = movies[indexPath.row].title
             custom.imgView.image = UIImage(systemName: "play.circle")
-
         }
     }
     
-    override func prepare (for segue: UIStoryboardSegue, sender: Any?){
-        if let destination = segue.destination as? DetailMovieViewController{
-            destination.movie = movies[self.tableView.indexPathForSelectedRow!.row]
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let destination = storyboard.instantiateViewController(withIdentifier: "DetailMovieViewController") as? DetailMovieViewController else {
+            return
         }
+        destination.movie = movies[indexPath.row]
+        navigationController?.pushViewController(destination, animated: true)
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+            return 120.0
+        
+    }    
 }
