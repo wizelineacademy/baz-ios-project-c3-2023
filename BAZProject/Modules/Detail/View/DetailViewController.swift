@@ -14,8 +14,9 @@ final class DetailViewController: UIViewController {
     var presenter: DetailPresenterProtocol?
     var detailType: DetailType?
     
-    // MARK: - Private methods
+    // MARK: - Private properties
     private var errorGetData: Bool = false
+    private var isLoading: Bool = true
     
     @IBOutlet weak var imageSlider: ImageSlider!
     @IBOutlet weak var titleLabelText: UILabel! {
@@ -27,23 +28,25 @@ final class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.prefersLargeTitles = false
         getData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guaranteeMainThread {
-            self.view.showLoader()
+        if isLoading {
+            showLoader()
         }
+
         if errorGetData {
-            getData()
+            callService()
         }
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         imageSlider.stopTimmer()
         navigationController?.navigationBar.prefersLargeTitles = true
+        stopLoading()
     }
     
     // MARK: - Private methods
@@ -56,6 +59,11 @@ final class DetailViewController: UIViewController {
         guaranteeMainThread {
             self.imageSlider.setUp(imageUrlArray: imageUrlArray)
         }
+    }
+    
+    private func callService() {
+        isLoading = true
+        getData()
     }
     
     private func getData() {
@@ -80,6 +88,7 @@ extension DetailViewController: DetailViewProtocol {
     
     func stopLoading() {
         guaranteeMainThread {
+            self.isLoading = false
             self.view.removeLoader()
         }
     }

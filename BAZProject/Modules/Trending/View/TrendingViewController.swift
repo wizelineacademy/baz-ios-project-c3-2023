@@ -31,6 +31,7 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
     private var isMoreDataLoading = false
     private var movies: [MovieResult] = []
     private var moviesBack: [MovieResult] = []
+    private var isLoading: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,8 +41,12 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if errorGetData {
+        if isLoading {
             showLoader()
+        }
+
+        if errorGetData {
+            callService()
         }
     }
 
@@ -72,6 +77,7 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
             self.refreshControl?.endRefreshing()
             self.loadingMoreView?.stopAnimating()
         }
+        self.isLoading = false
         self.isMoreDataLoading = false
     }
     
@@ -156,6 +162,11 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
         refreshControl.attributedTitle = String.trendingTitleUpdateTable.getColoredString(color: .blue)
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControl.Event.valueChanged)
         moviesTableView.insertSubview(refreshControl, at: LocalizedConstants.trendingFirstSubview)
+    }
+    
+    private func callService() {
+        isLoading = true
+        getData()
     }
 
     private func getData() {
