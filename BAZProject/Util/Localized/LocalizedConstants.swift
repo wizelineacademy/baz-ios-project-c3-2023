@@ -17,7 +17,7 @@ enum LocalizedConstants {
 
     // MARK: - LaunchScreen
     static let launchScreenDivisorNumer: CGFloat = 4.0
-    static let launchScreenAnimationDuration: Double = 0.0
+    static let launchScreenAnimationDuration: Double = 1.5
     
     // MARK: - Main
     static let mainShadowRadius: CGFloat = 4
