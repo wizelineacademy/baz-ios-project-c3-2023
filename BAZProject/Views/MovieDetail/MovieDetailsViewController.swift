@@ -9,7 +9,7 @@ import UIKit
 class MovieDetailsViewController: UIViewController {
     
     var myMovie: Movie?
-    
+    var myImage: UIImage?
     @IBOutlet weak var lblMovieTitle: UILabel!
     @IBOutlet weak var imgMovie: UIImageView!
     @IBOutlet weak var tableCategorys: UITableView!
@@ -18,8 +18,9 @@ class MovieDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = myMovie?.title
-        imgMovie.image = myMovie?.imagePrincipal
         lblMovieTitle.text = myMovie?.title
         lblDescription.text = myMovie?.overview
+        imgMovie.image = myImage
     }
+    
 }

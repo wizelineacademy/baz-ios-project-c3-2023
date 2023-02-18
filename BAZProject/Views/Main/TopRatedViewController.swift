@@ -11,12 +11,24 @@ class TopRatedViewController: UITableViewController {
     
     var movies: [Movie] = []
     let movieApi = MovieAPI()
+    var images: [UIImage] = []
+    var movieImage = UIImage()
     let tableHeight: CGFloat = 150
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        movies = movieApi.getMovies(ofType: .topRated)
-        tableView.reloadData()
+        DispatchQueue.global().async { [weak self] in
+            self?.movies = self?.movieApi.getMovies(ofType: .topRated) ?? []
+            guard let myMovies =  self?.movies else { return }
+            for movie in myMovies {
+                let urlString = movie.posterPath
+                guard let myURL = URL(string: urlString) else { return }
+                self?.images.append(self?.movieApi.downloadImage(from: myURL) ?? UIImage())
+                DispatchQueue.main.async{
+                    self?.tableView.reloadData()
+                }
+            }
+        }
     }
 }
 
@@ -25,7 +37,7 @@ class TopRatedViewController: UITableViewController {
 extension TopRatedViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        movies.count
+        images.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -40,15 +52,12 @@ extension TopRatedViewController {
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         var config = UIListContentConfiguration.cell()
         config.text = movies[indexPath.row].title
-        config.image = movies[indexPath.row].imagePrincipal
+        config.image = images[indexPath.row]
         cell.contentConfiguration = config
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: storyboards.details.rawValue, bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: viewControllers.details.rawValue) as? MovieDetailsViewController ?? MovieDetailsViewController()
-        viewController.myMovie = movies[indexPath.row]
-        self.navigationController?.pushViewController(viewController, animated: true)
+        getMovieDetails(view: self, movie: self.movies[indexPath.row], movieImage: self.images[indexPath.row])
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
