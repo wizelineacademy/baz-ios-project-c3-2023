@@ -23,6 +23,7 @@ extension String {
     static let retryTitleButton = "Reintentar"
     
     // MARK: - Home
+    static let homeXibIdentifier = "HomeView"
     static let homeTitle = "Inicio"
     static let homeNameIconTabBar = "house"
     

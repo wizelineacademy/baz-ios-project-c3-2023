@@ -33,7 +33,7 @@ final class DetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if isLoading {
+        if isLoading || errorGetData {
             showLoader()
         }
 

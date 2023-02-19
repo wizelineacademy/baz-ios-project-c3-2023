@@ -9,7 +9,7 @@ import UIKit
 
 final class HomeViewController: UIViewController {
     
-    static let identifier: String = "HomeView"
+    static let identifier: String = .homeXibIdentifier
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
     }
@@ -29,18 +29,18 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
         getData()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if isLoading {
+        if isLoading || errorGetData {
             showLoader()
         }
-
+        
         if errorGetData {
             callService()
         }
     }
-
+    
     override func viewDidDisappear(_ animated: Bool) {
         stopLoading()
     }
@@ -70,15 +70,13 @@ extension HomeViewController: HomeViewProtocol {
     }
     
     func stopLoading() {
-        /* Implement logic to stop logic, example:
         guaranteeMainThread {
             self.isLoading = false
             self.view.removeLoader()
-        }*/
+        }
     }
     
     func setErrorGettingData(_ status: Bool) {
-        /* Example:
-        errorGetData = status */
+        errorGetData = status
     }
 }

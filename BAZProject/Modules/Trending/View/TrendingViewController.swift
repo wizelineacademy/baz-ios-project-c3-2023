@@ -41,7 +41,7 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if isLoading {
+        if isLoading || errorGetData {
             showLoader()
         }
 
