@@ -37,10 +37,9 @@ final class HomeRouter {
 extension HomeRouter: HomeRouterProtocol {
     func showViewError(_ errorType: ErrorType) {
         guard let view = self.view as? UIViewController else { return }
-        /* Example:
         view.guaranteeMainThread {
             let errorPageVC: UIViewController = ErrorPageRouter.createModule(errorType: errorType)
             view.navigationController?.pushViewController(errorPageVC, animated: true)
-        }*/
+        }
     }
 }
