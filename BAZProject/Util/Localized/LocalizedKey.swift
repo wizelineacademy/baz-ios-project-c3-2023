@@ -22,18 +22,21 @@ extension String {
     static let errorPagePrincipalTitleLabel = " Ups!, ha ocurrido un error..."
     static let retryTitleButton = "Reintentar"
     
-    // MARK: - TrendingView
+    // MARK: - Home
+    static let homeTitle = "Inicio"
+    static let homeNameIconTabBar = "house"
+    
+    // MARK: - Trending
     static let trendingXibIdentifier = "TrendingView"
     static let trendingTitle = "Trending"
     static let trendingTitleUpdateTable = "Actualizando.."
     static let trendingTitleFilterTime = "Filtrar por:"
     static let trendingFilterTitles = ["🍿Pelis", "📺TV", "👀🔝", "Todo"]
     static let trendingFilterByTimeTitles = ["📆Día", "🗓Semana"]
+    static let trendingNameIconTabBar = "magnifyingglass"
     
     // MARK: - Main
     static let mainPlaceholderSearchBar = "Buscar.."
-    static let mainTitleView = "Trending"
-    static let mainNameIconTabBar = "house"
     
     // MARK: - CellMovie
     static let cellMovieXibIdentifier = "CellMovie"

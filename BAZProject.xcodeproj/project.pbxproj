@@ -31,6 +31,14 @@
 		D215D21529843FE000582CB5 /* TrendingDataManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D215D21429843FE000582CB5 /* TrendingDataManagerTest.swift */; };
 		D21805A2299D3E440029245C /* DetailDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21805A1299D3E440029245C /* DetailDataManager.swift */; };
 		D219B54E299AD16C00348876 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D219B54D299AD16C00348876 /* Array+Extension.swift */; };
+		D2475E1D29A28A0C004949D9 /* HomeDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2475E0F29A28A0C004949D9 /* HomeDataManager.swift */; };
+		D2475E1E29A28A0C004949D9 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2475E1129A28A0C004949D9 /* HomePresenter.swift */; };
+		D2475E1F29A28A0C004949D9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2475E1329A28A0C004949D9 /* HomeViewController.swift */; };
+		D2475E2029A28A0C004949D9 /* HomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2475E1429A28A0C004949D9 /* HomeView.xib */; };
+		D2475E2129A28A0C004949D9 /* HomeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2475E1629A28A0C004949D9 /* HomeProtocols.swift */; };
+		D2475E2229A28A0C004949D9 /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2475E1829A28A0C004949D9 /* HomeInteractor.swift */; };
+		D2475E2329A28A0C004949D9 /* HomeResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2475E1A29A28A0C004949D9 /* HomeResult.swift */; };
+		D2475E2429A28A0C004949D9 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2475E1C29A28A0C004949D9 /* HomeRouter.swift */; };
 		D248E468298633D300BC1281 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D248E467298633D300BC1281 /* MainViewController.swift */; };
 		D271BEA3299E99D40030210E /* CellSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D271BEA2299E99D40030210E /* CellSlider.swift */; };
 		D271BEA5299E99E10030210E /* CellSlider.xib in Resources */ = {isa = PBXBuildFile; fileRef = D271BEA4299E99E10030210E /* CellSlider.xib */; };
@@ -108,6 +116,14 @@
 		D215D21429843FE000582CB5 /* TrendingDataManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingDataManagerTest.swift; sourceTree = "<group>"; };
 		D21805A1299D3E440029245C /* DetailDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDataManager.swift; sourceTree = "<group>"; };
 		D219B54D299AD16C00348876 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
+		D2475E0F29A28A0C004949D9 /* HomeDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeDataManager.swift; sourceTree = "<group>"; };
+		D2475E1129A28A0C004949D9 /* HomePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		D2475E1329A28A0C004949D9 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		D2475E1429A28A0C004949D9 /* HomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeView.xib; sourceTree = "<group>"; };
+		D2475E1629A28A0C004949D9 /* HomeProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeProtocols.swift; sourceTree = "<group>"; };
+		D2475E1829A28A0C004949D9 /* HomeInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
+		D2475E1A29A28A0C004949D9 /* HomeResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeResult.swift; sourceTree = "<group>"; };
+		D2475E1C29A28A0C004949D9 /* HomeRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
 		D248E467298633D300BC1281 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		D271BEA2299E99D40030210E /* CellSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellSlider.swift; sourceTree = "<group>"; };
 		D271BEA4299E99E10030210E /* CellSlider.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellSlider.xib; sourceTree = "<group>"; };
@@ -280,6 +296,77 @@
 				D21805A1299D3E440029245C /* DetailDataManager.swift */,
 			);
 			path = DataManager;
+			sourceTree = "<group>";
+		};
+		D2475E0D29A28A0C004949D9 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				D2475E0E29A28A0C004949D9 /* DataManager */,
+				D2475E1029A28A0C004949D9 /* Presenter */,
+				D2475E1229A28A0C004949D9 /* View */,
+				D2475E1529A28A0C004949D9 /* Protocols */,
+				D2475E1729A28A0C004949D9 /* Interactor */,
+				D2475E1929A28A0C004949D9 /* Entities */,
+				D2475E1B29A28A0C004949D9 /* Router */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		D2475E0E29A28A0C004949D9 /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+				D2475E0F29A28A0C004949D9 /* HomeDataManager.swift */,
+			);
+			path = DataManager;
+			sourceTree = "<group>";
+		};
+		D2475E1029A28A0C004949D9 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				D2475E1129A28A0C004949D9 /* HomePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		D2475E1229A28A0C004949D9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D2475E1329A28A0C004949D9 /* HomeViewController.swift */,
+				D2475E1429A28A0C004949D9 /* HomeView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D2475E1529A28A0C004949D9 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				D2475E1629A28A0C004949D9 /* HomeProtocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		D2475E1729A28A0C004949D9 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				D2475E1829A28A0C004949D9 /* HomeInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		D2475E1929A28A0C004949D9 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				D2475E1A29A28A0C004949D9 /* HomeResult.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		D2475E1B29A28A0C004949D9 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				D2475E1C29A28A0C004949D9 /* HomeRouter.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		D271BE9F299E998F0030210E /* CellMovie */ = {
@@ -558,6 +645,7 @@
 		D2F32B13297F2C7D000DA5EE /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				D2475E0D29A28A0C004949D9 /* Home */,
 				D2F08D32299C3912009BA149 /* Detail */,
 				D2C90AA22980EECE000C8BF8 /* ErrorPage */,
 				D2F32B14297F3FB9000DA5EE /* Trending */,
@@ -708,6 +796,7 @@
 				C30893BA28A2F42D004B1860 /* LaunchScreen.storyboard in Resources */,
 				C30893DB28A42481004B1860 /* README.md in Resources */,
 				C30893B728A2F42D004B1860 /* Assets.xcassets in Resources */,
+				D2475E2029A28A0C004949D9 /* HomeView.xib in Resources */,
 				D2D2F83629846BB000840F20 /* TrendingView.xib in Resources */,
 				D271BEA5299E99E10030210E /* CellSlider.xib in Resources */,
 				D2999CC8298478E200A7709F /* Main.storyboard in Resources */,
@@ -752,6 +841,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2475E1D29A28A0C004949D9 /* HomeDataManager.swift in Sources */,
 				D2F08D3A299C3962009BA149 /* DetailInteractor.swift in Sources */,
 				D27C6D2F2980DCFF003E45C7 /* UIImage+Extension.swift in Sources */,
 				D2B7A6512980EC7B0028BC4E /* UIView+Extension.swift in Sources */,
@@ -762,9 +852,11 @@
 				D248E468298633D300BC1281 /* MainViewController.swift in Sources */,
 				D2108DB5298C106D0000873F /* LocalizedConstants.swift in Sources */,
 				C30893C428A2F845004B1860 /* TrendingViewController.swift in Sources */,
+				D2475E1F29A28A0C004949D9 /* HomeViewController.swift in Sources */,
 				D219B54E299AD16C00348876 /* Array+Extension.swift in Sources */,
 				D20461022980F8DA000EAF42 /* CustomView.swift in Sources */,
 				D2E43E33297FA0E7000F9343 /* TrendingType.swift in Sources */,
+				D2475E1E29A28A0C004949D9 /* HomePresenter.swift in Sources */,
 				D2073EAC29899539006A577A /* ErrorPageRouter.swift in Sources */,
 				D2F954D2298B0C0200F4CB4B /* UIViewController+Extension.swift in Sources */,
 				D2F08D31299C1A24009BA149 /* Endpoint.swift in Sources */,
@@ -775,6 +867,7 @@
 				D2F08D41299C399B009BA149 /* DetailProtocols.swift in Sources */,
 				D215C5002980EF9500D5670F /* ErrorPageViewController.swift in Sources */,
 				D2F08D46299C46A1009BA149 /* DetailType.swift in Sources */,
+				D2475E2329A28A0C004949D9 /* HomeResult.swift in Sources */,
 				D2CFEC1B29831CFC0024D226 /* TrendingInteractor.swift in Sources */,
 				D29F2C522987168E004B96D1 /* LaunchScreenViewController.swift in Sources */,
 				D29D511A298310870061ACCC /* TrendingProtocols.swift in Sources */,
@@ -782,6 +875,7 @@
 				C30893AE28A2F42B004B1860 /* AppDelegate.swift in Sources */,
 				D2F08D44299C39C8009BA149 /* DetailRouter.swift in Sources */,
 				D215D20329843EC000582CB5 /* TrendingDataManager.swift in Sources */,
+				D2475E2229A28A0C004949D9 /* HomeInteractor.swift in Sources */,
 				D2E241CC297F9AC1002675B4 /* LocalizedKey.swift in Sources */,
 				D271BEA3299E99D40030210E /* CellSlider.swift in Sources */,
 				D2073EB12989986A006A577A /* ErrorPageInteractor.swift in Sources */,
@@ -792,9 +886,11 @@
 				C30893E228A425E1004B1860 /* MovieAPI.swift in Sources */,
 				D2E241C7297F91A2002675B4 /* NetworkingProvider+RequestType.swift in Sources */,
 				D2CFEC1D29831F4E0024D226 /* TrendingPresenter.swift in Sources */,
+				D2475E2429A28A0C004949D9 /* HomeRouter.swift in Sources */,
 				D21805A2299D3E440029245C /* DetailDataManager.swift in Sources */,
 				D2E241C9297F923E002675B4 /* NetworkingProviderService.swift in Sources */,
 				D2CFEC1F2983207E0024D226 /* TrendingRouter.swift in Sources */,
+				D2475E2129A28A0C004949D9 /* HomeProtocols.swift in Sources */,
 				C30893E328A425E1004B1860 /* Movie.swift in Sources */,
 				D2B7A64D2980EC260028BC4E /* Loader.swift in Sources */,
 			);

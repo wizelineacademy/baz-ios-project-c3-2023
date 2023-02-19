@@ -41,9 +41,12 @@ final class MainViewController: UITabBarController {
     
     private func initializeViewControllers() {
         var arrControllers:[UIViewController] = []
+        arrControllers.append(createNavController(for: HomeRouter.createModule(),
+                                                  title: .homeTitle,
+                                                  image: getUIImage(for: .homeNameIconTabBar, type: .systemName)))
         arrControllers.append(createNavController(for: TrendingRouter.createModule(),
-                                                  title: .mainTitleView,
-                                                  image: getUIImage(for: .mainNameIconTabBar, type: .systemName)))
+                                                  title: .trendingTitle,
+                                                  image: getUIImage(for: .trendingNameIconTabBar, type: .systemName)))
         viewControllers = arrControllers
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.red], for:.selected)
     }
