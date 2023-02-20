@@ -25,7 +25,7 @@ protocol MDViewInputProtocol: AnyObject {
 protocol MDInteractorInputProtocol {
     var output: MDInteractorOutputProtocol? { get set }
     
-    func fetchData()
+    func fetchMovieDetail()
 }
 
 protocol MDInteractorOutputProtocol: AnyObject {

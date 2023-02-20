@@ -21,7 +21,7 @@ final class MDPresenter {
 extension MDPresenter: MDViewOutputProtocol {
     /** Call a interactor method to fetch the needed data */
     func didLoadView() {
-        self.interactor.fetchData()
+        self.interactor.fetchMovieDetail()
     }
 }
 

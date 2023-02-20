@@ -5,7 +5,7 @@
 //  Created by Luis Alberto Perez Villar on 08/02/23.
 //
 
-import UIKit
+import Foundation
 
 final class MSPresenter {
     weak var view: MSViewInputProtocol?
