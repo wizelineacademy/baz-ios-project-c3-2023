@@ -8,9 +8,20 @@
 import Foundation
 
 protocol SearchMoviesBusinessLogic: AnyObject {
-    // TODO: create functions to manage business logic
+    func searchMoviesBy(words: String)
 }
 
 class SearchMoviesInteractor: SearchMoviesBusinessLogic {
-    // TODO: conform SearchMoviesBusinessLogic protocol
+    
+    // MARK: Properties
+    let moviesWorker = MoviesWorker(movieService: MoviesAPI())
+    
+    // MARK: Properties VIP
+    var presenter: SearchMoviesPresenter?
+    
+    func searchMoviesBy(words: String) {
+        moviesWorker.getMoviesByType(.bySearch(words)) { movies, messageError in
+            print(movies)
+        }
+    }
 }

@@ -13,10 +13,9 @@ protocol CarruselCollectionDelegate: AnyObject {
 }
 
 class CarruselCollectionView: UICollectionView {
-    init() {
+    init(direction: ScrollDirection) {
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2)
+        layout.scrollDirection = direction
         super.init(frame: .zero, collectionViewLayout: layout)
         self.translatesAutoresizingMaskIntoConstraints = false
     }

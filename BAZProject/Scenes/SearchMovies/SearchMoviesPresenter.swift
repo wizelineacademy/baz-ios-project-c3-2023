@@ -13,4 +13,7 @@ protocol SearchMoviesPresentationLogic: AnyObject {
 
 class SearchMoviesPresenter: SearchMoviesPresentationLogic{
     // TODO: conform MovieDetailsPresentationLogic protocol
+    
+    // MARK: Properties VIP
+    weak var viewController: SearchMoviesDisplayLogic?
 }

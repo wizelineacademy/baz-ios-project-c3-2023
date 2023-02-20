@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5112CBAA299FF18A0072F951 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5112CBA9299FF18A0072F951 /* UIImageView.swift */; };
+		5112CBB029A0330D0072F951 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5112CBAF29A0330D0072F951 /* UIViewController.swift */; };
 		513912C22992E21D002E4E4D /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513912C12992E21D002E4E4D /* Review.swift */; };
 		51511277299D3E1E00844B46 /* HomeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51511276299D3E1E00844B46 /* HomeModels.swift */; };
 		515B71852996CFC70066A482 /* MoviesSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515B71842996CFC70066A482 /* MoviesSectionView.swift */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		5112CBA9299FF18A0072F951 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		5112CBAF29A0330D0072F951 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		513912C12992E21D002E4E4D /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		51511276299D3E1E00844B46 /* HomeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModels.swift; sourceTree = "<group>"; };
 		515B71842996CFC70066A482 /* MoviesSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesSectionView.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				5112CBA9299FF18A0072F951 /* UIImageView.swift */,
+				5112CBAF29A0330D0072F951 /* UIViewController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				51883BBA298AD545002B564A /* HomeRouter.swift in Sources */,
 				51883BB8298AD339002B564A /* HomePresenter.swift in Sources */,
 				513912C22992E21D002E4E4D /* Review.swift in Sources */,
+				5112CBB029A0330D0072F951 /* UIViewController.swift in Sources */,
 				51B5CD60298C50080070656E /* MoviesEndpoints.swift in Sources */,
 				51883BC3298AEC67002B564A /* MovieDetailsInteractor.swift in Sources */,
 				5178A8382994193B0042687F /* ImagesAPI.swift in Sources */,

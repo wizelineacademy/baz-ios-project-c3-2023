@@ -38,10 +38,25 @@
                     <view key="view" contentMode="scaleToFill" id="WvP-N9-NJN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tS0-NZ-EV1">
+                                <rect key="frame" x="0.0" y="92" width="414" height="804"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="cPD-i8-PeD"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="cPD-i8-PeD" firstAttribute="trailing" secondItem="tS0-NZ-EV1" secondAttribute="trailing" id="3ky-gQ-m8k"/>
+                            <constraint firstItem="tS0-NZ-EV1" firstAttribute="leading" secondItem="cPD-i8-PeD" secondAttribute="leading" id="Txy-Yd-0I2"/>
+                            <constraint firstAttribute="bottom" secondItem="tS0-NZ-EV1" secondAttribute="bottom" id="ipE-Zt-QeQ"/>
+                            <constraint firstItem="tS0-NZ-EV1" firstAttribute="top" secondItem="cPD-i8-PeD" secondAttribute="top" id="mwZ-Jz-xFP"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="HcT-B3-VKb"/>
+                    <connections>
+                        <outlet property="moviesSectionView" destination="tS0-NZ-EV1" id="ll1-Wh-2LD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yXz-f6-7uv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

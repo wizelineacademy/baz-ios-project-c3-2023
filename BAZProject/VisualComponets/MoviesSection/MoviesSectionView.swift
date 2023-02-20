@@ -31,7 +31,7 @@ class MoviesSectionView: UIView {
     // MARK: Properties
     var manager: CarruselCollectionManager!
     let typeSection: fetchMoviesTypes
-    let carruselCollection = CarruselCollectionView()
+    let carruselCollection = CarruselCollectionView(direction: .horizontal)
 
     var model: [Home.FetchMoviesBySection.ViewModel.Movie]? {
         didSet {
@@ -68,7 +68,8 @@ class MoviesSectionView: UIView {
         carruselCollection.trailingAnchor.constraint(equalTo: carruselMoviesView.trailingAnchor).isActive = true
         carruselCollection.topAnchor.constraint(equalTo: carruselMoviesView.topAnchor).isActive = true
         carruselCollection.bottomAnchor.constraint(equalTo: carruselMoviesView.bottomAnchor).isActive = true
-        manager = CarruselCollectionManager(collection: carruselCollection)
+        manager = CarruselCollectionManager()
+        manager.setupCollection(collection: carruselCollection)
     }
 }
 

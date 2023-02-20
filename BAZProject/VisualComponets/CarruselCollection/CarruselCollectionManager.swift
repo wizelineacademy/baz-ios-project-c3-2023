@@ -12,19 +12,23 @@ typealias CollectionManager = UICollectionViewDelegate & UICollectionViewDataSou
 
 class CarruselCollectionManager: NSObject, CollectionManager {
     
-    let collection: CarruselCollectionView
+    var collection: CarruselCollectionView?
     var dataCollection: [Home.FetchMoviesBySection.ViewModel.Movie]? {
         didSet {
             DispatchQueue.main.async {
-                self.collection.reloadData()
+                self.collection?.reloadData()
             }
         }
     }
     
-    init(collection: CarruselCollectionView) {
-        self.collection = collection
+    override init() {
         super.init()
+    }
+    
+    func setupCollection(collection: CarruselCollectionView) {
+        self.collection = collection
         configureCollectionViewCell(collection: collection)
+
     }
     
     func configureCollectionViewCell(collection: UICollectionView) {
@@ -49,6 +53,10 @@ class CarruselCollectionManager: NSObject, CollectionManager {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        guard let collection = collection else {
+            return .zero
+        }
+        
         return CGSize(width: collection.bounds.width / 3, height: collection.bounds.height * 0.9)
      }
     
