@@ -15,8 +15,6 @@ extension InformationMoviesView: InformationMoviesViewProtocol {
      */
     func reloadCollectionViewData() {
         DispatchQueue.main.async {
-            self.collectionMovieSimilar.delegate = self
-            self.collectionMovieSimilar.dataSource = self
             self.collectionMovieSimilar.reloadData()
         }
     }
@@ -32,5 +30,24 @@ extension InformationMoviesView: InformationMoviesViewProtocol {
                 self.present(alert, animated: true, completion: nil)
             }
         }
+    }
+    
+    func loadInformationMovie(informationMovie: InformationMovie?) -> String {
+        var informationMovieDisplay: String = ""
+        
+        if let originalTitle = informationMovie?.originalTitle{
+            informationMovieDisplay += "\(originalTitle) | "
+        }
+        if let genres = informationMovie?.genres?.first?.name{
+            informationMovieDisplay += "\(genres) | "
+        }
+        if let releaseDate = informationMovie?.releaseDate{
+            informationMovieDisplay += "\(releaseDate) | "
+        }
+        if let adult = informationMovie?.adult{
+            informationMovieDisplay += adult ? "18+" : "18-"
+        }
+
+        return informationMovieDisplay
     }
 }

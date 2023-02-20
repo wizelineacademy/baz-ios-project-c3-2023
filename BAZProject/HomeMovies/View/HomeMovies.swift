@@ -12,7 +12,7 @@ class HomeMoviesView: UIViewController {
     // MARK: - IBOutlet
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var btnAddFilters: UIButton!
-    @IBOutlet weak var headerView: HeaderView!
+    @IBOutlet weak var dateHeaderView: DateHeaderView!
     @IBOutlet weak var collectionHomeMovie: UICollectionView!
 
     // MARK: - Properties
@@ -34,13 +34,15 @@ class HomeMoviesView: UIViewController {
     
     private func setupView(){
         self.title = "\(self.presenter?.selectedCategory?.typeName ?? MovieCategory.trending.typeName)"
-        self.headerView.initConfig(title: Constants.headerTitleView)
-        self.btnAddFilters.setTitle(Constants.titleFilterButton, for: .normal)
+        self.dateHeaderView.initConfig(title: Constants.headerTitleView)
+        self.btnAddFilters.setTitle("", for: .normal)
         self.searchBar.delegate = self
         self.presenter?.loadingView()
 
         collectionHomeMovie.register(UINib(nibName: MovieCollectionCell.cellIdentifier, bundle: Bundle(for: MovieCollectionCell.self)),
                                      forCellWithReuseIdentifier: MovieCollectionCell.cellIdentifier)
+        self.collectionHomeMovie.delegate = self
+        self.collectionHomeMovie.dataSource = self
         hideKeyboardWhenTappedAround()
     }
 

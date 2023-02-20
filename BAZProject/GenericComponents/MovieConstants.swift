@@ -10,7 +10,6 @@ import UIKit
 enum MovieConstants {
     // MARK: - Navigation
     static let headerTitleView: String = "Cartelera"
-    static let titleFilterButton: String = ""
     
     // MARK: - Alert
     static let notFoundResult: String = "La búsqueda realizada no encontro ninguna coincidencia."

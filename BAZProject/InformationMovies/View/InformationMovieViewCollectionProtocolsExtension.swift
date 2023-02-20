@@ -14,14 +14,12 @@ extension InformationMoviesView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if presenter?.getSimilarMoviesCount() ?? 0 > 6 {
-            return 6
-        }
-        return presenter?.getSimilarMoviesCount() ?? 0
+        guard let numberOfSimiliarMovies = presenter?.getSimilarMoviesCount() else { return 0 }
+        return numberOfSimiliarMovies > 6 ? 6 : numberOfSimiliarMovies
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCollectionSimilarCell.cellIdentifier, for: indexPath) as? MovieCollectionSimilarCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReleatedMovieCollectionCell.cellIdentifier, for: indexPath) as? ReleatedMovieCollectionCell else {
             return UICollectionViewCell()
         }
         

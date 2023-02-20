@@ -33,7 +33,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hv9-8g-DMV" customClass="HeaderView" customModule="BAZProject" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hv9-8g-DMV" customClass="DateHeaderView" customModule="BAZProject" customModuleProvider="target">
                                 <rect key="frame" x="16" y="87" width="377" height="68"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -90,7 +90,7 @@
                     <connections>
                         <outlet property="btnAddFilters" destination="8zB-2p-HGw" id="Ss2-Oj-Z31"/>
                         <outlet property="collectionHomeMovie" destination="qnL-d0-gct" id="EsU-ht-iHm"/>
-                        <outlet property="headerView" destination="Hv9-8g-DMV" id="pzs-sN-IuG"/>
+                        <outlet property="dateHeaderView" destination="Hv9-8g-DMV" id="0Rd-eH-K8n"/>
                         <outlet property="searchBar" destination="9Md-w2-ZVx" id="7xI-ua-90F"/>
                     </connections>
                 </viewController>

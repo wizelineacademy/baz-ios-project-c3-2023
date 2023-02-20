@@ -15,8 +15,6 @@ extension HomeMoviesView: HomeMoviesViewProtocol {
      */
     func reloadCollectionViewData() {
         DispatchQueue.main.async {
-            self.collectionHomeMovie.delegate = self
-            self.collectionHomeMovie.dataSource = self
             self.collectionHomeMovie.reloadData()
         }
     }

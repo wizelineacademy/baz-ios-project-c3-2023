@@ -74,20 +74,3 @@ enum MovieCategory: String {
         }
     }
 }
-
-// MARK: CellPath
-enum CellPath {
-    static let baseImageURL = "https://image.tmdb.org/t/p/w500"
-
-    case imageUrl(urlString: String)
-}
-
-extension CellPath {
-    
-    var completeImageURL: String{
-        switch self {
-        case .imageUrl(urlString: let string):
-            return CellPath.baseImageURL+string
-        }
-    }
-}
