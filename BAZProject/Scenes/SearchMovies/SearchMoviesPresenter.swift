@@ -8,12 +8,18 @@
 import Foundation
 
 protocol SearchMoviesPresentationLogic: AnyObject {
-    // TODO: create functions to manage presentation logic
+    func presentMoviesFeched(response: SearchMovies.FetchMovies.Response)
 }
 
-class SearchMoviesPresenter: SearchMoviesPresentationLogic{
-    // TODO: conform MovieDetailsPresentationLogic protocol
+class SearchMoviesPresenter: SearchMoviesPresentationLogic {
     
     // MARK: Properties VIP
     weak var viewController: SearchMoviesDisplayLogic?
+    
+    func presentMoviesFeched(response: SearchMovies.FetchMovies.Response) {
+        let displayedMovies = response.movies.map { movie in
+            return MovieSearch(id: movie.id ?? -1, imageURL: movie.posterPath ?? "", title: movie.title ?? "")
+        }
+        viewController?.displayFetchMovies(viewModel: SearchMovies.FetchMovies.ViewModel(displayedMovies: displayedMovies))
+    }
 }

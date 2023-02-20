@@ -8,7 +8,7 @@
 import Foundation
 
 protocol SearchMoviesBusinessLogic: AnyObject {
-    func searchMoviesBy(words: String)
+    func searchMoviesBy(request: SearchMovies.FetchMovies.Request)
 }
 
 class SearchMoviesInteractor: SearchMoviesBusinessLogic {
@@ -19,9 +19,9 @@ class SearchMoviesInteractor: SearchMoviesBusinessLogic {
     // MARK: Properties VIP
     var presenter: SearchMoviesPresenter?
     
-    func searchMoviesBy(words: String) {
-        moviesWorker.getMoviesByType(.bySearch(words)) { movies, messageError in
-            print(movies)
+    func searchMoviesBy(request: SearchMovies.FetchMovies.Request) {
+        moviesWorker.getMoviesByType(.bySearch(request.byKeyboards)) { [weak self] movies, messageError in
+            self?.presenter?.presentMoviesFeched(response: SearchMovies.FetchMovies.Response(movies: movies))
         }
     }
 }

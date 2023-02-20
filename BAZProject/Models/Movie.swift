@@ -79,6 +79,10 @@ struct MoviesBySection {
     var movies: [Movie]
 }
 
-
+struct MovieSearch {
+    var id: Int
+    var imageURL: String
+    var title: String
+}
 
 

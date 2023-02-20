@@ -13,7 +13,7 @@ typealias CollectionManager = UICollectionViewDelegate & UICollectionViewDataSou
 class CarruselCollectionManager: NSObject, CollectionManager {
     
     var collection: CarruselCollectionView?
-    var dataCollection: [Home.FetchMoviesBySection.ViewModel.Movie]? {
+    var dataCollection: [MovieSearch]? {
         didSet {
             DispatchQueue.main.async {
                 self.collection?.reloadData()

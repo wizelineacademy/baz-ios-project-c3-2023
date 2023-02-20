@@ -22,14 +22,9 @@ enum Home {
             var message: String
         }
         struct ViewModel {
-            struct Movie {
-                var id: Int
-                var imageURL: String
-                var title: String
-            }
             struct SectionWithMovies {
                 var view: MoviesSectionView
-                var movies: [Movie]
+                var movies: [MovieSearch]
             }
             var displayedMovies: SectionWithMovies
         }

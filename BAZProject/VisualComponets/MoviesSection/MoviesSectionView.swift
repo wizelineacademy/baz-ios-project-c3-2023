@@ -33,7 +33,7 @@ class MoviesSectionView: UIView {
     let typeSection: fetchMoviesTypes
     let carruselCollection = CarruselCollectionView(direction: .horizontal)
 
-    var model: [Home.FetchMoviesBySection.ViewModel.Movie]? {
+    var model: [MovieSearch]? {
         didSet {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else {

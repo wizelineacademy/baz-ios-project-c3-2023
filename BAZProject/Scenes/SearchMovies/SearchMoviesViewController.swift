@@ -9,8 +9,7 @@ import Foundation
 import UIKit
 
 protocol SearchMoviesDisplayLogic: AnyObject {
-    // TODO: create functions to manage display logic
-    
+    func displayFetchMovies(viewModel: SearchMovies.FetchMovies.ViewModel)
 }
 
 class SearchMoviesViewController: UIViewController {
@@ -44,7 +43,8 @@ class SearchMoviesViewController: UIViewController {
         super.viewDidLoad()
         addSearchViewInNavigation()
         configureMoviesCollectionView()
-        hideKeyboardWhenTappedAround()        
+        hideKeyboardWhenTappedAround()
+        interactor?.searchMoviesBy(request: SearchMovies.FetchMovies.Request(byKeyboards: "Pokemon"))
     }
 
     // MARK: Setup
@@ -93,6 +93,7 @@ class SearchMoviesViewController: UIViewController {
 }
 
 extension SearchMoviesViewController: SearchMoviesDisplayLogic {
-    // TODO: conform SearchMoviesDisplayLogic protocol
-
+    func displayFetchMovies(viewModel: SearchMovies.FetchMovies.ViewModel) {
+        manager.dataCollection = viewModel.displayedMovies
+    }
 }
