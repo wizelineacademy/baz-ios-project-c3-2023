@@ -13,7 +13,8 @@ class MainTabBarRouter {
         let mainTabBar = UITabBarController()
         let trendingView = TrendingRouter.createTrendingModule()
         let topRatedView = TopRatedRouter.createTopRatedModule()
-        mainTabBar.viewControllers = [trendingView, topRatedView]
+        let searchingViewController = SearchingRouter.createSearchingModule()
+        mainTabBar.viewControllers = [trendingView, topRatedView, searchingViewController]
         return mainTabBar
     }
 }
