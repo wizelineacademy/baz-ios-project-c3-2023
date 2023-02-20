@@ -24,7 +24,7 @@ protocol SearchingPresenterProtocol: AnyObject {
     var view: SearchingViewProtocol? { get set }
     var interactor: SearchingInteractorInputProtocol? { get set }
     var router: SearchingRouterProtocol? { get set }
-    var searchResults: [SearchResult] { get set }
+    var searchResults: [SearchResult]? { get set }
     
     func notifyViewLoaded()
     func searchMovies(with query: String)
