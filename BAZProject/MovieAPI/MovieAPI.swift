@@ -34,6 +34,27 @@ class MovieAPI {
         return json.results
     }
     
+    func getMoviesBy(category: MovieAPICategory, completionHandler: @escaping ([Movie]?, Error?) -> Void) {
+        if let url  = URL(string: "https://api.themoviedb.org/3/\(category.endpointUrl)?api_key=\(apiKey)&\(language)&\(region)") {
+            let task = URLSession.shared.dataTask(with: url) { data, response, error in
+                if let error = error {
+                    completionHandler(nil, error)
+                }else{
+                    if let data = data,
+                       let json = try? JSONDecoder().decode(MovieAPIResult.self, from: data){
+                        DispatchQueue.main.async {
+                            completionHandler(json.results, nil)
+                        }
+                    }
+                }
+            }
+            task.resume()
+        } else {
+            completionHandler(nil, nil)
+        }
+    }
+    
+    
     /// Fetch movie poster of a given url.
     ///
     ///  - Parameter url: The given image URL

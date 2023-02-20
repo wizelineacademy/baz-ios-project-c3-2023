@@ -29,7 +29,7 @@ class CategoryTableViewCell: UITableViewCell {
     func setCollectionView() {
         collectionToCarrucel.register(UINib(nibName: "MovieGalleryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MovieGallery")
         setDelegates()
-        setFlowLayout()
+        //setFlowLayout()
     }
     
     func setDelegates() {
