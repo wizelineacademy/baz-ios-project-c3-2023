@@ -49,7 +49,7 @@ class CategoryTableViewCell: UITableViewCell {
 
 // MARK: - CollectionView's DataSource
 
-extension CategoryTableViewCell: UICollectionViewDataSource{
+extension CategoryTableViewCell: UICollectionViewDataSource {
         
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return moviesToShow.count

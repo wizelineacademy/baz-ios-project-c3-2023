@@ -13,52 +13,53 @@ class MovieShearchViewController: UIViewController {
     @IBOutlet weak var keyworkTable: UITableView!
     @IBOutlet weak var noResults: UILabel!
     
+    let segueToCatalog = "searchToCatolog"
     var timer: Timer?
-     var movieApi = MovieAPI()
-     var keywordsToShow: [MovieKeyword]? {
-         didSet{
-             keyworkTable.reloadData()
-         }
-     }
-     
-     override func viewWillAppear(_ animated: Bool) {
-         movieSearcher.searchTextField.becomeFirstResponder()
-     }
-
-     override func viewDidLoad() {
-         super.viewDidLoad()
-         movieSearcher.searchTextField.delegate = self
-     }
-     
-     func searchMovies(from text: String) {
-         movieApi.searchKeywords(textEncoded: text) { keywords, error in
-             if let keywords = keywords,
-                keywords.count > 0 {
-                 self.keywordsToShow = keywords
-             } else {
-                 DispatchQueue.main.async {
-                     guard let text = self.movieSearcher.searchTextField.text else { return }
-                     self.keywordsToShow = [MovieKeyword.init(id: 0, name: "\(text)")]
-                 }
-             }
-         }
-     }
-     
-     @objc func initTimer() {
-         guard let text = movieSearcher.searchTextField.text,
-                   text != "" else { return }
-         searchMovies(from: text)
-     }
-     
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         if segue.identifier == "searchToCatolog",
-            let catalog =  segue.destination as? MovieSearchCatalogViewController,
-            let keywordSelected = sender as? MovieKeyword {
-             catalog.keywordToSearch = keywordSelected
-         }
-     }
-     
- }
+    var movieApi = MovieAPI()
+    var keywordsToShow: [MovieKeyword]? {
+        didSet {
+            keyworkTable.reloadData()
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        movieSearcher.searchTextField.becomeFirstResponder()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        movieSearcher.searchTextField.delegate = self
+    }
+    
+    func searchMovies(from text: String) {
+        movieApi.searchKeywords(textEncoded: text) { keywords, error in
+            if let keywords = keywords,
+               keywords.count > 0 {
+                self.keywordsToShow = keywords
+            } else {
+                DispatchQueue.main.async {
+                    guard let text = self.movieSearcher.searchTextField.text else { return }
+                    self.keywordsToShow = [MovieKeyword.init(id: 0, name: "\(text)")]
+                }
+            }
+        }
+    }
+    
+    @objc func initTimer() {
+        guard let text = movieSearcher.searchTextField.text,
+              text != "" else { return }
+        searchMovies(from: text)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == segueToCatalog,
+           let catalog =  segue.destination as? MovieSearchCatalogViewController,
+           let keywordSelected = sender as? MovieKeyword {
+            catalog.keywordToSearch = keywordSelected
+        }
+    }
+    
+}
 
  // MARK: - TableView's DataSource
 

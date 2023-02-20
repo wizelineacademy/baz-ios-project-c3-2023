@@ -32,7 +32,7 @@ class HomeTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
-    func showDetailMovieViewController(sender: Any?){
+    func showDetailMovieViewController(sender: Any?) {
         let detailView = MovieDetailPViewController()
         guard let movieDetail =  sender as? Movie else { return }
         detailView.movieToShowDetail = movieDetail

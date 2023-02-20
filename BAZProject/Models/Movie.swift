@@ -22,7 +22,7 @@ struct Movie: Decodable {
     }
 }
 
-extension Movie{
+extension Movie {
     
     var avarageRounded: String {
         if self.voteAverage >= 1 {
@@ -34,7 +34,7 @@ extension Movie{
     
     var averageStars: String {
         guard self.voteAverage > 0 else { return " " }
-        let stars = (self.voteAverage/2.0).rounded()
+        let stars = (self.voteAverage / 2.0).rounded()
         var strStars: String = ""
         for _ in 1...Int(stars) {
             strStars = strStars + "⭐️"
@@ -46,7 +46,7 @@ extension Movie{
         var movieFind: Movie?
         for category in listOfCategories {
             category.value.forEach { movie in
-                if movie.id ==  movieID{
+                if movie.id ==  movieID {
                     movieFind = movie
                 }
             }

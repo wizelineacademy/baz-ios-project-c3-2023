@@ -33,22 +33,22 @@ class MovieDetailPViewController: UIViewController {
     var movieToShowDetail: Movie?
     var movieDetail: MovieDetail?
     var movieCast: [MovieCast]? {
-        didSet{
+        didSet {
             castView?.castCollection.reloadData()
         }
     }
     var similarMovies: [Movie]? {
-        didSet{
+        didSet {
             similarMoviesView?.movieCollection.reloadData()
         }
     }
     var recommendationMovies: [Movie]? {
-        didSet{
+        didSet {
             recommendationView?.movieCollection.reloadData()
         }
     }
     var movieReviews: [MovieReview]? {
-        didSet{
+        didSet {
             reviewView?.reviewTable.reloadData()
         }
     }
@@ -60,13 +60,13 @@ class MovieDetailPViewController: UIViewController {
         services()
     }
     
-    func configNavBar(){
+    func configNavBar() {
         let backButton = UIBarButtonItem()
         backButton.title = ""
         navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
     }
     
-    func setUpView(){
+    func setUpView() {
         createScrollView()
         createStack()
         createTopDetail()
@@ -76,7 +76,7 @@ class MovieDetailPViewController: UIViewController {
         createReviewView()
     }
     
-    func services(){
+    func services() {
         getMovieDetail()
         getMovieCast()
         getSimilarMovies()
@@ -91,7 +91,7 @@ class MovieDetailPViewController: UIViewController {
                 self.movieDetail = detail
                 self.topDetail?.releseDate.text = detail.releaseDate
                 self.topDetail?.genre.text = detail.listGenres
-                if (detail.overview == nil) || detail.overview == ""{
+                if (detail.overview == nil) || detail.overview == "" {
                     self.topDetail?.overview.text = "Lo sentimos, aún no tenemos una reseña disponible para esta pelicula."
                 } else {
                     self.topDetail?.overview.text = detail.overview
@@ -104,7 +104,7 @@ class MovieDetailPViewController: UIViewController {
         guard let id = movieToShowDetail?.id else { return }
         movieApi.getMovieCast(movieID: id) { cast, error in
             if let cast = cast,
-               cast.cast.count > 0{
+               cast.cast.count > 0 {
                 self.movieCast = cast.cast.sorted {
                     $0.order < $1.order
                 }
@@ -327,7 +327,7 @@ extension MovieDetailPViewController: UITableViewDataSource {
         if let username = movieReviews?[indexPath.row].authorDetail.name,
                !username.isEmpty {
             reviewCell.authorUsername.text = username
-        }else{
+        } else {
             reviewCell.authorUsername.text = "Anónimo"
         }
         reviewCell.reviewRating.text = movieReviews?[indexPath.row].authorDetail.averageStars
