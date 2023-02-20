@@ -21,7 +21,8 @@ final class MainRouter: RouterProtocols{
             presenter.interactor = interactor
             presenter.view = view
             
-            return navController
+            let navigationController = UINavigationController(rootViewController: view)
+            return navigationController
         }
         return UIViewController()
     }

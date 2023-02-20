@@ -8,7 +8,7 @@
 import Foundation
 
 final class MainInteractor: MainInteractorInputProtocol {
-    weak var presenter: MainInteractorOutputProtocol?
+    var presenter: MainInteractorOutputProtocol?
     var movieApiData: DataHelper = DataHelper()
     var countMovieWatched: Int = 0
     
@@ -17,7 +17,6 @@ final class MainInteractor: MainInteractorInputProtocol {
             do {
                 if let movies =  DecodeUtility.decode(Movies.self, from: data) {
                     self?.movieApiData.getArrayDataMovie?[api] = movies
-                    self?.presenter?.reloadData()
                 }
             }
         }

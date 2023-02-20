@@ -38,16 +38,15 @@ extension ShowMoviesTableViewCell: UICollectionViewDataSource, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GenericCollectionViewCell.reusableIdentifier, for: indexPath) as? GenericCollectionViewCell, let data = data as? Movies {
             cell.imageMovie.image = UIImage(named: "poster")
-            cell.title.text = data.results[indexPath.row].title
-            DispatchQueue.main.async {
-                
-                if let image = data.results[indexPath.row].posterPath {
-                    MovieAPI.getImage(from: image, handler: { imagen in
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                            cell.imageMovie.image = imagen
-                        }
-                    })
-                }
+            UIView.fillSkeletons(onView: cell)
+            
+            if let image = data.results[indexPath.row].posterPath {
+                MovieAPI.getImage(from: image, handler: { imagen in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                        UIView.removeSkeletons(onView: cell)
+                        cell.imageMovie.image = imagen
+                    }
+                })
             }
             return cell
         }

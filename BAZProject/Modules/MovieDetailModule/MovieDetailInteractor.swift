@@ -8,7 +8,7 @@
 import Foundation
 
 final class MovieDetailInteractor {
-    weak var presenter: MovieDetailInteractorOutputProtocol?
+    var presenter: MovieDetailInteractorOutputProtocol?
     
     var movieApiData: DataHelper = DataHelper()
     var data: Result?
@@ -21,16 +21,16 @@ extension MovieDetailInteractor: MovieDetailInterceptorInputProtocol {
         debugPrint("test of saveMovie")
         var allDataMovie: [Result]?
         do {
-            allDataMovie = try? saveData.load(title: saveData.moviesWatched)
+            allDataMovie = try? saveData.load(title: saveData.watchedMovies)
             guard let data = data else { return }
             allDataMovie?.append(data)
             guard let allDataMovie = allDataMovie else { return }
-            try saveData.save(allDataMovie, title: saveData.moviesWatched)
+            try saveData.save(allDataMovie, title: saveData.watchedMovies)
         } catch {
             debugPrint("error")
         }
         do {
-            if let movies =  try? saveData.load(title: saveData.moviesWatched) {
+            if let movies =  try? saveData.load(title: saveData.watchedMovies) {
                 debugPrint(movies)
             }
         }
@@ -41,7 +41,7 @@ extension MovieDetailInteractor: MovieDetailInterceptorInputProtocol {
             do {
                 if let movies =  DecodeUtility.decode(structure.self, from: data) {
                     self?.movieApiData.getArrayDataMovie?[api] = movies
-                    self?.presenter?.reloadData()
+//                    self?.presenter?.reloadData()
                 }
             }
         }

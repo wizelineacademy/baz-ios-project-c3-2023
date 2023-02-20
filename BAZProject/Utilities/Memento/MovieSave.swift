@@ -9,7 +9,8 @@ import Foundation
 
 // MARK: - CareTaker
 public class SaveMovies {
-    let moviesWatched = "MoviesWatched"
+    let watchedMovies = "Watched-Movies"
+    let favoriteMovies = "Favorite-Movies"
     private let decoder = JSONDecoder()
     private let encoder = JSONEncoder()
     private let userDefaults = UserDefaults.standard

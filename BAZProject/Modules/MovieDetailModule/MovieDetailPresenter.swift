@@ -8,7 +8,7 @@
 import UIKit
 
 final class MovieDetailPresenter: NSObject {
-    weak var view: MovieDetailViewProtocol?
+    var view: MovieDetailViewProtocol?
     var interactor: MovieDetailInterceptorInputProtocol?
     var isFavorite: Bool = false
     
@@ -71,7 +71,7 @@ extension MovieDetailPresenter: MovieDetailPresenterProtocol {
     
     private func getPosterImage(poster: UIImageView) {
         UIView.fillSkeletons(onView: poster)
-        if let data = interactor?.data, let image = data.posterPath{
+        if let data = interactor?.data, let image = data.backdropPath{
             MovieAPI.getImage(from: image , handler: { image in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
                     UIView.removeSkeletons(onView: poster)
@@ -95,6 +95,8 @@ extension MovieDetailPresenter: MovieDetailPresenterProtocol {
             interactor?.getMoviesDataWithId(from: .recommendations, id: idMovie, structure: Movies.self)
             interactor?.getMoviesDataWithId(from: .reviews, id: idMovie, structure: Reviews.self)
         }
+        
+        view?.reloadData()
     }
     
     func getTableViewDataSource() -> UITableViewDataSource {
@@ -127,6 +129,8 @@ extension MovieDetailPresenter: UITableViewDataSource {
 //            "Resumen:"
             if let cell = tableView.dequeueReusableCell(withIdentifier: ResumeTableViewCell.reusableCell, for: indexPath) as? ResumeTableViewCell, let data = interactor?.data {
                 cell.overviewTextView.text = data.overview
+                cell.title.text = data.title
+                cell.data.text = "\(data.voteAverage) * \(data.releaseDate) * \(data.popularity)"
                 return cell
             }
             return UITableViewCell()
@@ -173,8 +177,6 @@ extension MovieDetailPresenter: UITableViewDataSource {
 extension MovieDetailPresenter: UITableViewDelegate {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
-        case 0:
-            return "Resumen:"
         case 1:
             return "Reparto de actores:"
         case 2:
@@ -184,7 +186,7 @@ extension MovieDetailPresenter: UITableViewDelegate {
         case 4:
             return "Reseñas de Pelicula:"
         default:
-            return "Peliculas Similares"
+            return ""
         }
     }
 }

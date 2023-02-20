@@ -8,7 +8,7 @@
 import UIKit
 
 final class MainPresenter: NSObject {
-    weak var view: MainViewProtocol?
+    var view: MainViewProtocol?
     var interactor: MainInteractorInputProtocol?
     
     private func registerTableViewCells(tableView: UITableView) {
@@ -46,6 +46,12 @@ final class MainPresenter: NSObject {
         interactor?.getMoviesData(from: .popular)
         interactor?.getMoviesData(from: .topRated)
         interactor?.getMoviesData(from: .upcoming)
+        
+        
+        DispatchQueue.main.async {
+            self.view?.reloadData()
+        }
+        
     }
     
     deinit {
@@ -97,26 +103,9 @@ extension MainPresenter: MainInteractorOutputProtocol{
     }
 }
 
-extension MainPresenter: UITableViewDataSource, UITableViewDelegate {
+extension MainPresenter: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 0:
-            return "Tendencia:"
-        case 1:
-            return "En cines:"
-        case 2:
-            return "Popular:"
-        case 3:
-            return "Mejor valoradas: "
-        case 4:
-            return "Proximamente: "
-        default:
-            return "not Found"
-        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -125,47 +114,27 @@ extension MainPresenter: UITableViewDataSource, UITableViewDelegate {
             switch indexPath.section {
             case 0:
                 if let dataMovies = interactor?.movieApiData.getArrayDataMovie?[.trending] as? Movies {
-                    UIView.fillSkeletons(onView: cell)
                     cell.data = dataMovies
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
-                        UIView.removeSkeletons(onView: cell)
-                    }
                 }
                 return cell
             case 1:
                 if let dataMovies = interactor?.movieApiData.getArrayDataMovie?[.nowPlaying] as? Movies {
-                    UIView.fillSkeletons(onView: cell)
                     cell.data = dataMovies
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
-                        UIView.removeSkeletons(onView: cell)
-                    }
                 }
                 return cell
             case 2:
                 if let dataMovies = interactor?.movieApiData.getArrayDataMovie?[.popular] as? Movies {
-                    UIView.fillSkeletons(onView: cell)
                     cell.data = dataMovies
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
-                        UIView.removeSkeletons(onView: cell)
-                    }
                 }
                 return cell
             case 3:
                 if let dataMovies = interactor?.movieApiData.getArrayDataMovie?[.topRated] as? Movies {
-                    UIView.fillSkeletons(onView: cell)
                     cell.data = dataMovies
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
-                        UIView.removeSkeletons(onView: cell)
-                    }
                 }
                 return cell
             case 4:
                 if let dataMovies = interactor?.movieApiData.getArrayDataMovie?[.upcoming] as? Movies {
-                    UIView.fillSkeletons(onView: cell)
                     cell.data = dataMovies
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
-                        UIView.removeSkeletons(onView: cell)
-                    }
                 }
                 return cell
             default:
@@ -178,10 +147,33 @@ extension MainPresenter: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 5
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let dataMovies = interactor?.movieApiData.getDataMovies as? Movies {
-            goToMovieDetail(data: dataMovies.results[indexPath.row])
+}
+
+extension MainPresenter: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 30))
+        let label = UILabel()
+        label.frame = CGRect.init(x: 5, y: 5, width: headerView.frame.width-10, height: headerView.frame.height-10)
+        switch section {
+        case 0:
+            label.text =  "Tendencia:"
+        case 1:
+            label.text =  "En cines:"
+        case 2:
+            label.text =  "Popular:"
+        case 3:
+            label.text =  "Mejor valoradas: "
+        case 4:
+            label.text =  "Proximamente: "
+        default:
+            label.text =  ""
         }
+        label.font = .boldSystemFont(ofSize: 20)
+        
+        headerView.addSubview(label)
+        
+        return headerView
     }
+    
+    
 }

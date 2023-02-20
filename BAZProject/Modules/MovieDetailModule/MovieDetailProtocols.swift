@@ -10,7 +10,6 @@ import UIKit
 protocol MovieDetailViewProtocol: AnyObject {
     // Presenter -> View
     var presenter: MovieDetailPresenterProtocol? { get set }
-    var poster: UIImageView! { get set }
     
     func reloadData()
 }

@@ -9,5 +9,7 @@ import UIKit
 
 final class ResumeTableViewCell: UITableViewCell {
     static let reusableCell = String(describing: ResumeTableViewCell.self)
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var data: UILabel!
     @IBOutlet weak var overviewTextView: UILabel!
 }

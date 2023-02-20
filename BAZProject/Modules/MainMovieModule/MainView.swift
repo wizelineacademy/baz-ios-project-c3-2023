@@ -18,7 +18,7 @@ final class MainView: UIViewController, MainViewProtocol {
         self.tableView.dataSource = presenter?.getTableViewDataSource()
         self.tableView.delegate = presenter?.getTableViewDelegate()
         presenter?.viewDidLoad(tableView: tableView)
-        self.title = "Main"
+        self.title = "Principal"
     }
     
     @IBAction func goToSeachView() {

@@ -11,8 +11,8 @@ final class MovieDetailView: UIViewController {
     @IBOutlet weak var poster: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var closeView: UIView!
-    @IBOutlet weak var posterView: UIView!
     @IBOutlet weak var favoriteView: UIView!
+    @IBOutlet weak var playVideo: UIButton!
     
     var presenter: MovieDetailPresenterProtocol?
     
@@ -21,11 +21,11 @@ final class MovieDetailView: UIViewController {
         presenter?.viewDidLoad(poster: &poster, tableView: tableView)
         getDelegates()
         setupUI()
+        playVideo.setTitle("", for: .normal)
     }
     
     private func setupUI() {
         closeView.makeRound(divide: 2)
-        posterView.makeRound(divide: 100)
         favoriteView.makeRound(divide: 2)
     }
     

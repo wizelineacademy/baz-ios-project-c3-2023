@@ -37,18 +37,15 @@ extension CastTableViewCell: UICollectionViewDataSource, UICollectionViewDelegat
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GenericCollectionViewCell.reusableIdentifier,
                                                          for: indexPath) as? GenericCollectionViewCell,
-                                                         let data = data as? Credit {
-            
-            DispatchQueue.main.async {
-                cell.title.text = data.cast[indexPath.row].name
-                cell.secondTitle.text = data.cast[indexPath.row].character
-                if let image = data.cast[indexPath.row].profilePath {
-                    MovieAPI.getImage(from: image, handler: { imagen in
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                            cell.imageMovie.image = imagen
-                        }
-                    })
-                }
+           let data = data as? Credit {
+            cell.title.text = data.cast[indexPath.row].name
+            cell.secondTitle.text = data.cast[indexPath.row].character
+            if let image = data.cast[indexPath.row].profilePath {
+                MovieAPI.getImage(from: image, handler: { imagen in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                        cell.imageMovie.image = imagen
+                    }
+                })
             }
             
             return cell
