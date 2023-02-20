@@ -14,6 +14,28 @@ enum LocalizedConstants {
     static let commonLayerShadowOffset: CGSize = CGSize(width: 0, height: 1)
     static let commonLayerShadowOpacity: Float = 0.3
     static let commonLayerCornerRadius: CGFloat = 10
+    static let commonAnimationDuration: CGFloat = 1.5
+    static let commonRotationAnimationDuration: CGFloat = 1.0
+    static let commonRotationToValue: NSNumber = NSNumber(value: Double.pi * 2)
+    static let commonToValueAnimation: CGFloat = 1.0
+    static let commonPulseAnimationFromValue: CGFloat = 0.7
+    static let commonScaleAnimationFromValue: CGFloat = 0.95
+    static let commonTagView: Int = 2104082
+    static let commonDarkGrayColor: UIColor = .init(red: 214, green: 215, blue: 217)
+    static let commonLightGrayColor: UIColor = .init(red: 241, green: 243, blue: 242)
+    static let commonLayerStartPoint: CGPoint = CGPoint(x: 0.0, y: 1.0)
+    static let commonLayerEndPoint: CGPoint = CGPoint(x: 0.0, y: 1.0)
+    static let commonGradientLayerLocations: [NSNumber] = [0.0, 0.5, 1.0]
+    static let commonAnimationTimeInterval: CFTimeInterval = 0.9
+    static let commonAnimationFromValue: [Float] = [-1.0, -0.5, 0.0]
+    static let commonAnimationToValue: [Float] = [1.0, 1.5, 2.0]
+    static let commonSkeletonTransparency: CGFloat = 0.5
+    static let commonVelocity: CFTimeInterval = 1
+    static let commonIncrementNumber: Int = 1
+    
+    // MARK: - UIColor
+    static let uiColorAlpha: Float = 1.0
+    static let uiColorValueTotalRGB: CGFloat = 255
 
     // MARK: - LaunchScreen
     static let launchScreenDivisorNumer: CGFloat = 4.0

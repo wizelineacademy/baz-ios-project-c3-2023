@@ -1,0 +1,75 @@
+//  StarRatedViewController.swift
+//  BAZProject
+//
+//  Created by Gerardo Bautista Castañeda on 19/02/23.
+//  Copyright © 2023 ___ORGANIZATIONNAME___. All rights reserved.
+//
+
+import UIKit
+
+final class StarRatedViewController: UIViewController {
+    static let identifier: String = .starRatedXibIdentifier
+    static func nib() -> UINib {
+        return UINib(nibName: identifier, bundle: nil)
+    }
+    
+    @IBOutlet weak var starsStackContainer: UIStackView!
+    
+    // MARK: - Private properties
+    private var selectedRate: Int = 0
+    private var numberStars: Int = 0
+    
+    // MARK: - Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupView()
+    }
+    
+    func setData(numberStars: Int) {
+        self.numberStars = numberStars
+        if numberStars > selectedRate {
+            createStars()
+        }
+    }
+
+    // MARK: - Private methods
+    private func setupView() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didSelectRate))
+        starsStackContainer.addGestureRecognizer(tapGesture)
+    }
+    
+    private func createStars() {
+        for index in 1...numberStars {
+            let star = makeStarIcon()
+            star.tag = index
+            starsStackContainer.addArrangedSubview(star)
+        }
+    }
+    
+    private func makeStarIcon() -> UIImageView {
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "icon_unfilled_star"), highlightedImage: #imageLiteral(resourceName: "icon_filled_star"))
+        imageView.contentMode = .scaleAspectFit
+        imageView.isUserInteractionEnabled = true
+        return imageView
+    }
+    
+    @objc private func didSelectRate(gesture: UITapGestureRecognizer) {
+        let location = gesture.location(in: starsStackContainer)
+        let starWidth = starsStackContainer.bounds.width / CGFloat(numberStars)
+        let rate = Int(location.x / starWidth) + LocalizedConstants.commonIncrementNumber
+        
+        if rate != self.selectedRate {
+            self.selectedRate = rate
+        }
+        changeStateStarRate()
+    }
+    
+    private func changeStateStarRate() {
+        starsStackContainer.arrangedSubviews.forEach { subview in
+            guard let starImageView = subview as? UIImageView else {
+                return
+            }
+            starImageView.isHighlighted = starImageView.tag <= selectedRate
+        }
+    }
+}

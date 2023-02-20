@@ -21,52 +21,34 @@ extension UIView {
     
     func rotate() {
         let rotation : CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
-        rotation.toValue = NSNumber(value: Double.pi * 2)
-        rotation.duration = 1
+        rotation.toValue = LocalizedConstants.commonRotationToValue
+        rotation.duration = LocalizedConstants.commonRotationAnimationDuration
         rotation.isCumulative = true
         rotation.repeatCount = Float.greatestFiniteMagnitude
         layer.add(rotation, forKey: "rotationAnimation")
     }
     
-    func addSkeletonAnimation(transparency: CGFloat = 0.5, velocity: CFTimeInterval = 1, startPoint: CGPoint = CGPoint(x: 0.0, y: 1.0), endPoint: CGPoint = CGPoint(x: 1.0, y: 1.0)) {
+    func addSkeletonAnimation(transparency: CGFloat = LocalizedConstants.commonSkeletonTransparency,
+                              velocity: CFTimeInterval = LocalizedConstants.commonVelocity,
+                              startPoint: CGPoint = LocalizedConstants.commonLayerStartPoint,
+                              endPoint: CGPoint = LocalizedConstants.commonLayerEndPoint) {
         layer.masksToBounds = true
-        let shimmerView = UIView(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height))
+        let shimmerView = UIView(frame: CGRect(x: .zero,
+                                               y: .zero,
+                                               width: self.frame.size.width,
+                                               height: self.frame.size.height))
         shimmerView.backgroundColor = UIColor.lightGray.withAlphaComponent(transparency)
         shimmerView.clipsToBounds = true
-        shimmerView.tag = 2104082
+        shimmerView.tag = LocalizedConstants.commonTagView
         addSubview(shimmerView)
         let gradientLayer = addGradientLayer(startPoint: startPoint, endPoint: endPoint)
         let animation = addAnimation(duration: velocity)
         gradientLayer.add(animation, forKey: animation.keyPath)
     }
     
-    private func addGradientLayer(startPoint: CGPoint = CGPoint(x: 0.0, y: 1.0), endPoint: CGPoint = CGPoint(x: 1.0, y: 1.0)) -> CAGradientLayer {
-        let gradientLayer = CAGradientLayer()
-        let darkGray: CGColor = UIColor(red: 214/255, green: 215/255, blue: 217/255, alpha: 1).cgColor
-        let lightGray: CGColor = UIColor(red: 241/255, green: 243/255, blue: 242/255, alpha: 1).cgColor
-        gradientLayer.frame = self.bounds
-        gradientLayer.startPoint = startPoint
-        gradientLayer.endPoint = endPoint
-        gradientLayer.colors = [darkGray, lightGray, darkGray]
-        gradientLayer.locations = [0.0, 0.5, 1.0]
-        for subview in self.subviews where subview.tag == 2104082 {
-            subview.layer.addSublayer(gradientLayer)
-        }
-        return gradientLayer
-    }
-    
-    private func addAnimation(duration: CFTimeInterval = 0.9) -> CABasicAnimation {
-        let animation = CABasicAnimation(keyPath: "locations")
-        animation.fromValue = [-1.0, -0.5, 0.0]
-        animation.toValue = [1.0, 1.5, 2.0]
-        animation.repeatCount = .infinity
-        animation.duration = duration
-        return animation
-    }
-    
     func removeSkeletonAnimation() {
         guaranteeMainThread {
-            for subview in self.subviews where subview.tag == 2104082 {
+            for subview in self.subviews where subview.tag == LocalizedConstants.commonTagView {
                 subview.removeFromSuperview()
                 subview.layer.mask = nil
             }
@@ -95,5 +77,51 @@ extension UIView {
         self.layer.shadowOffset = LocalizedConstants.commonLayerShadowOffset
         self.layer.shadowOpacity = LocalizedConstants.commonLayerShadowOpacity
         self.layer.cornerRadius = LocalizedConstants.commonLayerCornerRadius
+    }
+    
+    func addPulsationAnimation() {
+        let pulseAnimation = CABasicAnimation(keyPath: "opacity")
+        pulseAnimation.duration = LocalizedConstants.commonAnimationDuration
+        pulseAnimation.fromValue = LocalizedConstants.commonPulseAnimationFromValue
+        pulseAnimation.toValue = LocalizedConstants.commonToValueAnimation
+        pulseAnimation.timingFunction = CAMediaTimingFunction(name: .easeOut)
+        pulseAnimation.autoreverses = true
+        pulseAnimation.repeatCount = .greatestFiniteMagnitude
+        self.layer.add(pulseAnimation, forKey: nil)
+        
+        let scaleAnimation = CABasicAnimation(keyPath: "transform.scale")
+        scaleAnimation.duration = LocalizedConstants.commonAnimationDuration
+        scaleAnimation.fromValue = LocalizedConstants.commonScaleAnimationFromValue
+        scaleAnimation.toValue = LocalizedConstants.commonToValueAnimation
+        scaleAnimation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+        scaleAnimation.autoreverses = true
+        scaleAnimation.repeatCount = .greatestFiniteMagnitude
+        self.layer.add(scaleAnimation, forKey: nil)
+    }
+    
+    // MARK: - Private methods
+    private func addGradientLayer(startPoint: CGPoint = LocalizedConstants.commonLayerStartPoint,
+                                  endPoint: CGPoint = LocalizedConstants.commonLayerEndPoint) -> CAGradientLayer {
+        let gradientLayer = CAGradientLayer()
+        let darkGray: CGColor = LocalizedConstants.commonDarkGrayColor.cgColor
+        let lightGray: CGColor = LocalizedConstants.commonLightGrayColor.cgColor
+        gradientLayer.frame = self.bounds
+        gradientLayer.startPoint = startPoint
+        gradientLayer.endPoint = endPoint
+        gradientLayer.colors = [darkGray, lightGray, darkGray]
+        gradientLayer.locations = LocalizedConstants.commonGradientLayerLocations
+        for subview in self.subviews where subview.tag == LocalizedConstants.commonTagView {
+            subview.layer.addSublayer(gradientLayer)
+        }
+        return gradientLayer
+    }
+    
+    private func addAnimation(duration: CFTimeInterval = LocalizedConstants.commonAnimationTimeInterval) -> CABasicAnimation {
+        let animation = CABasicAnimation(keyPath: "locations")
+        animation.fromValue = LocalizedConstants.commonAnimationFromValue
+        animation.toValue = LocalizedConstants.commonAnimationToValue
+        animation.repeatCount = .infinity
+        animation.duration = duration
+        return animation
     }
 }

@@ -54,4 +54,7 @@ extension String {
     
     // MARK: - DetailView
     static let detailXibIdentifier = "DetailView"
+    
+    // MARK: StarRated
+    static let starRatedXibIdentifier = "StarRatedView"
 }
