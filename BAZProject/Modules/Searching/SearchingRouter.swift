@@ -5,4 +5,30 @@
 //  Created by 1029187 on 16/02/23.
 //
 
-import Foundation
+import UIKit
+
+class SearchingRouter: SearchingRouterProtocol {
+
+    class func createSearchingModule() -> UIViewController {
+        let view = mainStoryboard.instantiateViewController(withIdentifier: "SearchingViewController") as! SearchingViewController
+        let presenter: SearchingPresenterProtocol & SearchingInteractorOutputProtocol = SearchingPresenter()
+        let interactor: SearchingInteractorInputProtocol & SearchingRemoteDataManagerOutputProtocol = SearchingInteractor()
+        let remoteDataManager: SearchingRemoteDataManagerInputProtocol = SearchingRemoteDataManager(service: ServiceAPI(session: URLSession.shared))
+        let router: SearchingRouterProtocol = SearchingRouter()
+            
+        view.presenter = presenter
+        presenter.view = view
+        presenter.router = router
+        presenter.interactor = interactor
+        interactor.presenter = presenter
+        interactor.remoteDatamanager = remoteDataManager
+        remoteDataManager.remoteRequestHandler = interactor
+            
+        return view
+    }
+    
+    static var mainStoryboard: UIStoryboard {
+        return UIStoryboard(name: "Main", bundle: Bundle.main)
+    }
+    
+}
