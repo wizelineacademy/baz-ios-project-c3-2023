@@ -88,14 +88,14 @@ class MovieRequest: NSObject {
     static let apiKey: String = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
     
     static func getURL(endpoint: Endpoint) -> URL? {
-        let endpoint = endpoint.rawValue+"?api_key=\(apiKey)"
-        let requestURL: String = baseURL+endpoint+apiKey
+        let endpoint = endpoint.rawValue
+        let requestURL: String = baseURL+endpoint+"?api_key=\(apiKey)"
         return URL(string: requestURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")
     }
     
     static func searchMovie(search query: String, allowAdultResults: Bool = false) -> URL? {
         let endpoint = Endpoint.searchMovies.rawValue+"?api_key=\(apiKey)"
-        let requestURL: String = endpoint+"&query=\(query)&include_adult=\(allowAdultResults)"
+        let requestURL: String = baseURL+endpoint+"&query=\(query)&include_adult=\(allowAdultResults)"
         return URL(string: requestURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")
     }
 }
