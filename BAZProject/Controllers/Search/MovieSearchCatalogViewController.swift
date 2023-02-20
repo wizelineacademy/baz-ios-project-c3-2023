@@ -12,6 +12,8 @@ class MovieSearchCatalogViewController: UIViewController {
     @IBOutlet weak var searchMovieCollection: UICollectionView!
     @IBOutlet weak var resultText: UILabel!
     
+    let resultTextTitle = NSLocalizedString("MSCVC.resultText", comment: "texTitle")
+    let resultTextComplement = NSLocalizedString("MSCVC.resultTextComplement", comment: "textComplement")
     var keywordToSearch: MovieKeyword?
     var movieApi = MovieAPI()
     var moviesToShow: [Movie]? {
@@ -64,7 +66,7 @@ class MovieSearchCatalogViewController: UIViewController {
         resultText.isHidden = false
         searchMovieCollection.isHidden = true
         if let keyword = keywordToSearch?.name {
-            resultText.text = "No encontramos nada relacionado con \n\"\(keyword)\".\nRecuerda que puedes buscar por palabra clave o título"
+            resultText.text = "\(resultTextTitle)" + "\n\"\(keyword)\"." + "\(resultTextComplement)"
         }
     }
     
