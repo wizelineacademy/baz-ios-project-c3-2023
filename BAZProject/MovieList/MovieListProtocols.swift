@@ -29,7 +29,7 @@ protocol MLViewInputProtocol: UIViewController {
 protocol MLInteractorInputProtocol {
     var output: MLInteractorOutputProtocol? { get set }
     
-    func fetchData()
+    func fetchMovies()
 }
 
 protocol MLInteractorOutputProtocol: AnyObject {

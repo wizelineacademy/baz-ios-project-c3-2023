@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+/** MD means Movie Detail */
 final class MDInteractor {
     weak var output: MDInteractorOutputProtocol?
     private let movie: Movie
@@ -18,7 +18,7 @@ final class MDInteractor {
 
 extension MDInteractor: MDInteractorInputProtocol {
     /** Call the interactor output method to present the received movie */
-    func fetchData() {
+    func fetchMovieDetail() {
         self.output?.present(movie)
     }
 }

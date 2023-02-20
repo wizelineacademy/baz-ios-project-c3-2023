@@ -5,7 +5,7 @@
 //  Created by Luis Alberto Perez Villar on 03/02/23.
 //
 
-import UIKit
+import Foundation
 
 final class MLPresenter: MLPresenterProtocol {
     weak var view: MLViewInputProtocol?
@@ -22,7 +22,7 @@ final class MLPresenter: MLPresenterProtocol {
 extension MLPresenter: MLViewOutputProtocol {
     /** Call an interactor method to fetch the needed data */
     func didLoadView() {
-        self.interactor.fetchData()
+        self.interactor.fetchMovies()
     }
     
     /**
