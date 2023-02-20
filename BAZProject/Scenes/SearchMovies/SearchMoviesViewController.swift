@@ -44,7 +44,7 @@ class SearchMoviesViewController: UIViewController {
         addSearchViewInNavigation()
         configureMoviesCollectionView()
         hideKeyboardWhenTappedAround()
-        interactor?.searchMoviesBy(request: SearchMovies.FetchMovies.Request(byKeyboards: "Pokemon"))
+        interactor?.searchMoviesBy(request: SearchMovies.FetchMovies.Request(byKeyboards: "pokemon"))
     }
 
     // MARK: Setup
@@ -71,7 +71,6 @@ class SearchMoviesViewController: UIViewController {
     }
     
     private func configureMoviesCollectionView() {
-        collectionView.backgroundColor = .brown
         manager.setupCollection(collection: collectionView)
         
         moviesSectionView.addSubview(collectionView)

@@ -13,9 +13,16 @@ protocol CarruselCollectionDelegate: AnyObject {
 }
 
 class CarruselCollectionView: UICollectionView {
+    
+    let direction: ScrollDirection
+    
     init(direction: ScrollDirection) {
+        self.direction = direction
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = direction
+        if direction == .vertical {
+            layout.minimumLineSpacing = 15
+        }
         super.init(frame: .zero, collectionViewLayout: layout)
         self.translatesAutoresizingMaskIntoConstraints = false
     }

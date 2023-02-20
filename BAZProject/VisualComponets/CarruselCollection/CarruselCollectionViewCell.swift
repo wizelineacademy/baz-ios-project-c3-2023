@@ -17,6 +17,7 @@ class CarruselCollectionViewCell: UICollectionViewCell {
         view.image = UIImage(named: "poster")
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentMode = .scaleAspectFill
+        view.clipsToBounds = true
         return view
     }()
     

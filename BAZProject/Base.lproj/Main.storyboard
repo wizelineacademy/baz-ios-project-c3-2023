@@ -40,17 +40,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tS0-NZ-EV1">
-                                <rect key="frame" x="0.0" y="92" width="414" height="804"/>
+                                <rect key="frame" x="10" y="102" width="394" height="784"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="cPD-i8-PeD"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="cPD-i8-PeD" firstAttribute="trailing" secondItem="tS0-NZ-EV1" secondAttribute="trailing" id="3ky-gQ-m8k"/>
-                            <constraint firstItem="tS0-NZ-EV1" firstAttribute="leading" secondItem="cPD-i8-PeD" secondAttribute="leading" id="Txy-Yd-0I2"/>
-                            <constraint firstAttribute="bottom" secondItem="tS0-NZ-EV1" secondAttribute="bottom" id="ipE-Zt-QeQ"/>
-                            <constraint firstItem="tS0-NZ-EV1" firstAttribute="top" secondItem="cPD-i8-PeD" secondAttribute="top" id="mwZ-Jz-xFP"/>
+                            <constraint firstItem="cPD-i8-PeD" firstAttribute="trailing" secondItem="tS0-NZ-EV1" secondAttribute="trailing" constant="10" id="3ky-gQ-m8k"/>
+                            <constraint firstItem="tS0-NZ-EV1" firstAttribute="leading" secondItem="cPD-i8-PeD" secondAttribute="leading" constant="10" id="Txy-Yd-0I2"/>
+                            <constraint firstAttribute="bottom" secondItem="tS0-NZ-EV1" secondAttribute="bottom" constant="10" id="ipE-Zt-QeQ"/>
+                            <constraint firstItem="tS0-NZ-EV1" firstAttribute="top" secondItem="cPD-i8-PeD" secondAttribute="top" constant="10" id="mwZ-Jz-xFP"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="HcT-B3-VKb"/>

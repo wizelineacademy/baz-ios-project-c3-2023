@@ -56,8 +56,11 @@ class CarruselCollectionManager: NSObject, CollectionManager {
         guard let collection = collection else {
             return .zero
         }
+        if collection.direction == .vertical {
+            return CGSize(width: (collection.bounds.width / 3) - 10, height: collection.bounds.height * 0.25)
+        }
         
-        return CGSize(width: collection.bounds.width / 3, height: collection.bounds.height * 0.9)
+        return CGSize(width: collection.bounds.width / 3, height: collection.bounds.height)
      }
     
 }
