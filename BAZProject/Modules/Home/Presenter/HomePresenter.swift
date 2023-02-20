@@ -15,13 +15,13 @@ class HomePresenter {
 }
 
 extension HomePresenter: HomePresenterProtocol {
-    func willFetchHome() {
-        interactor?.fetchHome()
+    func willFetchMovieTopRated() {
+        interactor?.fetchMovieTopRated()
     }
 }
 
 extension HomePresenter: HomeInteractorOutputProtocol {
-    func onReceivedHome(_ result: HomeResult) {
+    func onReceivedMovieTopRated(_ result: [MovieTopRatedResult]) {
         view?.setErrorGettingData(false)
         view?.updateView(data: result)
         view?.stopLoading()

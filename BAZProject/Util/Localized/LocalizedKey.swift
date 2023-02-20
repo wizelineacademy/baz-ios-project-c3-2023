@@ -15,6 +15,7 @@ extension String {
     static let languageTheMovieDb = "es"
     static let regionTheMovieDb = "MX"
     static let apiKeyEndPointTrending = "/trending"
+    static let apiKeyEndPointMovieTopRated = "/movie/top_rated"
     
     // MARK: - ErrorPageView
     static let errorPageXibIdentifier = "ErrorPageView"

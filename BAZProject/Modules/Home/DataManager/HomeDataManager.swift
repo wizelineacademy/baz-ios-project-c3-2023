@@ -18,13 +18,13 @@ final class HomeDataManager {
 
 extension HomeDataManager: HomeDataManagerInputProtocol {
 
-    typealias ResponseProvider = Result<HomeResult, Error>
+    typealias ResponseProvider = Result<MovieTopRatedResponse, Error>
 
-    func requestHome(_ urlString: String) {
+    func requestMovieTopRated(_ urlString: String) {
         providerNetworking.sendRequest(RequestType(strUrl: urlString, method: .GET).getRequest()) { [weak self] (result: ResponseProvider) in
             switch result {
             case .success(let data):
-                self?.interactor?.handleGetHome(data)
+                self?.interactor?.handleGetMovieTopRated(data.results ?? [])
             case .failure(let error):
                 self?.interactor?.handleErrorService(error)
             }

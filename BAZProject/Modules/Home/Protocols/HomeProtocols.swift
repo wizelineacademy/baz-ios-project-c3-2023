@@ -11,7 +11,7 @@ import UIKit
 protocol HomeViewProtocol: AnyObject {
     var presenter: HomePresenterProtocol? { get set }
 
-    func updateView(data: HomeResult)
+    func updateView(data: [MovieTopRatedResult])
     func stopLoading()
     func setErrorGettingData(_ status: Bool)
 }
@@ -22,12 +22,12 @@ protocol HomePresenterProtocol: AnyObject {
     var view: HomeViewProtocol? { get set }
     var interactor: HomeInteractorInputProtocol? { get set }
     
-    func willFetchHome()
+    func willFetchMovieTopRated()
 }
 
 // MARK: Interactor Input (Presenter -> Interactor)
 protocol HomeInteractorOutputProtocol: AnyObject {
-    func onReceivedHome(_ result: HomeResult)
+    func onReceivedMovieTopRated(_ result: [MovieTopRatedResult])
     func showViewError(_ error: Error)
 }
 
@@ -35,22 +35,22 @@ protocol HomeInteractorOutputProtocol: AnyObject {
 protocol HomeInteractorInputProtocol: AnyObject {
     var presenter: HomeInteractorOutputProtocol? { get set }
     var dataManager: HomeDataManagerInputProtocol? { get set }
-    func fetchHome()
+    func fetchMovieTopRated()
 }
 
 // MARK: Interactor Input (Interactor -> DataManager)
 protocol HomeDataManagerInputProtocol: AnyObject {
     var interactor: HomeDataManagerOutputProtocol? { get set }
     
-    /// This method will request for Home.
+    /// This method will request for MovieTopRated.
     /// - Parameters:
-    ///   - urlString: The url which returns Home.
-    func requestHome(_ urlString: String)
+    ///   - urlString: The url which returns [MovieTopRatedResult].
+    func requestMovieTopRated(_ urlString: String)
 }
 
 // MARK: Interactor Output (DataManager -> Interactor)
 protocol HomeDataManagerOutputProtocol: AnyObject {
-    func handleGetHome(_ result: HomeResult)
+    func handleGetMovieTopRated(_ result: [MovieTopRatedResult])
     func handleErrorService(_ error: Error)
 }
 

@@ -18,7 +18,7 @@ final class HomeViewController: UIViewController {
     
     // MARK: - Protocol properties
     var presenter: HomePresenterProtocol?
-    var dataResult: HomeResult?
+    var movieTopRated: [MovieTopRatedResult]?
     
     // MARK: - Private properties
     private var errorGetData: Bool = false
@@ -59,14 +59,13 @@ final class HomeViewController: UIViewController {
     }
     
     private func getData() {
-        presenter?.willFetchHome()
+        presenter?.willFetchMovieTopRated()
     }
 }
 
 extension HomeViewController: HomeViewProtocol {
-    func updateView(data: HomeResult) {
-        // TODO: implement logic to update view, example:
-        // dataType = data
+    func updateView(data: [MovieTopRatedResult]) {
+        movieTopRated = data
     }
     
     func stopLoading() {

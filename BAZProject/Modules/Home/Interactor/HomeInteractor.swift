@@ -14,16 +14,14 @@ final class HomeInteractor {
 }
 
 extension HomeInteractor: HomeInteractorInputProtocol {
-    func fetchHome() {
-        // TODO: add string url
-        let urlString: String = "https://google.com"
-        dataManager?.requestHome(urlString)
+    func fetchMovieTopRated() {
+        dataManager?.requestMovieTopRated(Endpoint.topRated.urlString)
     }
 }
 
-extension HomeInteractor: HomeDataManagerOutputProtocol {
-    func handleGetHome(_ result: HomeResult) {
-        presenter?.onReceivedHome(result)
+extension HomeInteractor: HomeDataManagerOutputProtocol {    
+    func handleGetMovieTopRated(_ result: [MovieTopRatedResult]) {
+        presenter?.onReceivedMovieTopRated(result)
     }
     
     func handleErrorService(_ error: Error) {

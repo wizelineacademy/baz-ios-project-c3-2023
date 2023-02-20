@@ -29,6 +29,7 @@ enum Endpoint {
     case img(idImage: String, sizeImage: SizeImageType)
     case trending(mediaType: MediaType, timeWindow: TimeWindowType)
     case details(mediaType: MediaType, idMedia: Int)
+    case topRated
 }
 
 extension Endpoint {
@@ -41,6 +42,8 @@ extension Endpoint {
             return BaseUrl.apiWithEndPoint(endPoint: url).url
         case .details(mediaType: let media, idMedia: let id):
             return "\(BaseUrl.api.url)/\(media)/\(id)?api_key=\(String.apiKeyTheMovieDb)&language=\(String.languageTheMovieDb)&region=\(String.regionTheMovieDb)&append_to_response=images&include_image_language=es,null"
+        case .topRated:
+            return BaseUrl.apiWithEndPoint(endPoint: .apiKeyEndPointMovieTopRated).url
         }
     }
 }
