@@ -6,3 +6,19 @@
 //
 
 import Foundation
+
+class SearchingInteractor: SearchingInteractorInputProtocol, SearchingRemoteDataManagerOutputProtocol {
+    var presenter: SearchingInteractorOutputProtocol?
+    
+    var remoteDatamanager: SearchingRemoteDataManagerInputProtocol?
+    
+    func fetchSearchResults(with query: String) {
+        
+    }
+    
+    func searchResultsFecthed(searchResults: [SearchResult]) {
+        
+    }
+    
+    
+}
