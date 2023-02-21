@@ -41,7 +41,7 @@ extension SearchingViewController {
 
 extension SearchingViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        self.presenter?.nofitySearchTextChanged()
+        self.presenter?.notifyTextChanged(with: searchText)
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {

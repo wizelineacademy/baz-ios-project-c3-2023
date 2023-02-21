@@ -25,15 +25,17 @@ protocol SearchingPresenterProtocol: AnyObject {
     var interactor: SearchingInteractorInputProtocol? { get set }
     var router: SearchingRouterProtocol? { get set }
     var searchResults: [SearchResult]? { get set }
+    var keywords: [Keyword]? { get set }
     
-    func notifyViewLoaded()
     func searchMovies(with query: String)
+    func notifyTextChanged(with input: String)
 }
 
 protocol SearchingInteractorOutputProtocol: AnyObject {
     // INTERACTOR -> PRESENTER
     
     func searchResultsFecthed(searchResults: [SearchResult])
+    func keywordsFetched(keywords: [Keyword])
 }
 
 protocol SearchingInteractorInputProtocol: AnyObject {
@@ -42,6 +44,7 @@ protocol SearchingInteractorInputProtocol: AnyObject {
     var remoteDatamanager: SearchingRemoteDataManagerInputProtocol? { get set }
     
     func fetchSearchResults(with query: String)
+    func fetchKeywords(with input: String)
 }
 
 protocol SearchingRemoteDataManagerInputProtocol: AnyObject {
@@ -49,10 +52,12 @@ protocol SearchingRemoteDataManagerInputProtocol: AnyObject {
     var remoteRequestHandler: SearchingRemoteDataManagerOutputProtocol? { get set }
     
     func fetchSearchResults(with query: String)
+    func fetchKeywords(with input: String)
 }
 
 protocol SearchingRemoteDataManagerOutputProtocol: AnyObject {
     // REMOTEDATAMANAGER -> INTERACTOR
     
     func searchResultsFecthed(searchResults: [SearchResult])
+    func keywordsFetched(keywords: [Keyword])
 }

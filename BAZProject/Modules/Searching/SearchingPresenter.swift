@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SearchingPresenter: SearchingPresenterProtocol, SearchingInteractorOutputProtocol {
+class SearchingPresenter  {
     
     var view: SearchingViewProtocol?
     
@@ -16,18 +16,28 @@ class SearchingPresenter: SearchingPresenterProtocol, SearchingInteractorOutputP
     var router: SearchingRouterProtocol?
     
     var searchResults: [SearchResult]?
+    var keywords: [Keyword]?
     
-    func notifyViewLoaded() {
-        
-    }
-    
+}
+
+extension SearchingPresenter: SearchingPresenterProtocol {
     func searchMovies(with query: String) {
-        
+        self.interactor?.fetchSearchResults(with: query)
     }
     
+    func notifyTextChanged(with input: String) {
+        self.interactor?.fetchKeywords(with: input)
+    }
+}
+
+extension SearchingPresenter: SearchingInteractorOutputProtocol {
     func searchResultsFecthed(searchResults: [SearchResult]) {
-        
+        self.searchResults = searchResults
+        self.view?.reloadData()
     }
     
-    
+    func keywordsFetched(keywords: [Keyword]) {
+        self.keywords = keywords
+        self.view?.reloadData()
+    }
 }

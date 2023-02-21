@@ -98,6 +98,12 @@ class MovieRequest: NSObject {
         let requestURL: String = baseURL+endpoint+"&query=\(query)&include_adult=\(allowAdultResults)"
         return URL(string: requestURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")
     }
+    
+    static func searchKeywords(with query: String) -> URL? {
+        let endpoint = Endpoint.searchKeyword.rawValue+"?api_key=\(apiKey)"
+        let requestURL: String = baseURL+endpoint+"&query=\(query)"
+        return URL(string: requestURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")
+    }
 }
 
 //MARK: Enum para las diferentes URIs
@@ -106,6 +112,7 @@ enum Endpoint: String {
     case trendingMovies = "trending/movie/day"
     case topRatedMovies = "movie/top_rated"
     case searchMovies = "search/movie"
+    case searchKeyword = "search/keyword"
 }
 
 struct Response<T: Codable>: Codable {
