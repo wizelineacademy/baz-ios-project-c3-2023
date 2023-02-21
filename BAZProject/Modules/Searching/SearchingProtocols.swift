@@ -27,7 +27,7 @@ protocol SearchingPresenterProtocol: AnyObject {
     var searchResults: [SearchResult]? { get set }
     
     func notifyViewLoaded()
-    func searchMovies(with query: String)
+    func searchMovies(with query: String?)
 }
 
 protocol SearchingInteractorOutputProtocol: AnyObject {

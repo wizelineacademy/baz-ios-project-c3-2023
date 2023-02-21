@@ -13,11 +13,11 @@ class SearchingInteractor: SearchingInteractorInputProtocol, SearchingRemoteData
     var remoteDatamanager: SearchingRemoteDataManagerInputProtocol?
     
     func fetchSearchResults(with query: String) {
-        
+        self.remoteDatamanager?.fetchSearchResults(with: query)
     }
     
     func searchResultsFecthed(searchResults: [SearchResult]) {
-        
+        self.presenter?.searchResultsFecthed(searchResults: searchResults)
     }
     
     

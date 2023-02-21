@@ -21,12 +21,15 @@ class SearchingPresenter: SearchingPresenterProtocol, SearchingInteractorOutputP
         
     }
     
-    func searchMovies(with query: String) {
-        
+    func searchMovies(with query: String?) {
+        if let query = query {
+            self.interactor?.fetchSearchResults(with: query)
+        }
     }
     
     func searchResultsFecthed(searchResults: [SearchResult]) {
-        
+        self.searchResults = searchResults
+        self.view?.reloadData()
     }
     
     
