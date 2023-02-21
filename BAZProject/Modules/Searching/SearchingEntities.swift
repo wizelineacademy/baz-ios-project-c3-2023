@@ -18,3 +18,8 @@ struct SearchResult: Codable {
         case posterPath = "poster_path"
     }
 }
+
+struct Keyword: Codable {
+    let id: Int?
+    let name: String?
+}
