@@ -32,26 +32,18 @@ final class TrendingRouter: TrendingRouterProtocol {
     }
     
     func showViewError(_ errorType: ErrorType) {
-        guaranteeMainThread {
-            guard let view = self.view as? UIViewController else { return }
+        guard let view = self.view as? UIViewController else { return }
+        view.guaranteeMainThread {
             let errorPageVC: UIViewController = ErrorPageRouter.createModule(errorType: errorType)
             view.navigationController?.pushViewController(errorPageVC, animated: true)
         }
     }
     
     func showDetail(of detailType: DetailType) {
-        guaranteeMainThread {
-            guard let view = self.view as? UIViewController else { return }
+        guard let view = self.view as? UIViewController else { return }
+        view.guaranteeMainThread {
             let detailView: UIViewController = DetailRouter.createModule(detailType: detailType)
             view.navigationController?.pushViewController(detailView, animated: true)
-        }
-    }
-    
-    private func guaranteeMainThread(_ work: @escaping () -> Void) {
-        if Thread.isMainThread {
-            work()
-        } else {
-            DispatchQueue.main.async(execute: work)
         }
     }
 }

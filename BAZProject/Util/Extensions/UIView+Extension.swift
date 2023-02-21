@@ -55,14 +55,6 @@ extension UIView {
         }
     }
     
-    func guaranteeMainThread(_ work: @escaping () -> Void) {
-        if Thread.isMainThread {
-            work()
-        } else {
-            DispatchQueue.main.async(execute: work)
-        }
-    }
-    
     func saveImageInCache(id: String, image: UIImage) {
         let cache: NSCache = NSCache<NSString, UIImage>()
         cache.setObject(image, forKey: NSString(string: id))
