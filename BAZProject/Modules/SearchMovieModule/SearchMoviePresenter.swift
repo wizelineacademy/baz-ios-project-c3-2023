@@ -10,6 +10,7 @@ import UIKit
 class SearchMoviePresenter: NSObject {
     weak var view: SearchMovieViewProtocol?
     var interceptor: SearchMovieInterceptorInputProtocol?
+    var timer: Timer?
 }
 
 extension SearchMoviePresenter: SearchMoviePresenterProtocol {
@@ -31,7 +32,7 @@ extension SearchMoviePresenter: SearchMoviePresenterProtocol {
         collection.register(cell, forCellWithReuseIdentifier: GenericCollectionViewCell.reusableIdentifier)
     }
     
-    func getKeywordSearch(keyword:String) {
+    func getKeywordSearch(keyword: String) {
         interceptor?.getKeywordSearch(keyword: keyword)
     }
     
@@ -66,10 +67,12 @@ extension SearchMoviePresenter: UICollectionViewDataSource {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GenericCollectionViewCell.reusableIdentifier, for: indexPath) as? GenericCollectionViewCell,
            let dataMovies = interceptor?.movieApiData.getDataMovies as? SearchMovieData {
             UIView.fillSkeletons(onView: cell)
+            
             cell.title.text = dataMovies.results[indexPath.row].title
+            
             DispatchQueue.main.async {
-                MovieAPI.getImage(from: dataMovies.results[indexPath.row].posterPath ?? "", handler: { imagen in
-                    cell.imageMovie.image = imagen
+                MovieAPI.getImage(from: dataMovies.results[indexPath.row].posterPath ?? "", handler: { image in
+                    cell.imageMovie.image = image
                     UIView.removeSkeletons(onView: cell)
                 })
             }
@@ -89,8 +92,12 @@ extension SearchMoviePresenter: UICollectionViewDelegate {
 
 extension SearchMoviePresenter: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-            self?.getKeywordSearch(keyword: searchText)
-        }
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(userDidStopSearching), userInfo: searchText, repeats: false)
+    }
+    
+    @objc func userDidStopSearching(timer: Timer) {
+        guard let searchText = timer.userInfo as? String else { return }
+        getKeywordSearch(keyword: searchText)
     }
 }

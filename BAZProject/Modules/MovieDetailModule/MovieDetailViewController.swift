@@ -10,8 +10,6 @@ import UIKit
 final class MovieDetailView: UIViewController {
     @IBOutlet weak var poster: UIImageView!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var closeView: UIView!
-    @IBOutlet weak var favoriteView: UIView!
     @IBOutlet weak var playVideo: UIButton!
     
     var presenter: MovieDetailPresenterProtocol?
@@ -19,27 +17,25 @@ final class MovieDetailView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.viewDidLoad(poster: &poster, tableView: tableView)
-        getDelegates()
-        setupUI()
+        setDelegates()
+        
         playVideo.setTitle("", for: .normal)
     }
     
-    private func setupUI() {
-        closeView.makeRound(divide: 2)
-        favoriteView.makeRound(divide: 2)
+    func setupUI() {
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().isTranslucent = true
+        let rightButton = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(addFavorite))
+        self.navigationItem.rightBarButtonItem  = rightButton
     }
     
-    private func getDelegates() {
+    private func setDelegates() {
         tableView.delegate = presenter?.getTableViewDelegate()
         tableView.dataSource = presenter?.getTableViewDataSource()
     }
     
-    @IBAction func closeScreen() {
-        dismiss(animated: true)
-    }
-    
-    @IBAction func addFavorite() {
-        debugPrint("addFavorite")
+    @objc func addFavorite() {
         presenter?.saveMovie()
     }
 }

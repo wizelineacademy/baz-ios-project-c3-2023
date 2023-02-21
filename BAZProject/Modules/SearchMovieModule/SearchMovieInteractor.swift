@@ -13,11 +13,9 @@ class SearchMovieInteractor: SearchMovieInterceptorInputProtocol {
     
     func getKeywordSearch(keyword: String) {
         MovieAPI.getApiData(from: .searchMovie, key: keyword) { [weak self] data in
-            do{
-                let movies =  DecodeUtility.decode(SearchMovieData.self, from: data)
-                self?.movieApiData.getDataMovies = movies
-                self?.presenter?.reloadData()
-            }
+            let movies =  DecodeUtility.decode(SearchMovieData.self, from: data)
+            self?.movieApiData.getDataMovies = movies
+            self?.presenter?.reloadData()
         }
     }
 }

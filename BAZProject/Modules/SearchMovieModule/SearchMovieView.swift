@@ -15,11 +15,11 @@ final class SearchMovieView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.viewDidLoad(collection: collectionView)
-        getDelegates()
+        setDelegates()
         self.navigationItem.rightBarButtonItem = presenter?.searchBar(searchBar: makeView.searchBar)
     }
     
-    private func getDelegates() {
+    private func setDelegates() {
         collectionView.dataSource = presenter?.getTableViewDataSource()
         collectionView.delegate = presenter?.getTableViewDelegate()
         makeView.searchBar.delegate = presenter?.getUISearchBarDelegate()

@@ -41,9 +41,9 @@ extension CastTableViewCell: UICollectionViewDataSource, UICollectionViewDelegat
             cell.title.text = data.cast[indexPath.row].name
             cell.secondTitle.text = data.cast[indexPath.row].character
             if let image = data.cast[indexPath.row].profilePath {
-                MovieAPI.getImage(from: image, handler: { imagen in
+                MovieAPI.getImage(from: image, handler: { image in
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                        cell.imageMovie.image = imagen
+                        cell.imageMovie.image = image
                     }
                 })
             }

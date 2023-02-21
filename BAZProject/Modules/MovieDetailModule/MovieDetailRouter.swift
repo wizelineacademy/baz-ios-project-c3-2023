@@ -21,6 +21,7 @@ final class MovieDetailRouter: RouterCreateModuleWithDataProtocol, RouterPresent
             if let data = data as? Movie { interactor.data = data }
             presenter.view = view
             presenter.interactor = interactor
+            
             return view
         }
         return UIViewController()

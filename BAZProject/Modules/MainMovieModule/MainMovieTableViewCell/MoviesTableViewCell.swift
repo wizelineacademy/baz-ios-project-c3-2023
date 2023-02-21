@@ -31,6 +31,20 @@ final class MoviesTableViewCell: UITableViewCell {
         let cell = UINib(nibName: "GenericCollectionViewCell", bundle: nil)
         collectionView.register(cell, forCellWithReuseIdentifier: GenericCollectionViewCell.reusableIdentifier)
     }
+    
+    private func setCollectionCell(cell: GenericCollectionViewCell, indexPath: Int) {
+        UIView.fillSkeletons(onView: cell)
+        if let data = data, let image = data.results[indexPath].posterPath {
+            setImage(cell: cell, image: image)
+        }
+    }
+    
+    private func setImage(cell: GenericCollectionViewCell, image: String) {
+        MovieAPI.getImage(from: image) { image in
+            UIView.removeSkeletons(onView: cell)
+            cell.imageMovie.image = image
+        }
+    }
 }
 
 extension MoviesTableViewCell: UICollectionViewDataSource {
@@ -38,15 +52,7 @@ extension MoviesTableViewCell: UICollectionViewDataSource {
         
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GenericCollectionViewCell.reusableIdentifier, for: indexPath) as? GenericCollectionViewCell{
             
-            UIView.fillSkeletons(onView: cell)
-            
-            if let data = data,  let image = data.results[indexPath.row].posterPath{
-                
-                MovieAPI.getImage(from: image, handler: { imagen in
-                    UIView.removeSkeletons(onView: cell)
-                    cell.imageMovie.image = imagen
-                })
-            }
+            setCollectionCell(cell: cell, indexPath: indexPath.row)
             
             return cell
         }

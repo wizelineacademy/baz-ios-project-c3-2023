@@ -32,6 +32,6 @@ protocol RouterPresentViewWithDataProtocol: AnyObject {
 extension RouterPresentViewWithDataProtocol {
     func presentView<T>(from view: UIViewController, data: T) {
         let newView = Router.createModule(data: data)
-        view.present(newView, animated: true)
+        view.navigationController?.pushViewController(newView, animated: true)
     }
 }

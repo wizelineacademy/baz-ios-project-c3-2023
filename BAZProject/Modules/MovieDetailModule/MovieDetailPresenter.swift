@@ -135,7 +135,7 @@ extension MovieDetailPresenter: UITableViewDataSource {
             }
             return UITableViewCell()
         case 1:
-//            "Reparto de actores:"
+//            "Cast:"
             if let cell = tableView.dequeueReusableCell(withIdentifier: CastTableViewCell.reusableCell, for: indexPath) as? CastTableViewCell, let data = interactor?.movieApiData.getArrayDataMovie?[.creditMovie] as? Credit {
                 cell.data = data
                 cell.collectionView.reloadData()
@@ -143,7 +143,7 @@ extension MovieDetailPresenter: UITableViewDataSource {
             }
             return UITableViewCell()
         case 2:
-//            "Peliculas Similares:"
+//            "similar:"
             if let cell = tableView.dequeueReusableCell(withIdentifier: ShowMoviesTableViewCell.reusableCell, for: indexPath) as? ShowMoviesTableViewCell, let data = interactor?.movieApiData.getArrayDataMovie?[.similar] as? Movies{
                 cell.data = data
                 cell.delegate = self
@@ -153,7 +153,7 @@ extension MovieDetailPresenter: UITableViewDataSource {
             return UITableViewCell()
 
         case 3:
-//            "Peliculas Recomendadas:"
+//            "recommended movies:"
             if let cell = tableView.dequeueReusableCell(withIdentifier: ShowMoviesTableViewCell.reusableCell, for: indexPath)
                 as? ShowMoviesTableViewCell, let data = interactor?.movieApiData.getArrayDataMovie?[.recommendations] as? Movies {
                 cell.data = data
@@ -163,7 +163,7 @@ extension MovieDetailPresenter: UITableViewDataSource {
             }
             return UITableViewCell()
         case 4:
-//             "Reseñas de Pelicula:"
+//             "movie review:"
             if let cell = tableView.dequeueReusableCell(withIdentifier: ReviewsTableViewCell.reusableCell, for: indexPath) as? ReviewsTableViewCell, let data = interactor?.movieApiData.getArrayDataMovie?[.reviews], let data = data as? Reviews {
                 if data.results.count > 0 {
                     cell.nameAuthor.text = "\(data.results[indexPath.row].author):"

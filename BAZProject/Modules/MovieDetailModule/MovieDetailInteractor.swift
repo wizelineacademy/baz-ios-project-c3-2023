@@ -17,6 +17,7 @@ final class MovieDetailInteractor {
 }
 
 extension MovieDetailInteractor: MovieDetailInterceptorInputProtocol {
+//TODO: - Remove print once this is working properly
     func saveMovie() {
         debugPrint("test of saveMovie")
         var allDataMovie: [Movie]?
@@ -38,21 +39,17 @@ extension MovieDetailInteractor: MovieDetailInterceptorInputProtocol {
     
     func getMoviesData(from api: URLApi, structure: Codable.Type) {
         MovieAPI.getApiData(from: api) { [weak self] data in
-            do {
-                if let movies =  DecodeUtility.decode(structure.self, from: data) {
-                    self?.movieApiData.getArrayDataMovie?[api] = movies
-                }
+            if let movies =  DecodeUtility.decode(structure.self, from: data) {
+                self?.movieApiData.getArrayDataMovie?[api] = movies
             }
         }
     }
     
     func getMoviesDataWithId(from api: URLApi, id idMovie: Int, structure: Codable.Type) {
         MovieAPI.getApiData(from: api, id: idMovie) { [weak self] data in
-            do {
-                if let movies =  DecodeUtility.decode(structure.self, from: data) {
-                    self?.movieApiData.getArrayDataMovie?[api] = movies
-                    self?.presenter?.reloadData()
-                }
+            if let movies =  DecodeUtility.decode(structure.self, from: data) {
+                self?.movieApiData.getArrayDataMovie?[api] = movies
+                self?.presenter?.reloadData()
             }
         }
     }

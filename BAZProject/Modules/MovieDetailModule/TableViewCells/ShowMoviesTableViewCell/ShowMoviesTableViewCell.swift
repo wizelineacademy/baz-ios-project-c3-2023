@@ -42,10 +42,10 @@ extension ShowMoviesTableViewCell: UICollectionViewDataSource {
             UIView.fillSkeletons(onView: cell)
             
             if let image = data.results[indexPath.row].posterPath {
-                MovieAPI.getImage(from: image, handler: { imagen in
+                MovieAPI.getImage(from: image, handler: { image in
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                         UIView.removeSkeletons(onView: cell)
-                        cell.imageMovie.image = imagen
+                        cell.imageMovie.image = image
                     }
                 })
             }
