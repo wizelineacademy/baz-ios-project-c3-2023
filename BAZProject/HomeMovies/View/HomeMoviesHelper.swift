@@ -31,6 +31,7 @@ extension HomeMoviesView: HomeMoviesViewProtocol {
                 self.collectionHomeMovie.reloadData()
             }
         }else{
+            self.isSearching = false
             DispatchQueue.main.async {
                 let alert = UIAlertController(title: Constants.notFoundAlertResult, message: Constants.notFoundResult, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: Constants.done, style: .cancel, handler: { UIAlertAction in
