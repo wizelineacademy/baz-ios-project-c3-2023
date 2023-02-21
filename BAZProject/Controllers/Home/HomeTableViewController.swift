@@ -32,11 +32,18 @@ class HomeTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    func showDetailMovieViewController(sender: Any?) {
+        let detailView = MovieDetailPViewController()
+        guard let movieDetail =  sender as? Movie else { return }
+        detailView.movieToShowDetail = movieDetail
+        navigationController?.pushViewController(detailView, animated: true)
+    }
+    
 }
 
 // MARK: - TableView's DataSource
 
-extension HomeTableViewController{
+extension HomeTableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return categories.count
@@ -53,6 +60,7 @@ extension HomeTableViewController{
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableViewCell", for: indexPath) as? CategoryTableViewCell
         cell?.setCollectionView()
+        cell?.categoryTableCellDelegate = self
         switch indexPath.section {
         case MovieAPICategory.trending.rawValue:
             cell?.moviesToShow = listOfCategories[.trending] ?? []
@@ -74,11 +82,22 @@ extension HomeTableViewController{
 
 // MARK: - TableView's Delegate
 
-extension HomeTableViewController{
+extension HomeTableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return heightRowTable
     }
     
+}
+
+// MARK: - TableViewCell's Delegate
+
+extension HomeTableViewController: CategoryTableCellDelegate {
+    
+    func didSelectMovie(movieId: Int, indexRow: Int) {
+        let movieToShow = Movie.searchMovieByID(movieID: movieId, listOfCategories: listOfCategories)
+        showDetailMovieViewController(sender: movieToShow)
+    }
+
 }
 
