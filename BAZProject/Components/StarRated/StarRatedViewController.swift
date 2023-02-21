@@ -13,7 +13,7 @@ final class StarRatedViewController: UIViewController {
         return UINib(nibName: identifier, bundle: nil)
     }
     
-    @IBOutlet weak var starsStackContainer: UIStackView!
+    @IBOutlet weak private var starsStackContainer: UIStackView!
     
     // MARK: - Private properties
     private var selectedRate: Int = 0
