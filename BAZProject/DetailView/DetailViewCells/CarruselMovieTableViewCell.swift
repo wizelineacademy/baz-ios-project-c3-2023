@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CarruselMovieTableViewCell: UITableViewCell {
+final class CarruselMovieTableViewCell: UITableViewCell {
 
     @IBOutlet weak var movieCollection: UICollectionView!
     override func awakeFromNib() {
@@ -17,8 +17,6 @@ class CarruselMovieTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
 }

@@ -22,11 +22,10 @@ final class HomeViewController: UIViewController, NibInstantiatable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-   
+        
         navigationItem.title = "Home Movies"
         navigationItem.searchController = searchController
         definesPresentationContext = true
-
         setupTable()
         executeMovieService()
     }
@@ -34,25 +33,26 @@ final class HomeViewController: UIViewController, NibInstantiatable {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         for view in self.navigationController?.navigationBar.subviews ?? [] {
-             let subviews = view.subviews
-             if subviews.count > 0, let label = subviews[0] as? UILabel {
-                 label.textColor = .white
-             }
+            let subviews = view.subviews
+            if subviews.count > 0, let label = subviews[0] as? UILabel {
+                label.textColor = .white
+            }
         }
     }
     
+    /// this method execute the movie api for popular Movies
     private func executeMovieService() {
-        movieAPI.getMovies(endpoint: .getPopular) { result in
+        movieAPI.getMovies(endpoint: .getPopular) {[weak self ] result in
             switch result {
             case .success(let response):
-                self.movies = response.results ?? []
-                self.tblMovies.reloadData()
+                self?.movies = response.results ?? []
+                self?.tblMovies.reloadData()
             case .failure(let error):
                 print(error)
             }
         }
     }
- 
+    
     private func setupTable(){
         tblMovies.delegate = self
         tblMovies.dataSource = self
@@ -63,31 +63,30 @@ final class HomeViewController: UIViewController, NibInstantiatable {
         let results = searchController.searchResultsController as? SearchMovieController
         results?.movies = arrMovie
         results?.collectionMovieSearch.reloadData()
-        
-     }
+    }
 }
 
 // MARK: - TableView's DataSource
 
 extension HomeViewController: UITableViewDataSource {
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         movies.count
     }
-
-     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieViewCell.identifier, for: indexPath) as? MovieViewCell else{return UITableViewCell()}
         let movie = movies[indexPath.row]
-         cell.setInfo(for: movie)
+        cell.setInfo(for: movie)
         return cell
     }
-
+    
 }
 
 // MARK: - TableView's Delegate
 
 extension HomeViewController: UITableViewDelegate {
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
@@ -103,19 +102,18 @@ extension HomeViewController: UITableViewDelegate {
 
 extension HomeViewController: SearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-      
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        
     }
-    
+    /// this method execute the movie api for a search movie based in a text
+    ///  - Parameters:
+    ///  - for: is the text to search as type `String`
     func updateSearchResults(for text: String) {
-        
-        self.movieAPI.getMovies(endpoint: .search(searchText: text, page: 1)) { result in
+        self.movieAPI.getMovies(endpoint: .search(searchText: text, page: 1)) {[weak self] result in
             switch result {
             case .success(let response):
-                self.showMoviesList(arrMovie: response.results ?? [])
+                self?.showMoviesList(arrMovie: response.results ?? [])
             case .failure(let error):
                 print(error)
             }
