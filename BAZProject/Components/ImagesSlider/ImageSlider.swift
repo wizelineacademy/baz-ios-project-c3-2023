@@ -34,11 +34,13 @@ final class ImageSlider: CustomView {
     }
     
     func setUp(imageUrlArray: [String]) {
-        self.imageUrlArray = imageUrlArray
-        registerCell()
-        imageCollection.delegate = self
-        setupPageControl()
-        imageCollection.reloadData()
+        guaranteeMainThread {
+            self.imageUrlArray = imageUrlArray
+            self.registerCell()
+            self.imageCollection.delegate = self
+            self.setupPageControl()
+            self.imageCollection.reloadData()
+        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

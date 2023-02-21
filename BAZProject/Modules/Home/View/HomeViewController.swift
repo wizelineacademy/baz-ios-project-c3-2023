@@ -15,7 +15,8 @@ final class HomeViewController: UIViewController {
     }
     
     // MARK: - Declaration IBOutlets
-    
+    @IBOutlet weak var movieTopSlider: ImageSlider!
+
     // MARK: - Protocol properties
     var presenter: HomePresenterProtocol?
     var movieTopRated: [MovieTopRatedResult]?
@@ -51,7 +52,6 @@ final class HomeViewController: UIViewController {
             self.view.showLoader()
         }
     }
-    // private func setupView() {}
     
     private func callService() {
         isLoading = true
@@ -66,6 +66,13 @@ final class HomeViewController: UIViewController {
 extension HomeViewController: HomeViewProtocol {
     func updateView(data: [MovieTopRatedResult]) {
         movieTopRated = data
+        var imageUL = [String]()
+        data.forEach { movie in
+            if let bac = movie.backdropPath {
+                imageUL.append(bac)
+            }
+        }
+        movieTopSlider.setUp(imageUrlArray: imageUL)
     }
     
     func stopLoading() {

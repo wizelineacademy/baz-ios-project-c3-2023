@@ -5,12 +5,12 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="BAZProject" customModuleProvider="target">
             <connections>
+                <outlet property="movieTopSlider" destination="0wS-aa-dMa" id="zVG-sw-Hjw"/>
                 <outlet property="view" destination="iN0-l3-epB" id="mDx-vc-Dp8"/>
             </connections>
         </placeholder>
@@ -18,14 +18,23 @@
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0wS-aa-dMa" customClass="ImageSlider" customModule="BAZProject" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="59" width="393" height="170"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="170" id="aiy-uS-PpS"/>
+                    </constraints>
+                </view>
+            </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="0wS-aa-dMa" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="DS3-bx-4Ce"/>
+                <constraint firstItem="0wS-aa-dMa" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Ngl-gC-tCZ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="0wS-aa-dMa" secondAttribute="trailing" id="lZg-yy-Ek1"/>
+            </constraints>
             <point key="canvasLocation" x="138" y="20"/>
         </view>
     </objects>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>

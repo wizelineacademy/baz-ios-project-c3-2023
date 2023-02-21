@@ -55,10 +55,9 @@ final class DetailViewController: UIViewController {
             self.view.showLoader()
         }
     }
+
     private func setupView(imageUrlArray: [String]) {
-        guaranteeMainThread {
-            self.imageSlider.setUp(imageUrlArray: imageUrlArray)
-        }
+        imageSlider.setUp(imageUrlArray: imageUrlArray)
     }
     
     private func callService() {
