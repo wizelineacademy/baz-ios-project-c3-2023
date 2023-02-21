@@ -7,8 +7,8 @@
 
 import UIKit
 
-class ErrorPageRouter: ErrorPageRouterProtocol {
-    var view: ErrorPageViewProtocol?
+final class ErrorPageRouter: ErrorPageRouterProtocol {
+    weak var view: ErrorPageViewProtocol?
     
     static func createModule(errorType: ErrorType) -> UIViewController {
         let view: ErrorPageViewProtocol = ErrorPageViewController(

@@ -9,7 +9,7 @@ import UIKit
 
 final class LaunchScreenViewController: UIViewController {
     
-    @IBOutlet weak var logoUIImageView: UIImageView! {
+    @IBOutlet weak private var logoUIImageView: UIImageView! {
         didSet {
             logoUIImageView.layer.cornerRadius = logoUIImageView.bounds.height / LocalizedConstants.launchScreenDivisorNumer
             logoUIImageView.rotate()

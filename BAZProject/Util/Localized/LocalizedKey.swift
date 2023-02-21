@@ -8,14 +8,13 @@
 import Foundation
 
 extension String {
-    static let urlLogo = "https://www.roc21.com/blog/wp-content/uploads/2019/07/logo-cinepolis-dos.jpg"
-    
     // MARK: - TheMovieDb API
     static let apiKeyTheMovieDb = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
     static let theMovieDbBasePath = "https://api.themoviedb.org/3"
     static let theMovieDBBasePathImages = "https://image.tmdb.org/t/p"
     static let languageTheMovieDb = "es"
     static let regionTheMovieDb = "MX"
+    static let apiKeyEndPointTrending = "/trending"
     
     // MARK: - ErrorPageView
     static let errorPageXibIdentifier = "ErrorPageView"
@@ -26,6 +25,10 @@ extension String {
     // MARK: - TrendingView
     static let trendingXibIdentifier = "TrendingView"
     static let trendingTitle = "Trending"
+    static let trendingTitleUpdateTable = "Actualizando.."
+    static let trendingTitleFilterTime = "Filtrar por:"
+    static let trendingFilterTitles = ["🍿Pelis", "📺TV", "👀🔝", "Todo"]
+    static let trendingFilterByTimeTitles = ["📆Día", "🗓Semana"]
     
     // MARK: - Main
     static let mainPlaceholderSearchBar = "Buscar.."
@@ -34,4 +37,16 @@ extension String {
     
     // MARK: - CellMovie
     static let cellMovieXibIdentifier = "CellMovie"
+    
+    // MARK: - CellSlider
+    static let cellSliderXibIdentifier = "CellSlider"
+    
+    // MARK: ImageSlider
+    static let imageSliderXibIdentifier = "ImageSlider"
+    
+    // MARK: - InfiniteScrollActivityView
+    static let infiniteScrollActivityViewTitleLoading = "Cargando más..."
+    
+    // MARK: - DetailView
+    static let detailXibIdentifier = "DetailView"
 }

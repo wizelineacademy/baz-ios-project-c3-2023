@@ -34,8 +34,10 @@ protocol URLSessionProtocol {
 
 protocol NetworkingProviderProtocol {
     typealias Response<T> = (Result<T, Error>) -> Void where T: Decodable
+    typealias ResponseData = (Result<Data, Error>) -> Void
     var session: URLSessionProtocol { get }
     func sendRequest<T>(_ request: URLRequest, callback: @escaping Response<T>) where T: Decodable
+    func sendRequest(_ request: URLRequest, callback: @escaping ResponseData)
 }
 
 class NetworkingProviderService: NetworkingProviderProtocol {
@@ -47,6 +49,13 @@ class NetworkingProviderService: NetworkingProviderProtocol {
     }
     
     func sendRequest<T: Decodable>(_ request: URLRequest, callback: @escaping Response<T>) where T: Decodable {
+        let task = session.performDataTask(with: request) { (data, response, error) in
+            self.handleRequest(data: data, response: response, error: error, completion: callback)
+        }
+        task.resume()
+    }
+    
+    func sendRequest(_ request: URLRequest, callback: @escaping ResponseData) {
         let task = session.performDataTask(with: request) { (data, response, error) in
             self.handleRequest(data: data, response: response, error: error, completion: callback)
         }
@@ -78,5 +87,25 @@ class NetworkingProviderService: NetworkingProviderProtocol {
         } catch {
             completion(.failure(ServiceError.parsingData))
         }
+    }
+    
+    private func handleRequest(data: Data?, response: URLResponse?, error: Error?, completion: ResponseData) {
+        
+        if let error: Error = error {
+            completion(.failure(error))
+            return
+        }
+        
+        guard let data: Data = data else {
+            completion(.failure(ServiceError.noData))
+            return
+        }
+        
+        guard let _: HTTPURLResponse = response as? HTTPURLResponse else {
+            completion(.failure(ServiceError.response))
+            return
+        }
+        
+        completion(.success(data))
     }
 }

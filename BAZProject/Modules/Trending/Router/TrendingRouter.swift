@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TrendingViewRouter: TrendingRouterProtocol {
+final class TrendingRouter: TrendingRouterProtocol {
     weak var view: TrendingViewProtocol?
     
     static func createModule() -> UIViewController {
@@ -17,7 +17,7 @@ class TrendingViewRouter: TrendingRouterProtocol {
         let interactor: TrendingInteractorInputProtocol & TrendingDataManagerOutputProtocol = TrendingInteractor()
         let presenter: TrendingPresenterProtocol & TrendingInteractorOutputProtocol = TrendingPresenter()
         
-        let router: TrendingRouterProtocol = TrendingViewRouter()
+        let router: TrendingRouterProtocol = TrendingRouter()
         router.view = view
         view.presenter = presenter
         interactor.dataManager = dataManager
@@ -36,6 +36,14 @@ class TrendingViewRouter: TrendingRouterProtocol {
             guard let view = self.view as? UIViewController else { return }
             let errorPageVC: UIViewController = ErrorPageRouter.createModule(errorType: errorType)
             view.navigationController?.pushViewController(errorPageVC, animated: true)
+        }
+    }
+    
+    func showDetail(of detailType: DetailType) {
+        guaranteeMainThread {
+            guard let view = self.view as? UIViewController else { return }
+            let detailView: UIViewController = DetailRouter.createModule(detailType: detailType)
+            view.navigationController?.pushViewController(detailView, animated: true)
         }
     }
     

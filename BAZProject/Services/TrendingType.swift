@@ -22,8 +22,30 @@ enum MediaType: String, Codable {
             return "Personas"
         }
     }
+    
+    func getRawValue() -> Int {
+        switch self {
+        case .movie:
+            return 0
+        case .tv:
+            return 1
+        case .person:
+            return 2
+        case .all:
+            return 3
+        }
+    }
 }
 
 enum TimeWindowType: String {
     case day, week
+    
+    func getRawValue() -> Int {
+        switch self {
+        case .day:
+            return 0
+        case .week:
+            return 1
+        }
+    }
 }
