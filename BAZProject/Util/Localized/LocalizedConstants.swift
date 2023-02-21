@@ -69,4 +69,7 @@ enum LocalizedConstants {
     static let imageSliderIncrementShowImage: Int = 1
     static let imageSliderNumberSections: Int = 0
     static let imageSliderScrollViewContentOffsetDefaultX: CGFloat = 0.0
+    
+    // MARK: - StarRated
+    static let starRatedInitSection: Int = 0
 }

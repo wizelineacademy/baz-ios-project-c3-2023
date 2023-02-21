@@ -39,7 +39,7 @@ final class StarRatedViewController: UIViewController {
     }
     
     private func createStars() {
-        for index in 1...numberStars {
+        for index in LocalizedConstants.starRatedInitSection...numberStars {
             let star = makeStarIcon()
             star.tag = index
             starsStackContainer.addArrangedSubview(star)
