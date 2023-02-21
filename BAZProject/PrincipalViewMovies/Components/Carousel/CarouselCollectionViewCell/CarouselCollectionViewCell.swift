@@ -11,7 +11,7 @@ protocol TapGestureImgMovieProtocol: AnyObject {
     func tapGestureImgMovie(idMovie: Int?)
 }
 
-class CarouselCollectionViewCell: UICollectionViewCell {
+final class CarouselCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var imgMovie: UIImageView!
     

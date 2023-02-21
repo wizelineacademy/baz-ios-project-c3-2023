@@ -21,10 +21,6 @@ final class DetailsMovieViewController: UIViewController {
         super.viewDidLoad()
         self.title = specificMovie?.title
         setUIBanner()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         fetchDetailsMovie()
         loadValuesDetails()
         loadLabelOverview()

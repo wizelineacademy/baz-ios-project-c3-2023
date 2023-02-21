@@ -40,7 +40,6 @@ final class HomeMoviesViewController: UIViewController {
         setUIBanner()
     }
     
-    //TODO: Set UIUX for principal view
     private func setupUITrendingView() {
         viewContainerTopLbls.backgroundColor = UtilsMoviesApp.shared.colorBackgroundApp
         scrollConatiner.backgroundColor = UtilsMoviesApp.shared.colorBackgroundApp

@@ -35,7 +35,7 @@ final class MovieAPI {
      - Returns: A estruct MovieDetail with more info about movie
      */
     
-    func getDetailMovie(idMovie : Int, completion: @escaping((MovieDetail?) -> Void)) {
+    func getDetailMovie(idMovie: Int, completion: @escaping((MovieDetail?) -> Void)) {
         guard let url = URL(string: "\(urlBase)/movie/\(idMovie))?api_key=\(apiKey)"),
               let data = try? Data(contentsOf: url),
               let responseDetailMovie = try? JSONDecoder().decode(MovieDetail.self, from: data)
@@ -43,6 +43,22 @@ final class MovieAPI {
             return completion(nil)
         }
         completion(responseDetailMovie)
+    }
+    
+    /**
+     obtains specific list movies by browser
+     - Parameter queryMovie: search word movie
+     - Returns: An array type Movie
+     */
+    
+    func getMoviesSearch(queryMovie: String, completion: @escaping(([Movie]?) -> Void)) {
+        guard let url = URL(string: "\(urlBase)/search/movie?api_key=\(apiKey)&query=\(queryMovie)"),
+              let data = try? Data(contentsOf: url),
+              let responseMovies = try? JSONDecoder().decode(ReponseMovies.self, from: data)
+        else {
+            return completion(nil)
+        }
+        completion(responseMovies.results)
     }
 }
 

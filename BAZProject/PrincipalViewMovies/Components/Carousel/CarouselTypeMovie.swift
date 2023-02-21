@@ -7,14 +7,17 @@
 
 import UIKit
 
-class CarouselTypeMovie: UIView {
+/**
+ Collection view section for show carousel movies
+ show info category like popular, now, recommended...
+ */
+
+final class CarouselTypeMovie: UIView {
     
     @IBOutlet weak var collectionCarouselMovies: UICollectionView!
     @IBOutlet weak var lblTitleMoview: UILabel!
     
-    let NUMBER_ONE = 1
-    let WIDTH_CELL: CGFloat = 150
-    public var moviesType: [Movie] = []
+    var moviesType: [Movie] = []
     weak var delegate: TapGestureImgMovieProtocol?
     
     override init(frame: CGRect) {
@@ -62,7 +65,7 @@ class CarouselTypeMovie: UIView {
 extension CarouselTypeMovie: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return NUMBER_ONE
+        return UtilsMoviesApp.shared.NUMBER_ONE
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -85,7 +88,7 @@ extension CarouselTypeMovie: UICollectionViewDelegate, UICollectionViewDelegateF
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-        return CGSize(width: WIDTH_CELL, height: collectionView.frame.size.height)
+        return CGSize(width: UtilsMoviesApp.shared.WIDTH_CELL, height: collectionView.frame.size.height)
     }
 }
 

@@ -7,7 +7,11 @@
 
 import UIKit
 
-class LabelsMovie: UIView {
+/**
+ Show characteristics for each movie details like language, is for adults...
+ */
+
+final class LabelsMovie: UIView {
     
     @IBOutlet weak var lblIsAdult: UILabel!
     @IBOutlet weak var lblStatus: UILabel!

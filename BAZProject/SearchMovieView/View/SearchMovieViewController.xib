@@ -12,6 +12,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchMovieViewController" customModule="BAZProject" customModuleProvider="target">
             <connections>
+                <outlet property="collectionViewSearch" destination="V2b-dn-xJd" id="mzg-HF-tHn"/>
+                <outlet property="tfWordSearch" destination="hf1-SH-u0s" id="nFK-Bh-oGA"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewConatinerSearch" destination="kSR-i5-TMx" id="W5r-K7-VE4"/>
             </connections>
@@ -28,14 +30,14 @@
                             <rect key="frame" x="0.0" y="0.0" width="393" height="100"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kSR-i5-TMx">
-                                    <rect key="frame" x="32" y="32" width="329" height="36"/>
+                                    <rect key="frame" x="31.999999999999986" y="32" width="246.66666666666663" height="36"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="gla-Je-yBR">
                                             <rect key="frame" x="5.9999999999999982" y="1.9999999999999964" width="20.333333333333329" height="32.333333333333329"/>
                                             <color key="tintColor" name="DarkStar"/>
                                         </imageView>
                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="movie name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hf1-SH-u0s">
-                                            <rect key="frame" x="36.333333333333343" y="1" width="282.66666666666663" height="34"/>
+                                            <rect key="frame" x="36.333333333333329" y="1" width="210.33333333333337" height="34"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
@@ -47,19 +49,29 @@
                                         <constraint firstItem="hf1-SH-u0s" firstAttribute="leading" secondItem="gla-Je-yBR" secondAttribute="trailing" constant="10" id="PQa-30-jq8"/>
                                         <constraint firstAttribute="bottom" secondItem="hf1-SH-u0s" secondAttribute="bottom" constant="1" id="bLI-yS-dPJ"/>
                                         <constraint firstAttribute="bottom" secondItem="gla-Je-yBR" secondAttribute="bottom" constant="1" id="bZU-W0-unO"/>
+                                        <constraint firstAttribute="trailing" secondItem="hf1-SH-u0s" secondAttribute="trailing" id="n5E-0P-Tk1"/>
                                         <constraint firstItem="gla-Je-yBR" firstAttribute="top" secondItem="kSR-i5-TMx" secondAttribute="top" constant="1" id="tpZ-kk-UO9"/>
-                                        <constraint firstAttribute="trailing" secondItem="hf1-SH-u0s" secondAttribute="trailing" constant="10" id="wQ7-1H-sUs"/>
                                     </constraints>
                                 </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AOd-gc-M8T">
+                                    <rect key="frame" x="283.66666666666669" y="32" width="77.333333333333314" height="36"/>
+                                    <color key="tintColor" systemColor="systemOrangeColor"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="Search"/>
+                                    <connections>
+                                        <action selector="onTapSearchButton:" destination="-1" eventType="touchUpInside" id="JuG-QJ-RWd"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" name="DarkStar"/>
                             <constraints>
-                                <constraint firstItem="kSR-i5-TMx" firstAttribute="centerX" secondItem="QEz-e9-sdZ" secondAttribute="centerX" id="3bm-bt-iTX"/>
+                                <constraint firstAttribute="bottom" secondItem="AOd-gc-M8T" secondAttribute="bottom" constant="32" id="ExM-IQ-KHU"/>
                                 <constraint firstAttribute="height" constant="100" id="Iey-Lu-NSF"/>
+                                <constraint firstItem="AOd-gc-M8T" firstAttribute="leading" secondItem="kSR-i5-TMx" secondAttribute="trailing" constant="5" id="J5y-oy-O2d"/>
                                 <constraint firstItem="kSR-i5-TMx" firstAttribute="top" secondItem="QEz-e9-sdZ" secondAttribute="top" constant="32" id="Ra9-oY-Yao"/>
-                                <constraint firstAttribute="trailing" secondItem="kSR-i5-TMx" secondAttribute="trailing" constant="32" id="UpH-v4-5qI"/>
-                                <constraint firstItem="kSR-i5-TMx" firstAttribute="centerY" secondItem="QEz-e9-sdZ" secondAttribute="centerY" id="ah2-s0-ds8"/>
+                                <constraint firstAttribute="trailing" secondItem="AOd-gc-M8T" secondAttribute="trailing" constant="32" id="dXj-aB-pGL"/>
                                 <constraint firstItem="kSR-i5-TMx" firstAttribute="leading" secondItem="QEz-e9-sdZ" secondAttribute="leading" constant="32" id="dZF-wg-Ntl"/>
+                                <constraint firstItem="AOd-gc-M8T" firstAttribute="top" secondItem="QEz-e9-sdZ" secondAttribute="top" constant="32" id="lFI-vf-Yfj"/>
                                 <constraint firstAttribute="bottom" secondItem="kSR-i5-TMx" secondAttribute="bottom" constant="32" id="oGC-eV-VIz"/>
                             </constraints>
                         </view>
@@ -113,10 +125,13 @@
     <resources>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <namedColor name="DarkStar">
-            <color red="0.066000000000000003" green="0.035000000000000003" blue="0.10000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.065999999642372131" green="0.035000000149011612" blue="0.10000000149011612" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

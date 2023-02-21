@@ -133,6 +133,7 @@
 		276DA7C3299EDC3F005B6CD3 /* SearchMovieView */ = {
 			isa = PBXGroup;
 			children = (
+				277A682829A4357E000DF313 /* Components */,
 				276DA7C9299EDCB3005B6CD3 /* Entity */,
 				276DA7C8299EDCA6005B6CD3 /* View */,
 			);
@@ -170,6 +171,13 @@
 				276DA7D2299EF686005B6CD3 /* LabelsMovie.xib */,
 			);
 			path = LabelsMovie;
+			sourceTree = "<group>";
+		};
+		277A682829A4357E000DF313 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		27A352F9298C2F6C00F2FEE8 /* PrincipalViewMovies */ = {
