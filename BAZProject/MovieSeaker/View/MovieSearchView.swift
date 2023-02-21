@@ -19,7 +19,7 @@ final class MovieSearchView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.setupSeaker()
+        self.setupSearchBar()
         self.setupCollection()
         self.output?.didLoadView()
     }
@@ -41,7 +41,7 @@ final class MovieSearchView: UIViewController {
     }
     
     /** Configures the search bar controller */
-    private func setupSeaker() {
+    private func setupSearchBar() {
         let searchBar = UISearchBar()
         searchBar.delegate = self
         searchBar.showsCancelButton = true
