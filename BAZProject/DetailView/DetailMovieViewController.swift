@@ -14,14 +14,14 @@ enum SectionsDetailMovie: Int, CaseIterable {
     case recommendations = 3
 }
 
-class DetailMovieViewController: UIViewController {
+final class DetailMovieViewController: UIViewController {
     
     @IBOutlet weak var tblDetailMovie: UITableView!
-    let group = DispatchGroup()
-    let movieAPI = MovieAPI()
     var movie: Movie?
-    var similarMovies: [Movie]?
-    var recomendationsMovies: [Movie]?
+    private let group = DispatchGroup()
+    private let movieAPI = MovieAPI()
+    private var similarMovies: [Movie]?
+    private var recomendationsMovies: [Movie]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,8 +50,8 @@ class DetailMovieViewController: UIViewController {
         tblDetailMovie.register(CarruselMovieTableViewCell.nib, forCellReuseIdentifier: CarruselMovieTableViewCell.identifier)
         tblDetailMovie.register(ReviewsTableViewCell.nib, forCellReuseIdentifier: ReviewsTableViewCell.identifier)
     }
-    
-    func executeSimilarMovies(){
+/// this methode executes the movie api for recommendation from an Id Movie
+    func executeRecomendations(){
         movieAPI.getMovies(endpoint: .getRecommendations(id: movie?.id ?? 0)) { result in
             self.group.leave()
             switch result {
@@ -63,7 +63,8 @@ class DetailMovieViewController: UIViewController {
         }
     }
     
-    func executeRecomendations(){
+/// this methode executes the movie api for similar from an Id Movie
+    func executeSimilarMovies(){
         movieAPI.getMovies(endpoint: .getSimilars(id: movie?.id ?? 0)) { result in
             self.group.leave()
             switch result {

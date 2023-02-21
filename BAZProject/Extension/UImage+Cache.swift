@@ -23,7 +23,9 @@ struct Config {
 }
 
 extension UIImageView {
-    
+    /// This methos load and image from a given URL as type `String`
+    /// - Parameters:
+    ///    - urlString :  is the url for the image an is  type `String`
     func loadImage(urlString: String) {
         
         if let cacheImage = imageCache.object(forKey: urlString as AnyObject) as? UIImage {

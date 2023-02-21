@@ -24,11 +24,11 @@ protocol SearchBarProtocol: UISearchBarDelegate, UISearchResultsUpdating {
     var showsCancelButton: Bool { get set }
 }
 
-class SearchBar: UISearchController, SearchBarProtocol {
+final class SearchBar: UISearchController, SearchBarProtocol {
 
     private weak var searchBarDelegate: SearchBarDelegate?
 
-    public var text: String? {
+    var text: String? {
         get {
             searchBar.text
         }
@@ -37,15 +37,15 @@ class SearchBar: UISearchController, SearchBarProtocol {
         }
     }
 
-    public var isSearchBarEmpty: Bool {
+    var isSearchBarEmpty: Bool {
       searchBar.text?.isEmpty ?? true
     }
 
-    public var isFiltering: Bool {
+    var isFiltering: Bool {
       isActive && !isSearchBarEmpty
     }
 
-    public var showsCancelButton: Bool = false {
+    var showsCancelButton: Bool = false {
         didSet {
             searchBar.showsCancelButton = showsCancelButton
         }
