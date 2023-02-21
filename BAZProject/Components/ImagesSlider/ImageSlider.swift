@@ -26,8 +26,8 @@ final class ImageSlider: CustomView {
     private let minimunSpacingForSection: Double = LocalizedConstants.imageSliderMinimunSpacingForSection
     private var scrolledRight: Bool = false
     
-    @IBOutlet weak var slidePageControl: UIPageControl!
-    @IBOutlet weak var imageCollection: UICollectionView!
+    @IBOutlet weak private var slidePageControl: UIPageControl!
+    @IBOutlet weak private var imageCollection: UICollectionView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
