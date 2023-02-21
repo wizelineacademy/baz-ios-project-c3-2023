@@ -28,7 +28,7 @@ class MovieAPI {
    
     func getMovies(ofType: RequestType) -> [Movie] {
         var myURL = myUrls.basePath.rawValue + ofType.rawValue + apiKey
-        if ofType == .search{
+        if ofType == .search {
             myURL += "&query=" + searchText
         }
         
@@ -67,8 +67,8 @@ class MovieAPI {
 ///
     
     func downloadImage (from url: URL) -> UIImage {
-        guard let data = try? Data(contentsOf: url) else { return UIImage()}
-        guard  let image = UIImage (data: data) else { return UIImage()}
+        guard let data = try? Data(contentsOf: url) else { return UIImage() }
+        guard  let image = UIImage (data: data) else { return UIImage() }
         return image
     }
 }

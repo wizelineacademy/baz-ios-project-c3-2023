@@ -34,7 +34,7 @@ class SearchView: UIViewController {
                 let urlString = movie.posterPath
                 guard let myURL = URL(string: urlString) else { return }
                 self?.images.append(self?.movieApi.downloadImage(from: myURL) ?? UIImage())
-                DispatchQueue.main.async{
+                DispatchQueue.main.async {
                     self?.moviesCollectionView.reloadData()
                 }
             }
@@ -52,7 +52,7 @@ class SearchView: UIViewController {
 }
 
 // MARK: - CollectionView DataSource
-extension SearchView: UICollectionViewDelegate, UICollectionViewDataSource{
+extension SearchView: UICollectionViewDelegate, UICollectionViewDataSource {
 //    SectionsConfigurations
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
