@@ -7,10 +7,14 @@
 
 import UIKit
 
+protocol MovieTableViewCellDelegate: AnyObject {
+    func onSelected(movie: Movie)
+}
+
 class MovieTableViewCell: UITableViewCell {
     
     @IBOutlet weak var collectionMovieView: UICollectionView!
-    
+    weak var delegate: MovieTableViewCellDelegate?
     static let identifier = "MovieTableViewCell"
     var models:[Movie] = []
     
@@ -44,7 +48,9 @@ class MovieTableViewCell: UITableViewCell {
 //MARK: -Extensions
 
 extension MovieTableViewCell : UICollectionViewDelegate{
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.onSelected(movie: models[indexPath.row])
+    }
 }
 
 extension MovieTableViewCell : UICollectionViewDataSource{

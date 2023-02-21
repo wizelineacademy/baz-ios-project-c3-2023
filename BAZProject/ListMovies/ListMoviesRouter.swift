@@ -10,16 +10,37 @@ import UIKit
 
 class ListMoviesRouter {
     
-    func showListMovies(window: UIWindow?) {
-        let listMoviesView = ListMoviesView()
-        let listMoviesInteractor = ListMoviesInteractor()
-        let listMoviesPresenter = ListMoviesPresenter(listMoviesInteractor: listMoviesInteractor)
-        listMoviesPresenter.modelPageProtocol = listMoviesView
-        listMoviesView.listMoviesPresenter = listMoviesPresenter
+    //MARK: - Properties
+    weak var viewController: UIViewController?
+    
+    //MARK: - Functions
+    static func createModule() -> UIViewController {
+        let view = ListMoviesView()
+        let interactor = ListMoviesInteractor()
+        let router = ListMoviesRouter()
+        let presenter = ListMoviesPresenter(view: view,
+                                            interactor: interactor,
+                                            router: router)
+        view.presenter = presenter
+        interactor.presenter = presenter
+        router.viewController = view
         
-        let navigationController = UINavigationController()
-        navigationController.viewControllers = [listMoviesView]
-        window?.rootViewController = navigationController
-        window?.makeKeyAndVisible()
+        return view
     }
 }
+
+extension ListMoviesRouter: ListMoviesRouterProtocol {
+   
+    func goToNextViewController(with model: Movie) {
+        let viewMovieDetail = MovieDetailRouter.createModule(with: model)
+        viewMovieDetail.title = model.title
+        self.viewController?.navigationController?.pushViewController(viewMovieDetail, animated: true)
+    }
+    
+    func goToSearchViewController() {
+        let viewSearch = SearchMovieRouter.createModule()
+        self.viewController?.navigationController?.pushViewController(viewSearch, animated: true)
+    }
+}
+
+

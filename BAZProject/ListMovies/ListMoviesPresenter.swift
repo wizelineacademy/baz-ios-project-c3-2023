@@ -7,28 +7,45 @@
 
 import Foundation
 
-protocol ListMoviesViewProtocol: AnyObject {
-    func update( movies: [AllMovieTypes] )
+class ListMoviesPresenter {
+    //MARK: - Properties
+    var view: ListMoviesViewInputProtocol?
+    var interactor: ListMoviesInteractorInputProtocol?
+    var router: ListMoviesRouterProtocol?
+    
+    //MARK: - Init methods
+    init(view: ListMoviesViewInputProtocol,
+         interactor: ListMoviesInteractorInputProtocol,
+         router: ListMoviesRouterProtocol ) {
+        self.view = view
+        self.interactor = interactor
+        self.router = router
+    }
 }
 
-class ListMoviesPresenter {
-    private var listMoviesInteractor = ListMoviesInteractor()
-    var modelPageProtocol:ListMoviesViewProtocol?
+//MARK: - Extension
+
+extension ListMoviesPresenter: ListMoviesViewOutputProtocol {
     
-    init(listMoviesInteractor: ListMoviesInteractor ) {
-        self.listMoviesInteractor = listMoviesInteractor
+    func fetchModel() {
+        interactor?.fetchModel()
     }
     
-//    func onViewAppear() {
-//            listMoviesInteractor.getMovies(forType: .trending, completion: {
-//                pageMoviesResult in
-//                self.modelPageProtocol?.update( movies: pageMoviesResult.results )
-//            })
-//    }
-    
-    func onViewAppear(){
-        listMoviesInteractor.getMoviesAllCategories { allCategoriesMovies in
-            self.modelPageProtocol?.update(movies: allCategoriesMovies)
-        }
+    func goToNextViewController(with model: Movie) {
+        print("llego al presenter ")
+        router?.goToNextViewController(with: model)
     }
+    
+    func goToSearchViewController() {
+        router?.goToSearchViewController()
+    }
+}
+
+
+extension ListMoviesPresenter: ListMoviesInteractorOutputProtocol{
+    func presentView(model: [AllMovieTypes]) {
+        view?.loadView(from: model)
+    }
+    
+    
 }

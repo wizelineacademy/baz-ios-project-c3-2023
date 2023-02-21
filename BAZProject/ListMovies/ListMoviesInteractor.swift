@@ -38,19 +38,13 @@ class ListMoviesInteractor {
         private let rootURL:String     = "https://api.themoviedb.org/3"
         private let extraParams:String = "&language=es&region=MX&page=1"
         var allMoviesTypes: [AllMovieTypes] = []
+        var presenter: ListMoviesInteractorOutputProtocol?
 
-        /**
-        Esta función permite traer un listado de peliculas dependiendo de los parametros de búsqueda.
 
-        :condiciones: Es importante tener en cuenta que tipo de peliculas quieres mostrar:
-            * trending
-            * nowPlaying
-            * popular
-            * topRated
-            * upcoming
-        :param: enum TypeOfMovies
-        :returns: @escaping listado de peliculas [Movie]
-        */
+    ///  Esta función permite traer un listado de peliculas dependiendo de los parametros de búsqueda.
+    /// - Parameters:
+    ///   - typeOfMovies: enum TypeOfMovies del tipo de peliculas a buscar
+    ///   - completion: @escaping listado de peliculas [Movie]
        func getMovies(forType typeOfMovies:TypeOfMovies, completion: @escaping (PageMoviesResult) -> Void){
            if let urlPath = URL(string: createURL(forType: typeOfMovies)){
                URLSession.shared.dataTask(with: urlPath){ data, response , error in
@@ -66,45 +60,10 @@ class ListMoviesInteractor {
                 }.resume()
            }
         }
-    
-    /**
-    Esta función permite traer el modelo  con las peliculas  en una sola llamada:
-         * trending
-         * nowPlaying
-         * popular
-         * topRated
-         * upcoming
-    :condiciones:
-    :param:
-    :returns: @escaping listado de peliculas [AllMovieTypes]
-    */
-    func getMoviesAllCategories(completion: @escaping ([AllMovieTypes]) -> Void){
-        var arrAllCategories: [AllMovieTypes] = []
-        getMovies(forType: .trending) { trendingMovies in
-            arrAllCategories.append(AllMovieTypes(typeOfMovies: .trending, pagesMovies: trendingMovies))
-            self.getMovies(forType: .nowPlaying) { nowPlayingMovies in
-                arrAllCategories.append(AllMovieTypes(typeOfMovies: .nowPlaying, pagesMovies: nowPlayingMovies))
-                self.getMovies(forType: .popular) { popularMovies in
-                    arrAllCategories.append(AllMovieTypes(typeOfMovies: .popular, pagesMovies: popularMovies))
-                    self.getMovies(forType: .topRated) { topRatedMovies in
-                        arrAllCategories.append(AllMovieTypes(typeOfMovies: .topRated, pagesMovies: topRatedMovies))
-                        self.getMovies(forType: .upcoming) { upcomingMovies in
-                            arrAllCategories.append(AllMovieTypes(typeOfMovies: .upcoming, pagesMovies: upcomingMovies))
-                            completion(arrAllCategories)
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
         
-        /**
-        Esta función permite crear la URL que nos permitira hacer la búsqueda de las peliculas.
-        :condiciones: Es importante tener en cuenta que tipo de peliculas quieres mostrar con su respectivas caracteristicas
-        :param: enum TypeOfMovies para determinar si tipo idMovie: Int si es que se quiere una pelicula en particular, query : String si se requiere buscar una palabra en particular
-        :returns: @escaping listado de peliculas [Movie]
-        */
+    /// Nos permite crear la url con los parametros requeridos
+    /// - Parameter query: Es la o las palabras a buscar por el API de Peliculas
+    /// - Returns: Mps regresa un String con toda la URL formada
         func createURL(forType typeOfMovies: TypeOfMovies, idMovie: Int? = nil, query: String? = nil) -> String {
             var strURL = ""
             switch typeOfMovies {
@@ -115,3 +74,30 @@ class ListMoviesInteractor {
         }
 
     }
+
+//MARK: - Extensions
+
+extension ListMoviesInteractor: ListMoviesInteractorInputProtocol {
+  
+    /// Esta función permite traer el modelo  con las peliculas  en una sola llamada:
+    func fetchModel(){
+        var arrAllCategories: [AllMovieTypes] = []
+        getMovies(forType: .trending) { trendingMovies in
+            arrAllCategories.append(AllMovieTypes(typeOfMovies: .trending, pagesMovies: trendingMovies))
+            self.getMovies(forType: .nowPlaying) { nowPlayingMovies in
+                arrAllCategories.append(AllMovieTypes(typeOfMovies: .nowPlaying, pagesMovies: nowPlayingMovies))
+                self.getMovies(forType: .popular) { popularMovies in
+                    arrAllCategories.append(AllMovieTypes(typeOfMovies: .popular, pagesMovies: popularMovies))
+                    self.getMovies(forType: .topRated) { topRatedMovies in
+                        arrAllCategories.append(AllMovieTypes(typeOfMovies: .topRated, pagesMovies: topRatedMovies))
+                        self.getMovies(forType: .upcoming) { [self] upcomingMovies in
+                            arrAllCategories.append(AllMovieTypes(typeOfMovies: .upcoming, pagesMovies: upcomingMovies))
+                            presenter?.presentView(model: arrAllCategories)
+                        }
+                    }
+                }
+            }
+        }
+    }
+ 
+}

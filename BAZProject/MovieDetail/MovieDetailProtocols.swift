@@ -7,22 +7,37 @@
 
 import Foundation
 
-protocol MovieDetailViewOutPutProtocol {
+//MARK: - View
+protocol MovieDetailViewIntputProtocol: AnyObject {
+    var presenter: MovieDetailViewOutputProtocol? { get }
+    //MARK: - Functions
+    func loadView(from model:Movie)
+}
+
+//MARK: - Interactor
+protocol MovieDetailInteractorInputProtocol {
+    var presenter: MovieDetailInteractorOutputProtocol? { get }
+    
+    // MARK: Functions
+    func fetchModel()
     
 }
 
-protocol MovieDetailViewIntPutProtocol {
+//MARK: - Presenter
+protocol MovieDetailViewOutputProtocol {
+    var view: MovieDetailViewIntputProtocol? { get }
+    var interactor: MovieDetailInteractorInputProtocol? { get }
+    var router : MovieDetailRouterProtocol? { get }
     
+    // MARK: Functions
+    func fetchModel()
 }
 
-protocol MovieDetailInteractorOutPutProtocol{
-    
+protocol MovieDetailInteractorOutputProtocol: AnyObject {
+    func presentView(model: Movie)
 }
 
-protocol MovieDetailInteractorInPutProtocol {
-    
-}
-
+//MARK: - Router
 protocol MovieDetailRouterProtocol {
     
 }

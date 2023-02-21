@@ -30,6 +30,8 @@ enum URLMovieDetails: String {
 class MovieDetailInteractor {
     
     //MARK: - Properties
+    var presenter: MovieDetailInteractorOutputProtocol?
+    
     private let apiKey: String     = "?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
     private let rootURL:String     = "https://api.themoviedb.org/3/movie/"
     private let extraParams:String = "&language=es&region=MX&page=1"
@@ -51,16 +53,36 @@ class MovieDetailInteractor {
         }.resume()
     }
     
-    /**
-    Esta función permite crear la URL que nos permitira hacer la búsqueda de las apis para los detalles de la pelicula.
-    :condiciones: Es importante mandar que tipo de detalles quieres obtener
-    :param: enum URLMovieDetails para determinar si tipo detalle por url que quieres y un idMovie :Int de la pelicula ,
-    :returns: @escaping listado de peliculas [Movie]
-    */
-    
+    /// Nos permite crear la url con los parametros requeridos
+    /// - Parameter query: Es la o las palabras a buscar por el API de Peliculas
+    /// - Returns: Mps regresa un String con toda la URL formada
     func createURL(forMovieDetail typeDetail: URLMovieDetails, idMovie: Int) -> String {
         let strURL = "\(rootURL)/movie/\(idMovie)\(typeDetail.url)\(apiKey)\(extraParams)"
         return  strURL
+    }
+    
+    
+}
+
+
+//extension
+extension MovieDetailInteractor: MovieDetailInteractorInputProtocol {
+    
+    func fetchModel() {
+        let movieModel = Movie(adult: true,
+                               backdropPath: "",
+                               id: 3, title: "Prueba",
+                               originalLanguage: "",
+                               originalTitle: "prueba",
+                               overview: "", posterPath: "",
+                               mediaType: "",
+                               genreIds:[],
+                               popularity: 4.3,
+                               releaseDate: "",
+                               video: false,
+                               voteAverage: 4.4,
+                               voteCount: 3)
+        presenter?.presentView(model: movieModel)
     }
     
     

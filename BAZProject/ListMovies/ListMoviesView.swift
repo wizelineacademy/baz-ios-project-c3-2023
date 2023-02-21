@@ -13,25 +13,19 @@ class ListMoviesView: UIViewController {
     @IBOutlet weak var tblMovies: UITableView!
     
 //MARK: - Properties
-    var listMoviesPresenter : ListMoviesPresenter?
+    var presenter: ListMoviesViewOutputProtocol?
     var arrMovies: [AllMovieTypes] = []
-    lazy var btnSearch : UIButton = {
-        let searchImage = UIImage(named: "magnifyingglass")
-        let searchImageView = UIImageView(image: searchImage)
-        searchImageView.frame.size = CGSize(width: 100, height: 50)
-        let rightBarButton = UIButton(type: .system)
-        rightBarButton.setImage(searchImage, for: .normal)
-        rightBarButton.setTitle("Búsqueda", for: .normal)
-        rightBarButton.setTitleColor(UIColor.black, for: .normal)
-        rightBarButton.frame = CGRect.init(x: 0, y: 0, width: 100, height: 50)
-        rightBarButton.addTarget(self, action: #selector(didTapButtonSearch), for: .touchUpInside)
+    lazy var btnSearch : UIBarButtonItem = {
+        let searchImage = UIImage(systemName: "magnifyingglass")
+        let rightBarButton = UIBarButtonItem(image: searchImage, style: .plain , target: self, action: #selector(didTapButtonSearch))
+        rightBarButton.tintColor = .darkText
         return rightBarButton
     }()
 
 //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        listMoviesPresenter?.onViewAppear()
+        presenter?.fetchModel()
         self.title = "RWMovies"
         tblMovies.delegate = self
         tblMovies.dataSource = self
@@ -40,23 +34,27 @@ class ListMoviesView: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: btnSearch)
+        navigationItem.rightBarButtonItem = btnSearch
     }
                                                                    
  //MARK: - Functions
-@objc func didTapButtonSearch(){print("Mandar a búsqueda")}
+@objc func didTapButtonSearch() {
+    presenter?.goToSearchViewController()
+}
 
 }
 
 //MARK: - Extensions
-extension ListMoviesView : ListMoviesViewProtocol{
-    func update(movies: [AllMovieTypes]) {
-        arrMovies = movies
+extension ListMoviesView: ListMoviesViewInputProtocol {
+  
+    func loadView(from model: [AllMovieTypes]) {
+        arrMovies = model
         DispatchQueue.main.async {
             self.tblMovies.reloadData()
         }
     }
 }
+
 
 extension ListMoviesView : UITableViewDelegate{
     
@@ -76,15 +74,25 @@ extension ListMoviesView : UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:MovieTableViewCell = tblMovies.dequeueReusableCell(withIdentifier: MovieTableViewCell.identifier, for: indexPath) as! MovieTableViewCell
+        guard let cell:MovieTableViewCell = tblMovies.dequeueReusableCell(withIdentifier: MovieTableViewCell.identifier, for: indexPath) as? MovieTableViewCell else { return UITableViewCell() }
         
         let movies = arrMovies[indexPath.section].pagesMovies?.results ?? []
+        cell.delegate = self
         cell.configure(with: movies)
         return cell
     }
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 300.0
+        return 270.0
     }    
+}
+
+extension ListMoviesView: MovieTableViewCellDelegate {
+    func onSelected(movie: Movie) {
+        presenter?.goToNextViewController(with: movie)
+        print("Mostrar la vista Detail con esta información \(movie)")
+    }
+    
+    
 }

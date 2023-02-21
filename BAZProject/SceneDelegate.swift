@@ -15,7 +15,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: windowScene)
-        listMoviesRouter.showListMovies(window: window)
+        let navigationController = UINavigationController()
+        navigationController.navigationBar.tintColor = .darkText
+        navigationController.viewControllers = [ListMoviesRouter.createModule()]
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
