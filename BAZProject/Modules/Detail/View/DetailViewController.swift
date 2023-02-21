@@ -60,6 +60,12 @@ final class DetailViewController: UIViewController {
         imageSlider.setUp(imageUrlArray: imageUrlArray)
     }
     
+    private func showImageSlider() {
+        guaranteeMainThread {
+            self.imageSlider.isHidden = false
+        }
+    }
+    
     private func callService() {
         isLoading = true
         getData()
@@ -75,6 +81,7 @@ final class DetailViewController: UIViewController {
 extension DetailViewController: DetailViewProtocol {
     func updateView(data: MovieDetailResult) {
         if let data = data.imagesArrayUrlString, !data.isEmpty {
+            showImageSlider()
             setupView(imageUrlArray: data)
         }
         guaranteeMainThread {

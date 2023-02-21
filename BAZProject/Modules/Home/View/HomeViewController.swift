@@ -43,6 +43,7 @@ final class HomeViewController: UIViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
+        movieTopSlider.stopTimmer()
         stopLoading()
     }
     
@@ -72,7 +73,8 @@ extension HomeViewController: HomeViewProtocol {
                 imageUL.append(bac)
             }
         }
-        movieTopSlider.setUp(imageUrlArray: imageUL)
+
+        movieTopSlider.setUp([CellMovieType(imageUrlString: Endpoint.img(idImage: "/ejniJnlOdtSgtbh8D7u2RxT6Uli.jpg", sizeImage: .w500).urlString)])
     }
     
     func stopLoading() {

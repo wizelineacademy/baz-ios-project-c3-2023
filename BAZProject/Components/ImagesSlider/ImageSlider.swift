@@ -7,6 +7,10 @@
 
 import UIKit
 
+private enum CellType {
+    case cellSlider, cellMovieTop
+}
+
 final class ImageSlider: CustomView {
     
     static let  identifier: String = .imageSliderXibIdentifier
@@ -17,6 +21,8 @@ final class ImageSlider: CustomView {
     
     // MARK: - Private methods
     private var imageUrlArray: [String]?
+    private var cellMovieTypeArray: [CellMovieType]?
+    private var cellType: CellType?
     private var timer: Timer?
     private var counter: Int = 0
     private var positionScroll: CGFloat = 0
@@ -34,12 +40,18 @@ final class ImageSlider: CustomView {
     }
     
     func setUp(imageUrlArray: [String]) {
+        cellType = .cellSlider
         guaranteeMainThread {
             self.imageUrlArray = imageUrlArray
-            self.registerCell()
-            self.imageCollection.delegate = self
-            self.setupPageControl()
-            self.imageCollection.reloadData()
+            self.initRegister()
+        }
+    }
+    
+    func setUp(_ cellMovieTypeAray: [CellMovieType]) {
+        cellType = .cellMovieTop
+        guaranteeMainThread {
+            self.cellMovieTypeArray = cellMovieTypeAray
+            self.initRegister()
         }
     }
     
@@ -54,17 +66,43 @@ final class ImageSlider: CustomView {
     }
     
     // MARK: - Private methods
+    private func initRegister() {
+        registerCell()
+        imageCollection.delegate = self
+        setupPageControl()
+        imageCollection.reloadData()
+    }
+    
+    private func registerCell() {
+        guard let cellType = cellType else { return }
+        switch cellType {
+        case .cellSlider:
+            registerCellSlider()
+        case .cellMovieTop:
+            registerCellMovieTop()
+        }
+    }
+
     private func getImageUrl(_ index: Int) -> String? {
         return imageUrlArray?[index]
     }
     
-    private func registerCell() {
+    private func getCellMovieTop(_ index: Int) -> CellMovieType? {
+        return cellMovieTypeArray?[index]
+    }
+    
+    private func registerCellSlider() {
         imageCollection.register(CellSlider.nib(),
                                  forCellWithReuseIdentifier: CellSlider.identifier)
     }
     
+    private func registerCellMovieTop() {
+        imageCollection.register(CellMovieTop.nib(),
+                                 forCellWithReuseIdentifier: CellMovieTop.identifier)
+    }
+    
     private func setupPageControl() {
-        slidePageControl.numberOfPages = imageUrlArray?.count ?? initCurrentPage
+        slidePageControl.numberOfPages = getNumberOfItems()
         slidePageControl.currentPage = LocalizedConstants.imageSliderInitCurrentPageSlider
         initTimer()
     }
@@ -72,11 +110,12 @@ final class ImageSlider: CustomView {
     private func initTimer() {
         timer = Timer.scheduledTimer(timeInterval: LocalizedConstants.imageSliderTimeInterval, target: self, selector: #selector(slide), userInfo: nil, repeats: true)
     }
-
+    
     @objc private func slide() {
-        guard let imageUrlArray = imageUrlArray else { return }
+        let totalItems: Int = getNumberOfItems()
+        if totalItems == numberSections { return }
         var index: IndexPath = IndexPath(item: counter, section: numberSections)
-        if counter >= imageUrlArray.count {
+        if counter >= totalItems {
             counter = initCurrentPage
             index = IndexPath(item: counter, section: numberSections)
         } else {
@@ -86,11 +125,12 @@ final class ImageSlider: CustomView {
     }
     
     private func updateItemOfImageCollectionByScroll() {
-        guard let imageUrlArray = imageUrlArray else { return }
+        let totalItems: Int = getNumberOfItems()
+        if totalItems == numberSections { return }
         if scrolledRight {
             counter = initCurrentPage
         } else if !scrolledRight && counter == initCurrentPage {
-            counter = imageUrlArray.count - numberIncrementPage
+            counter = totalItems - numberIncrementPage
         }
         
         updatePositionItemOfImageCollection(for: IndexPath(item: counter,
@@ -102,20 +142,52 @@ final class ImageSlider: CustomView {
             self.imageCollection.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
         }
     }
-}
-
-// MARK: - UICollectionViewDataSource
-extension ImageSlider: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imageUrlArray?.count ?? numberSections
+    
+    private func getNumberOfItems() -> Int {
+        guard let cellType = cellType else { return numberSections }
+        switch cellType {
+        case .cellSlider:
+            return imageUrlArray?.count ?? numberSections
+        case .cellMovieTop:
+            return cellMovieTypeArray?.count ?? numberSections
+        }
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    private func getUICollectionViewCell(of indexPath: IndexPath, in collectionView: UICollectionView) -> UICollectionViewCell {
+        guard let cellType = cellType else { return UICollectionViewCell() }
+        switch cellType {
+        case .cellSlider:
+            return getCellSlider(of: indexPath, in: collectionView)
+        case .cellMovieTop:
+            return getCellMovieTop(of: indexPath, in: collectionView)
+        }
+    }
+    
+    private func getCellSlider(of indexPath: IndexPath, in collectionView: UICollectionView) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellSlider.identifier, for: indexPath) as? CellSlider, let imageUrl: String = getImageUrl(indexPath.row) {
             cell.setData(imageUrl: Endpoint.img(idImage: imageUrl, sizeImage: .w500).urlString)
             return cell
         }
         return UICollectionViewCell()
+    }
+
+    private func getCellMovieTop(of indexPath: IndexPath, in collectionView: UICollectionView) -> UICollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellMovieTop.identifier, for: indexPath) as? CellMovieTop, let cellMovieType: CellMovieType = getCellMovieTop(indexPath.row) {
+            cell.setData(cellMovieType: cellMovieType)
+            return cell
+        }
+        return UICollectionViewCell()
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+extension ImageSlider: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return getNumberOfItems()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        return getUICollectionViewCell(of: indexPath, in: collectionView)
     }
 }
 

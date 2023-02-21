@@ -25,12 +25,12 @@
                     <rect key="frame" x="0.0" y="59" width="375" height="608"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Wf-Zx-fFC">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="608"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="438"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="fPl-am-mRz">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="608"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="438"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0FR-aM-gL9" customClass="ImageSlider" customModule="BAZProject" customModuleProvider="target">
+                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0FR-aM-gL9" customClass="ImageSlider" customModule="BAZProject" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="170"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
@@ -38,7 +38,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tGd-9a-Gw5">
-                                            <rect key="frame" x="0.0" y="170" width="375" height="438"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="438"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZjG-S9-3Je">
                                                     <rect key="frame" x="16" y="16" width="343" height="385.66666666666669"/>
@@ -47,7 +47,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nCs-z8-UA1">
-                                                    <rect key="frame" x="16" y="417.66666666666663" width="343" height="20.333333333333314"/>
+                                                    <rect key="frame" x="16" y="417.66666666666669" width="343" height="20.333333333333314"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>

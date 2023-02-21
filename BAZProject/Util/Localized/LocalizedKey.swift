@@ -46,6 +46,9 @@ extension String {
     // MARK: - CellSlider
     static let cellSliderXibIdentifier = "CellSlider"
     
+    // MARK: - CellMovieTop
+    static let cellMovieTopXibIdentifier = "CellMovieTop"
+    
     // MARK: ImageSlider
     static let imageSliderXibIdentifier = "ImageSlider"
     
