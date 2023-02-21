@@ -15,12 +15,14 @@ class DetailMovieRecommendationRemoteDataManager: DetailMovieRecommendationRemot
     
     func getRecommendation(idMovie: Int?) {
         guard let idMovie = idMovie else { return }
-        let urlRecommendations = "https://api.themoviedb.org/3/movie/\(idMovie)/recommendations?api_key=\(apiKey)"
-        movieApi.getMovies(for: urlRecommendations) { recommendation in
-            guard let recommendation = recommendation else {
-                return
+        URLBuilder.shared.idMovie = idMovie
+        if let url = URLBuilder.shared.getUrl(urlType: .recommendation) {
+            movieApi.getMovies(for: url) { recommendation in
+                guard let recommendation = recommendation else {
+                    return
+                }
+                self.remoteRequestHandler?.pushRecommendation(recommendation: recommendation)
             }
-            self.remoteRequestHandler?.pushRecommendation(recommendation: recommendation)
         }
     }
     

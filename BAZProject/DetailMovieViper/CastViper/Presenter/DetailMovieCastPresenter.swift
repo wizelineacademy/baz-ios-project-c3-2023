@@ -43,15 +43,9 @@ class DetailMovieCastPresenter: DetailMovieCastPresenterProtocol {
     /// - Returns: escaping closure with the UIImage type, if the parse fails, can return nil
     func getCastImage(index: Int, completion: @escaping (UIImage?) -> Void) {
         movieApi.getImage(for: cast[index].profile_path ?? "") { castImage in
-            if let castImage = castImage {
-                completion(castImage)
-            } else {
-                completion(nil)
-            }
+            completion(castImage)
         }
     }
-    
-  
 }
 
 extension DetailMovieCastPresenter: DetailMovieCastInteractorOutputProtocol {

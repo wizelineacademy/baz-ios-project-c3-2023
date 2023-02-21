@@ -54,11 +54,7 @@ class SearchMoviePresenter: SearchMoviePresenterProtocol {
     
     func getSearchedImage(index: Int, completion: @escaping (UIImage?) -> Void) {
         movieApi.getImage(for: searchedMovies[index].backdrop_path ?? "") { searchedImage in
-            if let searchedImage = searchedImage{
-                completion(searchedImage)
-            } else {
-                completion(nil)
-            }
+            completion(searchedImage)
         }
     }
     
@@ -73,7 +69,7 @@ class SearchMoviePresenter: SearchMoviePresenterProtocol {
     func tableSelected(tableView: UITableView, indexPath: IndexPath) {
         if isSearching {
             self.isSearching = false
-            interactor?.getSearched(searchTerm: keywords[indexPath.row].name?.replacingOccurrences(of: " ", with: "%20") ?? "")
+            interactor?.getSearched(searchTerm: keywords[indexPath.row].name ?? "")
         } else {
             tableView.deselectRow(at: indexPath, animated: false)
             if let view = view{

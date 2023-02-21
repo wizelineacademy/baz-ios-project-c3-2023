@@ -17,10 +17,12 @@ class DetailMovieRemoteDataManager:DetailMovieRemoteDataManagerInputProtocol {
     
     func getDetails(idMovie: Int?) {
         guard let idMovie = idMovie else { return }
-        let urlDetailMovie = "https://api.themoviedb.org/3/movie/\(idMovie)?api_key=\(apiKey)"
-        movieApi.getDetails(for: urlDetailMovie) { detailMovie in
-            guard let detailMovie = detailMovie else { return }
-            self.remoteRequestHandler?.pushDetailMovie(detailMovie: detailMovie)
+        URLBuilder.shared.idMovie = idMovie
+        if let url = URLBuilder.shared.getUrl(urlType: .details){
+            movieApi.getDetails(for: url) { detailMovie in
+                guard let detailMovie = detailMovie else { return }
+                self.remoteRequestHandler?.pushDetailMovie(detailMovie: detailMovie)
+            }
         }
     }
 }

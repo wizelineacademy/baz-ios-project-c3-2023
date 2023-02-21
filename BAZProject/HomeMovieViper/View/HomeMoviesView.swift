@@ -41,9 +41,11 @@ class HomeMoviesView: UIViewController, CategoriesMoviesCellDelegate {
     }
     
     func didSelectCell(indexPath: Int, cell: CategoriesMoviesCollectionViewCell) {
-        currentlySelected?.setCellDeselected()
-        currentlySelected = cell
-        presenter?.selectFilterMovies(index: indexPath)
+        if currentlySelected?.indexPath != indexPath{
+            currentlySelected?.setCellDeselected()
+            currentlySelected = cell
+            presenter?.selectFilterMovies(index: indexPath)
+        }
     }
     
     @IBAction func didSelectSearchButton(_ sender: Any) {

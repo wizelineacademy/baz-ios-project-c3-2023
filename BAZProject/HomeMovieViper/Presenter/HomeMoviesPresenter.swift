@@ -63,9 +63,7 @@ class HomeMoviesPresenter: HomeMoviesPresenterProtocol  {
     func getImage(index: Int, completion: @escaping (UIImage?) -> Void) {
         if let urlImage = self.toShowMovies[index].poster_path{
             movieApi.getImage(for: urlImage) { movieImage in
-                if let movieImage = movieImage{
-                    completion(movieImage)
-                }
+                completion(movieImage)
             }
         }
     }
@@ -78,9 +76,7 @@ class HomeMoviesPresenter: HomeMoviesPresenterProtocol  {
     func getCategorieImage(index: Int, completion: @escaping (UIImage?) -> Void) {
         if let urlImage = self.categoriesMovies[index].backdrop_path {
             movieApi.getImage(for: urlImage) { categorieImage in
-                if let categorieImage = categorieImage{
-                    completion(categorieImage)
-                }
+                completion(categorieImage)
             }
         }
     }

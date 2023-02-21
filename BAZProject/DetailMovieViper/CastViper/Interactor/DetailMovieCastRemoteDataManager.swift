@@ -16,10 +16,12 @@ class DetailMovieCastRemoteDataManager: DetailMovieCastRemoteDataManagerInputPro
     
     func getCast(idMovie: Int?) {
         guard let idMovie = idMovie else { return }
-        let urlCastMovie = "https://api.themoviedb.org/3/movie/\(idMovie)/credits?api_key=\(apiKey)"
-        movieApi.getCast(for: urlCastMovie) { cast in
-            guard let cast = cast else { return }
-            self.remoteRequestHandler?.pushCast(cast: cast)
+        URLBuilder.shared.idMovie = idMovie
+        if let url = URLBuilder.shared.getUrl(urlType: .cast) {
+            movieApi.getCast(for: url) { cast in
+                guard let cast = cast else { return }
+                self.remoteRequestHandler?.pushCast(cast: cast)
+            }
         }
     }
     

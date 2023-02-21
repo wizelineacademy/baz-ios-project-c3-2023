@@ -44,11 +44,7 @@ class DetailMoviePresenter: DetailMoviePresenterProtocol  {
     /// - Returns: escaping closure with the UIImage type, if the parse fails, can return nil
     func getDetailImage(completion: @escaping (UIImage?) -> Void) {
         movieApi.getImage(for: detailsMovie?.backdrop_path ?? "") { detailImage in
-            if let detailImage = detailImage {
-                completion(detailImage)
-            } else {
-                completion(nil)
-            }
+            completion(detailImage)
         }
     }
     

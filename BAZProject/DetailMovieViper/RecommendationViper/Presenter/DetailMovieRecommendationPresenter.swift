@@ -43,11 +43,7 @@ class DetailMovieRecommendationPresenter: DetailMovieRecommendationPresenterProt
     /// - Returns: escaping closure with the UIImage type, if the parse fails, can return nil
     func getRecommendationImage(index: Int, completion: @escaping (UIImage?) -> Void) {
         movieApi.getImage(for: recommendation[index].poster_path ?? "") { recommendationImage in
-            if let recommendationImage = recommendationImage{
-                completion(recommendationImage)
-            } else {
-                completion(nil)
-            }
+            completion(recommendationImage)
         }
     }
 }

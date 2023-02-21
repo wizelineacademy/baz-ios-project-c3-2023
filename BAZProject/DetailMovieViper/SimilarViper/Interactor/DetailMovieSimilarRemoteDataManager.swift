@@ -15,12 +15,14 @@ class DetailMovieSimilarRemoteDataManager: DetailMovieSimilarRemoteDataManagerIn
     
     func getSimilar(idMovie: Int?) {
         guard let idMovie = idMovie else { return }
-        let urlSimilarMovie = "https://api.themoviedb.org/3/movie/\(idMovie)/similar?api_key=\(apiKey)"
-        movieApi.getMovies(for: urlSimilarMovie) { similar in
-            guard let similar = similar else {
-                return
+        URLBuilder.shared.idMovie = idMovie
+        if let url = URLBuilder.shared.getUrl(urlType: .similar) {
+            movieApi.getMovies(for: url) { similar in
+                guard let similar = similar else {
+                    return
+                }
+                self.remoteRequestHandler?.pushSimilar(similar: similar)
             }
-            self.remoteRequestHandler?.pushSimilar(similar: similar)
         }
     }
     

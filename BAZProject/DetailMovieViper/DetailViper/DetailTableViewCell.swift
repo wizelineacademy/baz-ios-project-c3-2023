@@ -51,9 +51,3 @@ extension DetailTableViewCell: UICollectionViewDelegateFlowLayout{
         presenter?.getTableSize(indexPath: self.indexPath ?? 0) ?? CGSize(width: 0, height: 0)
     }
 }
-
-extension DetailTableViewCell: UICollectionViewDelegate{
-    
-}
-
-

@@ -8,6 +8,7 @@
 import UIKit
 
 protocol CategoriesMoviesCellDelegate: AnyObject {
+    var currentlySelected: CategoriesMoviesCollectionViewCell? { get set }
     func didSelectCell(indexPath : Int, cell: CategoriesMoviesCollectionViewCell)
 }
 
@@ -29,6 +30,7 @@ class CategoriesMoviesCollectionViewCell: UICollectionViewCell {
         self.indexPath = indexPath
         self.setupCategoryTitle(cellTitle: cellTitle)
         categoriesView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(setCellSelected)))
+        if delegate?.currentlySelected == nil { setCellSelected() }
     }
     
     func setupCategoryImage(for image: UIImage?) {
@@ -51,10 +53,14 @@ class CategoriesMoviesCollectionViewCell: UICollectionViewCell {
     
     @objc func setCellSelected() {
         self.categoriesMovieTitleLabel.textColor = .systemBlue
+        self.degradeImageview.layer.borderColor = UIColor.systemBlue.cgColor
+        self.degradeImageview.layer.borderWidth = 4.0
         delegate?.didSelectCell(indexPath: self.indexPath, cell: self)
     }
     
     func setCellDeselected(){
+        self.degradeImageview.layer.borderColor = nil
+        self.degradeImageview.layer.borderWidth = 0.0
         self.categoriesMovieTitleLabel.textColor = .white
     }
 }

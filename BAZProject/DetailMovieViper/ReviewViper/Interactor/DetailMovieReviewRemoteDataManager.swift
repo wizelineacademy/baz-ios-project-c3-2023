@@ -16,12 +16,14 @@ class DetailMovieReviewRemoteDataManager: DetailMovieReviewRemoteDataManagerInpu
     
     func getReview(idMovie: Int?) {
         guard let idMovie = idMovie else { return }
-        let urlReviewMovie = "https://api.themoviedb.org/3/movie/\(idMovie)/reviews?api_key=\(apiKey)"
-        movieApi.getReviews(for: urlReviewMovie) { review in
-            guard let review = review else {
-                return
+        URLBuilder.shared.idMovie = idMovie
+        if let url = URLBuilder.shared.getUrl(urlType: .reviews) {
+            movieApi.getReviews(for: url) { review in
+                guard let review = review else {
+                    return
+                }
+                self.remoteRequestHandler?.pushReview(review: review)
             }
-            self.remoteRequestHandler?.pushReview(review: review)
         }
     }
     

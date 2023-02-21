@@ -43,15 +43,9 @@ class DetailMovieSimilarPresenter: DetailMovieSimilarPresenterProtocol {
     /// - Returns: escaping closure with the UIImage type, if the parse fails, can return nil
     func getSimilarImage(index: Int, completion: @escaping (UIImage?) -> Void) {
         movieApi.getImage(for: similar[index].poster_path ?? "") { similarImage in
-            if let similarImage = similarImage {
-                completion(similarImage)
-            } else {
-                completion(nil)
-            }
+            completion(similarImage)
         }
     }
-    
-    
 }
 
 extension DetailMovieSimilarPresenter: DetailMovieSimilarInteractorOutputProtocol {

@@ -69,13 +69,13 @@ extension SearchMovieView: UISearchBarDelegate{
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        presenter?.setSearching(isSearching: true, searchTerm: searchText.replacingOccurrences(of: " ", with: "%20"))
+        presenter?.setSearching(isSearching: true, searchTerm: searchText)
     }
     
     
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        presenter?.setSearching(isSearching: false, searchTerm: searchBar.text?.replacingOccurrences(of: " ", with: "%20") ?? "")
+        presenter?.setSearching(isSearching: false, searchTerm: searchBar.text ?? "")
     }
 }
 

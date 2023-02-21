@@ -62,12 +62,7 @@ extension DetailMovieView:UITableViewDelegate{
     }
         
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == 0{
-            self.nameMovieLabel.isHidden = true
-        } else {
-            self.nameMovieLabel.isHidden = false
-        }
-       
+        self.nameMovieLabel.isHidden = indexPath.row == 0
     }
 }
 

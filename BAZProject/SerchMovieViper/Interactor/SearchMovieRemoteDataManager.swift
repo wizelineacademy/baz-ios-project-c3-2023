@@ -16,21 +16,25 @@ class SearchMovieRemoteDataManager:SearchMovieRemoteDataManagerInputProtocol {
     private let movieApi : MovieAPI = MovieAPI()
     
     func getKeyword(keyword: String) {
-        let urlKeywordMovie = "https://api.themoviedb.org/3/search/keyword?api_key=\(apiKey)&query=\(keyword)"
-        movieApi.getKeyword(for: urlKeywordMovie) { keyword in
-            if let keyword = keyword{
-                self.remoteRequestHandler?.pushKeyword(keyword: keyword)
+        URLBuilder.shared.searchTerm = keyword
+        if let url = URLBuilder.shared.getUrl(urlType: .keyword) {
+            movieApi.getKeyword(for: url) { keyword in
+                if let keyword = keyword {
+                    self.remoteRequestHandler?.pushKeyword(keyword: keyword)
+                }
             }
         }
     }
     
     func getSearched(searchTerm: String) {
-        let urlSearchMovie = "https://api.themoviedb.org/3/search/movie?api_key=\(apiKey)&query=\(searchTerm)"
-        movieApi.getSearch(for: urlSearchMovie) { searchedMovies in
-            if let searchedMovies = searchedMovies{
-                self.remoteRequestHandler?.pushSearchedMovies(searchedMovies: searchedMovies)
-            } else {
-                self.remoteRequestHandler?.pushNotSearched()
+        URLBuilder.shared.searchTerm = searchTerm
+        if let url = URLBuilder.shared.getUrl(urlType: .search) {
+            movieApi.getSearch(for: url) { searchedMovies in
+                if let searchedMovies = searchedMovies {
+                    self.remoteRequestHandler?.pushSearchedMovies(searchedMovies: searchedMovies)
+                } else {
+                    self.remoteRequestHandler?.pushNotSearched()
+                }
             }
         }
     }
