@@ -29,10 +29,12 @@ extension DetailPresenter: DetailInteractorOutputProtocol {
     func showViewError(_ error: Error) {
         var errorModel: ErrorType
         if let fetchedError: ServiceError = error as? ServiceError {
-             errorModel = ErrorType(serviceError: fetchedError)
+            errorModel = ErrorType(serviceError: fetchedError)
         } else {
-            errorModel = ErrorType(title: error.localizedDescription, message: "Error code: \(error._code) - \(error._domain)")
+            errorModel = ErrorType(title: error.localizedDescription,
+                                   message: "Error code: \(error._code) - \(error._domain)")
         }
+
         errorModel.setTitleNavBar(.trendingTitle)
         view?.setErrorGettingData(true)
         router?.showViewError(errorModel)
