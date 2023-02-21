@@ -9,6 +9,7 @@ import UIKit
 
 class HomeTableViewController: UITableViewController {
     
+    let movieApi = MovieAPI()
     var heightRowTable: CGFloat = 250
     var categories = MovieAPICategory.allMovieAPICategories
     var listOfCategories: [MovieAPICategory: [Movie]] = [
@@ -18,73 +19,56 @@ class HomeTableViewController: UITableViewController {
         .topRated: [],
         .upcoming: [],
     ]
-    let movieApi = MovieAPI()
-    let dispatchGroup = DispatchGroup()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getMovies()
     }
     
-    func getMovies(){
-        dispatchGroup.enter()
+    func getMovies() {
          movieApi.getMoviesBy(category: .trending, completionHandler: { movies, error in
             if let movies = movies {
                 self.listOfCategories[.trending] = movies
-                self.dispatchGroup.leave()
+                self.reloadSectionInTable(index: IndexSet(integer: MovieAPICategory.trending.rawValue))
             }
         })
         
-        dispatchGroup.enter()
          movieApi.getMoviesBy(category: .nowPlaying, completionHandler: { movies, error in
             if let movies = movies {
                 self.listOfCategories[.nowPlaying] = movies
-                self.dispatchGroup.leave()
+                self.reloadSectionInTable(index: IndexSet(integer:  MovieAPICategory.nowPlaying.rawValue))
             }
         })
         
-        dispatchGroup.enter()
          movieApi.getMoviesBy(category: .popular, completionHandler: { movies, error in
             if let movies = movies {
                 self.listOfCategories[.popular] = movies
-                self.dispatchGroup.leave()
+                self.reloadSectionInTable(index: IndexSet(integer:  MovieAPICategory.popular.rawValue))
             }
         })
         
-        dispatchGroup.enter()
          movieApi.getMoviesBy(category: .topRated, completionHandler: { movies, error in
             if let movies = movies {
                 self.listOfCategories[.topRated] = movies
-                self.dispatchGroup.leave()
+                self.reloadSectionInTable(index: IndexSet(integer:  MovieAPICategory.topRated.rawValue))
             }
         })
         
-        dispatchGroup.enter()
          movieApi.getMoviesBy(category: .upcoming, completionHandler: { movies, error in
             if let movies = movies {
                 self.listOfCategories[.upcoming] = movies
-                self.dispatchGroup.leave()
+                self.reloadSectionInTable(index: IndexSet(integer:  MovieAPICategory.upcoming.rawValue))
             }
         })
-        
-        dispatchGroup.notify(queue: DispatchQueue.main) {
-            self.tableView.reloadData()
-        }
     }
 
-    func reloadSectionInTable(index: IndexSet){
+    func reloadSectionInTable(index: IndexSet) {
         DispatchQueue.main.async {
             self.tableView.reloadSections(index, with: .none)
         }
     }
-    
-    func reloadMovieTable() {
-        dispatchGroup.notify(queue: DispatchQueue.main) {
-            self.tableView.reloadData()
-        }
-    }
-    
-    func showDetailMovieViewController(sender: Any?){
+
+    func showDetailMovieViewController(sender: Any?) {
         let detailView = MovieDetailPViewController()
         guard let movieDetail =  sender as? Movie else { return }
         detailView.movieToShowDetail = movieDetail

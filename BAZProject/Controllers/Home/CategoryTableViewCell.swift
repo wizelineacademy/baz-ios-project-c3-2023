@@ -15,7 +15,11 @@ class CategoryTableViewCell: UITableViewCell {
     
     @IBOutlet weak var collectionToCarrucel: UICollectionView!
     
-    var moviesToShow: [Movie] = []
+    var moviesToShow: [Movie] = [] {
+        didSet {
+            collectionToCarrucel.reloadData()
+        }
+    }
     var categoryTableCellDelegate: CategoryTableCellDelegate?
 
     override func awakeFromNib() {
@@ -29,7 +33,7 @@ class CategoryTableViewCell: UITableViewCell {
     func setCollectionView() {
         collectionToCarrucel.register(UINib(nibName: "MovieGalleryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MovieGallery")
         setDelegates()
-        //setFlowLayout()
+        setFlowLayout()
     }
     
     func setDelegates() {
@@ -49,7 +53,7 @@ class CategoryTableViewCell: UITableViewCell {
 
 // MARK: - CollectionView's DataSource
 
-extension CategoryTableViewCell: UICollectionViewDataSource{
+extension CategoryTableViewCell: UICollectionViewDataSource {
         
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return moviesToShow.count
