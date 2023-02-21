@@ -29,6 +29,7 @@ final class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getData()
+        hideSearchBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,10 +45,24 @@ final class HomeViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         movieTopSlider.stopTimmer()
+        navigationItem.searchController = getUISearchController()
         stopLoading()
     }
     
     // MARK: - Private methods
+    private func hideSearchBar() {
+        navigationItem.searchController = .none
+    }
+    
+    private func getUISearchController() -> UISearchController {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = .mainPlaceholderSearchBar
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        return searchController
+    }
+
     private func showLoader() {
         guaranteeMainThread {
             self.view.showLoader()
@@ -67,14 +82,14 @@ final class HomeViewController: UIViewController {
 extension HomeViewController: HomeViewProtocol {
     func updateView(data: [MovieTopRatedResult]) {
         movieTopRated = data
-        var imageUL = [String]()
+        var cellMovieType = [CellMovieType]()
         data.forEach { movie in
             if let bac = movie.backdropPath {
-                imageUL.append(bac)
+                cellMovieType.append(CellMovieType(imageUrlString: Endpoint.img(idImage: bac, sizeImage: .w500).urlString, title: movie.title ?? ""))
             }
         }
 
-        movieTopSlider.setUp([CellMovieType(imageUrlString: Endpoint.img(idImage: "/ejniJnlOdtSgtbh8D7u2RxT6Uli.jpg", sizeImage: .w500).urlString)])
+        movieTopSlider.setUp(cellMovieType)
     }
     
     func stopLoading() {

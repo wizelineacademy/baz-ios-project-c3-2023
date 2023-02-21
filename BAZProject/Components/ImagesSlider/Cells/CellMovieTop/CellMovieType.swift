@@ -9,4 +9,5 @@ import Foundation
 
 struct CellMovieType {
     var imageUrlString: String
+    var title: String
 }

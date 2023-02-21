@@ -14,12 +14,14 @@ final class CellMovieTop: UICollectionViewCell {
     }
 
     @IBOutlet weak private var photoImageView: UIImageView!
-    
+    @IBOutlet weak private var titleLabel: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
     func setData(cellMovieType: CellMovieType) {
         photoImageView.loadImage(id: cellMovieType.imageUrlString)
+        titleLabel.text = cellMovieType.title
     }
 }

@@ -1,4 +1,4 @@
-//  StarRatedViewController.swift
+//  StarRatedView.swift
 //  BAZProject
 //
 //  Created by Gerardo Bautista Castañeda on 19/02/23.
@@ -7,43 +7,46 @@
 
 import UIKit
 
-final class StarRatedViewController: UIViewController {
+final class StarRatedView: CustomView {
     static let identifier: String = .starRatedXibIdentifier
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
     }
     
+    override var nameXIB: String { .starRatedXibIdentifier }
+    
     @IBOutlet weak private var starsStackContainer: UIStackView!
     
     // MARK: - Private properties
-    private var selectedRate: Int = 0
-    private var numberStars: Int = 0
-    
-    // MARK: - Lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupView()
-    }
-    
-    func setData(numberStars: Int) {
-        self.numberStars = numberStars
-        if numberStars > selectedRate {
-            createStars()
+    private var selectedRate: Int = LocalizedConstants.starRatedInitSection
+    private var numberStars: Int = LocalizedConstants.starRatedInitSection
+
+    func setData(numberStars: Int, selectedRate: Int) {
+        guaranteeMainThread {
+            self.setupView()
+            self.numberStars = numberStars
+            self.selectedRate = selectedRate
+            if numberStars >= selectedRate {
+                self.createStars()
+            }
+            if selectedRate != 0 {
+                self.changeStateStarRate()
+            }
         }
     }
 
-    // MARK: - Private methods
-    private func setupView() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didSelectRate))
-        starsStackContainer.addGestureRecognizer(tapGesture)
-    }
-    
+    // MARK: - Private method
     private func createStars() {
         for index in LocalizedConstants.starRatedInitSection...numberStars {
             let star = makeStarIcon()
             star.tag = index
             starsStackContainer.addArrangedSubview(star)
         }
+    }
+    
+    private func setupView() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didSelectRate))
+        starsStackContainer.addGestureRecognizer(tapGesture)
     }
     
     private func makeStarIcon() -> UIImageView {
