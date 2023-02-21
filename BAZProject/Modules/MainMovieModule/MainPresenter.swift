@@ -10,6 +10,7 @@ import UIKit
 final class MainPresenter: NSObject {
     var view: MainViewProtocol?
     var interactor: MainInteractorInputProtocol?
+    let dispatchGroup = DispatchGroup()
     
     private func registerTableViewCells(tableView: UITableView) {
         let textFieldCell = UINib(nibName: "MoviesTableViewCell",
@@ -41,26 +42,24 @@ final class MainPresenter: NSObject {
             .topRated: nil,
             .upcoming: nil]
         
-        interactor?.getMoviesData(from: .trending)
-        interactor?.getMoviesData(from: .nowPlaying)
-        interactor?.getMoviesData(from: .popular)
-        interactor?.getMoviesData(from: .topRated)
-        interactor?.getMoviesData(from: .upcoming)
-        
-        
-        DispatchQueue.main.async {
+        interactor?.getMoviesData(from: .topRated, dispatchGroup: dispatchGroup) { self.dispatchGroup.leave() }
+        interactor?.getMoviesData(from: .trending, dispatchGroup: dispatchGroup) { self.dispatchGroup.leave() }
+        interactor?.getMoviesData(from: .nowPlaying, dispatchGroup: dispatchGroup) { self.dispatchGroup.leave() }
+        interactor?.getMoviesData(from: .popular, dispatchGroup: dispatchGroup) { self.dispatchGroup.leave() }
+        interactor?.getMoviesData(from: .upcoming, dispatchGroup: dispatchGroup) { self.dispatchGroup.leave() }
+
+        dispatchGroup.notify(queue: .main) {
             self.view?.reloadData()
         }
-        
     }
-    
+
     deinit {
         NotificationCenter.default.removeObserver(self, name: .countMovieWatch, object: nil)
     }
 }
 
 extension MainPresenter: MainPresenterProtocol {
-    func goToMovieDetail(data: Result) {
+    func goToMovieDetail(data: Movie) {
         guard let view = view as? UIViewController else { return }
         MovieDetailRouter().presentView(from: view, data: data)
     }
@@ -71,7 +70,6 @@ extension MainPresenter: MainPresenterProtocol {
     }
     
     func viewDidLoad(tableView: UITableView) {
-        interactor?.getMoviesData(from: .trending)
         registerTableViewCells(tableView: tableView)
         NotificationCenter.default.addObserver(self, selector: #selector(countMovieWatched), name: .countMovieWatch, object: nil)
         setupUI(tableView: tableView)
@@ -80,11 +78,6 @@ extension MainPresenter: MainPresenterProtocol {
     
     @objc func countMovieWatched() {
         interactor?.countMovieWatched += 1
-    }
-    
-    
-    func getMoviesData(from api: URLApi) {
-        interactor?.getMoviesData(from: api)
     }
     
     func getTableViewDataSource() -> UITableViewDataSource {
@@ -110,36 +103,33 @@ extension MainPresenter: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: MoviesTableViewCell.reusableIdentifier) as? MoviesTableViewCell {
-            
+            cell.delegate = self
             switch indexPath.section {
             case 0:
                 if let dataMovies = interactor?.movieApiData.getArrayDataMovie?[.trending] as? Movies {
                     cell.data = dataMovies
                 }
-                return cell
             case 1:
                 if let dataMovies = interactor?.movieApiData.getArrayDataMovie?[.nowPlaying] as? Movies {
                     cell.data = dataMovies
                 }
-                return cell
             case 2:
                 if let dataMovies = interactor?.movieApiData.getArrayDataMovie?[.popular] as? Movies {
                     cell.data = dataMovies
                 }
-                return cell
             case 3:
                 if let dataMovies = interactor?.movieApiData.getArrayDataMovie?[.topRated] as? Movies {
                     cell.data = dataMovies
                 }
-                return cell
             case 4:
                 if let dataMovies = interactor?.movieApiData.getArrayDataMovie?[.upcoming] as? Movies {
                     cell.data = dataMovies
                 }
-                return cell
             default:
-                return cell
+                break
             }
+            cell.reload()
+            return cell
         }
         return UITableViewCell()
     }
@@ -174,6 +164,10 @@ extension MainPresenter: UITableViewDelegate {
         
         return headerView
     }
-    
-    
+}
+
+extension MainPresenter: MoviesTableViewCellDelagete {
+    func didTapped(movie: Movie) {
+        goToMovieDetail(data: movie) 
+    }
 }

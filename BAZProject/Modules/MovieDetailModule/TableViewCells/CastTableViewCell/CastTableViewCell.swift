@@ -9,7 +9,7 @@ import UIKit
 
 final class CastTableViewCell: UITableViewCell, UICollectionViewDelegateFlowLayout {
     static let reusableCell = String(describing: CastTableViewCell.self)
-    var data: Codable?
+    var data: Credit?
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -28,7 +28,7 @@ final class CastTableViewCell: UITableViewCell, UICollectionViewDelegateFlowLayo
 
 extension CastTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let data = data as? Credit{
+        if let data = data {
             return data.cast.count
         }
         return 0
@@ -37,7 +37,7 @@ extension CastTableViewCell: UICollectionViewDataSource, UICollectionViewDelegat
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GenericCollectionViewCell.reusableIdentifier,
                                                          for: indexPath) as? GenericCollectionViewCell,
-           let data = data as? Credit {
+           let data = data {
             cell.title.text = data.cast[indexPath.row].name
             cell.secondTitle.text = data.cast[indexPath.row].character
             if let image = data.cast[indexPath.row].profilePath {

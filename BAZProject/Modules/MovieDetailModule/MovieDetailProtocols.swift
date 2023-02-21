@@ -24,13 +24,13 @@ protocol MovieDetailPresenterProtocol: AnyObject {
     func getTableViewDataSource() -> UITableViewDataSource
     func getTableViewDelegate() -> UITableViewDelegate
     func saveMovie()
-    func goToMovieDetail(data: Result)
+    func goToMovieDetail(data: Movie)
 }
 
 protocol MovieDetailInterceptorInputProtocol: AnyObject {
     // Presenter -> Interceptor
     var presenter: MovieDetailInteractorOutputProtocol? { get set }
-    var data: Result? { get set }
+    var data: Movie? { get set }
     var movieApiData: DataHelper { get set }
     
     func getMoviesData(from api: URLApi, structure: Codable.Type)

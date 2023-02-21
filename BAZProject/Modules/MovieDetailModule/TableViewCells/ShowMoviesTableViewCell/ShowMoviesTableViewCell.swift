@@ -9,7 +9,8 @@ import UIKit
 
 final class ShowMoviesTableViewCell: UITableViewCell {
     static let reusableCell = String(describing: ShowMoviesTableViewCell.self)
-    var data: Codable?
+    var data: Movies?
+    weak var delegate: MovieDetailPresenter?
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -27,16 +28,16 @@ final class ShowMoviesTableViewCell: UITableViewCell {
     
 }
 
-extension ShowMoviesTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
+extension ShowMoviesTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let data = data as? Movies {
+        if let data = data {
             return data.results.count
         }
         return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GenericCollectionViewCell.reusableIdentifier, for: indexPath) as? GenericCollectionViewCell, let data = data as? Movies {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GenericCollectionViewCell.reusableIdentifier, for: indexPath) as? GenericCollectionViewCell, let data = data {
             cell.imageMovie.image = UIImage(named: "poster")
             UIView.fillSkeletons(onView: cell)
             
@@ -51,5 +52,13 @@ extension ShowMoviesTableViewCell: UICollectionViewDataSource, UICollectionViewD
             return cell
         }
         return UICollectionViewCell()
+    }
+}
+
+extension ShowMoviesTableViewCell: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let data = data?.results[indexPath.row] {
+            delegate?.goToMovieDetail(data: data)
+        }
     }
 }

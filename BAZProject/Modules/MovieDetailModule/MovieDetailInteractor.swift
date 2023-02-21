@@ -11,7 +11,7 @@ final class MovieDetailInteractor {
     var presenter: MovieDetailInteractorOutputProtocol?
     
     var movieApiData: DataHelper = DataHelper()
-    var data: Result?
+    var data: Movie?
     let saveData: SaveMovies = SaveMovies()
     
 }
@@ -19,7 +19,7 @@ final class MovieDetailInteractor {
 extension MovieDetailInteractor: MovieDetailInterceptorInputProtocol {
     func saveMovie() {
         debugPrint("test of saveMovie")
-        var allDataMovie: [Result]?
+        var allDataMovie: [Movie]?
         do {
             allDataMovie = try? saveData.load(title: saveData.watchedMovies)
             guard let data = data else { return }
@@ -41,7 +41,6 @@ extension MovieDetailInteractor: MovieDetailInterceptorInputProtocol {
             do {
                 if let movies =  DecodeUtility.decode(structure.self, from: data) {
                     self?.movieApiData.getArrayDataMovie?[api] = movies
-//                    self?.presenter?.reloadData()
                 }
             }
         }

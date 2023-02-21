@@ -15,14 +15,14 @@ public class SaveMovies {
     private let encoder = JSONEncoder()
     private let userDefaults = UserDefaults.standard
     
-    func save(_ movie: [Result], title: String) throws {
+    func save(_ movie: [Movie], title: String) throws {
         let data = try encoder.encode(movie)
         userDefaults.set(data, forKey: title)
     }
     
-    func load(title: String) throws -> [Result] {
+    func load(title: String) throws -> [Movie] {
         guard let data = userDefaults.data(forKey: title),
-              let movie = try? decoder.decode([Result].self, from: data)
+              let movie = try? decoder.decode([Movie].self, from: data)
         else {
             throw Error.dataNotFound
         }

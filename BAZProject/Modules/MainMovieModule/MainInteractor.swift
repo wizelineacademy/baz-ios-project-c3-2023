@@ -12,12 +12,12 @@ final class MainInteractor: MainInteractorInputProtocol {
     var movieApiData: DataHelper = DataHelper()
     var countMovieWatched: Int = 0
     
-    func getMoviesData(from api:URLApi) {
+    func getMoviesData(from api: URLApi, dispatchGroup: DispatchGroup?, completionHandler: @escaping () -> Void) {
+        dispatchGroup?.enter()
         MovieAPI.getApiData(from: api) { [weak self] data in
-            do {
-                if let movies =  DecodeUtility.decode(Movies.self, from: data) {
-                    self?.movieApiData.getArrayDataMovie?[api] = movies
-                }
+            if let movies =  DecodeUtility.decode(Movies.self, from: data) {
+                self?.movieApiData.getArrayDataMovie?[api] = movies
+                completionHandler()
             }
         }
     }

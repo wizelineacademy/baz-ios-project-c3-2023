@@ -26,9 +26,7 @@ final class MainView: UIViewController, MainViewProtocol {
     }
     
     func reloadData(){
-        DispatchQueue.main.async { [weak self] in
-            self?.tableView.reloadData()
-        }
+        tableView.reloadData()
     }
 }
 

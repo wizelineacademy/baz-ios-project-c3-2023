@@ -22,7 +22,7 @@ protocol SearchMoviePresenterProtocol: AnyObject {
     
     func viewDidLoad(collection: UICollectionView)
     func getKeywordSearch(keyword: String)
-    func goToMovieDetail(data: Result)
+    func goToMovieDetail(data: Movie)
     func getTableViewDataSource() -> UICollectionViewDataSource
     func getTableViewDelegate() -> UICollectionViewDelegate
     func getUISearchBarDelegate() -> UISearchBarDelegate

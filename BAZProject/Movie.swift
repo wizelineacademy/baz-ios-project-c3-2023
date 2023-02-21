@@ -8,12 +8,12 @@ import Foundation
 
 struct Movies: Codable {
     let page: Int
-    let results: [Result]
+    let results: [Movie]
     
 }
 
 // MARK: - Result
-struct Result: Codable {
+struct Movie: Codable {
     let backdropPath: String?
     let id: Int
     let title: String

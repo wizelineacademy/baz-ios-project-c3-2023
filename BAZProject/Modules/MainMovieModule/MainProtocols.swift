@@ -21,9 +21,8 @@ protocol MainPresenterProtocol: AnyObject {
     var interactor: MainInteractorInputProtocol? { get set }
     
     func goToSearchMovieView()
-    func goToMovieDetail(data: Result)
+    func goToMovieDetail(data: Movie)
     func viewDidLoad(tableView: UITableView)
-    func getMoviesData(from api: URLApi)
     func getTableViewDataSource() -> UITableViewDataSource
     func getTableViewDelegate() -> UITableViewDelegate
 }
@@ -34,7 +33,13 @@ protocol MainInteractorInputProtocol: AnyObject {
     var movieApiData: DataHelper { get set }
     var countMovieWatched: Int { get set }
     
-    func getMoviesData(from api: URLApi)
+    func getMoviesData(from api: URLApi, dispatchGroup: DispatchGroup?, completionHandler: @escaping () -> Void)
+}
+
+extension MainInteractorInputProtocol {
+    func getMoviesData(from api: URLApi, dispatchGroup: DispatchGroup? = nil, completionHandler: @escaping () -> Void) {
+        getMoviesData(from: api, dispatchGroup: dispatchGroup, completionHandler: completionHandler)
+    }
 }
 
 protocol MainInteractorOutputProtocol: AnyObject {

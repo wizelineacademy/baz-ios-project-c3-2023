@@ -7,18 +7,24 @@
 
 import UIKit
 
+
 final class MoviesTableViewCell: UITableViewCell {
     static let reusableIdentifier = String(describing: MoviesTableViewCell.self)
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var data: Codable?
+    weak var delegate: MoviesTableViewCellDelagete?
+    var data: Movies?
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        registerCollectionViewCell()
         collectionView.dataSource = self
         collectionView.delegate = self
-        registerCollectionViewCell()
+    }
+    
+    func reload() {
+        collectionView.reloadData()
     }
     
     private func registerCollectionViewCell() {
@@ -29,23 +35,26 @@ final class MoviesTableViewCell: UITableViewCell {
 
 extension MoviesTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GenericCollectionViewCell.reusableIdentifier, for: indexPath) as? GenericCollectionViewCell, let data = data as? Movies {
+        
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GenericCollectionViewCell.reusableIdentifier, for: indexPath) as? GenericCollectionViewCell{
+            
             UIView.fillSkeletons(onView: cell)
-            if let image = data.results[indexPath.row].posterPath {
+            
+            if let data = data,  let image = data.results[indexPath.row].posterPath{
+                
                 MovieAPI.getImage(from: image, handler: { imagen in
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                        UIView.removeSkeletons(onView: cell)
-                        cell.imageMovie.image = imagen
-                    }
+                    UIView.removeSkeletons(onView: cell)
+                    cell.imageMovie.image = imagen
                 })
             }
+            
             return cell
         }
         return UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let data = data as? Movies{
+        if let data = data {
             return data.results.count
         }
         return 0
@@ -54,8 +63,8 @@ extension MoviesTableViewCell: UICollectionViewDataSource {
 
 extension MoviesTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let dataMovies = data as? Movies  {
-            MainPresenter().goToMovieDetail(data: dataMovies.results[indexPath.row])
+        if let dataMovies = data  {
+            delegate?.didTapped(movie: dataMovies.results[indexPath.row])
         }
     }
 }

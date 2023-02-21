@@ -44,9 +44,9 @@ extension MovieDetailPresenter: MovieDetailPresenterProtocol {
         interactor?.saveMovie()
     }
     
-    func goToMovieDetail(data: Result) {
+    func goToMovieDetail(data: Movie) {
         guard let view = view as? UIViewController else { return }
-        SearchMovieRouter().presentView(from: view)
+        MovieDetailRouter().presentView(from: view, data: data)
     }
     
     func viewDidLoad(poster: inout UIImageView, tableView: UITableView) {
@@ -130,21 +130,24 @@ extension MovieDetailPresenter: UITableViewDataSource {
             if let cell = tableView.dequeueReusableCell(withIdentifier: ResumeTableViewCell.reusableCell, for: indexPath) as? ResumeTableViewCell, let data = interactor?.data {
                 cell.overviewTextView.text = data.overview
                 cell.title.text = data.title
-                cell.data.text = "\(data.voteAverage) * \(data.releaseDate) * \(data.popularity)"
+                cell.data.text = "Calificacion: \(data.voteAverage) * \(data.releaseDate) * \(data.popularity)"
                 return cell
             }
             return UITableViewCell()
         case 1:
 //            "Reparto de actores:"
-            if let cell = tableView.dequeueReusableCell(withIdentifier: CastTableViewCell.reusableCell, for: indexPath) as? CastTableViewCell, let data = interactor?.movieApiData.getArrayDataMovie?[.creditMovie] {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: CastTableViewCell.reusableCell, for: indexPath) as? CastTableViewCell, let data = interactor?.movieApiData.getArrayDataMovie?[.creditMovie] as? Credit {
                 cell.data = data
+                cell.collectionView.reloadData()
                 return cell
             }
             return UITableViewCell()
         case 2:
 //            "Peliculas Similares:"
-            if let cell = tableView.dequeueReusableCell(withIdentifier: ShowMoviesTableViewCell.reusableCell, for: indexPath) as? ShowMoviesTableViewCell, let data = interactor?.movieApiData.getArrayDataMovie?[.similar] {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: ShowMoviesTableViewCell.reusableCell, for: indexPath) as? ShowMoviesTableViewCell, let data = interactor?.movieApiData.getArrayDataMovie?[.similar] as? Movies{
                 cell.data = data
+                cell.delegate = self
+                cell.collectionView.reloadData()
                 return cell
             }
             return UITableViewCell()
@@ -152,8 +155,10 @@ extension MovieDetailPresenter: UITableViewDataSource {
         case 3:
 //            "Peliculas Recomendadas:"
             if let cell = tableView.dequeueReusableCell(withIdentifier: ShowMoviesTableViewCell.reusableCell, for: indexPath)
-                as? ShowMoviesTableViewCell, let data = interactor?.movieApiData.getArrayDataMovie?[.recommendations] {
+                as? ShowMoviesTableViewCell, let data = interactor?.movieApiData.getArrayDataMovie?[.recommendations] as? Movies {
                 cell.data = data
+                cell.delegate = self
+                cell.collectionView.reloadData()
                 return cell
             }
             return UITableViewCell()
@@ -190,3 +195,10 @@ extension MovieDetailPresenter: UITableViewDelegate {
         }
     }
 }
+
+extension MovieDetailPresenter: MoviesTableViewCellDelagete {
+    func didTapped(movie: Movie) {
+        goToMovieDetail(data: movie)
+    }
+}
+
