@@ -14,7 +14,7 @@ final class CellSlider: UICollectionViewCell {
         return UINib(nibName: identifier, bundle: nil)
     }
 
-    @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak private var photoImageView: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()

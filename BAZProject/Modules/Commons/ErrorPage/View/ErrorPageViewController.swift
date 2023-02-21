@@ -9,7 +9,7 @@ import UIKit
 
 final class ErrorPageViewController: UIViewController, ErrorPageViewProtocol {
     
-    @IBOutlet weak var imgErrorLogo: UIImageView! {
+    @IBOutlet weak private var imgErrorLogo: UIImageView! {
         didSet {
             if let icon = UIImage(named: .nameIcon404) {
                 imgErrorLogo.image = icon
@@ -17,20 +17,20 @@ final class ErrorPageViewController: UIViewController, ErrorPageViewProtocol {
         }
     }
 
-    @IBOutlet weak var retryButton: UIButton! {
+    @IBOutlet weak private var retryButton: UIButton! {
         didSet {
             retryButton.titleLabel?.text = .retryTitleButton
         }
     }
 
-    @IBOutlet weak var principalTitleLabel: UILabel! {
+    @IBOutlet weak private var principalTitleLabel: UILabel! {
         didSet {
             principalTitleLabel.text = .errorPagePrincipalTitleLabel
         }
     }
 
-    @IBOutlet weak var titleErrorLabel: UILabel!
-    @IBOutlet weak var descriptionErrorLabel: UILabel!
+    @IBOutlet weak private var titleErrorLabel: UILabel!
+    @IBOutlet weak private var descriptionErrorLabel: UILabel!
 
     static let identifier: String = .errorPageXibIdentifier
     var presenter: ErrorPagePresenterProtocol?
@@ -41,7 +41,7 @@ final class ErrorPageViewController: UIViewController, ErrorPageViewProtocol {
         configView()
     }
     
-    @IBAction func retry(_ sender: Any) {
+    @IBAction private func retry(_ sender: Any) {
         presenter?.closeThisInstance()
     }
 

@@ -8,14 +8,14 @@ import UIKit
 
 final class TrendingViewController: UIViewController, TrendingViewProtocol {
     
-    @IBOutlet weak var titleFilterLabel: UILabel! {
+    @IBOutlet weak private var titleFilterLabel: UILabel! {
         didSet {
             titleFilterLabel.text = .trendingTitleFilterTime
         }
     }
-    @IBOutlet weak var filterSegmentedControl: UISegmentedControl!
-    @IBOutlet weak var filterTimeSegmentedControl: UISegmentedControl!
-    @IBOutlet weak var moviesTableView: UITableView!
+    @IBOutlet weak private var filterSegmentedControl: UISegmentedControl!
+    @IBOutlet weak private var filterTimeSegmentedControl: UISegmentedControl!
+    @IBOutlet weak private var moviesTableView: UITableView!
     
     static let identifier: String = .trendingXibIdentifier
 
@@ -55,11 +55,11 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
         stopLoading()
     }
 
-    @IBAction func switchedFilterSegmented(_ sender: Any) {
+    @IBAction private func switchedFilterSegmented(_ sender: Any) {
         // TODO: add logic in switched
     }
     
-    @IBAction func switchedFilterTimeSegmented(_ sender: Any) {
+    @IBAction private func switchedFilterTimeSegmented(_ sender: Any) {
         // TODO: add logic in switched
     }
     

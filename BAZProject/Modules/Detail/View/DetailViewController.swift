@@ -18,13 +18,13 @@ final class DetailViewController: UIViewController {
     private var errorGetData: Bool = false
     private var isLoading: Bool = true
     
-    @IBOutlet weak var imageSlider: ImageSlider!
-    @IBOutlet weak var titleLabelText: UILabel! {
+    @IBOutlet weak private var imageSlider: ImageSlider!
+    @IBOutlet weak private var titleLabelText: UILabel! {
         didSet {
             titleLabelText.addShadow()
         }
     }
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak private var descriptionLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()

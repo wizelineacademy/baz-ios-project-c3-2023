@@ -14,13 +14,13 @@ class CellMovie: UITableViewCell {
         return UINib(nibName: identifier, bundle: nil)
     }
 
-    @IBOutlet weak var photoImageView: UIImageView! {
+    @IBOutlet weak private var photoImageView: UIImageView! {
         didSet {
             photoImageView.layer.cornerRadius = photoImageView.bounds.height / LocalizedConstants.cellMovieDivisorNumberHeight
         }
     }
 
-    @IBOutlet weak var lblTitle: UILabel! {
+    @IBOutlet weak private var lblTitle: UILabel! {
         didSet {
             lblTitle.addShadow()
         }
