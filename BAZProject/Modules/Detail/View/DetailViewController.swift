@@ -80,8 +80,6 @@ extension DetailViewController: DetailViewProtocol {
         }
         guaranteeMainThread {
             self.titleLabelText.text = data.title
-        }
-        guaranteeMainThread {
             self.descriptionLabel.text = data.overview
         }
     }

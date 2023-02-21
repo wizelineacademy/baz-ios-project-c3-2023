@@ -91,7 +91,6 @@ struct Images: Codable {
 struct Backdrop: Codable {
     var aspectRatio: Double?
     var height: Int?
-    var iso639_1: String?
     var filePath: String?
     var voteAverage: Double?
     var voteCount, width: Int?
@@ -99,7 +98,6 @@ struct Backdrop: Codable {
     enum CodingKeys: String, CodingKey {
         case aspectRatio = "aspect_ratio"
         case height
-        case iso639_1 = "iso_639_1"
         case filePath = "file_path"
         case voteAverage = "vote_average"
         case voteCount = "vote_count"
@@ -123,21 +121,19 @@ struct ProductionCompany: Codable {
 
 // MARK: - ProductionCountry
 struct ProductionCountry: Codable {
-    var iso3166_1, name: String?
+    var name: String?
 
     enum CodingKeys: String, CodingKey {
-        case iso3166_1 = "iso_3166_1"
         case name
     }
 }
 
 // MARK: - SpokenLanguage
 struct SpokenLanguage: Codable {
-    var englishName, iso639_1, name: String?
+    var englishName, name: String?
 
     enum CodingKeys: String, CodingKey {
         case englishName = "english_name"
-        case iso639_1 = "iso_639_1"
         case name
     }
 }
