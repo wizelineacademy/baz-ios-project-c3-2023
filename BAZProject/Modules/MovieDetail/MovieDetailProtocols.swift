@@ -11,11 +11,12 @@ protocol MovieDetailViewProtocol: AnyObject {
     // PRESENTER -> VIEW
     var presenter: MovieDetailPresenterProtocol? { get set }
     
+    func loadData()
 }
 
 protocol MovieDetailRouterProtocol: AnyObject {
     // PRESENTER -> ROUTER
-    static func createMovieDetailModule() -> UIViewController
+    static func createMovieDetailModule(of movieId: Int) -> UIViewController
 }
 
 protocol MovieDetailPresenterProtocol: AnyObject {
@@ -23,14 +24,14 @@ protocol MovieDetailPresenterProtocol: AnyObject {
     var view: MovieDetailViewProtocol? { get set }
     var interactor: MovieDetailInteractorInputProtocol? { get set }
     var router: MovieDetailRouterProtocol? { get set }
-    var searchResults: [SearchResult]? { get set }
+    var movieDetail: MovieDetail? { get set }
     
     func notifyViewLoaded()
 }
 
 protocol MovieDetailInteractorOutputProtocol: AnyObject {
     // INTERACTOR -> PRESENTER
-    
+    func movieDetailFetched(with movieDetail: MovieDetail)
 }
 
 protocol MovieDetailInteractorInputProtocol: AnyObject {
@@ -38,15 +39,17 @@ protocol MovieDetailInteractorInputProtocol: AnyObject {
     var presenter: MovieDetailInteractorOutputProtocol? { get set }
     var remoteDatamanager: MovieDetailRemoteDataManagerInputProtocol? { get set }
     
+    func fetchMovieDetail(of movieId: Int)
 }
 
 protocol MovieDetailRemoteDataManagerInputProtocol: AnyObject {
     // INTERACTOR -> REMOTEDATAMANAGER
     var remoteRequestHandler: MovieDetailRemoteDataManagerOutputProtocol? { get set }
     
+    func fetchMovieDetail(of movieId: Int)
 }
 
 protocol MovieDetailRemoteDataManagerOutputProtocol: AnyObject {
     // REMOTEDATAMANAGER -> INTERACTOR
-    
+    func movieDetailFetched(with movieDetail: MovieDetail)
 }
