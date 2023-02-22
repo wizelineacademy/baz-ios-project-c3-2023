@@ -75,6 +75,7 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
             self.view.removeLoader()
             self.refreshControl?.endRefreshing()
             self.loadingMoreView?.stopAnimating()
+            self.presenter?.willHideAlertLoading()
         }
         self.isLoading = false
         self.isMoreDataLoading = false
@@ -184,12 +185,17 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
         presenter?.willFetchTrendingMedia(mediaType: mediaType, timeWindow: timeWindowType)
     }
 
-    @objc func refreshControlAction(_ refreshControl: UIRefreshControl) {
+    @objc private func refreshControlAction(_ refreshControl: UIRefreshControl) {
+        showLoader()
         getData()
     }
 
     private func getMoviesTableViewContentSizeHeight() -> CGFloat {
         return moviesTableView.contentSize.height
+    }
+
+    private func showAlertLoader() {
+        presenter?.willShowAlertLoading(with: ErrorType(title: "Cargando..", message: "Por favor espere."))
     }
 }
 
@@ -203,6 +209,7 @@ extension TrendingViewController: UIScrollViewDelegate {
                 isMoreDataLoading = true
                 loadingMoreView?.frame = getUIFrame()
                 loadingMoreView?.startAnimating()
+                presenter?.willShowAlertLoading(with: ErrorType(title: "Cargando..", message: "Por favor espere."))
                 getData()
             }
         }

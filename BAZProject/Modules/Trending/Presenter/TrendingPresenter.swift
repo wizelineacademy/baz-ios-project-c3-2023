@@ -17,6 +17,14 @@ extension TrendingPresenter: TrendingPresenterProtocol {
     func willFetchTrendingMedia(mediaType: MediaType, timeWindow: TimeWindowType) {
         interactor?.fetchTrendingMedia(mediaType: mediaType, timeWindow: timeWindow)
     }
+
+    func willShowAlertLoading(with alertType: ErrorType) {
+        router?.showAlertLoading(with: alertType)
+    }
+
+    func willHideAlertLoading() {
+        router?.hideAlertLoading()
+    }
 }
 
 extension TrendingPresenter: TrendingInteractorOutputProtocol {

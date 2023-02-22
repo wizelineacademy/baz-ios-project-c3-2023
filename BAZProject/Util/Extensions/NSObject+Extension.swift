@@ -42,4 +42,19 @@ extension NSObject {
         sectionHeaderLabelView.addSubview(sectionHeaderLabel)
         return sectionHeaderLabelView
     }
+
+    func getAlertLoading(with alertType: ErrorType) -> UIAlertController {
+        let alert: UIAlertController = UIAlertController(title: alertType.title,
+                                                         message: alertType.message,
+                                                         preferredStyle: .alert)
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: LocalizedConstants.commonSpacingIntoView,
+                                                                     y: LocalizedConstants.commonSpacingYUIAlert,
+                                                                     width: LocalizedConstants.commonSizeIcon,
+                                                                     height: LocalizedConstants.commonSizeIcon))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = .large
+        loadingIndicator.startAnimating()
+        alert.view.addSubview(loadingIndicator)
+        return alert
+    }
 }

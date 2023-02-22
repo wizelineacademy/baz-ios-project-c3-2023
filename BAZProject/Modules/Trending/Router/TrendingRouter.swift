@@ -9,6 +9,7 @@ import UIKit
 
 final class TrendingRouter: TrendingRouterProtocol {
     weak var view: TrendingViewProtocol?
+    private var alert: UIAlertController?
 
     static func createModule() -> UIViewController {
         let view: TrendingViewProtocol = TrendingViewController(nibName: TrendingViewController.identifier, bundle: nil)
@@ -44,6 +45,21 @@ final class TrendingRouter: TrendingRouterProtocol {
         view.guaranteeMainThread {
             let detailView: UIViewController = DetailRouter.createModule(detailType: detailType)
             view.navigationController?.pushViewController(detailView, animated: false)
+        }
+    }
+
+    func showAlertLoading(with alertType: ErrorType) {
+        guard let view = self.view as? UIViewController else { return }
+        alert = view.getAlertLoading(with: alertType)
+        view.guaranteeMainThread {
+            view.navigationController?.present(self.alert ?? UIAlertController(), animated: true)
+        }
+    }
+
+    func hideAlertLoading() {
+        guard let view = self.view as? UIViewController else { return }
+        view.guaranteeMainThread {
+            self.alert?.dismiss(animated: true)
         }
     }
 }

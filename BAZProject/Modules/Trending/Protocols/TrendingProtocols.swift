@@ -26,6 +26,8 @@ protocol TrendingPresenterProtocol: AnyObject {
 
     func willFetchTrendingMedia(mediaType: MediaType, timeWindow: TimeWindowType)
     func showDetail(of detailType: DetailType)
+    func willShowAlertLoading(with alertType: ErrorType)
+    func willHideAlertLoading()
 }
 
 // Presenter > Router
@@ -35,6 +37,8 @@ protocol TrendingRouterProtocol: AnyObject {
     static func createModule() -> UIViewController
     func showViewError(_ errorType: ErrorType)
     func showDetail(of detailType: DetailType)
+    func showAlertLoading(with alertType: ErrorType)
+    func hideAlertLoading()
 }
 
 // Presenter > Interactor

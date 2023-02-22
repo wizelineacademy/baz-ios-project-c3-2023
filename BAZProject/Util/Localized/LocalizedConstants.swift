@@ -40,6 +40,7 @@ enum LocalizedConstants {
     static let commonSpacingIntoView: Int = 16
     static let commonSpacingIntoViewMedium: Int = Int(commonSpacingIntoView / 2)
     static let commonSizeIcon: Int = 30
+    static let commonSpacingYUIAlert: Int = 25
     static let commonHeaderImageViewCGRect: CGRect = CGRect(x: commonSpacingIntoView,
                                                             y: 10,
                                                             width: commonSizeIcon,
@@ -53,7 +54,7 @@ enum LocalizedConstants {
 
     // MARK: - LaunchScreen
     static let launchScreenDivisorNumer: CGFloat = 4.0
-    static let launchScreenAnimationDuration: Double = 1.5
+    static let launchScreenAnimationDuration: Double = 0 //1.5
 
     // MARK: - Main
     static let mainShadowRadius: CGFloat = 4
