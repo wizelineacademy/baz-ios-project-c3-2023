@@ -88,13 +88,25 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: HomeDisplayLogic {
     func displayFetchedMoives(viewModel: Home.FetchMoviesBySection.ViewModel) {
-        addMoviesSectionView(moviesSectionView: viewModel.displayedMovies.view)
-        viewModel.displayedMovies.view.model = viewModel.displayedMovies.movies
+        let moviesSectionView = MoviesSectionView(typeSection: viewModel.displayedMovies.section, delegate: self)
+
+        addMoviesSectionView(moviesSectionView: moviesSectionView)
+        moviesSectionView.model = viewModel.displayedMovies.movies
     }
     
     func displaySectionViews(viewModel: Home.GetMoviesSection.ViewModel) {
         viewModel.displayedSections.forEach { section in
             interactor?.fetchMoviesBySection(request: Home.FetchMoviesBySection.Request(section: section))
         }
+    }
+}
+
+extension HomeViewController: MoviesSectionDelegate {
+    func didTapSeeMore(section: fetchMoviesTypes) {
+        print(section.title)
+    }
+    
+    func didTapItem() {
+        
     }
 }

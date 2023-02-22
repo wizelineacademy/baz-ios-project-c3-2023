@@ -38,13 +38,35 @@
                     <view key="view" contentMode="scaleToFill" id="Rxh-A4-8jQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3FF-Pb-beJ">
+                                <rect key="frame" x="10" y="68" width="394" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lm7-4O-WJa">
+                                <rect key="frame" x="10" y="109" width="394" height="777"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="AXZ-QL-ssd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="AXZ-QL-ssd" firstAttribute="trailing" secondItem="3FF-Pb-beJ" secondAttribute="trailing" constant="10" id="1PQ-UO-WHw"/>
+                            <constraint firstItem="AXZ-QL-ssd" firstAttribute="trailing" secondItem="lm7-4O-WJa" secondAttribute="trailing" constant="10" id="2Oh-vJ-Q1U"/>
+                            <constraint firstItem="3FF-Pb-beJ" firstAttribute="leading" secondItem="AXZ-QL-ssd" secondAttribute="leading" constant="10" id="VV7-Kv-Hj4"/>
+                            <constraint firstAttribute="bottom" secondItem="lm7-4O-WJa" secondAttribute="bottom" constant="10" id="kFb-b8-WM2"/>
+                            <constraint firstItem="lm7-4O-WJa" firstAttribute="leading" secondItem="AXZ-QL-ssd" secondAttribute="leading" constant="10" id="mUl-Jh-rG9"/>
+                            <constraint firstItem="lm7-4O-WJa" firstAttribute="top" secondItem="3FF-Pb-beJ" secondAttribute="bottom" constant="20" id="sue-ae-VxG"/>
+                            <constraint firstItem="3FF-Pb-beJ" firstAttribute="top" secondItem="AXZ-QL-ssd" secondAttribute="top" constant="20" id="x00-BJ-noY"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="4IB-Sv-aef"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PzK-jK-ShX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1428" y="769"/>
+            <point key="canvasLocation" x="1413" y="844"/>
         </scene>
         <!--Search Movies View Controller-->
         <scene sceneID="Jqs-mP-UP2">

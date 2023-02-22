@@ -28,14 +28,7 @@ class SearchMoviesViewController: UIViewController {
         view.placeholder = "Search"
         return view
     }()
-    lazy var loadMoreButton: UIButton = {
-        let view = UIButton()
-        view.setTitle("Load More", for: .normal)
-        view.setTitleColor(.systemBlue, for: .normal)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.isHidden = true
-        return view
-    }()
+
     let manager = CarruselCollectionManager()
     let collectionView = CarruselCollectionView(direction: .vertical)
     var carruselCollectionDelegate: CarruselCollectionDelegate?
@@ -91,15 +84,6 @@ class SearchMoviesViewController: UIViewController {
         collectionView.trailingAnchor.constraint(equalTo: moviesSectionView.trailingAnchor).isActive = true
         collectionView.topAnchor.constraint(equalTo: moviesSectionView.topAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: moviesSectionView.bottomAnchor).isActive = true
-    }
-    
-    private func configureLoadMoreButton() {
-        moviesSectionView.addSubview(loadMoreButton)
-        loadMoreButton.centerXAnchor.constraint(equalTo: moviesSectionView.centerXAnchor).isActive = true
-        loadMoreButton.bottomAnchor.constraint(equalTo: moviesSectionView.bottomAnchor, constant: -30).isActive = true
-        loadMoreButton.leadingAnchor.constraint(equalTo: moviesSectionView.leadingAnchor, constant: 20).isActive = true
-        loadMoreButton.trailingAnchor.constraint(equalTo: moviesSectionView.trailingAnchor, constant: -20).isActive = true
-        loadMoreButton.heightAnchor.constraint(equalTo: moviesSectionView.heightAnchor, multiplier: 0.08).isActive = true
     }
     
     private func hideKeyboardWhenTappedAround() {

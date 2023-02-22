@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol MoviesSectionDelegate: AnyObject {
-    func seeMore()
+    func didTapSeeMore(section: fetchMoviesTypes)
     func didTapItem()
 }
 
@@ -32,6 +32,7 @@ class MoviesSectionView: UIView {
     var manager: CarruselCollectionManager!
     let typeSection: fetchMoviesTypes
     let carruselCollection = CarruselCollectionView(direction: .horizontal)
+    var delegate: MoviesSectionDelegate?
 
     var model: [MovieSearch]? {
         didSet {
@@ -45,8 +46,9 @@ class MoviesSectionView: UIView {
         }
     }
     
-    init(typeSection: fetchMoviesTypes) {
+    init(typeSection: fetchMoviesTypes, delegate: MoviesSectionDelegate) {
         self.typeSection = typeSection
+        self.delegate = delegate
         super.init(frame: .zero)
         self.configurateView()
     }
@@ -55,6 +57,9 @@ class MoviesSectionView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    @IBAction func seeMore(_ sender: Any) {
+        delegate?.didTapSeeMore(section: typeSection)
+    }
     
     private func configurateView() {
         guard let view = loadViewFromNib(nibName: "MoviesSectionView") else { return }

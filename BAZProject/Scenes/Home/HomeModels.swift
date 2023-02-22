@@ -23,7 +23,7 @@ enum Home {
         }
         struct ViewModel {
             struct SectionWithMovies {
-                var view: MoviesSectionView
+                var section: fetchMoviesTypes
                 var movies: [MovieSearch]
             }
             var displayedMovies: SectionWithMovies
