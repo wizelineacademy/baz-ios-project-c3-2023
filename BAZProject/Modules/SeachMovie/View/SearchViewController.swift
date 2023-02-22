@@ -109,7 +109,4 @@ extension SearchViewController: UISearchBarDelegate{
         movies = movieApi.getMovies()
         self.tableView.reloadData()
     }
-    
-    
-    
 }

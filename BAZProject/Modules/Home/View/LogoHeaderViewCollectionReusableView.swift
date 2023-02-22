@@ -9,12 +9,6 @@ import UIKit
 
 class LogoHeaderViewCollectionReusableView: UICollectionReusableView {
 
-    @IBOutlet weak var logoImage: UIImageView!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
+    @IBOutlet weak var logoImage: UIImageView!    
     
 }
