@@ -27,13 +27,12 @@
                                     <constraint firstAttribute="height" constant="309" id="vHp-Xh-pNB"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ua7-nY-DX7">
-                                <rect key="frame" x="0.0" y="59" width="393" height="24"/>
-                                <color key="backgroundColor" systemColor="systemGray5Color"/>
-                                <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="degrade" translatesAutoresizingMaskIntoConstraints="NO" id="Xd0-fq-uSW">
+                                <rect key="frame" x="0.0" y="59" width="393" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="oeR-Of-5qG"/>
+                                </constraints>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z4G-wv-Xbg">
                                 <rect key="frame" x="366" y="59" width="27" height="24"/>
                                 <constraints>
@@ -48,27 +47,47 @@
                                     <action selector="exitDetailPress:" destination="ARP-Qj-5QL" eventType="touchUpInside" id="Dmk-At-Rzp"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SCG-ky-mMH">
+                                <rect key="frame" x="0.0" y="107.33333333333333" width="393" height="20.999999999999986"/>
+                                <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Ua7-nY-DX7">
+                                <rect key="frame" x="0.0" y="79" width="393" height="28.333333333333329"/>
+                                <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="23"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vgB-Gq-VMI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Ua7-nY-DX7" firstAttribute="leading" secondItem="vgB-Gq-VMI" secondAttribute="leading" id="0HV-Ht-its"/>
                             <constraint firstItem="KPT-Ex-6mg" firstAttribute="leading" secondItem="vgB-Gq-VMI" secondAttribute="leading" id="9NT-cT-PqF"/>
+                            <constraint firstItem="Xd0-fq-uSW" firstAttribute="top" secondItem="vgB-Gq-VMI" secondAttribute="top" id="B00-vE-h5A"/>
+                            <constraint firstItem="Ua7-nY-DX7" firstAttribute="top" secondItem="vgB-Gq-VMI" secondAttribute="top" constant="20" id="B7U-bL-bdp"/>
                             <constraint firstItem="vkm-2E-su5" firstAttribute="top" secondItem="KPT-Ex-6mg" secondAttribute="bottom" id="C32-us-ZfX"/>
-                            <constraint firstItem="Ua7-nY-DX7" firstAttribute="trailing" secondItem="vgB-Gq-VMI" secondAttribute="trailing" id="Cly-f7-b0U"/>
                             <constraint firstItem="z4G-wv-Xbg" firstAttribute="trailing" secondItem="vgB-Gq-VMI" secondAttribute="trailing" id="Ehk-K8-WMr"/>
+                            <constraint firstItem="SCG-ky-mMH" firstAttribute="top" secondItem="Ua7-nY-DX7" secondAttribute="bottom" id="Eup-gf-qRx"/>
                             <constraint firstItem="vkm-2E-su5" firstAttribute="trailing" secondItem="vgB-Gq-VMI" secondAttribute="trailing" id="HYP-RT-dYl"/>
+                            <constraint firstItem="Ua7-nY-DX7" firstAttribute="leading" secondItem="vgB-Gq-VMI" secondAttribute="leading" id="I0Q-IP-1jG"/>
                             <constraint firstItem="z4G-wv-Xbg" firstAttribute="top" secondItem="vgB-Gq-VMI" secondAttribute="top" id="Pot-9H-i6j"/>
+                            <constraint firstItem="Xd0-fq-uSW" firstAttribute="leading" secondItem="vgB-Gq-VMI" secondAttribute="leading" id="QgY-Hm-Zqe"/>
+                            <constraint firstItem="SCG-ky-mMH" firstAttribute="leading" secondItem="vgB-Gq-VMI" secondAttribute="leading" id="QhC-MO-weK"/>
                             <constraint firstItem="KPT-Ex-6mg" firstAttribute="top" secondItem="vgB-Gq-VMI" secondAttribute="top" id="ce0-F4-M6q"/>
-                            <constraint firstItem="Ua7-nY-DX7" firstAttribute="top" secondItem="vgB-Gq-VMI" secondAttribute="top" id="fNh-8d-fnI"/>
+                            <constraint firstItem="Xd0-fq-uSW" firstAttribute="trailing" secondItem="vgB-Gq-VMI" secondAttribute="trailing" id="g4k-d5-oYn"/>
                             <constraint firstItem="KPT-Ex-6mg" firstAttribute="trailing" secondItem="vgB-Gq-VMI" secondAttribute="trailing" id="ihY-KJ-sSz"/>
+                            <constraint firstItem="SCG-ky-mMH" firstAttribute="trailing" secondItem="vgB-Gq-VMI" secondAttribute="trailing" id="jSh-tm-6Xp"/>
                             <constraint firstItem="vkm-2E-su5" firstAttribute="leading" secondItem="vgB-Gq-VMI" secondAttribute="leading" id="lQl-8C-0YL"/>
+                            <constraint firstItem="Ua7-nY-DX7" firstAttribute="trailing" secondItem="vgB-Gq-VMI" secondAttribute="trailing" id="o8i-vG-wGQ"/>
                             <constraint firstAttribute="bottom" secondItem="vkm-2E-su5" secondAttribute="bottom" id="qGf-gG-U3C"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="degradeImageView" destination="Xd0-fq-uSW" id="L0b-Lv-lDV"/>
                         <outlet property="detailMovieImageView" destination="KPT-Ex-6mg" id="9BS-OT-Jp7"/>
                         <outlet property="detailTableViewCell" destination="vkm-2E-su5" id="nrG-CT-4H0"/>
+                        <outlet property="genresMovieLabel" destination="SCG-ky-mMH" id="aPb-nd-icz"/>
                         <outlet property="nameMovieLabel" destination="Ua7-nY-DX7" id="c5p-WL-eSp"/>
                     </connections>
                 </viewController>
@@ -78,13 +97,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="degrade" width="235" height="66"/>
         <image name="multiply.circle.fill" catalog="system" width="128" height="123"/>
         <image name="poster" width="500" height="743"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

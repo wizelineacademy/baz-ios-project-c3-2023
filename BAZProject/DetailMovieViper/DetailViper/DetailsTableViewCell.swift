@@ -1,13 +1,13 @@
 //
-//  DetailsCollectionViewCell.swift
+//  DetailsTableViewCell.swift
 //  BAZProject
 //
-//  Created by 1050210 on 15/02/23.
+//  Created by 1050210 on 21/02/23.
 //
 
 import UIKit
 
-class DetailsCollectionViewCell: UICollectionViewCell {
+class DetailsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var movieNameLabel: UILabel!
     @IBOutlet weak var movieGenresLabel: UILabel!
@@ -20,4 +20,5 @@ class DetailsCollectionViewCell: UICollectionViewCell {
             self.movieOverviewTextView.text = overview
         }
     }
+
 }

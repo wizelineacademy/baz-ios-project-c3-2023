@@ -31,7 +31,7 @@ protocol DetailMovieCastInteractorInputProtocol: AnyObject {
 protocol DetailMovieCastRemoteDataManagerInputProtocol: AnyObject {
     var remoteRequestHandler: DetailMovieCastRemoteDataManagerOutputProtocol? { get set }
     
-    func getCast(idMovie: Int?)
+    func getCast(idMovie: Int)
 }
 
 protocol DetailMovieCastRemoteDataManagerOutputProtocol: AnyObject {

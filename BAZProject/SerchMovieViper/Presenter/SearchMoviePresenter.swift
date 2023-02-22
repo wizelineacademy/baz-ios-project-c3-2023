@@ -82,13 +82,13 @@ class SearchMoviePresenter: SearchMoviePresenterProtocol {
         if isSearching {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "KeywordTableViewCell") as? KeywordTableViewCell
             else { return UITableViewCell() }
-            
+            tableView.separatorStyle = .singleLine
             cell.setupCell(keyword: keywords[indexPath].name ?? "")
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTableViewCell") as? SearchTableViewCell
             else { return UITableViewCell() }
-            
+            tableView.separatorStyle = .none
             getSearchedImage(index: indexPath, completion: { searchedImage in
                 cell.setupCell(image: searchedImage, name: self.getSearchMovie(index: indexPath).original_title ?? "")
             })

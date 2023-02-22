@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="qta-Tf-9Ag">
-                                <rect key="frame" x="0.0" y="59" width="393" height="56"/>
+                                <rect key="frame" x="5" y="59" width="383" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="Y6W-OH-hqX" id="bzs-sy-dlP"/>
@@ -35,10 +35,10 @@
                             <constraint firstAttribute="bottom" secondItem="Jon-ZM-q6U" secondAttribute="bottom" id="1aW-GS-MoT"/>
                             <constraint firstItem="qta-Tf-9Ag" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="6X0-o0-rTF"/>
                             <constraint firstItem="Jon-ZM-q6U" firstAttribute="top" secondItem="qta-Tf-9Ag" secondAttribute="bottom" id="BVT-8h-Lxy"/>
-                            <constraint firstItem="qta-Tf-9Ag" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="I1c-j8-BOz"/>
+                            <constraint firstItem="qta-Tf-9Ag" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="5" id="I1c-j8-BOz"/>
                             <constraint firstItem="Jon-ZM-q6U" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="Lvh-Wy-cpM"/>
                             <constraint firstItem="Jon-ZM-q6U" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="vAf-3I-9VS"/>
-                            <constraint firstItem="qta-Tf-9Ag" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="ydK-vd-sRo"/>
+                            <constraint firstItem="qta-Tf-9Ag" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" constant="-5" id="ydK-vd-sRo"/>
                         </constraints>
                     </view>
                     <connections>

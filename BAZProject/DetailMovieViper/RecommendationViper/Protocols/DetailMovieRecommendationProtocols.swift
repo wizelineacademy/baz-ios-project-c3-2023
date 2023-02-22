@@ -31,7 +31,7 @@ protocol DetailMovieRecommendationInteractorInputProtocol: AnyObject {
 protocol DetailMovieRecommendationRemoteDataManagerInputProtocol: AnyObject {
     var remoteRequestHandler: DetailMovieRecommendationRemoteDataManagerOutputProtocol? { get set }
     
-    func getRecommendation(idMovie: Int?)
+    func getRecommendation(idMovie: Int)
 }
 
 protocol DetailMovieRecommendationRemoteDataManagerOutputProtocol: AnyObject {

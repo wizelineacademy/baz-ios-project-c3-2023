@@ -14,7 +14,7 @@ class DetailMovieInteractor: DetailMovieInteractorInputProtocol {
     weak var presenter: DetailMovieInteractorOutputProtocol?
     var remoteDatamanager: DetailMovieRemoteDataManagerInputProtocol?
 
-    func getDetails(idMovie: Int?) {
+    func getDetails(idMovie: Int) {
         remoteDatamanager?.getDetails(idMovie: idMovie)
     }
 }

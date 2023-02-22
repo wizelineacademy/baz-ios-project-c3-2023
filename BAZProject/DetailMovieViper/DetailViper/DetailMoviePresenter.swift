@@ -18,23 +18,27 @@ class DetailMoviePresenter: DetailMoviePresenterProtocol  {
     var presenterReview: DetailMovieReviewPresenterProtocol?
     var presenterSimilar: DetailMovieSimilarPresenterProtocol?
     var presenterRecommendation: DetailMovieRecommendationPresenterProtocol?
-    var idMovie: Int?
+    private var idMovie: Int
     private let movieApi : MovieAPI = MovieAPI()
     var detailsMovie: DetailMovie?
     var tableViewSize: Int = 170
     var tableCount: Int = 5
     var detailName: String = ""
+    let group = DispatchGroup()
     
+    init(idMovie: Int) {
+        self.idMovie = idMovie
+    }
     
     
     /// Call all the presenters for initial the consume of all details 
     ///
     func viewDidLoad() {
         interactor?.getDetails(idMovie: idMovie)
-        presenterCast?.getCast(idMovie: idMovie ?? 0)
-        presenterReview?.getReview(idMovie: idMovie ?? 0)
-        presenterSimilar?.getSimilar(idMovie: idMovie ?? 0)
-        presenterRecommendation?.getRecommendation(idMovie: idMovie ?? 0)
+        presenterCast?.getCast(idMovie: idMovie)
+        presenterReview?.getReview(idMovie: idMovie)
+        presenterSimilar?.getSimilar(idMovie: idMovie)
+        presenterRecommendation?.getRecommendation(idMovie: idMovie)
     }
     
     
@@ -58,9 +62,43 @@ class DetailMoviePresenter: DetailMoviePresenterProtocol  {
     /// Get the tableCount for the tableCollectionView
     ///
     /// - Returns: Integer that represents the table count
-    func getTableCout() -> Int {
+    func getTableCount() -> Int {
         return tableCount
     }
+    
+    func getGenres() -> String {
+        switch self.detailsMovie?.genres?.count {
+        case 1:
+            return "\(self.detailsMovie?.runtime ?? 000) min | \(self.detailsMovie?.genres?[0].name ?? "")"
+        case let n where n ?? 0 > 1:
+            return "\(self.detailsMovie?.runtime ?? 000) min | \(self.detailsMovie?.genres?[0].name ?? "") | \(self.detailsMovie?.genres?[1].name ?? "")"
+        default:
+            return "\(self.detailsMovie?.runtime ?? 000) min"
+        }
+    }
+    
+  
+    
+    func getTableCell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "DetailsTableViewCell") as? DetailsTableViewCell else { return UITableViewCell() }
+            let name = self.detailsMovie?.original_title ?? ""
+            let genres = self.getGenres()
+            let overview = self.detailsMovie?.overview ?? ""
+            cell.setupCell(name: name, genres: genres, overview: overview)
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "DetailTableViewCell") as? DetailTableViewCell
+            else { return UITableViewCell() }
+            
+            cell.presenter = self
+            cell.indexPath = indexPath.row
+            cell.setupDetailsCollectionView()
+            return cell
+        }
+    }
+    
+  
 
     /// Get the collection count switching the indexPath
     ///
@@ -68,8 +106,6 @@ class DetailMoviePresenter: DetailMoviePresenterProtocol  {
     /// - Returns: Integer that representes the collection count
     func getCollectionCount(indexPath: Int) -> Int? {
         switch indexPath {
-        case 0:
-            return 1
         case 1:
             return presenterCast?.getCastCount()
         case 2:
@@ -92,14 +128,6 @@ class DetailMoviePresenter: DetailMoviePresenterProtocol  {
     /// - Returns: the cell fot setup in the collectionViewCell
     func getCell(collectionView: UICollectionView, indexPath: IndexPath, indexPathTable: Int, nameLabel: UILabel) -> UICollectionViewCell {
         switch indexPathTable{
-        case 0:
-            nameLabel.text = ""
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailsCollectionViewCell", for: indexPath) as? DetailsCollectionViewCell else { return UICollectionViewCell() }
-            let name = self.detailsMovie?.original_title ?? ""
-            let genres = "\(self.detailsMovie?.runtime ?? 000) min | \(self.detailsMovie?.genres?[0].name ?? "") | \(self.detailsMovie?.genres?[1].name ?? "")"
-            let overview = self.detailsMovie?.overview ?? ""
-            cell.setupCell(name: name, genres: genres, overview: overview)
-            return cell
         case 1:
             nameLabel.text = "Cast"
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CastCollectionViewCell", for: indexPath) as? CastCollectionViewCell else { return UICollectionViewCell() }
@@ -142,8 +170,6 @@ class DetailMoviePresenter: DetailMoviePresenterProtocol  {
     /// - Returns: cgsize of the collectionViewCell
     func getTableSize(indexPath: Int) -> CGSize {
         switch indexPath{
-        case 0:
-            return CGSize(width: 400, height: 150)
         case 1:
             return CGSize(width: 100, height: 130)
         case 2:

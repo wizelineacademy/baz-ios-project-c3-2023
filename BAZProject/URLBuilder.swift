@@ -7,13 +7,9 @@
 
 import Foundation
 
-public class URLBuilder {
+class URLBuilder {
     
-    public static let shared = URLBuilder()
-    public var idMovie : Int = 0
-    public var searchTerm: String?
-    
-    func getUrl(urlType: URLType) -> URL? {
+    static func getUrl(urlType: URLType, searchTerm: String? = nil) -> URL? {
         var components = URLComponents()
         components.scheme = "https"
         components.host = "api.themoviedb.org"
@@ -29,7 +25,7 @@ public class URLBuilder {
 }
 
 enum URLType {
-    case trending, nowPlaying, popular, topRated, upcoming, details, reviews, cast, similar, recommendation, keyword, search
+    case trending, nowPlaying, popular, topRated, upcoming, details(Int), reviews(Int), cast(Int), similar(Int), recommendation(Int), keyword, search
     
     var urlPath: String {
         switch self {
@@ -43,16 +39,16 @@ enum URLType {
             return "/movie/top_rated"
         case .upcoming:
             return "/movie/upcoming"
-        case .details:
-            return "/movie/\(URLBuilder.shared.idMovie)"
-        case .reviews:
-            return "/movie/\(URLBuilder.shared.idMovie)/reviews"
-        case .cast:
-            return "/movie/\(URLBuilder.shared.idMovie)/credits"
-        case .similar:
-            return "/movie/\(URLBuilder.shared.idMovie)/similar"
-        case .recommendation:
-            return "/movie/\(URLBuilder.shared.idMovie)/recommendations"
+        case .details(let idMovie):
+            return "/movie/\(idMovie)"
+        case .reviews(let idMovie):
+            return "/movie/\(idMovie)/reviews"
+        case .cast(let idMovie):
+            return "/movie/\(idMovie)/credits"
+        case .similar(let idMovie):
+            return "/movie/\(idMovie)/similar"
+        case .recommendation(let idMovie):
+            return "/movie/\(idMovie)/recommendations"
         case .keyword:
             return "/search/keyword"
         case .search:

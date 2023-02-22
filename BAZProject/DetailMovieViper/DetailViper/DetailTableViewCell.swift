@@ -19,7 +19,6 @@ class DetailTableViewCell: UITableViewCell{
         
         detailCollectionView.delegate = self
         detailCollectionView.dataSource = self
-        detailCollectionView.register(UINib(nibName: "DetailsCollectionViewCell", bundle: Bundle(for: DetailMovieView.self)), forCellWithReuseIdentifier: "DetailsCollectionViewCell")
         detailCollectionView.register(UINib(nibName: "CastCollectionViewCell", bundle: Bundle(for: DetailMovieView.self)), forCellWithReuseIdentifier: "CastCollectionViewCell")
         detailCollectionView.register(UINib(nibName: "ReviewCollectionViewCell", bundle: Bundle(for: DetailMovieView.self)), forCellWithReuseIdentifier: "ReviewCollectionViewCell")
         detailCollectionView.register(UINib(nibName: "MoviesCollectionViewCell", bundle: Bundle(for: DetailMovieView.self)), forCellWithReuseIdentifier: "MoviesCollectionViewCell")

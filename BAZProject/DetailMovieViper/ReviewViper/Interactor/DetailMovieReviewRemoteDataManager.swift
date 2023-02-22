@@ -14,15 +14,14 @@ class DetailMovieReviewRemoteDataManager: DetailMovieReviewRemoteDataManagerInpu
     private let apiKey : String = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
     private let movieApi : MovieAPI = MovieAPI()
     
-    func getReview(idMovie: Int?) {
-        guard let idMovie = idMovie else { return }
-        URLBuilder.shared.idMovie = idMovie
-        if let url = URLBuilder.shared.getUrl(urlType: .reviews) {
-            movieApi.getReviews(for: url) { review in
+    func getReview(idMovie: Int) {
+        if let url = URLBuilder.getUrl(urlType: .reviews(idMovie)) {
+            movieApi.getReviews(for: url) { [weak self] review in
                 guard let review = review else {
+                    self?.remoteRequestHandler?.pushReview(review: [])
                     return
                 }
-                self.remoteRequestHandler?.pushReview(review: review)
+                self?.remoteRequestHandler?.pushReview(review: review)
             }
         }
     }

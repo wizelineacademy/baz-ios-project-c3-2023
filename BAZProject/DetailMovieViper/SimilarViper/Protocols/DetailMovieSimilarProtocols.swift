@@ -31,7 +31,7 @@ protocol DetailMovieSimilarInteractorInputProtocol: AnyObject {
 protocol DetailMovieSimilarRemoteDataManagerInputProtocol: AnyObject {
     var remoteRequestHandler: DetailMovieSimilarRemoteDataManagerOutputProtocol? { get set }
     
-    func getSimilar(idMovie: Int?)
+    func getSimilar(idMovie: Int)
 }
 
 protocol DetailMovieSimilarRemoteDataManagerOutputProtocol: AnyObject {

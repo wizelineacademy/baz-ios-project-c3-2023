@@ -14,12 +14,38 @@ class SearchMovieView: UIViewController {
     // MARK: Properties
     var presenter: SearchMoviePresenterProtocol?
 
-    @IBOutlet weak var movieSearchBar: UISearchBar!
+    @IBOutlet weak var movieSearchBar: UISearchBar! {
+        didSet {
+            self.movieSearchBar.placeholder = "  Search movie"
+            self.movieSearchBar.isTranslucent = true
+            self.movieSearchBar.layer.borderWidth = 1
+            self.movieSearchBar.layer.borderColor = UIColor.lightGray.cgColor
+            self.movieSearchBar.layer.masksToBounds = true
+            self.movieSearchBar.layer.cornerRadius = 8.0
+            if let textField = movieSearchBar.value(forKey: "searchField") as? UITextField {
+                textField.backgroundColor = .white
+                if self.traitCollection.userInterfaceStyle == .dark {
+                    textField.backgroundColor = .black
+                }
+                let backgroundView = textField.subviews.first
+                if #available(iOS 11.0, *) {
+                    backgroundView?.backgroundColor = UIColor.white.withAlphaComponent(0.0)
+                    backgroundView?.subviews.forEach({ $0.removeFromSuperview() })
+                }
+                backgroundView?.layer.cornerRadius = 12.0
+                backgroundView?.layer.masksToBounds = true
+            }
+        }
+    }
     @IBOutlet weak var movieSearchTableView: UITableView!
     
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+       setupSearchTable()
+    }
+    
+    func setupSearchTable() {
         movieSearchBar.delegate = self
         movieSearchTableView.delegate = self
         movieSearchTableView.dataSource = self

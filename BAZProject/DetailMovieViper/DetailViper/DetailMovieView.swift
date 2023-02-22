@@ -15,8 +15,10 @@ class DetailMovieView: UIViewController {
     var presenter: DetailMoviePresenterProtocol?
 
     @IBOutlet weak var detailMovieImageView: UIImageView!
+    @IBOutlet weak var degradeImageView: UIImageView!
     @IBOutlet weak var detailTableViewCell: UITableView!
     @IBOutlet weak var nameMovieLabel: UILabel!
+    @IBOutlet weak var genresMovieLabel: UILabel!
     
     internal let minimumInterItemSpacing: CGFloat = CGFloat(8.0)
     internal let insets: CGFloat = CGFloat(8.0)
@@ -30,9 +32,11 @@ class DetailMovieView: UIViewController {
     }
     
     func setupDetailTableView(){
+        detailTableViewCell.separatorColor = .label
         detailTableViewCell.dataSource = self
         detailTableViewCell.delegate = self
         detailTableViewCell.register(UINib(nibName: "DetailTableViewCell", bundle: Bundle(for: DetailMovieView.self)), forCellReuseIdentifier: "DetailTableViewCell")
+        detailTableViewCell.register(UINib(nibName: "DetailsTableViewCell", bundle: Bundle(for: DetailMovieView.self)), forCellReuseIdentifier: "DetailsTableViewCell")
     }
     
     @IBAction func exitDetailPress(_ sender: Any) {
@@ -42,17 +46,11 @@ class DetailMovieView: UIViewController {
 
 extension DetailMovieView: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        presenter?.getTableCout() ?? 0
+        presenter?.getTableCount() ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "DetailTableViewCell") as? DetailTableViewCell
-        else { return UITableViewCell() }
-        
-        cell.presenter = presenter
-        cell.indexPath = indexPath.row
-        cell.setupDetailsCollectionView()
-        return cell
+        presenter?.getTableCell(tableView: tableView, indexPath: indexPath) ?? UITableViewCell()
     }
 }
 
@@ -63,6 +61,8 @@ extension DetailMovieView:UITableViewDelegate{
         
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         self.nameMovieLabel.isHidden = indexPath.row == 0
+        self.degradeImageView.isHidden = indexPath.row == 0
+        self.genresMovieLabel.isHidden = indexPath.row == 0
     }
 }
 
@@ -78,7 +78,11 @@ extension DetailMovieView: DetailMovieViewProtocol {
                         self.detailMovieImageView.image = UIImage(named: "poster")
                     }
                     self.nameMovieLabel.text = self.presenter?.detailsMovie?.original_title ?? ""
+                    let genres = self.presenter?.getGenres()
+                    self.genresMovieLabel.text = genres
                     self.nameMovieLabel.isHidden = true
+                    self.degradeImageView.isHidden = true
+                    self.genresMovieLabel.isHidden = true
                 }
                 
             })

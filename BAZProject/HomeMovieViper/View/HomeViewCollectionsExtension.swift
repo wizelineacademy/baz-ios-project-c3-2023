@@ -27,7 +27,7 @@ extension HomeMoviesView: UICollectionViewDataSource{
                 cell.setupCategoryImage(for: categoryImage ?? nil)
             })
             cell.delegate = self
-            cell.setupCell(cellTitle: presenter?.getCategorieTitle(index: indexPath.row) ?? "", indexPath: indexPath.row)
+            cell.setupCell(cellTitle: presenter?.getCategorieTitle(index: indexPath.row) ?? "", indexPath: indexPath)
             
             return cell
         } else {
@@ -57,11 +57,11 @@ extension HomeMoviesView: UICollectionViewDelegate{
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return CGFloat(8.0)
+        return 2
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 2.0
+        return 2
     }
 }
 

@@ -9,7 +9,7 @@ import UIKit
 
 protocol CategoriesMoviesCellDelegate: AnyObject {
     var currentlySelected: CategoriesMoviesCollectionViewCell? { get set }
-    func didSelectCell(indexPath : Int, cell: CategoriesMoviesCollectionViewCell)
+    func didSelectCell(indexPath : IndexPath, cell: CategoriesMoviesCollectionViewCell)
 }
 
 class CategoriesMoviesCollectionViewCell: UICollectionViewCell {
@@ -18,7 +18,8 @@ class CategoriesMoviesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var categoriesView: UIView!
     @IBOutlet weak var categoriesMovieTitleLabel: UILabel!
     weak var delegate: CategoriesMoviesCellDelegate?
-    var indexPath : Int = 0
+    var indexPath: IndexPath?
+    var indexPathRow: Int?
     
     
     
@@ -26,8 +27,9 @@ class CategoriesMoviesCollectionViewCell: UICollectionViewCell {
         self.categoriesImageView.image = UIImage(named: "poster")
     }
     
-    func setupCell(cellTitle: String, indexPath: Int) {
+    func setupCell(cellTitle: String, indexPath: IndexPath) {
         self.indexPath = indexPath
+        self.indexPathRow = indexPath.row
         self.setupCategoryTitle(cellTitle: cellTitle)
         categoriesView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(setCellSelected)))
         if delegate?.currentlySelected == nil { setCellSelected() }
@@ -55,7 +57,7 @@ class CategoriesMoviesCollectionViewCell: UICollectionViewCell {
         self.categoriesMovieTitleLabel.textColor = .systemBlue
         self.degradeImageview.layer.borderColor = UIColor.systemBlue.cgColor
         self.degradeImageview.layer.borderWidth = 4.0
-        delegate?.didSelectCell(indexPath: self.indexPath, cell: self)
+        delegate?.didSelectCell(indexPath: self.indexPath ?? IndexPath(), cell: self)
     }
     
     func setCellDeselected(){

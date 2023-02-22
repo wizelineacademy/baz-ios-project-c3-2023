@@ -30,13 +30,14 @@ protocol DetailMoviePresenterProtocol: AnyObject {
     var presenterReview: DetailMovieReviewPresenterProtocol? { get set }
     var presenterSimilar: DetailMovieSimilarPresenterProtocol? { get set }
     var presenterRecommendation: DetailMovieRecommendationPresenterProtocol? { get set }
-    var idMovie: Int? { get set }
     var detailsMovie: DetailMovie? { get set }
     
     func viewDidLoad()
     func getDetailImage(completion: @escaping (UIImage?) -> Void)
+    func getGenres() -> String
+    func getTableCell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell
     func getTableSize() -> Int
-    func getTableCout() -> Int
+    func getTableCount() -> Int
     func getTableSize(indexPath: Int) -> CGSize
     func getCollectionCount(indexPath: Int) -> Int?
     func getCell(collectionView: UICollectionView, indexPath: IndexPath, indexPathTable: Int, nameLabel: UILabel) -> UICollectionViewCell
@@ -68,14 +69,14 @@ protocol DetailMovieInteractorInputProtocol: AnyObject {
     var presenter: DetailMovieInteractorOutputProtocol? { get set }
     var remoteDatamanager: DetailMovieRemoteDataManagerInputProtocol? { get set }
     
-    func getDetails(idMovie: Int?)
+    func getDetails(idMovie: Int)
 }
 
 protocol DetailMovieRemoteDataManagerInputProtocol: AnyObject {
     // INTERACTOR -> REMOTEDATAMANAGER
     var remoteRequestHandler: DetailMovieRemoteDataManagerOutputProtocol? { get set }
     
-    func getDetails(idMovie: Int?)
+    func getDetails(idMovie: Int)
 }
 
 protocol DetailMovieRemoteDataManagerOutputProtocol: AnyObject {

@@ -30,7 +30,7 @@ protocol DetailMovieReviewInteractorInputProtocol: AnyObject {
 protocol DetailMovieReviewRemoteDataManagerInputProtocol: AnyObject {
     var remoteRequestHandler: DetailMovieReviewRemoteDataManagerOutputProtocol? { get set }
     
-    func getReview(idMovie: Int?)
+    func getReview(idMovie: Int)
 }
 
 protocol DetailMovieReviewRemoteDataManagerOutputProtocol: AnyObject {
