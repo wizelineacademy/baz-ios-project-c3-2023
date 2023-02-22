@@ -20,7 +20,7 @@ final class MainPresenter: NSObject {
     }
     
     private func setupUI(tableView: UITableView) {
-        tableView.rowHeight = 150
+        tableView.rowHeight = 250
     }
     
     private func makeTableViewCell(cell:inout UITableViewCell, typeUrl: URLApi) -> UITableViewCell {
@@ -124,7 +124,7 @@ extension MainPresenter: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 30))
         let label = UILabel()
-        label.frame = CGRect.init(x: 5, y: 5, width: headerView.frame.width-10, height: headerView.frame.height-10)
+        label.frame = CGRect.init(x: 5, y: 5, width: headerView.frame.width - 10, height: headerView.frame.height - 10)
         label.text = URLApi.nothing.setTitleForSection(for: section)
         label.font = .boldSystemFont(ofSize: 20)
         

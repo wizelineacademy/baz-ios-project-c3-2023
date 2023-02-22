@@ -9,6 +9,12 @@ import Foundation
 
 // MARK: - CareTaker
 public class SaveMovies {
+    
+//    enum : String {
+//    case watchedMovies
+//    case favoriteMovies
+//    }
+    
     let watchedMovies = "Watched-Movies"
     let favoriteMovies = "Favorite-Movies"
     private let decoder = JSONDecoder()
@@ -27,6 +33,10 @@ public class SaveMovies {
             throw Error.dataNotFound
         }
         return movie
+    }
+    
+    func isSave(title: String) {
+        
     }
     
     public enum Error: String, Swift.Error {

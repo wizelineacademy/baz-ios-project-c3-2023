@@ -20,4 +20,9 @@ class GenericCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var secondTitle: UILabel!
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageMovie.image = UIImage(named: "poster")
+    }
+    
 }
