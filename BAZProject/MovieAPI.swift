@@ -29,7 +29,7 @@ class MovieAPI {
     func getMovies(ofType: RequestType) -> [Movie] {
         var myURL = myUrls.basePath.rawValue + ofType.rawValue + apiKey
         if ofType == .search {
-            myURL += "&query=" + searchText
+            myURL += "&query=" +(searchText.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")
         }
         
         guard let url = URL(string: myURL ),
