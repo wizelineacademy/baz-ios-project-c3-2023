@@ -11,7 +11,7 @@ protocol MovieDetailViewProtocol: AnyObject {
     // PRESENTER -> VIEW
     var presenter: MovieDetailPresenterProtocol? { get set }
     
-    func loadData()
+    func reloadData()
 }
 
 protocol MovieDetailRouterProtocol: AnyObject {
@@ -25,6 +25,7 @@ protocol MovieDetailPresenterProtocol: AnyObject {
     var interactor: MovieDetailInteractorInputProtocol? { get set }
     var router: MovieDetailRouterProtocol? { get set }
     var movieDetail: MovieDetail? { get set }
+    var movieId: Int { get set }
     
     func notifyViewLoaded()
 }
@@ -39,7 +40,7 @@ protocol MovieDetailInteractorInputProtocol: AnyObject {
     var presenter: MovieDetailInteractorOutputProtocol? { get set }
     var remoteDatamanager: MovieDetailRemoteDataManagerInputProtocol? { get set }
     
-    func fetchMovieDetail(of movieId: Int)
+    func fetchMovieDetail(of movieId: Int?)
 }
 
 protocol MovieDetailRemoteDataManagerInputProtocol: AnyObject {
