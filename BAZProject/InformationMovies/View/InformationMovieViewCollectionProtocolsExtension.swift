@@ -34,6 +34,7 @@ extension InformationMoviesView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedMovie = self.presenter?.getSimilarMovie(indexPathRow: indexPath.row)
         self.title = ""
+        self.view.addSkeletonAnimation()
         presenter?.getInformationMovie(idMovie: selectedMovie?.id ?? 0)
     }
 }

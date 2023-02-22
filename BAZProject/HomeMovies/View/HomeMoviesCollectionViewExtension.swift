@@ -36,6 +36,7 @@ extension HomeMoviesView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedMovie = self.isSearching ? self.presenter?.getSearchedMovie(indexPathRow: indexPath.row) : self.presenter?.getMovie(indexPathRow: indexPath.row)
         self.title = ""
+        self.view.addSkeletonAnimation()
         presenter?.getInformationMovie(idMovie: selectedMovie?.id ?? 0)
     }
 }

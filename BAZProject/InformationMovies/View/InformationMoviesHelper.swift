@@ -24,6 +24,7 @@ extension InformationMoviesView: InformationMoviesViewProtocol {
      */
     func catchResponse(withMessage: String?) {
         DispatchQueue.main.async {
+            self.view.removeSkeletonAnimation()
             if let message = withMessage, message != "" {
                 let alert = UIAlertController(title: Constants.errorAlertResult, message: message, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: Constants.done, style: .cancel, handler: nil))

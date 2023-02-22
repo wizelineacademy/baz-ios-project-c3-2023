@@ -47,6 +47,7 @@ extension HomeMoviesView: HomeMoviesViewProtocol {
      */
     func catchResponse(withMessage: String?) {
         DispatchQueue.main.async {
+            self.view.removeSkeletonAnimation()
             self.title = "\(self.presenter?.selectedCategory?.typeName ?? MovieCategory.trending.typeName)"
             if let message = withMessage, message != "" {
                 let alert = UIAlertController(title: Constants.errorAlertResult, message: message, preferredStyle: .alert)
