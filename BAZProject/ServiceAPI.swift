@@ -113,7 +113,7 @@ enum Endpoint: String {
     case trendingMovies = "trending/movie/day"
     case topRatedMovies = "movie/top_rated"
     case searchMovies = "search/movie"
-    case movieDetail = "/movie"
+    case movieDetail = "movie"
 }
 
 struct Response<T: Codable>: Codable {
