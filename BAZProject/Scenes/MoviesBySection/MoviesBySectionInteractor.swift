@@ -11,6 +11,14 @@ protocol MoviesBySectionBusinessLogic: AnyObject {
     
 }
 
-class MoviesBySectionInteractor {
+protocol MoviesBySectionDataStore: AnyObject {
+    var section: fetchMoviesTypes? { get set }
+    var movies: [Movie]? { get set }
+}
+
+class MoviesBySectionInteractor: MoviesBySectionBusinessLogic, MoviesBySectionDataStore {
     
+    var section: fetchMoviesTypes?
+    var movies: [Movie]?
+    var presenter: MoviesBySectionPresentationLogic?
 }

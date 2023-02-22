@@ -8,7 +8,7 @@
 import Foundation
 
 @objc protocol HomeRoutingLogic {
-    // TODO: create functions to manage routing logic
+    func routeToMoviesBySection()
 }
 
 protocol HomeDataPassing {
@@ -16,10 +16,24 @@ protocol HomeDataPassing {
 }
 
 class HomeRouter: HomeRoutingLogic, HomeDataPassing {
-    
+        
     // MARK: Properties
     var dataStore: HomeDataStore?
     weak var viewController: HomeViewController?
     
-    // TODO: conform HomePresenter protocol
+    func routeToMoviesBySection() {
+        let destinationVC = viewController?.storyboard?.instantiateViewController(withIdentifier: "MoviesBySectionViewController") as! MoviesBySectionViewController
+        var destinationDS = destinationVC.router!.dataStore!
+        passDataToMoviesBySection(source: dataStore!, destination: &destinationDS)
+        navigateToMoviesBySection(source: viewController!, destination: destinationVC)
+    }
+    
+    private func passDataToMoviesBySection(source: HomeDataStore, destination: inout MoviesBySectionDataStore) {
+        destination.section = source.section
+        destination.movies = source.movies
+    }
+    
+    private func navigateToMoviesBySection(source: HomeViewController, destination: MoviesBySectionViewController) {
+        viewController?.show(destination, sender: nil)
+    }
 }

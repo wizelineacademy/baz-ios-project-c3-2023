@@ -28,7 +28,6 @@ class SearchMoviesViewController: UIViewController {
         view.placeholder = "Search"
         return view
     }()
-
     let manager = CarruselCollectionManager()
     let collectionView = CarruselCollectionView(direction: .vertical)
     var carruselCollectionDelegate: CarruselCollectionDelegate?

@@ -18,7 +18,7 @@ class SearchMoviesInteractor: SearchMoviesBusinessLogic {
     let moviesWorker = MoviesWorker(movieService: MoviesAPI())
     
     // MARK: Properties VIP
-    var presenter: SearchMoviesPresenter?
+    var presenter: SearchMoviesPresentationLogic?
     
     func searchMoviesBy(request: SearchMovies.FetchMovies.Request) {
         moviesWorker.getMoviesByType(.bySearch(request.byKeyboards), nextPage: request.nextPage) { [weak self] movies, messageError in

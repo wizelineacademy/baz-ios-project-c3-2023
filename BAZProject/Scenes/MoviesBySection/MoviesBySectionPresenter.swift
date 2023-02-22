@@ -11,6 +11,6 @@ protocol MoviesBySectionPresentationLogic: AnyObject {
     
 }
 
-class MoviesBySectionPresenter {
-    
+class MoviesBySectionPresenter: MoviesBySectionPresentationLogic {
+    var viewController: MoviesBySectionDisplayLogic?
 }
