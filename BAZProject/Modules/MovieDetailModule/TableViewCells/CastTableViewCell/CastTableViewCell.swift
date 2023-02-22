@@ -38,16 +38,16 @@ extension CastTableViewCell: UICollectionViewDataSource, UICollectionViewDelegat
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GenericCollectionViewCell.reusableIdentifier,
                                                          for: indexPath) as? GenericCollectionViewCell,
            let data = data {
-            cell.title.text = data.cast[indexPath.row].name
-            cell.secondTitle.text = data.cast[indexPath.row].character
+            UIView.fillSkeletons(onView: cell)
+            
             if let image = data.cast[indexPath.row].profilePath {
                 MovieAPI.getImage(from: image, handler: { image in
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                        UIView.removeSkeletons(onView: cell)
                         cell.imageMovie.image = image
                     }
                 })
             }
-            
             return cell
         }
         return UICollectionViewCell()
