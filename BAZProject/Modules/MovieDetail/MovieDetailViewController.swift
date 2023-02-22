@@ -23,8 +23,10 @@ class MovieDetailViewController: UIViewController {
 
 extension MovieDetailViewController: MovieDetailViewProtocol {
     func reloadData() {
-        lblMovieTitle.text = self.presenter?.movieDetail?.title ?? ""
-        lblMovieOverview.text = self.presenter?.movieDetail?.overview ?? ""
+        DispatchQueue.main.async {
+            self.lblMovieTitle.text = self.presenter?.movieDetail?.title ?? ""
+            self.lblMovieOverview.text = self.presenter?.movieDetail?.overview ?? ""
+        }
         if let posterPath = self.presenter?.movieDetail?.posterPath, let imageURL = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)") {
             imageURL.toImage() { image in
                 DispatchQueue.main.async {
