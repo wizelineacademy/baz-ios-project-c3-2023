@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class SearchViewController: UITableViewController {
-
+    
     @IBOutlet weak var searchBarMovies: UISearchBar!{
         didSet{
             searchBarMovies.returnKeyType = .done
@@ -34,14 +34,21 @@ class SearchViewController: UITableViewController {
     }
     
     var movies: [Movie] = []
+    let movieApi = MovieAPI()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        configTableview()
         let movieApi = MovieAPI()
         
         movies = movieApi.getMovies()
-        tableView.reloadData()
+       tableView.reloadData()
+        searchBarMovies.delegate = self
+       
+        
+        func configTableview(){
+            tableView.register(UINib(nibName: "HomeTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "Home")
+        }
     }
 
 }
@@ -49,26 +56,60 @@ class SearchViewController: UITableViewController {
 // MARK: - TableView's DataSource
 
 extension SearchViewController {
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         movies.count
     }
-
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        tableView.dequeueReusableCell(withIdentifier: "TrendingTableViewCell")!
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Home") as? HomeTableViewCell else { return UITableViewCell() }
+        movieApi.getImageMovie(urlString: "https://image.tmdb.org/t/p/w500\(movies[indexPath.row].poster_path)") { imageMovie in
+            cell.setupCell(image: imageMovie ?? UIImage(), title: self.movies[indexPath.row].title)
+        }
+        return cell
     }
-
 }
 
+
 // MARK: - TableView's Delegate
-
 extension SearchViewController {
-
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        var config = UIListContentConfiguration.cell()
-        config.text = movies[indexPath.row].title
-        config.image = UIImage(named: "poster")
-        cell.contentConfiguration = config
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let destination = storyboard.instantiateViewController(withIdentifier: "DetailMovieViewController") as? DetailMovieViewController else {
+            return
+        }
+        destination.movie = movies[indexPath.row]
+        navigationController?.pushViewController(destination, animated: true)
     }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+            return 120.0
+    }
+}
 
+// MARK: - Search Bar's Delegate
+
+extension SearchViewController: UISearchBarDelegate{
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText == ""{
+            self.tableView.reloadData()
+        }
+        searchBar.showsCancelButton = true
+        movies = movies.filter({ movie in
+            return movie.title.contains(searchText)
+        })
+        self.tableView.reloadData()
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        movies = movieApi.getMovies()
+        searchBar.text?.removeAll()
+        self.tableView.reloadData()
+        searchBar.showsCancelButton = false
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        movies = movieApi.getMovies()
+        self.tableView.reloadData()
+    }
+    
+    
+    
 }

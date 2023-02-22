@@ -15,8 +15,6 @@ class TrendingViewController: UITableViewController {
         super.viewDidLoad()
         configTableview()
         movies = movieApi.getMovies()
-     //   movies = movieApi.getImageMovie(urlString: <#T##String#>, completion: <#T##(UIImage?) -> Void#>)
-        
         tableView.reloadData()
     }
     
@@ -34,25 +32,17 @@ extension TrendingViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Home") as! HomeTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Home") as? HomeTableViewCell else { return UITableViewCell() }
+        movieApi.getImageMovie(urlString: "https://image.tmdb.org/t/p/w500\(movies[indexPath.row].poster_path)") { imageMovie in
+            cell.setupCell(image: imageMovie ?? UIImage(), title: self.movies[indexPath.row].title)
+        }
         return cell
     }
-    
-    
 }
 
 // MARK: - TableView's Delegate
 
 extension TrendingViewController {
-    
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-        if let custom = cell as? HomeTableViewCell{
-            custom.labelTitle.text = movies[indexPath.row].title
-            custom.imgView.image = UIImage(systemName: "play.circle")
-        }
-    }
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let destination = storyboard.instantiateViewController(withIdentifier: "DetailMovieViewController") as? DetailMovieViewController else {

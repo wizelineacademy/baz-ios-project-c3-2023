@@ -9,23 +9,23 @@
 //
 
 import Foundation
-protocol MovieAppViewProtocol: class {
+protocol MovieAppViewProtocol: AnyObject{
     var presenter: MovieAppPresenterProtocol? { get }
     
 }
-protocol MovieAppPresenterProtocol: class {
+protocol MovieAppPresenterProtocol: AnyObject {
     var view: MovieAppViewProtocol? { get }
     var interactor: MovieAppInteractorProtocol? { get }
     var router: MovieAppRouterProtocol?  { get }
 }
 
-protocol MovieAppInteractorProtocol: class  {
+protocol MovieAppInteractorProtocol: AnyObject  {
     var presenter: MovieAppInteractorOutputProtocol? { get }
 }
-protocol MovieAppInteractorOutputProtocol: class {
+protocol MovieAppInteractorOutputProtocol: AnyObject {
     
 }
 
-protocol MovieAppRouterProtocol: class {
+protocol MovieAppRouterProtocol: AnyObject {
     func nextViewNavigation()
 }

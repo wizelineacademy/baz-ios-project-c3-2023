@@ -10,10 +10,11 @@ import Foundation
 import UIKit
 
 class DetailMovieViewController: UIViewController{
+    let movieApi = MovieAPI()
+    var movies: [Movie] = []
     
     @IBOutlet weak var imageMovie: UIImageView!
     @IBOutlet weak var movieNameLabel: UILabel!
-    @IBOutlet weak var actorsMovie: UILabel!
     @IBOutlet weak var rateMovie: UILabel!
     @IBOutlet weak var resumeMovie: UILabel!
     @IBOutlet weak var datePremiere: UILabel!
@@ -22,9 +23,24 @@ class DetailMovieViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        movieNameLabel.text = "Megan"
-        actorsMovie.text = "$ .00"
+        
+        movieNameLabel.text = movie?.title
+        resumeMovie.text = movie?.overview
         rateMovie.text = "⭐️⭐️⭐️⭐️"
+        
+        movieApi.getImageMovie(urlString: "https://image.tmdb.org/t/p/w500\(movie?.poster_path ?? "")") { imageMovie in
+            self.setupImage(image: imageMovie ?? UIImage(), title: self.movie?.title ?? "")
+        }
+        
+    }
+    func setupImage(image: UIImage, title: String){
+        DispatchQueue.main.async {
+            self.imageMovie.image = image
+        }
+        
     }
 }
+
+
+
+

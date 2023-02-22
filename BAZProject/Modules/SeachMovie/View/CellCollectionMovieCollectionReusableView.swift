@@ -14,4 +14,14 @@ class CellCollectionMovieCollectionReusableView: UICollectionReusableView {
         // Initialization code
     }
     
+    @IBOutlet weak var nameMovie: UILabel!
+    @IBOutlet weak var imageMovie: UIImageView!
+    
+    func setupCell(image: UIImage, title: String){
+        DispatchQueue.main.async {
+            self.imageMovie.image = image
+            self.nameMovie.text = title
+        }
+    }
+    
 }
