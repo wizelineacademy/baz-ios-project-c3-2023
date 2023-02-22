@@ -8,47 +8,46 @@
 import UIKit
 
 final class HomeViewController: UIViewController {
-    
     static let identifier: String = .homeXibIdentifier
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
     }
-    
+
     // MARK: - Declaration IBOutlets
     @IBOutlet weak var movieTopSlider: ImageSlider!
 
     // MARK: - Protocol properties
     var presenter: HomePresenterProtocol?
     var movieTopRated: [MovieTopRatedResult]?
-    
+
     // MARK: - Private properties
     private var errorGetData: Bool = false
     private var isLoading: Bool = true
-    
+
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         getData()
         hideSearchBar()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if isLoading || errorGetData {
             showLoader()
         }
-        
+
         if errorGetData {
             callService()
         }
     }
-    
+
     override func viewDidDisappear(_ animated: Bool) {
         movieTopSlider.stopTimmer()
         navigationItem.searchController = getUISearchController()
         stopLoading()
     }
-    
+
     // MARK: - Private methods
     private func hideSearchBar() {
         navigationItem.searchController = .none
@@ -59,12 +58,12 @@ final class HomeViewController: UIViewController {
             self.view.showLoader()
         }
     }
-    
+
     private func callService() {
         isLoading = true
         getData()
     }
-    
+
     private func getData() {
         presenter?.willFetchMovieTopRated()
     }
@@ -82,14 +81,14 @@ extension HomeViewController: HomeViewProtocol {
 
         movieTopSlider.setUp(cellMovieType)
     }
-    
+
     func stopLoading() {
         guaranteeMainThread {
             self.isLoading = false
             self.view.removeLoader()
         }
     }
-    
+
     func setErrorGettingData(_ status: Bool) {
         errorGetData = status
     }

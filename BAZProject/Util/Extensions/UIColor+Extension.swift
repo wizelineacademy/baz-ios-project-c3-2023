@@ -8,7 +8,6 @@
 import UIKit
 
 extension UIColor {
-    
     /// Converting numbers to UIColor
     ///
     /// - Parameter red: input value red Float

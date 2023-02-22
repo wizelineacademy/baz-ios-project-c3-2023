@@ -21,7 +21,7 @@ protocol HomePresenterProtocol: AnyObject {
     var router: HomeRouterProtocol? { get set}
     var view: HomeViewProtocol? { get set }
     var interactor: HomeInteractorInputProtocol? { get set }
-    
+
     func willFetchMovieTopRated()
 }
 
@@ -41,7 +41,7 @@ protocol HomeInteractorInputProtocol: AnyObject {
 // MARK: Interactor Input (Interactor -> DataManager)
 protocol HomeDataManagerInputProtocol: AnyObject {
     var interactor: HomeDataManagerOutputProtocol? { get set }
-    
+
     /// This method will request for MovieTopRated.
     /// - Parameters:
     ///   - urlString: The url which returns [MovieTopRatedResult].

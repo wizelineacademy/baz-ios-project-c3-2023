@@ -16,7 +16,7 @@ protocol ErrorPagePresenterProtocol: AnyObject {
     var router: ErrorPageRouterProtocol? { get set}
     var view: ErrorPageViewProtocol? { get set }
     var interactor: ErrorPageInteractorInputProtocol? { get set }
-    
+
     func closeThisInstance()
 }
 

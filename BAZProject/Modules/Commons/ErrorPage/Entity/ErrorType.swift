@@ -11,7 +11,7 @@ struct ErrorType {
     let title: String
     let message: String
     var titleNavBar: String?
-    
+
     init(serviceError: ServiceError) {
         switch serviceError {
         case .noData:
@@ -31,12 +31,12 @@ struct ErrorType {
             message = "Bad URL request"
         }
     }
-    
+
     init(title: String, message: String) {
         self.title = title
         self.message = message
     }
-    
+
     mutating func setTitleNavBar(_ title: String) {
         self.titleNavBar = title
     }

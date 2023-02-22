@@ -12,11 +12,11 @@ final class StarRatedView: CustomView {
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
     }
-    
+
     override var nameXIB: String { .starRatedXibIdentifier }
-    
+
     @IBOutlet weak private var starsStackContainer: UIStackView!
-    
+
     // MARK: - Private properties
     private var selectedRate: Int = LocalizedConstants.starRatedInitSection
     private var numberStars: Int = LocalizedConstants.starRatedInitSection
@@ -43,30 +43,30 @@ final class StarRatedView: CustomView {
             starsStackContainer.addArrangedSubview(star)
         }
     }
-    
+
     private func setupView() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didSelectRate))
         starsStackContainer.addGestureRecognizer(tapGesture)
     }
-    
+
     private func makeStarIcon() -> UIImageView {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "icon_unfilled_star"), highlightedImage: #imageLiteral(resourceName: "icon_filled_star"))
         imageView.contentMode = .scaleAspectFit
         imageView.isUserInteractionEnabled = true
         return imageView
     }
-    
+
     @objc private func didSelectRate(gesture: UITapGestureRecognizer) {
         let location = gesture.location(in: starsStackContainer)
         let starWidth = starsStackContainer.bounds.width / CGFloat(numberStars)
         let rate = Int(location.x / starWidth) + LocalizedConstants.commonIncrementNumber
-        
+
         if rate != self.selectedRate {
             self.selectedRate = rate
         }
         changeStateStarRate()
     }
-    
+
     private func changeStateStarRate() {
         starsStackContainer.arrangedSubviews.forEach { subview in
             guard let starImageView = subview as? UIImageView else {

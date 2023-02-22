@@ -8,7 +8,6 @@
 import UIKit
 
 class CellMovie: UITableViewCell {
-    
     static let  identifier: String = .cellMovieXibIdentifier
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
@@ -16,7 +15,8 @@ class CellMovie: UITableViewCell {
 
     @IBOutlet weak private var photoImageView: UIImageView! {
         didSet {
-            photoImageView.layer.cornerRadius = photoImageView.bounds.height / LocalizedConstants.cellMovieDivisorNumberHeight
+            let photoHeight: CGFloat = photoImageView.bounds.height
+            photoImageView.layer.cornerRadius = photoHeight / LocalizedConstants.cellMovieDivisorNumberHeight
         }
     }
 
@@ -30,7 +30,7 @@ class CellMovie: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    
+
     func setData(title: String, imageUrl: String) {
         lblTitle.text = title
         photoImageView.loadImage(id: imageUrl)

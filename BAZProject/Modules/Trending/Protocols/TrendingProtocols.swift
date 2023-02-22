@@ -47,14 +47,14 @@ protocol TrendingInteractorOutputProtocol: AnyObject {
 protocol TrendingInteractorInputProtocol: AnyObject {
     var presenter: TrendingInteractorOutputProtocol? { get set }
     var dataManager: TrendingDataManagerInputProtocol? { get set }
-    
+
     func fetchTrendingMedia(mediaType: MediaType, timeWindow: TimeWindowType)
 }
 
 // Interactor > DataManager
 protocol TrendingDataManagerInputProtocol: AnyObject {
     var interactor: TrendingDataManagerOutputProtocol? { get set }
-    
+
     /// This method wil request for type trending.
     /// - Parameters:
     ///   - urlString: The url which returns the trending media of movie, person, tv o all, by day or week.

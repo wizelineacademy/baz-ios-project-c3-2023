@@ -11,7 +11,7 @@ enum BaseUrl {
     case images(sizeImage: SizeImageType)
     case api
     case apiWithEndPoint(endPoint: String)
-    
+
     var url: String {
         switch self {
         case .images(sizeImage: let size):
@@ -19,7 +19,7 @@ enum BaseUrl {
         case .api:
             return .theMovieDbBasePath
         case .apiWithEndPoint(endPoint: let url):
-            return "\(String.theMovieDbBasePath)\(url)?api_key=\(String.apiKeyTheMovieDb)&language=\(String.languageTheMovieDb)&region=\(String.regionTheMovieDb)"
+            return "\(String.theMovieDbBasePath)\(url)\(String.theMovieDbEndBaseUrl)"
         }
     }
 }
@@ -41,7 +41,7 @@ extension Endpoint {
             let url: String = "\(String.apiKeyEndPointTrending)/\(media.rawValue)/\(time.rawValue)"
             return BaseUrl.apiWithEndPoint(endPoint: url).url
         case .details(mediaType: let media, idMedia: let id):
-            return "\(BaseUrl.api.url)/\(media)/\(id)?api_key=\(String.apiKeyTheMovieDb)&language=\(String.languageTheMovieDb)&region=\(String.regionTheMovieDb)&append_to_response=images&include_image_language=es,null"
+            return "\(BaseUrl.api.url)/\(media)/\(id)\(String.theMovieDbEndBaseUrl)\(String.theMovieDbAppendImages)"
         case .topRated:
             return BaseUrl.apiWithEndPoint(endPoint: .apiKeyEndPointMovieTopRated).url
         }

@@ -19,11 +19,11 @@ extension HomeInteractor: HomeInteractorInputProtocol {
     }
 }
 
-extension HomeInteractor: HomeDataManagerOutputProtocol {    
+extension HomeInteractor: HomeDataManagerOutputProtocol {
     func handleGetMovieTopRated(_ result: [MovieTopRatedResult]) {
         presenter?.onReceivedMovieTopRated(result)
     }
-    
+
     func handleErrorService(_ error: Error) {
         presenter?.showViewError(error)
     }

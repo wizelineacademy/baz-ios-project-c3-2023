@@ -22,14 +22,18 @@ protocol URLSessionDataTaskProtocol {
 extension URLSessionDataTask: URLSessionDataTaskProtocol {}
 
 extension URLSession: URLSessionProtocol {
-    func performDataTask(with request: URLRequest, completionHandler: @escaping DataTaskResult) -> URLSessionDataTaskProtocol {
+    func performDataTask(with request: URLRequest,
+                         completionHandler: @escaping DataTaskResult
+    ) -> URLSessionDataTaskProtocol {
         return dataTask(with: request, completionHandler: completionHandler) as URLSessionDataTaskProtocol
     }
 }
 
 protocol URLSessionProtocol {
     typealias DataTaskResult = (Data?, URLResponse?, Error?) -> Void
-    func performDataTask(with request: URLRequest, completionHandler: @escaping DataTaskResult) -> URLSessionDataTaskProtocol
+    func performDataTask(with request: URLRequest,
+                         completionHandler: @escaping DataTaskResult
+    ) -> URLSessionDataTaskProtocol
 }
 
 protocol NetworkingProviderProtocol {
@@ -41,71 +45,72 @@ protocol NetworkingProviderProtocol {
 }
 
 class NetworkingProviderService: NetworkingProviderProtocol {
-    
     let session: URLSessionProtocol
-    
+
     init(session: URLSessionProtocol) {
         self.session = session
     }
-    
+
     func sendRequest<T: Decodable>(_ request: URLRequest, callback: @escaping Response<T>) where T: Decodable {
         let task = session.performDataTask(with: request) { (data, response, error) in
             self.handleRequest(data: data, response: response, error: error, completion: callback)
         }
         task.resume()
     }
-    
+
     func sendRequest(_ request: URLRequest, callback: @escaping ResponseData) {
         let task = session.performDataTask(with: request) { (data, response, error) in
             self.handleRequest(data: data, response: response, error: error, completion: callback)
         }
         task.resume()
     }
-    
-    private func handleRequest<T:Decodable>(data: Data?, response: URLResponse?, error: Error?, completion: Response
-                                            <T>) where T: Decodable {
-        
+
+    private func handleRequest<T: Decodable>(
+        data: Data?,
+        response: URLResponse?,
+        error: Error?,
+        completion: Response<T>
+    ) where T: Decodable {
         if let error: Error = error {
             completion(.failure(error))
             return
         }
-        
+
         guard let data: Data = data else {
             completion(.failure(ServiceError.noData))
             return
         }
-        
+
         guard let _: HTTPURLResponse = response as? HTTPURLResponse else {
             completion(.failure(ServiceError.response))
             return
         }
-        
+
         do {
             let decodedData = try JSONDecoder().decode(T.self, from: data)
             completion(.success(decodedData))
-            
+
         } catch {
             completion(.failure(ServiceError.parsingData))
         }
     }
-    
+
     private func handleRequest(data: Data?, response: URLResponse?, error: Error?, completion: ResponseData) {
-        
         if let error: Error = error {
             completion(.failure(error))
             return
         }
-        
+
         guard let data: Data = data else {
             completion(.failure(ServiceError.noData))
             return
         }
-        
+
         guard let _: HTTPURLResponse = response as? HTTPURLResponse else {
             completion(.failure(ServiceError.response))
             return
         }
-        
+
         completion(.success(data))
     }
 }

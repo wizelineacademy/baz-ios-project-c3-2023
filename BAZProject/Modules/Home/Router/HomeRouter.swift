@@ -19,7 +19,7 @@ final class HomeRouter {
         let interactor: HomeInteractorInputProtocol & HomeDataManagerOutputProtocol = HomeInteractor()
         let presenter: HomePresenterProtocol & HomeInteractorOutputProtocol = HomePresenter()
         let router: HomeRouterProtocol = HomeRouter()
-        
+
         view.presenter = presenter
         router.view = view
         interactor.dataManager = dataManager
@@ -28,7 +28,7 @@ final class HomeRouter {
         presenter.view = view
         presenter.interactor = interactor
         presenter.router = router
-        
+
         guard let view = view as? UIViewController else { return UIViewController() }
         return view
     }

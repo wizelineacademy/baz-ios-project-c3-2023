@@ -12,7 +12,8 @@ final class DetailInteractor {
 
 extension DetailInteractor: DetailInteractorInputProtocol {
     func fetchMedia(detailType: DetailType) {
-        dataManager?.requestMedia(Endpoint.details(mediaType: detailType.mediaType, idMedia: detailType.idMedia).urlString)
+        let urlString: String = Endpoint.details(mediaType: detailType.mediaType, idMedia: detailType.idMedia).urlString
+        dataManager?.requestMedia(urlString)
     }
 }
 
@@ -20,7 +21,7 @@ extension DetailInteractor: DetailDataManagerOutputProtocol {
     func handleGetMediaMovie(_ result: MovieDetailResult) {
         presenter?.onReceivedMedia(result: result)
     }
-    
+
     func handleErrorService(_ error: Error) {
         presenter?.showViewError(error)
     }

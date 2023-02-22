@@ -19,7 +19,7 @@ final class CellMovieTop: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    
+
     func setData(cellMovieType: CellMovieType) {
         photoImageView.loadImage(id: cellMovieType.imageUrlString)
         titleLabel.text = cellMovieType.title

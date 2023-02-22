@@ -11,13 +11,14 @@ extension TrendingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
-    
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return LocalizedConstants.commonHeightHeaderTable
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView: UIView = getSectionHeaderForTableView(titleString: getTableTitle(), width: Int(tableView.bounds.width))
+        let headerView: UIView = getSectionHeaderForTableView(titleString: getTableTitle(),
+                                                              width: Int(tableView.bounds.width))
         return headerView
     }
 
@@ -32,9 +33,10 @@ extension TrendingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return getDataCount()
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: CellMovie.identifier) as? CellMovie, let movie = getMovie(indexPath.row) {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: CellMovie.identifier) as? CellMovie,
+           let movie = getMovie(indexPath.row) {
             let idImage: String = movie.backdropPath ?? ""
             cell.backgroundColor = LocalizedConstants.commonPrimaryColor
             let checkImage = UIImage(systemName: "eye")

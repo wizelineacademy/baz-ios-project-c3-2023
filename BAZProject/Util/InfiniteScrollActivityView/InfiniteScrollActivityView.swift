@@ -10,24 +10,25 @@ import UIKit
 final class InfiniteScrollActivityView: UIView {
     let activityIndicatorView: UIActivityIndicatorView = UIActivityIndicatorView()
     static let defaultHeight: CGFloat = LocalizedConstants.infiniteScrollActivityViewDefaultHeight
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupActivityIndicator()
     }
-    
+
     override init(frame aRect: CGRect) {
         super.init(frame: aRect)
         setupActivityIndicator()
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
-        let numberDivisor: CGFloat = LocalizedConstants.infiniteScrollActivityViewDivisorNumberHeightAndWidth
+        let numberDivisor: CGFloat = LocalizedConstants.infiniteScrollActivityViewDivisorNumber
         let boundsSize: CGSize = bounds.size
-        activityIndicatorView.center = CGPoint(x: boundsSize.width / numberDivisor, y: boundsSize.height / numberDivisor)
+        activityIndicatorView.center = CGPoint(x: boundsSize.width / numberDivisor,
+                                               y: boundsSize.height / numberDivisor)
     }
-    
+
     func setupActivityIndicator() {
         activityIndicatorView.style = .large
         activityIndicatorView.hidesWhenStopped = true
@@ -43,8 +44,9 @@ final class InfiniteScrollActivityView: UIView {
         loadingTextLabel.text = .infiniteScrollActivityViewTitleLoading
         loadingTextLabel.font = LocalizedConstants.commonTitleFont
         loadingTextLabel.sizeToFit()
+        let valueY: CGFloat = activityIndicatorView.center.y + LocalizedConstants.infiniteScrollActivityViewSpaceTop
         loadingTextLabel.center = CGPoint(x: activityIndicatorView.center.x,
-                                          y: activityIndicatorView.center.y + LocalizedConstants.infiniteScrollActivityViewSpaceTop)
+                                          y: valueY)
         return loadingTextLabel
     }
 
@@ -52,7 +54,7 @@ final class InfiniteScrollActivityView: UIView {
         activityIndicatorView.stopAnimating()
         isHidden = true
     }
-    
+
     func startAnimating() {
         isHidden = false
         activityIndicatorView.startAnimating()

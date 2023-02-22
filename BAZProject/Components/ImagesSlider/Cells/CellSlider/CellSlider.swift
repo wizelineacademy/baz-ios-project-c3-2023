@@ -8,7 +8,6 @@
 import UIKit
 
 final class CellSlider: UICollectionViewCell {
-    
     static let  identifier: String = .cellSliderXibIdentifier
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
@@ -19,7 +18,7 @@ final class CellSlider: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    
+
     func setData(imageUrl: String) {
         photoImageView.loadImage(id: imageUrl)
     }

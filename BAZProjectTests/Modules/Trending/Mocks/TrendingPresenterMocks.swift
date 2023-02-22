@@ -21,7 +21,6 @@ final class TrendingPresenterMocks {
 
 extension TrendingPresenterMocks: TrendingPresenterProtocol {
     func getTrendingMedia(mediaType: BAZProject.MediaType, timeWindow: BAZProject.TimeWindowType) {
-        
     }
 }
 
@@ -30,8 +29,6 @@ extension TrendingPresenterMocks: TrendingInteractorOutputProtocol {
         calls.append(.getTrendingMedia)
         self.capturedResult = result
     }
-    
-    func showViewError(_ error: Error) {
-        
-    }
+
+    func showViewError(_ error: Error) { }
 }

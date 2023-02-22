@@ -9,7 +9,6 @@
 import XCTest
 
 class TrendingInteractorTests: XCTestCase {
-    
     private var sut: TrendingInteractor?
     private var presenterMock: TrendingPresenterMocks?
 
@@ -22,31 +21,31 @@ class TrendingInteractorTests: XCTestCase {
         self.sut?.dataManager = self.dataManagerMock
         self.sut?.presenter = self.presenterMock
     }
-    
+
     override func tearDown() {
         self.sut = nil
         self.presenterMock = nil
         self.dataManagerMock = nil
         super.tearDown()
     }
-    
+
     func test_getTrendingMedia_callDataManagerToGetData() {
-        sut?.getTrendingMedia(mediaType: .all, timeWindow: .week)
+        sut?.fetchTrendingMedia(mediaType: .all, timeWindow: .week)
         XCTAssertEqual(dataManagerMock?.calls, [.requestTrendingMedia])
     }
-    
+
     func test_getTrendingMedia_buildUrlToService() {
-        sut?.getTrendingMedia(mediaType: .all, timeWindow: .week)
+        sut?.fetchTrendingMedia(mediaType: .all, timeWindow: .week)
         XCTAssertEqual(dataManagerMock?.calls, [.requestTrendingMedia])
     }
-    
+
     func test_handleGetTrendingMedia_callGetTrendingMedia() {
         sut?.handleGetTrendingMedia(getMovieResult())
         XCTAssertEqual(presenterMock?.calls, [.getTrendingMedia])
         XCTAssertEqual(presenterMock?.capturedResult?.first?.adult, getMovieResult().first?.adult)
         XCTAssertEqual(presenterMock?.capturedResult?.first?.title, getMovieResult().first?.title)
     }
-    
+
     // MARK: Helper
     func getMovieResult() -> [MovieResult] {
         return [MovieResult(adult: true,

@@ -7,7 +7,6 @@
 import UIKit
 
 final class TrendingViewController: UIViewController, TrendingViewProtocol {
-    
     @IBOutlet weak private var titleFilterLabel: UILabel! {
         didSet {
             titleFilterLabel.text = .trendingTitleFilterTime
@@ -16,12 +15,12 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
     @IBOutlet weak private var filterSegmentedControl: UISegmentedControl!
     @IBOutlet weak private var filterTimeSegmentedControl: UISegmentedControl!
     @IBOutlet weak private var moviesTableView: UITableView!
-    
+
     static let identifier: String = .trendingXibIdentifier
 
     // MARK: - Protocol properties
     var presenter: TrendingPresenterProtocol?
-    
+
     // MARK: - Private properties
     let mediaType: MediaType = .movie
     private let timeWindowType: TimeWindowType = .day
@@ -32,13 +31,13 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
     private var movies: [MovieResult] = []
     private var moviesBack: [MovieResult] = []
     private var isLoading: Bool = true
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         getData()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if isLoading || errorGetData {
@@ -58,11 +57,11 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
     @IBAction private func switchedFilterSegmented(_ sender: Any) {
         // TODO: add logic in switched
     }
-    
+
     @IBAction private func switchedFilterTimeSegmented(_ sender: Any) {
         // TODO: add logic in switched
     }
-    
+
     func updateView(data: [MovieResult]) {
         movies = data
         moviesBack = data
@@ -70,7 +69,7 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
             self.moviesTableView.reloadData()
         }
     }
-    
+
     func stopLoading() {
         guaranteeMainThread {
             self.view.removeLoader()
@@ -80,30 +79,30 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
         self.isLoading = false
         self.isMoreDataLoading = false
     }
-    
+
     func setErrorGettingData(_ status: Bool) {
         errorGetData = status
     }
-    
+
     func getTableTitle() -> String {
         return mediaType.getMediaTypeTitle()
     }
-    
+
     func getDataCount() -> Int {
         return movies.count
     }
-    
+
     func getMovie(_ index: Int) -> MovieResult? {
         return movies[index]
     }
-    
+
     // MARK: - Private methods
     private func showLoader() {
         guaranteeMainThread {
             self.view.showLoader()
         }
     }
-    
+
     private func setupView() {
         initRegister()
         navigationItem.searchController?.searchResultsUpdater = self
@@ -125,7 +124,6 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
         }
         filterSegmentedControl.selectedSegmentIndex = mediaType.getRawValue()
         filterTimeSegmentedControl.selectedSegmentIndex = timeWindowType.getRawValue()
-        
     }
 
     private func setStyleSegmentedControls() {
@@ -138,7 +136,7 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
         filterSegmentedControl.setTitleTextAttributes(titleTextAttributesSelected, for: .selected)
         filterTimeSegmentedControl.setTitleTextAttributes(titleTextAttributesSelected, for: .selected)
     }
-    
+
     private func setupInfiniteScrollLoadingIndicator() {
         loadingMoreView = InfiniteScrollActivityView(frame: getUIFrame())
         loadingMoreView!.isHidden = true
@@ -157,12 +155,12 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
         setTableViewDelegates()
         registerCell()
     }
-    
+
     private func setTableViewDelegates() {
         moviesTableView.delegate = self
         moviesTableView.dataSource = self
     }
-    
+
     private func registerCell() {
         moviesTableView.register(CellMovie.nib(),
                                  forCellReuseIdentifier: CellMovie.identifier)
@@ -176,7 +174,7 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControl.Event.valueChanged)
         moviesTableView.insertSubview(refreshControl, at: LocalizedConstants.trendingFirstSubview)
     }
-    
+
     private func callService() {
         isLoading = true
         getData()
@@ -185,11 +183,11 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
     private func getData() {
         presenter?.willFetchTrendingMedia(mediaType: mediaType, timeWindow: timeWindowType)
     }
-    
+
     @objc func refreshControlAction(_ refreshControl: UIRefreshControl) {
         getData()
     }
-    
+
     private func getMoviesTableViewContentSizeHeight() -> CGFloat {
         return moviesTableView.contentSize.height
     }
@@ -200,7 +198,6 @@ extension TrendingViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if !isMoreDataLoading {
             let scrollOffsetThreshold = getMoviesTableViewContentSizeHeight() - moviesTableView.bounds.size.height
-            
             // When the user has scrolled past the threshold, start requesting
             if (scrollView.contentOffset.y > scrollOffsetThreshold) && moviesTableView.isDragging {
                 isMoreDataLoading = true
@@ -213,7 +210,6 @@ extension TrendingViewController: UIScrollViewDelegate {
 }
 
 extension TrendingViewController: UISearchResultsUpdating {
-    
     func updateSearchResults(for searchController: UISearchController) {
         guard let textSearching = searchController.searchBar.text else { return }
         if !textSearching.isEmpty {
@@ -230,6 +226,5 @@ extension TrendingViewController: UISearchResultsUpdating {
             movies = moviesBack
             moviesTableView.reloadData()
         }
-        
     }
 }

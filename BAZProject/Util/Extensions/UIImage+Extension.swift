@@ -9,7 +9,7 @@ import UIKit
 
 extension UIImageView {
     typealias ResponseProvider = Result<Data, Error>
-    
+
     func loadImage(id stringUrl: String) {
         self.addSkeletonAnimation()
         image = UIImage()
@@ -18,15 +18,14 @@ extension UIImageView {
             image = imageCache
             return
         }
-        
+
         guard URL(string: stringUrl) != nil else {
             self.addDefaultImage()
             return
         }
-        
         getImage(strUrl: stringUrl)
     }
-    
+
     func addAnimation(_ tempImg: UIImage) {
         guaranteeMainThread {
             self.alpha = LocalizedConstants.uiImageAlpha
@@ -36,22 +35,23 @@ extension UIImageView {
             }
         }
     }
-    
+
     // MARK: - Private methods
     private func getImage(strUrl: String) {
         let providerNetworking: NetworkingProviderProtocol = NetworkingProviderService(session: URLSession.shared)
-        providerNetworking.sendRequest(RequestType(strUrl: strUrl, method: .GET).getRequest()) { [weak self] (result: ResponseProvider) in
+        let request: URLRequest = RequestType(strUrl: strUrl, method: .GET).getRequest()
+        providerNetworking.sendRequest(request) { [weak self] (result: ResponseProvider) in
             self?.handleResponse(result, strUrl: strUrl)
         }
     }
-    
+
     private func addDefaultImage() {
         guaranteeMainThread {
             self.removeSkeletonAnimation()
             self.image = UIImage(named: LocalizedConstants.uiImageNameDefaultImage)
         }
     }
-    
+
     private func handleResponse(_ response: ResponseProvider, strUrl: String) {
         self.removeSkeletonAnimation()
         switch response {

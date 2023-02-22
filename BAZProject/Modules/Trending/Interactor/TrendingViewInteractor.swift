@@ -7,8 +7,8 @@
 
 import Foundation
 
-typealias trendingInteractorProtocol = TrendingViewInteractorInputProtocol & TrendingViewInteractorOutputProtocol
-class TrendingViewInteractor: trendingInteractorProtocol {
+typealias TrendingInteractorProtocol = TrendingViewInteractorInputProtocol & TrendingViewInteractorOutputProtocol
+class TrendingViewInteractor: TrendingInteractorProtocol {
     var presenter: TrendingViewInteractorOutputProtocol?
     var providerNetworking: NetworkingProviderProtocol?
 }

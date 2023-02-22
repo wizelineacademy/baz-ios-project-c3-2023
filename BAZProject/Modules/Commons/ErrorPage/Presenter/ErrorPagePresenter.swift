@@ -7,14 +7,17 @@
 
 import Foundation
 
-typealias ErrorPagePresenterProtocols = ErrorPagePresenterProtocol & ErrorPageInteractorOutputProtocol
-class ErrorPagePresenter: ErrorPagePresenterProtocols {
-
+class ErrorPagePresenter {
+    // MARK: - Protocol properties
     var router: ErrorPageRouterProtocol?
     weak var view: ErrorPageViewProtocol?
     var interactor: ErrorPageInteractorInputProtocol?
-    
+
     func closeThisInstance() {
         router?.closeThisInstance()
     }
 }
+
+extension ErrorPagePresenter: ErrorPagePresenterProtocol { }
+
+extension ErrorPagePresenter: ErrorPageInteractorOutputProtocol { }

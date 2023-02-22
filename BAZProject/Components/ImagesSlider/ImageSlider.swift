@@ -12,13 +12,13 @@ private enum CellType {
 }
 
 final class ImageSlider: CustomView {
-    
+
     static let  identifier: String = .imageSliderXibIdentifier
     override var nameXIB: String {ImageSlider.identifier }
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
     }
-    
+
     // MARK: - Private methods
     private var imageUrlArray: [String]?
     private var cellMovieTypeArray: [CellMovieType]?
@@ -31,14 +31,14 @@ final class ImageSlider: CustomView {
     private let numberIncrementPage: Int = LocalizedConstants.imageSliderIncrementShowImage
     private let minimunSpacingForSection: Double = LocalizedConstants.imageSliderMinimunSpacingForSection
     private var scrolledRight: Bool = false
-    
+
     @IBOutlet weak private var slidePageControl: UIPageControl!
     @IBOutlet weak private var imageCollection: UICollectionView!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    
+
     func setUp(imageUrlArray: [String]) {
         cellType = .cellSlider
         guaranteeMainThread {
@@ -46,7 +46,7 @@ final class ImageSlider: CustomView {
             self.initRegister()
         }
     }
-    
+
     func setUp(_ cellMovieTypeAray: [CellMovieType]) {
         cellType = .cellMovieTop
         guaranteeMainThread {
@@ -54,17 +54,17 @@ final class ImageSlider: CustomView {
             self.initRegister()
         }
     }
-    
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let scrollPosition = scrollView.contentOffset.x / contentView.frame.width
         slidePageControl.currentPage = Int(scrollPosition)
     }
-    
+
     func stopTimmer() {
         timer?.invalidate()
         timer = nil
     }
-    
+
     // MARK: - Private methods
     private func initRegister() {
         registerCell()
@@ -72,7 +72,7 @@ final class ImageSlider: CustomView {
         setupPageControl()
         imageCollection.reloadData()
     }
-    
+
     private func registerCell() {
         guard let cellType = cellType else { return }
         switch cellType {
@@ -86,31 +86,35 @@ final class ImageSlider: CustomView {
     private func getImageUrl(_ index: Int) -> String? {
         return imageUrlArray?[index]
     }
-    
+
     private func getCellMovieTop(_ index: Int) -> CellMovieType? {
         return cellMovieTypeArray?[index]
     }
-    
+
     private func registerCellSlider() {
         imageCollection.register(CellSlider.nib(),
                                  forCellWithReuseIdentifier: CellSlider.identifier)
     }
-    
+
     private func registerCellMovieTop() {
         imageCollection.register(CellMovieTop.nib(),
                                  forCellWithReuseIdentifier: CellMovieTop.identifier)
     }
-    
+
     private func setupPageControl() {
         slidePageControl.numberOfPages = getNumberOfItems()
         slidePageControl.currentPage = LocalizedConstants.imageSliderInitCurrentPageSlider
         initTimer()
     }
-    
+
     private func initTimer() {
-        timer = Timer.scheduledTimer(timeInterval: LocalizedConstants.imageSliderTimeInterval, target: self, selector: #selector(slide), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: LocalizedConstants.imageSliderTimeInterval,
+                                     target: self,
+                                     selector: #selector(slide),
+                                     userInfo: nil,
+                                     repeats: true)
     }
-    
+
     @objc private func slide() {
         let totalItems: Int = getNumberOfItems()
         if totalItems == numberSections { return }
@@ -123,7 +127,7 @@ final class ImageSlider: CustomView {
         }
         updatePositionItemOfImageCollection(for: index)
     }
-    
+
     private func updateItemOfImageCollectionByScroll() {
         let totalItems: Int = getNumberOfItems()
         if totalItems == numberSections { return }
@@ -132,17 +136,17 @@ final class ImageSlider: CustomView {
         } else if !scrolledRight && counter == initCurrentPage {
             counter = totalItems - numberIncrementPage
         }
-        
+
         updatePositionItemOfImageCollection(for: IndexPath(item: counter,
                                                            section: numberSections))
     }
-    
+
     private func updatePositionItemOfImageCollection(for index: IndexPath) {
         guaranteeMainThread {
             self.imageCollection.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
         }
     }
-    
+
     private func getNumberOfItems() -> Int {
         guard let cellType = cellType else { return numberSections }
         switch cellType {
@@ -152,8 +156,10 @@ final class ImageSlider: CustomView {
             return cellMovieTypeArray?.count ?? numberSections
         }
     }
-    
-    private func getUICollectionViewCell(of indexPath: IndexPath, in collectionView: UICollectionView) -> UICollectionViewCell {
+
+    private func getUICollectionViewCell(of indexPath: IndexPath,
+                                         in collectionView: UICollectionView
+    ) -> UICollectionViewCell {
         guard let cellType = cellType else { return UICollectionViewCell() }
         switch cellType {
         case .cellSlider:
@@ -162,9 +168,11 @@ final class ImageSlider: CustomView {
             return getCellMovieTop(of: indexPath, in: collectionView)
         }
     }
-    
+
     private func getCellSlider(of indexPath: IndexPath, in collectionView: UICollectionView) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellSlider.identifier, for: indexPath) as? CellSlider, let imageUrl: String = getImageUrl(indexPath.row) {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellSlider.identifier,
+                                                         for: indexPath) as? CellSlider,
+            let imageUrl: String = getImageUrl(indexPath.row) {
             cell.setData(imageUrl: Endpoint.img(idImage: imageUrl, sizeImage: .w500).urlString)
             return cell
         }
@@ -172,7 +180,9 @@ final class ImageSlider: CustomView {
     }
 
     private func getCellMovieTop(of indexPath: IndexPath, in collectionView: UICollectionView) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellMovieTop.identifier, for: indexPath) as? CellMovieTop, let cellMovieType: CellMovieType = getCellMovieTop(indexPath.row) {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellMovieTop.identifier,
+                                                         for: indexPath) as? CellMovieTop,
+            let cellMovieType: CellMovieType = getCellMovieTop(indexPath.row) {
             cell.setData(cellMovieType: cellMovieType)
             return cell
         }
@@ -185,43 +195,56 @@ extension ImageSlider: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return getNumberOfItems()
     }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
         return getUICollectionViewCell(of: indexPath, in: collectionView)
     }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
 extension ImageSlider: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int
+    ) -> CGFloat {
         return minimunSpacingForSection
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int
+    ) -> CGFloat {
         return minimunSpacingForSection
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
         return CGSize(width: collectionView.frame.size.width, height: collectionView.frame.size.height)
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int
+    ) -> UIEdgeInsets {
         UIEdgeInsets.zero
     }
 }
 
 // MARK: - UIScrollViewDelegate
 extension ImageSlider: UIScrollViewDelegate {
-    
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         positionScroll = scrollView.contentOffset.x
         stopTimmer()
     }
-    
+
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        scrolledRight = scrollView.contentOffset.x > LocalizedConstants.imageSliderScrollViewContentOffsetDefaultX
+        scrolledRight = scrollView.contentOffset.x > LocalizedConstants.imageSliderValueDefaultX
     }
-    
+
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.x == positionScroll {
             updateItemOfImageCollectionByScroll()

@@ -16,7 +16,11 @@ extension NSObject {
         }
     }
 
-    func getSectionHeaderForTableView(titleString: String, width: Int, backgroundColor: UIColor = LocalizedConstants.commonHeaderColor, colorTitle: UIColor = .brown) -> UIView {
+    func getSectionHeaderForTableView(titleString: String,
+                                      width: Int,
+                                      backgroundColor: UIColor = LocalizedConstants.commonHeaderColor,
+                                      colorTitle: UIColor = .brown
+    ) -> UIView {
         let sectionHeaderLabelView: UIView = UIView()
         sectionHeaderLabelView.backgroundColor = backgroundColor
 
@@ -29,8 +33,12 @@ extension NSObject {
         sectionHeaderLabel.text = titleString
         sectionHeaderLabel.textColor = colorTitle
         sectionHeaderLabel.font = LocalizedConstants.commonTitleFont
-        let xImagePosition: Int = LocalizedConstants.commonSpacingIntoView + LocalizedConstants.commonSizeIcon + LocalizedConstants.commonSpacingIntoViewMedium
-        sectionHeaderLabel.frame = CGRect(x: xImagePosition, y: LocalizedConstants.commonSpacingInY, width: width, height: LocalizedConstants.commonHeightHeader)
+        let xImagePosition: Int = LocalizedConstants.commonSpacingIntoView + LocalizedConstants.commonSizeIcon +
+            LocalizedConstants.commonSpacingIntoViewMedium
+        sectionHeaderLabel.frame = CGRect(x: xImagePosition,
+                                          y: LocalizedConstants.commonSpacingInY,
+                                          width: width,
+                                          height: LocalizedConstants.commonHeightHeader)
         sectionHeaderLabelView.addSubview(sectionHeaderLabel)
         return sectionHeaderLabelView
     }

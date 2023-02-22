@@ -8,20 +8,18 @@
 import UIKit
 
 final class MainViewController: UITabBarController {
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setStyleView()
         initializeViewControllers()
     }
-    
+
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         setTabBarStyle()
     }
-    
-    // MARK: - Private methods
 
+    // MARK: - Private methods
     fileprivate func setStyleView() {
         view.backgroundColor = LocalizedConstants.commonBackgroundColor
         tabBar.barTintColor = LocalizedConstants.commonBackgroundColor
@@ -30,7 +28,7 @@ final class MainViewController: UITabBarController {
         tabBar.layer.shadowColor = UIColor.white.cgColor
         tabBar.layer.shadowOpacity = LocalizedConstants.mainShadowOpacity
     }
-    
+
     fileprivate func setTabBarStyle() {
         tabBar.backgroundColor = LocalizedConstants.commonHeaderColor
         tabBar.tintColor = .white
@@ -38,9 +36,9 @@ final class MainViewController: UITabBarController {
         tabBar.backgroundImage = UIImage()
         tabBar.shadowImage = UIImage()
     }
-    
+
     private func initializeViewControllers() {
-        var arrControllers:[UIViewController] = []
+        var arrControllers: [UIViewController] = []
         arrControllers.append(createNavController(for: HomeRouter.createModule(),
                                                   title: .homeTitle,
                                                   image: getUIImage(for: .homeNameIconTabBar, type: .systemName)))
@@ -48,9 +46,10 @@ final class MainViewController: UITabBarController {
                                                   title: .trendingTitle,
                                                   image: getUIImage(for: .trendingNameIconTabBar, type: .systemName)))
         viewControllers = arrControllers
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white],
+                                                         for: .selected)
     }
-    
+
     private func createNavController(for rootViewController: UIViewController,
                                      title: String,
                                      image: UIImage) -> UIViewController {
@@ -59,10 +58,9 @@ final class MainViewController: UITabBarController {
         navController.tabBarItem.image = image
         navController.navigationBar.tintColor = UIColor.white
         navController.navigationBar.prefersLargeTitles = true
-        
+
         rootViewController.navigationItem.searchController = getUISearchController()
         rootViewController.navigationItem.title = title
-        
         return navController
     }
 }

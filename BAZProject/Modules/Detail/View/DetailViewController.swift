@@ -8,16 +8,15 @@
 import UIKit
 
 final class DetailViewController: UIViewController {
-    
     static let identifier: String = .detailXibIdentifier
     // MARK: - Protocol properties
     var presenter: DetailPresenterProtocol?
     var detailType: DetailType?
-    
+
     // MARK: - Private properties
     private var errorGetData: Bool = false
     private var isLoading: Bool = true
-    
+
     @IBOutlet weak private var imageSlider: ImageSlider!
     @IBOutlet weak private var titleLabelText: UILabel! {
         didSet {
@@ -25,12 +24,12 @@ final class DetailViewController: UIViewController {
         }
     }
     @IBOutlet weak private var descriptionLabel: UILabel!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         callService()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if isLoading || errorGetData {
@@ -42,14 +41,14 @@ final class DetailViewController: UIViewController {
         }
         navigationController?.navigationBar.prefersLargeTitles = false
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         imageSlider.stopTimmer()
         navigationController?.navigationBar.prefersLargeTitles = true
         stopLoading()
     }
-    
+
     // MARK: - Private methods
     private func showLoader() {
         guaranteeMainThread {
@@ -60,18 +59,18 @@ final class DetailViewController: UIViewController {
     private func setupView(imageUrlArray: [String]) {
         imageSlider.setUp(imageUrlArray: imageUrlArray)
     }
-    
+
     private func showImageSlider() {
         guaranteeMainThread {
             self.imageSlider.isHidden = false
         }
     }
-    
+
     private func callService() {
         isLoading = true
         getData()
     }
-    
+
     private func getData() {
         if let detailType = detailType {
             presenter?.willFetchMedia(detailType: detailType)
@@ -90,14 +89,14 @@ extension DetailViewController: DetailViewProtocol {
             self.descriptionLabel.text = data.overview
         }
     }
-    
+
     func stopLoading() {
         guaranteeMainThread {
             self.isLoading = false
             self.view.removeLoader()
         }
     }
-    
+
     func setErrorGettingData(_ status: Bool) {
         errorGetData = status
     }

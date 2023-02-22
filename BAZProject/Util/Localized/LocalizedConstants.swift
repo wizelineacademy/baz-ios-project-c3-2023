@@ -8,7 +8,6 @@
 import UIKit
 
 enum LocalizedConstants {
-    
     // MARK: - Common
     static let commonTitleFont: UIFont = UIFont(name: "AppleSDGothicNeo-Bold", size: 20) ?? UIFont()
     static let commonSubTitleFont: UIFont = UIFont(name: "AppleSDGothicNeo-Bold", size: 16) ?? UIFont()
@@ -41,10 +40,13 @@ enum LocalizedConstants {
     static let commonSpacingIntoView: Int = 16
     static let commonSpacingIntoViewMedium: Int = Int(commonSpacingIntoView / 2)
     static let commonSizeIcon: Int = 30
-    static let commonHeaderImageViewCGRect: CGRect = CGRect(x: commonSpacingIntoView, y: 10, width: commonSizeIcon, height: commonSizeIcon)
+    static let commonHeaderImageViewCGRect: CGRect = CGRect(x: commonSpacingIntoView,
+                                                            y: 10,
+                                                            width: commonSizeIcon,
+                                                            height: commonSizeIcon)
     static let commonHeightHeader: Int = 40
     static let commonSpacingInY: Int = 5
-    
+
     // MARK: - UIColor
     static let uiColorAlpha: Float = 1.0
     static let uiColorValueTotalRGB: CGFloat = 255
@@ -52,36 +54,36 @@ enum LocalizedConstants {
     // MARK: - LaunchScreen
     static let launchScreenDivisorNumer: CGFloat = 4.0
     static let launchScreenAnimationDuration: Double = 1.5
-    
+
     // MARK: - Main
     static let mainShadowRadius: CGFloat = 4
     static let mainShadowOpacity: Float = 0.15
-    
+
     // MARK: - UIImage
     static let uiImageNameDefaultImage: String = "poster"
     static let uiImageAnimateDuration: Double = 1.5
     static let uiImageAlpha: Double = 0.2
     static let uiImageAlphaOnAnimate: Double = 1.0
-    
+
     // MARK: - CellMovie
     static let cellMovieDivisorNumberHeight: CGFloat = 2
-    
+
     // MARK: - InfiniteScrollActivityView
     static let infiniteScrollActivityViewDefaultHeight: CGFloat = 60.0
-    static let infiniteScrollActivityViewDivisorNumberHeightAndWidth: CGFloat = 2
+    static let infiniteScrollActivityViewDivisorNumber: CGFloat = 2
     static let infiniteScrollActivityViewSpaceTop: CGFloat = 30
-    
+
     // MARK: - Trending
     static let trendingFirstSubview: Int = 0
-    
+
     // MARK: - ImageSlider
     static let imageSliderTimeInterval: Double = 2.0
     static let imageSliderInitCurrentPageSlider: Int = 0
     static let imageSliderMinimunSpacingForSection: Double = 0.0
     static let imageSliderIncrementShowImage: Int = 1
     static let imageSliderNumberSections: Int = 0
-    static let imageSliderScrollViewContentOffsetDefaultX: CGFloat = 0.0
-    
+    static let imageSliderValueDefaultX: CGFloat = 0.0
+
     // MARK: - StarRated
     static let starRatedInitSection: Int = 0
 }

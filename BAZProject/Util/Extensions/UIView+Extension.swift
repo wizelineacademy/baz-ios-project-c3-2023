@@ -12,22 +12,22 @@ extension UIView {
         let loader = Loader(frame: frame)
         addSubview(loader)
     }
-    
+
     func removeLoader() {
         if let loader = subviews.first(where: { $0 is Loader }) {
             loader.removeFromSuperview()
         }
     }
-    
+
     func rotate() {
-        let rotation : CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        let rotation: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
         rotation.toValue = LocalizedConstants.commonRotationToValue
         rotation.duration = LocalizedConstants.commonRotationAnimationDuration
         rotation.isCumulative = true
         rotation.repeatCount = Float.greatestFiniteMagnitude
         layer.add(rotation, forKey: "rotationAnimation")
     }
-    
+
     func addSkeletonAnimation(transparency: CGFloat = LocalizedConstants.commonSkeletonTransparency,
                               velocity: CFTimeInterval = LocalizedConstants.commonVelocity,
                               startPoint: CGPoint = LocalizedConstants.commonLayerStartPoint,
@@ -45,7 +45,7 @@ extension UIView {
         let animation = addAnimation(duration: velocity)
         gradientLayer.add(animation, forKey: animation.keyPath)
     }
-    
+
     func removeSkeletonAnimation() {
         guaranteeMainThread {
             for subview in self.subviews where subview.tag == LocalizedConstants.commonTagView {
@@ -54,24 +54,24 @@ extension UIView {
             }
         }
     }
-    
+
     func saveImageInCache(id: String, image: UIImage) {
         let cache: NSCache = NSCache<NSString, UIImage>()
         cache.setObject(image, forKey: NSString(string: id))
     }
-    
+
     func getImageFromCache(strUrl: String) -> UIImage? {
         let cache: NSCache = NSCache<NSString, UIImage>()
         return cache.object(forKey: NSString(string: strUrl))
     }
-    
+
     func addShadow(_ color: UIColor = .black) {
         self.layer.shadowOffset = LocalizedConstants.commonLayerShadowOffset
         self.layer.shadowOpacity = LocalizedConstants.commonLayerShadowOpacity
         self.layer.cornerRadius = LocalizedConstants.commonLayerCornerRadius
         self.layer.shadowColor = color.cgColor
     }
-    
+
     func addPulsationAnimation() {
         let pulseAnimation = CABasicAnimation(keyPath: "opacity")
         pulseAnimation.duration = LocalizedConstants.commonAnimationDuration
@@ -81,7 +81,7 @@ extension UIView {
         pulseAnimation.autoreverses = true
         pulseAnimation.repeatCount = .greatestFiniteMagnitude
         self.layer.add(pulseAnimation, forKey: nil)
-        
+
         let scaleAnimation = CABasicAnimation(keyPath: "transform.scale")
         scaleAnimation.duration = LocalizedConstants.commonAnimationDuration
         scaleAnimation.fromValue = LocalizedConstants.commonScaleAnimationFromValue
@@ -91,7 +91,7 @@ extension UIView {
         scaleAnimation.repeatCount = .greatestFiniteMagnitude
         self.layer.add(scaleAnimation, forKey: nil)
     }
-    
+
     // MARK: - Private methods
     private func addGradientLayer(startPoint: CGPoint = LocalizedConstants.commonLayerStartPoint,
                                   endPoint: CGPoint = LocalizedConstants.commonLayerEndPoint) -> CAGradientLayer {
@@ -108,8 +108,9 @@ extension UIView {
         }
         return gradientLayer
     }
-    
-    private func addAnimation(duration: CFTimeInterval = LocalizedConstants.commonAnimationTimeInterval) -> CABasicAnimation {
+
+    private func addAnimation( duration: CFTimeInterval = LocalizedConstants.commonAnimationTimeInterval
+    ) -> CABasicAnimation {
         let animation = CABasicAnimation(keyPath: "locations")
         animation.fromValue = LocalizedConstants.commonAnimationFromValue
         animation.toValue = LocalizedConstants.commonAnimationToValue

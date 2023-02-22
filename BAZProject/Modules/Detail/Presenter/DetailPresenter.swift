@@ -25,7 +25,7 @@ extension DetailPresenter: DetailInteractorOutputProtocol {
         view?.updateView(data: result)
         view?.stopLoading()
     }
-    
+
     func showViewError(_ error: Error) {
         var errorModel: ErrorType
         if let fetchedError: ServiceError = error as? ServiceError {

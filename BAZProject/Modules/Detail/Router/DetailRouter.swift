@@ -9,7 +9,7 @@ import UIKit
 
 final class DetailRouter: DetailRouterProtocol {
     weak var view: DetailViewProtocol?
-    
+
     static func createModule(detailType: DetailType) -> UIViewController {
         let view: DetailViewProtocol = DetailViewController(
             nibName: DetailViewController.identifier,
@@ -33,7 +33,7 @@ final class DetailRouter: DetailRouterProtocol {
         guard let view = view as? UIViewController else { return UIViewController() }
         return view
     }
-    
+
     func showViewError(_ errorType: ErrorType) {
         guard let view = self.view as? UIViewController else { return }
         view.guaranteeMainThread {
