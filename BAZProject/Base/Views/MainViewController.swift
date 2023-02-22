@@ -56,7 +56,7 @@ final class MainViewController: UITabBarController {
         let navController = UINavigationController(rootViewController: rootViewController)
         navController.tabBarItem.title = title
         navController.tabBarItem.image = image
-        navController.navigationBar.tintColor = UIColor.white
+        navController.navigationBar.barTintColor = LocalizedConstants.commonBackgroundColor
         navController.navigationBar.prefersLargeTitles = true
 
         rootViewController.navigationItem.searchController = getUISearchController()
