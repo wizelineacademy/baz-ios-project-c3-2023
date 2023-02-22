@@ -10,9 +10,15 @@ import UIKit
 
 typealias CollectionManager = UICollectionViewDelegate & UICollectionViewDataSource & UICollectionViewDelegateFlowLayout
 
+protocol CarruselCollectionDelegate: AnyObject {
+    func displayedLastItem()
+}
+
 class CarruselCollectionManager: NSObject, CollectionManager {
     
     var collection: CarruselCollectionView?
+    var carruselDelegate: CarruselCollectionDelegate?
+    
     var dataCollection: [MovieSearch]? {
         didSet {
             DispatchQueue.main.async {
@@ -21,14 +27,13 @@ class CarruselCollectionManager: NSObject, CollectionManager {
         }
     }
     
-    override init() {
-        super.init()
-    }
-    
-    func setupCollection(collection: CarruselCollectionView) {
+    func setupCollection(collection: CarruselCollectionView, delegate: CarruselCollectionDelegate? = nil) {
+        
         self.collection = collection
         configureCollectionViewCell(collection: collection)
-
+        if let delegate = delegate {
+            carruselDelegate = delegate
+        }
     }
     
     func configureCollectionViewCell(collection: UICollectionView) {
@@ -63,4 +68,12 @@ class CarruselCollectionManager: NSObject, CollectionManager {
         return CGSize(width: collection.bounds.width / 3, height: collection.bounds.height)
      }
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let dataCollection = dataCollection else {
+            return
+        }
+        if collection?.direction == .vertical && (dataCollection.count - 1 == indexPath.row) {
+            carruselDelegate?.displayedLastItem()
+        }
+    }
 }

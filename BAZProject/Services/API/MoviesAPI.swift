@@ -8,8 +8,15 @@
 import Foundation
 
 protocol MovieServicesProtocol {
-    func fetchMovies(type: fetchMoviesTypes, completionHandler: @escaping ([Movie], MovieServiceError?) -> Void)
+    var page: Int { get set }
+    func fetchMovies(type: fetchMoviesTypes, nextPage: Bool, completionHandler: @escaping ([Movie], MovieServiceError?) -> Void)
     func fetchReviews(id: Int, completionHandler: @escaping([Review], MovieServiceError?) -> Void)
+}
+
+extension MovieServicesProtocol {
+    mutating func resetPaginationFetch() {
+        self.page = 1
+    }
 }
 
 class MoviesAPI: MovieServicesProtocol {
@@ -18,13 +25,12 @@ class MoviesAPI: MovieServicesProtocol {
     let apiKey = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
     let language = "es"
     let region = "MX"
-    let page = 1
-
+    var page: Int = 1
+    
     let sessionShared = URLSession.shared
     
-    func fetchMovies(type: fetchMoviesTypes, completionHandler: @escaping ([Movie], MovieServiceError?) -> Void) {
-        
-        let request = URLRequest(url: getURL(endpoint: type.endpoint))
+    func fetchMovies(type: fetchMoviesTypes, nextPage: Bool = false, completionHandler: @escaping ([Movie], MovieServiceError?) -> Void) {
+        let request = URLRequest(url: getURL(endpoint: type.endpoint, nextPage: nextPage))
         
         sessionShared.dataTask(with: request) { data, response, error in
             guard let data = data else {
@@ -57,9 +63,12 @@ class MoviesAPI: MovieServicesProtocol {
             }
         }.resume()
     }
+
     
-    func getURL(endpoint: Endpoint) -> URL {
-        URL(string: "\(urlBaseString)\(endpoint.url)?api_key=\(apiKey)\(endpoint.queryString)&language=\(language)&region=\(region)&page=\(page)")!
+    func getURL(endpoint: Endpoint, nextPage: Bool = false) -> URL {
+        page = nextPage ? (page + 1) : page
+        
+        return URL(string: "\(urlBaseString)\(endpoint.url)?api_key=\(apiKey)\(endpoint.queryString)&language=\(language)&region=\(region)&page=\(page)")!
     }
 }
 

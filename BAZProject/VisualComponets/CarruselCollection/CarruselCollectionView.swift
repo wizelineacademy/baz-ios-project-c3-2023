@@ -8,10 +8,6 @@
 import Foundation
 import UIKit
 
-protocol CarruselCollectionDelegate: AnyObject {
-    func didTapItem()
-}
-
 class CarruselCollectionView: UICollectionView {
     
     let direction: ScrollDirection

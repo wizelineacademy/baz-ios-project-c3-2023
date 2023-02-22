@@ -16,8 +16,8 @@ class MoviesWorker {
         self.movieService = movieService
     }
     
-    func getMoviesByType(_ type: fetchMoviesTypes, completionHandler: @escaping ([Movie], String?) -> Void) {
-        movieService.fetchMovies(type: type) { movies, error in
+    func getMoviesByType(_ type: fetchMoviesTypes, nextPage: Bool = false, completionHandler: @escaping ([Movie], String?) -> Void) {
+        movieService.fetchMovies(type: type, nextPage: nextPage) { movies, error in
             if let error = error {
                 completionHandler([], error.description)
             }
@@ -41,5 +41,9 @@ class MoviesWorker {
             }
             completionHandler(dataImage, nil)
         }
+    }
+    
+    func resetPagination() {
+        movieService.resetPaginationFetch()
     }
 }
