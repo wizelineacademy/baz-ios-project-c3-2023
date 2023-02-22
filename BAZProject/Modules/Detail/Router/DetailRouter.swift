@@ -38,7 +38,7 @@ final class DetailRouter: DetailRouterProtocol {
         guard let view = self.view as? UIViewController else { return }
         view.guaranteeMainThread {
             let errorPageVC: UIViewController = ErrorPageRouter.createModule(errorType: errorType)
-            view.navigationController?.pushViewController(errorPageVC, animated: true)
+            view.navigationController?.pushViewController(errorPageVC, animated: false)
         }
     }
 }

@@ -53,15 +53,6 @@ final class HomeViewController: UIViewController {
     private func hideSearchBar() {
         navigationItem.searchController = .none
     }
-    
-    private func getUISearchController() -> UISearchController {
-        let searchController = UISearchController(searchResultsController: nil)
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = .mainPlaceholderSearchBar
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
-        return searchController
-    }
 
     private func showLoader() {
         guaranteeMainThread {

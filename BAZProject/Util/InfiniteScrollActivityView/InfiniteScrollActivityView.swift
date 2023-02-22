@@ -31,7 +31,7 @@ final class InfiniteScrollActivityView: UIView {
     func setupActivityIndicator() {
         activityIndicatorView.style = .large
         activityIndicatorView.hidesWhenStopped = true
-        activityIndicatorView.color = .blue
+        activityIndicatorView.color = .white
 
         activityIndicatorView.addSubview(getLoadingTextLabel())
         addSubview(activityIndicatorView)
@@ -39,7 +39,7 @@ final class InfiniteScrollActivityView: UIView {
 
     func getLoadingTextLabel() -> UILabel {
         let loadingTextLabel: UILabel = UILabel()
-        loadingTextLabel.textColor = UIColor.blue
+        loadingTextLabel.textColor = UIColor.white
         loadingTextLabel.text = .infiniteScrollActivityViewTitleLoading
         loadingTextLabel.font = LocalizedConstants.commonTitleFont
         loadingTextLabel.sizeToFit()

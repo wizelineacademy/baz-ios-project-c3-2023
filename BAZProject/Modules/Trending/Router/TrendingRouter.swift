@@ -35,7 +35,7 @@ final class TrendingRouter: TrendingRouterProtocol {
         guard let view = self.view as? UIViewController else { return }
         view.guaranteeMainThread {
             let errorPageVC: UIViewController = ErrorPageRouter.createModule(errorType: errorType)
-            view.navigationController?.pushViewController(errorPageVC, animated: true)
+            view.navigationController?.pushViewController(errorPageVC, animated: false)
         }
     }
     
@@ -43,7 +43,7 @@ final class TrendingRouter: TrendingRouterProtocol {
         guard let view = self.view as? UIViewController else { return }
         view.guaranteeMainThread {
             let detailView: UIViewController = DetailRouter.createModule(detailType: detailType)
-            view.navigationController?.pushViewController(detailView, animated: true)
+            view.navigationController?.pushViewController(detailView, animated: false)
         }
     }
 }

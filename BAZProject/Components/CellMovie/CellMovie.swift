@@ -22,7 +22,8 @@ class CellMovie: UITableViewCell {
 
     @IBOutlet weak private var lblTitle: UILabel! {
         didSet {
-            lblTitle.addShadow()
+            lblTitle.textColor = LocalizedConstants.commonSecondaryColor
+            lblTitle.addShadow(.white)
         }
     }
 

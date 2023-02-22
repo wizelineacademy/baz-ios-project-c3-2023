@@ -65,10 +65,11 @@ extension UIView {
         return cache.object(forKey: NSString(string: strUrl))
     }
     
-    func addShadow() {
+    func addShadow(_ color: UIColor = .black) {
         self.layer.shadowOffset = LocalizedConstants.commonLayerShadowOffset
         self.layer.shadowOpacity = LocalizedConstants.commonLayerShadowOpacity
         self.layer.cornerRadius = LocalizedConstants.commonLayerCornerRadius
+        self.layer.shadowColor = color.cgColor
     }
     
     func addPulsationAnimation() {

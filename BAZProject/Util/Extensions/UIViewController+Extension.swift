@@ -23,4 +23,14 @@ extension UIViewController {
         }
         return uiImage ?? UIImage()
     }
+
+    func getUISearchController() -> UISearchController {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = .mainPlaceholderSearchBar
+        searchController.searchBar.searchTextField.backgroundColor = .lightGray
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        return searchController
+    }
 }

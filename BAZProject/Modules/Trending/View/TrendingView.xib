@@ -4,8 +4,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -28,6 +28,7 @@
                     <subviews>
                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="LU4-bg-lLR">
                             <rect key="frame" x="16" y="0.0" width="361" height="41"/>
+                            <color key="backgroundColor" name="Header"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="sGo-7B-KCJ"/>
                             </constraints>
@@ -40,8 +41,8 @@
                             </connections>
                         </segmentedControl>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xaZ-Lb-59o">
-                            <rect key="frame" x="0.0" y="86" width="393" height="673"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <rect key="frame" x="16" y="78" width="361" height="681"/>
+                            <color key="backgroundColor" name="BackGround"/>
                         </tableView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ehp-eL-bWY">
                             <rect key="frame" x="16" y="48" width="361" height="30"/>
@@ -54,6 +55,7 @@
                                 </label>
                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Tyh-UF-NUW">
                                     <rect key="frame" x="180.66666666666663" y="0.0" width="180.33333333333337" height="31"/>
+                                    <color key="backgroundColor" name="Header"/>
                                     <segments>
                                         <segment title="First"/>
                                         <segment title="Second"/>
@@ -82,17 +84,17 @@
                         <constraint firstItem="Ehp-eL-bWY" firstAttribute="trailing" secondItem="LU4-bg-lLR" secondAttribute="trailing" id="8L7-rc-Tdg"/>
                         <constraint firstItem="LU4-bg-lLR" firstAttribute="top" secondItem="rSe-6o-CHW" secondAttribute="top" id="BHs-Ry-5aa"/>
                         <constraint firstItem="Ehp-eL-bWY" firstAttribute="leading" secondItem="LU4-bg-lLR" secondAttribute="leading" id="HQW-lO-Vuh"/>
-                        <constraint firstItem="xaZ-Lb-59o" firstAttribute="top" secondItem="Ehp-eL-bWY" secondAttribute="bottom" constant="8" id="JcE-Bl-1m5"/>
+                        <constraint firstItem="xaZ-Lb-59o" firstAttribute="top" secondItem="Ehp-eL-bWY" secondAttribute="bottom" id="JcE-Bl-1m5"/>
                         <constraint firstAttribute="trailing" secondItem="LU4-bg-lLR" secondAttribute="trailing" constant="16" id="LvL-gv-vcr"/>
                         <constraint firstItem="LU4-bg-lLR" firstAttribute="leading" secondItem="rSe-6o-CHW" secondAttribute="leading" constant="16" id="SXv-YF-P8Z"/>
                         <constraint firstItem="Ehp-eL-bWY" firstAttribute="top" secondItem="LU4-bg-lLR" secondAttribute="bottom" constant="8" id="TVm-CM-qAy"/>
-                        <constraint firstAttribute="trailing" secondItem="xaZ-Lb-59o" secondAttribute="trailing" id="cO3-m0-4VD"/>
-                        <constraint firstItem="xaZ-Lb-59o" firstAttribute="leading" secondItem="rSe-6o-CHW" secondAttribute="leading" id="cka-IO-RRk"/>
+                        <constraint firstItem="xaZ-Lb-59o" firstAttribute="trailing" secondItem="Tyh-UF-NUW" secondAttribute="trailing" id="kMm-qW-XjC"/>
+                        <constraint firstItem="xaZ-Lb-59o" firstAttribute="leading" secondItem="EiN-47-7Ki" secondAttribute="leading" id="lHd-RN-QH6"/>
                     </constraints>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" name="BackGround"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="rSe-6o-CHW" secondAttribute="bottom" id="NUE-XB-BgI"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="rSe-6o-CHW" secondAttribute="trailing" id="eLS-Nk-Rmu"/>
@@ -103,8 +105,11 @@
         </view>
     </objects>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <namedColor name="BackGround">
+            <color red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Header">
+            <color red="0.19215686274509802" green="0.21568627450980393" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

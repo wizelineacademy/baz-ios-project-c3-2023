@@ -11,6 +11,7 @@ enum LocalizedConstants {
     
     // MARK: - Common
     static let commonTitleFont: UIFont = UIFont(name: "AppleSDGothicNeo-Bold", size: 20) ?? UIFont()
+    static let commonSubTitleFont: UIFont = UIFont(name: "AppleSDGothicNeo-Bold", size: 16) ?? UIFont()
     static let commonLayerShadowOffset: CGSize = CGSize(width: 0, height: 1)
     static let commonLayerShadowOpacity: Float = 0.3
     static let commonLayerCornerRadius: CGFloat = 10
@@ -32,6 +33,17 @@ enum LocalizedConstants {
     static let commonSkeletonTransparency: CGFloat = 0.5
     static let commonVelocity: CFTimeInterval = 1
     static let commonIncrementNumber: Int = 1
+    static let commonHeaderColor: UIColor = UIColor(named: "Header") ?? .systemBackground
+    static let commonBackgroundColor: UIColor = UIColor(named: "BackGround") ?? .systemBackground
+    static let commonPrimaryColor: UIColor = UIColor(named: "PrimaryColor") ?? .systemBackground
+    static let commonSecondaryColor: UIColor = UIColor(named: "SecondaryColor") ?? .systemBackground
+    static let commonHeightHeaderTable: CGFloat = 50
+    static let commonSpacingIntoView: Int = 16
+    static let commonSpacingIntoViewMedium: Int = Int(commonSpacingIntoView / 2)
+    static let commonSizeIcon: Int = 30
+    static let commonHeaderImageViewCGRect: CGRect = CGRect(x: commonSpacingIntoView, y: 10, width: commonSizeIcon, height: commonSizeIcon)
+    static let commonHeightHeader: Int = 40
+    static let commonSpacingInY: Int = 5
     
     // MARK: - UIColor
     static let uiColorAlpha: Float = 1.0

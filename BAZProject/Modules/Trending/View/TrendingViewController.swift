@@ -115,6 +115,8 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
     private func setupFilterSegmentedControl() {
         filterSegmentedControl.removeAllSegments()
         filterTimeSegmentedControl.removeAllSegments()
+        setStyleSegmentedControls()
+
         String.trendingFilterTitles.enumerated().forEach { title in
             filterSegmentedControl.insertSegment(withTitle: title.element, at: title.offset, animated: true)
         }
@@ -124,6 +126,17 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
         filterSegmentedControl.selectedSegmentIndex = mediaType.getRawValue()
         filterTimeSegmentedControl.selectedSegmentIndex = timeWindowType.getRawValue()
         
+    }
+
+    private func setStyleSegmentedControls() {
+        let titleTextAttributes = [
+            NSAttributedString.Key.font: LocalizedConstants.commonSubTitleFont,
+            NSAttributedString.Key.foregroundColor: UIColor.white]
+        let titleTextAttributesSelected = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        filterSegmentedControl.setTitleTextAttributes(titleTextAttributes, for: .normal)
+        filterTimeSegmentedControl.setTitleTextAttributes(titleTextAttributes, for: .normal)
+        filterSegmentedControl.setTitleTextAttributes(titleTextAttributesSelected, for: .selected)
+        filterTimeSegmentedControl.setTitleTextAttributes(titleTextAttributesSelected, for: .selected)
     }
     
     private func setupInfiniteScrollLoadingIndicator() {
@@ -158,8 +171,8 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
     private func setupRefreshControl() {
         refreshControl = UIRefreshControl()
         guard let refreshControl = refreshControl else { return }
-        refreshControl.tintColor = .blue
-        refreshControl.attributedTitle = String.trendingTitleUpdateTable.getColoredString(color: .blue)
+        refreshControl.tintColor = .white
+        refreshControl.attributedTitle = String.trendingTitleUpdateTable.getColoredString(color: .white)
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControl.Event.valueChanged)
         moviesTableView.insertSubview(refreshControl, at: LocalizedConstants.trendingFirstSubview)
     }

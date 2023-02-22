@@ -28,7 +28,7 @@ final class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getData()
+        callService()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,7 +43,8 @@ final class DetailViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = false
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         imageSlider.stopTimmer()
         navigationController?.navigationBar.prefersLargeTitles = true
         stopLoading()

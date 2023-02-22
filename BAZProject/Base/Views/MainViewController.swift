@@ -23,18 +23,18 @@ final class MainViewController: UITabBarController {
     // MARK: - Private methods
 
     fileprivate func setStyleView() {
-        view.backgroundColor = .systemBackground
-        tabBar.barTintColor = .systemBackground
-        tabBar.tintColor = .red
+        view.backgroundColor = LocalizedConstants.commonBackgroundColor
+        tabBar.barTintColor = LocalizedConstants.commonBackgroundColor
+        tabBar.tintColor = .white
         tabBar.layer.shadowRadius = LocalizedConstants.mainShadowRadius
-        tabBar.layer.shadowColor = UIColor.black.cgColor
+        tabBar.layer.shadowColor = UIColor.white.cgColor
         tabBar.layer.shadowOpacity = LocalizedConstants.mainShadowOpacity
     }
     
     fileprivate func setTabBarStyle() {
-        tabBar.backgroundColor = .systemBackground
-        tabBar.tintColor = .red
-        tabBar.barTintColor = .red
+        tabBar.backgroundColor = LocalizedConstants.commonHeaderColor
+        tabBar.tintColor = .white
+        tabBar.barTintColor = .white
         tabBar.backgroundImage = UIImage()
         tabBar.shadowImage = UIImage()
     }
@@ -48,7 +48,7 @@ final class MainViewController: UITabBarController {
                                                   title: .trendingTitle,
                                                   image: getUIImage(for: .trendingNameIconTabBar, type: .systemName)))
         viewControllers = arrControllers
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.red], for:.selected)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected)
     }
     
     private func createNavController(for rootViewController: UIViewController,
@@ -57,20 +57,12 @@ final class MainViewController: UITabBarController {
         let navController = UINavigationController(rootViewController: rootViewController)
         navController.tabBarItem.title = title
         navController.tabBarItem.image = image
+        navController.navigationBar.tintColor = UIColor.white
         navController.navigationBar.prefersLargeTitles = true
         
         rootViewController.navigationItem.searchController = getUISearchController()
         rootViewController.navigationItem.title = title
         
         return navController
-    }
-    
-    private func getUISearchController() -> UISearchController {
-        let searchController = UISearchController(searchResultsController: nil)
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = .mainPlaceholderSearchBar
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
-        return searchController
     }
 }
