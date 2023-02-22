@@ -104,29 +104,10 @@ extension MainPresenter: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: MoviesTableViewCell.reusableIdentifier) as? MoviesTableViewCell {
             cell.delegate = self
-            switch indexPath.section {
-            case 0:
-                if let dataMovies = interactor?.movieApiData.getArrayDataMovie?[.trending] as? Movies {
-                    cell.data = dataMovies
-                }
-            case 1:
-                if let dataMovies = interactor?.movieApiData.getArrayDataMovie?[.nowPlaying] as? Movies {
-                    cell.data = dataMovies
-                }
-            case 2:
-                if let dataMovies = interactor?.movieApiData.getArrayDataMovie?[.popular] as? Movies {
-                    cell.data = dataMovies
-                }
-            case 3:
-                if let dataMovies = interactor?.movieApiData.getArrayDataMovie?[.topRated] as? Movies {
-                    cell.data = dataMovies
-                }
-            case 4:
-                if let dataMovies = interactor?.movieApiData.getArrayDataMovie?[.upcoming] as? Movies {
-                    cell.data = dataMovies
-                }
-            default:
-                break
+            if let urlIndexSection = URLApi.nothing.indexForSectionMain(for: indexPath.section), let dataMovies = interactor?.movieApiData.getArrayDataMovie?[urlIndexSection] as? Movies {
+                
+                cell.data = dataMovies
+                
             }
             cell.reload()
             return cell
@@ -144,20 +125,7 @@ extension MainPresenter: UITableViewDelegate {
         let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 30))
         let label = UILabel()
         label.frame = CGRect.init(x: 5, y: 5, width: headerView.frame.width-10, height: headerView.frame.height-10)
-        switch section {
-        case 0:
-            label.text =  "Tendencia:"
-        case 1:
-            label.text =  "En cines:"
-        case 2:
-            label.text =  "Popular:"
-        case 3:
-            label.text =  "Mejor valoradas: "
-        case 4:
-            label.text =  "Proximamente: "
-        default:
-            label.text =  ""
-        }
+        label.text = URLApi.nothing.setTitleForSection(for: section)
         label.font = .boldSystemFont(ofSize: 20)
         
         headerView.addSubview(label)

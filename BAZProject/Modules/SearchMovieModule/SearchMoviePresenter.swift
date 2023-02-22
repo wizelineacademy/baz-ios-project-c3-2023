@@ -66,19 +66,28 @@ extension SearchMoviePresenter: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GenericCollectionViewCell.reusableIdentifier, for: indexPath) as? GenericCollectionViewCell,
            let dataMovies = interceptor?.movieApiData.getDataMovies as? SearchMovieData {
-            UIView.fillSkeletons(onView: cell)
             
-            cell.title.text = dataMovies.results[indexPath.row].title
+            setCollectionCell(cell: cell, indexPath: indexPath.row, dataMovies: dataMovies)
             
-            DispatchQueue.main.async {
-                MovieAPI.getImage(from: dataMovies.results[indexPath.row].posterPath ?? "", handler: { image in
-                    cell.imageMovie.image = image
-                    UIView.removeSkeletons(onView: cell)
-                })
-            }
             return cell
         }
         return UICollectionViewCell()
+    }
+    
+    private func setCollectionCell(cell: GenericCollectionViewCell, indexPath: Int, dataMovies: SearchMovieData) {
+        UIView.fillSkeletons(onView: cell)
+        if let image = dataMovies.results[indexPath].posterPath {
+            cell.title.text = dataMovies.results[indexPath].title
+            setImage(cell: cell, image: image)
+        }
+        
+    }
+    
+    private func setImage(cell: GenericCollectionViewCell, image: String) {
+        MovieAPI.getImage(from: image) { image in
+            UIView.removeSkeletons(onView: cell)
+            cell.imageMovie.image = image
+        }
     }
 }
 

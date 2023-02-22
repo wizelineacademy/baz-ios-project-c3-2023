@@ -19,6 +19,7 @@ public enum URLApi: Hashable {
     case similar
     case recommendations
     case creditMovie
+    case nothing
     
     var getEndpointUrl: String {
         switch self {
@@ -44,8 +45,32 @@ public enum URLApi: Hashable {
             return "/recommendations"
         case .creditMovie:
             return "/credits"
+        default: return ""
         }
     }
+    
+    public func indexForSectionMain(for IndexpathValue: Int) -> URLApi? {
+        switch IndexpathValue {
+        case 0: return .trending
+        case 1: return .nowPlaying
+        case 2: return .popular
+        case 3: return .topRated
+        case 4: return .upcoming
+        default: return nil
+        }
+    }
+    
+    public func setTitleForSection(for indexPathValue: Int) -> String? {
+        switch indexPathValue {
+        case 0: return "Tendencia"
+        case 1: return "En cines"
+        case 2: return "Popular"
+        case 3: return "Mejor valoradas"
+        case 4: return "Proximamente"
+        default: return nil
+        }
+    }
+    
 }
 
 final class MovieAPI {
