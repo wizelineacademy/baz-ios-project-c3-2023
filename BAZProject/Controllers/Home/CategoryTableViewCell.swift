@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol CategoryTableCellDelegate {
+protocol CategoryTableCellDelegate: AnyObject {
     func didSelectMovie(movieId: Int, indexRow: Int)
 }
 
@@ -20,7 +20,7 @@ class CategoryTableViewCell: UITableViewCell {
             collectionToCarrucel.reloadData()
         }
     }
-    var categoryTableCellDelegate: CategoryTableCellDelegate?
+    weak var categoryTableCellDelegate: CategoryTableCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
