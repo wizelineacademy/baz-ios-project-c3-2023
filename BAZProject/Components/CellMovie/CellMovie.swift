@@ -7,6 +7,10 @@
 
 import UIKit
 
+enum AccesoryType {
+    case eye, eyeFill
+}
+
 class CellMovie: UITableViewCell {
     static let  identifier: String = .cellMovieXibIdentifier
     static func nib() -> UINib {
@@ -34,5 +38,21 @@ class CellMovie: UITableViewCell {
     func setData(title: String, imageUrl: String) {
         lblTitle.text = title
         photoImageView.loadImage(id: imageUrl)
+    }
+
+    func addAccessoryView(accesory: AccesoryType) {
+        var checkImage: UIImage
+        var color: UIColor
+        switch accesory {
+        case .eye:
+            checkImage = UIImage(systemName: "eye") ?? UIImage()
+            color = .white
+        case .eyeFill:
+            checkImage = UIImage(systemName: "eye.fill") ?? UIImage()
+            color = LocalizedConstants.commonSecondaryColor
+        }
+        let checkmark: UIImageView = UIImageView(image: checkImage)
+        checkmark.tintColor = color
+        self.accessoryView = checkmark
     }
 }

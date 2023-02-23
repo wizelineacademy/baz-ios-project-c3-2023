@@ -24,6 +24,9 @@ extension TrendingViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let id = getMovie(indexPath.row)?.id else { return }
+        if let cell = tableView.cellForRow(at: indexPath) as? CellMovie {
+            cell.addAccessoryView(accesory: .eyeFill)
+        }
         let detail: DetailType = DetailType(mediaType: mediaType, idMedia: id)
         presenter?.showDetail(of: detail)
     }
@@ -39,10 +42,7 @@ extension TrendingViewController: UITableViewDataSource {
            let movie = getMovie(indexPath.row) {
             let idImage: String = movie.backdropPath ?? ""
             cell.backgroundColor = LocalizedConstants.commonPrimaryColor
-            let checkImage = UIImage(systemName: "eye")
-            let checkmark = UIImageView(image: checkImage)
-            checkmark.tintColor = .white
-            cell.accessoryView = checkmark
+            cell.addAccessoryView(accesory: .eye)
             cell.setData(title: movie.title ?? "", imageUrl: Endpoint.img(idImage: idImage, sizeImage: .w500).urlString)
             return cell
         }
