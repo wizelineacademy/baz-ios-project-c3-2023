@@ -8,6 +8,8 @@
 enum RequestType: String {
     case trending = "trending/movie/day?"
     case topRated = "movie/top_rated?"
+    case nowPlaying = "movie/now_playing?"
+    case popular = "movie/popular?"
     case search = "search/movie?"
 }
 

@@ -41,7 +41,7 @@ extension TopRatedViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        tableView.dequeueReusableCell(withIdentifier: "TrendingTableViewCell")!
+        tableView.dequeueReusableCell(withIdentifier: "TopRatedTableViewCell")!
     }
 }
 
