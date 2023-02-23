@@ -156,6 +156,7 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
         setTableViewDelegates()
         registerCell()
         moviesTableView.rowHeight = UITableView.automaticDimension
+        moviesTableView.separatorColor = .white
     }
 
     private func setTableViewDelegates() {
@@ -196,23 +197,29 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
     }
 
     private func showAlertLoader() {
-        presenter?.willShowAlertLoading(with: ErrorType(title: "Cargando..", message: "Por favor espere."))
+        presenter?.willShowAlertLoading(with: ErrorType(title: .commonTitleShowAlertLoading,
+                                                        message: .commonMessageShowAlertLoading))
     }
 }
 
 // MARK: - UIScrollViewDelegate
 extension TrendingViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if !isMoreDataLoading {
-            let scrollOffsetThreshold = getMoviesTableViewContentSizeHeight() - moviesTableView.bounds.size.height
-            // When the user has scrolled past the threshold, start requesting
-            if (scrollView.contentOffset.y > scrollOffsetThreshold) && moviesTableView.isDragging {
-                isMoreDataLoading = true
-                loadingMoreView?.frame = getUIFrame()
-                loadingMoreView?.startAnimating()
-                presenter?.willShowAlertLoading(with: ErrorType(title: "Cargando..", message: "Por favor espere."))
-                getData()
-            }
+        let scrollOffsetThreshold: Double = (getMoviesTableViewContentSizeHeight() - moviesTableView.bounds.size.height)
+        // When the user has scrolled past the threshold, start requesting
+        if isMoreDataLoading && (scrollView.contentOffset.y > scrollOffsetThreshold) {
+            loadingMoreView?.frame = getUIFrame()
+            loadingMoreView?.startAnimating()
+            isMoreDataLoading = true
+        }
+    }
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if isMoreDataLoading {
+            self.showAlertLoader()
+            self.getData()
+        } else {
+            isMoreDataLoading = true
         }
     }
 }

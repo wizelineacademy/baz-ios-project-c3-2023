@@ -8,6 +8,10 @@
 import Foundation
 
 extension String {
+    // MARK: - Commons
+    static let commonTitleShowAlertLoading = "Cargando.."
+    static let commonMessageShowAlertLoading = "Por favor espere."
+
     // MARK: - TheMovieDb API
     static let apiKeyTheMovieDb = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
     static let theMovieDbBasePath = "https://api.themoviedb.org/3"
