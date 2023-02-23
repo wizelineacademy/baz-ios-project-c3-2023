@@ -54,6 +54,7 @@ extension NSObject {
         loadingIndicator.hidesWhenStopped = true
         loadingIndicator.style = .large
         loadingIndicator.startAnimating()
+        alert.view.inputView?.backgroundColor = .red
         alert.view.addSubview(loadingIndicator)
         return alert
     }

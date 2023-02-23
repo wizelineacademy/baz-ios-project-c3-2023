@@ -31,6 +31,7 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
     private var movies: [MovieResult] = []
     private var moviesBack: [MovieResult] = []
     private var isLoading: Bool = true
+    private var scrollOffsetThreshold: Double = 0.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -205,7 +206,7 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
 // MARK: - UIScrollViewDelegate
 extension TrendingViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let scrollOffsetThreshold: Double = (getMoviesTableViewContentSizeHeight() - moviesTableView.bounds.size.height)
+        scrollOffsetThreshold = getMoviesTableViewContentSizeHeight() - moviesTableView.bounds.size.height
         // When the user has scrolled past the threshold, start requesting
         if isMoreDataLoading && (scrollView.contentOffset.y > scrollOffsetThreshold) {
             loadingMoreView?.frame = getUIFrame()
@@ -215,7 +216,8 @@ extension TrendingViewController: UIScrollViewDelegate {
     }
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if isMoreDataLoading {
+        let scrollPositionY: Double = scrollView.contentOffset.y
+        if isMoreDataLoading && (scrollPositionY > scrollOffsetThreshold) || (scrollPositionY < 0) {
             self.showAlertLoader()
             self.getData()
         } else {
