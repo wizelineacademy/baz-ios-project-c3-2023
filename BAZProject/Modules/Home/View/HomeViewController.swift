@@ -40,6 +40,7 @@ final class HomeViewController: UIViewController {
         if errorGetData {
             callService()
         }
+        addObservers()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -66,6 +67,19 @@ final class HomeViewController: UIViewController {
 
     private func getData() {
         presenter?.willFetchMovieTopRated()
+    }
+
+    private func addObservers() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(changeIconEyeInCell),
+                                               name: .notificacionCenterNameShowDetail,
+                                               object: nil)
+    }
+
+    @objc private func changeIconEyeInCell(_ notification: Notification) {
+        let nameParameter: String = LocalizedConstants.notificationCenterNameParamId
+        guard let id = notification.userInfo?[nameParameter] as? String else { return }
+        print("Se a llamado a prueba", id)
     }
 }
 
