@@ -74,11 +74,6 @@ struct Movie: MovieProperties, Decodable {
     }
 }
 
-struct MoviesBySection {
-    var titleSection: String
-    var movies: [Movie]
-}
-
 struct MovieSearch {
     var id: Int
     var imageURL: String

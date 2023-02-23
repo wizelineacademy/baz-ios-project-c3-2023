@@ -7,28 +7,23 @@
 
 import Foundation
 
-@objc protocol HomeRoutingLogic {
-    func routeToMoviesBySection()
+protocol HomeRoutingLogic {
+    func routeToMoviesBySection(section: fetchMoviesTypes, movies: [MovieSearch])
 }
 
-protocol HomeDataPassing {
-    var dataStore: HomeDataStore? { get }
-}
-
-class HomeRouter: HomeRoutingLogic, HomeDataPassing {
+class HomeRouter: HomeRoutingLogic {
         
     // MARK: Properties
-    var dataStore: HomeDataStore?
     weak var viewController: HomeViewController?
     
-    func routeToMoviesBySection() {
+    func routeToMoviesBySection(section: fetchMoviesTypes, movies: [MovieSearch]) {
         let destinationVC = viewController?.storyboard?.instantiateViewController(withIdentifier: "MoviesBySectionViewController") as! MoviesBySectionViewController
         var destinationDS = destinationVC.router!.dataStore!
-        passDataToMoviesBySection(source: dataStore!, destination: &destinationDS)
+        passDataToMoviesBySection(source: (section: section, movies: movies), destination: &destinationDS)
         navigateToMoviesBySection(source: viewController!, destination: destinationVC)
     }
     
-    private func passDataToMoviesBySection(source: HomeDataStore, destination: inout MoviesBySectionDataStore) {
+    private func passDataToMoviesBySection(source: (section: fetchMoviesTypes, movies: [MovieSearch]), destination: inout MoviesBySectionDataStore) {
         destination.section = source.section
         destination.movies = source.movies
     }

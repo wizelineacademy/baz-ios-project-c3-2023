@@ -17,7 +17,7 @@ class HomeViewController: UIViewController {
     
     // MARK: Properties VIP
     var interactor: HomeBusinessLogic?
-    var router: (HomeRoutingLogic & HomeDataPassing)?
+    var router: (HomeRoutingLogic)?
     
     // MARK: Properties
     var scrollView: UIScrollView = {
@@ -62,7 +62,6 @@ class HomeViewController: UIViewController {
         interactor.presenter = presenter
         presenter.viewController = viewController
         router.viewController = viewController
-        router.dataStore = interactor
     }
 
     private func addMoviesSectionView(moviesSectionView: MoviesSectionView) {
@@ -102,11 +101,10 @@ extension HomeViewController: HomeDisplayLogic {
 }
 
 extension HomeViewController: MoviesSectionDelegate {
-    func didTapSeeMore(section: fetchMoviesTypes) {
-        router?.routeToMoviesBySection()
+    func didTapSeeMore(section: fetchMoviesTypes, movies: [MovieSearch]) {
+        router?.routeToMoviesBySection(section: section, movies: movies)
     }
     
     func didTapItem() {
-        
     }
 }

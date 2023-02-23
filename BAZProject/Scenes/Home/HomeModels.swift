@@ -16,7 +16,6 @@ enum Home {
         struct Response {
             var section: fetchMoviesTypes
             var movies: [Movie]
-            var numberOfMoviesToShow: Int
         }
         struct Error {
             var message: String

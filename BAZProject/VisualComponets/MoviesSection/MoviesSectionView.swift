@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol MoviesSectionDelegate: AnyObject {
-    func didTapSeeMore(section: fetchMoviesTypes)
+    func didTapSeeMore(section: fetchMoviesTypes, movies: [MovieSearch])
     func didTapItem()
 }
 
@@ -58,7 +58,7 @@ class MoviesSectionView: UIView {
     }
 
     @IBAction func seeMore(_ sender: Any) {
-        delegate?.didTapSeeMore(section: typeSection)
+        delegate?.didTapSeeMore(section: typeSection, movies: model ?? [])
     }
     
     private func configurateView() {

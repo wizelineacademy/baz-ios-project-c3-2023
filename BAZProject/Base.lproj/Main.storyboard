@@ -63,6 +63,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="4IB-Sv-aef"/>
+                    <connections>
+                        <outlet property="moviesView" destination="lm7-4O-WJa" id="Flo-Ya-3IW"/>
+                        <outlet property="titleLabel" destination="3FF-Pb-beJ" id="gwQ-2d-SCw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PzK-jK-ShX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

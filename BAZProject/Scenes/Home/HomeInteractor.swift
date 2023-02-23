@@ -13,23 +13,16 @@ protocol HomeBusinessLogic: AnyObject {
     func getMoviesSection()
 }
 
-protocol HomeDataStore {
-    var section: fetchMoviesTypes? { get }
-    var movies: [Movie]? { get }
-}
 
-class HomeInteractor: HomeBusinessLogic, HomeDataStore {
+class HomeInteractor: HomeBusinessLogic {
     
     // MARK: Properties
     let moviesWorker = MoviesWorker(movieService: MoviesAPI())
-    var movies: [Movie]?
-    var section: fetchMoviesTypes?
     
     // MARK: Properties VIP
     var presenter: HomePresentationLogic?
         
     func fetchMoviesBySection(request: Home.FetchMoviesBySection.Request) {
-        self.section = request.section
         moviesWorker.getMoviesByType(request.section) { [weak self] movies, message in
             guard let self = self else {
                 return
@@ -37,8 +30,7 @@ class HomeInteractor: HomeBusinessLogic, HomeDataStore {
             if let message = message {
                 self.presenter?.presentErrorMessage(error: Home.FetchMoviesBySection.Error(message: message))
             }
-            self.movies = movies
-            self.presenter?.presentFechedMoviesForSection(response: Home.FetchMoviesBySection.Response(section: request.section, movies: movies, numberOfMoviesToShow: 10))
+            self.presenter?.presentFechedMoviesForSection(response: Home.FetchMoviesBySection.Response(section: request.section, movies: movies))
         }
     }
     

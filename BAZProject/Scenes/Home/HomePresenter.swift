@@ -21,7 +21,7 @@ class HomePresenter: HomePresentationLogic {
     
     func presentFechedMoviesForSection(response: Home.FetchMoviesBySection.Response) {
         DispatchQueue.main.async {
-            let displayedMoviesBySection = response.movies.prefix(response.numberOfMoviesToShow).map { movie in
+            let displayedMoviesBySection = response.movies.map { movie in
                 return MovieSearch(id: movie.id ?? -1, imageURL: movie.posterPath ?? "", title: movie.title ?? "")
             }
             
