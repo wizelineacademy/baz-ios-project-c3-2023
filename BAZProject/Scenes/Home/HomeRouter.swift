@@ -9,6 +9,7 @@ import Foundation
 
 protocol HomeRoutingLogic {
     func routeToMoviesBySection(section: fetchMoviesTypes, movies: [MovieSearch])
+    func routeToMovieDetails(movie: MovieSearch)
 }
 
 class HomeRouter: HomeRoutingLogic {
@@ -23,12 +24,27 @@ class HomeRouter: HomeRoutingLogic {
         navigateToMoviesBySection(source: viewController!, destination: destinationVC)
     }
     
+    func routeToMovieDetails(movie: MovieSearch) {
+        let destinationVC = viewController?.storyboard?.instantiateViewController(withIdentifier: "MovieDetailsViewController") as! MovieDetailsViewController
+        var destinationDS = destinationVC.router!.dataStore!
+        passDataToMovieDetails(source: movie, destination: &destinationDS)
+        navigateToMovieDetails(source: viewController!, destination: destinationVC)
+    }
+    
+    private func passDataToMovieDetails(source: MovieSearch, destination: inout MovieDetailsDataStore) {
+        destination.movie = source
+    }
+    
+    private func navigateToMovieDetails(source: HomeViewController, destination: MovieDetailsViewController) {
+        source.show(destination, sender: nil)
+    }
+    
     private func passDataToMoviesBySection(source: (section: fetchMoviesTypes, movies: [MovieSearch]), destination: inout MoviesBySectionDataStore) {
         destination.section = source.section
         destination.movies = source.movies
     }
     
     private func navigateToMoviesBySection(source: HomeViewController, destination: MoviesBySectionViewController) {
-        viewController?.show(destination, sender: nil)
+        source.show(destination, sender: nil)
     }
 }

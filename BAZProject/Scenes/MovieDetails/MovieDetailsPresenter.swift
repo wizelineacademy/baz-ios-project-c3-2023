@@ -12,5 +12,7 @@ protocol MovieDetailsPresentationLogic {
 }
 
 class MovieDetailsPresenter: MovieDetailsPresentationLogic {
-    // TODO: conform MovieDetailsPresentationLogic protocol
+    // MARK: Properties VIP
+    weak var viewController: MovieDetailsDisplayLogic?
+    
 }

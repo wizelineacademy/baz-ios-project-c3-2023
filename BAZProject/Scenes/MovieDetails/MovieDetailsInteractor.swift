@@ -11,6 +11,15 @@ protocol MovieDetailsBusinessLogic: AnyObject {
     // TODO: create functions to manage business logic
 }
 
-class MovieDetailsInteractor: MovieDetailsBusinessLogic {
-    // TODO: conform HomeInteractor protocol
+protocol MovieDetailsDataStore: AnyObject {
+    var movie: MovieSearch? { get set }
+}
+
+class MovieDetailsInteractor: MovieDetailsBusinessLogic, MovieDetailsDataStore {
+    
+    // MARK: Properties VIP
+    var presenter: MovieDetailsPresentationLogic?
+    
+    var movie: MovieSearch?
+    
 }

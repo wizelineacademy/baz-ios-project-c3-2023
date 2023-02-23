@@ -10,7 +10,7 @@ import UIKit
 
 protocol MoviesSectionDelegate: AnyObject {
     func didTapSeeMore(section: fetchMoviesTypes, movies: [MovieSearch])
-    func didTapItem()
+    func didTapItemCollection(movie: MovieSearch)
 }
 
 struct MoviesSectionModel {
@@ -74,7 +74,17 @@ class MoviesSectionView: UIView {
         carruselCollection.topAnchor.constraint(equalTo: carruselMoviesView.topAnchor).isActive = true
         carruselCollection.bottomAnchor.constraint(equalTo: carruselMoviesView.bottomAnchor).isActive = true
         manager = CarruselCollectionManager()
-        manager.setupCollection(collection: carruselCollection)
+        manager.setupCollection(collection: carruselCollection, delegate: self)
+    }
+}
+
+extension MoviesSectionView: CarruselCollectionDelegate {
+    func displayedLastItem() {
+        
+    }
+    
+    func didTap(movie: MovieSearch) {
+        delegate?.didTapItemCollection(movie: movie)
     }
 }
 

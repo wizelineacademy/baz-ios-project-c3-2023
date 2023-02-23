@@ -121,6 +121,10 @@ extension SearchMoviesViewController: UISearchBarDelegate {
 }
 
 extension SearchMoviesViewController: CarruselCollectionDelegate {
+    func didTap(movie: MovieSearch) {
+        
+    }
+    
     func displayedLastItem() {
         interactor?.searchMoviesBy(request: SearchMovies.FetchMovies.Request(byKeyboards: searchBar?.text ?? "", nextPage: true))
     }

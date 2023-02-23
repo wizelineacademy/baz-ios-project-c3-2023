@@ -12,6 +12,7 @@ typealias CollectionManager = UICollectionViewDelegate & UICollectionViewDataSou
 
 protocol CarruselCollectionDelegate: AnyObject {
     func displayedLastItem()
+    func didTap(movie: MovieSearch)
 }
 
 class CarruselCollectionManager: NSObject, CollectionManager {
@@ -75,5 +76,12 @@ class CarruselCollectionManager: NSObject, CollectionManager {
         if collection?.direction == .vertical && (dataCollection.count - 1 == indexPath.row) {
             carruselDelegate?.displayedLastItem()
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let dataCollection = dataCollection else {
+            return
+        }
+        carruselDelegate?.didTap(movie: dataCollection[indexPath.row])
     }
 }

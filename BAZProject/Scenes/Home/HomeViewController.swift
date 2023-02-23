@@ -101,10 +101,12 @@ extension HomeViewController: HomeDisplayLogic {
 }
 
 extension HomeViewController: MoviesSectionDelegate {
+    func didTapItemCollection(movie: MovieSearch) {
+        router?.routeToMovieDetails(movie: movie)
+    }
+    
     func didTapSeeMore(section: fetchMoviesTypes, movies: [MovieSearch]) {
         router?.routeToMoviesBySection(section: section, movies: movies)
     }
-    
-    func didTapItem() {
-    }
 }
+

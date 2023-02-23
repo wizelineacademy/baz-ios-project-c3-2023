@@ -72,6 +72,21 @@
             </objects>
             <point key="canvasLocation" x="1413" y="844"/>
         </scene>
+        <!--Movie Details View Controller-->
+        <scene sceneID="d4F-NQ-Luf">
+            <objects>
+                <viewController storyboardIdentifier="MovieDetailsViewController" id="3Nr-aW-eTP" customClass="MovieDetailsViewController" customModule="BAZProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="g3Q-qD-k3J">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="yag-aH-KRz"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="360-10-NSM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2276" y="855"/>
+        </scene>
         <!--Search Movies View Controller-->
         <scene sceneID="Jqs-mP-UP2">
             <objects>
