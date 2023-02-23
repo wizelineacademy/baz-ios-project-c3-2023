@@ -5,7 +5,7 @@
 //  Created by 1029187 on 27/01/23.
 //
 
-import Foundation
+import UIKit
 
 class TrendingPresenter  {
     
@@ -20,6 +20,12 @@ class TrendingPresenter  {
 extension TrendingPresenter: TrendingPresenterProtocol {
     func notifyViewLoaded() {
         self.interactor?.fetchMovies()
+    }
+    
+    func goToMovieDetail(of indexPath: IndexPath,from view: UIViewController) {
+        if let movieID = self.movies?[indexPath.row].id {
+            self.router?.goToMovieDetail(of: movieID, from: view)
+        }
     }
 }
 

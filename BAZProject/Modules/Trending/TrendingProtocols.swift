@@ -17,6 +17,7 @@ protocol TrendingViewProtocol: AnyObject {
 protocol TrendingRouterProtocol: AnyObject {
     // PRESENTER -> ROUTER
     static func createTrendingModule() -> UIViewController
+    func goToMovieDetail(of movieID: Int, from view: UIViewController)
 }
 
 protocol TrendingPresenterProtocol: AnyObject {
@@ -27,6 +28,7 @@ protocol TrendingPresenterProtocol: AnyObject {
     var movies: [Movie]? { get set }
     
     func notifyViewLoaded()
+    func goToMovieDetail(of index: IndexPath, from view: UIViewController)
 }
 
 protocol TrendingInteractorOutputProtocol: AnyObject {

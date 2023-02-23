@@ -61,5 +61,8 @@ extension TrendingView {
             cell.contentConfiguration = config
         }
     }
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.presenter?.goToMovieDetail(of: indexPath,from: self)
+    }
 }

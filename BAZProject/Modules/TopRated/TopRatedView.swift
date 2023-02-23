@@ -57,8 +57,8 @@ extension TopRatedView {
             cell.contentConfiguration = config
         }
     }
-
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.present(MovieDetailRouter.createMovieDetailModule(of: self.presenter?.movies?[indexPath.row].id ?? 0), animated: false)
+        self.presenter?.goToMovieDetail(of: indexPath,from: self)
     }
 }

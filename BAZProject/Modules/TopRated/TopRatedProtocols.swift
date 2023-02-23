@@ -18,6 +18,7 @@ protocol TopRatedViewProtocol: AnyObject {
 protocol TopRatedRouterProtocol: AnyObject {
     // PRESENTER -> ROUTER
     static func createTopRatedModule() -> UIViewController
+    func goToMovieDetail(of movieID: Int, from view: UIViewController)
 }
 
 protocol TopRatedPresenterProtocol: AnyObject {
@@ -28,6 +29,7 @@ protocol TopRatedPresenterProtocol: AnyObject {
     var movies: [Movie]? { get set }
     
     func notifyViewLoaded()
+    func goToMovieDetail(of index: IndexPath, from view: UIViewController)
 }
 
 protocol TopRatedInteractorOutputProtocol: AnyObject {

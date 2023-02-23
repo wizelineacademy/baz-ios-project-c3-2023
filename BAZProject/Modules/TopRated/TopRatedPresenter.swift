@@ -6,7 +6,7 @@
 //  
 //
 
-import Foundation
+import UIKit
 
 class TopRatedPresenter  {
     
@@ -21,6 +21,12 @@ class TopRatedPresenter  {
 extension TopRatedPresenter: TopRatedPresenterProtocol {
     func notifyViewLoaded() {
         self.interactor?.fetchMovies()
+    }
+    
+    func goToMovieDetail(of indexPath: IndexPath,from view: UIViewController) {
+        if let movieID = self.movies?[indexPath.row].id {
+            self.router?.goToMovieDetail(of: movieID, from: view)
+        }
     }
 }
 

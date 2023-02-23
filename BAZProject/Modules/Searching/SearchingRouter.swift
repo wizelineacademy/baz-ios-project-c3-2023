@@ -30,5 +30,10 @@ class SearchingRouter: SearchingRouterProtocol {
     static var mainStoryboard: UIStoryboard {
         return UIStoryboard(name: "Main", bundle: Bundle.main)
     }
-    
+}
+
+extension SearchingRouter {
+    func goToMovieDetail(of movieID: Int, from view: UIViewController) {
+        view.present(MovieDetailRouter.createMovieDetailModule(of: movieID), animated: false)
+    }
 }
