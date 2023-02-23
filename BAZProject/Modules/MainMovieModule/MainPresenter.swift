@@ -20,7 +20,7 @@ final class MainPresenter: NSObject {
     }
     
     private func setupUI(tableView: UITableView) {
-        tableView.rowHeight = 250
+        tableView.rowHeight = 240
     }
     
     private func makeTableViewCell(cell:inout UITableViewCell, typeUrl: URLApi) -> UITableViewCell {
