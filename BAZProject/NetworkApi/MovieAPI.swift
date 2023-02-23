@@ -19,14 +19,14 @@ final class MovieAPI {
      - Returns: An array type Movie
      */
     
-    func getMovies(typeMovie: TypeMovieList) -> [Movie]? {
-        guard let url = URL(string: "\(urlBase)/movie/\(typeMovie.getOptionMovie())?api_key=\(apiKey)"),
+    func getMovies(typeMovie: TypeMovieList, completion: @escaping(([Movie]?) -> Void)){
+        guard let url = URL(string: "\(urlBase)/movie/\(typeMovie.getOptionMovie())?api_key=\(apiKey)&page=1"),
               let data = try? Data(contentsOf: url),
               let responseMovies = try? JSONDecoder().decode(ReponseMovies.self, from: data)
         else {
-            return nil
+            return completion(nil)
         }
-        return responseMovies.results
+        completion(responseMovies.results)
     }
     
     /**
@@ -35,15 +35,30 @@ final class MovieAPI {
      - Returns: A estruct MovieDetail with more info about movie
      */
     
-    func getDetailMovie(idMovie : Int) -> MovieDetail? {
+    func getDetailMovie(idMovie: Int, completion: @escaping((MovieDetail?) -> Void)) {
         guard let url = URL(string: "\(urlBase)/movie/\(idMovie))?api_key=\(apiKey)"),
               let data = try? Data(contentsOf: url),
               let responseDetailMovie = try? JSONDecoder().decode(MovieDetail.self, from: data)
         else {
-            return nil
+            return completion(nil)
         }
-        
-        return responseDetailMovie
+        completion(responseDetailMovie)
+    }
+    
+    /**
+     obtains specific list movies by browser
+     - Parameter queryMovie: search word movie
+     - Returns: An array type Movie
+     */
+    
+    func getMoviesSearch(queryMovie: String, completion: @escaping(([Movie]?) -> Void)) {
+        guard let url = URL(string: "\(urlBase)/search/movie?api_key=\(apiKey)&query=\(queryMovie)"),
+              let data = try? Data(contentsOf: url),
+              let responseMovies = try? JSONDecoder().decode(ReponseMovies.self, from: data)
+        else {
+            return completion(nil)
+        }
+        completion(responseMovies.results)
     }
 }
 

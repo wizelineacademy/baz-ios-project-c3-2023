@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchMovieViewController" customModule="BAZProject" customModuleProvider="target">
+            <connections>
+                <outlet property="collectionViewSearch" destination="V2b-dn-xJd" id="mzg-HF-tHn"/>
+                <outlet property="tfWordSearch" destination="hf1-SH-u0s" id="nFK-Bh-oGA"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewConatinerSearch" destination="kSR-i5-TMx" id="W5r-K7-VE4"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m5P-48-3hD">
+                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QEz-e9-sdZ">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="100"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kSR-i5-TMx">
+                                    <rect key="frame" x="31.999999999999986" y="32" width="246.66666666666663" height="36"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="gla-Je-yBR">
+                                            <rect key="frame" x="5.9999999999999982" y="1.9999999999999964" width="20.333333333333329" height="32.333333333333329"/>
+                                            <color key="tintColor" name="DarkStar"/>
+                                        </imageView>
+                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="movie name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hf1-SH-u0s">
+                                            <rect key="frame" x="36.333333333333329" y="1" width="210.33333333333337" height="34"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstItem="gla-Je-yBR" firstAttribute="leading" secondItem="kSR-i5-TMx" secondAttribute="leading" constant="6" id="F6P-Ra-4d5"/>
+                                        <constraint firstItem="hf1-SH-u0s" firstAttribute="top" secondItem="kSR-i5-TMx" secondAttribute="top" constant="1" id="LRk-Ci-Wa2"/>
+                                        <constraint firstItem="hf1-SH-u0s" firstAttribute="leading" secondItem="gla-Je-yBR" secondAttribute="trailing" constant="10" id="PQa-30-jq8"/>
+                                        <constraint firstAttribute="bottom" secondItem="hf1-SH-u0s" secondAttribute="bottom" constant="1" id="bLI-yS-dPJ"/>
+                                        <constraint firstAttribute="bottom" secondItem="gla-Je-yBR" secondAttribute="bottom" constant="1" id="bZU-W0-unO"/>
+                                        <constraint firstAttribute="trailing" secondItem="hf1-SH-u0s" secondAttribute="trailing" id="n5E-0P-Tk1"/>
+                                        <constraint firstItem="gla-Je-yBR" firstAttribute="top" secondItem="kSR-i5-TMx" secondAttribute="top" constant="1" id="tpZ-kk-UO9"/>
+                                    </constraints>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AOd-gc-M8T">
+                                    <rect key="frame" x="283.66666666666669" y="32" width="77.333333333333314" height="36"/>
+                                    <color key="tintColor" systemColor="systemOrangeColor"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="Search"/>
+                                    <connections>
+                                        <action selector="onTapSearchButton:" destination="-1" eventType="touchUpInside" id="JuG-QJ-RWd"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" name="DarkStar"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="AOd-gc-M8T" secondAttribute="bottom" constant="32" id="ExM-IQ-KHU"/>
+                                <constraint firstAttribute="height" constant="100" id="Iey-Lu-NSF"/>
+                                <constraint firstItem="AOd-gc-M8T" firstAttribute="leading" secondItem="kSR-i5-TMx" secondAttribute="trailing" constant="5" id="J5y-oy-O2d"/>
+                                <constraint firstItem="kSR-i5-TMx" firstAttribute="top" secondItem="QEz-e9-sdZ" secondAttribute="top" constant="32" id="Ra9-oY-Yao"/>
+                                <constraint firstAttribute="trailing" secondItem="AOd-gc-M8T" secondAttribute="trailing" constant="32" id="dXj-aB-pGL"/>
+                                <constraint firstItem="kSR-i5-TMx" firstAttribute="leading" secondItem="QEz-e9-sdZ" secondAttribute="leading" constant="32" id="dZF-wg-Ntl"/>
+                                <constraint firstItem="AOd-gc-M8T" firstAttribute="top" secondItem="QEz-e9-sdZ" secondAttribute="top" constant="32" id="lFI-vf-Yfj"/>
+                                <constraint firstAttribute="bottom" secondItem="kSR-i5-TMx" secondAttribute="bottom" constant="32" id="oGC-eV-VIz"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jpB-s7-8zZ">
+                            <rect key="frame" x="0.0" y="100" width="393" height="659"/>
+                            <subviews>
+                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="V2b-dn-xJd">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="659"/>
+                                    <color key="backgroundColor" name="DarkStar"/>
+                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Kre-q4-eDZ">
+                                        <size key="itemSize" width="128" height="128"/>
+                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    </collectionViewFlowLayout>
+                                </collectionView>
+                            </subviews>
+                            <color key="backgroundColor" name="DarkStar"/>
+                            <constraints>
+                                <constraint firstItem="V2b-dn-xJd" firstAttribute="top" secondItem="jpB-s7-8zZ" secondAttribute="top" id="Pn0-N6-nsL"/>
+                                <constraint firstAttribute="bottom" secondItem="V2b-dn-xJd" secondAttribute="bottom" id="QQn-IF-DsI"/>
+                                <constraint firstItem="V2b-dn-xJd" firstAttribute="leading" secondItem="jpB-s7-8zZ" secondAttribute="leading" id="byb-8b-Xiq"/>
+                                <constraint firstAttribute="trailing" secondItem="V2b-dn-xJd" secondAttribute="trailing" id="eau-Fa-PR3"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" name="DarkStar"/>
+                    <constraints>
+                        <constraint firstItem="QEz-e9-sdZ" firstAttribute="top" secondItem="m5P-48-3hD" secondAttribute="top" id="0OP-AO-R18"/>
+                        <constraint firstItem="jpB-s7-8zZ" firstAttribute="top" secondItem="QEz-e9-sdZ" secondAttribute="bottom" id="NKM-Bv-DM7"/>
+                        <constraint firstItem="jpB-s7-8zZ" firstAttribute="leading" secondItem="m5P-48-3hD" secondAttribute="leading" id="ONo-QE-sGY"/>
+                        <constraint firstAttribute="bottom" secondItem="jpB-s7-8zZ" secondAttribute="bottom" id="VTS-pu-mbV"/>
+                        <constraint firstAttribute="trailing" secondItem="QEz-e9-sdZ" secondAttribute="trailing" id="W9Z-d5-4AD"/>
+                        <constraint firstAttribute="trailing" secondItem="jpB-s7-8zZ" secondAttribute="trailing" id="kDf-1L-Fu0"/>
+                        <constraint firstItem="QEz-e9-sdZ" firstAttribute="leading" secondItem="m5P-48-3hD" secondAttribute="leading" id="rI6-eG-RvB"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="DarkStar"/>
+            <constraints>
+                <constraint firstItem="m5P-48-3hD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="EQg-bP-Hql"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="m5P-48-3hD" secondAttribute="bottom" id="Y0D-8E-P2t"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="m5P-48-3hD" secondAttribute="trailing" id="YoC-jG-nii"/>
+                <constraint firstItem="m5P-48-3hD" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="jyE-Sv-dfz"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="136.64122137404578" y="19.718309859154932"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
+        <namedColor name="DarkStar">
+            <color red="0.065999999642372131" green="0.035000000149011612" blue="0.10000000149011612" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

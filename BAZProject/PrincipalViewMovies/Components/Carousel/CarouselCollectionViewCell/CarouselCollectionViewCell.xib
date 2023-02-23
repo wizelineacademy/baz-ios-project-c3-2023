@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CarouselCollectionViewCell" customModule="BAZProject" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="329" height="220"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="329" height="220"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5RR-fC-Xdq">
+                        <rect key="frame" x="0.0" y="0.0" width="329" height="220"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sOI-5L-46a">
+                                <rect key="frame" x="0.0" y="0.0" width="329" height="220"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" name="DarkSecondaryStar"/>
+                        <constraints>
+                            <constraint firstItem="sOI-5L-46a" firstAttribute="leading" secondItem="5RR-fC-Xdq" secondAttribute="leading" id="7at-jg-Dq2"/>
+                            <constraint firstAttribute="trailing" secondItem="sOI-5L-46a" secondAttribute="trailing" id="D0f-R3-8fX"/>
+                            <constraint firstItem="sOI-5L-46a" firstAttribute="top" secondItem="5RR-fC-Xdq" secondAttribute="top" id="Naa-ZP-pJT"/>
+                            <constraint firstAttribute="bottom" secondItem="sOI-5L-46a" secondAttribute="bottom" id="hNR-wE-0RN"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="5RR-fC-Xdq" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="KpB-CM-y29"/>
+                <constraint firstAttribute="trailing" secondItem="5RR-fC-Xdq" secondAttribute="trailing" id="RqJ-lt-0nI"/>
+                <constraint firstItem="5RR-fC-Xdq" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="YOp-qF-66d"/>
+                <constraint firstAttribute="bottom" secondItem="5RR-fC-Xdq" secondAttribute="bottom" id="hbc-5x-Ppr"/>
+            </constraints>
+            <size key="customSize" width="329" height="220"/>
+            <connections>
+                <outlet property="imgMovie" destination="sOI-5L-46a" id="JOB-Sc-y2e"/>
+            </connections>
+            <point key="canvasLocation" x="236" y="35"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <namedColor name="DarkSecondaryStar">
+            <color red="0.19600000000000001" green="0.184" blue="0.24299999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
