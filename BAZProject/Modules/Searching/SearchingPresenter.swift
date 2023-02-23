@@ -8,17 +8,11 @@
 import Foundation
 
 class SearchingPresenter: SearchingPresenterProtocol, SearchingInteractorOutputProtocol {
-    
     var view: SearchingViewProtocol?
-    
     var interactor: SearchingInteractorInputProtocol?
-    
     var router: SearchingRouterProtocol?
-    
     var searchResults: [SearchResult]?
-    
     func notifyViewLoaded() {
-        
     }
     
     func searchMovies(with query: String?) {
@@ -31,6 +25,4 @@ class SearchingPresenter: SearchingPresenterProtocol, SearchingInteractorOutputP
         self.searchResults = searchResults
         self.view?.reloadData()
     }
-    
-    
 }

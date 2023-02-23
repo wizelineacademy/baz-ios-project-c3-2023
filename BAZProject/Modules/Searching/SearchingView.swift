@@ -51,7 +51,6 @@ extension SearchingViewController {
         guard let tableViewCell = tableView.dequeueReusableCell(withIdentifier: "SearchingResultsTableViewCell") else { return UITableViewCell() }
         return tableViewCell
     }
-
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.present(MovieDetailRouter.createMovieDetailModule(of: self.presenter?.searchResults?[indexPath.row].id ?? 0), animated: false)
     }
