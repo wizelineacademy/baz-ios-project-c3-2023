@@ -9,10 +9,13 @@ import Foundation
 import UIKit
 
 protocol MovieDetailsDisplayLogic: AnyObject {
-    // TODO: create functions to manage display logic
+    func displayView(viewModel: MovieDetails.LoadView.ViewModel)
 }
 
 class MovieDetailsViewController: UIViewController {
+    
+    // MARK: IBOutlet
+    @IBOutlet weak var titleMovie: UILabel!
     
     // MARK: Properties VIP
     var interactor: MovieDetailsBusinessLogic?
@@ -22,6 +25,12 @@ class MovieDetailsViewController: UIViewController {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setup()
+    }
+    
+    // MARK: Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        interactor?.loadView()
     }
 
     // MARK: Setup
@@ -40,5 +49,8 @@ class MovieDetailsViewController: UIViewController {
 }
 
 extension MovieDetailsViewController: MovieDetailsDisplayLogic {
-    // TODO: conform MovieDetailsDisplayLogic protocol
+    
+    func displayView(viewModel: MovieDetails.LoadView.ViewModel) {
+        titleMovie.text = viewModel.title
+    }
 }

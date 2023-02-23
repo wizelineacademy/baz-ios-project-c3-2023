@@ -79,9 +79,25 @@
                     <view key="view" contentMode="scaleToFill" id="g3Q-qD-k3J">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqy-B1-5zO">
+                                <rect key="frame" x="10" y="68" width="394" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="yag-aH-KRz"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="yag-aH-KRz" firstAttribute="trailing" secondItem="bqy-B1-5zO" secondAttribute="trailing" constant="10" id="1DY-WB-gbs"/>
+                            <constraint firstItem="bqy-B1-5zO" firstAttribute="top" secondItem="yag-aH-KRz" secondAttribute="top" constant="20" id="CIx-8K-YsO"/>
+                            <constraint firstItem="bqy-B1-5zO" firstAttribute="leading" secondItem="yag-aH-KRz" secondAttribute="leading" constant="10" id="sXf-6C-cvM"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="titleMovie" destination="bqy-B1-5zO" id="b7I-Az-uxi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="360-10-NSM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

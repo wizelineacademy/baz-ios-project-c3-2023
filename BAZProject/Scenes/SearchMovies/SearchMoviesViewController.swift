@@ -20,6 +20,7 @@ class SearchMoviesViewController: UIViewController {
     
     // MARK: Properties VIP
     var interactor: SearchMoviesInteractor?
+    var router: SearchMoviesRoutingLogic?
     
     // MARK: Properties
     lazy var searchBar: UISearchBar? = {
@@ -57,9 +58,12 @@ class SearchMoviesViewController: UIViewController {
         let viewController = self
         let interactor = SearchMoviesInteractor()
         let presenter = SearchMoviesPresenter()
+        let router = SearchMoviesRouter()
         viewController.interactor = interactor
+        viewController.router = router
         interactor.presenter = presenter
         presenter.viewController = viewController
+        router.viewController = viewController
     }
 
     
@@ -122,7 +126,7 @@ extension SearchMoviesViewController: UISearchBarDelegate {
 
 extension SearchMoviesViewController: CarruselCollectionDelegate {
     func didTap(movie: MovieSearch) {
-        
+        router?.routeToMovieDetails(movie: movie)
     }
     
     func displayedLastItem() {

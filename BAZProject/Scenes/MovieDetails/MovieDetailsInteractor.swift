@@ -8,7 +8,7 @@
 import Foundation
 
 protocol MovieDetailsBusinessLogic: AnyObject {
-    // TODO: create functions to manage business logic
+    func loadView()
 }
 
 protocol MovieDetailsDataStore: AnyObject {
@@ -19,7 +19,13 @@ class MovieDetailsInteractor: MovieDetailsBusinessLogic, MovieDetailsDataStore {
     
     // MARK: Properties VIP
     var presenter: MovieDetailsPresentationLogic?
-    
     var movie: MovieSearch?
     
+    func loadView() {
+        guard let movie = movie else {
+            return 
+        }
+        let response = MovieDetails.LoadView.Response(movie: movie)
+        presenter?.presentLoadView(response: response)
+    }
 }
