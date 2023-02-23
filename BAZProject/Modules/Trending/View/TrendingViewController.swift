@@ -30,7 +30,6 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
     private var isMoreDataLoading = false
     private var movies: [MovieResult] = []
     private var moviesBack: [MovieResult] = []
-    @IBOutlet weak var heightMovieTableView: NSLayoutConstraint!
     private var isLoading: Bool = true
 
     override func viewDidLoad() {
@@ -68,8 +67,6 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
         moviesBack = data
         guaranteeMainThread {
             self.moviesTableView.reloadData()
-            self.heightMovieTableView.constant = self.moviesTableView.contentSize.height +
-                LocalizedConstants.commonHeightHeaderTable
         }
     }
 
