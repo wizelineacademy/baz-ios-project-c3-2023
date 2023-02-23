@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="filterSegmentedControl" destination="LU4-bg-lLR" id="Mz9-cN-GhD"/>
                 <outlet property="filterTimeSegmentedControl" destination="Tyh-UF-NUW" id="8dQ-v6-xB2"/>
+                <outlet property="heightMovieTableView" destination="JGT-ad-Ljj" id="rLo-Ae-Sg3"/>
                 <outlet property="moviesTableView" destination="xaZ-Lb-59o" id="Cr2-72-D0t"/>
                 <outlet property="titleFilterLabel" destination="EiN-47-7Ki" id="Yea-zp-mHJ"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Y4v-F1-4Xf"/>
