@@ -26,12 +26,17 @@ class HomeTableViewController: UITableViewController {
     }
     
     func getMovies() {
-         movieApi.getMoviesBy(category: .trending, completionHandler: { movies, error in
-            if let movies = movies {
-                self.listOfCategories[.trending] = movies
+        
+        let decodableResultsAdapter = JSONDecoderResultAdapter(decoder: JSONDecoder())
+        let sessionFetcher = URLSessionFetcher(decodableResultAdapter: decodableResultsAdapter)
+        
+        sessionFetcher.fetchData { (movieResult: MovieAPIResult?, _: Error?) in
+            if let movieResult = movieResult {
+                print(movieResult)
+                self.listOfCategories[.trending] = movieResult.results
                 self.reloadSectionInTable(index: IndexSet(integer: MovieAPICategory.trending.rawValue))
             }
-        })
+        }
         
          movieApi.getMoviesBy(category: .nowPlaying, completionHandler: { movies, error in
             if let movies = movies {

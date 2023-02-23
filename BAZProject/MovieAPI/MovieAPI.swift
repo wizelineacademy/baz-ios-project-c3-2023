@@ -44,7 +44,6 @@ class MovieAPI {
         }
     }
     
-    
     /// Fetch movie poster of a given url.
     ///
     ///  - Parameter url: The given image URL
