@@ -15,19 +15,34 @@ extension HomeMoviesView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return isSearching ? presenter?.getSearchedMovieCount() ?? 0: presenter?.getMovieCount() ?? 0
+        limitControlCell = isSearching ? presenter?.getSearchedMovieCount() ?? 0: presenter?.getMovieCount() ?? 0
+        foundResults = true
+        
+        if limitControlCell == 0 {
+            limitControlCell = 1
+            foundResults = false
+        }
+
+        return limitControlCell
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCollectionCell.cellIdentifier, for: indexPath) as? MovieCollectionCell else {
-            return UICollectionViewCell()
-        }
-        
-        if let movie = self.isSearching ? self.presenter?.getSearchedMovie(indexPathRow: indexPath.row) : self.presenter?.getMovie(indexPathRow: indexPath.row){
-            cell.setupCell(movie: movie)
-        }
+        if foundResults {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCollectionCell.cellIdentifier, for: indexPath) as? MovieCollectionCell else {
+                return UICollectionViewCell()
+            }
+            if let movie = self.isSearching ? self.presenter?.getSearchedMovie(indexPathRow: indexPath.row) : self.presenter?.getMovie(indexPathRow: indexPath.row){
+                cell.setupCell(movie: movie)
+            }
 
-        return cell
+            return cell
+        }else{
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EmptyMoviesCollectionCell.cellIdentifier, for: indexPath) as? EmptyMoviesCollectionCell else {
+                return UICollectionViewCell()
+            }
+            cell.isUserInteractionEnabled = false
+            return cell
+        }
     }
 }
 
