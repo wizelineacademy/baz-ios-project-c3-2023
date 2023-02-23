@@ -65,7 +65,7 @@ extension UIView {
         shimmerView.clipsToBounds = true
         shimmerView.tag = 2104082
         addSubview(shimmerView)
-        let gradientLayer = addGradientLayer(startPoint: startPoint, endPoint: endPoint)
+        let gradientLayer = createGradientLayer(startPoint: startPoint, endPoint: endPoint)
         let animation = addAnimation(duration: velocity)
         gradientLayer.add(animation, forKey: animation.keyPath)
     }
