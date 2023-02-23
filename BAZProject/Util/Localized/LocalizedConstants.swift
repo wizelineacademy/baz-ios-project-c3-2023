@@ -48,12 +48,18 @@ enum LocalizedConstants {
     static let commonHeightHeader: Int = 40
     static let commonSpacingInY: Int = 5
 
+    // MARK: - Notification Center
+    static let notificationCenterNameShowDetail: String = "showDetail"
+    static let notificationCenterNameParamId: String = "id"
+
     // MARK: - UIColor
     static let uiColorAlpha: Float = 1.0
     static let uiColorValueTotalRGB: CGFloat = 255
 
     // MARK: - LaunchScreen
     static let launchScreenDivisorNumer: CGFloat = 4.0
+
+    // TODO: remove this
     static let launchScreenAnimationDuration: Double = 0 //1.5
 
     // MARK: - Main

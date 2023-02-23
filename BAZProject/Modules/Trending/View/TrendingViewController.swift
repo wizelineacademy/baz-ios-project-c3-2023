@@ -52,6 +52,7 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        removeObservers()
         stopLoading()
     }
 
@@ -111,6 +112,18 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
         setupRefreshControl()
         setupInfiniteScrollLoadingIndicator()
         setupFilterSegmentedControl()
+        addObservers()
+    }
+
+    private func addObservers() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(changeIconEyeInCell),
+                                               name: .notificacionCenterNameShowDetail,
+                                               object: nil)
+    }
+
+    private func removeObservers() {
+        NotificationCenter.default.removeObserver(self, name: .notificacionCenterNameShowDetail, object: nil)
     }
 
     private func setupFilterSegmentedControl() {
@@ -200,6 +213,11 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
     private func showAlertLoader() {
         presenter?.willShowAlertLoading(with: ErrorType(title: .commonTitleShowAlertLoading,
                                                         message: .commonMessageShowAlertLoading))
+    }
+
+    @objc private func changeIconEyeInCell(_ notification: Notification) {
+        guard let id = notification.userInfo?[LocalizedConstants.notificationCenterNameParamId] as? String else { return }
+        print("Se a llamado a prueba", id)
     }
 }
 

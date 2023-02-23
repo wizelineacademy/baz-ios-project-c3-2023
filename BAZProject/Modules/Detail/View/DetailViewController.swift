@@ -27,6 +27,9 @@ final class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let id = detailType?.idMedia as? Int {
+            NotificationCenter.default.post(name: .notificacionCenterNameShowDetail, object: self, userInfo: ["id": String(id)])
+        }
         callService()
     }
 
@@ -74,6 +77,14 @@ final class DetailViewController: UIViewController {
     private func getData() {
         if let detailType = detailType {
             presenter?.willFetchMedia(detailType: detailType)
+        }
+    }
+
+    private func postIdMedia() {
+        if let id = detailType?.idMedia as? Int {
+            NotificationCenter.default.post(name: .notificacionCenterNameShowDetail,
+                                            object: self,
+                                            userInfo: [LocalizedConstants.notificationCenterNameParamId: String(id)])
         }
     }
 }
