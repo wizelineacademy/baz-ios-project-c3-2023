@@ -155,6 +155,7 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
     private func initRegister() {
         setTableViewDelegates()
         registerCell()
+        moviesTableView.rowHeight = UITableView.automaticDimension
     }
 
     private func setTableViewDelegates() {
