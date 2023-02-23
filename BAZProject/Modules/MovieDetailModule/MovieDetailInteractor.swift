@@ -24,7 +24,11 @@ extension MovieDetailInteractor: MovieDetailInterceptorInputProtocol {
         do {
             allDataMovie = try? saveData.load(title: saveData.watchedMovies)
             guard let data = data else { return }
-            allDataMovie?.append(data)
+            if ((allDataMovie?.isEmpty) != nil) {
+                allDataMovie?.append(data)
+            } else {
+                allDataMovie = [data]
+            }
             guard let allDataMovie = allDataMovie else { return }
             try saveData.save(allDataMovie, title: saveData.watchedMovies)
         } catch {

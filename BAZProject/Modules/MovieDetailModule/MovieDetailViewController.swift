@@ -20,6 +20,7 @@ final class MovieDetailView: UIViewController {
         setDelegates()
         
         playVideo.setTitle("", for: .normal)
+        navigationItem.backButtonTitle = ""
         setupUI()
     }
     

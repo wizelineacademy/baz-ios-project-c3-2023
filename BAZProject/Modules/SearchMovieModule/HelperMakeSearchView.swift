@@ -9,7 +9,7 @@ import UIKit
 
 struct MakeSearchView {
     lazy var searchBar: UISearchBar = {
-        let searchBar = UISearchBar(frame:  CGRectMake(0, 0, 300, 20))
+        let searchBar = UISearchBar(frame:  UINavigationController().view.bounds)
         searchBar.placeholder = "Buscar"
         return searchBar
     }()
