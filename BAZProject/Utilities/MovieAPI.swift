@@ -7,78 +7,137 @@
 import UIKit
 
 public enum URLApi: Hashable {
-    private var apiKey: String { "f6cd5c1a9e6c6b965fdcab0fa6ddd38a" }
-    private var urlBase: String { "https://api.themoviedb.org/3" }
     
     case upcoming
-    case trending(page: Int)
-    case nowPlaying(page: Int)
-    case popular(page: Int)
-    case topRated(page: Int)
-    case keyword(query:String)
-    case searchMovie(query:String, page: Int)
-    case reviews(movieId:String)
-    case similar(movieId:String)
-    case recommendations(movieId:String)
+    case trending
+    case nowPlaying
+    case popular
+    case topRated
+    case keyword
+    case searchMovie
+    case reviews
+    case similar
+    case recommendations
+    case creditMovie
+    case nothing
     
-    var URL: String{
+    var getEndpointUrl: String {
         switch self {
         case .upcoming:
-            return "\(urlBase)/movie/upcoming?api_key=\(apiKey)&language=es&region=MX&page=1"
-        case .trending(let page):
-            return "\(urlBase)/trending/movie/day?api_key=\(apiKey)&language=es&region=MX&page=\(page)"
-        case .nowPlaying(let page):
-            return "\(urlBase)/movie/now_playing?api_key=\(apiKey)&language=es&region=MX&page=\(page)"
-        case .popular(let page):
-            return "\(urlBase)/movie/popular?api_key=\(apiKey)&language=es&region=MX&page=\(page)"
-        case .topRated(let page):
-            return "\(urlBase)/movie/top_rated?api_key=\(apiKey)&language=es&page=\(page)&region=MX"
-        case .keyword(let query):
-            return "\(urlBase)/search/keyword?api_key=\(apiKey)&language=es&query=\(query)"
-        case .searchMovie(let query, let page):
-            return "\(urlBase)/search/movie?api_key=\(apiKey)&language=es&page=\(page)&query=\(query)"
-        case .reviews(let movieId):
-            return "\(urlBase)/movie/\(movieId)/reviews?api_key=\(apiKey)&language=es"
-        case .similar(let movieId):
-            return "\(urlBase)/movie/\(movieId)/similar?api_key=\(apiKey)&language=es"
-        case .recommendations(let movieId):
-            return "\(urlBase)/movie/\(movieId)/recommendations?api_key=\(apiKey)&language=es"
+            return "/movie/upcoming"
+        case .trending:
+            return "/trending/movie/day"
+        case .nowPlaying:
+            return "/movie/now_playing"
+        case .popular:
+            return "/movie/popular"
+        case .topRated:
+            return "/movie/top_rated"
+        case .keyword:
+            return "/search/keyword"
+        case .searchMovie:
+            return "/search/movie"
+        case .reviews:
+            return "/reviews"
+        case .similar:
+            return "/similar"
+        case .recommendations:
+            return "/recommendations"
+        case .creditMovie:
+            return "/credits"
+        default: return ""
         }
     }
+    
+    public func indexForSectionMain(for IndexpathValue: Int) -> URLApi? {
+        switch IndexpathValue {
+        case 0: return .trending
+        case 1: return .nowPlaying
+        case 2: return .popular
+        case 3: return .topRated
+        case 4: return .upcoming
+        default: return nil
+        }
+    }
+    
+    public func setTitleForSection(for indexPathValue: Int) -> String? {
+        switch indexPathValue {
+        case 0: return "Tendencia"
+        case 1: return "En cines"
+        case 2: return "Popular"
+        case 3: return "Mejor valoradas"
+        case 4: return "Proximamente"
+        default: return nil
+        }
+    }
+    
 }
 
 final class MovieAPI {
-    private let imgBaseUrl: String = "https://image.tmdb.org/t/p/w500"
-    public var getDataMovies: Codable?
-    public var dictionaryUrls: [URLApi]?
-    static let movieAPISharedInstance = MovieAPI()
+    static private let imgBaseUrl: String = "https://image.tmdb.org/t/p/w500"
+    static private var apiKey: String = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
+    static private var urlBase: String = "https://api.themoviedb.org/3"
+    
     /**    func to help to get Data of apis
      - Parameter url: url of api
      
      */
-    func getApiData(from url:URLApi, handler: @escaping (Data) -> Void){
-       guard let url = URL(string: url.URL) else{return}
+    static func getApiData(from url:URLApi, handler: @escaping (Data) -> Void) {
+        guard let url = URL(string: "\(urlBase)\(url.getEndpointUrl)?api_key=\(apiKey)&language=es&region=MX&page=1") else { return }
         let task =  URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let datos = data else{return}
+            guard let datos = data else { return }
+            handler(datos)
+        }
+        task.resume()
+    }
+    
+    /**    func to help to get Data of apis with key
+     - Parameter url: endpoint of URLApi
+     - Parameter key: Word to search
+     */
+    static func getApiData(from url: URLApi, key query: String, handler: @escaping (Data) -> Void) {
+        guard let url = URL(string: "\(urlBase)\(url.getEndpointUrl)?api_key=\(apiKey)&language=es&page=1&query=\(query)") else { return }
+        let task =  URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let datos = data else { return }
+            handler(datos)
+        }
+        task.resume()
+    }
+    
+    /**    func to help to get Data of apis with idMovies
+     - Parameter url: endpoint of URLApi
+     - Parameter id: id of movie
+     */
+    static func getApiData(from url: URLApi, id idMovie: Int, handler: @escaping (Data) -> Void) {
+        guard let url = URL(string: "\(urlBase)/movie/\(idMovie)\(url.getEndpointUrl)?api_key=\(apiKey)&language=es")
+        else { return }
+        let task =  URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let datos = data else { return }
             handler(datos)
         }
         task.resume()
     }
     
     /**    func to help to get a image
-
+     
     - Parameter imageUrl: url of image
-
+     
     */
-    func getImage(from imageUrl:String, handler: @escaping (UIImage) -> Void){
-        DispatchQueue.global(qos: .default).async { [weak self] in
-            guard let baseUrl = self?.imgBaseUrl, let url = URL(string: "\(baseUrl)\(imageUrl)") else { return }
+    static func getImage(from imageUrl: String, handler: @escaping (UIImage) -> Void) {
+        DispatchQueue.global(qos: .default).async {
+            guard let url = URL(string: "\(imgBaseUrl)\(imageUrl)") else { return }
             let data = try? Data(contentsOf: url)
-            DispatchQueue.main.async {
-                guard let data = data else {return}
-                guard let image = UIImage(data: data) else {return}
+            guard let data = data else { return }
+            self.getDataImage(data: data) { image in
                 handler(image)
             }
+        }
+    }
+    
+    static private func getDataImage(data: Data, handler: @escaping (UIImage) -> Void) {
+        DispatchQueue.main.async {
+            guard let image = UIImage(data: data) else { return }
+            handler(image)
         }
     }
 }

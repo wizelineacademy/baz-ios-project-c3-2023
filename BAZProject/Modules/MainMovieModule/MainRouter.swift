@@ -7,12 +7,12 @@
 
 import UIKit
 
-class MainRouter: RouterProtocols{
+final class MainRouter: RouterProtocols{
     typealias Router = MainRouter
     
     static func createModule() -> UIViewController {
         let navController = mainStoryboard.instantiateViewController(withIdentifier: "MainStoryboard")
-        if let view = navController.children.first as? MainView{
+        if let view = navController.children.first as? MainView {
             let presenter : MainPresenterProtocol & MainInteractorOutputProtocol = MainPresenter()
             let interactor : MainInteractorInputProtocol = MainInteractor()
             
@@ -21,13 +21,14 @@ class MainRouter: RouterProtocols{
             presenter.interactor = interactor
             presenter.view = view
             
-            return navController
+            let navigationController = UINavigationController(rootViewController: view)
+            return navigationController
         }
         return UIViewController()
     }
     
     
-    static var mainStoryboard: UIStoryboard {
+    static private var mainStoryboard: UIStoryboard {
         return UIStoryboard(name: "Main", bundle: Bundle.main)
     }
 }

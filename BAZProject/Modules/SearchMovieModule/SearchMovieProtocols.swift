@@ -9,27 +9,32 @@ import UIKit
 
 protocol SearchMovieViewProtocol: AnyObject {
 //    Presenter -> View
-    var presenter:SearchMoviePresenterProtocol? {get set}
-    var tableView:UITableView! {get set}
+    var presenter: SearchMoviePresenterProtocol? { get set }
+    var collectionView: UICollectionView! { get set }
     
     func reloadData()
 }
 
 protocol SearchMoviePresenterProtocol: AnyObject {
     //    View -> Presenter
-    var view:SearchMovieViewProtocol? {get set}
-    var interceptor:SearchMovieInterceptorInputProtocol? {get set}
+    var view: SearchMovieViewProtocol? { get set }
+    var interceptor: SearchMovieInterceptorInputProtocol? { get set }
     
-    func viewDidLoad()
-    func getKeywordSearch(keyword:String)
+    func viewDidLoad(collection: UICollectionView)
+    func getKeywordSearch(keyword: String)
+    func goToMovieDetail(data: Movie)
+    func getTableViewDataSource() -> UICollectionViewDataSource
+    func getTableViewDelegate() -> UICollectionViewDelegate
+    func getUISearchBarDelegate() -> UISearchBarDelegate
+    func searchBar(searchBar: UISearchBar) -> UIBarButtonItem
 }
 
 protocol SearchMovieInterceptorInputProtocol: AnyObject {
     // Presenter -> Interceptor
-    var presenter:SearchMovieInterceptorOutputProtocol? {get set}
-    var movieApi: MovieAPI {get set}
+    var presenter: SearchMovieInterceptorOutputProtocol? { get set }
+    var movieApiData: DataHelper { get set }
     
-    func getKeywordSearch(keyword:String)
+    func getKeywordSearch(keyword: String)
 }
 
 protocol SearchMovieInterceptorOutputProtocol: AnyObject {

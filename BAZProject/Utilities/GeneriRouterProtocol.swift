@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol RouterProtocols : AnyObject{
+protocol RouterProtocols: AnyObject {
     associatedtype Router where Router: RouterProtocols
     static func createModule() -> UIViewController
     func presentView(from view: UIViewController)
@@ -16,12 +16,12 @@ protocol RouterProtocols : AnyObject{
 extension RouterProtocols{
     func presentView(from view: UIViewController) {
         let newView = Router.createModule()
-        view.present(newView, animated: true)
+        view.navigationController?.pushViewController(newView, animated: true)
     }
 }
 
-protocol RouterCreateModuleWithDataProtocol: AnyObject{
-    static func createModule<T>(data:T) -> UIViewController
+protocol RouterCreateModuleWithDataProtocol: AnyObject {
+    static func createModule<T>(data: T) -> UIViewController
 }
 
 protocol RouterPresentViewWithDataProtocol: AnyObject {
@@ -29,9 +29,9 @@ protocol RouterPresentViewWithDataProtocol: AnyObject {
     func presentView<T>(from view: UIViewController, data: T)
 }
 
-extension RouterPresentViewWithDataProtocol{
-    func presentView<T>(from view: UIViewController, data: T){
-        let newView = Router.createModule(data:data)
-        view.present(newView, animated: true)
+extension RouterPresentViewWithDataProtocol {
+    func presentView<T>(from view: UIViewController, data: T) {
+        let newView = Router.createModule(data: data)
+        view.navigationController?.pushViewController(newView, animated: true)
     }
 }

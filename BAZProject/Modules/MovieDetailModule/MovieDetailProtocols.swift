@@ -7,29 +7,39 @@
 
 import UIKit
 
-protocol MovieDetailViewProtocol:AnyObject {
+protocol MovieDetailViewProtocol: AnyObject {
     // Presenter -> View
-    var presenter:MovieDetailPresenterProtocol? {get set}
-    var poster: UIImageView! {get set}
-    var titleMovie: UILabel!  {get set}
-}
-
-protocol MovieDetailPresenterProtocol:AnyObject {
-    // View -> Presenter
-    var view: MovieDetailViewProtocol? {get set}
-    var interceptor: MovieDetailInterceptorInputProtocol? {get set}
+    var presenter: MovieDetailPresenterProtocol? { get set }
     
-    func viewDidLoad()
+    func reloadData()
 }
 
-protocol MovieDetailInterceptorInputProtocol:AnyObject {
+protocol MovieDetailPresenterProtocol: AnyObject {
+    // View -> Presenter
+    var view: MovieDetailViewProtocol? { get set }
+    var interactor: MovieDetailInterceptorInputProtocol? { get set }
+    var isFavorite: Bool { get set }
+    
+    func viewDidLoad(poster: inout UIImageView, tableView: UITableView)
+    func getTableViewDataSource() -> UITableViewDataSource
+    func getTableViewDelegate() -> UITableViewDelegate
+    func saveMovie()
+    func goToMovieDetail(data: Movie)
+}
+
+protocol MovieDetailInterceptorInputProtocol: AnyObject {
     // Presenter -> Interceptor
-    var presenter:MovieDetailInteractorOutputProtocol? {get set}
-    var data:Result? {get set}
-    var movieApi:MovieAPI {get set}
+    var presenter: MovieDetailInteractorOutputProtocol? { get set }
+    var data: Movie? { get set }
+    var movieApiData: DataHelper { get set }
+    
+    func getMoviesData(from api: URLApi, structure: Codable.Type)
+    func getMoviesDataWithId(from api: URLApi, id idMovie: Int, structure: Codable.Type)
+    func saveMovie()
 }
 
-protocol MovieDetailInteractorOutputProtocol:AnyObject {
+protocol MovieDetailInteractorOutputProtocol: AnyObject {
     // INTERACTOR -> PRESENTER
+    func reloadData()
 }
 
