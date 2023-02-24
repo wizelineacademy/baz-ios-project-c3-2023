@@ -40,9 +40,6 @@ final class DetailViewController: UIViewController {
             callService()
         }
         navigationController?.navigationBar.prefersLargeTitles = false
-        if let id = detailType?.idMedia as? Int {
-            NotificationCenter.default.post(name: .notificacionCenterNameShowDetail, object: self, userInfo: ["id": String(id)])
-        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
