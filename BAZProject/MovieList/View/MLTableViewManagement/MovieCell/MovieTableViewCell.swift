@@ -17,11 +17,16 @@ final class MovieTableViewCell: UITableViewCell {
     @IBOutlet weak var language: UILabel!
     @IBOutlet weak var posterImage: UIImageView!
 
-    func setCell(with movie: Movie) {
+    /**
+     Configures the cell apearance with the received object
+     - Parameters:
+        - movie: a Movie object 
+     */
+    func setupCell(with movie: Movie) {
         title.text = movie.title
         releaseDate.text = "Lazamiento: \(movie.releaseDate ?? "")"
         language.text = "Idioma original: \(movie.originalLanguage)"
-        guard let url = movie.getPosterURL(with: 300) else { return }
+        guard let url = movie.getPosterURL(size: .medium) else { return }
         
         let task = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
             DispatchQueue.main.async {

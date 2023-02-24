@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum MovieCategory {
+enum MovieCategory: CaseIterable {
     case trending
     case nowPlaying
     case popular
@@ -30,38 +30,39 @@ enum MovieCategory {
         }
     }
     
+    var itemName: String {
+        switch self {
+        case .trending:
+            return "magazine"
+        case .nowPlaying:
+            return "newspaper"
+        case .popular:
+            return "studentdesk"
+        case .topRated:
+            return "backpack"
+        case .upcoming:
+            return "lanyardcard"
+        }
+    }
+    
     /**
      Regresa la URL del end point correspondiente a cada categoria
      - Parameters:
         - page: un entero que representa la página del listado de peliculas
-     - Returns: la URL correspondiente al end point construida a partir de la URL base, tiene como atributos la pagina, el api key y el idioma, siendo estos ultimos valores constantes
+     - Returns: la URL correspondiente al end point construida a partir de la URL base
      */
     func getEndPoint(for page: Int) -> URL? {
         switch self {
         case .trending:
-            return getBaseURL(for: page)?.appendingPathComponent("/trending/movie/day")
+            return MovieAPI.getBaseURL(for: page)?.appendingPathComponent("/trending/movie/day")
         case .nowPlaying:
-            return getBaseURL(for: page)?.appendingPathComponent("/movie/now_playing")
+            return MovieAPI.getBaseURL(for: page)?.appendingPathComponent("/movie/now_playing")
         case .popular:
-            return getBaseURL(for: page)?.appendingPathComponent("/movie/popular")
+            return MovieAPI.getBaseURL(for: page)?.appendingPathComponent("/movie/popular")
         case .topRated:
-            return getBaseURL(for: page)?.appendingPathComponent("/movie/top_rated")
+            return MovieAPI.getBaseURL(for: page)?.appendingPathComponent("/movie/top_rated")
         case .upcoming:
-            return getBaseURL(for: page)?.appendingPathComponent("/movie/upcoming")
+            return MovieAPI.getBaseURL(for: page)?.appendingPathComponent("/movie/upcoming")
         }
-    }
-    
-    /** Regresa la URL base para las diferentes categorias */
-    private func getBaseURL(for page: Int) -> URL? {
-        var urlComponents = URLComponents()
-        urlComponents.scheme = "https"
-        urlComponents.host = "api.themoviedb.org"
-        urlComponents.path = "/3"
-        urlComponents.queryItems = [
-            URLQueryItem(name: "api_key", value: "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"),
-            URLQueryItem(name: "page", value: "\(page)"),
-            URLQueryItem(name: "language", value: "es")
-        ]
-        return urlComponents.url
     }
 }
