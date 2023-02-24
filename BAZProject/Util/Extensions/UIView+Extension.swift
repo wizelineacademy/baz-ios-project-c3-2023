@@ -55,16 +55,6 @@ extension UIView {
         }
     }
 
-    func saveImageInCache(id: String, image: UIImage) {
-        let cache: NSCache = NSCache<NSString, UIImage>()
-        cache.setObject(image, forKey: NSString(string: id))
-    }
-
-    func getImageFromCache(strUrl: String) -> UIImage? {
-        let cache: NSCache = NSCache<NSString, UIImage>()
-        return cache.object(forKey: NSString(string: strUrl))
-    }
-
     func addShadow(_ color: UIColor = .black) {
         self.layer.shadowOffset = LocalizedConstants.commonLayerShadowOffset
         self.layer.shadowOpacity = LocalizedConstants.commonLayerShadowOpacity

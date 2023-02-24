@@ -13,7 +13,7 @@ extension UIImageView {
     func loadImage(id stringUrl: String) {
         self.addSkeletonAnimation()
         image = UIImage()
-        if let imageCache = getImageFromCache(strUrl: stringUrl) {
+        if let imageCache = CacheManager.shared.getImageFromCache(strUrl: stringUrl) {
             self.removeSkeletonAnimation()
             image = imageCache
             return
@@ -58,7 +58,7 @@ extension UIImageView {
         case .success(let data):
             guard let tempImg = UIImage(data: data) else { return }
             self.addAnimation(tempImg)
-            self.saveImageInCache(id: strUrl, image: tempImg)
+            CacheManager.shared.saveImageInCache(id: strUrl, image: tempImg)
         case .failure:
             self.addDefaultImage()
         }
