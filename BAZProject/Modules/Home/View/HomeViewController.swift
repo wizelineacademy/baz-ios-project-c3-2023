@@ -45,7 +45,6 @@ final class HomeViewController: UIViewController {
 
     override func viewDidDisappear(_ animated: Bool) {
         movieTopSlider.stopTimmer()
-        navigationItem.searchController = getUISearchController()
         stopLoading()
     }
 
