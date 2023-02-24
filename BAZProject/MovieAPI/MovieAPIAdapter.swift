@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol DecodableResultAdapter {
-    func mapToResult<T: Decodable>(with data: Data) -> (T?, Error?)
+    func mapToResult<T: Decodable>(with data: Data) -> (reponse: T?, _: Error?)
 }
 
 class JSONDecoderResultAdapter: DecodableResultAdapter {
@@ -21,8 +21,8 @@ class JSONDecoderResultAdapter: DecodableResultAdapter {
         self.decoder = decoder
     }
     
-    func mapToResult<T: Decodable>(with data: Data) -> (T?, Error?) {
-        guard let movieResult = try? JSONDecoder().decode(T.self, from: data) else{
+    func mapToResult<T>(with data: Data) -> (reponse: T?, Error?) where T : Decodable {
+        guard let movieResult = try? decoder.decode(T.self, from: data) else{
             return (nil, MovieAPIError())
         }
         return (movieResult, nil)
@@ -30,7 +30,7 @@ class JSONDecoderResultAdapter: DecodableResultAdapter {
     
 }
 
-class URLSessionFetcher {
+struct URLSessionFetcher {
     
     private let decodableResultAdapter: DecodableResultAdapter
     private struct DataNotFoundError: Error { }
@@ -45,12 +45,13 @@ class URLSessionFetcher {
                 if let error = error {
                     completionHandler(nil, error)
                 }else{
-                    guard let data = data,
-                          let movieResult = try? JSONDecoder().decode(T.self, from: data)
+                    guard
+                        let data = data
                     else {
                         completionHandler(nil, DataNotFoundError()); return
                     }
-                    completionHandler(movieResult, nil)
+                    let movieResult: (T?, Error?) = self.decodableResultAdapter.mapToResult(with: data)
+                    completionHandler(movieResult.0, movieResult.1)
                 }
             }
             task.resume()
