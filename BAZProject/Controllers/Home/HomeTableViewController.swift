@@ -32,7 +32,6 @@ class HomeTableViewController: UITableViewController {
         
         sessionFetcher.fetchData { (movieResult: MovieAPIResult?, _: Error?) in
             if let movieResult = movieResult {
-                print(movieResult)
                 self.listOfCategories[.trending] = movieResult.results
                 self.reloadSectionInTable(index: IndexSet(integer: MovieAPICategory.trending.rawValue))
             }

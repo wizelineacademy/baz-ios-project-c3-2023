@@ -8,20 +8,19 @@
 import Foundation
 
 public protocol DecodableResultAdapter {
-    func mapToResult<T: Decodable>(with data: Data) -> (reponse: T?, _: Error?)
+    func mapToResult<T: Decodable>(with data: Data) -> (T?, Error?)
 }
 
 class JSONDecoderResultAdapter: DecodableResultAdapter {
     
     private let decoder: JSONDecoder
-    
     struct MovieAPIError: Error { }
     
     init(decoder: JSONDecoder) {
         self.decoder = decoder
     }
     
-    func mapToResult<T>(with data: Data) -> (reponse: T?, Error?) where T : Decodable {
+    func mapToResult<T>(with data: Data) -> (T?, Error?) where T : Decodable {
         guard let movieResult = try? decoder.decode(T.self, from: data) else{
             return (nil, MovieAPIError())
         }
@@ -39,14 +38,13 @@ struct URLSessionFetcher {
         self.decodableResultAdapter = decodableResultAdapter
     }
     
-    func fetchData<T: Decodable>(completionHandler: @escaping (T?, Error?) -> Void){
+    func fetchData<T: Decodable>(completionHandler: @escaping (T?, Error?) -> Void) {
         if let url  = URL(string: "https://api.themoviedb.org/3/trending/movie/day?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a&language=es&region=MX") {
             let task = URLSession.shared.dataTask(with: url) { data, response, error in
                 if let error = error {
                     completionHandler(nil, error)
-                }else{
-                    guard
-                        let data = data
+                } else {
+                    guard let data = data
                     else {
                         completionHandler(nil, DataNotFoundError()); return
                     }
