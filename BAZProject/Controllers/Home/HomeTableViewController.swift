@@ -30,10 +30,10 @@ class HomeTableViewController: UITableViewController {
         let decodableResultsAdapter = JSONDecoderResultAdapter(decoder: JSONDecoder())
         let sessionFetcher = URLSessionFetcher(decodableResultAdapter: decodableResultsAdapter)
         
-        sessionFetcher.fetchData { (movieResult: MovieAPIResult?, _: Error?) in
+        sessionFetcher.fetchData() { [weak self] (movieResult: MovieAPIResult?, error: Error?) in
             if let movieResult = movieResult {
-                self.listOfCategories[.trending] = movieResult.results
-                self.reloadSectionInTable(index: IndexSet(integer: MovieAPICategory.trending.rawValue))
+                self?.listOfCategories[.trending] = movieResult.results
+                self?.reloadSectionInTable(index: IndexSet(integer: MovieAPICategory.trending.rawValue))
             }
         }
         

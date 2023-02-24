@@ -29,7 +29,7 @@ class JSONDecoderResultAdapter: DecodableResultAdapter {
     
 }
 
-struct URLSessionFetcher {
+class URLSessionFetcher {
     
     private let decodableResultAdapter: DecodableResultAdapter
     private struct DataNotFoundError: Error { }
@@ -40,11 +40,12 @@ struct URLSessionFetcher {
     
     func fetchData<T: Decodable>(completionHandler: @escaping (T?, Error?) -> Void) {
         if let url  = URL(string: "https://api.themoviedb.org/3/trending/movie/day?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a&language=es&region=MX") {
-            let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
                 if let error = error {
                     completionHandler(nil, error)
                 } else {
-                    guard let data = data
+                    guard let self = self,
+                          let data = data
                     else {
                         completionHandler(nil, DataNotFoundError()); return
                     }
