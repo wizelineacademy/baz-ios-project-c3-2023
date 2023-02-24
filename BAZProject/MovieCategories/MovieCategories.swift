@@ -25,7 +25,8 @@ final class MovieCategories {
     private static func getViewControllers() -> [UIViewController] {
         let categories: [MovieCategory] = MovieCategory.allCases
         
-        let providers: [MLProviderProtocol] = categories.map({ MovieProvider(category: $0) })
+        var providers: [MLProviderProtocol] = categories.map({ MovieProvider(category: $0) })
+        providers.insert(StoredMoviesProvider(), at: 2)
         var viewControllers: [UIViewController] = providers.map { provider in
             let viewController = MLRouter.getEntry(with: provider)
             let tabBarItem = UITabBarItem(
@@ -41,7 +42,7 @@ final class MovieCategories {
         let searchView = UINavigationController(rootViewController: MSRouter.getEntry(with: provider))
         searchView.tabBarItem.title = "Buscar"
         searchView.tabBarItem.image = UIImage(systemName: "magnifyingglass")
-        viewControllers.insert(searchView, at: 3)
+        viewControllers.insert(searchView, at: 2)
         
         return viewControllers
     }

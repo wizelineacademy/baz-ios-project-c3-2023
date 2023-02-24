@@ -19,6 +19,9 @@ final class MovieListView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTable()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         output?.didLoadView()
     }
     

@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="EqO-xh-YbU">
-                        <rect key="frame" x="83" y="8.0000000000000036" width="225" height="54.333333333333343"/>
+                        <rect key="frame" x="83" y="8" width="225" height="71.333333333333329"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e0U-4I-cI9">
                                 <rect key="frame" x="0.0" y="0.0" width="225" height="20.333333333333332"/>
@@ -36,6 +36,12 @@
                                 <rect key="frame" x="0.0" y="37.333333333333336" width="225" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MovieSeenCount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="msg-z3-czQ">
+                                <rect key="frame" x="0.0" y="54.333333333333336" width="225" height="17.000000000000007"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -61,6 +67,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="language" destination="ll1-az-SEO" id="7OA-3B-uOr"/>
+                <outlet property="movieSeenCounter" destination="msg-z3-czQ" id="rkq-mN-0Mv"/>
                 <outlet property="posterImage" destination="kWv-s7-VQ7" id="C5y-B8-H8c"/>
                 <outlet property="releaseDate" destination="U8a-8Y-RMC" id="V1L-Kz-QN2"/>
                 <outlet property="title" destination="e0U-4I-cI9" id="eyM-b0-xWF"/>
