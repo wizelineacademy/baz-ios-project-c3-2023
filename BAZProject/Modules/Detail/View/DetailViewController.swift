@@ -40,6 +40,7 @@ final class DetailViewController: UIViewController {
             callService()
         }
         navigationController?.navigationBar.prefersLargeTitles = false
+        postIdMedia()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
