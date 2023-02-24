@@ -11,7 +11,6 @@ class TrendingView: UITableViewController {
     
     // MARK: Properties
     var presenter: TrendingPresenterProtocol?
-    var movies: [Movie] = []
 
     // MARK: Lifecycle
     override func viewDidLoad() {
@@ -38,7 +37,8 @@ extension TrendingView {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        tableView.dequeueReusableCell(withIdentifier: "TrendingTableViewCell")!
+        guard let tableViewCell = tableView.dequeueReusableCell(withIdentifier: "TrendingTableViewCell") else { return UITableViewCell() }
+        return tableViewCell
     }
 
 }
@@ -49,8 +49,20 @@ extension TrendingView {
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         var config = UIListContentConfiguration.cell()
         config.text = self.presenter?.movies?[indexPath.row].title
-        config.image = UIImage(named: "poster")
-        cell.contentConfiguration = config
+        if let posterPath = self.presenter?.movies?[indexPath.row].posterPath, let imageURL = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)") {
+            imageURL.toImage() { image in
+                DispatchQueue.main.async {
+                    config.image = image
+                    cell.contentConfiguration = config
+                }
+            }
+        } else {
+            config.image = UIImage(named: "poster")
+            cell.contentConfiguration = config
+        }
     }
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.presenter?.goToMovieDetail(of: indexPath,from: self)
+    }
 }

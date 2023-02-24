@@ -17,6 +17,7 @@ protocol TrendingViewProtocol: AnyObject {
 protocol TrendingRouterProtocol: AnyObject {
     // PRESENTER -> ROUTER
     static func createTrendingModule() -> UIViewController
+    func goToMovieDetail(of movieID: Int, from view: UIViewController)
 }
 
 protocol TrendingPresenterProtocol: AnyObject {
@@ -27,6 +28,7 @@ protocol TrendingPresenterProtocol: AnyObject {
     var movies: [Movie]? { get set }
     
     func notifyViewLoaded()
+    func goToMovieDetail(of index: IndexPath, from view: UIViewController)
 }
 
 protocol TrendingInteractorOutputProtocol: AnyObject {
@@ -37,7 +39,6 @@ protocol TrendingInteractorOutputProtocol: AnyObject {
 protocol TrendingInteractorInputProtocol: AnyObject {
     // PRESENTER -> INTERACTOR
     var presenter: TrendingInteractorOutputProtocol? { get set }
-    var localDatamanager: TrendingLocalDataManagerInputProtocol? { get set }
     var remoteDatamanager: TrendingRemoteDataManagerInputProtocol? { get set }
     
     func fetchMovies()
@@ -57,8 +58,4 @@ protocol TrendingRemoteDataManagerInputProtocol: AnyObject {
 protocol TrendingRemoteDataManagerOutputProtocol: AnyObject {
     // REMOTEDATAMANAGER -> INTERACTOR
     func moviesFetched(_ movies: [Movie])
-}
-
-protocol TrendingLocalDataManagerInputProtocol: AnyObject {
-    // INTERACTOR -> LOCALDATAMANAGER
 }

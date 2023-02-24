@@ -9,14 +9,19 @@
 import Foundation
 
 class TopRatedInteractor: TopRatedInteractorInputProtocol {
-
+    
     // MARK: Properties
     weak var presenter: TopRatedInteractorOutputProtocol?
-    var localDatamanager: TopRatedLocalDataManagerInputProtocol?
     var remoteDatamanager: TopRatedRemoteDataManagerInputProtocol?
-
+    
+    
+    func fetchMovies() {
+        self.remoteDatamanager?.fetchMovies()
+    }
 }
 
 extension TopRatedInteractor: TopRatedRemoteDataManagerOutputProtocol {
-    // TODO: Implement use case methods
+    func moviesFetched(_ movies: [Movie]) {
+        self.presenter?.moviesFetched(movies: movies)
+    }
 }

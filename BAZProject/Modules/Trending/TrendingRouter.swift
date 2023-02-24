@@ -7,16 +7,6 @@
 
 import UIKit
 
-//crear router para gestionar tabbar
-class MainTabBarRouter {
-    class func createMainTabBarModule() -> UITabBarController {
-        let mainTabBar = UITabBarController()
-        let trendingView = TrendingRouter.createTrendingModule()
-        mainTabBar.viewControllers = [trendingView]
-        return mainTabBar
-    }
-}
-
 class TrendingRouter: TrendingRouterProtocol {
 
     class func createTrendingModule() -> UIViewController {
@@ -41,4 +31,10 @@ class TrendingRouter: TrendingRouterProtocol {
         return UIStoryboard(name: "Main", bundle: Bundle.main)
     }
     
+}
+
+extension TrendingRouter {
+    func goToMovieDetail(of movieID: Int, from view: UIViewController) {
+        view.present(MovieDetailRouter.createMovieDetailModule(of: movieID), animated: false)
+    }
 }
