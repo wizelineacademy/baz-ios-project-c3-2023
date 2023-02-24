@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailsTableViewCell" rowHeight="177" id="o6H-o3-eCL" customClass="DetailsTableViewCell" customModule="BAZProject" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="427" height="177"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="o6H-o3-eCL" id="Qnb-Zy-vaJ">
+                <rect key="frame" x="0.0" y="0.0" width="427" height="177"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bch-0p-1Fo">
+                        <rect key="frame" x="0.0" y="0.0" width="427" height="177"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="000 | genre | genre" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Of-52-OoF">
+                                <rect key="frame" x="0.0" y="32" width="427" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Qub-WO-2XZ">
+                                <rect key="frame" x="0.0" y="0.0" width="427" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Uge-GQ-UXQ">
+                                <rect key="frame" x="0.0" y="53" width="427" height="124"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Qub-WO-2XZ" secondAttribute="trailing" id="3TZ-x8-FAb"/>
+                            <constraint firstItem="8Of-52-OoF" firstAttribute="leading" secondItem="bch-0p-1Fo" secondAttribute="leading" id="4hW-qE-xWa"/>
+                            <constraint firstAttribute="trailing" secondItem="Uge-GQ-UXQ" secondAttribute="trailing" id="EUj-ma-wXl"/>
+                            <constraint firstItem="Uge-GQ-UXQ" firstAttribute="leading" secondItem="bch-0p-1Fo" secondAttribute="leading" id="Gm4-Pd-RzR"/>
+                            <constraint firstItem="Qub-WO-2XZ" firstAttribute="top" secondItem="bch-0p-1Fo" secondAttribute="top" id="Odn-k5-wXA"/>
+                            <constraint firstItem="Uge-GQ-UXQ" firstAttribute="top" secondItem="8Of-52-OoF" secondAttribute="bottom" id="RmL-Oy-Nfq"/>
+                            <constraint firstItem="8Of-52-OoF" firstAttribute="top" secondItem="Qub-WO-2XZ" secondAttribute="bottom" id="XPx-NF-VrT"/>
+                            <constraint firstAttribute="trailing" secondItem="8Of-52-OoF" secondAttribute="trailing" id="ax8-d4-Nrh"/>
+                            <constraint firstItem="Qub-WO-2XZ" firstAttribute="leading" secondItem="bch-0p-1Fo" secondAttribute="leading" id="rt0-Cv-h6J"/>
+                            <constraint firstAttribute="bottom" secondItem="Uge-GQ-UXQ" secondAttribute="bottom" id="sCe-zc-9ZE"/>
+                            <constraint firstItem="8Of-52-OoF" firstAttribute="top" secondItem="Qub-WO-2XZ" secondAttribute="bottom" id="wMW-J6-QGg"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="bch-0p-1Fo" secondAttribute="bottom" id="5gc-C6-tz8"/>
+                    <constraint firstItem="bch-0p-1Fo" firstAttribute="leading" secondItem="Qnb-Zy-vaJ" secondAttribute="leading" id="8OZ-dp-iVV"/>
+                    <constraint firstItem="bch-0p-1Fo" firstAttribute="top" secondItem="Qnb-Zy-vaJ" secondAttribute="top" id="Xiz-t6-FrZ"/>
+                    <constraint firstAttribute="trailing" secondItem="bch-0p-1Fo" secondAttribute="trailing" id="bDY-8r-tze"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="movieGenresLabel" destination="8Of-52-OoF" id="9vl-S1-0bt"/>
+                <outlet property="movieNameLabel" destination="Qub-WO-2XZ" id="7Ok-6h-pYr"/>
+                <outlet property="movieOverviewTextView" destination="Uge-GQ-UXQ" id="1DQ-wa-tlz"/>
+            </connections>
+            <point key="canvasLocation" x="-112.21374045801527" y="-145.42253521126761"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

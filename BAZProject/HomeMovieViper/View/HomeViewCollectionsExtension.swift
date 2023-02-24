@@ -27,7 +27,7 @@ extension HomeMoviesView: UICollectionViewDataSource{
                 cell.setupCategoryImage(for: categoryImage ?? nil)
             })
             cell.delegate = self
-            cell.setupCell(cellTitle: presenter?.getCategorieTitle(index: indexPath.row) ?? "", indexPath: indexPath.row)
+            cell.setupCell(cellTitle: presenter?.getCategorieTitle(index: indexPath.row) ?? "", indexPath: indexPath)
             
             return cell
         } else {
@@ -44,6 +44,11 @@ extension HomeMoviesView: UICollectionViewDataSource{
 // MARK: - CollectionView's Delegate
 
 extension HomeMoviesView: UICollectionViewDelegate{
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presenter?.goToDetails(index: indexPath.row)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: insets,
                             left: insets,
@@ -52,11 +57,11 @@ extension HomeMoviesView: UICollectionViewDelegate{
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return CGFloat(8.0)
+        return 2
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return minimumInterItemSpacing
+        return 2
     }
 }
 
@@ -64,15 +69,9 @@ extension HomeMoviesView: UICollectionViewDelegateFlowLayout{
     internal func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
         if collectionView == self.categoriesMoviesCollectionView{
-            let cellHeight = 120.0
-            let cellWidth = 200.0
-            return CGSize(width: cellWidth, height: cellHeight)
+            return CGSize(width: 200, height: 120)
         } else {
-            let marginsAndInsets = insets * 2 + collectionView.safeAreaInsets.left + collectionView.safeAreaInsets.right + minimumInterItemSpacing * CGFloat(cellsPerRow - 1)
-            let itemWidth = ((collectionView.bounds.size.width - marginsAndInsets) / CGFloat(cellsPerRow)).rounded(.down)
-            let cellHeight = itemWidth * 2.0
-            let cellWidth = itemWidth * 1.0
-            return CGSize(width: cellWidth, height: cellHeight)
+            return CGSize(width: 120, height: 240)
         }
     }
 }

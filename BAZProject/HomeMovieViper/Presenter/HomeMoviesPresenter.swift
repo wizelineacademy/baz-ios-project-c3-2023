@@ -9,7 +9,7 @@
 import UIKit
 
 class HomeMoviesPresenter: HomeMoviesPresenterProtocol  {
- 
+   
     // MARK: Properties
     weak var view: HomeMoviesViewProtocol?
     var interactor: HomeMoviesInteractorInputProtocol?
@@ -63,9 +63,7 @@ class HomeMoviesPresenter: HomeMoviesPresenterProtocol  {
     func getImage(index: Int, completion: @escaping (UIImage?) -> Void) {
         if let urlImage = self.toShowMovies[index].poster_path{
             movieApi.getImage(for: urlImage) { movieImage in
-                if let movieImage = movieImage{
-                    completion(movieImage)
-                }
+                completion(movieImage)
             }
         }
     }
@@ -78,9 +76,7 @@ class HomeMoviesPresenter: HomeMoviesPresenterProtocol  {
     func getCategorieImage(index: Int, completion: @escaping (UIImage?) -> Void) {
         if let urlImage = self.categoriesMovies[index].backdrop_path {
             movieApi.getImage(for: urlImage) { categorieImage in
-                if let categorieImage = categorieImage{
-                    completion(categorieImage)
-                }
+                completion(categorieImage)
             }
         }
     }
@@ -132,7 +128,23 @@ class HomeMoviesPresenter: HomeMoviesPresenterProtocol  {
         }
     }
     
+    /// Go to initial the router detailsController and present the view
+    ///
+    /// - Parameter index: Index of the collectionCell pressed
+    func goToDetails(index: Int) {
+        if let view = view {
+            router?.goToDetails(from: view, idMovie: self.toShowMovies[index].id)
+        }
+    }
     
+    /// Go to initial the router searchController and present the view
+    func goToSearch() {
+        if let view = view {
+            router?.goToSearch(from: view)
+        }
+    }
+    
+   
 }
 
 

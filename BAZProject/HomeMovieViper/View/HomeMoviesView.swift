@@ -40,11 +40,19 @@ class HomeMoviesView: UIViewController, CategoriesMoviesCellDelegate {
         self.moviesCollectionView.register(UINib(nibName: "MovieCollectionViewCell", bundle: Bundle(for: HomeMoviesView.self)), forCellWithReuseIdentifier: "MovieCollectionViewCell")
     }
     
-    func didSelectCell(indexPath: Int, cell: CategoriesMoviesCollectionViewCell) {
-        currentlySelected?.setCellDeselected()
-        currentlySelected = cell
-        presenter?.selectFilterMovies(index: indexPath)
+    func didSelectCell(indexPath: IndexPath, cell: CategoriesMoviesCollectionViewCell) {
+        if currentlySelected?.indexPathRow != indexPath.row{
+            currentlySelected?.setCellDeselected()
+            currentlySelected = cell
+            presenter?.selectFilterMovies(index: indexPath.row)
+            categoriesMoviesCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        }
     }
+    
+    @IBAction func didSelectSearchButton(_ sender: Any) {
+        presenter?.goToSearch()
+    }
+    
 }
 
 extension HomeMoviesView: HomeMoviesViewProtocol {

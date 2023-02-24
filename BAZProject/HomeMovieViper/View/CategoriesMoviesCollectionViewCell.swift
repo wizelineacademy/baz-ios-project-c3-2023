@@ -8,7 +8,8 @@
 import UIKit
 
 protocol CategoriesMoviesCellDelegate: AnyObject {
-    func didSelectCell(indexPath : Int, cell: CategoriesMoviesCollectionViewCell)
+    var currentlySelected: CategoriesMoviesCollectionViewCell? { get set }
+    func didSelectCell(indexPath : IndexPath, cell: CategoriesMoviesCollectionViewCell)
 }
 
 class CategoriesMoviesCollectionViewCell: UICollectionViewCell {
@@ -17,7 +18,8 @@ class CategoriesMoviesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var categoriesView: UIView!
     @IBOutlet weak var categoriesMovieTitleLabel: UILabel!
     weak var delegate: CategoriesMoviesCellDelegate?
-    var indexPath : Int = 0
+    var indexPath: IndexPath?
+    var indexPathRow: Int?
     
     
     
@@ -25,10 +27,12 @@ class CategoriesMoviesCollectionViewCell: UICollectionViewCell {
         self.categoriesImageView.image = UIImage(named: "poster")
     }
     
-    func setupCell(cellTitle: String, indexPath: Int) {
+    func setupCell(cellTitle: String, indexPath: IndexPath) {
         self.indexPath = indexPath
+        self.indexPathRow = indexPath.row
         self.setupCategoryTitle(cellTitle: cellTitle)
         categoriesView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(setCellSelected)))
+        if delegate?.currentlySelected == nil { setCellSelected() }
     }
     
     func setupCategoryImage(for image: UIImage?) {
@@ -51,10 +55,14 @@ class CategoriesMoviesCollectionViewCell: UICollectionViewCell {
     
     @objc func setCellSelected() {
         self.categoriesMovieTitleLabel.textColor = .systemBlue
-        delegate?.didSelectCell(indexPath: self.indexPath, cell: self)
+        self.degradeImageview.layer.borderColor = UIColor.systemBlue.cgColor
+        self.degradeImageview.layer.borderWidth = 4.0
+        delegate?.didSelectCell(indexPath: self.indexPath ?? IndexPath(), cell: self)
     }
     
     func setCellDeselected(){
+        self.degradeImageview.layer.borderColor = nil
+        self.degradeImageview.layer.borderWidth = 0.0
         self.categoriesMovieTitleLabel.textColor = .white
     }
 }
