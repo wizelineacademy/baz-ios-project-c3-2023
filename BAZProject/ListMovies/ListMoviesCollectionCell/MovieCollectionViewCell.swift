@@ -9,18 +9,21 @@ import UIKit
 
 class MovieCollectionViewCell: UICollectionViewCell {
     
+    //MARK: - IBOutlets
     @IBOutlet var imgMoviePoster: UIImageView!
     @IBOutlet var lblMovieTitle: UILabel!
     
+    //MARK: - Properties
     static let identifier = "MovieCollectionViewCell"
     
+    //MARK: - Functions
     static func nib() -> UINib {
         UINib(nibName: identifier, bundle: nil)
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-    }
+        self.imgMoviePoster.layer.cornerRadius = 5.0    }
     
     override func prepareForReuse() {
         self.imgMoviePoster.image = UIImage()

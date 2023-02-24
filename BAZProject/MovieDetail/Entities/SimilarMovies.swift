@@ -9,20 +9,25 @@ import Foundation
 
 
 struct SimilarMovie: Codable{
-   let id: Int
-   let originalLanguage: String
-   let originalTitle: String
-   let overview: String
-   let releaseDate: String
-   let posterPath: String
-   let popularity: Double
-   let title: String
-   let video: Bool
-   let voteAverage: Int
-   let voteCount: Int
+    let id: Int
+    let backdropPath: String?
+    let originalLanguage: String
+    let originalTitle: String
+    let overview: String
+    let releaseDate: String?
+    let posterPath: String?
+    let popularity: Double?
+    let title: String
+    let video: Bool = false
+    let voteAverage: Double?
+    let voteCount: Int?
+    var fullPosterPath: String {
+        return "https://image.tmdb.org/t/p/w200\(posterPath ?? "")"
+    }
     
     enum CodingKeys: String, CodingKey{
         case id
+        case backdropPath = "backdrop_path"
         case originalLanguage = "original_language"
         case originalTitle = "original_title"
         case overview
@@ -31,7 +36,7 @@ struct SimilarMovie: Codable{
         case popularity
         case title
         case video
-        case voteAverage = "vote_averge"
+        case voteAverage = "vote_average"
         case voteCount = "vote_count"
     }
 }

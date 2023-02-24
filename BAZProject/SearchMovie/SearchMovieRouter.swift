@@ -31,5 +31,9 @@ class SearchMovieRouter {
 
 //MARK: - Extensions
 extension SearchMovieRouter: SearchRouterProtocol {
-    
+    func goToMovieDetail(with model: Movie) {
+        let viewMovieDetail = MovieDetailRouter.createModule(with: model)
+        viewMovieDetail.title = model.title
+        self.viewController?.navigationController?.pushViewController(viewMovieDetail, animated: true)
+    }
 }

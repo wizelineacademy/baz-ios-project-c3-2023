@@ -25,14 +25,13 @@ class MovieDetailPresenter {
 
 //MARK: - extension
 extension MovieDetailPresenter: MovieDetailViewOutputProtocol {
-    
-    func fetchModel() {
-        interactor?.fetchModel()
+    func fetchModel(with movie: Movie) {
+        interactor?.fetchModel(with: movie)
     }
 }
 
 extension MovieDetailPresenter: MovieDetailInteractorOutputProtocol {
-    func presentView(model: Movie) {
+    func presentView(model: MovieDetail) {
         view?.loadView(from: model)
     }
     

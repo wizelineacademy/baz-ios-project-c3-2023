@@ -9,12 +9,12 @@ import Foundation
 
 struct Review: Codable{
     
-    let author: String
-    let content: String
-    let createdAt: String
-    let id: String
-    let updatedAt: String
-    let url: String
+    let author: String?
+    let content: String?
+    let createdAt: String?
+    let id: String?
+    let updatedAt: String?
+    let url: String?
     
     enum CodingKeys : String, CodingKey{
         case author

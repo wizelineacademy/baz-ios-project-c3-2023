@@ -31,6 +31,7 @@ extension SearchMoviePresenter: SearchViewOutputProtocol {
     
     func goToMovieDetail(with movie: Movie){
         print("Detalle de pelicula \(movie)")
+        router?.goToMovieDetail(with: movie)
     }
 }
 

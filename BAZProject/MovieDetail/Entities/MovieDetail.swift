@@ -13,4 +13,5 @@ struct MovieDetail {
     let reviews: Reviews
     let similarMovies: SimilarMovies
     let recomendtions: SimilarMovies
+    
 }
