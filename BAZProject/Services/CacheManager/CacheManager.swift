@@ -8,7 +8,6 @@
 import UIKit
 
 class CacheManager {
-
     static var shared: CacheManager = {
         let instance = CacheManager()
         return instance
