@@ -8,9 +8,16 @@
 import Foundation
 
 protocol MovieDetailsPresentationLogic {
-    // TODO: create functions to manage presentation logic
+    func presentLoadView(response: MovieDetails.LoadView.Response)
 }
 
 class MovieDetailsPresenter: MovieDetailsPresentationLogic {
-    // TODO: conform MovieDetailsPresentationLogic protocol
+
+    // MARK: Properties VIP
+    weak var viewController: MovieDetailsDisplayLogic?
+    
+    func presentLoadView(response: MovieDetails.LoadView.Response) {
+        let viewModel = MovieDetails.LoadView.ViewModel(title: response.movie.title)
+        viewController?.displayView(viewModel: viewModel)
+    }
 }

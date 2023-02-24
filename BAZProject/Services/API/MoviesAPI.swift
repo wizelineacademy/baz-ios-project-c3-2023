@@ -8,8 +8,15 @@
 import Foundation
 
 protocol MovieServicesProtocol {
-    func fetchMovies(type: fetchMoviesTypes, completionHandler: @escaping ([Movie], MovieServiceError?) -> Void)
+    var page: Int { get set }
+    func fetchMovies(type: fetchMoviesTypes, nextPage: Bool, completionHandler: @escaping ([Movie], MovieServiceError?) -> Void)
     func fetchReviews(id: Int, completionHandler: @escaping([Review], MovieServiceError?) -> Void)
+}
+
+extension MovieServicesProtocol {
+    mutating func resetPaginationFetch() {
+        self.page = 1
+    }
 }
 
 class MoviesAPI: MovieServicesProtocol {
@@ -18,24 +25,23 @@ class MoviesAPI: MovieServicesProtocol {
     let apiKey = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
     let language = "es"
     let region = "MX"
-    let page = 1
-
+    var page: Int = 1
+    
     let sessionShared = URLSession.shared
     
-    func fetchMovies(type: fetchMoviesTypes, completionHandler: @escaping ([Movie], MovieServiceError?) -> Void) {
+    func fetchMovies(type: fetchMoviesTypes, nextPage: Bool = false, completionHandler: @escaping ([Movie], MovieServiceError?) -> Void) {
+        let request = URLRequest(url: getURL(endpoint: type.endpoint, nextPage: nextPage))
         
-        let request = URLRequest(url: getURL(endpoint: type.endpoint))
-        
-        sessionShared.dataTask(with: request) { data, error, response in
+        sessionShared.dataTask(with: request) { data, response, error in
             guard let data = data else {
-                completionHandler([], .fetchError(error as! Error))
+                completionHandler([], .fetchError)
                 return
             }
             do {
                 let movies = try JSONDecoder().decode(MovieFetchResponse.self, from: data).results
                 completionHandler(movies, nil)
             } catch {
-                completionHandler([], .decodeError(error))
+                completionHandler([], .decodeError)
             }
         }.resume()
     }
@@ -46,20 +52,23 @@ class MoviesAPI: MovieServicesProtocol {
 
         sessionShared.dataTask(with: request) { data, error, response in
             guard let data = data else {
-                completionHandler([], .fetchError(error as! Error))
+                completionHandler([], .fetchError)
                 return
             }
             do {
                 let reviews = try JSONDecoder().decode(ReviewResponse.self, from: data).results
                 completionHandler(reviews, nil)
             } catch {
-                completionHandler([], .decodeError(error))
+                completionHandler([], .decodeError)
             }
         }.resume()
     }
+
     
-    func getURL(endpoint: Endpoint) -> URL {
-        URL(string: "\(urlBaseString)\(endpoint.url)?api_key=\(apiKey)\(endpoint.queryString)&language=\(language)&region=\(region)&page=\(page)")!
+    func getURL(endpoint: Endpoint, nextPage: Bool = false) -> URL {
+        page = nextPage ? (page + 1) : page
+        
+        return URL(string: "\(urlBaseString)\(endpoint.url)?api_key=\(apiKey)\(endpoint.queryString)&language=\(language)&region=\(region)&page=\(page)")!
     }
 }
 
@@ -89,9 +98,41 @@ enum fetchMoviesTypes {
             return Endpoint.byRecommendationMovie(id: id)
         }
     }
+    
+    var title: String {
+        switch self {
+        case .trending:
+            return "Trending Movies"
+        case .nowPlaying:
+            return "Now Playing Movies"
+        case .popular:
+            return "Popular Movies"
+        case .topRated:
+            return "Top Rated Movies"
+        case .upComing:
+            return "Up Coming Movies"
+        case .byKeyword(let string):
+            return "Search by \(string)"
+        case .bySearch(let string):
+            return "Search by \(string)"
+        case .bySimilarMovie(_):
+            return "Similar Movies"
+        case .byRecommendationMovie(_):
+            return "Recommendation Movies"
+        }
+    }
 }
 
 enum MovieServiceError: Error {
-    case fetchError(Error)
-    case decodeError(Error)
+    case fetchError
+    case decodeError
+    
+    var description: String {
+        switch self {
+        case .fetchError:
+            return "Error al obtener respuesta de Peliculas"
+        case .decodeError:
+            return "Error al decodificar respuesta"
+        }
+    }
 }

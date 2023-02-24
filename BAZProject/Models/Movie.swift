@@ -6,6 +6,25 @@
 //
 
 import Foundation
+import UIKit
+
+protocol MovieProperties {
+    var adult: Bool? { get set }
+    var backdropPath: String? { get set }
+    var id: Int? { get set }
+    var title: String? { get set }
+    var originalLanguage: String? { get set }
+    var originalTitle: String? { get set }
+    var overview: String? { get set }
+    var posterPath: String? { get set }
+    var mediaType: String? { get set }
+    var genreIDS: [Int]? { get set }
+    var popularity: Double? { get set }
+    var releaseDate: String? { get set }
+    var video: Bool? { get set }
+    var voteAverage: Double? { get set }
+    var voteCount: Int? { get set }
+}
 
 ///  MovieFetchResponse is a structure used to decode information obtained from fetchMovies services
 struct MovieFetchResponse: Decodable {
@@ -20,18 +39,22 @@ struct MovieFetchResponse: Decodable {
     }
 }
 
-struct Movie: Decodable {
-    let adult: Bool?
-    let backdropPath: String?
-    let id: Int?
-    let title, originalLanguage, originalTitle, overview: String?
-    let posterPath, mediaType: String?
-    let genreIDS: [Int]?
-    let popularity: Double?
-    let releaseDate: String?
-    let video: Bool?
-    let voteAverage: Double?
-    let voteCount: Int?
+struct Movie: MovieProperties, Decodable {
+    var adult: Bool?
+    var backdropPath: String?
+    var id: Int?
+    var title: String?
+    var originalLanguage: String?
+    var originalTitle: String?
+    var overview: String?
+    var posterPath: String?
+    var mediaType: String?
+    var genreIDS: [Int]?
+    var popularity: Double?
+    var releaseDate: String?
+    var video: Bool?
+    var voteAverage: Double?
+    var voteCount: Int?
     
     enum CodingKeys: String, CodingKey {
         case adult
@@ -50,3 +73,11 @@ struct Movie: Decodable {
         case voteCount = "vote_count"
     }
 }
+
+struct MovieSearch {
+    var id: Int
+    var imageURL: String
+    var title: String
+}
+
+

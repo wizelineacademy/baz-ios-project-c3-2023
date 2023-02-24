@@ -8,9 +8,28 @@
 import Foundation
 
 protocol SearchMoviesBusinessLogic: AnyObject {
-    // TODO: create functions to manage business logic
+    func searchMoviesBy(request: SearchMovies.FetchMovies.Request)
+    func resetSearch(request: SearchMovies.ResetSearch.Request)
 }
 
 class SearchMoviesInteractor: SearchMoviesBusinessLogic {
-    // TODO: conform SearchMoviesBusinessLogic protocol
+
+    // MARK: Properties
+    let moviesWorker = MoviesWorker(movieService: MoviesAPI())
+    
+    // MARK: Properties VIP
+    var presenter: SearchMoviesPresentationLogic?
+    
+    func searchMoviesBy(request: SearchMovies.FetchMovies.Request) {
+        moviesWorker.getMoviesByType(.bySearch(request.byKeyboards), nextPage: request.nextPage) { [weak self] movies, messageError in
+            self?.presenter?.presentMoviesFeched(response: SearchMovies.FetchMovies.Response(nextPage: request.nextPage, movies: movies))
+        }
+    }
+    
+    func resetSearch(request: SearchMovies.ResetSearch.Request) {
+        moviesWorker.resetPagination()
+        presenter?.resetCollectionData(response: SearchMovies.ResetSearch.Response(dataCollection: []))
+    }
+    
+    
 }

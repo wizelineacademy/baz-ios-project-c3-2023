@@ -40,9 +40,9 @@ enum Endpoint {
     var queryString: String {
         switch self {
         case .byKeyword(let string):
-            return "&query=\(string)"
+            return "&query=\(string)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         case .bySearch(let string):
-            return "&query=\(string)"
+            return "&query=\(string)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         default:
             return ""
         }

@@ -8,9 +8,24 @@
 import Foundation
 
 protocol MovieDetailsBusinessLogic: AnyObject {
-    // TODO: create functions to manage business logic
+    func loadView()
 }
 
-class MovieDetailsInteractor: MovieDetailsBusinessLogic {
-    // TODO: conform HomeInteractor protocol
+protocol MovieDetailsDataStore: AnyObject {
+    var movie: MovieSearch? { get set }
+}
+
+class MovieDetailsInteractor: MovieDetailsBusinessLogic, MovieDetailsDataStore {
+    
+    // MARK: Properties VIP
+    var presenter: MovieDetailsPresentationLogic?
+    var movie: MovieSearch?
+    
+    func loadView() {
+        guard let movie = movie else {
+            return 
+        }
+        let response = MovieDetails.LoadView.Response(movie: movie)
+        presenter?.presentLoadView(response: response)
+    }
 }
