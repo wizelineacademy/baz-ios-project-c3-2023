@@ -27,8 +27,9 @@ class HomeTableViewController: UITableViewController {
     
     func getMovies() {
         
+        let movieCategoryURLRequestFactory = MovieCategoryURLRequestFactory(hostName: "https://api.themoviedb.org/3")
         let decodableResultsAdapter = JSONDecoderResultAdapter(decoder: JSONDecoder())
-        let sessionFetcher = URLSessionFetcher(decodableResultAdapter: decodableResultsAdapter)
+        let sessionFetcher = URLSessionFetcher(urlRequestFactory: movieCategoryURLRequestFactory, decodableResultAdapter: decodableResultsAdapter)
         
         sessionFetcher.fetchData() { [weak self] (movieResult: MovieAPIResult?, error: Error?) in
             if let movieResult = movieResult {
