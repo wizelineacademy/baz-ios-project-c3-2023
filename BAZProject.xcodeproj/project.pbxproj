@@ -60,6 +60,16 @@
 		D2C2D04229A486A100DFC2FA /* CellMovieTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C2D04029A486A100DFC2FA /* CellMovieTop.swift */; };
 		D2C2D04329A486A100DFC2FA /* CellMovieTop.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2C2D04129A486A100DFC2FA /* CellMovieTop.xib */; };
 		D2C2D04529A486BA00DFC2FA /* CellMovieType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C2D04429A486BA00DFC2FA /* CellMovieType.swift */; };
+		D2C6648629A9A9AC008996A2 /* ReviewDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C6647829A9A9AC008996A2 /* ReviewDataManager.swift */; };
+		D2C6648729A9A9AC008996A2 /* ReviewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C6647A29A9A9AC008996A2 /* ReviewPresenter.swift */; };
+		D2C6648829A9A9AC008996A2 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C6647C29A9A9AC008996A2 /* ReviewViewController.swift */; };
+		D2C6648929A9A9AC008996A2 /* ReviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2C6647D29A9A9AC008996A2 /* ReviewView.xib */; };
+		D2C6648A29A9A9AC008996A2 /* ReviewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C6647F29A9A9AC008996A2 /* ReviewProtocols.swift */; };
+		D2C6648B29A9A9AC008996A2 /* ReviewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C6648129A9A9AC008996A2 /* ReviewInteractor.swift */; };
+		D2C6648C29A9A9AC008996A2 /* ReviewResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C6648329A9A9AC008996A2 /* ReviewResult.swift */; };
+		D2C6648D29A9A9AC008996A2 /* ReviewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C6648529A9A9AC008996A2 /* ReviewRouter.swift */; };
+		D2C6649129A9A9DE008996A2 /* CellReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C6648F29A9A9DE008996A2 /* CellReviewViewController.swift */; };
+		D2C6649229A9A9DE008996A2 /* CellReviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2C6649029A9A9DE008996A2 /* CellReviewView.xib */; };
 		D2C7F08229A4199A0019FDB1 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C7F08129A4199A0019FDB1 /* UIColor+Extension.swift */; };
 		D2C85AA129A338EC00EB8663 /* StarRatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C85A9F29A338EC00EB8663 /* StarRatedView.swift */; };
 		D2C85AA529A339A800EB8663 /* StarRatedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2C85AA429A339A800EB8663 /* StarRatedView.xib */; };
@@ -154,6 +164,16 @@
 		D2C2D04029A486A100DFC2FA /* CellMovieTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellMovieTop.swift; sourceTree = "<group>"; };
 		D2C2D04129A486A100DFC2FA /* CellMovieTop.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellMovieTop.xib; sourceTree = "<group>"; };
 		D2C2D04429A486BA00DFC2FA /* CellMovieType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellMovieType.swift; sourceTree = "<group>"; };
+		D2C6647829A9A9AC008996A2 /* ReviewDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewDataManager.swift; sourceTree = "<group>"; };
+		D2C6647A29A9A9AC008996A2 /* ReviewPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewPresenter.swift; sourceTree = "<group>"; };
+		D2C6647C29A9A9AC008996A2 /* ReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
+		D2C6647D29A9A9AC008996A2 /* ReviewView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewView.xib; sourceTree = "<group>"; };
+		D2C6647F29A9A9AC008996A2 /* ReviewProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewProtocols.swift; sourceTree = "<group>"; };
+		D2C6648129A9A9AC008996A2 /* ReviewInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewInteractor.swift; sourceTree = "<group>"; };
+		D2C6648329A9A9AC008996A2 /* ReviewResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewResult.swift; sourceTree = "<group>"; };
+		D2C6648529A9A9AC008996A2 /* ReviewRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewRouter.swift; sourceTree = "<group>"; };
+		D2C6648F29A9A9DE008996A2 /* CellReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellReviewViewController.swift; sourceTree = "<group>"; };
+		D2C6649029A9A9DE008996A2 /* CellReviewView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellReviewView.xib; sourceTree = "<group>"; };
 		D2C7F08129A4199A0019FDB1 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		D2C85A9F29A338EC00EB8663 /* StarRatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatedView.swift; sourceTree = "<group>"; };
 		D2C85AA429A339A800EB8663 /* StarRatedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StarRatedView.xib; sourceTree = "<group>"; };
@@ -517,6 +537,86 @@
 			path = CellMovieTop;
 			sourceTree = "<group>";
 		};
+		D2C6647629A9A9AC008996A2 /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				D2C6647729A9A9AC008996A2 /* DataManager */,
+				D2C6647929A9A9AC008996A2 /* Presenter */,
+				D2C6647B29A9A9AC008996A2 /* View */,
+				D2C6647E29A9A9AC008996A2 /* Protocols */,
+				D2C6648029A9A9AC008996A2 /* Interactor */,
+				D2C6648229A9A9AC008996A2 /* Entities */,
+				D2C6648429A9A9AC008996A2 /* Router */,
+			);
+			path = Review;
+			sourceTree = "<group>";
+		};
+		D2C6647729A9A9AC008996A2 /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+				D2C6647829A9A9AC008996A2 /* ReviewDataManager.swift */,
+			);
+			path = DataManager;
+			sourceTree = "<group>";
+		};
+		D2C6647929A9A9AC008996A2 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				D2C6647A29A9A9AC008996A2 /* ReviewPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		D2C6647B29A9A9AC008996A2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D2C6647C29A9A9AC008996A2 /* ReviewViewController.swift */,
+				D2C6647D29A9A9AC008996A2 /* ReviewView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D2C6647E29A9A9AC008996A2 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				D2C6647F29A9A9AC008996A2 /* ReviewProtocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		D2C6648029A9A9AC008996A2 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				D2C6648129A9A9AC008996A2 /* ReviewInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		D2C6648229A9A9AC008996A2 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				D2C6648329A9A9AC008996A2 /* ReviewResult.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		D2C6648429A9A9AC008996A2 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				D2C6648529A9A9AC008996A2 /* ReviewRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		D2C6648E29A9A9C7008996A2 /* CellReview */ = {
+			isa = PBXGroup;
+			children = (
+				D2C6648F29A9A9DE008996A2 /* CellReviewViewController.swift */,
+				D2C6649029A9A9DE008996A2 /* CellReviewView.xib */,
+			);
+			path = CellReview;
+			sourceTree = "<group>";
+		};
 		D2C85AA329A338F500EB8663 /* StarRated */ = {
 			isa = PBXGroup;
 			children = (
@@ -583,6 +683,7 @@
 		D2EAE0BC29806E99005063FB /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				D2C6648E29A9A9C7008996A2 /* CellReview */,
 				D2C85AA329A338F500EB8663 /* StarRated */,
 				D271BEA0299E999F0030210E /* ImagesSlider */,
 				D271BE9F299E998F0030210E /* CellMovie */,
@@ -720,6 +821,7 @@
 		D2F32B13297F2C7D000DA5EE /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				D2C6647629A9A9AC008996A2 /* Review */,
 				D2475E0D29A28A0C004949D9 /* Home */,
 				D2F08D32299C3912009BA149 /* Detail */,
 				D2C90AA22980EECE000C8BF8 /* ErrorPage */,
@@ -866,12 +968,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2C6649229A9A9DE008996A2 /* CellReviewView.xib in Resources */,
 				D2F08D37299C394A009BA149 /* DetailView.xib in Resources */,
 				D215C4FE2980EF1000D5670F /* ErrorPageView.xib in Resources */,
 				C30893BA28A2F42D004B1860 /* LaunchScreen.storyboard in Resources */,
 				D2C2D04329A486A100DFC2FA /* CellMovieTop.xib in Resources */,
 				C30893DB28A42481004B1860 /* README.md in Resources */,
 				D2C85AA529A339A800EB8663 /* StarRatedView.xib in Resources */,
+				D2C6648929A9A9AC008996A2 /* ReviewView.xib in Resources */,
 				C30893B728A2F42D004B1860 /* Assets.xcassets in Resources */,
 				D2475E2029A28A0C004949D9 /* HomeView.xib in Resources */,
 				D2D2F83629846BB000840F20 /* TrendingView.xib in Resources */,
@@ -923,15 +1027,18 @@
 				D2F08D3A299C3962009BA149 /* DetailInteractor.swift in Sources */,
 				D27C6D2F2980DCFF003E45C7 /* UIImage+Extension.swift in Sources */,
 				D2C7F08229A4199A0019FDB1 /* UIColor+Extension.swift in Sources */,
+				D2C6648A29A9A9AC008996A2 /* ReviewProtocols.swift in Sources */,
 				D2B7A6512980EC7B0028BC4E /* UIView+Extension.swift in Sources */,
 				D2E43E36297FA59C000F9343 /* String+Extension.swift in Sources */,
 				D2073EAA29899160006A577A /* ErrorPagePresenter.swift in Sources */,
 				D2F3477229806F2700EFDB62 /* CellMovie.swift in Sources */,
 				D2CFEC262983315A0024D226 /* TrendingViewController+UITableExtensions.swift in Sources */,
 				D248E468298633D300BC1281 /* MainViewController.swift in Sources */,
+				D2C6648D29A9A9AC008996A2 /* ReviewRouter.swift in Sources */,
 				D2108DB5298C106D0000873F /* LocalizedConstants.swift in Sources */,
 				C30893C428A2F845004B1860 /* TrendingViewController.swift in Sources */,
 				D2475E1F29A28A0C004949D9 /* HomeViewController.swift in Sources */,
+				D2C6648C29A9A9AC008996A2 /* ReviewResult.swift in Sources */,
 				D2C2D04229A486A100DFC2FA /* CellMovieTop.swift in Sources */,
 				D222D1E529A58FAF00C3AD57 /* NSObject+Extension.swift in Sources */,
 				D219B54E299AD16C00348876 /* Array+Extension.swift in Sources */,
@@ -939,12 +1046,14 @@
 				D2E43E33297FA0E7000F9343 /* TrendingType.swift in Sources */,
 				D2475E1E29A28A0C004949D9 /* HomePresenter.swift in Sources */,
 				D2073EAC29899539006A577A /* ErrorPageRouter.swift in Sources */,
+				D2C6648629A9A9AC008996A2 /* ReviewDataManager.swift in Sources */,
 				D2F954D2298B0C0200F4CB4B /* UIViewController+Extension.swift in Sources */,
 				D2F08D31299C1A24009BA149 /* Endpoint.swift in Sources */,
 				D2073EAE29899696006A577A /* ErrorType.swift in Sources */,
 				D20AECCB299AA93E00292C76 /* InfiniteScrollActivityView.swift in Sources */,
 				D2073EA629898C22006A577A /* ErrorPageProtocols.swift in Sources */,
 				D2D916DB299C8199009E0BE2 /* MovieDetail.swift in Sources */,
+				D2C6648829A9A9AC008996A2 /* ReviewViewController.swift in Sources */,
 				D2F08D41299C399B009BA149 /* DetailProtocols.swift in Sources */,
 				D2C85AA129A338EC00EB8663 /* StarRatedView.swift in Sources */,
 				D215C5002980EF9500D5670F /* ErrorPageViewController.swift in Sources */,
@@ -962,6 +1071,8 @@
 				D271BEA3299E99D40030210E /* CellSlider.swift in Sources */,
 				D2073EB12989986A006A577A /* ErrorPageInteractor.swift in Sources */,
 				D2B7A64A2980E2030028BC4E /* SizeImageType.swift in Sources */,
+				D2C6649129A9A9DE008996A2 /* CellReviewViewController.swift in Sources */,
+				D2C6648729A9A9AC008996A2 /* ReviewPresenter.swift in Sources */,
 				D2F08D35299C392F009BA149 /* DetailViewController.swift in Sources */,
 				D2F08D3E299C3980009BA149 /* DetailPresenter.swift in Sources */,
 				C30893B028A2F42B004B1860 /* SceneDelegate.swift in Sources */,
@@ -976,6 +1087,7 @@
 				D2CFEC1F2983207E0024D226 /* TrendingRouter.swift in Sources */,
 				D2475E2129A28A0C004949D9 /* HomeProtocols.swift in Sources */,
 				C30893E328A425E1004B1860 /* Movie.swift in Sources */,
+				D2C6648B29A9A9AC008996A2 /* ReviewInteractor.swift in Sources */,
 				D2B7A64D2980EC260028BC4E /* Loader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
