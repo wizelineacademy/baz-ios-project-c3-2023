@@ -37,15 +37,14 @@ extension MovieDetailView: MDViewInputProtocol {
         self.releaseDate.text = movie.releaseDate
         self.backgroundImage.image = UIImage(named: "poster")
         
-        if let imageURL = movie.getBackgroundMovieURL(size: .huge) {
-            let task = URLSession.shared.dataTask(with: imageURL) { [weak self] (data, _, _) in
-                DispatchQueue.main.async {
-                    if let data = data {
-                        self?.backgroundImage.image = UIImage(data: data)
-                    }
-                }
+        guard let imageURL = movie.getBackgroundMovieURL(size: .huge) else { return }
+        ImageCache.shared.getImage(from: imageURL) { [weak self] result in
+            switch result {
+            case .success(let image):
+                self?.backgroundImage.image = image
+            case .failure(_):
+                break
             }
-            task.resume()
         }
     }
 }

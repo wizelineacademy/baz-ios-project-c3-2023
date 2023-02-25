@@ -23,15 +23,14 @@ final class MSMovieCollectionViewCell: UICollectionViewCell {
      */
     func setupCell(with movie: Movie) {
         self.movieImage.image = UIImage(named: "poster")
-        if let imageURL = movie.getPosterURL(size: .medium) {
-            let task = URLSession.shared.dataTask(with: imageURL) { [weak self] (data, _, _) in
-                DispatchQueue.main.async {
-                    if let data = data {
-                        self?.movieImage.image = UIImage(data: data)
-                    }
-                }
+        guard let imageURL = movie.getPosterURL(size: .medium) else { return }
+        ImageCache.shared.getImage(from: imageURL) { [weak self] result in
+            switch result {
+            case .success(let image):
+                self?.movieImage.image = image
+            case .failure(_):
+                break
             }
-            task.resume()
         }
     }
     
