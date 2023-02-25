@@ -20,6 +20,7 @@ extension String {
     static let apiRegion = "MX"
     static let apiKeyEndPointTrending = "/trending"
     static let apiKeyEndPointMovieTopRated = "/movie/top_rated"
+    static let apiKeyEndPointMovie = "/movie"
     static let theMovieDbEndBaseUrl = "?api_key=\(apiKeyTheMovieDb)&language=\(apiLang)&region=\(apiRegion)"
     static let theMovieDbAppendImages = "&append_to_response=images&include_image_language=\(apiLang),null"
 
@@ -42,6 +43,9 @@ extension String {
     static let trendingFilterTitles = ["🍿Pelis", "📺TV", "👀🔝", "Todo"]
     static let trendingFilterByTimeTitles = ["📆Día", "🗓Semana"]
     static let trendingNameIconTabBar = "magnifyingglass"
+
+    // MARK: - Review
+    static let reviewXibIdentifier = "ReviewView"
 
     // MARK: - Main
     static let mainPlaceholderSearchBar = "Buscar.."

@@ -10,8 +10,9 @@ import UIKit
 // MARK: View Output (Presenter -> View)
 protocol ReviewViewProtocol: AnyObject {
     var presenter: ReviewPresenterProtocol? { get set }
+    var idMovie: String? { get set }
 
-    func updateView(data: ReviewResult)
+    func updateView(data: [ReviewResult])
     func stopLoading()
     func setErrorGettingData(_ status: Bool)
 }
@@ -22,12 +23,12 @@ protocol ReviewPresenterProtocol: AnyObject {
     var view: ReviewViewProtocol? { get set }
     var interactor: ReviewInteractorInputProtocol? { get set }
     
-    func willFetchReview()
+    func willFetchReview(of idMovie: String)
 }
 
 // MARK: Interactor Input (Presenter -> Interactor)
 protocol ReviewInteractorOutputProtocol: AnyObject {
-    func onReceivedReview(_ result: ReviewResult)
+    func onReceivedReview(_ result: [ReviewResult])
     func showViewError(_ error: Error)
 }
 
@@ -35,7 +36,7 @@ protocol ReviewInteractorOutputProtocol: AnyObject {
 protocol ReviewInteractorInputProtocol: AnyObject {
     var presenter: ReviewInteractorOutputProtocol? { get set }
     var dataManager: ReviewDataManagerInputProtocol? { get set }
-    func fetchReview()
+    func fetchReview(of idMovie: String)
 }
 
 // MARK: Interactor Input (Interactor -> DataManager)
@@ -50,13 +51,13 @@ protocol ReviewDataManagerInputProtocol: AnyObject {
 
 // MARK: Interactor Output (DataManager -> Interactor)
 protocol ReviewDataManagerOutputProtocol: AnyObject {
-    func handleGetReview(_ result: ReviewResult)
+    func handleGetReview(_ result: [ReviewResult])
     func handleErrorService(_ error: Error)
 }
 
 // MARK: Router Input (Presenter -> Router)
 protocol ReviewRouterProtocol: AnyObject {
     var view: ReviewViewProtocol? { get set }
-    static func createModule() -> UIViewController
+    static func createModule(idMovie: String) -> UIViewController
     func showViewError(_ errorType: ErrorType)
 }

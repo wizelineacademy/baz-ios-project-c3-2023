@@ -7,11 +7,45 @@
 
 import Foundation
 
+// MARK: - ReviewResponse
+struct ReviewResponse: Codable {
+    var id, page: Int?
+    var results: [ReviewResult]?
+    var totalPages, totalResults: Int?
+
+    enum CodingKeys: String, CodingKey {
+        case id, page, results
+        case totalPages = "total_pages"
+        case totalResults = "total_results"
+    }
+}
+
 // MARK: - ReviewResult
 struct ReviewResult: Codable {
-    // TODO: Implement type logic or remove this type declaration if it is not needed
-    var id: String?
+    var author: String?
+    var authorDetails: AuthorDetails?
+    var content, createdAt, id, updatedAt: String?
+    var url: String?
+
     enum CodingKeys: String, CodingKey {
-        case id = "ID"
+        case author
+        case authorDetails = "author_details"
+        case content
+        case createdAt = "created_at"
+        case id
+        case updatedAt = "updated_at"
+        case url
+    }
+}
+
+// MARK: - AuthorDetails
+struct AuthorDetails: Codable {
+    var name, username, avatarPath: String?
+    var rating: Int?
+
+    enum CodingKeys: String, CodingKey {
+        case name, username
+        case avatarPath = "avatar_path"
+        case rating
     }
 }

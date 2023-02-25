@@ -14,18 +14,16 @@ final class ReviewInteractor {
 }
 
 extension ReviewInteractor: ReviewInteractorInputProtocol {
-    func fetchReview() {
-        // TODO: add string url
-        let urlString: String = "https://google.com"
-        dataManager?.requestReview(urlString)
+    func fetchReview(of idMovie: String) {
+        dataManager?.requestReview(Endpoint.reviews(idMovie: idMovie).urlString)
     }
 }
 
 extension ReviewInteractor: ReviewDataManagerOutputProtocol {
-    func handleGetReview(_ result: ReviewResult) {
+    func handleGetReview(_ result: [ReviewResult]) {
         presenter?.onReceivedReview(result)
     }
-    
+
     func handleErrorService(_ error: Error) {
         presenter?.showViewError(error)
     }

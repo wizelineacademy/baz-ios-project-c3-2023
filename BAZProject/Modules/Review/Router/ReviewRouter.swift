@@ -12,7 +12,7 @@ final class ReviewRouter {
     weak var view: ReviewViewProtocol?
 
     // MARK: Static methods
-    static func createModule() -> UIViewController {
+    static func createModule(idMovie: String) -> UIViewController {
         let view: ReviewViewProtocol = ReviewViewController(nibName: ReviewViewController.identifier, bundle: nil)
         let service: NetworkingProviderProtocol = NetworkingProviderService(session: URLSession.shared)
         let dataManager: ReviewDataManagerInputProtocol = ReviewDataManager(providerNetworking: service)
@@ -21,6 +21,7 @@ final class ReviewRouter {
         let router: ReviewRouterProtocol = ReviewRouter()
         
         view.presenter = presenter
+        view.idMovie = idMovie
         router.view = view
         interactor.dataManager = dataManager
         interactor.presenter = presenter
@@ -37,10 +38,9 @@ final class ReviewRouter {
 extension ReviewRouter: ReviewRouterProtocol {
     func showViewError(_ errorType: ErrorType) {
         guard let view = self.view as? UIViewController else { return }
-        /* Example:
         view.guaranteeMainThread {
             let errorPageVC: UIViewController = ErrorPageRouter.createModule(errorType: errorType)
             view.navigationController?.pushViewController(errorPageVC, animated: true)
-        }*/
+        }
     }
 }

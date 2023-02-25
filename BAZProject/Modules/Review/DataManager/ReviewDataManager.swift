@@ -10,7 +10,7 @@ import Foundation
 final class ReviewDataManager {
     weak var interactor: ReviewDataManagerOutputProtocol?
     let providerNetworking: NetworkingProviderProtocol
-    
+
     init(providerNetworking: NetworkingProviderProtocol) {
         self.providerNetworking = providerNetworking
     }
@@ -18,13 +18,14 @@ final class ReviewDataManager {
 
 extension ReviewDataManager: ReviewDataManagerInputProtocol {
 
-    typealias ResponseProvider = Result<ReviewResult, Error>
+    typealias ResponseProvider = Result<ReviewResponse, Error>
 
     func requestReview(_ urlString: String) {
-        providerNetworking.sendRequest(RequestType(strUrl: urlString, method: .GET).getRequest()) { [weak self] (result: ResponseProvider) in
+        let request: URLRequest = RequestType(strUrl: urlString, method: .GET).getRequest()
+        providerNetworking.sendRequest(request) { [weak self] (result: ResponseProvider) in
             switch result {
             case .success(let data):
-                self?.interactor?.handleGetReview(data)
+                self?.interactor?.handleGetReview(data.results ?? [])
             case .failure(let error):
                 self?.interactor?.handleErrorService(error)
             }

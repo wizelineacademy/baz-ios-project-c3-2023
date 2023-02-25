@@ -15,24 +15,25 @@ class ReviewPresenter {
 }
 
 extension ReviewPresenter: ReviewPresenterProtocol {
-    func willFetchReview() {
-        interactor?.fetchReview()
+    func willFetchReview(of idMovie: String) {
+        interactor?.fetchReview(of: idMovie)
     }
 }
 
 extension ReviewPresenter: ReviewInteractorOutputProtocol {
-    func onReceivedReview(_ result: ReviewResult) {
+    func onReceivedReview(_ result: [ReviewResult]) {
         view?.setErrorGettingData(false)
         view?.updateView(data: result)
         view?.stopLoading()
     }
-    
+
     func showViewError(_ error: Error) {
         var errorModel: ErrorType
         if let fetchedError: ServiceError = error as? ServiceError {
              errorModel = ErrorType(serviceError: fetchedError)
         } else {
-            errorModel = ErrorType(title: error.localizedDescription, message: "Error code: \(error._code) - \(error._domain)")
+            errorModel = ErrorType(title: error.localizedDescription,
+                                   message: "Error code: \(error._code) - \(error._domain)")
         }
         view?.setErrorGettingData(true)
         router?.showViewError(errorModel)

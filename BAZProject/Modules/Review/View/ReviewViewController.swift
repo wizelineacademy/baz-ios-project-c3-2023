@@ -8,22 +8,23 @@
 import UIKit
 
 final class ReviewViewController: UIViewController {
-    
-    static let identifier: String = "ReviewView"
+    static let identifier: String = .reviewXibIdentifier
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
     }
-    
+
     // MARK: - Declaration IBOutlets
-    
+
     // MARK: - Protocol properties
     var presenter: ReviewPresenterProtocol?
-    var dataResult: ReviewResult?
-    
+    var dataResult: [ReviewResult]?
+
+    var idMovie: String?
+
     // MARK: - Private properties
     private var errorGetData: Bool = false
     private var isLoading: Bool = true
-    
+
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +45,7 @@ final class ReviewViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         stopLoading()
     }
-    
+
     // MARK: - Private methods
     private func showLoader() {
         guaranteeMainThread {
@@ -52,33 +53,32 @@ final class ReviewViewController: UIViewController {
         }
     }
     // private func setupView() {}
-    
+
     private func callService() {
         isLoading = true
         getData()
     }
-    
+
     private func getData() {
-        presenter?.willFetchReview()
+        guard let idMovie = idMovie else { return }
+        presenter?.willFetchReview(of: idMovie)
     }
 }
 
 extension ReviewViewController: ReviewViewProtocol {
-    func updateView(data: ReviewResult) {
+    func updateView(data: [ReviewResult]) {
         // TODO: implement logic to update view, example:
         // dataType = data
     }
-    
+
     func stopLoading() {
-        /* Implement logic to stop logic, example:
         guaranteeMainThread {
             self.isLoading = false
             self.view.removeLoader()
-        }*/
+        }
     }
-    
+
     func setErrorGettingData(_ status: Bool) {
-        /* Example:
-        errorGetData = status */
+        errorGetData = status
     }
 }

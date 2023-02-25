@@ -30,6 +30,7 @@ enum Endpoint {
     case trending(mediaType: MediaType, timeWindow: TimeWindowType)
     case details(mediaType: MediaType, idMedia: Int)
     case topRated
+    case reviews(idMovie: String)
 }
 
 extension Endpoint {
@@ -44,6 +45,9 @@ extension Endpoint {
             return "\(BaseUrl.api.url)/\(media)/\(id)\(String.theMovieDbEndBaseUrl)\(String.theMovieDbAppendImages)"
         case .topRated:
             return BaseUrl.apiWithEndPoint(endPoint: .apiKeyEndPointMovieTopRated).url
+        case .reviews(idMovie: let movie):
+            let reviewsUrlString: String = "\(String.apiKeyEndPointMovie)/\(movie)/reviews"
+            return BaseUrl.apiWithEndPoint(endPoint: reviewsUrlString).url
         }
     }
 }
