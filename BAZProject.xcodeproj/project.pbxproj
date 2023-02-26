@@ -47,6 +47,7 @@
 		D271BEA9299E9BD30030210E /* ImageSlider.xib in Resources */ = {isa = PBXBuildFile; fileRef = D271BEA8299E9BD30030210E /* ImageSlider.xib */; };
 		D27B209829A86F0200033003 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27B209729A86F0200033003 /* CacheManager.swift */; };
 		D27C6D2F2980DCFF003E45C7 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27C6D2E2980DCFF003E45C7 /* UIImage+Extension.swift */; };
+		D284C4EB29A9CFBC00598D08 /* Review+UITableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D284C4EA29A9CFBC00598D08 /* Review+UITableExtension.swift */; };
 		D28D62642992CAFF00FAC0FB /* TrendingInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28D62632992CAFF00FAC0FB /* TrendingInteractorTests.swift */; };
 		D28D62672992CDD100FAC0FB /* TrendingDataManagerMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28D62662992CDD100FAC0FB /* TrendingDataManagerMocks.swift */; };
 		D28D626A2992D46F00FAC0FB /* TrendingPresenterMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28D62692992D46F00FAC0FB /* TrendingPresenterMocks.swift */; };
@@ -68,8 +69,8 @@
 		D2C6648B29A9A9AC008996A2 /* ReviewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C6648129A9A9AC008996A2 /* ReviewInteractor.swift */; };
 		D2C6648C29A9A9AC008996A2 /* ReviewResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C6648329A9A9AC008996A2 /* ReviewResult.swift */; };
 		D2C6648D29A9A9AC008996A2 /* ReviewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C6648529A9A9AC008996A2 /* ReviewRouter.swift */; };
-		D2C6649129A9A9DE008996A2 /* CellReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C6648F29A9A9DE008996A2 /* CellReviewViewController.swift */; };
-		D2C6649229A9A9DE008996A2 /* CellReviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2C6649029A9A9DE008996A2 /* CellReviewView.xib */; };
+		D2C6649129A9A9DE008996A2 /* CellReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C6648F29A9A9DE008996A2 /* CellReview.swift */; };
+		D2C6649229A9A9DE008996A2 /* CellReview.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2C6649029A9A9DE008996A2 /* CellReview.xib */; };
 		D2C7F08229A4199A0019FDB1 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C7F08129A4199A0019FDB1 /* UIColor+Extension.swift */; };
 		D2C85AA129A338EC00EB8663 /* StarRatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C85A9F29A338EC00EB8663 /* StarRatedView.swift */; };
 		D2C85AA529A339A800EB8663 /* StarRatedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2C85AA429A339A800EB8663 /* StarRatedView.xib */; };
@@ -151,6 +152,7 @@
 		D271BEA8299E9BD30030210E /* ImageSlider.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageSlider.xib; sourceTree = "<group>"; };
 		D27B209729A86F0200033003 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		D27C6D2E2980DCFF003E45C7 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		D284C4EA29A9CFBC00598D08 /* Review+UITableExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Review+UITableExtension.swift"; sourceTree = "<group>"; };
 		D28D62632992CAFF00FAC0FB /* TrendingInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingInteractorTests.swift; sourceTree = "<group>"; };
 		D28D62662992CDD100FAC0FB /* TrendingDataManagerMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingDataManagerMocks.swift; sourceTree = "<group>"; };
 		D28D62692992D46F00FAC0FB /* TrendingPresenterMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingPresenterMocks.swift; sourceTree = "<group>"; };
@@ -172,8 +174,8 @@
 		D2C6648129A9A9AC008996A2 /* ReviewInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewInteractor.swift; sourceTree = "<group>"; };
 		D2C6648329A9A9AC008996A2 /* ReviewResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewResult.swift; sourceTree = "<group>"; };
 		D2C6648529A9A9AC008996A2 /* ReviewRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewRouter.swift; sourceTree = "<group>"; };
-		D2C6648F29A9A9DE008996A2 /* CellReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellReviewViewController.swift; sourceTree = "<group>"; };
-		D2C6649029A9A9DE008996A2 /* CellReviewView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellReviewView.xib; sourceTree = "<group>"; };
+		D2C6648F29A9A9DE008996A2 /* CellReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellReview.swift; sourceTree = "<group>"; };
+		D2C6649029A9A9DE008996A2 /* CellReview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellReview.xib; sourceTree = "<group>"; };
 		D2C7F08129A4199A0019FDB1 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		D2C85A9F29A338EC00EB8663 /* StarRatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatedView.swift; sourceTree = "<group>"; };
 		D2C85AA429A339A800EB8663 /* StarRatedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StarRatedView.xib; sourceTree = "<group>"; };
@@ -444,6 +446,14 @@
 			path = CacheManager;
 			sourceTree = "<group>";
 		};
+		D284C4E929A9CFA300598D08 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D284C4EA29A9CFBC00598D08 /* Review+UITableExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		D28D62622992CAEC00FAC0FB /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
@@ -540,6 +550,7 @@
 		D2C6647629A9A9AC008996A2 /* Review */ = {
 			isa = PBXGroup;
 			children = (
+				D284C4E929A9CFA300598D08 /* Extensions */,
 				D2C6647729A9A9AC008996A2 /* DataManager */,
 				D2C6647929A9A9AC008996A2 /* Presenter */,
 				D2C6647B29A9A9AC008996A2 /* View */,
@@ -611,8 +622,8 @@
 		D2C6648E29A9A9C7008996A2 /* CellReview */ = {
 			isa = PBXGroup;
 			children = (
-				D2C6648F29A9A9DE008996A2 /* CellReviewViewController.swift */,
-				D2C6649029A9A9DE008996A2 /* CellReviewView.xib */,
+				D2C6648F29A9A9DE008996A2 /* CellReview.swift */,
+				D2C6649029A9A9DE008996A2 /* CellReview.xib */,
 			);
 			path = CellReview;
 			sourceTree = "<group>";
@@ -968,7 +979,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2C6649229A9A9DE008996A2 /* CellReviewView.xib in Resources */,
+				D2C6649229A9A9DE008996A2 /* CellReview.xib in Resources */,
 				D2F08D37299C394A009BA149 /* DetailView.xib in Resources */,
 				D215C4FE2980EF1000D5670F /* ErrorPageView.xib in Resources */,
 				C30893BA28A2F42D004B1860 /* LaunchScreen.storyboard in Resources */,
@@ -1046,6 +1057,7 @@
 				D2E43E33297FA0E7000F9343 /* TrendingType.swift in Sources */,
 				D2475E1E29A28A0C004949D9 /* HomePresenter.swift in Sources */,
 				D2073EAC29899539006A577A /* ErrorPageRouter.swift in Sources */,
+				D284C4EB29A9CFBC00598D08 /* Review+UITableExtension.swift in Sources */,
 				D2C6648629A9A9AC008996A2 /* ReviewDataManager.swift in Sources */,
 				D2F954D2298B0C0200F4CB4B /* UIViewController+Extension.swift in Sources */,
 				D2F08D31299C1A24009BA149 /* Endpoint.swift in Sources */,
@@ -1071,7 +1083,7 @@
 				D271BEA3299E99D40030210E /* CellSlider.swift in Sources */,
 				D2073EB12989986A006A577A /* ErrorPageInteractor.swift in Sources */,
 				D2B7A64A2980E2030028BC4E /* SizeImageType.swift in Sources */,
-				D2C6649129A9A9DE008996A2 /* CellReviewViewController.swift in Sources */,
+				D2C6649129A9A9DE008996A2 /* CellReview.swift in Sources */,
 				D2C6648729A9A9AC008996A2 /* ReviewPresenter.swift in Sources */,
 				D2F08D35299C392F009BA149 /* DetailViewController.swift in Sources */,
 				D2F08D3E299C3980009BA149 /* DetailPresenter.swift in Sources */,

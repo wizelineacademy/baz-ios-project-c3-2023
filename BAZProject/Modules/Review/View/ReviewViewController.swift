@@ -14,10 +14,11 @@ final class ReviewViewController: UIViewController {
     }
 
     // MARK: - Declaration IBOutlets
+    @IBOutlet weak var reviewsTableView: UITableView!
 
     // MARK: - Protocol properties
     var presenter: ReviewPresenterProtocol?
-    var dataResult: [ReviewResult]?
+    var reviews: [ReviewResult] = []
 
     var idMovie: String?
 
@@ -28,6 +29,7 @@ final class ReviewViewController: UIViewController {
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
         getData()
     }
 
@@ -46,7 +48,36 @@ final class ReviewViewController: UIViewController {
         stopLoading()
     }
 
+    func getDataCount() -> Int {
+        return reviews.count
+    }
+
+    func getReview(_ index: Int) -> ReviewResult? {
+        return reviews[index]
+    }
+
     // MARK: - Private methods
+    private func setupView() {
+        initRegister()
+    }
+
+    private func initRegister() {
+        setTableViewDelegates()
+        registerCell()
+        reviewsTableView.rowHeight = UITableView.automaticDimension
+        reviewsTableView.separatorColor = .white
+    }
+
+    private func setTableViewDelegates() {
+        reviewsTableView.delegate = self
+        reviewsTableView.dataSource = self
+    }
+
+    private func registerCell() {
+        reviewsTableView.register(CellReview.nib(),
+                                 forCellReuseIdentifier: CellReview.identifier)
+    }
+
     private func showLoader() {
         guaranteeMainThread {
             self.view.showLoader()
@@ -67,15 +98,17 @@ final class ReviewViewController: UIViewController {
 
 extension ReviewViewController: ReviewViewProtocol {
     func updateView(data: [ReviewResult]) {
-        // TODO: implement logic to update view, example:
-        // dataType = data
+         reviews = data
+        guaranteeMainThread {
+            self.reviewsTableView.reloadData()
+        }
     }
 
     func stopLoading() {
         guaranteeMainThread {
-            self.isLoading = false
             self.view.removeLoader()
         }
+        isLoading = false
     }
 
     func setErrorGettingData(_ status: Bool) {

@@ -19,7 +19,7 @@ final class ReviewRouter {
         let interactor: ReviewInteractorInputProtocol & ReviewDataManagerOutputProtocol = ReviewInteractor()
         let presenter: ReviewPresenterProtocol & ReviewInteractorOutputProtocol = ReviewPresenter()
         let router: ReviewRouterProtocol = ReviewRouter()
-        
+
         view.presenter = presenter
         view.idMovie = idMovie
         router.view = view
@@ -29,7 +29,7 @@ final class ReviewRouter {
         presenter.view = view
         presenter.interactor = interactor
         presenter.router = router
-        
+
         guard let view = view as? UIViewController else { return UIViewController() }
         return view
     }

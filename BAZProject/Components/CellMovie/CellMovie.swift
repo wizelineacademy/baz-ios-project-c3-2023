@@ -19,8 +19,7 @@ class CellMovie: UITableViewCell {
 
     @IBOutlet weak private var photoImageView: UIImageView! {
         didSet {
-            let photoHeight: CGFloat = photoImageView.bounds.height
-            photoImageView.layer.cornerRadius = photoHeight / LocalizedConstants.cellMovieDivisorNumberHeight
+            photoImageView.addRounding()
         }
     }
 

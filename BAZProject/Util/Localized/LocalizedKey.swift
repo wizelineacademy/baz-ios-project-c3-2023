@@ -59,6 +59,9 @@ extension String {
     // MARK: - CellMovieTop
     static let cellMovieTopXibIdentifier = "CellMovieTop"
 
+    // MARK: - CellReview
+    static let cellReviewXibIdentifier = "CellReview"
+
     // MARK: ImageSlider
     static let imageSliderXibIdentifier = "ImageSlider"
 

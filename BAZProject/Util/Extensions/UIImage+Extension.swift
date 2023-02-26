@@ -8,6 +8,13 @@
 import UIKit
 
 extension UIImageView {
+
+    func addRounding() {
+        self.contentMode = .scaleAspectFill
+        let photoWidth: CGFloat = self.bounds.size.width
+        self.layer.cornerRadius = photoWidth / LocalizedConstants.cellMovieDivisorNumberHeight
+    }
+
     typealias ResponseProvider = Result<Data, Error>
 
     func loadImage(id stringUrl: String) {

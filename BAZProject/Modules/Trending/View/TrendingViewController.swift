@@ -112,6 +112,7 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
         setupRefreshControl()
         setupInfiniteScrollLoadingIndicator()
         setupFilterSegmentedControl()
+        addSearchBar()
     }
 
     private func removeObservers() {
