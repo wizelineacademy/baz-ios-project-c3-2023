@@ -19,6 +19,11 @@ extension MovieDetailInteractor: MovieDetailInteractorInputProtocol {
             self.remoteDatamanager?.fetchMovieDetail(of: movieId)
         }
     }
+    
+    func notifyMovieDetailShown() {
+        let notificationName = Notification.Name("movieDetailShown")
+        NotificationCenter.default.post(name: notificationName, object: nil)
+    }
 }
 
 extension MovieDetailInteractor: MovieDetailRemoteDataManagerOutputProtocol {

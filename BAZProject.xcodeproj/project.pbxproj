@@ -101,6 +101,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB0E1E6229AD1E9F00757538 /* MainTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				AB2813362994048C006C44C4 /* MainTabRouter.swift */,
+			);
+			path = MainTabBar;
+			sourceTree = "<group>";
+		};
 		AB1F42EF29A57B2A00F36013 /* MovieDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +165,7 @@
 		AB5E7F8829849418007DC537 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				AB0E1E6229AD1E9F00757538 /* MainTabBar */,
 				AB1F42EF29A57B2A00F36013 /* MovieDetail */,
 				ABD7435D299E8EBE000DC816 /* Searching */,
 				AB2E305E298DB199009852C5 /* TopRated */,
@@ -215,7 +224,6 @@
 			children = (
 				AB28133829940A5E006C44C4 /* Commons */,
 				AB5E7F8829849418007DC537 /* Modules */,
-				AB2813362994048C006C44C4 /* MainTabRouter.swift */,
 				C30893AD28A2F42B004B1860 /* AppDelegate.swift */,
 				C30893AF28A2F42B004B1860 /* SceneDelegate.swift */,
 				AB5E7F9529849A14007DC537 /* ServiceAPI.swift */,
