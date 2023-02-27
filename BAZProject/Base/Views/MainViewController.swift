@@ -39,7 +39,7 @@ final class MainViewController: UITabBarController {
 
     private func initializeViewControllers() {
         var arrControllers: [UIViewController] = []
-        arrControllers.append(createNavController(for: HomeRouter.createModule(),
+        arrControllers.append(createNavController(for: ReviewRouter.createModule(idMovie: "536554"),
                                                   title: .homeTitle,
                                                   image: getUIImage(for: .homeNameIconTabBar, type: .systemName)))
         arrControllers.append(createNavController(for: TrendingRouter.createModule(),
@@ -59,8 +59,6 @@ final class MainViewController: UITabBarController {
         navController.navigationBar.tintColor = .white
         navController.navigationBar.barTintColor = LocalizedConstants.commonBackgroundColor
         navController.navigationBar.prefersLargeTitles = true
-
-        rootViewController.navigationItem.searchController = getUISearchController()
         rootViewController.navigationItem.title = title
         return navController
     }

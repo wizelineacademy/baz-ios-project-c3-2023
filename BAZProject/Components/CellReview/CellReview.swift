@@ -15,11 +15,19 @@ class CellReview: UITableViewCell {
 
     @IBOutlet weak private var titleLabel: UILabel! {
         didSet {
-            self.titleLabel.isUserInteractionEnabled = true
-            let tapgesture = UITapGestureRecognizer(target: self, action: #selector(tappedOnLabel))
-            self.titleLabel.addGestureRecognizer(tapgesture)
+            titleLabel.addShadow(LocalizedConstants.commonSecondaryColor)
         }
     }
+    @IBOutlet weak private var dateLabel: UILabel!
+    @IBOutlet weak private var rateLabel: UILabel!
+    @IBOutlet weak private var descriptionLabel: UILabel! {
+        didSet {
+            self.descriptionLabel.isUserInteractionEnabled = true
+            let tapgesture = UITapGestureRecognizer(target: self, action: #selector(tappedOnLabel))
+            self.descriptionLabel.addGestureRecognizer(tapgesture)
+        }
+    }
+
     @IBOutlet weak private var photoImageView: UIImageView! {
         didSet {
             photoImageView.addRounding()
@@ -27,12 +35,12 @@ class CellReview: UITableViewCell {
     }
     //MARK:- tappedOnLabel
         @objc func tappedOnLabel(_ gesture: UITapGestureRecognizer) {
-            guard let text = self.titleLabel.text else { return }
+            guard let text = self.descriptionLabel.text else { return }
             let privacyPolicyRange = (text as NSString).range(of: "privacy policy")
             let termsAndConditionRange = (text as NSString).range(of: "terms and condition")
-            if gesture.didTapAttributedTextInLabel(label: self.titleLabel, inRange: privacyPolicyRange) {
+            if gesture.didTapAttributedTextInLabel(label: self.descriptionLabel, inRange: privacyPolicyRange) {
                 print("user tapped on privacy policy text")
-            } else if gesture.didTapAttributedTextInLabel(label: self.titleLabel, inRange: termsAndConditionRange){
+            } else if gesture.didTapAttributedTextInLabel(label: self.descriptionLabel, inRange: termsAndConditionRange){
                 print("user tapped on terms and conditions text")
             }
         }
@@ -41,9 +49,12 @@ class CellReview: UITableViewCell {
         super.awakeFromNib()
     }
 
-    func setData(title: String, urlPhoto: String) {
-        titleLabel.text = "privacy policy asdad terms and condition"
+    func setData(title: String, urlPhoto: String, rate: Double, date: String, content: String) {
+        titleLabel.text = title
         photoImageView.loadImage(id: Endpoint.img(idImage: urlPhoto, sizeImage: .w500).urlString)
+        rateLabel.text = rate.description
+        dateLabel.text = "Escrito el \(date.getDateFormatted())"
+        descriptionLabel.text = content
     }
 }
 

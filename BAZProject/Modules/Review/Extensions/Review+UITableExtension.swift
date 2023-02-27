@@ -41,7 +41,8 @@ extension ReviewViewController: UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: CellReview.identifier) as? CellReview,
            let review = getReview(indexPath.row) {
             cell.backgroundColor = LocalizedConstants.commonPrimaryColor
-            cell.setData(title: review.content ?? "", urlPhoto: review.authorDetails?.avatarPath ?? "")
+            cell.setData(title: "Escrito por: \(review.author ?? "")",
+                         urlPhoto: review.authorDetails?.avatarPath ?? "", rate: Double(review.authorDetails?.rating ?? 0), date: review.createdAt ?? "", content: review.content ?? "")
 //            cell.label.numberOfLines = 0
 //            cell.setData(title: movie.title ?? "", imageUrl: Endpoint.img(idImage: idImage, sizeImage: .w500).urlString)
             return cell
