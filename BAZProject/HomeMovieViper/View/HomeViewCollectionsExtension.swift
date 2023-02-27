@@ -55,6 +55,13 @@ extension HomeMoviesView: UICollectionViewDelegate{
                             bottom: insets,
                             right: insets)
     }
+    
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        if moviesCollectionView.isDragging {
+            categoriesMoviesCollectionView.scrollToItem(at: currentlySelected?.indexPath ?? IndexPath(), at: .centeredHorizontally, animated: true)
+        }
+    }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 2
