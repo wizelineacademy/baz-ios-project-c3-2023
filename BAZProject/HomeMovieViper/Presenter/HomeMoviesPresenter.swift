@@ -62,7 +62,7 @@ class HomeMoviesPresenter: HomeMoviesPresenterProtocol  {
     /// - Returns: escaping closure with the UIImage type, if the parse fails, can return nil
     func getImage(index: Int, completion: @escaping (UIImage?) -> Void) {
         if let urlImage = self.toShowMovies[index].poster_path{
-            movieApi.getImage(for: urlImage) { movieImage in
+            ImageProvider.shared.getImage(for: urlImage) { movieImage in
                 completion(movieImage)
             }
         }
@@ -75,7 +75,7 @@ class HomeMoviesPresenter: HomeMoviesPresenterProtocol  {
     /// - Returns: escaping closure with the UIImage type, if the parse fails, can return nil
     func getCategorieImage(index: Int, completion: @escaping (UIImage?) -> Void) {
         if let urlImage = self.categoriesMovies[index].backdrop_path {
-            movieApi.getImage(for: urlImage) { categorieImage in
+            ImageProvider.shared.getImage(for: urlImage) { categorieImage in
                 completion(categorieImage)
             }
         }

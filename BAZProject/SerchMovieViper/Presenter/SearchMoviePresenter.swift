@@ -53,7 +53,7 @@ class SearchMoviePresenter: SearchMoviePresenterProtocol {
     }
     
     func getSearchedImage(index: Int, completion: @escaping (UIImage?) -> Void) {
-        movieApi.getImage(for: searchedMovies[index].backdrop_path ?? "") { searchedImage in
+        ImageProvider.shared.getImage(for: searchedMovies[index].backdrop_path ?? "") { searchedImage in
             completion(searchedImage)
         }
     }
