@@ -41,6 +41,8 @@
 		D2475E2329A28A0C004949D9 /* MovieTopRated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2475E1A29A28A0C004949D9 /* MovieTopRated.swift */; };
 		D2475E2429A28A0C004949D9 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2475E1C29A28A0C004949D9 /* HomeRouter.swift */; };
 		D248E468298633D300BC1281 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D248E467298633D300BC1281 /* MainViewController.swift */; };
+		D2571B2A29AC5BFE005BDC9F /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2571B2929AC5BFE005BDC9F /* UILabel+Extension.swift */; };
+		D2571B2C29AD2ECC005BDC9F /* ReviewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2571B2B29AD2ECC005BDC9F /* ReviewType.swift */; };
 		D271BEA3299E99D40030210E /* CellSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D271BEA2299E99D40030210E /* CellSlider.swift */; };
 		D271BEA5299E99E10030210E /* CellSlider.xib in Resources */ = {isa = PBXBuildFile; fileRef = D271BEA4299E99E10030210E /* CellSlider.xib */; };
 		D271BEA7299E9B9B0030210E /* ImageSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D271BEA6299E9B9B0030210E /* ImageSlider.swift */; };
@@ -146,6 +148,8 @@
 		D2475E1A29A28A0C004949D9 /* MovieTopRated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieTopRated.swift; sourceTree = "<group>"; };
 		D2475E1C29A28A0C004949D9 /* HomeRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
 		D248E467298633D300BC1281 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		D2571B2929AC5BFE005BDC9F /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		D2571B2B29AD2ECC005BDC9F /* ReviewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewType.swift; sourceTree = "<group>"; };
 		D271BEA2299E99D40030210E /* CellSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellSlider.swift; sourceTree = "<group>"; };
 		D271BEA4299E99E10030210E /* CellSlider.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellSlider.xib; sourceTree = "<group>"; };
 		D271BEA6299E9B9B0030210E /* ImageSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSlider.swift; sourceTree = "<group>"; };
@@ -607,6 +611,7 @@
 			isa = PBXGroup;
 			children = (
 				D2C6648329A9A9AC008996A2 /* ReviewResult.swift */,
+				D2571B2B29AD2ECC005BDC9F /* ReviewType.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -687,6 +692,7 @@
 				D2F954D1298B0C0200F4CB4B /* UIViewController+Extension.swift */,
 				D219B54D299AD16C00348876 /* Array+Extension.swift */,
 				D222D1E429A58FAF00C3AD57 /* NSObject+Extension.swift */,
+				D2571B2929AC5BFE005BDC9F /* UILabel+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1059,6 +1065,7 @@
 				D2073EAC29899539006A577A /* ErrorPageRouter.swift in Sources */,
 				D284C4EB29A9CFBC00598D08 /* Review+UITableExtension.swift in Sources */,
 				D2C6648629A9A9AC008996A2 /* ReviewDataManager.swift in Sources */,
+				D2571B2A29AC5BFE005BDC9F /* UILabel+Extension.swift in Sources */,
 				D2F954D2298B0C0200F4CB4B /* UIViewController+Extension.swift in Sources */,
 				D2F08D31299C1A24009BA149 /* Endpoint.swift in Sources */,
 				D2073EAE29899696006A577A /* ErrorType.swift in Sources */,
@@ -1075,6 +1082,7 @@
 				D29F2C522987168E004B96D1 /* LaunchScreenViewController.swift in Sources */,
 				D29D511A298310870061ACCC /* TrendingProtocols.swift in Sources */,
 				D271BEA7299E9B9B0030210E /* ImageSlider.swift in Sources */,
+				D2571B2C29AD2ECC005BDC9F /* ReviewType.swift in Sources */,
 				C30893AE28A2F42B004B1860 /* AppDelegate.swift in Sources */,
 				D2F08D44299C39C8009BA149 /* DetailRouter.swift in Sources */,
 				D215D20329843EC000582CB5 /* TrendingDataManager.swift in Sources */,

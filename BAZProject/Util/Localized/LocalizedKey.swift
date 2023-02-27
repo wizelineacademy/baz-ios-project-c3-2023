@@ -61,6 +61,10 @@ extension String {
 
     // MARK: - CellReview
     static let cellReviewXibIdentifier = "CellReview"
+    static let cellReviewTitleShowMore = "Mostrar más"
+    static let cellReviewTitleHide = "Ocultar"
+    static let cellReviewWriteOn = "Escrito el"
+    static let cellReviewWriteBy = "Escrito por:"
 
     // MARK: ImageSlider
     static let imageSliderXibIdentifier = "ImageSlider"

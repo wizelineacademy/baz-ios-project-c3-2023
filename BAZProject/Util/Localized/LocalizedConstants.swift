@@ -93,4 +93,8 @@ enum LocalizedConstants {
 
     // MARK: - StarRated
     static let starRatedInitSection: Int = 0
+
+    // MARK: - CellReview
+    static let cellReviewNumberLines: Int = 3
+    static let cellReviewConstraintBottom: CGFloat = 32
 }

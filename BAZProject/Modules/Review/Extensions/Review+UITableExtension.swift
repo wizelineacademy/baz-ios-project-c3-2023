@@ -21,15 +21,6 @@ extension ReviewViewController: UITableViewDelegate {
                                                               width: Int(tableView.bounds.width))
         return headerView
     }
-
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        guard let id = getReview(indexPath.row)?.id else { return }
-//        if let cell = tableView.cellForRow(at: indexPath) as? CellReview {
-//            cell.addAccessoryView(accesory: .eyeFill)
-//        }
-//        let detail: DetailType = DetailType(mediaType: mediaType, idMedia: id)
-//        presenter?.showDetail(of: detail)
-//    }
 }
 
 extension ReviewViewController: UITableViewDataSource {
@@ -41,12 +32,22 @@ extension ReviewViewController: UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: CellReview.identifier) as? CellReview,
            let review = getReview(indexPath.row) {
             cell.backgroundColor = LocalizedConstants.commonPrimaryColor
-            cell.setData(title: "Escrito por: \(review.author ?? "")",
-                         urlPhoto: review.authorDetails?.avatarPath ?? "", rate: Double(review.authorDetails?.rating ?? 0), date: review.createdAt ?? "", content: review.content ?? "")
-//            cell.label.numberOfLines = 0
-//            cell.setData(title: movie.title ?? "", imageUrl: Endpoint.img(idImage: idImage, sizeImage: .w500).urlString)
+            let review: ReviewType = ReviewType(title: "\(String.cellReviewWriteBy) \(review.author ?? "")",
+                                                urlPhoto: review.authorDetails?.avatarPath ?? "",
+                                                rate: Double(review.authorDetails?.rating ?? .zero),
+                                                date: review.createdAt ?? "",
+                                                content: review.content ?? "")
+            cell.setData(with: review)
+            cell.delegate = self
             return cell
         }
         return UITableViewCell()
+    }
+}
+
+// MARK: - CellReviewDelegate
+extension ReviewViewController: CellReviewDelegate {
+    func showMore() {
+        reviewsTableView.reloadData()
     }
 }

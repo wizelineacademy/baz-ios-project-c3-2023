@@ -108,11 +108,11 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
 
     private func setupView() {
         initRegister()
-        navigationItem.searchController?.searchResultsUpdater = self
         setupRefreshControl()
         setupInfiniteScrollLoadingIndicator()
         setupFilterSegmentedControl()
-        addSearchBar()
+        self.navigationController?.navigationItem.searchController = addSearchBar()
+        self.navigationController?.navigationItem.searchController?.searchResultsUpdater = self
     }
 
     private func removeObservers() {

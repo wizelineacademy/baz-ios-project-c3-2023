@@ -99,6 +99,9 @@
                         <buttonConfiguration key="configuration" style="plain" title="Show more">
                             <color key="baseForegroundColor" red="1" green="0.4273083862" blue="0.29877976280000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </buttonConfiguration>
+                        <connections>
+                            <action selector="showMoreAction:" destination="S0I-dV-LKn" eventType="touchDown" id="dni-bC-YgH"/>
+                        </connections>
                     </button>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -120,9 +123,11 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="dateLabel" destination="9KD-cf-WIn" id="KDK-ta-LfI"/>
+                <outlet property="descriptionConstraintBottom" destination="BEX-wb-Rjz" id="6pi-fE-lDS"/>
                 <outlet property="descriptionLabel" destination="Dzd-bF-QPN" id="Pbe-1L-rzC"/>
                 <outlet property="photoImageView" destination="rgS-dg-UPm" id="Cgq-8a-T0A"/>
                 <outlet property="rateLabel" destination="bs3-S1-Xoo" id="dW4-TR-2pq"/>
+                <outlet property="showMoreButton" destination="bDq-VD-4Sp" id="aV2-oc-yJa"/>
                 <outlet property="titleLabel" destination="8rC-eF-VQy" id="d3Y-X1-7li"/>
             </connections>
             <point key="canvasLocation" x="287" y="27"/>
