@@ -51,6 +51,7 @@
 		CDB772C5299DE08200949A32 /* ReviewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB772C3299DE08200949A32 /* ReviewsTableViewCell.xib */; };
 		CDB772CF299E02FC00949A32 /* MovieSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB772CE299E02FC00949A32 /* MovieSave.swift */; };
 		CDD3FDA729A7EFFD00C6739C /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD3FDA629A7EFFD00C6739C /* Keychain.swift */; };
+		CDD3FDAA29A7F07600C6739C /* UrlComponentsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD3FDA929A7F07600C6739C /* UrlComponentsHelper.swift */; };
 		CDDE29B5299B59AC00D81ECC /* NSNotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDE29B4299B59AC00D81ECC /* NSNotificationNameExtension.swift */; };
 		CDDE29B8299BD3A400D81ECC /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDE29B7299BD3A400D81ECC /* UIViewExtension.swift */; };
 		CDE6ABDA298AECF100D6DB5C /* DecodableUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE6ABD9298AECF100D6DB5C /* DecodableUtility.swift */; };
@@ -119,6 +120,7 @@
 		CDB772C3299DE08200949A32 /* ReviewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewsTableViewCell.xib; sourceTree = "<group>"; };
 		CDB772CE299E02FC00949A32 /* MovieSave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSave.swift; sourceTree = "<group>"; };
 		CDD3FDA629A7EFFD00C6739C /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		CDD3FDA929A7F07600C6739C /* UrlComponentsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlComponentsHelper.swift; sourceTree = "<group>"; };
 		CDDE29B4299B59AC00D81ECC /* NSNotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSNotificationNameExtension.swift; sourceTree = "<group>"; };
 		CDDE29B7299BD3A400D81ECC /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		CDE6ABD9298AECF100D6DB5C /* DecodableUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodableUtility.swift; sourceTree = "<group>"; };
@@ -289,6 +291,14 @@
 			path = Keychain;
 			sourceTree = "<group>";
 		};
+		CDD3FDA829A7F06400C6739C /* UrlComponents */ = {
+			isa = PBXGroup;
+			children = (
+				CDD3FDA929A7F07600C6739C /* UrlComponentsHelper.swift */,
+			);
+			path = UrlComponents;
+			sourceTree = "<group>";
+		};
 		CDDE29B6299BD38A00D81ECC /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -302,6 +312,7 @@
 		CDE6ABD8298AECD500D6DB5C /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				CDD3FDA829A7F06400C6739C /* UrlComponents */,
 				CDD3FDA529A7EFCA00C6739C /* Keychain */,
 				CDB772CB299E023100949A32 /* Memento */,
 				CDDE29B6299BD38A00D81ECC /* Extensions */,
@@ -503,6 +514,7 @@
 				CD3BB2CB299CA53C0078C0FB /* Reviews.swift in Sources */,
 				CDE6AC0E298B7F3300D6DB5C /* MainPresenter.swift in Sources */,
 				CD54A8E72992BDC8004F8774 /* SearchMovieView.swift in Sources */,
+				CDD3FDAA29A7F07600C6739C /* UrlComponentsHelper.swift in Sources */,
 				CD54A8ED2992BDF6004F8774 /* SearchMoviePresenter.swift in Sources */,
 				CD4EDDEF29A1D8180006C742 /* WatchedMovieProtocols.swift in Sources */,
 				CD4EDDE829A1D7F90006C742 /* WatchedMovieViewController.swift in Sources */,
