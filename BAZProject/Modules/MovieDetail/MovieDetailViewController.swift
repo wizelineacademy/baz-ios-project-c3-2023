@@ -27,7 +27,7 @@ extension MovieDetailViewController: MovieDetailViewProtocol {
             self.lblMovieTitle.text = self.presenter?.movieDetail?.title ?? ""
             self.lblMovieOverview.text = self.presenter?.movieDetail?.overview ?? ""
         }
-        if let posterPath = self.presenter?.movieDetail?.posterPath, let imageURL = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)") {
+        if let imagePath = self.presenter?.movieDetail?.posterPath, let imageURL = URL(string: "https://image.tmdb.org/t/p/w500\(imagePath)") {
             imageURL.toImage() { image in
                 DispatchQueue.main.async {
                     self.imgMoviePoster.image = image
