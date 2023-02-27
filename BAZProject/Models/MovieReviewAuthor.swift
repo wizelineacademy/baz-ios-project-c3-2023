@@ -21,14 +21,14 @@ struct MovieReviewAuthor: Decodable {
     }
 }
 
-extension MovieReviewAuthor{
+extension MovieReviewAuthor {
     var averageStars: String {
         guard let rating = rating,
             rating > 0 else { return " " }
-        let stars = (Double(rating)/2.0).rounded()
+        let stars = (Double(rating) / 2.0).rounded()
         var strStars: String = ""
         for count in 0..<5 {
-            if count < Int(stars){
+            if count < Int(stars) {
                 strStars = strStars + "★"
             } else {
                 strStars = strStars + "☆"

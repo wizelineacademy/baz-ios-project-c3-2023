@@ -21,7 +21,7 @@ struct MovieDetail: Decodable {
     }
 }
 
-extension MovieDetail{
+extension MovieDetail {
     var listGenres: String {
         var genresInList = ""
         genres?.forEach({ genre in

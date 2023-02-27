@@ -12,10 +12,12 @@ class MovieSearchCatalogViewController: UIViewController {
     @IBOutlet weak var searchMovieCollection: UICollectionView!
     @IBOutlet weak var resultText: UILabel!
     
+    let resultTextTitle = NSLocalizedString("MSCVC.resultText", comment: "texTitle")
+    let resultTextComplement = NSLocalizedString("MSCVC.resultTextComplement", comment: "textComplement")
     var keywordToSearch: MovieKeyword?
     var movieApi = MovieAPI()
     var moviesToShow: [Movie]? {
-        didSet{
+        didSet {
             searchMovieCollection.reloadData()
         }
     }
@@ -33,7 +35,7 @@ class MovieSearchCatalogViewController: UIViewController {
         searchMovieCollection.register(UINib(nibName: "MovieGalleryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MovieGallery")
     }
     
-    func cellFlowlayout(){
+    func cellFlowlayout() {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.itemSize =  CGSize(width: 130, height: 220)
         flowLayout.sectionInset = UIEdgeInsets(top: 16, left: 8, bottom: 16, right: 8)
@@ -44,16 +46,16 @@ class MovieSearchCatalogViewController: UIViewController {
     func searchMovies(from text: String) {
         movieApi.searchMovie(textEncoded: text) { movies, error in
             if let movies = movies,
-               movies.count > 0{
+               movies.count > 0 {
                 self.hideNoResultText()
                 self.moviesToShow = movies
-            }else{
+            } else {
                 self.showNoResultText()
             }
         }
     }
     
-    func showDetailMovieViewController(sender: Any?){
+    func showDetailMovieViewController(sender: Any?) {
         let detailView = MovieDetailPViewController()
         guard let movieDetail =  sender as? Movie else { return }
         detailView.movieToShowDetail = movieDetail
@@ -64,7 +66,7 @@ class MovieSearchCatalogViewController: UIViewController {
         resultText.isHidden = false
         searchMovieCollection.isHidden = true
         if let keyword = keywordToSearch?.name {
-            resultText.text = "No encontramos nada relacionado con \n\"\(keyword)\".\nRecuerda que puedes buscar por palabra clave o título"
+            resultText.text = "\(resultTextTitle)" + "\n\"\(keyword)\"." + "\(resultTextComplement)"
         }
     }
     

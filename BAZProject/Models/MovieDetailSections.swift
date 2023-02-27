@@ -13,7 +13,7 @@ enum MovieDetailSections: Int {
     case recommendation = 3
     
     var title: String {
-        switch self{
+        switch self {
         case .cast:
             return "Elenco"
         case .similar:

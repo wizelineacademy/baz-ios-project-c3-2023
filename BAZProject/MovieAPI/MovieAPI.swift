@@ -51,7 +51,7 @@ class MovieAPI {
     ///
     
     static func fetchPhoto(partialURLImage: String, completionHandler: @escaping (UIImage?, Error?) -> Void) {
-        if let urlImage =  URL(string: "https://image.tmdb.org/t/p/w500\(partialURLImage)"){
+        if let urlImage =  URL(string: "https://image.tmdb.org/t/p/w500\(partialURLImage)") {
             let task = URLSession.shared.dataTask(with: urlImage) { (data, response, error) in
                 if let error = error {
                     completionHandler(nil, error)
@@ -70,7 +70,7 @@ class MovieAPI {
                 }
             }
             task.resume()
-        }else{
+        } else {
             completionHandler(UIImage(named: "poster"), nil)
         }
     }
@@ -83,13 +83,13 @@ class MovieAPI {
     ///
 
     func getMovieDetail(movieID: Int, completionHandler: @escaping (MovieDetail?, Error?) -> Void) {
-        if let urlMovieDetail = URL(string: "https://api.themoviedb.org/3/movie/\(movieID)?api_key=\(apiKey)&\(language)&\(region)"){
+        if let urlMovieDetail = URL(string: "https://api.themoviedb.org/3/movie/\(movieID)?api_key=\(apiKey)&\(language)&\(region)") {
             let task = URLSession.shared.dataTask(with: urlMovieDetail) { data, response, error in
                 if let error = error {
                     completionHandler(nil, error)
                 }
                 if let data = data,
-                   let json = try? JSONDecoder().decode(MovieDetail.self, from: data){
+                   let json = try? JSONDecoder().decode(MovieDetail.self, from: data) {
                     DispatchQueue.main.async {
                         completionHandler(json, nil)
                     }
@@ -109,13 +109,13 @@ class MovieAPI {
     ///
     
     func getMovieCast(movieID: Int, completionHandler: @escaping(MovieAPICast?, Error?) -> Void) {
-        if let urlMovieCast = URL(string: "https://api.themoviedb.org/3/movie/\(movieID)/credits?api_key=\(apiKey)&\(language)&\(region)"){
+        if let urlMovieCast = URL(string: "https://api.themoviedb.org/3/movie/\(movieID)/credits?api_key=\(apiKey)&\(language)&\(region)") {
             let task = URLSession.shared.dataTask(with: urlMovieCast) { data, response, error in
-                if let error = error{
+                if let error = error {
                     completionHandler(nil, error)
                 }
                 if let data = data,
-                   let cast = try?  JSONDecoder().decode(MovieAPICast.self, from: data){
+                   let cast = try?  JSONDecoder().decode(MovieAPICast.self, from: data) {
                     DispatchQueue.main.async {
                         completionHandler(cast, nil)
                     }
@@ -136,13 +136,13 @@ class MovieAPI {
     ///
 
     func getMovies(movieID: Int, queryType: MovieAPI.consult, completionHandler: @escaping([Movie]?, Error?) -> Void) {
-        if let urlSimilarMovies = URL(string: "https://api.themoviedb.org/3/movie/\(movieID)/\(queryType)?api_key=\(apiKey)&\(language)&\(region)"){
+        if let urlSimilarMovies = URL(string: "https://api.themoviedb.org/3/movie/\(movieID)/\(queryType)?api_key=\(apiKey)&\(language)&\(region)") {
             let task = URLSession.shared.dataTask(with: urlSimilarMovies) { data, response, error in
                 if let error = error {
                     completionHandler(nil, error)
                 }
                 if let data = data,
-                   let result =  try? JSONDecoder().decode(MovieAPIResult.self, from: data){
+                   let result =  try? JSONDecoder().decode(MovieAPIResult.self, from: data) {
                     DispatchQueue.main.async {
                         completionHandler(result.results, nil )
                     }
@@ -162,13 +162,13 @@ class MovieAPI {
     ///
 
     func getMovieReviews(movieID: Int, completionHandler: @escaping([MovieReview]?, Error?) -> Void) {
-        if let urlSimilarMovies = URL(string: "https://api.themoviedb.org/3/movie/\(movieID)/reviews?api_key=\(apiKey)"){
+        if let urlSimilarMovies = URL(string: "https://api.themoviedb.org/3/movie/\(movieID)/reviews?api_key=\(apiKey)") {
             let task = URLSession.shared.dataTask(with: urlSimilarMovies) { data, response, error in
                 if let error = error {
                     completionHandler(nil, error)
                 }
                 if let data = data,
-                   let result =  try? JSONDecoder().decode(MovieAPIReviews.self, from: data){
+                   let result =  try? JSONDecoder().decode(MovieAPIReviews.self, from: data) {
                     DispatchQueue.main.async {
                         completionHandler(result.results, nil )
                     }
@@ -189,13 +189,13 @@ class MovieAPI {
     func searchMovie(textEncoded: String, completionHandler: @escaping([Movie]?, Error?) -> Void) {
         let textEncoded = textEncoded.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)        
         if  let textEncoded = textEncoded,
-            let urlSimilarMovies = URL(string: "https://api.themoviedb.org/3/search/movie?api_key=\(apiKey)&\(language)&\(region)&query=\(textEncoded)"){
+            let urlSimilarMovies = URL(string: "https://api.themoviedb.org/3/search/movie?api_key=\(apiKey)&\(language)&\(region)&query=\(textEncoded)") {
             let task = URLSession.shared.dataTask(with: urlSimilarMovies) { data, response, error in
                 if let error = error {
                     completionHandler(nil, error)
                 }
                 if let data = data,
-                   let result =  try? JSONDecoder().decode(MovieAPIResult.self, from: data){
+                   let result =  try? JSONDecoder().decode(MovieAPIResult.self, from: data) {
                     DispatchQueue.main.async {
                         completionHandler(result.results, nil )
                     }
@@ -216,13 +216,13 @@ class MovieAPI {
     func searchKeywords(textEncoded: String, completionHandler: @escaping([MovieKeyword]?, Error?) -> Void) {
         let textEncoded = textEncoded.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
         if  let textEncoded = textEncoded,
-            let urlSimilarMovies = URL(string: "https://api.themoviedb.org/3/search/keyword?api_key=\(apiKey)&page=1&query=\(textEncoded)"){
+            let urlSimilarMovies = URL(string: "https://api.themoviedb.org/3/search/keyword?api_key=\(apiKey)&page=1&query=\(textEncoded)") {
             let task = URLSession.shared.dataTask(with: urlSimilarMovies) { data, response, error in
                 if let error = error {
                     completionHandler(nil, error)
                 }
                 if let data = data,
-                   let result =  try? JSONDecoder().decode(MovieAPIKeyword.self, from: data){
+                   let result =  try? JSONDecoder().decode(MovieAPIKeyword.self, from: data) {
                     DispatchQueue.main.async {
                         completionHandler(result.results, nil )
                     }

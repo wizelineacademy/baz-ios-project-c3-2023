@@ -13,7 +13,7 @@ struct MovieReview: Decodable {
     let authorDetail: MovieReviewAuthor
     let createdAt: String
     
-    enum CodingKeys: String, CodingKey{
+    enum CodingKeys: String, CodingKey {
         case author = "author"
         case content = "content"
         case authorDetail = "author_details"

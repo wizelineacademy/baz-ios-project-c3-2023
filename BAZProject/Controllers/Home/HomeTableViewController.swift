@@ -72,7 +72,7 @@ class HomeTableViewController: UITableViewController {
             self.tableView.reloadSections(index, with: .none)
         }
     }
-
+    
     func showDetailMovieViewController(sender: Any?) {
         let detailView = MovieDetailPViewController()
         guard let movieDetail =  sender as? Movie else { return }
