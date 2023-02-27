@@ -25,6 +25,7 @@ class CellReview: UITableViewCell {
             self.descriptionLabel.isUserInteractionEnabled = true
             let tapgesture = UITapGestureRecognizer(target: self, action: #selector(tappedOnLabel))
             self.descriptionLabel.addGestureRecognizer(tapgesture)
+            self.descriptionLabel.numberOfLines = 3
         }
     }
 
@@ -55,6 +56,9 @@ class CellReview: UITableViewCell {
         rateLabel.text = rate.description
         dateLabel.text = "Escrito el \(date.getDateFormatted())"
         descriptionLabel.text = content
+        if descriptionLabel.countLines() > 3 {
+
+        }
     }
 }
 
@@ -89,4 +93,16 @@ extension UITapGestureRecognizer {
         return NSLocationInRange(indexOfCharacter, targetRange)
     }
 
+}
+
+extension UILabel {
+  func countLines() -> Int {
+    guard let myText = self.text as NSString? else {
+      return 0
+    }
+    // Call self.layoutIfNeeded() if your view uses auto layout
+    let rect = CGSize(width: self.bounds.width, height: CGFloat.greatestFiniteMagnitude)
+    let labelSize = myText.boundingRect(with: rect, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: self.font as Any], context: nil)
+    return Int(ceil(CGFloat(labelSize.height) / self.font.lineHeight))
+  }
 }

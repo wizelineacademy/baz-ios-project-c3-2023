@@ -25,7 +25,7 @@
                             <constraint firstAttribute="height" constant="60" id="rTd-Cw-J4C"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Description" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dzd-bF-QPN">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Description" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dzd-bF-QPN">
                         <rect key="frame" x="84" y="101.33333333333333" width="476" height="20.666666666666671"/>
                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="17"/>
                         <color key="textColor" name="SubtitleColor"/>
@@ -34,7 +34,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TzS-EV-DsP">
                         <rect key="frame" x="84" y="16" width="476" height="77.333333333333329"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="Write by" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8rC-eF-VQy">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Write by" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8rC-eF-VQy">
                                 <rect key="frame" x="0.0" y="0.0" width="388" height="21.666666666666668"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="18"/>
                                 <color key="textColor" name="SecondaryColor"/>
@@ -93,16 +93,26 @@
                             <constraint firstAttribute="trailing" secondItem="Pg6-Ic-Seg" secondAttribute="trailing" id="qIf-Pz-o7f"/>
                         </constraints>
                     </view>
+                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bDq-VD-4Sp">
+                        <rect key="frame" x="16" y="103" width="544" height="35"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title="Show more">
+                            <color key="baseForegroundColor" red="1" green="0.4273083862" blue="0.29877976280000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </buttonConfiguration>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="Dzd-bF-QPN" secondAttribute="bottom" constant="16" id="BEX-wb-Rjz"/>
+                    <constraint firstAttribute="bottom" secondItem="bDq-VD-4Sp" secondAttribute="bottom" id="DBX-Ik-EUC"/>
                     <constraint firstItem="TzS-EV-DsP" firstAttribute="leading" secondItem="rgS-dg-UPm" secondAttribute="trailing" constant="8" id="L6S-7L-xBw"/>
                     <constraint firstAttribute="trailing" secondItem="TzS-EV-DsP" secondAttribute="trailing" constant="16" id="L9C-qU-4Uj"/>
                     <constraint firstItem="Dzd-bF-QPN" firstAttribute="trailing" secondItem="TzS-EV-DsP" secondAttribute="trailing" id="O3j-gd-DHG"/>
                     <constraint firstItem="Dzd-bF-QPN" firstAttribute="leading" secondItem="TzS-EV-DsP" secondAttribute="leading" id="SRI-Ai-Owm"/>
+                    <constraint firstItem="bDq-VD-4Sp" firstAttribute="trailing" secondItem="Dzd-bF-QPN" secondAttribute="trailing" id="ZIN-qr-kSV"/>
                     <constraint firstItem="rgS-dg-UPm" firstAttribute="leading" secondItem="d80-Hc-V3N" secondAttribute="leading" constant="16" id="eR4-WR-ZF0"/>
                     <constraint firstItem="rgS-dg-UPm" firstAttribute="top" secondItem="d80-Hc-V3N" secondAttribute="top" constant="16" id="hFZ-iO-Mpm"/>
+                    <constraint firstItem="bDq-VD-4Sp" firstAttribute="leading" secondItem="rgS-dg-UPm" secondAttribute="leading" id="sFE-kb-nIl"/>
                     <constraint firstItem="TzS-EV-DsP" firstAttribute="top" secondItem="rgS-dg-UPm" secondAttribute="top" id="xuj-x1-W7U"/>
                     <constraint firstItem="Dzd-bF-QPN" firstAttribute="top" secondItem="TzS-EV-DsP" secondAttribute="bottom" constant="8" id="y7q-Fh-P7u"/>
                 </constraints>
@@ -115,7 +125,7 @@
                 <outlet property="rateLabel" destination="bs3-S1-Xoo" id="dW4-TR-2pq"/>
                 <outlet property="titleLabel" destination="8rC-eF-VQy" id="d3Y-X1-7li"/>
             </connections>
-            <point key="canvasLocation" x="207.63358778625954" y="40.845070422535215"/>
+            <point key="canvasLocation" x="287" y="27"/>
         </tableViewCell>
     </objects>
     <resources>
