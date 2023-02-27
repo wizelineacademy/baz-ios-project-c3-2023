@@ -76,7 +76,11 @@ extension MainPresenter: MainPresenterProtocol {
         getDataMovies()
     }
     
-    @objc func countMovieWatched() {
+    @objc func countMovieWatched(_ notification: Notification) {
+        if let info = notification.object as? [String: Int],
+            let idMovie = info["idMovie"]{
+            interactor?.saveMovieWatched(idMovie: idMovie)
+        }
         interactor?.countMovieWatched += 1
     }
     

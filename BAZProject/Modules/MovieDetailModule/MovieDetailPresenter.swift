@@ -40,8 +40,12 @@ final class MovieDetailPresenter: NSObject {
 }
 
 extension MovieDetailPresenter: MovieDetailPresenterProtocol {
-    func saveMovie() {
-        interactor?.saveMovie()
+    func deleteToFavoriteMovie() {
+        interactor?.deleteToFavoriteMovie()
+    }
+    
+    func saveFavoriteMovie() {
+        interactor?.saveFavoriteMovie()
     }
     
     func goToMovieDetail(data: Movie) {
@@ -66,7 +70,7 @@ extension MovieDetailPresenter: MovieDetailPresenterProtocol {
     }
     
     private func pushObserver() {
-        NotificationCenter.default.post(name: .countMovieWatch, object: nil)
+        NotificationCenter.default.post(name: .countMovieWatch, object: ["idMovie": interactor?.data?.id])
     }
     
     private func getPosterImage(poster: UIImageView) {

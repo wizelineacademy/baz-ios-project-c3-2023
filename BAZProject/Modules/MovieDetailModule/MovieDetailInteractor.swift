@@ -17,27 +17,19 @@ final class MovieDetailInteractor {
 }
 
 extension MovieDetailInteractor: MovieDetailInterceptorInputProtocol {
-//TODO: - Remove print once this is working properly
-    func saveMovie() {
-        debugPrint("test of saveMovie")
-        var allDataMovie: [Movie]?
+    func deleteToFavoriteMovie() {
+        guard let idMovie = data?.id else { return }
+        saveData.delete(title: .favoriteMovies, idMovie: idMovie)
+    }
+    
+    func saveFavoriteMovie() {
         do {
-            allDataMovie = try? saveData.load(title: saveData.watchedMovies)
-            guard let data = data else { return }
-            if ((allDataMovie?.isEmpty) != nil) {
-                allDataMovie?.append(data)
-            } else {
-                allDataMovie = [data]
+            guard let idMovie = data?.id else { return }
+            if !saveData.isSave(title: .favoriteMovies, idMovie: idMovie) {
+                try saveData.save(idMovie, title: .favoriteMovies)
             }
-            guard let allDataMovie = allDataMovie else { return }
-            try saveData.save(allDataMovie, title: saveData.watchedMovies)
         } catch {
-            debugPrint("error")
-        }
-        do {
-            if let movies =  try? saveData.load(title: saveData.watchedMovies) {
-                debugPrint(movies)
-            }
+            debugPrint("Error")
         }
     }
     
