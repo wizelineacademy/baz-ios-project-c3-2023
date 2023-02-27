@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol CategoryTableCellDelegate {
+protocol CategoryTableCellDelegate: AnyObject {
     func didSelectMovie(movieId: Int, indexRow: Int)
 }
 
@@ -15,8 +15,12 @@ class CategoryTableViewCell: UITableViewCell {
     
     @IBOutlet weak var collectionToCarrucel: UICollectionView!
     
-    var moviesToShow: [Movie] = []
-    var categoryTableCellDelegate: CategoryTableCellDelegate?
+    var moviesToShow: [Movie] = [] {
+        didSet {
+            collectionToCarrucel.reloadData()
+        }
+    }
+    weak var categoryTableCellDelegate: CategoryTableCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
