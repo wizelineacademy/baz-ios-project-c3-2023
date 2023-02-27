@@ -22,7 +22,7 @@ protocol ReviewPresenterProtocol: AnyObject {
     var router: ReviewRouterProtocol? { get set}
     var view: ReviewViewProtocol? { get set }
     var interactor: ReviewInteractorInputProtocol? { get set }
-    
+
     func willFetchReview(of idMovie: String)
 }
 
@@ -42,7 +42,7 @@ protocol ReviewInteractorInputProtocol: AnyObject {
 // MARK: Interactor Input (Interactor -> DataManager)
 protocol ReviewDataManagerInputProtocol: AnyObject {
     var interactor: ReviewDataManagerOutputProtocol? { get set }
-    
+
     /// This method will request for Review.
     /// - Parameters:
     ///   - urlString: The url which returns Review.

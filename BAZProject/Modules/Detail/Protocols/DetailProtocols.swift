@@ -12,6 +12,7 @@ protocol DetailViewProtocol: AnyObject {
     var detailType: DetailType? { get set }
 
     func updateView(data: MovieDetailResult)
+    func updateView(data: [ReviewResult])
     func stopLoading()
     func setErrorGettingData(_ status: Bool)
 }
@@ -22,6 +23,7 @@ protocol DetailPresenterProtocol: AnyObject {
     var interactor: DetailInteractorInputProtocol? { get set }
 
     func willFetchMedia(detailType: DetailType)
+    func willFetchReview(of idMovie: String)
 }
 
 protocol DetailRouterProtocol: AnyObject {
@@ -32,6 +34,7 @@ protocol DetailRouterProtocol: AnyObject {
 
 protocol DetailInteractorOutputProtocol: AnyObject {
     func onReceivedMedia(result: MovieDetailResult)
+    func onReceivedReview(_ result: [ReviewResult])
     func showViewError(_ error: Error)
 }
 
@@ -40,6 +43,7 @@ protocol DetailInteractorInputProtocol: AnyObject {
     var dataManager: DetailDataManagerInputProtocol? { get set }
 
     func fetchMedia(detailType: DetailType)
+    func fetchReview(of idMovie: String)
 }
 
 // Interactor > DataManager
@@ -50,10 +54,16 @@ protocol DetailDataManagerInputProtocol: AnyObject {
     /// - Parameters:
     ///   - urlString: The url which returns the media of movie, person, o tv.
     func requestMedia(_ urlString: String)
+
+    /// This method will request for Review.
+    /// - Parameters:
+    ///   - urlString: The url which returns Review.
+    func requestReview(_ urlString: String)
 }
 
 // DataManager > Interactor
 protocol DetailDataManagerOutputProtocol: AnyObject {
     func handleGetMediaMovie(_ result: MovieDetailResult)
+    func handleGetReview(_ result: [ReviewResult])
     func handleErrorService(_ error: Error)
 }

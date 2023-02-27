@@ -75,6 +75,7 @@ final class DetailViewController: UIViewController {
     private func getData() {
         if let detailType = detailType {
             presenter?.willFetchMedia(detailType: detailType)
+            presenter?.willFetchReview(of: detailType.idMedia.description)
         }
     }
 
@@ -88,6 +89,10 @@ final class DetailViewController: UIViewController {
 }
 
 extension DetailViewController: DetailViewProtocol {
+    func updateView(data: [ReviewResult]) {
+        
+    }
+
     func updateView(data: MovieDetailResult) {
         if let data = data.imagesArrayUrlString, !data.isEmpty {
             showImageSlider()

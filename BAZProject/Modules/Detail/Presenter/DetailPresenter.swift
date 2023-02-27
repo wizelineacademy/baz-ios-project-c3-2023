@@ -17,6 +17,10 @@ extension DetailPresenter: DetailPresenterProtocol {
     func willFetchMedia(detailType: DetailType) {
         interactor?.fetchMedia(detailType: detailType)
     }
+
+    func willFetchReview(of idMovie: String) {
+        interactor?.fetchReview(of: idMovie)
+    }
 }
 
 extension DetailPresenter: DetailInteractorOutputProtocol {
@@ -24,6 +28,11 @@ extension DetailPresenter: DetailInteractorOutputProtocol {
         view?.setErrorGettingData(false)
         view?.updateView(data: result)
         view?.stopLoading()
+    }
+
+    func onReceivedReview(_ result: [ReviewResult]) {
+        view?.setErrorGettingData(false)
+        view?.updateView(data: result)
     }
 
     func showViewError(_ error: Error) {
