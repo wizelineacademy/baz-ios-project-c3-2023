@@ -16,6 +16,7 @@ final class DetailViewController: UIViewController {
     // MARK: - Private properties
     private var errorGetData: Bool = false
     private var isLoading: Bool = true
+    private var numberCalls: Int = 0
 
     @IBOutlet weak private var imageSlider: ImageSlider!
     @IBOutlet weak private var titleLabelText: UILabel! {
@@ -76,6 +77,7 @@ final class DetailViewController: UIViewController {
         if let detailType = detailType {
             presenter?.willFetchMedia(detailType: detailType)
             presenter?.willFetchReview(of: detailType.idMedia.description)
+            numberCalls = 2
         }
     }
 
@@ -86,11 +88,18 @@ final class DetailViewController: UIViewController {
                                             userInfo: [LocalizedConstants.notificationCenterNameParamId: String(id)])
         }
     }
+
+    private func removeLoaderFromView() {
+        guaranteeMainThread {
+            self.isLoading = false
+            self.view.removeLoader()
+        }
+    }
 }
 
 extension DetailViewController: DetailViewProtocol {
     func updateView(data: [ReviewResult]) {
-        
+       // TODO: add logic
     }
 
     func updateView(data: MovieDetailResult) {
@@ -105,10 +114,9 @@ extension DetailViewController: DetailViewProtocol {
     }
 
     func stopLoading() {
-        guaranteeMainThread {
-            self.isLoading = false
-            self.view.removeLoader()
-        }
+        numberCalls -= 1
+        if numberCalls != .zero { return }
+        removeLoaderFromView()
     }
 
     func setErrorGettingData(_ status: Bool) {

@@ -33,6 +33,7 @@ extension DetailPresenter: DetailInteractorOutputProtocol {
     func onReceivedReview(_ result: [ReviewResult]) {
         view?.setErrorGettingData(false)
         view?.updateView(data: result)
+        view?.stopLoading()
     }
 
     func showViewError(_ error: Error) {
