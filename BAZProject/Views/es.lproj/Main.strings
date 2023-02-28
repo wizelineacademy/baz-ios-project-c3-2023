@@ -1,0 +1,39 @@
+
+/* Class = "UISearchBar"; placeholder = "¿Qué estas buscando?"; ObjectID = "458-AR-vQE"; */
+"458-AR-vQE.placeholder" = "¿Qué estas buscando?";
+
+/* Class = "UILabel"; text = "No encontramos nada relacionado con \"\". \\nPuedes buscar palabra clave o título."; ObjectID = "6os-RG-dB2"; */
+"6os-RG-dB2.text" = "";
+
+/* Class = "UINavigationItem"; title = "movie CLUB"; ObjectID = "8E9-i5-K0G"; */
+"8E9-i5-K0G.title" = "movie CLUB";
+
+/* Class = "UIViewController"; title = "Peliculas"; ObjectID = "AWJ-li-gCv"; */
+"AWJ-li-gCv.title" = "Peliculas";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "Arg-CC-td5"; */
+"Arg-CC-td5.title" = " ";
+
+/* Class = "UINavigationItem"; title = "movie CLUB"; ObjectID = "Bzh-7b-T8L"; */
+"Bzh-7b-T8L.title" = "movie CLUB";
+
+/* Class = "UITableViewController"; title = "movie CLUB"; ObjectID = "DF1-ZG-ayL"; */
+"DF1-ZG-ayL.title" = "movie CLUB";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "KB9-cN-FsL"; */
+"KB9-cN-FsL.title" = " ";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "YM2-4a-q9B"; */
+"YM2-4a-q9B.title" = " ";
+
+/* Class = "UINavigationItem"; title = "movie CLUB"; ObjectID = "k2b-0F-jVb"; */
+"k2b-0F-jVb.title" = "movie CLUB";
+
+/* Class = "UILabel"; text = "    "; ObjectID = "zvm-ak-R8I"; */
+"zvm-ak-R8I.text" = "    ";
+
+/* Class = "UILabel"; text = "    "; ObjectID = "SzD-7y-Zr9"; */
+"SzD-7y-Zr9.text" = "Has visualizado";
+
+/* Class = "UILabel"; text = "    "; ObjectID = "VY2-ek-iC9"; */
+"VY2-ek-iC9.text" = "detalles de peliculas.";
