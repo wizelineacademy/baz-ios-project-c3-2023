@@ -27,7 +27,6 @@ extension MovieDetailInteractor: MovieDetailInterceptorInputProtocol {
             guard let idMovie = data?.id else { return }
             if !saveData.isSave(title: .favoriteMovies, idMovie: idMovie) {
                 try saveData.save(idMovie, title: .favoriteMovies)
-                let data = try? saveData.load(title: .favoriteMovies)
             }
         } catch {
             debugPrint("Error")

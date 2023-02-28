@@ -12,16 +12,6 @@ class WatchedMovieInteractor {
     var getDataMovies: [Movie]?
     var getIdMovies: [Int]?
     let saveData: SaveMovies = SaveMovies()
-    var count = 0
-    
-    func setIdMovies() {
-        count = 0
-        do {
-            getIdMovies = nil
-            getIdMovies = try? saveData.load(title: .watchedMovies)
-        }
-    }
-
 }
 
 extension WatchedMovieInteractor: WatchedMovieInteractorInputProtocols {
@@ -43,5 +33,13 @@ extension WatchedMovieInteractor: WatchedMovieInteractorInputProtocols {
             }
         }
     }
+    
+    func setIdMovies() {
+        do {
+            getIdMovies = nil
+            getIdMovies = try? saveData.load(title: .watchedMovies)
+        }
+    }
+
     
 }
