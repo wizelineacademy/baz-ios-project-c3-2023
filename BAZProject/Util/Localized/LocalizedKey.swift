@@ -79,6 +79,7 @@ extension String {
     static let detailXibIdentifier = "DetailView"
     static let detailViewReviewTitle = "Reseñas:"
     static let detailShowAllTitle = "Mostrar todas"
+    static let detailReviewsEmptyState = "No se cuenta con reseñas aún."
 
     // MARK: StarRated
     static let starRatedXibIdentifier = "StarRatedView"
