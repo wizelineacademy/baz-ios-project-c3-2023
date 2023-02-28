@@ -89,25 +89,13 @@ final class DetailViewController: UIViewController {
     }
 
     func getTableViewCell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        var cell: UITableViewCell
         if dataIsEmpty() {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: CellEmptyState.identifier) as? CellEmptyState {
-                cell.setData(message: "No se cuenta con reseñas aún.")
-                return cell
-            }
-        } else if let cell = tableView.dequeueReusableCell(withIdentifier: CellReview.identifier) as? CellReview,
-           let review = getReview(indexPath.row) {
-            cell.backgroundColor = LocalizedConstants.commonPrimaryColor
-            let review: ReviewType = ReviewType(title: "\(String.cellReviewWriteBy) \(review.author ?? "")",
-                                                urlPhoto: review.authorDetails?.avatarPath ?? "",
-                                                rate: Double(review.authorDetails?.rating ?? .zero),
-                                                date: review.createdAt ?? "",
-                                                content: review.content ?? "")
-            cell.setNumberLineInZero()
-            cell.hideButtonShowMore()
-            cell.setData(with: review)
-            return cell
+            cell = getCellEmptyState(tableView: tableView, indexPath: indexPath)
+        } else {
+            cell = getCellReview(tableView: tableView, indexPath: indexPath)
         }
-        return UITableViewCell()
+        return cell
     }
 
     // MARK: - Private methods
@@ -177,6 +165,30 @@ final class DetailViewController: UIViewController {
             self.firstReview.append(first)
         }
         self.reviews = data
+    }
+    private func getCellEmptyState(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: CellEmptyState.identifier) as? CellEmptyState {
+            cell.setData(message: .detailReviewsEmptyState)
+            return cell
+        }
+        return UITableViewCell()
+    }
+
+    private func getCellReview(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: CellReview.identifier) as? CellReview,
+           let review = getReview(indexPath.row) {
+            cell.backgroundColor = LocalizedConstants.commonPrimaryColor
+            let review: ReviewType = ReviewType(title: "\(String.cellReviewWriteBy) \(review.author ?? "")",
+                                                urlPhoto: review.authorDetails?.avatarPath ?? "",
+                                                rate: Double(review.authorDetails?.rating ?? .zero),
+                                                date: review.createdAt ?? "",
+                                                content: review.content ?? "")
+            cell.setNumberLineInZero()
+            cell.hideButtonShowMore()
+            cell.setData(with: review)
+            return cell
+        }
+        return UITableViewCell()
     }
 }
 
