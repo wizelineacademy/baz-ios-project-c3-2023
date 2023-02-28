@@ -12,23 +12,19 @@ final class DetailPresenter {
     weak var view: DetailViewProtocol?
     var interactor: DetailInteractorInputProtocol?
 
-    private var numberCalls: Int = .zero
+    private var loading: Bool = false
     private var errorGetData: Bool = false
 
     // MARK: - Private methods
     private func stopLoading() {
         errorGetData = false
-        popCallService()
-    }
-
-    private func addCallService() {
-        numberCalls += LocalizedConstants.commonIncrementNumber
-    }
-
-    private func popCallService() {
-        numberCalls -= LocalizedConstants.commonIncrementNumber
-        if numberCalls != .zero { return }
+        loading = false
         view?.stopLoading()
+    }
+
+    private func setLoading() {
+        loading = true
+        errorGetData = false
     }
 
     private func getErrorType(from error: Error) -> ErrorType {
@@ -47,7 +43,7 @@ final class DetailPresenter {
 
 extension DetailPresenter: DetailPresenterProtocol {
     func isLoading() -> Bool {
-        return numberCalls != .zero
+        loading
     }
 
     func errorGettingData() -> Bool {
@@ -55,13 +51,13 @@ extension DetailPresenter: DetailPresenterProtocol {
     }
 
     func willFetchMedia(detailType: DetailType) {
+        setLoading()
         interactor?.fetchMedia(detailType: detailType)
-        addCallService()
     }
 
     func willFetchReview(of idMovie: String) {
+        setLoading()
         interactor?.fetchReview(of: idMovie)
-        addCallService()
     }
 }
 
@@ -77,7 +73,6 @@ extension DetailPresenter: DetailInteractorOutputProtocol {
     }
 
     func showViewError(_ error: Error) {
-        numberCalls -= LocalizedConstants.commonIncrementNumber
         if errorGetData { return }
         errorGetData = true
         router?.showViewError(getErrorType(from: error))
