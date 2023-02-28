@@ -17,7 +17,6 @@ final class DetailPresenter {
 
     // MARK: - Private methods
     private func stopLoading() {
-        view?.setErrorGettingData(false)
         errorGetData = false
         popCallService()
     }
@@ -31,11 +30,28 @@ final class DetailPresenter {
         if numberCalls != .zero { return }
         view?.stopLoading()
     }
+
+    private func getErrorType(from error: Error) -> ErrorType {
+        var errorModel: ErrorType
+        if let fetchedError: ServiceError = error as? ServiceError {
+            errorModel = ErrorType(serviceError: fetchedError)
+        } else {
+            errorModel = ErrorType(title: error.localizedDescription,
+                                   message: "Error code: \(error._code) - \(error._domain)")
+        }
+
+        errorModel.setTitleNavBar(.trendingTitle)
+        return errorModel
+    }
 }
 
 extension DetailPresenter: DetailPresenterProtocol {
     func isLoading() -> Bool {
         return numberCalls != .zero
+    }
+
+    func errorGettingData() -> Bool {
+        return errorGetData
     }
 
     func willFetchMedia(detailType: DetailType) {
@@ -61,18 +77,9 @@ extension DetailPresenter: DetailInteractorOutputProtocol {
     }
 
     func showViewError(_ error: Error) {
+        numberCalls -= LocalizedConstants.commonIncrementNumber
         if errorGetData { return }
         errorGetData = true
-        var errorModel: ErrorType
-        if let fetchedError: ServiceError = error as? ServiceError {
-            errorModel = ErrorType(serviceError: fetchedError)
-        } else {
-            errorModel = ErrorType(title: error.localizedDescription,
-                                   message: "Error code: \(error._code) - \(error._domain)")
-        }
-
-        errorModel.setTitleNavBar(.trendingTitle)
-        view?.setErrorGettingData(true)
-        router?.showViewError(errorModel)
+        router?.showViewError(getErrorType(from: error))
     }
 }

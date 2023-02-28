@@ -14,7 +14,6 @@ final class DetailViewController: UIViewController {
     var detailType: DetailType?
 
     // MARK: - Private properties
-    private var errorGetData: Bool = false
     private var reviews: [ReviewResult] = []
     private var firstReview: [ReviewResult] = []
 
@@ -55,11 +54,12 @@ final class DetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        if (presenter?.isLoading() ?? false) || errorGetData {
+        guard let presenter = presenter else { return }
+        if presenter.isLoading() {
             showLoader()
         }
 
-        if errorGetData {
+        if presenter.errorGettingData() {
             getData()
         }
 
@@ -173,9 +173,5 @@ extension DetailViewController: DetailViewProtocol {
         guaranteeMainThread {
             self.view.removeLoader()
         }
-    }
-
-    func setErrorGettingData(_ status: Bool) {
-        errorGetData = status
     }
 }

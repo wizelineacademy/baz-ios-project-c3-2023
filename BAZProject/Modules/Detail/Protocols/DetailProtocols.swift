@@ -14,7 +14,6 @@ protocol DetailViewProtocol: AnyObject {
     func updateView(data: MovieDetailResult)
     func updateView(data: [ReviewResult])
     func stopLoading()
-    func setErrorGettingData(_ status: Bool)
 }
 
 protocol DetailPresenterProtocol: AnyObject {
@@ -23,6 +22,7 @@ protocol DetailPresenterProtocol: AnyObject {
     var interactor: DetailInteractorInputProtocol? { get set }
 
     func isLoading() -> Bool
+    func errorGettingData() -> Bool
     func willFetchMedia(detailType: DetailType)
     func willFetchReview(of idMovie: String)
 }
