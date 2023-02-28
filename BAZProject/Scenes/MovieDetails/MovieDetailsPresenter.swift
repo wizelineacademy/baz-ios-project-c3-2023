@@ -10,6 +10,7 @@ import Foundation
 protocol MovieDetailsPresentationLogic {
     func presentLoadView(response: MovieDetails.LoadView.Response)
     func presentFechedSimilarMovies(response: MovieDetails.SimilarMovies.Response)
+    func presentFechedRecommendMovies(response: MovieDetails.RecommendMovies.Response)
 }
 
 class MovieDetailsPresenter: MovieDetailsPresentationLogic {
@@ -30,5 +31,16 @@ class MovieDetailsPresenter: MovieDetailsPresentationLogic {
         let viewModel = MovieDetails.SimilarMovies.ViewModel(idMovie: response.idMovie, movies: movies)
         
         viewController?.displaySimilarMovies(viewModel: viewModel)
+    }
+    
+    func presentFechedRecommendMovies(response: MovieDetails.RecommendMovies.Response) {
+        
+        let movies = response.movies.map { movie in
+            return MovieSearch(id: movie.id ?? -1, imageURL: movie.posterPath ?? "", title: movie.title ?? "", backdropURL: movie.backdropPath ?? "", overview: movie.overview ?? "")
+        }
+        
+        let viewModel = MovieDetails.RecommendMovies.ViewModel(idMovie: response.idMovie, movies: movies)
+        
+        viewController?.displayRecommendMovies(viewModel: viewModel)
     }
 }

@@ -10,6 +10,7 @@ import Foundation
 protocol MovieDetailsBusinessLogic: AnyObject {
     func loadView()
     func fetchSimilarMovies(request: MovieDetails.SimilarMovies.Request)
+    func fetchRecommendMovies(request: MovieDetails.RecommendMovies.Request)
 }
 
 protocol MovieDetailsDataStore: AnyObject {
@@ -38,13 +39,23 @@ class MovieDetailsInteractor: MovieDetailsBusinessLogic, MovieDetailsDataStore {
             guard let self = self else {
                 return
             }
+            if let messageError = messageError {
+                
+            }
+            self.presenter?.presentFechedSimilarMovies(response: MovieDetails.SimilarMovies.Response(idMovie: request.idMovie, movies: movies))
+        }
+    }
+    
+    func fetchRecommendMovies(request: MovieDetails.RecommendMovies.Request) {
+        moviesWorker.getMoviesByType(.byRecommendationMovie(id: request.idMovie)) { movies, messageError in
             
             if let messageError = messageError {
                 
             }
             
-            self.presenter?.presentFechedSimilarMovies(response: MovieDetails.SimilarMovies.Response(idMovie: request.idMovie, movies: movies))
+            let response = MovieDetails.RecommendMovies.Response(idMovie: request.idMovie, movies: movies)
             
+            self.presenter?.presentFechedRecommendMovies(response: response)
         }
     }
 }

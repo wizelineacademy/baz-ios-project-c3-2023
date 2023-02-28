@@ -9,7 +9,7 @@ import Foundation
 
 enum MoviesBySection{
     enum FetchMovies {
-        struct Request {
+        struct Request {
         }
         struct Response {
             var movies: [Movie]

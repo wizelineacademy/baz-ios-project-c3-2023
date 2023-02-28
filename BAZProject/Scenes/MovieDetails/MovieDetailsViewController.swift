@@ -11,6 +11,7 @@ import UIKit
 protocol MovieDetailsDisplayLogic: AnyObject {
     func displayView(viewModel: MovieDetails.LoadView.ViewModel)
     func displaySimilarMovies(viewModel: MovieDetails.SimilarMovies.ViewModel)
+    func displayRecommendMovies(viewModel: MovieDetails.RecommendMovies.ViewModel)
 }
 
 class MovieDetailsViewController: UIViewController, MoviesSectionDelegate {
@@ -47,7 +48,6 @@ class MovieDetailsViewController: UIViewController, MoviesSectionDelegate {
         
         return imageView
     }()
-    var idMovie: Int?
 
     
     // MARK: Properties VIP
@@ -65,10 +65,6 @@ class MovieDetailsViewController: UIViewController, MoviesSectionDelegate {
         super.viewDidLoad()
         configurateView()
         interactor?.loadView()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        interactor?.fetchSimilarMovies(request: MovieDetails.SimilarMovies.Request(idMovie: idMovie ?? -1))
     }
 
     // MARK: Setup
@@ -144,14 +140,28 @@ extension MovieDetailsViewController: MovieDetailsDisplayLogic {
     func displayView(viewModel: MovieDetails.LoadView.ViewModel) {
         posterImageView.byURL(path: viewModel.imageURL)
         addOverviewSection(description: viewModel.overview)
-        idMovie = viewModel.id
+        interactor?.fetchSimilarMovies(request: MovieDetails.SimilarMovies.Request(idMovie: viewModel.id))
     }
     
     func displaySimilarMovies(viewModel: MovieDetails.SimilarMovies.ViewModel) {
-        DispatchQueue.main.async {
-            let moviesSectionView = MoviesSectionView(typeSection: .bySimilarMovie(id: self.idMovie ?? -1))
-            self.addMoviesSectionView(moviesSection: moviesSectionView)
-            moviesSectionView.model = viewModel.movies
+        if viewModel.movies.count != 0 {
+            DispatchQueue.main.async {
+                let moviesSectionView = MoviesSectionView(typeSection: .bySimilarMovie(id: viewModel.idMovie))
+                self.addMoviesSectionView(moviesSection: moviesSectionView)
+                moviesSectionView.model = viewModel.movies
+            }
+        }
+        interactor?.fetchRecommendMovies(request: MovieDetails.RecommendMovies.Request(idMovie: viewModel.idMovie))
+
+    }
+    
+    func displayRecommendMovies(viewModel: MovieDetails.RecommendMovies.ViewModel) {
+        if viewModel.movies.count != 0 {
+            DispatchQueue.main.async {
+                let moviesSectionView = MoviesSectionView(typeSection: .byRecommendationMovie(id: viewModel.idMovie))
+                self.addMoviesSectionView(moviesSection: moviesSectionView)
+                moviesSectionView.model = viewModel.movies
+            }
         }
     }
 }
