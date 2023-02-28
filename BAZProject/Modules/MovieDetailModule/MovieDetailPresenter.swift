@@ -11,6 +11,7 @@ final class MovieDetailPresenter: NSObject {
     var view: MovieDetailViewProtocol?
     var interactor: MovieDetailInterceptorInputProtocol?
     var isFavorite: Bool = false
+    let imageProvider = ImageProvider.shared
     
     private func registerResumeTableViewCells(tableView: UITableView) {
         let textFieldCell = UINib(nibName: "ResumeTableViewCell",
@@ -76,7 +77,7 @@ extension MovieDetailPresenter: MovieDetailPresenterProtocol {
     private func getPosterImage(poster: UIImageView) {
         UIView.fillSkeletons(onView: poster)
         if let data = interactor?.data, let image = data.backdropPath{
-            MovieAPI.getImage(from: image , handler: { image in
+            imageProvider.fetchImage(from: image , completion: { image in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
                     UIView.removeSkeletons(onView: poster)
                     poster.image = image

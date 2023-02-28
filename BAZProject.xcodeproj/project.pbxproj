@@ -44,6 +44,7 @@
 		CD54A91529958A91004F8774 /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD54A91429958A91004F8774 /* DataHelper.swift */; };
 		CD86DD1B29AD42B1000E21C5 /* GenericTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD86DD1929AD42B1000E21C5 /* GenericTableViewCell.swift */; };
 		CD86DD1C29AD42B1000E21C5 /* GenericTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD86DD1A29AD42B1000E21C5 /* GenericTableViewCell.xib */; };
+		CD86DD1F29AE64D6000E21C5 /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD86DD1E29AE64D6000E21C5 /* ImageProvider.swift */; };
 		CDB77274299CB5DE00949A32 /* CastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB77272299CB5DE00949A32 /* CastTableViewCell.swift */; };
 		CDB77275299CB5DE00949A32 /* CastTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB77273299CB5DE00949A32 /* CastTableViewCell.xib */; };
 		CDB77277299D735900949A32 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB77276299D735900949A32 /* ViewExtension.swift */; };
@@ -115,6 +116,7 @@
 		CD54A91429958A91004F8774 /* DataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHelper.swift; sourceTree = "<group>"; };
 		CD86DD1929AD42B1000E21C5 /* GenericTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTableViewCell.swift; sourceTree = "<group>"; };
 		CD86DD1A29AD42B1000E21C5 /* GenericTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenericTableViewCell.xib; sourceTree = "<group>"; };
+		CD86DD1E29AE64D6000E21C5 /* ImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProvider.swift; sourceTree = "<group>"; };
 		CDB77272299CB5DE00949A32 /* CastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastTableViewCell.swift; sourceTree = "<group>"; };
 		CDB77273299CB5DE00949A32 /* CastTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CastTableViewCell.xib; sourceTree = "<group>"; };
 		CDB77276299D735900949A32 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
@@ -261,6 +263,14 @@
 			path = GenericTableViewCell;
 			sourceTree = "<group>";
 		};
+		CD86DD1D29AE64A6000E21C5 /* CacheImage */ = {
+			isa = PBXGroup;
+			children = (
+				CD86DD1E29AE64D6000E21C5 /* ImageProvider.swift */,
+			);
+			path = CacheImage;
+			sourceTree = "<group>";
+		};
 		CDB77271299CB5C200949A32 /* CastTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -325,6 +335,7 @@
 		CDE6ABD8298AECD500D6DB5C /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				CD86DD1D29AE64A6000E21C5 /* CacheImage */,
 				CD86DD1829AD429A000E21C5 /* GenericTableViewCell */,
 				CDD3FDA829A7F06400C6739C /* UrlComponents */,
 				CDD3FDA529A7EFCA00C6739C /* Keychain */,
@@ -532,6 +543,7 @@
 				CD54A8E72992BDC8004F8774 /* SearchMovieView.swift in Sources */,
 				CDD3FDAA29A7F07600C6739C /* UrlComponentsHelper.swift in Sources */,
 				CD54A8ED2992BDF6004F8774 /* SearchMoviePresenter.swift in Sources */,
+				CD86DD1F29AE64D6000E21C5 /* ImageProvider.swift in Sources */,
 				CD4EDDEF29A1D8180006C742 /* WatchedMovieProtocols.swift in Sources */,
 				CD4EDDE829A1D7F90006C742 /* WatchedMovieViewController.swift in Sources */,
 				C30893E328A425E1004B1860 /* Movie.swift in Sources */,

@@ -11,6 +11,7 @@ class SearchMoviePresenter: NSObject {
     weak var view: SearchMovieViewProtocol?
     var interceptor: SearchMovieInterceptorInputProtocol?
     var timer: Timer?
+    let imageProvider = ImageProvider.shared
 }
 
 extension SearchMoviePresenter: SearchMoviePresenterProtocol {
@@ -84,7 +85,7 @@ extension SearchMoviePresenter: UICollectionViewDataSource {
     }
     
     private func setImage(cell: GenericCollectionViewCell, image: String) {
-        MovieAPI.getImage(from: image) { image in
+        imageProvider.fetchImage(from: image) { image in
             UIView.removeSkeletons(onView: cell)
             cell.imageMovie.image = image
         }

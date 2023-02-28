@@ -38,4 +38,12 @@ class URLComponentsHelper {
         url.queryItems = [queryItemApiKey, queryItemLanguage, queryItemPague]
         return url
     }
+    
+    static func imageUrl(imageUrl: String) -> String {
+        var url = URLComponents()
+        url.scheme = "https"
+        url.host = "image.tmdb.org"
+        url.path = "/t/p/w500" + imageUrl
+        return url.string ?? ""
+    }
 }

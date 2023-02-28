@@ -10,12 +10,28 @@ import UIKit
 class FavoriteMoviePresenter: NSObject {
     weak var view: FavoriteMovieViewProtocol?
     var interactor: FavoriteMovieInteractorInputProtocol?
+    let imageProvider = ImageProvider.shared
     
     private func registerResumeTableViewCells(tableView: UITableView) {
         let textFieldCell = UINib(nibName: "GenericTableViewCell",
                                   bundle: nil)
         tableView.register(textFieldCell,
                            forCellReuseIdentifier: GenericTableViewCell.reusableCell)
+    }
+    
+    private func setTableViewCell(cell: GenericTableViewCell, indexPath: Int, data: [Movie] ) {
+        UIView.fillSkeletons(onView: cell)
+        cell.nameMovie.text = data[indexPath].title
+        if let image = data[indexPath].posterPath {
+            setImage(cell: cell, image: image)
+        }
+    }
+    
+    private func setImage(cell: GenericTableViewCell, image: String) {
+        imageProvider.fetchImage(from: image) { image in
+            UIView.removeSkeletons(onView: cell)
+            cell.posterImage.image = image
+        }
     }
 }
 
@@ -59,7 +75,7 @@ extension FavoriteMoviePresenter: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: GenericTableViewCell.reusableCell, for: indexPath) as? GenericTableViewCell, let data = interactor?.getDataMovies  {
-            cell.nameMovie.text = data[indexPath.row].title
+            setTableViewCell(cell: cell, indexPath: indexPath.row, data: data)
             return cell
         }
         return UITableViewCell()
