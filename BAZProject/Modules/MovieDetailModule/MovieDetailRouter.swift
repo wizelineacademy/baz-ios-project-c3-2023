@@ -8,6 +8,8 @@
 import UIKit
 
 final class MovieDetailRouter: RouterCreateModuleWithDataProtocol, RouterPresentViewWithDataProtocol {
+    typealias RouterWithData = MovieDetailRouter
+    
     typealias Router = MovieDetailRouter
     
     static func createModule<T>(data: T) -> UIViewController {

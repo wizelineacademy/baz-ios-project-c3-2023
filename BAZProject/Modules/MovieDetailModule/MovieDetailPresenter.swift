@@ -20,7 +20,7 @@ final class MovieDetailPresenter: NSObject {
     }
     
     private func registerCastTableViewCells(tableView: UITableView) {
-        let textFieldCell = UINib(nibName: "GenericTableViewCell",
+        let textFieldCell = UINib(nibName: "CastTableViewCell",
                                   bundle: nil)
         tableView.register(textFieldCell,
                            forCellReuseIdentifier: CastTableViewCell.reusableCell)

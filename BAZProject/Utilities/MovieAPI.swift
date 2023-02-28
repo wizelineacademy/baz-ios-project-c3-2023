@@ -20,6 +20,7 @@ public enum URLApi: Hashable {
     case recommendations
     case creditMovie
     case nothing
+    case movie
     
     var getEndpointUrl: String {
         switch self {

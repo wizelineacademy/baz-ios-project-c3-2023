@@ -7,7 +7,41 @@
 
 import UIKit
 
-class WatchedMovieInteractor: WatchedMovieInteractorInputProtocols {
+class WatchedMovieInteractor {
     var presenter: WatchedMovieInteractorOutputProtocols?
+    var getDataMovies: [Movie]?
+    var getIdMovies: [Int]?
+    let saveData: SaveMovies = SaveMovies()
+    var count = 0
+    
+    func setIdMovies() {
+        count = 0
+        do {
+            getIdMovies = nil
+            getIdMovies = try? saveData.load(title: .watchedMovies)
+        }
+    }
+
+}
+
+extension WatchedMovieInteractor: WatchedMovieInteractorInputProtocols {
+    func getWatchedMovies(from api: URLApi) {
+        getDataMovies = nil
+        getIdMovies?.forEach({ idMovie in
+            getWatchedMovie(from: api, idMovie: idMovie)
+        })
+    }
+    
+    func getWatchedMovie(from api: URLApi, idMovie: Int) {
+        MovieAPI.getApiData(from: api, id: idMovie) { [weak self] data in
+            if let movies =  DecodeUtility.decode(Movie.self, from: data) {
+                if ((self?.getDataMovies?.isEmpty) != nil) {
+                    self?.getDataMovies?.append(movies)
+                } else {
+                    self?.getDataMovies = [movies]
+                }
+            }
+        }
+    }
     
 }
