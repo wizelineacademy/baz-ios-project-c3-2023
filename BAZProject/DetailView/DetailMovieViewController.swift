@@ -12,6 +12,19 @@ enum SectionsDetailMovie: Int, CaseIterable {
     case reviews = 1
     case similar = 2
     case recommendations = 3
+    
+    var title: String? {
+        switch self {
+        case .header:
+            return nil
+        case .reviews:
+            return "Reviews"
+        case .similar:
+            return "Similar Movies"
+        case .recommendations:
+            return "Recommended Movies"
+        }
+    }
 }
 
 final class DetailMovieViewController: UIViewController {
@@ -22,21 +35,22 @@ final class DetailMovieViewController: UIViewController {
     private let movieAPI = MovieAPI()
     private var similarMovies: [Movie]?
     private var recomendationsMovies: [Movie]?
+    private var reviews: [Review]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Detail Movie"
         setupTable()
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        group.enter()
         group.enter()
         group.enter()
         executeRecomendations()
         executeSimilarMovies()
+        executeReviews()
         group.notify(queue: .main) {
             self.tblDetailMovie.reloadData()
             print("Se cargaron")
@@ -50,29 +64,42 @@ final class DetailMovieViewController: UIViewController {
         tblDetailMovie.register(CarruselMovieTableViewCell.nib, forCellReuseIdentifier: CarruselMovieTableViewCell.identifier)
         tblDetailMovie.register(ReviewsTableViewCell.nib, forCellReuseIdentifier: ReviewsTableViewCell.identifier)
     }
-/// this methode executes the movie api for recommendation from an Id Movie
+    /// this methode executes the movie api for recommendation from an Id Movie
     func executeRecomendations(){
         movieAPI.getMovies(endpoint: .getRecommendations(id: movie?.id ?? 0)) { result in
-            self.group.leave()
             switch result {
             case .success(let response):
                 self.similarMovies = response.results ?? []
             case .failure(let error):
                 print(error)
             }
+            self.group.leave()
         }
     }
     
-/// this methode executes the movie api for similar from an Id Movie
+    /// this methode executes the movie api for similar from an Id Movie
     func executeSimilarMovies(){
         movieAPI.getMovies(endpoint: .getSimilars(id: movie?.id ?? 0)) { result in
-            self.group.leave()
             switch result {
             case .success(let response):
                 self.recomendationsMovies = response.results ?? []
             case .failure(let error):
                 print(error)
             }
+            self.group.leave()
+        }
+    }
+    
+    /// this methode executes the movie api for review from an Id Movie
+    func executeReviews(){
+        movieAPI.getReviews(endpoint: .getReviews(id: movie?.id ?? 0)) { result in
+            switch result {
+            case .success(let response):
+                self.reviews = response.results ?? []
+            case .failure(let error):
+                print(error)
+            }
+            self.group.leave()
         }
     }
 }
@@ -85,7 +112,22 @@ extension DetailMovieViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        let sectionsDetailMovie = SectionsDetailMovie.init(rawValue: section) ?? .header
+        switch sectionsDetailMovie {
+        case .header:
+            return 1
+        case .reviews:
+            return reviews?.count ?? 0 > 0 ? 1 : 0
+        case .similar:
+            return similarMovies?.count ?? 0 > 0 ? 1 : 0
+        case .recommendations:
+            return recomendationsMovies?.count ?? 0 > 0 ? 1 : 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let sectionsDetailMovie = SectionsDetailMovie.init(rawValue: section) ?? .header
+        return sectionsDetailMovie.title
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -95,20 +137,23 @@ extension DetailMovieViewController: UITableViewDataSource {
             
             cell.setInfo(for: movie)
             return cell
-        case .recommendations, .similar:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: CarruselMovieTableViewCell.identifier, for: indexPath) as? CarruselMovieTableViewCell else{return UITableViewCell()}
-            
+        case .recommendations:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CarruselMovieTableViewCell.identifier, for: indexPath) as? CarruselMovieTableViewCell,let movies = recomendationsMovies else{return UITableViewCell()}
+            cell.setInfo(for: movies)
+            return cell
+        case .similar:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CarruselMovieTableViewCell.identifier, for: indexPath) as? CarruselMovieTableViewCell, let movies = similarMovies else{return UITableViewCell()}
+            cell.setInfo(for: movies)
             return cell
         case .reviews:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: ReviewsTableViewCell.identifier, for: indexPath) as? ReviewsTableViewCell else{return UITableViewCell()}
-
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ReviewsTableViewCell.identifier, for: indexPath) as? ReviewsTableViewCell, let reviews = reviews  else{return UITableViewCell()}
+            cell.setInfo(for: reviews)
+            
             return cell
         default:
             return UITableViewCell()
         }
-        
     }
-    
 }
 
 // MARK: - TableView's Delegate
@@ -118,5 +163,5 @@ extension DetailMovieViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
-
+    
 }

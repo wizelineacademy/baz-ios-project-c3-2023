@@ -7,9 +7,12 @@
 
 import UIKit
 
+protocol SearchMovieControllerDelegate: AnyObject {
+    func selected(movie: Movie)
+}
 
 final class SearchMovieController: UIViewController {
-    
+    weak var searchMovieControllerDelegate: SearchMovieControllerDelegate?
     @IBOutlet weak var collectionMovieSearch: UICollectionView!
     var movies: [Movie] = []
     private let sectionInsets = UIEdgeInsets(
@@ -42,6 +45,11 @@ extension SearchMovieController: UICollectionViewDataSource {
         return movies.count
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionMovieSearch.deselectItem(at: indexPath, animated: true)
+        
+        searchMovieControllerDelegate?.selected(movie: movies[indexPath.row])
+    }
     
     func collectionView(
         _ collectionView: UICollectionView,

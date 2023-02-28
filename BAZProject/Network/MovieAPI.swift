@@ -21,4 +21,16 @@ final class MovieAPI: GenericAPI {
         fetch(urlRequest: endpoint.request, onCompletion: onCompletion)
     }
     
+    /**
+       This function retrieves the data as  `ReviewResult`   from  `url`
+       "https://api.themoviedb.org"
+     
+        - Parameters:
+          - endpoint: it´s an Enum `MovieServices`
+          - onComplation: its a block code that recibe Result and returns void `(Result<MovieResult, Error>) -> Void`
+     */
+    func getReviews(endpoint: MovieServices, onCompletion: @escaping (Result<Reviews, Error>) -> Void) {
+        fetch(urlRequest: endpoint.request, onCompletion: onCompletion)
+    }
+    
 }

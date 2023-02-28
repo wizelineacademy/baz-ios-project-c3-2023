@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A19BB9A29ADCCFB00C31358 /* ReviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A19BB9829ADCCFB00C31358 /* ReviewCollectionViewCell.swift */; };
+		9A19BB9B29ADCCFB00C31358 /* ReviewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A19BB9929ADCCFB00C31358 /* ReviewCollectionViewCell.xib */; };
 		9A6BE8BC2992D7F00002D920 /* MovieResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6BE8BB2992D7F00002D920 /* MovieResult.swift */; };
 		9A7B7BC5299F1970000C41E5 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A7B7BC4299F1970000C41E5 /* HomeViewController.xib */; };
 		9A7B7BC8299F1C32000C41E5 /* UIView+NibInstantiatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7B7BC7299F1C32000C41E5 /* UIView+NibInstantiatable.swift */; };
@@ -44,6 +46,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9A19BB9829ADCCFB00C31358 /* ReviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCollectionViewCell.swift; sourceTree = "<group>"; };
+		9A19BB9929ADCCFB00C31358 /* ReviewCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewCollectionViewCell.xib; sourceTree = "<group>"; };
 		9A6BE8BB2992D7F00002D920 /* MovieResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieResult.swift; sourceTree = "<group>"; };
 		9A7B7BC4299F1970000C41E5 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		9A7B7BC7299F1C32000C41E5 /* UIView+NibInstantiatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+NibInstantiatable.swift"; sourceTree = "<group>"; };
@@ -161,6 +165,8 @@
 				9A7B7BDC299F4484000C41E5 /* CarruselMovieTableViewCell.xib */,
 				9A7B7BDF299F450E000C41E5 /* ReviewsTableViewCell.swift */,
 				9A7B7BE0299F450E000C41E5 /* ReviewsTableViewCell.xib */,
+				9A19BB9829ADCCFB00C31358 /* ReviewCollectionViewCell.swift */,
+				9A19BB9929ADCCFB00C31358 /* ReviewCollectionViewCell.xib */,
 			);
 			path = DetailViewCells;
 			sourceTree = "<group>";
@@ -296,6 +302,7 @@
 				9A7B7BCF299F1EF9000C41E5 /* MovieViewCell.xib in Resources */,
 				C30893DB28A42481004B1860 /* README.md in Resources */,
 				C30893B728A2F42D004B1860 /* Assets.xcassets in Resources */,
+				9A19BB9B29ADCCFB00C31358 /* ReviewCollectionViewCell.xib in Resources */,
 				9A7B7BDE299F4484000C41E5 /* CarruselMovieTableViewCell.xib in Resources */,
 				9A7B7BF6299F716B000C41E5 /* SearchMovieViewCollectioCell.xib in Resources */,
 				C383356E28CA917400FCE0D5 /* code-review-rubric.md in Resources */,
@@ -315,6 +322,7 @@
 				C30893C428A2F845004B1860 /* HomeViewController.swift in Sources */,
 				9A7B7BD6299F4081000C41E5 /* UImage+Cache.swift in Sources */,
 				C30893AE28A2F42B004B1860 /* AppDelegate.swift in Sources */,
+				9A19BB9A29ADCCFB00C31358 /* ReviewCollectionViewCell.swift in Sources */,
 				9A7B7BCB299F1E22000C41E5 /* UITableViewCell+Extras.swift in Sources */,
 				9A7B7BED299F4EAB000C41E5 /* Review.swift in Sources */,
 				9A7B7BF8299FF084000C41E5 /* EndpointProtocol.swift in Sources */,
