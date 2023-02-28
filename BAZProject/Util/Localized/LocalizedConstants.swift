@@ -75,9 +75,6 @@ enum LocalizedConstants {
     // MARK: - CellMovie
     static let cellMovieDivisorNumberHeight: CGFloat = 2
 
-    // MARK: - CellEmptyState
-    static let cellEmptyStateWidthImage: CGFloat = 100
-
     // MARK: - InfiniteScrollActivityView
     static let infiniteScrollActivityViewDefaultHeight: CGFloat = 60.0
     static let infiniteScrollActivityViewDivisorNumber: CGFloat = 2
@@ -102,7 +99,5 @@ enum LocalizedConstants {
     static let cellReviewConstraintBottom: CGFloat = 32
 
     // MARK: - DetailView
-    static let detailViewAumentBottomCellConstraint: CGFloat = 60
-    static let detailViewAumentBottomConstraint: CGFloat = 16
     static let detailViewMinimumNumberToShowButton: Int = 2
 }

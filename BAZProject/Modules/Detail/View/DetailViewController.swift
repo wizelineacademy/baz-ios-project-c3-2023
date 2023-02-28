@@ -17,6 +17,8 @@ final class DetailViewController: UIViewController {
     private var reviews: [ReviewResult] = []
     private var firstReview: [ReviewResult] = []
 
+    var heightCells: [Int:CGFloat] = [:]
+
     @IBOutlet weak private var imageSlider: ImageSlider!
     @IBOutlet weak private var titleLabelText: UILabel! {
         didSet {
@@ -31,7 +33,7 @@ final class DetailViewController: UIViewController {
         }
     }
     @IBOutlet weak var reviewsTableView: UITableView!
-    @IBOutlet weak var heightReviewView: NSLayoutConstraint!
+    @IBOutlet weak var heightReviewTableView: NSLayoutConstraint!
     @IBOutlet weak private var showAllTop: UIButton! {
         didSet {
             showAllTop.setTitle(.detailShowAllTitle, for: .normal)
@@ -123,7 +125,6 @@ final class DetailViewController: UIViewController {
         setTableViewDelegates()
         registerCell()
         reviewsTableView.rowHeight = UITableView.automaticDimension
-        reviewsTableView.separatorColor = .white
     }
 
     private func setTableViewDelegates() {
@@ -160,33 +161,15 @@ final class DetailViewController: UIViewController {
     }
 
     private func reloadTableView() {
-        if dataIsEmpty() {
-            reviewsTableView.reloadData { [weak self] in
-                guard let self = self else { return }
-                self.updateCellEmptyStateBottomConstraint()
-            }
-        } else {
-            reviewsTableView.reloadData { [weak self] in
-                guard let self = self else { return }
-                self.updateReviewsViewBottomConstraint()
-            }
+        reviewsTableView.reloadData { [weak self] in
+            guard let self = self else { return }
+            self.heightReviewTableView.constant = self.heightCells.values.reduce(0, {$0 + $1})
         }
     }
 
     private func hideButtonShowAllIfTotalDataIsMinium() {
         showAllTop.isHidden = reviews.count < LocalizedConstants.detailViewMinimumNumberToShowButton
         showAllBottom.isHidden = reviews.count < LocalizedConstants.detailViewMinimumNumberToShowButton
-    }
-
-    private func updateCellEmptyStateBottomConstraint() {
-        heightReviewView.constant = reviewsTableView.contentSize.height +
-        LocalizedConstants.cellEmptyStateWidthImage
-    }
-
-    private func updateReviewsViewBottomConstraint() {
-        heightReviewView.constant = reviewsTableView.contentSize.height +
-        LocalizedConstants.detailViewAumentBottomCellConstraint +
-        LocalizedConstants.detailViewAumentBottomConstraint
     }
 
     private func saveData(with data: [ReviewResult]) {

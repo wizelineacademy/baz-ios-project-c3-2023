@@ -11,6 +11,10 @@ extension DetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        heightCells[Int(indexPath.row)] = cell.bounds.height
+    }
 }
 
 extension DetailViewController: UITableViewDataSource {
