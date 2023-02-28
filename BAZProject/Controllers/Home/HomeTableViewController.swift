@@ -41,45 +41,24 @@ class HomeTableViewController: UITableViewController {
     }
     
     func getMovies() {
-        
-        let movieCategoryURLRequestFactory = MovieCategoryURLRequestFactory(hostName: "https://api.themoviedb.org/3")
-        let decodableResultsAdapter = JSONDecoderResultAdapter(decoder: JSONDecoder())
-        let sessionFetcher = URLSessionFetcher(urlRequestFactory: movieCategoryURLRequestFactory, decodableResultAdapter: decodableResultsAdapter)
+        getCategory(category: MovieAPICategory.trending)
+        getCategory(category: MovieAPICategory.nowPlaying)
+        getCategory(category: MovieAPICategory.popular)
+        getCategory(category: MovieAPICategory.topRated)
+        getCategory(category: MovieAPICategory.upcoming)
+    }
+    
+    func getCategory(category: MovieAPICategory){
+        let category = category
+        let categoryURL = MovieCategoryURLRequestFactory(category: category)
+        let sessionFetcher = MovieAPI.URLSessionFetcher(urlRequestFactory: categoryURL, decodableResultAdapter: JSONDecoderResultAdapter())
         
         sessionFetcher.fetchData() { [weak self] (movieResult: MovieAPIResult?, error: Error?) in
             if let movieResult = movieResult {
-                self?.listOfCategories[.trending] = movieResult.results
-                self?.reloadSectionInTable(index: IndexSet(integer: MovieAPICategory.trending.rawValue))
+                self?.listOfCategories[category] = movieResult.results
+                self?.reloadSectionInTable(index: IndexSet(integer:  category.rawValue))
             }
         }
-        
-         movieApi.getMoviesBy(category: .nowPlaying, completionHandler: { movies, error in
-            if let movies = movies {
-                self.listOfCategories[.nowPlaying] = movies
-                self.reloadSectionInTable(index: IndexSet(integer:  MovieAPICategory.nowPlaying.rawValue))
-            }
-        })
-        
-         movieApi.getMoviesBy(category: .popular, completionHandler: { movies, error in
-            if let movies = movies {
-                self.listOfCategories[.popular] = movies
-                self.reloadSectionInTable(index: IndexSet(integer:  MovieAPICategory.popular.rawValue))
-            }
-        })
-        
-         movieApi.getMoviesBy(category: .topRated, completionHandler: { movies, error in
-            if let movies = movies {
-                self.listOfCategories[.topRated] = movies
-                self.reloadSectionInTable(index: IndexSet(integer:  MovieAPICategory.topRated.rawValue))
-            }
-        })
-        
-         movieApi.getMoviesBy(category: .upcoming, completionHandler: { movies, error in
-            if let movies = movies {
-                self.listOfCategories[.upcoming] = movies
-                self.reloadSectionInTable(index: IndexSet(integer:  MovieAPICategory.upcoming.rawValue))
-            }
-        })
     }
 
     func reloadSectionInTable(index: IndexSet) {

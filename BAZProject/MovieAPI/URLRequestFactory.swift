@@ -13,14 +13,14 @@ public protocol URLRequestFactory {
 
 class MovieCategoryURLRequestFactory: URLRequestFactory {
     
-    private let hostName: String
+    private var category: MovieAPICategory
 
-    public init(hostName: String) {
-        self.hostName = hostName
+    public init(category: MovieAPICategory) {
+        self.category = category
     }
     
     public func makeUrlRequest() -> URLRequest {
-        let url = URL(string: "\(hostName)/trending/movie/day?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a&language=es&region=MX")!
+        let url = URL(string: "https://api.themoviedb.org/3/\(category.endpointUrl)?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a&language=es&region=MX")!
         let request = URLRequest(url: url)
         return request
     }
