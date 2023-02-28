@@ -134,6 +134,7 @@
                 <outlet property="noReview" destination="Bqr-qF-CxU" id="MTv-SX-aeW"/>
                 <outlet property="rating" destination="Z6s-wb-l7p" id="VQw-E0-W5G"/>
                 <outlet property="reviewTable" destination="Ce8-xj-qhJ" id="edt-IZ-Vff"/>
+                <outlet property="sectionLayer" destination="d6l-Eh-NIi" id="FbJ-Vo-zhM"/>
                 <outlet property="stars" destination="fvt-kb-sbt" id="dfP-Bx-KzN"/>
             </connections>
             <point key="canvasLocation" x="260.86956521739131" y="85.714285714285708"/>
