@@ -19,7 +19,7 @@ final class ErrorPageViewController: UIViewController, ErrorPageViewProtocol {
 
     @IBOutlet weak private var retryButton: UIButton! {
         didSet {
-            retryButton.titleLabel?.text = .retryTitleButton
+            retryButton.setTitle(.retryTitleButton, for: .normal)
         }
     }
 

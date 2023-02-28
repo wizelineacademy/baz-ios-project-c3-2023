@@ -60,6 +60,8 @@
 		D2B7A64A2980E2030028BC4E /* SizeImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B7A6492980E2030028BC4E /* SizeImageType.swift */; };
 		D2B7A64D2980EC260028BC4E /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B7A64C2980EC260028BC4E /* Loader.swift */; };
 		D2B7A6512980EC7B0028BC4E /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B7A6502980EC7B0028BC4E /* UIView+Extension.swift */; };
+		D2BD77D929AD8F2600F9B7A6 /* Detail+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BD77D829AD8F2600F9B7A6 /* Detail+Extension.swift */; };
+		D2BD77DB29ADBC1700F9B7A6 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BD77DA29ADBC1700F9B7A6 /* UITableView+Extension.swift */; };
 		D2C2D04229A486A100DFC2FA /* CellMovieTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C2D04029A486A100DFC2FA /* CellMovieTop.swift */; };
 		D2C2D04329A486A100DFC2FA /* CellMovieTop.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2C2D04129A486A100DFC2FA /* CellMovieTop.xib */; };
 		D2C2D04529A486BA00DFC2FA /* CellMovieType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C2D04429A486BA00DFC2FA /* CellMovieType.swift */; };
@@ -167,6 +169,8 @@
 		D2B7A6492980E2030028BC4E /* SizeImageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeImageType.swift; sourceTree = "<group>"; };
 		D2B7A64C2980EC260028BC4E /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		D2B7A6502980EC7B0028BC4E /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		D2BD77D829AD8F2600F9B7A6 /* Detail+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Detail+Extension.swift"; sourceTree = "<group>"; };
+		D2BD77DA29ADBC1700F9B7A6 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		D2C2D04029A486A100DFC2FA /* CellMovieTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellMovieTop.swift; sourceTree = "<group>"; };
 		D2C2D04129A486A100DFC2FA /* CellMovieTop.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellMovieTop.xib; sourceTree = "<group>"; };
 		D2C2D04429A486BA00DFC2FA /* CellMovieType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellMovieType.swift; sourceTree = "<group>"; };
@@ -532,6 +536,14 @@
 			path = Loader;
 			sourceTree = "<group>";
 		};
+		D2B9C09629AD8EE100D06E71 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D2BD77D829AD8F2600F9B7A6 /* Detail+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		D2C2D03729A4859C00DFC2FA /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -693,6 +705,7 @@
 				D219B54D299AD16C00348876 /* Array+Extension.swift */,
 				D222D1E429A58FAF00C3AD57 /* NSObject+Extension.swift */,
 				D2571B2929AC5BFE005BDC9F /* UILabel+Extension.swift */,
+				D2BD77DA29ADBC1700F9B7A6 /* UITableView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -711,6 +724,7 @@
 		D2F08D32299C3912009BA149 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				D2B9C09629AD8EE100D06E71 /* Extensions */,
 				D2F08D33299C391D009BA149 /* View */,
 				D2F08D38299C3954009BA149 /* Interactor */,
 				D2F08D3C299C3975009BA149 /* Presenter */,
@@ -1070,6 +1084,7 @@
 				D2F08D31299C1A24009BA149 /* Endpoint.swift in Sources */,
 				D2073EAE29899696006A577A /* ErrorType.swift in Sources */,
 				D20AECCB299AA93E00292C76 /* InfiniteScrollActivityView.swift in Sources */,
+				D2BD77D929AD8F2600F9B7A6 /* Detail+Extension.swift in Sources */,
 				D2073EA629898C22006A577A /* ErrorPageProtocols.swift in Sources */,
 				D2D916DB299C8199009E0BE2 /* MovieDetail.swift in Sources */,
 				D2C6648829A9A9AC008996A2 /* ReviewViewController.swift in Sources */,
@@ -1085,6 +1100,7 @@
 				D2571B2C29AD2ECC005BDC9F /* ReviewType.swift in Sources */,
 				C30893AE28A2F42B004B1860 /* AppDelegate.swift in Sources */,
 				D2F08D44299C39C8009BA149 /* DetailRouter.swift in Sources */,
+				D2BD77DB29ADBC1700F9B7A6 /* UITableView+Extension.swift in Sources */,
 				D215D20329843EC000582CB5 /* TrendingDataManager.swift in Sources */,
 				D2475E2229A28A0C004949D9 /* HomeInteractor.swift in Sources */,
 				D2E241CC297F9AC1002675B4 /* LocalizedKey.swift in Sources */,

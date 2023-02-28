@@ -67,6 +67,14 @@ final class CellReview: UITableViewCell {
         calculateConstraintButtonBottom()
     }
 
+    func setNumberLineInZero() {
+        showMore = true
+    }
+
+    func hideButtonShowMore() {
+        showMoreButton.isHidden = true
+    }
+
     // MARK: - Private methods
     @IBAction private func showMoreAction(_ sender: Any) {
         showMore.toggle()

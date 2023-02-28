@@ -16,7 +16,8 @@ final class DetailViewController: UIViewController {
     // MARK: - Private properties
     private var errorGetData: Bool = false
     private var isLoading: Bool = true
-    private var numberCalls: Int = 0
+    private var reviews: [ReviewResult] = []
+    private var firstReview: [ReviewResult] = []
 
     @IBOutlet weak private var imageSlider: ImageSlider!
     @IBOutlet weak private var titleLabelText: UILabel! {
@@ -25,21 +26,28 @@ final class DetailViewController: UIViewController {
         }
     }
     @IBOutlet weak private var descriptionLabel: UILabel!
+    @IBOutlet weak private var titleReviewsLabel: UILabel! {
+        didSet {
+            titleReviewsLabel.font = LocalizedConstants.commonTitleFont
+            titleReviewsLabel.addShadow()
+        }
+    }
+    @IBOutlet weak var reviewsTableView: UITableView!
+    @IBOutlet weak var heightReviewView: NSLayoutConstraint!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        initRegister()
         callService()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if isLoading || errorGetData {
+        if !isLoading || errorGetData {
             showLoader()
+            getData()
         }
 
-        if errorGetData {
-            callService()
-        }
         navigationController?.navigationBar.prefersLargeTitles = false
         postIdMedia()
     }
@@ -51,6 +59,14 @@ final class DetailViewController: UIViewController {
         stopLoading()
     }
 
+    func getReviewsCount() -> Int {
+        return firstReview.count
+    }
+
+    func getReview(_ index: Int) -> ReviewResult? {
+        return firstReview[index]
+    }
+
     // MARK: - Private methods
     private func showLoader() {
         guaranteeMainThread {
@@ -60,6 +76,23 @@ final class DetailViewController: UIViewController {
 
     private func setupView(imageUrlArray: [String]) {
         imageSlider.setUp(imageUrlArray: imageUrlArray)
+    }
+
+    private func initRegister() {
+        setTableViewDelegates()
+        registerCell()
+        reviewsTableView.rowHeight = UITableView.automaticDimension
+        reviewsTableView.separatorColor = .white
+    }
+
+    private func setTableViewDelegates() {
+        reviewsTableView.delegate = self
+        reviewsTableView.dataSource = self
+    }
+
+    private func registerCell() {
+        reviewsTableView.register(CellReview.nib(),
+                                  forCellReuseIdentifier: CellReview.identifier)
     }
 
     private func showImageSlider() {
@@ -77,7 +110,6 @@ final class DetailViewController: UIViewController {
         if let detailType = detailType {
             presenter?.willFetchMedia(detailType: detailType)
             presenter?.willFetchReview(of: detailType.idMedia.description)
-            numberCalls = 2
         }
     }
 
@@ -88,18 +120,21 @@ final class DetailViewController: UIViewController {
                                             userInfo: [LocalizedConstants.notificationCenterNameParamId: String(id)])
         }
     }
-
-    private func removeLoaderFromView() {
-        guaranteeMainThread {
-            self.isLoading = false
-            self.view.removeLoader()
-        }
-    }
 }
 
 extension DetailViewController: DetailViewProtocol {
     func updateView(data: [ReviewResult]) {
-       // TODO: add logic
+        if let first = data.first {
+            self.firstReview.append(first)
+        }
+        self.reviews = data
+        guaranteeMainThread {
+            self.titleReviewsLabel.text = "\(String.detailViewReviewTitle) \(data.count)"
+            self.reviewsTableView.reloadData {
+                self.heightReviewView.constant = self.reviewsTableView.contentSize.height +
+                LocalizedConstants.commonHeightHeaderTable
+            }
+        }
     }
 
     func updateView(data: MovieDetailResult) {
@@ -114,9 +149,10 @@ extension DetailViewController: DetailViewProtocol {
     }
 
     func stopLoading() {
-        numberCalls -= 1
-        if numberCalls != .zero { return }
-        removeLoaderFromView()
+        guaranteeMainThread {
+            self.isLoading = false
+            self.view.removeLoader()
+        }
     }
 
     func setErrorGettingData(_ status: Bool) {
