@@ -25,19 +25,19 @@ public enum URLApi: Hashable {
     var getEndpointUrl: String {
         switch self {
         case .upcoming:
-            return "/movie/upcoming"
+            return "/3/movie/upcoming"
         case .trending:
-            return "/trending/movie/day"
+            return "/3/trending/movie/day"
         case .nowPlaying:
-            return "/movie/now_playing"
+            return "/3/movie/now_playing"
         case .popular:
-            return "/movie/popular"
+            return "/3/movie/popular"
         case .topRated:
-            return "/movie/top_rated"
+            return "/3/movie/top_rated"
         case .keyword:
-            return "/search/keyword"
+            return "/3/search/keyword"
         case .searchMovie:
-            return "/search/movie"
+            return "/3/search/movie"
         case .reviews:
             return "/reviews"
         case .similar:
@@ -83,8 +83,8 @@ final class MovieAPI {
      - Parameter url: url of api
      
      */
-    static func getApiData(from url:URLApi, handler: @escaping (Data) -> Void) {
-        guard let url = URL(string: "\(urlBase)\(url.getEndpointUrl)?api_key=\(apiKey)&language=es&region=MX&page=1") else { return }
+    static func getApiData(from url: URLApi, handler: @escaping (Data) -> Void) {
+        guard let url = URL(string: URLComponentsHelper.makeUrl(path: url)) else { return }
         let task =  URLSession.shared.dataTask(with: url) { data, response, error in
             guard let datos = data else { return }
             handler(datos)
@@ -97,7 +97,7 @@ final class MovieAPI {
      - Parameter key: Word to search
      */
     static func getApiData(from url: URLApi, key query: String, handler: @escaping (Data) -> Void) {
-        guard let url = URL(string: "\(urlBase)\(url.getEndpointUrl)?api_key=\(apiKey)&language=es&page=1&query=\(query)") else { return }
+        guard let url = URL(string: URLComponentsHelper.urlWithSearch(path: url, query: query)) else { return }
         let task =  URLSession.shared.dataTask(with: url) { data, response, error in
             guard let datos = data else { return }
             handler(datos)
@@ -110,7 +110,7 @@ final class MovieAPI {
      - Parameter id: id of movie
      */
     static func getApiData(from url: URLApi, id idMovie: Int, handler: @escaping (Data) -> Void) {
-        guard let url = URL(string: "\(urlBase)/movie/\(idMovie)\(url.getEndpointUrl)?api_key=\(apiKey)&language=es")
+        guard let url = URL(string: URLComponentsHelper.urlWithId(path: url, idMovie: idMovie))
         else { return }
         let task =  URLSession.shared.dataTask(with: url) { data, response, error in
             guard let datos = data else { return }

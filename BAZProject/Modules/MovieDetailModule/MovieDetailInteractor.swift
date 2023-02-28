@@ -33,14 +33,6 @@ extension MovieDetailInteractor: MovieDetailInterceptorInputProtocol {
         }
     }
     
-    func getMoviesData(from api: URLApi, structure: Codable.Type) {
-        MovieAPI.getApiData(from: api) { [weak self] data in
-            if let movies =  DecodeUtility.decode(structure.self, from: data) {
-                self?.movieApiData.getArrayDataMovie?[api] = movies
-            }
-        }
-    }
-    
     func getMoviesDataWithId(from api: URLApi, id idMovie: Int, structure: Codable.Type) {
         MovieAPI.getApiData(from: api, id: idMovie) { [weak self] data in
             if let movies =  DecodeUtility.decode(structure.self, from: data) {

@@ -35,7 +35,6 @@ protocol MovieDetailInterceptorInputProtocol: AnyObject {
     var movieApiData: DataHelper { get set }
     var saveData: SaveMovies { get }
     
-    func getMoviesData(from api: URLApi, structure: Codable.Type)
     func getMoviesDataWithId(from api: URLApi, id idMovie: Int, structure: Codable.Type)
     func saveFavoriteMovie()
     func deleteToFavoriteMovie()

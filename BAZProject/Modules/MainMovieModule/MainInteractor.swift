@@ -22,6 +22,7 @@ final class MainInteractor: MainInteractorInputProtocol {
             }
         }
     }
+    
     func saveMovieWatched(idMovie: Int) {
         do {
             if !saveData.isSave(title: .watchedMovies, idMovie: idMovie) {
