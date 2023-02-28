@@ -9,6 +9,7 @@ import UIKit
 
 class HomeTableViewController: UITableViewController {
     
+    let notificationDetail = Notification.Name(rawValue: deltailMovieSeen)
     let movieApi = MovieAPI()
     var heightRowTable: CGFloat = 250
     var categories = MovieAPICategory.allMovieAPICategories
@@ -22,7 +23,21 @@ class HomeTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        createObserver()
         getMovies()
+    }
+    
+    func createObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(reload), name: notificationDetail, object: nil)
+    }
+    
+    @objc
+    func reload() {
+        CounterSingleton.shared.addToCounter()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     func getMovies() {
