@@ -15,7 +15,6 @@ final class DetailViewController: UIViewController {
 
     // MARK: - Private properties
     private var errorGetData: Bool = false
-    private var isLoading: Bool = true
     private var reviews: [ReviewResult] = []
     private var firstReview: [ReviewResult] = []
 
@@ -50,13 +49,17 @@ final class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initRegister()
-        callService()
+        getData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if !isLoading || errorGetData {
+
+        if (presenter?.isLoading() ?? false) || errorGetData {
             showLoader()
+        }
+
+        if errorGetData {
             getData()
         }
 
@@ -111,11 +114,6 @@ final class DetailViewController: UIViewController {
         guaranteeMainThread {
             self.imageSlider.isHidden = false
         }
-    }
-
-    private func callService() {
-        isLoading = true
-        getData()
     }
 
     private func getData() {
@@ -173,7 +171,6 @@ extension DetailViewController: DetailViewProtocol {
 
     func stopLoading() {
         guaranteeMainThread {
-            self.isLoading = false
             self.view.removeLoader()
         }
     }

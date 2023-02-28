@@ -22,6 +22,7 @@ protocol DetailPresenterProtocol: AnyObject {
     var view: DetailViewProtocol? { get set }
     var interactor: DetailInteractorInputProtocol? { get set }
 
+    func isLoading() -> Bool
     func willFetchMedia(detailType: DetailType)
     func willFetchReview(of idMovie: String)
 }

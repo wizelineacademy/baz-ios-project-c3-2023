@@ -34,6 +34,10 @@ final class DetailPresenter {
 }
 
 extension DetailPresenter: DetailPresenterProtocol {
+    func isLoading() -> Bool {
+        return numberCalls != .zero
+    }
+
     func willFetchMedia(detailType: DetailType) {
         interactor?.fetchMedia(detailType: detailType)
         addCallService()
