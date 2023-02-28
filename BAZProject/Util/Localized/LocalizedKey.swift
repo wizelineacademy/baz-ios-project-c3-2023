@@ -66,6 +66,9 @@ extension String {
     static let cellReviewWriteOn = "Escrito el"
     static let cellReviewWriteBy = "Escrito por:"
 
+    // MARK: - CellEmptyState
+    static let cellEmptyStateXibIdentifier = "CellEmptyState"
+
     // MARK: ImageSlider
     static let imageSliderXibIdentifier = "ImageSlider"
 

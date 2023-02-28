@@ -82,6 +82,8 @@
 		D2CFEC1D29831F4E0024D226 /* TrendingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFEC1C29831F4E0024D226 /* TrendingPresenter.swift */; };
 		D2CFEC1F2983207E0024D226 /* TrendingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFEC1E2983207E0024D226 /* TrendingRouter.swift */; };
 		D2CFEC262983315A0024D226 /* TrendingViewController+UITableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFEC252983315A0024D226 /* TrendingViewController+UITableExtensions.swift */; };
+		D2D0A3D829AE7E0000983959 /* CellEmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D0A3D629AE7E0000983959 /* CellEmptyState.swift */; };
+		D2D0A3D929AE7E0000983959 /* CellEmptyState.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2D0A3D729AE7E0000983959 /* CellEmptyState.xib */; };
 		D2D2F83629846BB000840F20 /* TrendingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2D2F83529846BB000840F20 /* TrendingView.xib */; };
 		D2D916DB299C8199009E0BE2 /* MovieDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D916DA299C8199009E0BE2 /* MovieDetail.swift */; };
 		D2E241C7297F91A2002675B4 /* NetworkingProvider+RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E241C6297F91A2002675B4 /* NetworkingProvider+RequestType.swift */; };
@@ -191,6 +193,8 @@
 		D2CFEC1C29831F4E0024D226 /* TrendingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingPresenter.swift; sourceTree = "<group>"; };
 		D2CFEC1E2983207E0024D226 /* TrendingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingRouter.swift; sourceTree = "<group>"; };
 		D2CFEC252983315A0024D226 /* TrendingViewController+UITableExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrendingViewController+UITableExtensions.swift"; sourceTree = "<group>"; };
+		D2D0A3D629AE7E0000983959 /* CellEmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellEmptyState.swift; sourceTree = "<group>"; };
+		D2D0A3D729AE7E0000983959 /* CellEmptyState.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellEmptyState.xib; sourceTree = "<group>"; };
 		D2D2F83529846BB000840F20 /* TrendingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrendingView.xib; sourceTree = "<group>"; };
 		D2D916DA299C8199009E0BE2 /* MovieDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetail.swift; sourceTree = "<group>"; };
 		D2E241C6297F91A2002675B4 /* NetworkingProvider+RequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkingProvider+RequestType.swift"; sourceTree = "<group>"; };
@@ -676,6 +680,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		D2D0A3D529AE7DD400983959 /* CellEmptyState */ = {
+			isa = PBXGroup;
+			children = (
+				D2D0A3D629AE7E0000983959 /* CellEmptyState.swift */,
+				D2D0A3D729AE7E0000983959 /* CellEmptyState.xib */,
+			);
+			path = CellEmptyState;
+			sourceTree = "<group>";
+		};
 		D2E241C3297F8F05002675B4 /* NetworkingProvider */ = {
 			isa = PBXGroup;
 			children = (
@@ -713,6 +726,7 @@
 		D2EAE0BC29806E99005063FB /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				D2D0A3D529AE7DD400983959 /* CellEmptyState */,
 				D2C6648E29A9A9C7008996A2 /* CellReview */,
 				D2C85AA329A338F500EB8663 /* StarRated */,
 				D271BEA0299E999F0030210E /* ImagesSlider */,
@@ -1015,6 +1029,7 @@
 				D271BEA9299E9BD30030210E /* ImageSlider.xib in Resources */,
 				C383356E28CA917400FCE0D5 /* code-review-rubric.md in Resources */,
 				D2F3477429806F4E00EFDB62 /* CellMovie.xib in Resources */,
+				D2D0A3D929AE7E0000983959 /* CellEmptyState.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1065,6 +1080,7 @@
 				D2F3477229806F2700EFDB62 /* CellMovie.swift in Sources */,
 				D2CFEC262983315A0024D226 /* TrendingViewController+UITableExtensions.swift in Sources */,
 				D248E468298633D300BC1281 /* MainViewController.swift in Sources */,
+				D2D0A3D829AE7E0000983959 /* CellEmptyState.swift in Sources */,
 				D2C6648D29A9A9AC008996A2 /* ReviewRouter.swift in Sources */,
 				D2108DB5298C106D0000873F /* LocalizedConstants.swift in Sources */,
 				C30893C428A2F845004B1860 /* TrendingViewController.swift in Sources */,

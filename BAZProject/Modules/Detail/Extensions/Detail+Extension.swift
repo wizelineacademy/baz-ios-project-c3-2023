@@ -15,23 +15,10 @@ extension DetailViewController: UITableViewDelegate {
 
 extension DetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return getReviewsCount()
+        return dataIsEmpty() ? 1 : getReviewsCount()
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: CellReview.identifier) as? CellReview,
-           let review = getReview(indexPath.row) {
-            cell.backgroundColor = LocalizedConstants.commonPrimaryColor
-            let review: ReviewType = ReviewType(title: "\(String.cellReviewWriteBy) \(review.author ?? "")",
-                                                urlPhoto: review.authorDetails?.avatarPath ?? "",
-                                                rate: Double(review.authorDetails?.rating ?? .zero),
-                                                date: review.createdAt ?? "",
-                                                content: review.content ?? "")
-            cell.setNumberLineInZero()
-            cell.hideButtonShowMore()
-            cell.setData(with: review)
-            return cell
-        }
-        return UITableViewCell()
+        return getTableViewCell(tableView: tableView, indexPath: indexPath)
     }
 }

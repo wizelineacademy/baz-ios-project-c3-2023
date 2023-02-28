@@ -78,8 +78,34 @@ final class DetailViewController: UIViewController {
         return firstReview.count
     }
 
+    func dataIsEmpty() -> Bool {
+        return firstReview.isEmpty
+    }
+
     func getReview(_ index: Int) -> ReviewResult? {
         return firstReview[index]
+    }
+
+    func getTableViewCell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        if dataIsEmpty() {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: CellEmptyState.identifier) as? CellEmptyState {
+                cell.setData(message: "No se cuenta con reseñas aún.")
+                return cell
+            }
+        } else if let cell = tableView.dequeueReusableCell(withIdentifier: CellReview.identifier) as? CellReview,
+           let review = getReview(indexPath.row) {
+            cell.backgroundColor = LocalizedConstants.commonPrimaryColor
+            let review: ReviewType = ReviewType(title: "\(String.cellReviewWriteBy) \(review.author ?? "")",
+                                                urlPhoto: review.authorDetails?.avatarPath ?? "",
+                                                rate: Double(review.authorDetails?.rating ?? .zero),
+                                                date: review.createdAt ?? "",
+                                                content: review.content ?? "")
+            cell.setNumberLineInZero()
+            cell.hideButtonShowMore()
+            cell.setData(with: review)
+            return cell
+        }
+        return UITableViewCell()
     }
 
     // MARK: - Private methods
@@ -108,6 +134,8 @@ final class DetailViewController: UIViewController {
     private func registerCell() {
         reviewsTableView.register(CellReview.nib(),
                                   forCellReuseIdentifier: CellReview.identifier)
+        reviewsTableView.register(CellEmptyState.nib(),
+                                  forCellReuseIdentifier: CellEmptyState.identifier)
     }
 
     private func showImageSlider() {
@@ -131,9 +159,28 @@ final class DetailViewController: UIViewController {
         }
     }
 
+    private func reloadTableView() {
+        if dataIsEmpty() {
+            reviewsTableView.reloadData { [weak self] in
+                guard let self = self else { return }
+                self.updateCellEmptyStateBottomConstraint()
+            }
+        } else {
+            reviewsTableView.reloadData { [weak self] in
+                guard let self = self else { return }
+                self.updateReviewsViewBottomConstraint()
+            }
+        }
+    }
+
     private func hideButtonShowAllIfTotalDataIsMinium() {
         showAllTop.isHidden = reviews.count < LocalizedConstants.detailViewMinimumNumberToShowButton
         showAllBottom.isHidden = reviews.count < LocalizedConstants.detailViewMinimumNumberToShowButton
+    }
+
+    private func updateCellEmptyStateBottomConstraint() {
+        heightReviewView.constant = reviewsTableView.contentSize.height +
+        LocalizedConstants.cellEmptyStateWidthImage
     }
 
     private func updateReviewsViewBottomConstraint() {
@@ -141,19 +188,21 @@ final class DetailViewController: UIViewController {
         LocalizedConstants.detailViewAumentBottomCellConstraint +
         LocalizedConstants.detailViewAumentBottomConstraint
     }
-}
 
-extension DetailViewController: DetailViewProtocol {
-    func updateView(data: [ReviewResult]) {
+    private func saveData(with data: [ReviewResult]) {
         if let first = data.first {
             self.firstReview.append(first)
         }
         self.reviews = data
+    }
+}
+
+extension DetailViewController: DetailViewProtocol {
+    func updateView(data: [ReviewResult]) {
+        saveData(with: data)
         guaranteeMainThread {
             self.titleReviewsLabel.text = "\(String.detailViewReviewTitle) \(data.count)"
-            self.reviewsTableView.reloadData {
-                self.updateReviewsViewBottomConstraint()
-            }
+            self.reloadTableView()
             self.hideButtonShowAllIfTotalDataIsMinium()
         }
     }
