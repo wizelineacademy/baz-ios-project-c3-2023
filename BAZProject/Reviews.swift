@@ -19,7 +19,6 @@ struct Reviews: Codable {
     }
 }
 
-// MARK: - Result
 struct ResultReviews: Codable {
     let author: String
     let authorDetails: AuthorDetails
@@ -37,7 +36,6 @@ struct ResultReviews: Codable {
     }
 }
 
-// MARK: - AuthorDetails
 struct AuthorDetails: Codable {
     let name, username, avatarPath: String
     let rating: Int

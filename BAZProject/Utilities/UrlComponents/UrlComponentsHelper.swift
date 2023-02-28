@@ -8,12 +8,22 @@
 import Foundation
 
 class URLComponentsHelper {
+    
+    /**    func to make Url
+     - Parameter path: endpoint of URLApi
+    - Returns: URL
+     */
     static func makeUrl(path: URLApi) -> String {
         var url = makeUrl()
         url.path = path.getEndpointUrl
         return url.string ?? ""
     }
     
+    /**    func to make Url for search
+     - Parameter path: endpoint of URLApi
+     - Parameter query: Query to search
+    - Returns: URL
+     */
     static func urlWithSearch(path: URLApi, query: String) -> String {
         var url = makeUrl()
         url.path = path.getEndpointUrl
@@ -22,6 +32,11 @@ class URLComponentsHelper {
         return url.string ?? ""
     }
     
+    /**    func to make Url with movie Id
+     - Parameter path: endpoint of URLApi
+     - Parameter idMovie: Id for search movie
+    - Returns: URL
+     */
     static func urlWithId(path: URLApi, idMovie: Int) -> String {
         var url = makeUrl()
         url.path = "/3/movie/\(idMovie)" + path.getEndpointUrl
@@ -39,6 +54,10 @@ class URLComponentsHelper {
         return url
     }
     
+    /**    func to make image URLs
+     - Parameter imageUrl: endpoint of imageUrl
+    - Returns: image URL
+     */
     static func imageUrl(imageUrl: String) -> String {
         var url = URLComponents()
         url.scheme = "https"

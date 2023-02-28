@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Welcome
 struct Keyword: Codable {
     let page: Int
     let results: [ResultKeyword]
@@ -20,7 +19,6 @@ struct Keyword: Codable {
     }
 }
 
-// MARK: - Result
 struct ResultKeyword: Codable {
     let name: String
     let id: Int

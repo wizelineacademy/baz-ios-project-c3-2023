@@ -14,6 +14,8 @@ struct Auth: Codable {
 final class KeychainHelper {    
     private var apiKey: Auth = Auth(accessToken: "apiKey", refreshToken: "f6cd5c1a9e6c6b965fdcab0fa6ddd38a")
     
+    static let shared = KeychainHelper()
+    
     func getApiKey() -> Auth? {
         let account = "domain.com"
         let service = "token"
@@ -23,11 +25,12 @@ final class KeychainHelper {
                                             type: Auth.self)!
     }
     
-    
-    
-    static let shared = KeychainHelper()
     private init() {}
-    
+    /**    func to make save data in Keychain
+     - Parameter data: dato to save
+     - Parameter service: service to save
+     - Parameter account: account to save
+     */
     private func save(_ data: Data, service: String, account: String) {
 
         let query = [
@@ -44,6 +47,11 @@ final class KeychainHelper {
         }
     }
 
+    /**    func to make read data in Keychain
+     - Parameter service: service to consult
+     - Parameter account: account to consult
+     - Returns: data to read
+     */
     private func read(service: String, account: String) -> Data? {
 
         let query = [
@@ -59,6 +67,10 @@ final class KeychainHelper {
         return (result as? Data)
     }
     
+    /**    func to make delete data in Keychain
+     - Parameter service: service to delete
+     - Parameter account: account to delete
+     */
     func delete(service: String, account: String) {
         
         let query = [
@@ -81,6 +93,11 @@ final class KeychainHelper {
         }
     }
     
+    /**    func to make read Keychain
+     - Parameter service: the service that consult
+     - Parameter account: account that cosult
+     - Returns: codable type read Keychain
+     */
     func read<T>(service: String, account: String, type: T.Type) -> T? where T : Codable {
         
         guard let data = read(service: service, account: account) else {

@@ -7,14 +7,15 @@
 
 import UIKit
 
-class ImageProvider {
+final class ImageProvider {
     static let shared = ImageProvider()
 
     // MARK: - Private methods
     private let cache = NSCache<NSString, UIImage>()
-
-    private init() {}
-
+    
+    /**    func to fetch image
+     - Parameter from: urlImage url
+     */
     public func fetchImage(from urlImage: String, completion: @escaping (UIImage?) -> Void) {
         if let image = cache.object(forKey: "image") {
             debugPrint("Use cache")

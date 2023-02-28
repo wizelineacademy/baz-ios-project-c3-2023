@@ -12,7 +12,6 @@ struct Movies: Codable {
     
 }
 
-// MARK: - Result
 struct Movie: Codable {
     let backdropPath: String?
     let id: Int

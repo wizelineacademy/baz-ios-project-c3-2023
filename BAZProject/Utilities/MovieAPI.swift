@@ -117,27 +117,4 @@ final class MovieAPI {
         }
         task.resume()
     }
-    
-    /**    func to help to get a image
-     
-    - Parameter imageUrl: url of image
-     
-    */
-    static func getImage(from imageUrl: String, handler: @escaping (UIImage) -> Void) {
-        DispatchQueue.global(qos: .default).async {
-            guard let url = URL(string: URLComponentsHelper.imageUrl(imageUrl: imageUrl)) else { return }
-            let data = try? Data(contentsOf: url)
-            guard let data = data else { return }
-            self.getDataImage(data: data) { image in
-                handler(image)
-            }
-        }
-    }
-    
-    static private func getDataImage(data: Data, handler: @escaping (UIImage) -> Void) {
-        DispatchQueue.main.async {
-            guard let image = UIImage(data: data) else { return }
-            handler(image)
-        }
-    }
 }
