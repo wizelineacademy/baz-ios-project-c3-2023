@@ -11,6 +11,7 @@ protocol MovieServicesProtocol {
     var page: Int { get set }
     func fetchMovies(type: fetchMoviesTypes, nextPage: Bool, completionHandler: @escaping ([Movie], MovieServiceError?) -> Void)
     func fetchReviews(id: Int, completionHandler: @escaping([Review], MovieServiceError?) -> Void)
+    func fetchCastByMovie(id: Int, completionHandler: @escaping([Cast], MovieServiceError?) -> Void)
 }
 
 extension MovieServicesProtocol {
@@ -58,6 +59,24 @@ class MoviesAPI: MovieServicesProtocol {
             do {
                 let reviews = try JSONDecoder().decode(ReviewResponse.self, from: data).results
                 completionHandler(reviews, nil)
+            } catch {
+                completionHandler([], .decodeError)
+            }
+        }.resume()
+    }
+    
+    func fetchCastByMovie(id: Int, completionHandler: @escaping ([Cast], MovieServiceError?) -> Void) {
+        let request = URLRequest(url: getURL(endpoint: .castByMovie(id: id)))
+        
+        sessionShared.dataTask(with: request) { data, error, response in
+            guard let data = data else {
+                completionHandler([], .fetchError)
+                return
+            }
+            
+            do {
+                let casts = try JSONDecoder().decode(CastResponse.self, from: data).cast
+                completionHandler(casts, nil)
             } catch {
                 completionHandler([], .decodeError)
             }

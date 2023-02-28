@@ -43,6 +43,15 @@ class MoviesWorker {
         }
     }
     
+    func getCastsByMovieId(_ id: Int, completionHandler: @escaping ([Cast], String?) -> Void) {
+        movieService.fetchCastByMovie(id: id) { casts, error in
+            if let error = error {
+                completionHandler([], error.description)
+            }
+            completionHandler(casts, nil)
+        }
+    }
+    
     func resetPagination() {
         movieService.resetPaginationFetch()
     }
