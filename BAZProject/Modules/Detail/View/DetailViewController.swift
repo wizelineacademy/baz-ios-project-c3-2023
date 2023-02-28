@@ -17,7 +17,7 @@ final class DetailViewController: UIViewController {
     private var reviews: [ReviewResult] = []
     private var firstReview: [ReviewResult] = []
 
-    var heightCells: [Int:CGFloat] = [:]
+    var heightCells: [Int: CGFloat] = [:]
 
     @IBOutlet weak private var imageSlider: ImageSlider!
     @IBOutlet weak private var titleLabelText: UILabel! {
