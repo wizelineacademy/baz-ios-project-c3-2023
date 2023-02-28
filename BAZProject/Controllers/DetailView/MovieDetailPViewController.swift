@@ -70,6 +70,7 @@ class MovieDetailPViewController: UIViewController {
         let backButton = UIBarButtonItem()
         backButton.title = ""
         navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+        self.title = "movie CLUB"
     }
     
     func setUpView() {

@@ -14,16 +14,16 @@
         <scene sceneID="6us-hv-43n">
             <objects>
                 <tabBarController id="AmD-HI-UXs" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GU8-yx-jeK">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="GU8-yx-jeK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="selectedImageTintColor" systemColor="systemOrangeColor"/>
                     </tabBar>
                     <connections>
                         <segue destination="obS-od-NPu" kind="relationship" relationship="viewControllers" id="5Rs-jK-EFi"/>
                         <segue destination="jo5-c3-yS4" kind="relationship" relationship="viewControllers" id="VRw-WJ-tcZ"/>
-                        <segue destination="gJ2-uR-o1L" kind="relationship" relationship="viewControllers" id="INO-Lg-ghF"/>
+                        <segue destination="H0e-wc-aBO" kind="relationship" relationship="viewControllers" id="INO-Lg-ghF"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vZs-3s-K8D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -36,23 +36,20 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="obS-od-NPu" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="homekit" catalog="system" id="g6Q-u2-bk6"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="56v-MR-d8S">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="56v-MR-d8S">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" systemColor="systemOrangeColor"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <textAttributes key="largeTitleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                         <navigationBarAppearance key="standardAppearance">
-                            <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </navigationBarAppearance>
                         <navigationBarAppearance key="scrollEdgeAppearance">
-                            <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </navigationBarAppearance>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -71,7 +68,9 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="219" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="7Ys-l1-YLU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CategoryTableViewCell" rowHeight="250" id="IKa-U5-KgX" customClass="CategoryTableViewCell" customModule="BAZProject" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44.5" width="320" height="250"/>
@@ -131,7 +130,7 @@
             </objects>
             <point key="canvasLocation" x="1941" y="-107"/>
         </scene>
-        <!--Movie DetailP View Controller-->
+        <!--movie CLUB-->
         <scene sceneID="wyI-JG-tHm">
             <objects>
                 <viewController id="j7o-0Q-ytx" customClass="MovieDetailPViewController" customModule="BAZProject" customModuleProvider="target" sceneMemberID="viewController">
@@ -141,7 +140,7 @@
                         <viewLayoutGuide key="safeArea" id="Mvs-ce-nkW"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="KVS-Nv-xpj"/>
+                    <navigationItem key="navigationItem" title="movie CLUB" id="KVS-Nv-xpj"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PWN-Dr-KSp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -247,7 +246,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zm1-nn-D8H" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1940.625" y="699.29577464788736"/>
+            <point key="canvasLocation" x="2938.125" y="699.29577464788736"/>
         </scene>
         <!--Peliculas-->
         <scene sceneID="0At-nj-gQZ">
@@ -311,9 +310,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8s7-Bk-R0N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2803.125" y="698.23943661971828"/>
+            <point key="canvasLocation" x="3800.625" y="698.23943661971828"/>
         </scene>
-        <!--Counter View Controller-->
+        <!--movie CLUB-->
         <scene sceneID="3FR-t7-Kvx">
             <objects>
                 <viewController id="gJ2-uR-o1L" customClass="CounterViewController" customModule="BAZProject" customModuleProvider="target" sceneMemberID="viewController">
@@ -322,19 +321,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Has visualizado" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SzD-7y-Zr9">
-                                <rect key="frame" x="16" y="64" width="288" height="24"/>
+                                <rect key="frame" x="16" y="108" width="288" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8hQ-mI-r3Z">
-                                <rect key="frame" x="160" y="120" width="0.0" height="0.0"/>
+                                <rect key="frame" x="160" y="164" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" detalles de peliculas." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VY2-ek-iC9">
-                                <rect key="frame" x="16" y="184" width="288" height="24"/>
+                                <rect key="frame" x="16" y="228" width="288" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -353,14 +352,14 @@
                             <constraint firstItem="SzD-7y-Zr9" firstAttribute="top" secondItem="xcp-HB-XuY" secondAttribute="top" constant="64" id="u8G-4H-Bqu"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="plus" catalog="system" id="OFg-BN-EB3"/>
+                    <navigationItem key="navigationItem" title="movie CLUB" id="pFX-V8-Rnd"/>
                     <connections>
                         <outlet property="numOfMoviesSeen" destination="8hQ-mI-r3Z" id="kqx-4Y-fRz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5KI-WW-Rbx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="62" y="861"/>
+            <point key="canvasLocation" x="1059.375" y="860.91549295774644"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xx5-9n-NWM">
@@ -370,11 +369,10 @@
                         <color key="badgeColor" systemColor="systemOrangeColor"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GTI-EJ-FNI">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="GTI-EJ-FNI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
@@ -382,10 +380,10 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                         <navigationBarAppearance key="standardAppearance">
-                            <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </navigationBarAppearance>
                         <navigationBarAppearance key="scrollEdgeAppearance">
-                            <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </navigationBarAppearance>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -395,7 +393,33 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m1f-Yv-YGN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="964" y="701"/>
+            <point key="canvasLocation" x="1961.25" y="700.35211267605632"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="UEm-rp-ul5">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="H0e-wc-aBO" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="plus" catalog="system" id="OFg-BN-EB3"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="YUG-yQ-MhM">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <navigationBarAppearance key="standardAppearance">
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </navigationBarAppearance>
+                        <navigationBarAppearance key="scrollEdgeAppearance">
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </navigationBarAppearance>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="gJ2-uR-o1L" kind="relationship" relationship="rootViewController" id="Dqc-Me-fRh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pde-6c-hHm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="61.875" y="860.91549295774644"/>
         </scene>
     </scenes>
     <resources>
