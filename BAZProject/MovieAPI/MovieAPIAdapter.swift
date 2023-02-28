@@ -13,15 +13,12 @@ public protocol DecodableResultAdapter {
 
 class JSONDecoderResultAdapter: DecodableResultAdapter {
     
-    private let decoder: JSONDecoder
     struct MovieAPIError: Error { }
     
-    init(decoder: JSONDecoder) {
-        self.decoder = decoder
-    }
+    init() { }
     
     func mapToResult<T>(with data: Data) -> (T?, Error?) where T : Decodable {
-        guard let movieResult = try? decoder.decode(T.self, from: data) else{
+        guard let movieResult = try? JSONDecoder().decode(T.self, from: data) else{
             return (nil, MovieAPIError())
         }
         return (movieResult, nil)
