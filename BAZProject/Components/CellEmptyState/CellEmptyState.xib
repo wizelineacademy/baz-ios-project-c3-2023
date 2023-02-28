@@ -42,6 +42,7 @@
                     <constraint firstItem="daP-ob-VEl" firstAttribute="top" secondItem="AM0-EL-ttL" secondAttribute="top" constant="16" id="pDW-NL-CzO"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="messageLabel" destination="lrx-01-JyH" id="FDs-qv-3a6"/>
             </connections>
