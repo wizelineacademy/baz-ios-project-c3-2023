@@ -43,10 +43,8 @@ extension CastTableViewCell: UICollectionViewDataSource, UICollectionViewDelegat
             
             if let image = data.cast[indexPath.row].profilePath {
                 imageProvider.fetchImage(from: image, completion: { image in
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                         UIView.removeSkeletons(onView: cell)
                         cell.imageMovie.image = image
-                    }
                 })
             }
             return cell

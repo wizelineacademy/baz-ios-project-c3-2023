@@ -44,10 +44,8 @@ extension ShowMoviesTableViewCell: UICollectionViewDataSource {
             
             if let image = data.results[indexPath.row].posterPath {
                 imageProvider.fetchImage(from: image, completion: { image in
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                         UIView.removeSkeletons(onView: cell)
                         cell.imageMovie.image = image
-                    }
                 })
             }
             return cell
