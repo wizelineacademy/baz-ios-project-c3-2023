@@ -45,18 +45,22 @@ protocol DetailMoviePresenterProtocol: AnyObject {
 
 protocol DetailMovieCastProtocol: AnyObject {
     func informSuccesfulPresenterCast()
+    func informErrorPresenterCast()
 }
 
 protocol DetailMovieReviewProtocol: AnyObject {
     func informSuccesfulPresenterReview()
+    func informErrorPresenterReview()
 }
 
 protocol DetailMovieSimilarProtocol: AnyObject {
     func informSuccesfulPresenterSimilar()
+    func informErrorPresenterSimilar()
 }
 
 protocol DetailMovieRecommendationProtocol: AnyObject {
     func informSuccesfulPresenterRecommendation()
+    func informErrorPresenterRecommendation()
 }
 
 protocol DetailMovieInteractorOutputProtocol: AnyObject {

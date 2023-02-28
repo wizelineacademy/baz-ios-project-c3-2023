@@ -20,10 +20,11 @@ class DetailMovieSimilarInteractor: DetailMovieSimilarInteractorInputProtocol {
 }
 
 extension DetailMovieSimilarInteractor: DetailMovieSimilarRemoteDataManagerOutputProtocol {
+    func pushNotSimilar() {
+        presenter?.pushNotSimilar()
+    }
     
     func pushSimilar(similar: [Movie]) {
         presenter?.pushSimilar(similar: similar)
     }
-    
-    
 }

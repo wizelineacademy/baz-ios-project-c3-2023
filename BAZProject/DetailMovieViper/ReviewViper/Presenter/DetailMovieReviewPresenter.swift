@@ -39,8 +39,12 @@ class DetailMovieReviewPresenter: DetailMovieReviewPresenterProtocol {
 }
 
 extension DetailMovieReviewPresenter: DetailMovieReviewInteractorOutputProtocol {
+    func pushNotReview() {
+        presenterMain?.informErrorPresenterReview()
+    }
     
     func pushReview(review: [Reviews]) {
         self.review = review
+        presenterMain?.informSuccesfulPresenterReview()
     }
 }

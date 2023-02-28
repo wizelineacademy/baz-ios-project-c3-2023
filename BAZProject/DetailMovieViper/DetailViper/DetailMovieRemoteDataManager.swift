@@ -12,7 +12,6 @@ class DetailMovieRemoteDataManager:DetailMovieRemoteDataManagerInputProtocol {
  
     var remoteRequestHandler: DetailMovieRemoteDataManagerOutputProtocol?
     
-    private let apiKey : String = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
     private let movieApi : MovieAPI = MovieAPI()
     
     func getDetails(idMovie: Int) {

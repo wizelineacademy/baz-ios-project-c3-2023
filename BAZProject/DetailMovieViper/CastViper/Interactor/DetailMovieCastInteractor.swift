@@ -15,15 +15,14 @@ class DetailMovieCastInteractor: DetailMovieCastInteractorInputProtocol {
     func getCast(idMovie: Int) {
         remoteDataManager?.getCast(idMovie: idMovie)
     }
-    
-    
 }
 
 extension DetailMovieCastInteractor: DetailMovieCastRemoteDataManagerOutputProtocol {
+    func pushNotCast() {
+        presenter?.pushNotCast()
+    }
     
     func pushCast(cast: [Cast]) {
         presenter?.pushCast(cast: cast)
     }
-    
-    
 }

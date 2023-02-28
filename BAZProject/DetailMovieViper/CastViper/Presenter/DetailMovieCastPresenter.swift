@@ -49,6 +49,9 @@ class DetailMovieCastPresenter: DetailMovieCastPresenterProtocol {
 }
 
 extension DetailMovieCastPresenter: DetailMovieCastInteractorOutputProtocol {
+    func pushNotCast() {
+        presenterMain?.informErrorPresenterCast()
+    }
     
     func pushCast(cast: [Cast]) {
         self.cast = cast

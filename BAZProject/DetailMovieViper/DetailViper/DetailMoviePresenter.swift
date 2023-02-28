@@ -22,25 +22,39 @@ class DetailMoviePresenter: DetailMoviePresenterProtocol  {
     private let movieApi : MovieAPI = MovieAPI()
     var detailsMovie: DetailMovie?
     var tableViewSize: Int = 170
-    var tableCount: Int = 5
     var detailName: String = ""
     let group = DispatchGroup()
+    private var cellArray: [CellTypes] = []
+    
     
     init(idMovie: Int) {
         self.idMovie = idMovie
+        NotificationCenter.default.post(name: NSNotification.Name("RecentViewMovie"), object: ["idMovie": idMovie])
     }
     
     
     /// Call all the presenters for initial the consume of all details 
     ///
     func viewDidLoad() {
+        setupDispatchGroup()
         interactor?.getDetails(idMovie: idMovie)
-        presenterCast?.getCast(idMovie: idMovie)
-        presenterReview?.getReview(idMovie: idMovie)
-        presenterSimilar?.getSimilar(idMovie: idMovie)
         presenterRecommendation?.getRecommendation(idMovie: idMovie)
+        presenterSimilar?.getSimilar(idMovie: idMovie)
+        presenterReview?.getReview(idMovie: idMovie)
+        presenterCast?.getCast(idMovie: idMovie)
     }
     
+    func setupDispatchGroup() {
+        group.enter()
+        group.enter()
+        group.enter()
+        group.enter()
+        group.enter()
+        group.notify(queue: .main) {
+            self.cellArray.reverse()
+            self.view?.reloadView()
+        }
+    }
     
     /// Get an image from the MovieApi class using the detailImage and return and UIImage
     ///
@@ -63,7 +77,7 @@ class DetailMoviePresenter: DetailMoviePresenterProtocol  {
     ///
     /// - Returns: Integer that represents the table count
     func getTableCount() -> Int {
-        return tableCount
+        return cellArray.count + 1
     }
     
     func getGenres() -> String {
@@ -90,7 +104,6 @@ class DetailMoviePresenter: DetailMoviePresenterProtocol  {
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "DetailTableViewCell") as? DetailTableViewCell
             else { return UITableViewCell() }
-            
             cell.presenter = self
             cell.indexPath = indexPath.row
             cell.setupDetailsCollectionView()
@@ -105,18 +118,16 @@ class DetailMoviePresenter: DetailMoviePresenterProtocol  {
     /// - Parameter indexPath: Integer that represents the current cell in tableView
     /// - Returns: Integer that representes the collection count
     func getCollectionCount(indexPath: Int) -> Int? {
-        switch indexPath {
-        case 1:
-            return presenterCast?.getCastCount()
-        case 2:
-            return presenterReview?.getReviewCount()
-        case 3:
-            return presenterSimilar?.getSimilarCount()
-        case 4:
-            return presenterRecommendation?.getRecommendationCount()
-        default:
-            return 0
-        }
+            switch cellArray[indexPath - 1] {
+            case .cast:
+                return presenterCast?.getCastCount()
+            case .review:
+                return presenterReview?.getReviewCount()
+            case .similar:
+                return presenterSimilar?.getSimilarCount()
+            case .recommendation:
+                return presenterRecommendation?.getRecommendationCount()
+            }
     }
     
     /// Get the cell of the collectionViewCell
@@ -127,41 +138,40 @@ class DetailMoviePresenter: DetailMoviePresenterProtocol  {
     /// - Parameter nameLabel: the label name of the collection
     /// - Returns: the cell fot setup in the collectionViewCell
     func getCell(collectionView: UICollectionView, indexPath: IndexPath, indexPathTable: Int, nameLabel: UILabel) -> UICollectionViewCell {
-        switch indexPathTable{
-        case 1:
-            nameLabel.text = "Cast"
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CastCollectionViewCell", for: indexPath) as? CastCollectionViewCell else { return UICollectionViewCell() }
-            presenterCast?.getCastImage(index: indexPath.row, completion: { castImage in
-                cell.setupCastImage(castImage: castImage)
-                DispatchQueue.main.async {
-                    cell.nameLabel.text = self.presenterCast?.getCast(index: indexPath.row).name ?? ""
-                    cell.characterLabel.text = self.presenterCast?.getCast(index: indexPath.row).character ?? ""
-                }
-            })
-            return cell
-        case 2:
-            nameLabel.text = "Review"
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ReviewCollectionViewCell", for: indexPath) as? ReviewCollectionViewCell else { return UICollectionViewCell() }
-            cell.setupReviewCell(name: presenterReview?.getReview(index: indexPath.row).author, review: presenterReview?.getReview(index: indexPath.row).content, date: presenterReview?.getReview(index: indexPath.row).created_at)
-            cell.addShadow()
-            return cell
-        case 3:
-            nameLabel.text = "Similar"
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MoviesCollectionViewCell", for: indexPath) as? MoviesCollectionViewCell else { return UICollectionViewCell() }
-            presenterSimilar?.getSimilarImage(index: indexPath.row, completion: { similarImage in
-                cell.setupCell(image: similarImage)
-            })
-            return cell
-        case 4:
-            nameLabel.text = "Recommendation"
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MoviesCollectionViewCell", for: indexPath) as? MoviesCollectionViewCell else { return UICollectionViewCell() }
-            presenterRecommendation?.getRecommendationImage(index: indexPath.row, completion: { recommendationImage in
-                cell.setupCell(image: recommendationImage)
-            })
-           return cell
-        default:
-            return UICollectionViewCell()
-        }
+      
+        switch cellArray[indexPathTable - 1] {
+            case .cast:
+                nameLabel.text = "Cast"
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CastCollectionViewCell", for: indexPath) as? CastCollectionViewCell else { return UICollectionViewCell() }
+                presenterCast?.getCastImage(index: indexPath.row, completion: { castImage in
+                    cell.setupCastImage(castImage: castImage)
+                    DispatchQueue.main.async {
+                        cell.nameLabel.text = self.presenterCast?.getCast(index: indexPath.row).name ?? ""
+                        cell.characterLabel.text = self.presenterCast?.getCast(index: indexPath.row).character ?? ""
+                    }
+                })
+                return cell
+            case .review:
+                nameLabel.text = "Review"
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ReviewCollectionViewCell", for: indexPath) as? ReviewCollectionViewCell else { return UICollectionViewCell() }
+                cell.setupReviewCell(name: presenterReview?.getReview(index: indexPath.row).author, review: presenterReview?.getReview(index: indexPath.row).content, date: presenterReview?.getReview(index: indexPath.row).created_at)
+                cell.addShadow()
+                return cell
+            case .similar:
+                nameLabel.text = "Similar"
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MoviesCollectionViewCell", for: indexPath) as? MoviesCollectionViewCell else { return UICollectionViewCell() }
+                presenterSimilar?.getSimilarImage(index: indexPath.row, completion: { similarImage in
+                    cell.setupCell(image: similarImage)
+                })
+                return cell
+            case .recommendation:
+                nameLabel.text = "Recommendation"
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MoviesCollectionViewCell", for: indexPath) as? MoviesCollectionViewCell else { return UICollectionViewCell() }
+                presenterRecommendation?.getRecommendationImage(index: indexPath.row, completion: { recommendationImage in
+                    cell.setupCell(image: recommendationImage)
+                })
+               return cell
+            }
     }
     
     /// Get the cell of the collectionViewCell
@@ -169,17 +179,16 @@ class DetailMoviePresenter: DetailMoviePresenterProtocol  {
     /// - Parameter indexPath: indexPath that represents the indexPath of the collectionView
     /// - Returns: cgsize of the collectionViewCell
     func getTableSize(indexPath: Int) -> CGSize {
-        switch indexPath{
-        case 1:
-            return CGSize(width: 100, height: 130)
-        case 2:
-            return CGSize(width: 200, height: 100)
-        case 3:
-            return CGSize(width: 100, height: 120)
-        case 4:
-            return CGSize(width: 100, height: 120)
-        default:
-            return CGSize(width: 0, height: 0)
+        
+        switch cellArray[indexPath - 1] {
+            case .cast:
+                return CGSize(width: 100, height: 130)
+            case .review:
+                return CGSize(width: 200, height: 100)
+            case .similar:
+                return CGSize(width: 100, height: 120)
+            case .recommendation:
+                return CGSize(width: 100, height: 120)
         }
     }
 
@@ -190,31 +199,55 @@ extension DetailMoviePresenter: DetailMovieInteractorOutputProtocol {
     func pushDetailMovie(detailMovie: DetailMovie) {
         self.detailsMovie = detailMovie
         view?.setupDetailsView()
-        view?.reloadView()
+        group.leave()
     }
   
 }
 
 extension DetailMoviePresenter: DetailMovieCastProtocol {
+    func informErrorPresenterCast() {
+        group.leave()
+    }
+    
     func informSuccesfulPresenterCast() {
-        view?.reloadView()
+        cellArray.append(.cast)
+        group.leave()
     }
 }
 
 extension DetailMoviePresenter: DetailMovieReviewProtocol {
+    func informErrorPresenterReview() {
+        group.leave()
+    }
+    
     func informSuccesfulPresenterReview() {
-        view?.reloadView()
+        cellArray.append(.review)
+        group.leave()
     }
 }
 
 extension DetailMoviePresenter: DetailMovieSimilarProtocol {
+    func informErrorPresenterSimilar() {
+        group.leave()
+    }
+    
     func informSuccesfulPresenterSimilar() {
-        view?.reloadView()
+        cellArray.append(.similar)
+        group.leave()
     }
 }
 
 extension DetailMoviePresenter: DetailMovieRecommendationProtocol {
-    func informSuccesfulPresenterRecommendation() {
-        view?.reloadView()
+    func informErrorPresenterRecommendation() {
+        group.leave()
     }
+    
+    func informSuccesfulPresenterRecommendation() {
+        cellArray.append(.recommendation)
+        group.leave()
+    }
+}
+
+enum CellTypes {
+    case cast, review, similar, recommendation
 }

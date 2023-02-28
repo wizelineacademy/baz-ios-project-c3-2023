@@ -20,7 +20,6 @@ class MoviesCollectionViewCell: UICollectionViewCell {
             } else {
                 self.movieImageView.image = UIImage(named: "poster")
             }
-           
         }
     }
 }

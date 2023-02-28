@@ -72,6 +72,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Movies" id="WhG-gT-S6I">
+                        <barButtonItem key="leftBarButtonItem" style="done" systemItem="bookmarks" id="jNi-eB-OaW">
+                            <color key="tintColor" systemColor="labelColor"/>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="search" id="6Jw-jj-qME">
                             <color key="tintColor" systemColor="labelColor"/>
                             <connections>

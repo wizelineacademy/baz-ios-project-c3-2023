@@ -19,6 +19,7 @@ protocol DetailMovieCastPresenterProtocol: AnyObject {
 
 protocol DetailMovieCastInteractorOutputProtocol: AnyObject {
     func pushCast(cast: [Cast])
+    func pushNotCast()
 }
 
 protocol DetailMovieCastInteractorInputProtocol: AnyObject {
@@ -36,4 +37,5 @@ protocol DetailMovieCastRemoteDataManagerInputProtocol: AnyObject {
 
 protocol DetailMovieCastRemoteDataManagerOutputProtocol: AnyObject {
     func pushCast(cast: [Cast])
+    func pushNotCast()
 }

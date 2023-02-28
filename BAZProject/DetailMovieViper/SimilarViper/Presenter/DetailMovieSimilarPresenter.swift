@@ -49,9 +49,12 @@ class DetailMovieSimilarPresenter: DetailMovieSimilarPresenterProtocol {
 }
 
 extension DetailMovieSimilarPresenter: DetailMovieSimilarInteractorOutputProtocol {
-    func pushSimilar(similar: [Movie]) {
-        self.similar = similar
+    func pushNotSimilar() {
+        presenterMain?.informErrorPresenterSimilar()
     }
     
-    
+    func pushSimilar(similar: [Movie]) {
+        self.similar = similar
+        presenterMain?.informSuccesfulPresenterSimilar()
+    }
 }

@@ -18,6 +18,7 @@ protocol DetailMovieReviewPresenterProtocol: AnyObject {
 
 protocol DetailMovieReviewInteractorOutputProtocol: AnyObject {
     func pushReview(review: [Reviews])
+    func pushNotReview()
 }
 
 protocol DetailMovieReviewInteractorInputProtocol: AnyObject {
@@ -35,4 +36,5 @@ protocol DetailMovieReviewRemoteDataManagerInputProtocol: AnyObject {
 
 protocol DetailMovieReviewRemoteDataManagerOutputProtocol: AnyObject {
     func pushReview(review: [Reviews])
+    func pushNotReview()
 }

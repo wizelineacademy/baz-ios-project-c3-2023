@@ -19,9 +19,21 @@ class HomeMoviesPresenter: HomeMoviesPresenterProtocol  {
     private var firstLoad : Bool = true
     var categoriesMovies: [Movie] = []
     var toShowMovies: [Movie] = []
+    var recentViews: [Int] = []
 
     func viewDidLoad() {
         interactor?.getTrendingMovies()
+    }
+    
+    func setupObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(addRecentView), name: NSNotification.Name("RecentViewMovie"), object: nil)
+    }
+    
+    @objc func addRecentView(_ notification: Notification) {
+        let info = notification.object as? [String:Int]
+        if let idMovie = info?["idMovie"] {
+            recentViews.append(idMovie)
+        }
     }
     
     /// Get the movie from the toShowMovies  array

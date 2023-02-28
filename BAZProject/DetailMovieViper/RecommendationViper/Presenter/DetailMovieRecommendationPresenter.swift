@@ -49,9 +49,12 @@ class DetailMovieRecommendationPresenter: DetailMovieRecommendationPresenterProt
 }
 
 extension DetailMovieRecommendationPresenter: DetailMovieRecommendationInteractorOutputProtocol {
-    func pushRecommendation(recommendation: [Movie]) {
-        self.recommendation = recommendation
+    func pushNotRecommendation() {
+        presenterMain?.informErrorPresenterRecommendation()
     }
     
-    
+    func pushRecommendation(recommendation: [Movie]) {
+        self.recommendation = recommendation
+        presenterMain?.informSuccesfulPresenterRecommendation()
+    }
 }
