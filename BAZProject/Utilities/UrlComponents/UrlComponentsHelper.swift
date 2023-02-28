@@ -32,7 +32,7 @@ class URLComponentsHelper {
         var url = URLComponents()
         url.scheme = "https"
         url.host = "api.themoviedb.org"
-        let queryItemApiKey = URLQueryItem(name: "api_key", value: "f6cd5c1a9e6c6b965fdcab0fa6ddd38a")
+        let queryItemApiKey = URLQueryItem(name: "api_key", value: KeychainHelper.shared.getApiKey()?.refreshToken)
         let queryItemLanguage = URLQueryItem(name: "language", value: "es")
         let queryItemPague = URLQueryItem(name: "page", value: "1")
         url.queryItems = [queryItemApiKey, queryItemLanguage, queryItemPague]

@@ -76,7 +76,6 @@ public enum URLApi: Hashable {
 
 final class MovieAPI {
     static private let imgBaseUrl: String = "https://image.tmdb.org/t/p/w500"
-    static private var apiKey: String = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
     static private var urlBase: String = "https://api.themoviedb.org/3"
     
     /**    func to help to get Data of apis

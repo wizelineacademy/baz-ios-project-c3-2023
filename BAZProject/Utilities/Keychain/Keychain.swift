@@ -6,17 +6,30 @@
 //
 
 import Foundation
+struct Auth: Codable {
+    let accessToken: String
+    let refreshToken: String
+}
 
-final class KeychainHelper {
+final class KeychainHelper {    
+    private var apiKey: Auth = Auth(accessToken: "apiKey", refreshToken: "f6cd5c1a9e6c6b965fdcab0fa6ddd38a")
     
-    static let standard = KeychainHelper()
+    func getApiKey() -> Auth? {
+        let account = "domain.com"
+        let service = "token"
+        KeychainHelper.shared.save(apiKey, service: service, account: account)
+        return KeychainHelper.shared.read(service: service,
+                                            account: account,
+                                            type: Auth.self)!
+    }
+    
+    
+    
+    static let shared = KeychainHelper()
     private init() {}
-    
-    // Class implementation here...
     
     private func save(_ data: Data, service: String, account: String) {
 
-        // Create query
         let query = [
             kSecValueData: data,
             kSecClass: kSecClassGenericPassword,
@@ -24,11 +37,9 @@ final class KeychainHelper {
             kSecAttrAccount: account,
         ] as CFDictionary
 
-        // Add data in query to keychain
         let status = SecItemAdd(query, nil)
 
         if status != errSecSuccess {
-            // Print out the error
             debugPrint("Error: \(status)")
         }
     }
@@ -56,14 +67,12 @@ final class KeychainHelper {
             kSecClass: kSecClassGenericPassword,
             ] as CFDictionary
         
-        // Delete item from keychain
         SecItemDelete(query)
     }
     
     func save<T>(_ item: T, service: String, account: String) where T : Codable {
         
         do {
-            // Encode as JSON data and save in keychain
             let data = try JSONEncoder().encode(item)
             save(data, service: service, account: account)
             
@@ -74,12 +83,10 @@ final class KeychainHelper {
     
     func read<T>(service: String, account: String, type: T.Type) -> T? where T : Codable {
         
-        // Read item data from keychain
         guard let data = read(service: service, account: account) else {
             return nil
         }
         
-        // Decode JSON data to object
         do {
             let item = try JSONDecoder().decode(type, from: data)
             return item
