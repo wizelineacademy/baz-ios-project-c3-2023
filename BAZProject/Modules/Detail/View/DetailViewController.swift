@@ -34,6 +34,18 @@ final class DetailViewController: UIViewController {
     }
     @IBOutlet weak var reviewsTableView: UITableView!
     @IBOutlet weak var heightReviewView: NSLayoutConstraint!
+    @IBOutlet weak private var showAllTop: UIButton! {
+        didSet {
+            showAllTop.setTitle(.detailShowAllTitle, for: .normal)
+            showAllTop.addShadow(.white)
+        }
+    }
+    @IBOutlet weak private var showAllBottom: UIButton! {
+        didSet {
+            showAllBottom.setTitle(.detailShowAllTitle, for: .normal)
+            showAllBottom.addShadow(.white)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -120,6 +132,17 @@ final class DetailViewController: UIViewController {
                                             userInfo: [LocalizedConstants.notificationCenterNameParamId: String(id)])
         }
     }
+
+    private func hideButtonShowAllIfTotalDataIsMinium() {
+        showAllTop.isHidden = reviews.count < LocalizedConstants.detailViewMinimumNumberToShowButton
+        showAllBottom.isHidden = reviews.count < LocalizedConstants.detailViewMinimumNumberToShowButton
+    }
+
+    private func updateReviewsViewBottomConstraint() {
+        heightReviewView.constant = reviewsTableView.contentSize.height +
+        LocalizedConstants.detailViewAumentBottomCellConstraint +
+        LocalizedConstants.detailViewAumentBottomConstraint
+    }
 }
 
 extension DetailViewController: DetailViewProtocol {
@@ -131,9 +154,9 @@ extension DetailViewController: DetailViewProtocol {
         guaranteeMainThread {
             self.titleReviewsLabel.text = "\(String.detailViewReviewTitle) \(data.count)"
             self.reviewsTableView.reloadData {
-                self.heightReviewView.constant = self.reviewsTableView.contentSize.height +
-                LocalizedConstants.commonHeightHeaderTable
+                self.updateReviewsViewBottomConstraint()
             }
+            self.hideButtonShowAllIfTotalDataIsMinium()
         }
     }
 

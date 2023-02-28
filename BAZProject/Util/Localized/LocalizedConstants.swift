@@ -97,4 +97,9 @@ enum LocalizedConstants {
     // MARK: - CellReview
     static let cellReviewNumberLines: Int = 3
     static let cellReviewConstraintBottom: CGFloat = 32
+
+    // MARK: - DetailView
+    static let detailViewAumentBottomCellConstraint: CGFloat = 60
+    static let detailViewAumentBottomConstraint: CGFloat = 16
+    static let detailViewMinimumNumberToShowButton: Int = 2
 }

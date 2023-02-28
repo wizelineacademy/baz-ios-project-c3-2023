@@ -97,7 +97,7 @@
                         <rect key="frame" x="16" y="103" width="544" height="35"/>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" title="Show more">
-                            <color key="baseForegroundColor" red="1" green="0.4273083862" blue="0.29877976280000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="baseForegroundColor" name="ErrorColor"/>
                         </buttonConfiguration>
                         <connections>
                             <action selector="showMoreAction:" destination="S0I-dV-LKn" eventType="touchDown" id="dni-bC-YgH"/>
@@ -135,11 +135,14 @@
     </objects>
     <resources>
         <image name="icon_filled_star" width="21.333333969116211" height="21.333333969116211"/>
+        <namedColor name="ErrorColor">
+            <color red="1" green="0.42699998617172241" blue="0.29800000786781311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="SecondaryColor">
             <color red="0.41999998688697815" green="0.68199998140335083" blue="0.42399999499320984" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="SubtitleColor">
-            <color red="0.63167735844337736" green="0.32146077180872351" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.63200002908706665" green="0.32100000977516174" blue="0.94499999284744263" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

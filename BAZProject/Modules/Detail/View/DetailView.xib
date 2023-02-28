@@ -15,6 +15,8 @@
                 <outlet property="heightReviewView" destination="0gm-SH-yf7" id="HmR-VH-zmf"/>
                 <outlet property="imageSlider" destination="0FR-aM-gL9" id="95D-xX-qVb"/>
                 <outlet property="reviewsTableView" destination="tur-a0-G72" id="92w-m7-zEb"/>
+                <outlet property="showAllBottom" destination="Yub-qX-oyt" id="TOL-Be-dmV"/>
+                <outlet property="showAllTop" destination="Poy-XM-9WR" id="Qak-nY-qCe"/>
                 <outlet property="titleLabelText" destination="ZjG-S9-3Je" id="hYq-y0-zY4"/>
                 <outlet property="titleReviewsLabel" destination="fRn-qb-c4i" id="n3l-7E-7zL"/>
                 <outlet property="view" destination="iN0-l3-epB" id="1vn-VC-947"/>
@@ -29,10 +31,10 @@
                     <rect key="frame" x="0.0" y="59" width="375" height="608"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Wf-Zx-fFC">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="538"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="638"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="fPl-am-mRz">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="538"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="638"/>
                                     <subviews>
                                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0FR-aM-gL9" customClass="ImageSlider" customModule="BAZProject" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="-170" width="375" height="170"/>
@@ -69,29 +71,48 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jIG-ce-XNx" userLabel="Reviews">
-                                            <rect key="frame" x="0.0" y="438" width="375" height="100"/>
+                                            <rect key="frame" x="0.0" y="438" width="375" height="200"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fRn-qb-c4i">
-                                                    <rect key="frame" x="16" y="15.999999999999998" width="343" height="20.333333333333329"/>
+                                                    <rect key="frame" x="16" y="15.999999999999998" width="33" height="20.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tur-a0-G72">
-                                                    <rect key="frame" x="16" y="44.333333333333371" width="343" height="55.666666666666657"/>
+                                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tur-a0-G72">
+                                                    <rect key="frame" x="16" y="44.333333333333364" width="343" height="97.333333333333314"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 </tableView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yub-qX-oyt">
+                                                    <rect key="frame" x="16" y="149.66666666666663" width="343" height="50.333333333333343"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title="Show all" buttonSize="large">
+                                                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </buttonConfiguration>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Poy-XM-9WR">
+                                                    <rect key="frame" x="57" y="1" width="302" height="50.333333333333336"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title="Show all" buttonSize="large">
+                                                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </buttonConfiguration>
+                                                </button>
                                             </subviews>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="100" id="0gm-SH-yf7"/>
+                                                <constraint firstAttribute="height" constant="200" id="0gm-SH-yf7"/>
                                                 <constraint firstItem="tur-a0-G72" firstAttribute="leading" secondItem="fRn-qb-c4i" secondAttribute="leading" id="1No-j8-NVT"/>
+                                                <constraint firstItem="Poy-XM-9WR" firstAttribute="centerY" secondItem="fRn-qb-c4i" secondAttribute="centerY" id="9Xt-wG-6CX"/>
                                                 <constraint firstItem="fRn-qb-c4i" firstAttribute="top" secondItem="jIG-ce-XNx" secondAttribute="top" constant="16" id="Al7-6b-6ZL"/>
-                                                <constraint firstItem="tur-a0-G72" firstAttribute="trailing" secondItem="fRn-qb-c4i" secondAttribute="trailing" id="IQo-ex-h8j"/>
+                                                <constraint firstItem="tur-a0-G72" firstAttribute="trailing" secondItem="Poy-XM-9WR" secondAttribute="trailing" id="IlW-gJ-4dr"/>
+                                                <constraint firstItem="Yub-qX-oyt" firstAttribute="trailing" secondItem="tur-a0-G72" secondAttribute="trailing" id="LOZ-by-Nyz"/>
                                                 <constraint firstItem="tur-a0-G72" firstAttribute="top" secondItem="fRn-qb-c4i" secondAttribute="bottom" constant="8" id="b6N-fW-tMc"/>
-                                                <constraint firstAttribute="bottom" secondItem="tur-a0-G72" secondAttribute="bottom" id="cHS-Fe-rpH"/>
-                                                <constraint firstAttribute="trailing" secondItem="fRn-qb-c4i" secondAttribute="trailing" constant="16" id="krl-64-Ynl"/>
+                                                <constraint firstItem="Poy-XM-9WR" firstAttribute="leading" secondItem="fRn-qb-c4i" secondAttribute="trailing" constant="8" id="eS6-zF-E4N"/>
+                                                <constraint firstItem="Yub-qX-oyt" firstAttribute="top" secondItem="tur-a0-G72" secondAttribute="bottom" constant="8" id="iGs-ez-yON"/>
                                                 <constraint firstItem="fRn-qb-c4i" firstAttribute="leading" secondItem="jIG-ce-XNx" secondAttribute="leading" constant="16" id="mRz-sv-PSf"/>
+                                                <constraint firstAttribute="trailing" secondItem="Poy-XM-9WR" secondAttribute="trailing" constant="16" id="nQN-FU-Wmw"/>
+                                                <constraint firstItem="Yub-qX-oyt" firstAttribute="leading" secondItem="tur-a0-G72" secondAttribute="leading" id="o1C-qa-O5T"/>
+                                                <constraint firstAttribute="bottom" secondItem="Yub-qX-oyt" secondAttribute="bottom" id="woI-7S-cg3"/>
                                             </constraints>
                                         </view>
                                     </subviews>
