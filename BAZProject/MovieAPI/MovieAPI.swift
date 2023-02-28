@@ -21,37 +21,17 @@ class MovieAPI {
     /// Returns the movies list of the category given in Mexico region and in spanish laguague.
     ///
     ///  - Parameter category: The category to be consulted
-    ///  - Returns: T object.
+    ///  - Returns: [Movie]
     ///
-    
-    struct URLSessionFetcher {
-        
-        private let urlRequestFactory: URLRequestFactory
-        private let decodableResultAdapter: DecodableResultAdapter
-        private struct DataNotFoundError: Error { }
-        
-        init(urlRequestFactory: URLRequestFactory, decodableResultAdapter: DecodableResultAdapter) {
-            self.urlRequestFactory = urlRequestFactory
-            self.decodableResultAdapter = decodableResultAdapter
+
+    func getMovies(category: MovieAPICategory) -> [Movie] {
+        guard let urlTrendingMovies = URL(string: "https://api.themoviedb.org/3/\(category.endpointUrl)?api_key=\(apiKey)&\(language)&\(region)"),
+              let data = try? Data(contentsOf: urlTrendingMovies),
+              let json = try? JSONDecoder().decode(MovieAPIResult.self, from: data)
+        else {
+            return []
         }
-        
-        func fetchData<T: Decodable>(completionHandler: @escaping (T?, Error?) -> Void) {
-            let urlRequest = urlRequestFactory.makeUrlRequest()
-            
-            let task = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
-                if let error = error {
-                    completionHandler(nil, error)
-                } else {
-                    guard let data = data
-                    else {
-                        completionHandler(nil, DataNotFoundError()); return
-                    }
-                    let movieResult: (T?, Error?) = self.decodableResultAdapter.mapToResult(with: data)
-                    completionHandler(movieResult.0, movieResult.1)
-                }
-            }
-            task.resume()
-        }
+        return json.results
     }
     
     /// Fetch movie poster of a given url.

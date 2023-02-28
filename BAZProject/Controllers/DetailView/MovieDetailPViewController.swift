@@ -55,22 +55,15 @@ class MovieDetailPViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        notificationToCounter()
         configNavBar()
         setUpView()
         services()
-    }
-    
-    func notificationToCounter() {
-        let notificationDetail = Notification.Name(rawValue: deltailMovieSeen)
-        NotificationCenter.default.post(name: notificationDetail, object: nil)
     }
     
     func configNavBar() {
         let backButton = UIBarButtonItem()
         backButton.title = ""
         navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
-        self.title = "movie CLUB"
     }
     
     func setUpView() {

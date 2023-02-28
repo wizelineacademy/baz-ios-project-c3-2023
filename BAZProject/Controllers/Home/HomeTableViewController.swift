@@ -9,8 +9,6 @@ import UIKit
 
 class HomeTableViewController: UITableViewController {
     
-    let notificationDetail = Notification.Name(rawValue: deltailMovieSeen)
-    let movieApi = MovieAPI()
     var heightRowTable: CGFloat = 250
     var categories = MovieAPICategory.allMovieAPICategories
     var listOfCategories: [MovieAPICategory: [Movie]] = [
@@ -23,48 +21,15 @@ class HomeTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        createObserver()
-        getMovies()
-    }
-    
-    func createObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(reload), name: notificationDetail, object: nil)
-    }
-    
-    @objc
-    func reload() {
-        CounterSingleton.shared.addToCounter()
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    func getMovies() {
-        getCategory(category: MovieAPICategory.trending)
-        getCategory(category: MovieAPICategory.nowPlaying)
-        getCategory(category: MovieAPICategory.popular)
-        getCategory(category: MovieAPICategory.topRated)
-        getCategory(category: MovieAPICategory.upcoming)
-    }
-    
-    func getCategory(category: MovieAPICategory){
-        let category = category
-        let categoryURL = MovieCategoryURLRequestFactory(category: category)
-        let sessionFetcher = MovieAPI.URLSessionFetcher(urlRequestFactory: categoryURL, decodableResultAdapter: JSONDecoderResultAdapter())
+                        
+        let movieApi = MovieAPI()
+        listOfCategories[.trending] = movieApi.getMovies(category: .trending)
+        listOfCategories[.nowPlaying] = movieApi.getMovies(category: .nowPlaying)
+        listOfCategories[.popular] = movieApi.getMovies(category: .popular)
+        listOfCategories[.topRated] = movieApi.getMovies(category: .topRated)
+        listOfCategories[.upcoming] = movieApi.getMovies(category: .upcoming)
         
-        sessionFetcher.fetchData() { [weak self] (movieResult: MovieAPIResult?, error: Error?) in
-            if let movieResult = movieResult {
-                self?.listOfCategories[category] = movieResult.results
-                self?.reloadSectionInTable(index: IndexSet(integer:  category.rawValue))
-            }
-        }
-    }
-
-    func reloadSectionInTable(index: IndexSet) {
-        DispatchQueue.main.async {
-            self.tableView.reloadSections(index, with: .none)
-        }
+        tableView.reloadData()
     }
     
     func showDetailMovieViewController(sender: Any?) {
