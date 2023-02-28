@@ -19,7 +19,7 @@ class SearchMoviesPresenter: SearchMoviesPresentationLogic {
     
     func presentMoviesFeched(response: SearchMovies.FetchMovies.Response) {
         let displayedMovies = response.movies.map { movie in
-            return MovieSearch(id: movie.id ?? -1, imageURL: movie.posterPath ?? "", title: movie.title ?? "")
+            return MovieSearch(id: movie.id ?? -1, imageURL: movie.posterPath ?? "", title: movie.title ?? "", backdropURL: movie.backdropPath ?? "", overview: movie.overview ?? "")
         }
         viewController?.displayFetchMovies(viewModel: SearchMovies.FetchMovies.ViewModel(displayedNextPage: response.nextPage, displayedMovies: displayedMovies))
     }

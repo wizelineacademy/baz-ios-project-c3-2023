@@ -87,8 +87,8 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: HomeDisplayLogic {
     func displayFetchedMoives(viewModel: Home.FetchMoviesBySection.ViewModel) {
-        let moviesSectionView = MoviesSectionView(typeSection: viewModel.displayedMovies.section, delegate: self)
-
+        let moviesSectionView = MoviesSectionView(typeSection: viewModel.displayedMovies.section)
+        moviesSectionView.delegate = self
         addMoviesSectionView(moviesSectionView: moviesSectionView)
         moviesSectionView.model = viewModel.displayedMovies.movies
     }

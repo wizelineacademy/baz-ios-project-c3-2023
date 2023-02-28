@@ -13,7 +13,25 @@ enum MovieDetails {
             var movie: MovieSearch
         }
         struct ViewModel {
+            var id: Int
             var title: String
+            var imageURL: String
+            var backdropURL: String
+            var overview: String
+        }
+    }
+    
+    enum SimilarMovies {
+        struct Request {
+            var idMovie: Int
+        }
+        struct Response {
+            var idMovie: Int
+            var movies: [Movie]
+        }
+        struct ViewModel {
+            var idMovie: Int
+            var movies: [MovieSearch]
         }
     }
 }

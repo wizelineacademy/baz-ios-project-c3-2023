@@ -9,6 +9,7 @@ import Foundation
 
 protocol MovieDetailsPresentationLogic {
     func presentLoadView(response: MovieDetails.LoadView.Response)
+    func presentFechedSimilarMovies(response: MovieDetails.SimilarMovies.Response)
 }
 
 class MovieDetailsPresenter: MovieDetailsPresentationLogic {
@@ -17,7 +18,17 @@ class MovieDetailsPresenter: MovieDetailsPresentationLogic {
     weak var viewController: MovieDetailsDisplayLogic?
     
     func presentLoadView(response: MovieDetails.LoadView.Response) {
-        let viewModel = MovieDetails.LoadView.ViewModel(title: response.movie.title)
+        let viewModel = MovieDetails.LoadView.ViewModel(id: response.movie.id, title: response.movie.title, imageURL: response.movie.imageURL, backdropURL: response.movie.backdropURL, overview: response.movie.overview)
         viewController?.displayView(viewModel: viewModel)
+    }
+    
+    func presentFechedSimilarMovies(response: MovieDetails.SimilarMovies.Response) {
+        let movies = response.movies.map { movie in
+            return MovieSearch(id: movie.id ?? -1, imageURL: movie.posterPath ?? "", title: movie.title ?? "", backdropURL: movie.backdropPath ?? "", overview:    movie.overview ?? "")
+        }
+        
+        let viewModel = MovieDetails.SimilarMovies.ViewModel(idMovie: response.idMovie, movies: movies)
+        
+        viewController?.displaySimilarMovies(viewModel: viewModel)
     }
 }

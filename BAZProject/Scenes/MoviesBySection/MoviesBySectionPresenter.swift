@@ -24,7 +24,7 @@ class MoviesBySectionPresenter: MoviesBySectionPresentationLogic {
     
     func presentFetchedMovies(response: MoviesBySection.FetchMovies.Response) {
         let displayedMovies = response.movies.map { movie in
-            return MovieSearch(id: movie.id ?? -1, imageURL: movie.posterPath ?? "", title: movie.title ?? "")
+            return MovieSearch(id: movie.id ?? -1, imageURL: movie.posterPath ?? "", title: movie.title ?? "", backdropURL: movie.backdropPath ?? "", overview: movie.overview ?? "")
         }
         let viewModel = MoviesBySection.FetchMovies.ViewModel(movies: displayedMovies)
         viewController?.displayFetchedMovies(viewModel: viewModel)

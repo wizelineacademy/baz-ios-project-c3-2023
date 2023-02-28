@@ -23,7 +23,7 @@ class MoviesAPI: MovieServicesProtocol {
     
     let urlBaseString = "https://api.themoviedb.org/3"
     let apiKey = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
-    let language = "es"
+    let language = "en"
     let region = "MX"
     var page: Int = 1
     

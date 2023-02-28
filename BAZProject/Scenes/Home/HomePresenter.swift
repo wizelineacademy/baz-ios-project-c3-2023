@@ -22,7 +22,7 @@ class HomePresenter: HomePresentationLogic {
     func presentFechedMoviesForSection(response: Home.FetchMoviesBySection.Response) {
         DispatchQueue.main.async {
             let displayedMoviesBySection = response.movies.map { movie in
-                return MovieSearch(id: movie.id ?? -1, imageURL: movie.posterPath ?? "", title: movie.title ?? "")
+                return MovieSearch(id: movie.id ?? -1, imageURL: movie.posterPath ?? "", title: movie.title ?? "", backdropURL: movie.backdropPath ?? "", overview: movie.overview ?? "")
             }
             
             self.viewController?.displayFetchedMoives(viewModel: Home.FetchMoviesBySection.ViewModel(displayedMovies: Home.FetchMoviesBySection.ViewModel.SectionWithMovies(section: response.section, movies: displayedMoviesBySection)))

@@ -46,9 +46,8 @@ class MoviesSectionView: UIView {
         }
     }
     
-    init(typeSection: fetchMoviesTypes, delegate: MoviesSectionDelegate) {
+    init(typeSection: fetchMoviesTypes) {
         self.typeSection = typeSection
-        self.delegate = delegate
         super.init(frame: .zero)
         self.configurateView()
     }

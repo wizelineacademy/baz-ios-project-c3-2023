@@ -78,6 +78,8 @@ struct MovieSearch {
     var id: Int
     var imageURL: String
     var title: String
+    var backdropURL: String
+    var overview: String
 }
 
 
