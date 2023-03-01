@@ -31,6 +31,10 @@ extension TrendingPresenter: TrendingPresenterProtocol {
     func willHideAlertLoading() {
         router?.hideAlertLoading()
     }
+
+    func willShowDetail(of detailType: DetailType) {
+        router?.showDetail(of: detailType)
+    }
 }
 
 extension TrendingPresenter: TrendingInteractorOutputProtocol {
@@ -56,9 +60,5 @@ extension TrendingPresenter: TrendingInteractorOutputProtocol {
         errorModel.setTitleNavBar(.trendingTitle)
         view?.setErrorGettingData(true)
         router?.showViewError(errorModel)
-    }
-
-    func showDetail(of detailType: DetailType) {
-        router?.showDetail(of: detailType)
     }
 }

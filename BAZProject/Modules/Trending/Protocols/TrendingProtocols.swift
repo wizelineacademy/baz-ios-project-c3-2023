@@ -27,7 +27,7 @@ protocol TrendingPresenterProtocol: AnyObject {
     var data: [TrendingModel] { get set }
 
     func willFetchTrendingMedia(mediaType: MediaType, timeWindow: TimeWindowType)
-    func showDetail(of detailType: DetailType)
+    func willShowDetail(of detailType: DetailType)
     func willShowAlertLoading(with alertType: ErrorType)
     func willHideAlertLoading()
 }

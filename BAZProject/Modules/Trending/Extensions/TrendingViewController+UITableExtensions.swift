@@ -28,7 +28,7 @@ extension TrendingViewController: UITableViewDelegate {
             cell.addAccessoryView(accesory: .eyeFill)
         }
         let detail: DetailType = DetailType(mediaType: mediaType, idMedia: id)
-        presenter?.showDetail(of: detail)
+        presenter?.willShowDetail(of: detail)
     }
 }
 
