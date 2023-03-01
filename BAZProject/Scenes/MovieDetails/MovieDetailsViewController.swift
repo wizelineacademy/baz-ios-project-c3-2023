@@ -41,7 +41,7 @@ class MovieDetailsViewController: UIViewController {
         
         return imageView
     }()
-
+    let manager = CarruselCollectionManager<CastSearch>()
     
     // MARK: Properties VIP
     var interactor: MovieDetailsBusinessLogic?
@@ -124,9 +124,8 @@ class MovieDetailsViewController: UIViewController {
     
     private func addCastViewToView(cast: [CastSearch]) {
         let section = InfoSection()
-        section.heightAnchor.constraint(equalToConstant: view.frame.height / 3).isActive = true
+        section.heightAnchor.constraint(equalToConstant: 250).isActive = true
         let carruselCollection = CarruselCollectionView(direction: .horizontal)
-        let manager = CarruselCollectionManager<CastSearch>()
         manager.setupCollection(collection: carruselCollection, delegate: self)
         
         section.title = "Cast"
