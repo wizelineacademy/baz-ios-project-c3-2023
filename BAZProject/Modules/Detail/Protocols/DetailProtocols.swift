@@ -13,6 +13,7 @@ protocol DetailViewProtocol: AnyObject {
 
     func updateView(data: MovieDetailResult)
     func updateView(data: [ReviewResult])
+    func updateView(data: [SimilarMovieModelResult])
     func stopLoading()
 }
 
@@ -25,6 +26,7 @@ protocol DetailPresenterProtocol: AnyObject {
     func errorGettingData() -> Bool
     func willFetchMedia(detailType: DetailType)
     func willFetchReview(of idMovie: String)
+    func willFetchSimilarMovie(of idMovie: String)
 }
 
 protocol DetailRouterProtocol: AnyObject {
@@ -36,6 +38,7 @@ protocol DetailRouterProtocol: AnyObject {
 protocol DetailInteractorOutputProtocol: AnyObject {
     func onReceivedMedia(result: MovieDetailResult)
     func onReceivedReview(_ result: [ReviewResult])
+    func onReceivedReview(_ result: [SimilarMovieModelResult])
     func showViewError(_ error: Error)
 }
 
@@ -45,6 +48,7 @@ protocol DetailInteractorInputProtocol: AnyObject {
 
     func fetchMedia(detailType: DetailType)
     func fetchReview(of idMovie: String)
+    func fetchSimilarMovie(of idMovie: String)
 }
 
 // Interactor > DataManager
@@ -60,11 +64,14 @@ protocol DetailDataManagerInputProtocol: AnyObject {
     /// - Parameters:
     ///   - urlString: The url which returns Review.
     func requestReview(_ urlString: String)
+
+    func requestSimilarMovie(_ urlString: String)
 }
 
 // DataManager > Interactor
 protocol DetailDataManagerOutputProtocol: AnyObject {
     func handleGetMediaMovie(_ result: MovieDetailResult)
     func handleGetReview(_ result: [ReviewResult])
+    func handleGetSimilarMovie(_ result: [SimilarMovieModelResult])
     func handleErrorService(_ error: Error)
 }

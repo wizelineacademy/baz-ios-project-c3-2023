@@ -137,6 +137,7 @@ final class DetailViewController: UIViewController {
         if let detailType = detailType {
             presenter?.willFetchMedia(detailType: detailType)
             presenter?.willFetchReview(of: detailType.idMedia.description)
+            presenter?.willFetchSimilarMovie(of: detailType.idMedia.description)
         }
     }
 
@@ -200,6 +201,10 @@ extension DetailViewController: DetailViewProtocol {
             self.reloadTableView()
             self.hideButtonShowAllIfTotalDataIsMinium()
         }
+    }
+
+    func updateView(data: [SimilarMovieModelResult]) {
+        // TODO: add logic to update
     }
 
     func updateView(data: MovieDetailResult) {

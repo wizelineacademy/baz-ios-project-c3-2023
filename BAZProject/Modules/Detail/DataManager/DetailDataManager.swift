@@ -17,9 +17,8 @@ final class DetailDataManager {
 }
 
 extension DetailDataManager: DetailDataManagerInputProtocol {
-    typealias ResponseProvider = Result<MovieDetailResult, Error>
-
     func requestMedia(_ urlString: String) {
+        typealias ResponseProvider = Result<MovieDetailResult, Error>
         let request: URLRequest = RequestType(strUrl: urlString, method: .GET).getRequest()
         providerNetworking.sendRequest(request) { [weak self] (result: ResponseProvider) in
             switch result {
@@ -39,6 +38,19 @@ extension DetailDataManager: DetailDataManagerInputProtocol {
             switch result {
             case .success(let data):
                 self?.interactor?.handleGetReview(data.results ?? [])
+            case .failure(let error):
+                self?.interactor?.handleErrorService(error)
+            }
+        }
+    }
+
+    func requestSimilarMovie(_ urlString: String) {
+        typealias ResponseProvider = Result<SimilarMovieModelResponse, Error>
+        let request: URLRequest = RequestType(strUrl: urlString, method: .GET).getRequest()
+        providerNetworking.sendRequest(request) { [weak self] (result: ResponseProvider) in
+            switch result {
+            case .success(let data):
+                self?.interactor?.handleGetSimilarMovie(data.results ?? [])
             case .failure(let error):
                 self?.interactor?.handleErrorService(error)
             }

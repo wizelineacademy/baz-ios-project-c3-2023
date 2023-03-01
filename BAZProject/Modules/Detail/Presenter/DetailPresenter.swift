@@ -59,6 +59,10 @@ extension DetailPresenter: DetailPresenterProtocol {
         setLoading()
         interactor?.fetchReview(of: idMovie)
     }
+
+    func willFetchSimilarMovie(of idMovie: String) {
+        interactor?.fetchSimilarMovie(of: idMovie)
+    }
 }
 
 extension DetailPresenter: DetailInteractorOutputProtocol {
@@ -68,6 +72,11 @@ extension DetailPresenter: DetailInteractorOutputProtocol {
     }
 
     func onReceivedReview(_ result: [ReviewResult]) {
+        view?.updateView(data: result)
+        stopLoading()
+    }
+
+    func onReceivedReview(_ result: [SimilarMovieModelResult]) {
         view?.updateView(data: result)
         stopLoading()
     }
