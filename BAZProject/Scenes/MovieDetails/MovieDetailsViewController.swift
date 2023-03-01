@@ -10,19 +10,12 @@ import UIKit
 
 protocol MovieDetailsDisplayLogic: AnyObject {
     func displayView(viewModel: MovieDetails.LoadView.ViewModel)
-    func displaySimilarMovies(viewModel: MovieDetails.SimilarMovies.ViewModel)
-    func displayRecommendMovies(viewModel: MovieDetails.RecommendMovies.ViewModel)
+    func displaySimilarMovies(viewModel: MovieDetails.FetchSimilarMovies.ViewModel)
+    func displayRecommendMovies(viewModel: MovieDetails.FetchRecommendMovies.ViewModel)
+    func displayCast(viewModel: MovieDetails.FetchCast.ViewModel)
 }
 
-class MovieDetailsViewController: UIViewController, MoviesSectionDelegate {
-    func didTapSeeMore(section: fetchMoviesTypes, movies: [MovieSearch]) {
-        
-    }
-    
-    func didTapItemCollection(movie: MovieSearch) {
-        
-    }
-    
+class MovieDetailsViewController: UIViewController {
     
     // MARK: Properties
     var scrollView: UIScrollView = {
@@ -129,6 +122,18 @@ class MovieDetailsViewController: UIViewController, MoviesSectionDelegate {
         scrollViewContainer.addArrangedSubview(section)
     }
     
+    private func addCastViewToView(cast: [Cast]) {
+        let section = InfoSection()
+        let carruselCollection = CarruselCollectionView(direction: .horizontal)
+        let manager = CarruselCollectionManager()
+        manager.setupCollection(collection: carruselCollection, delegate: self)
+        
+        section.title = "Cast"
+        section.setContentView(view: carruselCollection)
+        
+        scrollViewContainer.addArrangedSubview(section)
+    }
+    
     private func addMoviesSectionView(moviesSection: MoviesSectionView) {
         moviesSection.heightAnchor.constraint(equalToConstant: view.frame.height / 3).isActive = true
         scrollViewContainer.addArrangedSubview(moviesSection)
@@ -140,10 +145,10 @@ extension MovieDetailsViewController: MovieDetailsDisplayLogic {
     func displayView(viewModel: MovieDetails.LoadView.ViewModel) {
         posterImageView.byURL(path: viewModel.imageURL)
         addOverviewSection(description: viewModel.overview)
-        interactor?.fetchSimilarMovies(request: MovieDetails.SimilarMovies.Request(idMovie: viewModel.id))
+        interactor?.fetchCast(request: MovieDetails.FetchCast.Request(idMovie: viewModel.id))
     }
     
-    func displaySimilarMovies(viewModel: MovieDetails.SimilarMovies.ViewModel) {
+    func displaySimilarMovies(viewModel: MovieDetails.FetchSimilarMovies.ViewModel) {
         if viewModel.movies.count != 0 {
             DispatchQueue.main.async {
                 let moviesSectionView = MoviesSectionView(typeSection: .bySimilarMovie(id: viewModel.idMovie))
@@ -151,11 +156,11 @@ extension MovieDetailsViewController: MovieDetailsDisplayLogic {
                 moviesSectionView.model = viewModel.movies
             }
         }
-        interactor?.fetchRecommendMovies(request: MovieDetails.RecommendMovies.Request(idMovie: viewModel.idMovie))
+        interactor?.fetchRecommendMovies(request: MovieDetails.FetchRecommendMovies.Request(idMovie: viewModel.idMovie))
 
     }
     
-    func displayRecommendMovies(viewModel: MovieDetails.RecommendMovies.ViewModel) {
+    func displayRecommendMovies(viewModel: MovieDetails.FetchRecommendMovies.ViewModel) {
         if viewModel.movies.count != 0 {
             DispatchQueue.main.async {
                 let moviesSectionView = MoviesSectionView(typeSection: .byRecommendationMovie(id: viewModel.idMovie))
@@ -163,5 +168,30 @@ extension MovieDetailsViewController: MovieDetailsDisplayLogic {
                 moviesSectionView.model = viewModel.movies
             }
         }
+    }
+    
+    func displayCast(viewModel: MovieDetails.FetchCast.ViewModel) {
+        addCastViewToView(cast: viewModel.cast)
+        interactor?.fetchSimilarMovies(request: MovieDetails.FetchSimilarMovies.Request(idMovie: viewModel.idMovie))
+    }
+}
+
+extension MovieDetailsViewController: CarruselCollectionDelegate {
+    func displayedLastItem() {
+        
+    }
+    
+    func didTap(movie: MovieSearch) {
+        
+    }
+}
+
+extension MovieDetailsViewController: MoviesSectionDelegate {
+    func didTapSeeMore(section: fetchMoviesTypes, movies: [MovieSearch]) {
+        
+    }
+    
+    func didTapItemCollection(movie: MovieSearch) {
+        
     }
 }

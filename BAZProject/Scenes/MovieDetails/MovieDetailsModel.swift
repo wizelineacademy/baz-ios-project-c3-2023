@@ -21,7 +21,7 @@ enum MovieDetails {
         }
     }
     
-    enum SimilarMovies {
+    enum FetchSimilarMovies {
         struct Request {
             var idMovie: Int
         }
@@ -35,7 +35,7 @@ enum MovieDetails {
         }
     }
     
-    enum RecommendMovies {
+    enum FetchRecommendMovies {
         struct Request {
             var idMovie: Int
         }
@@ -46,6 +46,20 @@ enum MovieDetails {
         struct ViewModel {
             var idMovie: Int
             var movies: [MovieSearch]
+        }
+    }
+    
+    enum FetchCast {
+        struct Request {
+            var idMovie: Int
+        }
+        struct Response {
+            var idMovie: Int
+            var cast: [Cast]
+        }
+        struct ViewModel {
+            var idMovie: Int
+            var cast: [Cast]
         }
     }
 }

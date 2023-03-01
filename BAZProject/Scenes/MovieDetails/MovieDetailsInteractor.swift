@@ -9,8 +9,9 @@ import Foundation
 
 protocol MovieDetailsBusinessLogic: AnyObject {
     func loadView()
-    func fetchSimilarMovies(request: MovieDetails.SimilarMovies.Request)
-    func fetchRecommendMovies(request: MovieDetails.RecommendMovies.Request)
+    func fetchSimilarMovies(request: MovieDetails.FetchSimilarMovies.Request)
+    func fetchRecommendMovies(request: MovieDetails.FetchRecommendMovies.Request)
+    func fetchCast(request: MovieDetails.FetchCast.Request)
 }
 
 protocol MovieDetailsDataStore: AnyObject {
@@ -34,7 +35,7 @@ class MovieDetailsInteractor: MovieDetailsBusinessLogic, MovieDetailsDataStore {
         presenter?.presentLoadView(response: response)
     }
     
-    func fetchSimilarMovies(request: MovieDetails.SimilarMovies.Request) {
+    func fetchSimilarMovies(request: MovieDetails.FetchSimilarMovies.Request) {
         moviesWorker.getMoviesByType(.bySimilarMovie(id: request.idMovie)) { [weak self] movies, messageError in
             guard let self = self else {
                 return
@@ -42,20 +43,29 @@ class MovieDetailsInteractor: MovieDetailsBusinessLogic, MovieDetailsDataStore {
             if let messageError = messageError {
                 
             }
-            self.presenter?.presentFechedSimilarMovies(response: MovieDetails.SimilarMovies.Response(idMovie: request.idMovie, movies: movies))
+            self.presenter?.presentFechedSimilarMovies(response: MovieDetails.FetchSimilarMovies.Response(idMovie: request.idMovie, movies: movies))
         }
     }
     
-    func fetchRecommendMovies(request: MovieDetails.RecommendMovies.Request) {
+    func fetchRecommendMovies(request: MovieDetails.FetchRecommendMovies.Request) {
         moviesWorker.getMoviesByType(.byRecommendationMovie(id: request.idMovie)) { movies, messageError in
             
             if let messageError = messageError {
                 
             }
             
-            let response = MovieDetails.RecommendMovies.Response(idMovie: request.idMovie, movies: movies)
+            let response = MovieDetails.FetchRecommendMovies.Response(idMovie: request.idMovie, movies: movies)
             
             self.presenter?.presentFechedRecommendMovies(response: response)
+        }
+    }
+    
+    func fetchCast(request: MovieDetails.FetchCast.Request) {
+        moviesWorker.getCastsByMovieId(request.idMovie) { cast, messageError in
+            if let messageError = messageError {
+                
+            }
+            let response = MovieDetails.FetchCast.Response(idMovie: request.idMovie, cast: cast)
         }
     }
 }

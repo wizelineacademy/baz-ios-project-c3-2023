@@ -9,8 +9,9 @@ import Foundation
 
 protocol MovieDetailsPresentationLogic {
     func presentLoadView(response: MovieDetails.LoadView.Response)
-    func presentFechedSimilarMovies(response: MovieDetails.SimilarMovies.Response)
-    func presentFechedRecommendMovies(response: MovieDetails.RecommendMovies.Response)
+    func presentFechedSimilarMovies(response: MovieDetails.FetchSimilarMovies.Response)
+    func presentFechedRecommendMovies(response: MovieDetails.FetchRecommendMovies.Response)
+    func presentFechedCast(response: MovieDetails.FetchCast.Response)
 }
 
 class MovieDetailsPresenter: MovieDetailsPresentationLogic {
@@ -23,24 +24,29 @@ class MovieDetailsPresenter: MovieDetailsPresentationLogic {
         viewController?.displayView(viewModel: viewModel)
     }
     
-    func presentFechedSimilarMovies(response: MovieDetails.SimilarMovies.Response) {
+    func presentFechedSimilarMovies(response: MovieDetails.FetchSimilarMovies.Response) {
         let movies = response.movies.map { movie in
             return MovieSearch(id: movie.id ?? -1, imageURL: movie.posterPath ?? "", title: movie.title ?? "", backdropURL: movie.backdropPath ?? "", overview:    movie.overview ?? "")
         }
         
-        let viewModel = MovieDetails.SimilarMovies.ViewModel(idMovie: response.idMovie, movies: movies)
+        let viewModel = MovieDetails.FetchSimilarMovies.ViewModel(idMovie: response.idMovie, movies: movies)
         
         viewController?.displaySimilarMovies(viewModel: viewModel)
     }
     
-    func presentFechedRecommendMovies(response: MovieDetails.RecommendMovies.Response) {
+    func presentFechedRecommendMovies(response: MovieDetails.FetchRecommendMovies.Response) {
         
         let movies = response.movies.map { movie in
             return MovieSearch(id: movie.id ?? -1, imageURL: movie.posterPath ?? "", title: movie.title ?? "", backdropURL: movie.backdropPath ?? "", overview: movie.overview ?? "")
         }
         
-        let viewModel = MovieDetails.RecommendMovies.ViewModel(idMovie: response.idMovie, movies: movies)
+        let viewModel = MovieDetails.FetchRecommendMovies.ViewModel(idMovie: response.idMovie, movies: movies)
         
         viewController?.displayRecommendMovies(viewModel: viewModel)
+    }
+    
+    func presentFechedCast(response: MovieDetails.FetchCast.Response) {
+        let viewModel = MovieDetails.FetchCast.ViewModel(idMovie: response.idMovie, cast: response.cast)
+        viewController?.displayCast(viewModel: viewModel)
     }
 }
