@@ -5,46 +5,54 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
-        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <viewController id="GKe-zf-VRM" customClass="HomeViewController" customModule="BAZProject" customModuleProvider="target">
-            <view key="view" contentMode="scaleToFill" id="eBL-g8-mVN">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                <subviews>
-                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="540-wd-7J5">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="32"/>
-                        <segments>
-                            <segment title="Trending"/>
-                            <segment title="Second"/>
-                            <segment title=""/>
-                            <segment title=""/>
-                        </segments>
-                    </segmentedControl>
-                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="oRa-ES-CrN">
-                        <rect key="frame" x="0.0" y="31" width="375" height="636"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tableView>
-                </subviews>
-                <viewLayoutGuide key="safeArea" id="Qfr-6c-o0U"/>
-                <color key="backgroundColor" red="0.11764705882352941" green="0.13333333333333333" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                <constraints>
-                    <constraint firstItem="Qfr-6c-o0U" firstAttribute="trailing" secondItem="oRa-ES-CrN" secondAttribute="trailing" id="E6E-7g-PPE"/>
-                    <constraint firstItem="540-wd-7J5" firstAttribute="leading" secondItem="Qfr-6c-o0U" secondAttribute="leading" id="HNC-eg-kpG"/>
-                    <constraint firstItem="540-wd-7J5" firstAttribute="top" secondItem="Qfr-6c-o0U" secondAttribute="top" id="Vxx-SD-52x"/>
-                    <constraint firstItem="oRa-ES-CrN" firstAttribute="top" secondItem="540-wd-7J5" secondAttribute="bottom" id="axt-cI-Bnn"/>
-                    <constraint firstItem="Qfr-6c-o0U" firstAttribute="bottom" secondItem="oRa-ES-CrN" secondAttribute="bottom" id="rD1-ha-fvp"/>
-                    <constraint firstItem="Qfr-6c-o0U" firstAttribute="trailing" secondItem="540-wd-7J5" secondAttribute="trailing" id="sBR-fp-2Th"/>
-                    <constraint firstItem="oRa-ES-CrN" firstAttribute="leading" secondItem="Qfr-6c-o0U" secondAttribute="leading" id="zxe-rV-N2W"/>
-                </constraints>
-            </view>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="BAZProject" customModuleProvider="target">
             <connections>
-                <outlet property="tblMovies" destination="oRa-ES-CrN" id="oTm-7E-950"/>
+                <outlet property="segmentedMovies" destination="c2W-AD-PRj" id="eqw-gm-nkF"/>
+                <outlet property="tblMovies" destination="Fx4-ML-6sS" id="7A6-0e-XWf"/>
+                <outlet property="view" destination="0uP-uG-i3Y" id="TxB-M6-Hcl"/>
             </connections>
-            <point key="canvasLocation" x="931" y="-98"/>
-        </viewController>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="0uP-uG-i3Y">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="c2W-AD-PRj">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="32"/>
+                    <segments>
+                        <segment title="First"/>
+                        <segment title="Second"/>
+                    </segments>
+                    <connections>
+                        <action selector="segmentedControl:" destination="-1" eventType="valueChanged" id="BaO-FP-kiE"/>
+                    </connections>
+                </segmentedControl>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Fx4-ML-6sS">
+                    <rect key="frame" x="0.0" y="31" width="375" height="636"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="0vL-nO-F6O"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="0vL-nO-F6O" firstAttribute="trailing" secondItem="Fx4-ML-6sS" secondAttribute="trailing" id="Mwn-KW-1Ab"/>
+                <constraint firstItem="0vL-nO-F6O" firstAttribute="trailing" secondItem="c2W-AD-PRj" secondAttribute="trailing" id="O6K-8k-qQD"/>
+                <constraint firstItem="c2W-AD-PRj" firstAttribute="top" secondItem="0vL-nO-F6O" secondAttribute="top" id="WTF-TF-6GL"/>
+                <constraint firstItem="0vL-nO-F6O" firstAttribute="bottom" secondItem="Fx4-ML-6sS" secondAttribute="bottom" id="k4l-iS-dvV"/>
+                <constraint firstItem="c2W-AD-PRj" firstAttribute="leading" secondItem="0vL-nO-F6O" secondAttribute="leading" id="reN-na-j8y"/>
+                <constraint firstItem="Fx4-ML-6sS" firstAttribute="leading" secondItem="0vL-nO-F6O" secondAttribute="leading" id="rez-DI-qkW"/>
+                <constraint firstItem="Fx4-ML-6sS" firstAttribute="top" secondItem="c2W-AD-PRj" secondAttribute="bottom" id="zJY-Gv-npK"/>
+            </constraints>
+            <point key="canvasLocation" x="261" y="-334"/>
+        </view>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

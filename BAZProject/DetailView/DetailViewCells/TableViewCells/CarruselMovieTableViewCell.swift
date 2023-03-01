@@ -1,5 +1,5 @@
 //
-//  SearchMovieController.swift
+//  CarruselMovieTableViewCell.swift
 //  BAZProject
 //
 //  Created by Jonathan Hernandez Ramos on 16/02/23.
@@ -7,36 +7,38 @@
 
 import UIKit
 
-protocol SearchMovieControllerDelegate: AnyObject {
-    func selected(movie: Movie)
-}
+final class CarruselMovieTableViewCell: UITableViewCell {
 
-final class SearchMovieController: UIViewController {
-    weak var searchMovieControllerDelegate: SearchMovieControllerDelegate?
-    @IBOutlet weak var collectionMovieSearch: UICollectionView!
+    @IBOutlet weak var movieCollection: UICollectionView!
+    
     var movies: [Movie] = []
+    
     private let sectionInsets = UIEdgeInsets(
         top: 50.0,
         left: 20.0,
         bottom: 50.0,
         right: 20.0)
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
         setUpCollection()
     }
-    
+
     func setUpCollection(){
-        collectionMovieSearch.dataSource = self
-        collectionMovieSearch.delegate = self
-        collectionMovieSearch.register(SearchMovieViewCollectioCell.nib, forCellWithReuseIdentifier: SearchMovieViewCollectioCell.identifier)
+        movieCollection.dataSource = self
+        movieCollection.delegate = self
+        movieCollection.register(SearchMovieViewCollectioCell.nib, forCellWithReuseIdentifier: SearchMovieViewCollectioCell.identifier)
+    }
+    
+    func setInfo(for movies: [Movie]){
+        self.movies = movies
+        self.movieCollection.reloadData()
     }
 }
 
 
 // MARK: - UICollectionViewDataSource
-extension SearchMovieController: UICollectionViewDataSource {
+extension CarruselMovieTableViewCell: UICollectionViewDataSource {
 
     func collectionView(
         _ collectionView: UICollectionView,
@@ -45,29 +47,19 @@ extension SearchMovieController: UICollectionViewDataSource {
         return movies.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionMovieSearch.deselectItem(at: indexPath, animated: true)
-        
-        searchMovieControllerDelegate?.selected(movie: movies[indexPath.row])
-    }
-    
-    func collectionView(
-        _ collectionView: UICollectionView,
-        cellForItemAt indexPath: IndexPath
-    ) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: SearchMovieViewCollectioCell.identifier,
             for: indexPath) as? SearchMovieViewCollectioCell else {return UICollectionViewCell()}
         let movie = movies[indexPath.row]
         cell.setInfo(for: movie)
-        
         return cell
     }
 }
 
 
 // MARK: - Collection View Flow Layout Delegate
-extension SearchMovieController: UICollectionViewDelegateFlowLayout {
+extension CarruselMovieTableViewCell: UICollectionViewDelegateFlowLayout {
     
     func collectionView(
         _ collectionView: UICollectionView,
@@ -82,7 +74,7 @@ extension SearchMovieController: UICollectionViewDelegateFlowLayout {
         let collectionViewWidth = collectionView.bounds.width
         let spaceBetweenCells = flowLayout.minimumInteritemSpacing
         let adjustedWidth = (collectionViewWidth - (spaceBetweenCells * numberOfItems - 1) - sectionInsets.left - sectionInsets.right)/numberOfItems
-        let height: CGFloat = 200
+        let height: CGFloat = 180
         return CGSize(width: adjustedWidth, height: height)
     }
     

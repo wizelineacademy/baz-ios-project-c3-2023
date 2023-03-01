@@ -1,5 +1,5 @@
 //
-//  SearchMovieController.swift
+//  ReviewsTableViewCell.swift
 //  BAZProject
 //
 //  Created by Jonathan Hernandez Ramos on 16/02/23.
@@ -7,67 +7,57 @@
 
 import UIKit
 
-protocol SearchMovieControllerDelegate: AnyObject {
-    func selected(movie: Movie)
-}
-
-final class SearchMovieController: UIViewController {
-    weak var searchMovieControllerDelegate: SearchMovieControllerDelegate?
-    @IBOutlet weak var collectionMovieSearch: UICollectionView!
-    var movies: [Movie] = []
+final class ReviewsTableViewCell: UITableViewCell {
+    var reviews: [Review] = []
+    
     private let sectionInsets = UIEdgeInsets(
         top: 50.0,
         left: 20.0,
         bottom: 50.0,
         right: 20.0)
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+    
+    @IBOutlet weak var reviewCollection: UICollectionView!
+    override func awakeFromNib() {
+        super.awakeFromNib()
         setUpCollection()
     }
-    
+
     func setUpCollection(){
-        collectionMovieSearch.dataSource = self
-        collectionMovieSearch.delegate = self
-        collectionMovieSearch.register(SearchMovieViewCollectioCell.nib, forCellWithReuseIdentifier: SearchMovieViewCollectioCell.identifier)
+        reviewCollection.dataSource = self
+        reviewCollection.delegate = self
+        reviewCollection.register(ReviewCollectionViewCell.nib, forCellWithReuseIdentifier: ReviewCollectionViewCell.identifier)
+    }
+    
+    
+    func setInfo(for reviews: [Review]){
+        self.reviews = reviews
+        self.reviewCollection.reloadData()
     }
 }
 
-
 // MARK: - UICollectionViewDataSource
-extension SearchMovieController: UICollectionViewDataSource {
+extension ReviewsTableViewCell: UICollectionViewDataSource {
 
     func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        return movies.count
+        return reviews.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionMovieSearch.deselectItem(at: indexPath, animated: true)
-        
-        searchMovieControllerDelegate?.selected(movie: movies[indexPath.row])
-    }
-    
-    func collectionView(
-        _ collectionView: UICollectionView,
-        cellForItemAt indexPath: IndexPath
-    ) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: SearchMovieViewCollectioCell.identifier,
-            for: indexPath) as? SearchMovieViewCollectioCell else {return UICollectionViewCell()}
-        let movie = movies[indexPath.row]
-        cell.setInfo(for: movie)
-        
+            withReuseIdentifier: ReviewCollectionViewCell.identifier,
+            for: indexPath) as? ReviewCollectionViewCell else {return UICollectionViewCell()}
+        let review = reviews[indexPath.row]
+        cell.setInfo(for: review)
         return cell
     }
 }
 
 
 // MARK: - Collection View Flow Layout Delegate
-extension SearchMovieController: UICollectionViewDelegateFlowLayout {
+extension ReviewsTableViewCell: UICollectionViewDelegateFlowLayout {
     
     func collectionView(
         _ collectionView: UICollectionView,
@@ -78,11 +68,11 @@ extension SearchMovieController: UICollectionViewDelegateFlowLayout {
         guard let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout else {
             return .zero
         }
-        let numberOfItems: CGFloat = 3
+        let numberOfItems: CGFloat = 1
         let collectionViewWidth = collectionView.bounds.width
         let spaceBetweenCells = flowLayout.minimumInteritemSpacing
         let adjustedWidth = (collectionViewWidth - (spaceBetweenCells * numberOfItems - 1) - sectionInsets.left - sectionInsets.right)/numberOfItems
-        let height: CGFloat = 200
+        let height: CGFloat = 230
         return CGSize(width: adjustedWidth, height: height)
     }
     

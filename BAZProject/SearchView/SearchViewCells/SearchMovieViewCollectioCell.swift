@@ -13,7 +13,11 @@ final class SearchMovieViewCollectioCell: UICollectionViewCell {
     @IBOutlet weak var titleMovie: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+    }
+    
+    override func prepareForReuse() {
+        moviePosterImage.image = nil
+        titleMovie.text = nil
     }
     /// This method recive a  parameter of type `Movie` to fill the cell info
     ///  - Parameters:

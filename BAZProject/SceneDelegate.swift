@@ -16,13 +16,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
-        let viewController = HomeViewController.instantiate()
+        let viewController = HomeViewController()
+        viewController.movieAPI = MovieAPI()
         let navigation = UINavigationController(rootViewController: viewController)
-        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
-        navigation.navigationBar.titleTextAttributes = textAttributes
-        navigation.navigationBar.barTintColor = UIColor(red: 30, green: 34, blue: 74, alpha: 1)
-        navigation.navigationBar.prefersLargeTitles = true
-     
         window.rootViewController = navigation
         self.window = window
         window.makeKeyAndVisible()
