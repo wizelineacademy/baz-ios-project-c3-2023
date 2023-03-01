@@ -93,6 +93,7 @@ extension HomeViewController: HomeViewProtocol {
         }
 
         movieTopSlider.setUp(cellMovieType)
+        movieTopSlider.delegate = self
     }
 
     func stopLoading() {
@@ -104,5 +105,11 @@ extension HomeViewController: HomeViewProtocol {
 
     func setErrorGettingData(_ status: Bool) {
         errorGetData = status
+    }
+}
+
+extension HomeViewController: ImageSliderDelegate {
+    func indexDidSelect(_ index: Int) {
+        self.navigationController?.pushViewController(DetailRouter.createModule(detailType: DetailType(mediaType: .movie, idMedia: movieTopRated?[index].id ?? 1)), animated: false)
     }
 }
