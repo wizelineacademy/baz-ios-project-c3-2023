@@ -28,10 +28,8 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
     private var refreshControl: UIRefreshControl?
     private var loadingMoreView: InfiniteScrollActivityView?
     private var isMoreDataLoading = false
-    private var movies: [MovieResult] = []
-    private var moviesBack: [MovieResult] = []
     private var isLoading: Bool = true
-    private var scrollOffsetThreshold: Double = 0.0
+    private var scrollOffsetThreshold: Double = .zero
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,9 +62,7 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
         // TODO: add logic in switched
     }
 
-    func updateView(data: [MovieResult]) {
-        movies = data
-        moviesBack = data
+    func updateView() {
         guaranteeMainThread {
             self.moviesTableView.reloadData()
         }
@@ -92,11 +88,11 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
     }
 
     func getDataCount() -> Int {
-        return movies.count
+        return presenter?.totalDataCount ?? .zero
     }
 
-    func getMovie(_ index: Int) -> MovieResult? {
-        return movies[index]
+    func getData(_ index: Int) -> TrendingModel? {
+        return presenter?.data[index]
     }
 
     // MARK: - Private methods
@@ -235,19 +231,19 @@ extension TrendingViewController: UIScrollViewDelegate {
 extension TrendingViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let textSearching = searchController.searchBar.text else { return }
-        if !textSearching.isEmpty {
-            var moviesTemp: [MovieResult] = []
-            movies.forEach { movie in
-                if let title = movie.title,
-                   title.lowercased().contains(textSearching.lowercased()) {
-                    moviesTemp.append(movie)
-                }
-            }
-            movies = moviesTemp
-            moviesTableView.reloadData()
-        } else {
-            movies = moviesBack
-            moviesTableView.reloadData()
-        }
+//        if !textSearching.isEmpty {
+//            var moviesTemp: [MovieResult] = []
+//            movies.forEach { movie in
+//                if let title = movie.title,
+//                   title.lowercased().contains(textSearching.lowercased()) {
+//                    moviesTemp.append(movie)
+//                }
+//            }
+//            movies = moviesTemp
+//            moviesTableView.reloadData()
+//        } else {
+//            movies = moviesBack
+//            moviesTableView.reloadData()
+//        }
     }
 }

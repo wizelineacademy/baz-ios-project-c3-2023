@@ -13,7 +13,7 @@ import UIKit
 protocol TrendingViewProtocol: AnyObject {
     var presenter: TrendingPresenterProtocol? { get set }
 
-    func updateView(data: [MovieResult])
+    func updateView()
     func stopLoading()
     func setErrorGettingData(_ status: Bool)
 }
@@ -23,6 +23,8 @@ protocol TrendingPresenterProtocol: AnyObject {
     var router: TrendingRouterProtocol? { get set}
     var view: TrendingViewProtocol? { get set }
     var interactor: TrendingInteractorInputProtocol? { get set }
+    var totalDataCount: Int? { get set }
+    var data: [TrendingModel] { get set }
 
     func willFetchTrendingMedia(mediaType: MediaType, timeWindow: TimeWindowType)
     func showDetail(of detailType: DetailType)
@@ -43,7 +45,7 @@ protocol TrendingRouterProtocol: AnyObject {
 
 // Presenter > Interactor
 protocol TrendingInteractorOutputProtocol: AnyObject {
-    func onReceivedTrendingMedia(result: [MovieResult])
+    func onReceivedTrendingMedia(result: MovieResponse)
     func showViewError(_ error: Error)
 }
 
@@ -67,6 +69,6 @@ protocol TrendingDataManagerInputProtocol: AnyObject {
 
 // DataManager > Interactor
 protocol TrendingDataManagerOutputProtocol: AnyObject {
-    func handleGetTrendingMedia(_ result: [MovieResult])
+    func handleGetTrendingMedia(_ data: MovieResponse)
     func handleErrorService(_ error: Error)
 }

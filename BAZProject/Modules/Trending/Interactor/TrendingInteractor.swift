@@ -19,8 +19,8 @@ extension TrendingInteractor: TrendingInteractorInputProtocol {
 }
 
 extension TrendingInteractor: TrendingDataManagerOutputProtocol {
-    func handleGetTrendingMedia(_ result: [MovieResult]) {
-        presenter?.onReceivedTrendingMedia(result: result)
+    func handleGetTrendingMedia(_ data: MovieResponse) {
+        presenter?.onReceivedTrendingMedia(result: data)
     }
 
     func handleErrorService(_ error: Error) {

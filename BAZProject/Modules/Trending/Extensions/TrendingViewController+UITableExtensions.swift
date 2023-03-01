@@ -23,7 +23,7 @@ extension TrendingViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let id = getMovie(indexPath.row)?.id else { return }
+        guard let id = getData(indexPath.row)?.id else { return }
         if let cell = tableView.cellForRow(at: indexPath) as? CellMovie {
             cell.addAccessoryView(accesory: .eyeFill)
         }
@@ -39,11 +39,10 @@ extension TrendingViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: CellMovie.identifier) as? CellMovie,
-           let movie = getMovie(indexPath.row) {
-            let idImage: String = movie.backdropPath ?? ""
+           let movie = getData(indexPath.row) {
             cell.backgroundColor = LocalizedConstants.commonPrimaryColor
             cell.addAccessoryView(accesory: .eye)
-            cell.setData(title: movie.title ?? "", imageUrl: Endpoint.img(idImage: idImage, sizeImage: .w500).urlString)
+            cell.setData(title: movie.mediaTitle, imageUrl: Endpoint.img(idImage: movie.backdropPath, sizeImage: .w500).urlString)
             return cell
         }
         return UITableViewCell()

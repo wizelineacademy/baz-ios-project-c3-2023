@@ -25,7 +25,7 @@ extension TrendingDataManager: TrendingDataManagerInputProtocol {
         providerNetworking.sendRequest(request) { [weak self] (result: ResponseProvider) in
             switch result {
             case .success(let movie):
-                self?.interactor?.handleGetTrendingMedia(movie.results ?? [])
+                self?.interactor?.handleGetTrendingMedia(movie)
             case .failure(let error):
                 self?.interactor?.handleErrorService(error)
             }

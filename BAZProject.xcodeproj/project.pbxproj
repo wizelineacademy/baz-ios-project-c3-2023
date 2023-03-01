@@ -43,6 +43,7 @@
 		D248E468298633D300BC1281 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D248E467298633D300BC1281 /* MainViewController.swift */; };
 		D2571B2A29AC5BFE005BDC9F /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2571B2929AC5BFE005BDC9F /* UILabel+Extension.swift */; };
 		D2571B2C29AD2ECC005BDC9F /* ReviewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2571B2B29AD2ECC005BDC9F /* ReviewType.swift */; };
+		D25900F729AEF0A400ECA383 /* TrendingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25900F629AEF0A400ECA383 /* TrendingModel.swift */; };
 		D271BEA3299E99D40030210E /* CellSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D271BEA2299E99D40030210E /* CellSlider.swift */; };
 		D271BEA5299E99E10030210E /* CellSlider.xib in Resources */ = {isa = PBXBuildFile; fileRef = D271BEA4299E99E10030210E /* CellSlider.xib */; };
 		D271BEA7299E9B9B0030210E /* ImageSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D271BEA6299E9B9B0030210E /* ImageSlider.swift */; };
@@ -154,6 +155,7 @@
 		D248E467298633D300BC1281 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		D2571B2929AC5BFE005BDC9F /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		D2571B2B29AD2ECC005BDC9F /* ReviewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewType.swift; sourceTree = "<group>"; };
+		D25900F629AEF0A400ECA383 /* TrendingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingModel.swift; sourceTree = "<group>"; };
 		D271BEA2299E99D40030210E /* CellSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellSlider.swift; sourceTree = "<group>"; };
 		D271BEA4299E99E10030210E /* CellSlider.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellSlider.xib; sourceTree = "<group>"; };
 		D271BEA6299E9B9B0030210E /* ImageSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSlider.swift; sourceTree = "<group>"; };
@@ -858,6 +860,7 @@
 			isa = PBXGroup;
 			children = (
 				C30893E128A425E1004B1860 /* Movie.swift */,
+				D25900F629AEF0A400ECA383 /* TrendingModel.swift */,
 			);
 			name = Entity;
 			path = ../../Entity;
@@ -1118,6 +1121,7 @@
 				D2F08D44299C39C8009BA149 /* DetailRouter.swift in Sources */,
 				D2BD77DB29ADBC1700F9B7A6 /* UITableView+Extension.swift in Sources */,
 				D215D20329843EC000582CB5 /* TrendingDataManager.swift in Sources */,
+				D25900F729AEF0A400ECA383 /* TrendingModel.swift in Sources */,
 				D2475E2229A28A0C004949D9 /* HomeInteractor.swift in Sources */,
 				D2E241CC297F9AC1002675B4 /* LocalizedKey.swift in Sources */,
 				D271BEA3299E99D40030210E /* CellSlider.swift in Sources */,
@@ -1369,13 +1373,17 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = test.BAZProjectTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1388,13 +1396,17 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = test.BAZProjectTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

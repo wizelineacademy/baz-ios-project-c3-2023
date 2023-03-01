@@ -11,6 +11,12 @@ class TrendingPresenter {
     weak var view: TrendingViewProtocol?
     var interactor: TrendingInteractorInputProtocol?
     var router: TrendingRouterProtocol?
+
+    var data: [TrendingModel] = []
+    var isFetchInProgress: Bool = false
+    var totalDataCount: Int?
+    var currentPage: Int?
+    var totalPages: Int?
 }
 
 extension TrendingPresenter: TrendingPresenterProtocol {
@@ -28,9 +34,14 @@ extension TrendingPresenter: TrendingPresenterProtocol {
 }
 
 extension TrendingPresenter: TrendingInteractorOutputProtocol {
-    func onReceivedTrendingMedia(result: [MovieResult]) {
+    func onReceivedTrendingMedia(result: MovieResponse) {
         view?.setErrorGettingData(false)
-        view?.updateView(data: result)
+        totalDataCount = result.totalPages
+        currentPage = result.page
+        result.results?.forEach({ movie in
+            data.append(TrendingModel(with: movie))
+        })
+        view?.updateView()
         view?.stopLoading()
     }
 
