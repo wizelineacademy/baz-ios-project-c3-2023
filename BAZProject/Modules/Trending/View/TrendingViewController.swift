@@ -30,6 +30,7 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
     private var isMoreDataLoading = false
     private var isLoading: Bool = true
     private var scrollOffsetThreshold: Double = .zero
+    private var textSearching: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -231,19 +232,10 @@ extension TrendingViewController: UIScrollViewDelegate {
 extension TrendingViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let textSearching = searchController.searchBar.text else { return }
-//        if !textSearching.isEmpty {
-//            var moviesTemp: [MovieResult] = []
-//            movies.forEach { movie in
-//                if let title = movie.title,
-//                   title.lowercased().contains(textSearching.lowercased()) {
-//                    moviesTemp.append(movie)
-//                }
-//            }
-//            movies = moviesTemp
-//            moviesTableView.reloadData()
-//        } else {
-//            movies = moviesBack
-//            moviesTableView.reloadData()
-//        }
+        if !textSearching.isEmpty && textSearching != self.textSearching {
+            self.textSearching = textSearching
+            showAlertLoader()
+            presenter?.willFetchSearchMovie(by: textSearching)
+        }
     }
 }

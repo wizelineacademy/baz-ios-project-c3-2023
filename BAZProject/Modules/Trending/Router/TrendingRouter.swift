@@ -59,7 +59,11 @@ final class TrendingRouter: TrendingRouterProtocol {
     func hideAlertLoading() {
         guard let view = self.view as? UIViewController else { return }
         view.guaranteeMainThread {
-            self.alert?.dismiss(animated: true)
+            self.alert?.dismiss(animated: true) {
+                view.guaranteeMainThread {
+                    view.navigationController?.navigationItem.searchController?.searchBar.becomeFirstResponder()
+                }
+            }
         }
     }
 }

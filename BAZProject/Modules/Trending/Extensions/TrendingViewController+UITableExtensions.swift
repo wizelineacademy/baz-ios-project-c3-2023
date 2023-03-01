@@ -42,7 +42,11 @@ extension TrendingViewController: UITableViewDataSource {
            let movie = getData(indexPath.row) {
             cell.backgroundColor = LocalizedConstants.commonPrimaryColor
             cell.addAccessoryView(accesory: .eye)
-            cell.setData(title: movie.mediaTitle, imageUrl: Endpoint.img(idImage: movie.backdropPath, sizeImage: .w500).urlString)
+            var imageUrl: String?
+            if !movie.backdropPath.isEmpty {
+                imageUrl = Endpoint.img(idImage: movie.backdropPath, sizeImage: .w500).urlString
+            }
+            cell.setData(title: movie.mediaTitle, imageUrl: imageUrl)
             return cell
         }
         return UITableViewCell()

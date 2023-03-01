@@ -24,6 +24,10 @@ extension TrendingPresenter: TrendingPresenterProtocol {
         interactor?.fetchTrendingMedia(mediaType: mediaType, timeWindow: timeWindow)
     }
 
+    func willFetchSearchMovie(by keyword: String) {
+        interactor?.fetchSearchMovie(with: keyword)
+    }
+
     func willShowAlertLoading(with alertType: ErrorType) {
         router?.showAlertLoading(with: alertType)
     }
@@ -40,11 +44,23 @@ extension TrendingPresenter: TrendingPresenterProtocol {
 extension TrendingPresenter: TrendingInteractorOutputProtocol {
     func onReceivedTrendingMedia(result: MovieResponse) {
         view?.setErrorGettingData(false)
-        totalDataCount = result.totalPages
         currentPage = result.page
         result.results?.forEach({ movie in
             data.append(TrendingModel(with: movie))
         })
+        totalDataCount = data.count
+        view?.updateView()
+        view?.stopLoading()
+    }
+
+    func onReceivedSearchMovie(data: MovieResponse) {
+        view?.setErrorGettingData(false)
+        self.data = []
+        currentPage = data.page
+        data.results?.forEach({ movie in
+            self.data.append(TrendingModel(with: movie))
+        })
+        totalDataCount = self.data.count
         view?.updateView()
         view?.stopLoading()
     }

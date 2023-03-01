@@ -31,6 +31,7 @@ enum Endpoint {
     case details(mediaType: MediaType, idMedia: Int)
     case topRated
     case reviews(idMovie: String)
+    case searchMovie(byKeywork: String)
 }
 
 extension Endpoint {
@@ -48,6 +49,9 @@ extension Endpoint {
         case .reviews(idMovie: let movie):
             let reviewsUrlString: String = "\(String.apiKeyEndPointMovie)/\(movie)/reviews"
             return BaseUrl.apiWithEndPoint(endPoint: reviewsUrlString).url
+        case .searchMovie(byKeywork: let keyWord):
+            let searchMovieUrlString: String = "\(String.apiKeyEndPointMovieSearch)"
+            return "\(BaseUrl.apiWithEndPoint(endPoint: searchMovieUrlString).url)&query=\(keyWord)"
         }
     }
 }

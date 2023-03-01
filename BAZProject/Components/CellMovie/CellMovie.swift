@@ -34,9 +34,11 @@ class CellMovie: UITableViewCell {
         super.awakeFromNib()
     }
 
-    func setData(title: String, imageUrl: String) {
+    func setData(title: String, imageUrl: String?) {
         lblTitle.text = title
-        photoImageView.loadImage(id: imageUrl)
+        if let imageUrl = imageUrl {
+            photoImageView.loadImage(id: imageUrl)
+        }
     }
 
     func addAccessoryView(accesory: AccesoryType) {

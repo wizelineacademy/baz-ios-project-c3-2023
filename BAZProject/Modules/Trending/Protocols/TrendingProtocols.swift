@@ -30,6 +30,7 @@ protocol TrendingPresenterProtocol: AnyObject {
     func willShowDetail(of detailType: DetailType)
     func willShowAlertLoading(with alertType: ErrorType)
     func willHideAlertLoading()
+    func willFetchSearchMovie(by keyword: String)
 }
 
 // Presenter > Router
@@ -46,6 +47,7 @@ protocol TrendingRouterProtocol: AnyObject {
 // Presenter > Interactor
 protocol TrendingInteractorOutputProtocol: AnyObject {
     func onReceivedTrendingMedia(result: MovieResponse)
+    func onReceivedSearchMovie(data: MovieResponse)
     func showViewError(_ error: Error)
 }
 
@@ -55,6 +57,7 @@ protocol TrendingInteractorInputProtocol: AnyObject {
     var dataManager: TrendingDataManagerInputProtocol? { get set }
 
     func fetchTrendingMedia(mediaType: MediaType, timeWindow: TimeWindowType)
+    func fetchSearchMovie(with keyword: String)
 }
 
 // Interactor > DataManager
@@ -65,10 +68,12 @@ protocol TrendingDataManagerInputProtocol: AnyObject {
     /// - Parameters:
     ///   - urlString: The url which returns the trending media of movie, person, tv o all, by day or week.
     func requestTrendingMedia(_ urlString: String)
+    func requestSearchMovie(_ urlString: String)
 }
 
 // DataManager > Interactor
 protocol TrendingDataManagerOutputProtocol: AnyObject {
     func handleGetTrendingMedia(_ data: MovieResponse)
+    func handleGetSearchMovie(_ data: MovieResponse)
     func handleErrorService(_ error: Error)
 }
