@@ -32,6 +32,7 @@ enum Endpoint {
     case topRated
     case reviews(idMovie: String)
     case searchMovie(byKeywork: String)
+    case nowPlaying
 }
 
 extension Endpoint {
@@ -52,6 +53,8 @@ extension Endpoint {
         case .searchMovie(byKeywork: let keyWord):
             let searchMovieUrlString: String = "\(String.apiKeyEndPointMovieSearch)"
             return "\(BaseUrl.apiWithEndPoint(endPoint: searchMovieUrlString).url)&query=\(keyWord)"
+        case .nowPlaying:
+            return BaseUrl.apiWithEndPoint(endPoint: .apiKeyEndPointNowPlaying).url
         }
     }
 }

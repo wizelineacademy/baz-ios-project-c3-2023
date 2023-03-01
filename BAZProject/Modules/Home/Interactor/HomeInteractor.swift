@@ -17,11 +17,19 @@ extension HomeInteractor: HomeInteractorInputProtocol {
     func fetchMovieTopRated() {
         dataManager?.requestMovieTopRated(Endpoint.topRated.urlString)
     }
+
+    func fetchNowPlaying() {
+        dataManager?.requestNowPlaying(Endpoint.nowPlaying.urlString)
+    }
 }
 
 extension HomeInteractor: HomeDataManagerOutputProtocol {
     func handleGetMovieTopRated(_ result: [MovieTopRatedResult]) {
         presenter?.onReceivedMovieTopRated(result)
+    }
+
+    func handleGetNowPlaying(_ result: [NowPlayingResult]) {
+        presenter?.onReceivedNowPlaying(result)
     }
 
     func handleErrorService(_ error: Error) {

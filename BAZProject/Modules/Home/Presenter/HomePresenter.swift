@@ -19,6 +19,10 @@ extension HomePresenter: HomePresenterProtocol {
         interactor?.fetchMovieTopRated()
     }
 
+    func willFetchNowPlaying() {
+        interactor?.fetchNowPlaying()
+    }
+
     func showDetail(of detailType: DetailType) {
         router?.showDetail(of: detailType)
     }
@@ -26,6 +30,12 @@ extension HomePresenter: HomePresenterProtocol {
 
 extension HomePresenter: HomeInteractorOutputProtocol {
     func onReceivedMovieTopRated(_ result: [MovieTopRatedResult]) {
+        view?.setErrorGettingData(false)
+        view?.updateView(data: result)
+        view?.stopLoading()
+    }
+
+    func onReceivedNowPlaying(_ result: [NowPlayingResult]) {
         view?.setErrorGettingData(false)
         view?.updateView(data: result)
         view?.stopLoading()

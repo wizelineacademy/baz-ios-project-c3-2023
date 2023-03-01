@@ -67,6 +67,7 @@ final class HomeViewController: UIViewController {
 
     private func getData() {
         presenter?.willFetchMovieTopRated()
+        presenter?.willFetchNowPlaying()
     }
 
     private func addObservers() {
@@ -84,6 +85,10 @@ final class HomeViewController: UIViewController {
 }
 
 extension HomeViewController: HomeViewProtocol {
+    func updateView(data: [NowPlayingResult]) {
+        // TODO: add logic to update nowPlaying
+    }
+
     func updateView(data: [MovieTopRatedResult]) {
         movieTopRated = data
         var cellMovieType = [CellMovieType]()

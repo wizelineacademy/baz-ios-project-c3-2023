@@ -12,6 +12,7 @@ protocol HomeViewProtocol: AnyObject {
     var presenter: HomePresenterProtocol? { get set }
 
     func updateView(data: [MovieTopRatedResult])
+    func updateView(data: [NowPlayingResult])
     func stopLoading()
     func setErrorGettingData(_ status: Bool)
 }
@@ -23,11 +24,13 @@ protocol HomePresenterProtocol: AnyObject {
     var interactor: HomeInteractorInputProtocol? { get set }
 
     func willFetchMovieTopRated()
+    func willFetchNowPlaying()
     func showDetail(of detailType: DetailType)
 }
 
 // MARK: Interactor Input (Presenter -> Interactor)
 protocol HomeInteractorOutputProtocol: AnyObject {
+    func onReceivedNowPlaying(_ result: [NowPlayingResult])
     func onReceivedMovieTopRated(_ result: [MovieTopRatedResult])
     func showViewError(_ error: Error)
 }
@@ -37,6 +40,7 @@ protocol HomeInteractorInputProtocol: AnyObject {
     var presenter: HomeInteractorOutputProtocol? { get set }
     var dataManager: HomeDataManagerInputProtocol? { get set }
     func fetchMovieTopRated()
+    func fetchNowPlaying()
 }
 
 // MARK: Interactor Input (Interactor -> DataManager)
@@ -47,11 +51,13 @@ protocol HomeDataManagerInputProtocol: AnyObject {
     /// - Parameters:
     ///   - urlString: The url which returns [MovieTopRatedResult].
     func requestMovieTopRated(_ urlString: String)
+    func requestNowPlaying(_ urlString: String)
 }
 
 // MARK: Interactor Output (DataManager -> Interactor)
 protocol HomeDataManagerOutputProtocol: AnyObject {
     func handleGetMovieTopRated(_ result: [MovieTopRatedResult])
+    func handleGetNowPlaying(_ result: [NowPlayingResult])
     func handleErrorService(_ error: Error)
 }
 
