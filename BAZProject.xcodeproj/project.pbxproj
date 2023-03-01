@@ -41,6 +41,7 @@
 		D2475E2329A28A0C004949D9 /* MovieTopRated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2475E1A29A28A0C004949D9 /* MovieTopRated.swift */; };
 		D2475E2429A28A0C004949D9 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2475E1C29A28A0C004949D9 /* HomeRouter.swift */; };
 		D248E468298633D300BC1281 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D248E467298633D300BC1281 /* MainViewController.swift */; };
+		D251F43F29AFB9A300437737 /* NowPlayingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251F43E29AFB9A300437737 /* NowPlayingResult.swift */; };
 		D2571B2A29AC5BFE005BDC9F /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2571B2929AC5BFE005BDC9F /* UILabel+Extension.swift */; };
 		D2571B2C29AD2ECC005BDC9F /* ReviewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2571B2B29AD2ECC005BDC9F /* ReviewType.swift */; };
 		D25900F729AEF0A400ECA383 /* TrendingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25900F629AEF0A400ECA383 /* TrendingModel.swift */; };
@@ -153,6 +154,7 @@
 		D2475E1A29A28A0C004949D9 /* MovieTopRated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieTopRated.swift; sourceTree = "<group>"; };
 		D2475E1C29A28A0C004949D9 /* HomeRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
 		D248E467298633D300BC1281 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		D251F43E29AFB9A300437737 /* NowPlayingResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingResult.swift; sourceTree = "<group>"; };
 		D2571B2929AC5BFE005BDC9F /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		D2571B2B29AD2ECC005BDC9F /* ReviewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewType.swift; sourceTree = "<group>"; };
 		D25900F629AEF0A400ECA383 /* TrendingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingModel.swift; sourceTree = "<group>"; };
@@ -412,6 +414,7 @@
 			isa = PBXGroup;
 			children = (
 				D2475E1A29A28A0C004949D9 /* MovieTopRated.swift */,
+				D251F43E29AFB9A300437737 /* NowPlayingResult.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1071,6 +1074,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D251F43F29AFB9A300437737 /* NowPlayingResult.swift in Sources */,
 				D27B209829A86F0200033003 /* CacheManager.swift in Sources */,
 				D2475E1D29A28A0C004949D9 /* HomeDataManager.swift in Sources */,
 				D2F08D3A299C3962009BA149 /* DetailInteractor.swift in Sources */,
