@@ -15,10 +15,12 @@ final class HomeViewController: UIViewController {
 
     // MARK: - Declaration IBOutlets
     @IBOutlet weak var movieTopSlider: ImageSlider!
+    @IBOutlet weak var nowPlayingSlider: ImageSlider!
 
     // MARK: - Protocol properties
     var presenter: HomePresenterProtocol?
     var movieTopRated: [MovieTopRatedResult]?
+    var nowPlaying: [NowPlayingResult]?
 
     // MARK: - Private properties
     private var errorGetData: Bool = false
@@ -86,7 +88,16 @@ final class HomeViewController: UIViewController {
 
 extension HomeViewController: HomeViewProtocol {
     func updateView(data: [NowPlayingResult]) {
-        // TODO: add logic to update nowPlaying
+        nowPlaying = data
+        var cellMovieType = [CellMovieType]()
+        data.forEach { movie in
+            if let bac = movie.backdropPath {
+                cellMovieType.append(CellMovieType(imageUrlString: Endpoint.img(idImage: bac, sizeImage: .w500).urlString, title: movie.title ?? ""))
+            }
+        }
+
+        nowPlayingSlider.setUp(cellMovieType)
+        nowPlayingSlider.delegate = self
     }
 
     func updateView(data: [MovieTopRatedResult]) {

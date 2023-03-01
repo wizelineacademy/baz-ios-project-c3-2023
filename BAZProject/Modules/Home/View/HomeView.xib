@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="BAZProject" customModuleProvider="target">
             <connections>
                 <outlet property="movieTopSlider" destination="0wS-aa-dMa" id="zVG-sw-Hjw"/>
+                <outlet property="nowPlayingSlider" destination="MXL-gf-HkA" id="Adx-Lj-J8K"/>
                 <outlet property="view" destination="iN0-l3-epB" id="mDx-vc-Dp8"/>
             </connections>
         </placeholder>
@@ -27,20 +28,30 @@
                         <constraint firstAttribute="height" constant="170" id="aiy-uS-PpS"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MXL-gf-HkA" customClass="ImageSlider" customModule="BAZProject" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="245" width="393" height="170"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="170" id="xUV-wU-Po7"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" name="BackGround"/>
             <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="MXL-gf-HkA" secondAttribute="trailing" id="D7a-mD-cp4"/>
                 <constraint firstItem="0wS-aa-dMa" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="DS3-bx-4Ce"/>
                 <constraint firstItem="0wS-aa-dMa" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Ngl-gC-tCZ"/>
+                <constraint firstItem="MXL-gf-HkA" firstAttribute="top" secondItem="0wS-aa-dMa" secondAttribute="bottom" constant="16" id="h3X-XU-ReY"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="0wS-aa-dMa" secondAttribute="trailing" id="lZg-yy-Ek1"/>
+                <constraint firstItem="MXL-gf-HkA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="xkr-0J-brb"/>
             </constraints>
             <point key="canvasLocation" x="138" y="20"/>
         </view>
     </objects>
     <resources>
         <namedColor name="BackGround">
-            <color red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.37099999189376831" green="0.37099999189376831" blue="0.37099999189376831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
