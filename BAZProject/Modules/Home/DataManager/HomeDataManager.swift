@@ -32,9 +32,9 @@ extension HomeDataManager: HomeDataManagerInputProtocol {
     }
 
     func requestNowPlaying(_ urlString: String) {
-        typealias ResponseProvider = Result<NowPlayingResponse, Error>
+        typealias ResponseProviderNowPlaying = Result<NowPlayingResponse, Error>
         let request: URLRequest = RequestType(strUrl: urlString, method: .GET).getRequest()
-        providerNetworking.sendRequest(request) { [weak self] (result: ResponseProvider) in
+        providerNetworking.sendRequest(request) { [weak self] (result: ResponseProviderNowPlaying) in
             guard let self = self else { return }
             switch result {
             case .success(let data):

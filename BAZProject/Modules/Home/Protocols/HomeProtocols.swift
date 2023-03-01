@@ -25,7 +25,7 @@ protocol HomePresenterProtocol: AnyObject {
 
     func willFetchMovieTopRated()
     func willFetchNowPlaying()
-    func showDetail(of detailType: DetailType)
+    func willShowDetail(of detailType: DetailType)
 }
 
 // MARK: Interactor Input (Presenter -> Interactor)

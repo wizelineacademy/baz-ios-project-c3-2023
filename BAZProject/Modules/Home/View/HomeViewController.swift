@@ -130,6 +130,6 @@ extension HomeViewController: HomeViewProtocol {
 extension HomeViewController: ImageSliderDelegate {
     func indexDidSelect(_ index: Int) {
         guard let id = movieTopRated?[index].id as? Int else { return }
-        presenter?.showDetail(of: DetailType(mediaType: .movie, idMedia: id))
+        presenter?.willShowDetail(of: DetailType(mediaType: .movie, idMedia: id))
     }
 }
