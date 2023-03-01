@@ -12,6 +12,7 @@ final class HomeViewController: UIViewController {
     var movies: [Movie] = []
     var searchMovies: [Movie] = []
     var searchResultsController: SearchMovieController?
+    var counter: Int = 0
     @IBOutlet weak var segmentedMovies: UISegmentedControl!
     @IBOutlet weak var tblMovies: UITableView!
     
@@ -22,30 +23,7 @@ final class HomeViewController: UIViewController {
         searchController.showsCancelButton = !searchController.isSearchBarEmpty
         return searchController
     }()
-    
-    enum SegmentedMovies: Int, CaseIterable {
-        case trending
-        case nowPlaying
-        case popular
-        case topRated
-        case upComing
         
-        var title: String {
-            switch self {
-            case .trending:
-                return "Trending"
-            case .nowPlaying:
-                return "Now Playing"
-            case .popular:
-                return "Popular"
-            case .topRated:
-                return "Top Rated"
-            case .upComing:
-                return "Upcoming"
-            }
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -53,10 +31,16 @@ final class HomeViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .automatic
         navigationItem.searchController = searchController
         definesPresentationContext = true
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateCount), name: .contadorReviews, object: nil)
         setupTable()
         configureSegmented()
         executeMovieService(endPointService: .getTrending)
+    }
+    
+    @objc func updateCount() {
+        counter += 1
+        UserDefaults.standard.set(counter, forKey: "contador")
+        debugPrint("Notification \(counter)")
     }
     
     private func configureSegmented(){
@@ -83,7 +67,7 @@ final class HomeViewController: UIViewController {
             executeMovieService(endPointService: .getUpcoming)
         }
     }
-    /// this method execute the movie api for popular Movies
+    /// This method execute the movie api for an Endpoint  `MovieServices`
     private func executeMovieService(endPointService: MovieServices) {
         movieAPI?.getMovies(endpoint: endPointService) {[weak self ] result in
             switch result {
@@ -97,12 +81,14 @@ final class HomeViewController: UIViewController {
         }
     }
     
+     /// This method configure de tblMovies and register de cells for it
     private func setupTable(){
         tblMovies.delegate = self
         tblMovies.dataSource = self
         tblMovies.register(MovieViewCell.nib, forCellReuseIdentifier: MovieViewCell.identifier)
     }
     
+    /// This method configure show de Movies for a result of the search bar
     func showMoviesList(arrMovie: [Movie]) {
         let results = searchController.searchResultsController as? SearchMovieController
         results?.movies = arrMovie
@@ -171,6 +157,5 @@ extension HomeViewController: SearchMovieControllerDelegate {
         detailVC.movie = movie
         navigationController?.pushViewController(detailVC, animated: true)
     }
-
 }
 

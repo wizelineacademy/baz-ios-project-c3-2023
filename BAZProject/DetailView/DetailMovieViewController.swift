@@ -9,9 +9,10 @@ import UIKit
 
 enum SectionsDetailMovie: Int, CaseIterable {
     case header = 0
-    case reviews = 1
-    case similar = 2
-    case recommendations = 3
+    case actors = 1
+    case reviews = 2
+    case similar = 3
+    case recommendations = 4
     
     var title: String? {
         switch self {
@@ -23,6 +24,8 @@ enum SectionsDetailMovie: Int, CaseIterable {
             return "Similar Movies"
         case .recommendations:
             return "Recommended Movies"
+        case .actors:
+           return "Cast"
         }
     }
 }
@@ -36,10 +39,15 @@ final class DetailMovieViewController: UIViewController {
     private var similarMovies: [Movie]?
     private var recomendationsMovies: [Movie]?
     private var reviews: [Review]?
+    private var casts: [Cast]?
+    private var contador: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Detail Movie"
+        NotificationCenter.default.post(name: .contadorReviews, object: nil)
+        contador = UserDefaults.standard.integer(forKey: "contador")
+        self.title = "Detail Movie: \(contador ?? 0)👀 "
+
         setupTable()
     }
     
@@ -48,9 +56,11 @@ final class DetailMovieViewController: UIViewController {
         group.enter()
         group.enter()
         group.enter()
+        group.enter()
         executeRecomendations()
         executeSimilarMovies()
         executeReviews()
+        executeCast()
         group.notify(queue: .main) {
             self.tblDetailMovie.reloadData()
             print("Se cargaron")
@@ -63,6 +73,7 @@ final class DetailMovieViewController: UIViewController {
         tblDetailMovie.register(InfoMovieTableViewCell.nib, forCellReuseIdentifier: InfoMovieTableViewCell.identifier)
         tblDetailMovie.register(CarruselMovieTableViewCell.nib, forCellReuseIdentifier: CarruselMovieTableViewCell.identifier)
         tblDetailMovie.register(ReviewsTableViewCell.nib, forCellReuseIdentifier: ReviewsTableViewCell.identifier)
+        tblDetailMovie.register(ActorCarruselTableViewCell.nib, forCellReuseIdentifier: ActorCarruselTableViewCell.identifier)
     }
     /// this methode executes the movie api for recommendation from an Id Movie
     func executeRecomendations(){
@@ -90,12 +101,25 @@ final class DetailMovieViewController: UIViewController {
         }
     }
     
-    /// this methode executes the movie api for review from an Id Movie
+    /// this methode executes the movie api for `Review` from an Id Movie
     func executeReviews(){
         movieAPI.getReviews(endpoint: .getReviews(id: movie?.id ?? 0)) { result in
             switch result {
             case .success(let response):
                 self.reviews = response.results ?? []
+            case .failure(let error):
+                print(error)
+            }
+            self.group.leave()
+        }
+    }
+    
+    /// this methode executes the movie api for `Cast`  from an Id Movie
+    func executeCast(){
+        movieAPI.getCast(endpoint: .getCredits(id: movie?.id ?? 0)) { result in
+            switch result {
+            case .success(let response):
+                self.casts = response.cast ?? []
             case .failure(let error):
                 print(error)
             }
@@ -122,6 +146,8 @@ extension DetailMovieViewController: UITableViewDataSource {
             return similarMovies?.count ?? 0 > 0 ? 1 : 0
         case .recommendations:
             return recomendationsMovies?.count ?? 0 > 0 ? 1 : 0
+        case .actors:
+            return casts?.count ?? 0 > 0 ? 1 : 0
         }
     }
     
@@ -136,6 +162,11 @@ extension DetailMovieViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: InfoMovieTableViewCell.identifier, for: indexPath) as? InfoMovieTableViewCell,let movie = movie else{return UITableViewCell()}
             
             cell.setInfo(for: movie)
+            return cell
+        case .actors:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ActorCarruselTableViewCell.identifier, for: indexPath) as? ActorCarruselTableViewCell,let casts = casts else{return UITableViewCell()}
+            
+            cell.setInfo(for: casts)
             return cell
         case .recommendations:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CarruselMovieTableViewCell.identifier, for: indexPath) as? CarruselMovieTableViewCell,let movies = recomendationsMovies else{return UITableViewCell()}
