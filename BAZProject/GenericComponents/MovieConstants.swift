@@ -24,4 +24,8 @@ enum MovieConstants {
     static let minimumLineSpacing: CGFloat = 10
     static let minimumInteritemSpacing: CGFloat = 10
     static let cellsPerRow: Int = 2
+    
+    // MARK: - Notification
+    static let notificationName: String = "trackDetailMovie"
+    static let viewsForDetailtMoviesKey: String = "countDetailtMoviesKey"
 }

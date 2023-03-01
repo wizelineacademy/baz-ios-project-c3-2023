@@ -35,6 +35,7 @@ extension InformationMoviesView: UICollectionViewDelegate {
         let selectedMovie = self.presenter?.getSimilarMovie(indexPathRow: indexPath.row)
         self.title = ""
         self.view.addSkeletonAnimation()
+        NotificationCenter.default.post(name: NSNotification.Name(Constants.notificationName), object: nil, userInfo: nil)
         presenter?.getInformationMovie(idMovie: selectedMovie?.id ?? 0)
     }
 }
