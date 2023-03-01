@@ -126,7 +126,7 @@ class MovieDetailsViewController: UIViewController {
         let section = InfoSection()
         section.heightAnchor.constraint(equalToConstant: 250).isActive = true
         let carruselCollection = CarruselCollectionView(direction: .horizontal)
-        manager.setupCollection(collection: carruselCollection, delegate: self)
+        manager.setupCollection(collection: carruselCollection, delegate: nil)
         
         section.title = "Cast"
         section.setContentView(view: carruselCollection)
@@ -154,6 +154,7 @@ extension MovieDetailsViewController: MovieDetailsDisplayLogic {
         if viewModel.movies.count != 0 {
             DispatchQueue.main.async {
                 let moviesSectionView = MoviesSectionView(typeSection: .bySimilarMovie(id: viewModel.idMovie))
+                moviesSectionView.delegate = self
                 self.addMoviesSectionView(moviesSection: moviesSectionView)
                 moviesSectionView.model = viewModel.movies
             }
@@ -166,6 +167,7 @@ extension MovieDetailsViewController: MovieDetailsDisplayLogic {
         if viewModel.movies.count != 0 {
             DispatchQueue.main.async {
                 let moviesSectionView = MoviesSectionView(typeSection: .byRecommendationMovie(id: viewModel.idMovie))
+                moviesSectionView.delegate = self
                 self.addMoviesSectionView(moviesSection: moviesSectionView)
                 moviesSectionView.model = viewModel.movies
             }
@@ -181,21 +183,12 @@ extension MovieDetailsViewController: MovieDetailsDisplayLogic {
     }
 }
 
-extension MovieDetailsViewController: CarruselCollectionDelegate {
-    func didTap(element: CarruselCollectionItemProperties) {
-        
-    }
-    func displayedLastItem() {
-        
-    }
-}
-
 extension MovieDetailsViewController: MoviesSectionDelegate {
     func didTapSeeMore(section: fetchMoviesTypes, movies: [MovieSearch]) {
-        
+        router?.routeToMoviesBySection(section: section, movies: movies)
     }
     
     func didTapItemCollection(movie: MovieSearch) {
-        
+        router?.routeToMovieDetails(movie: movie)
     }
 }

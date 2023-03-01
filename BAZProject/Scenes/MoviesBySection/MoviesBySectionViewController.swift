@@ -80,7 +80,6 @@ extension MoviesBySectionViewController: MoviesBySectionDisplayLogic {
 
 extension MoviesBySectionViewController: CarruselCollectionDelegate {
     func didTap(element: CarruselCollectionItemProperties) {
-        
         router?.routeToMovieDetails(movie: element as! MovieSearch)
     }
     
