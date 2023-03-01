@@ -113,7 +113,8 @@ final class ImageSlider: CustomView {
         initTimer()
     }
 
-    private func initTimer() {
+    func initTimer() {
+        if timer != nil { return }
         timer = Timer.scheduledTimer(timeInterval: LocalizedConstants.imageSliderTimeInterval,
                                      target: self,
                                      selector: #selector(slide),

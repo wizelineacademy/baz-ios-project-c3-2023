@@ -41,6 +41,7 @@ final class HomeViewController: UIViewController {
             callService()
         }
         addObservers()
+        movieTopSlider.initTimer()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
