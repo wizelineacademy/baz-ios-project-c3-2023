@@ -15,6 +15,12 @@ final class SearchMovieViewCollectioCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
+    override func layoutSubviews() {
+        moviePosterImage.layer.cornerRadius = 8
+        moviePosterImage.layer.masksToBounds = true
+        moviePosterImage.clipsToBounds = true
+    }
+    
     override func prepareForReuse() {
         moviePosterImage.image = nil
         titleMovie.text = nil

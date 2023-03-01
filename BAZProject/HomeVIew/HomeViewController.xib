@@ -22,7 +22,10 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="c2W-AD-PRj">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="32"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="Wyi-Jk-YEt"/>
+                    </constraints>
                     <segments>
                         <segment title="First"/>
                         <segment title="Second"/>
@@ -32,7 +35,7 @@
                     </connections>
                 </segmentedControl>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Fx4-ML-6sS">
-                    <rect key="frame" x="0.0" y="31" width="375" height="636"/>
+                    <rect key="frame" x="0.0" y="50" width="375" height="617"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
             </subviews>

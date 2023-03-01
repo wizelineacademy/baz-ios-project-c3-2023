@@ -25,7 +25,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eab-b6-5SH">
-                        <rect key="frame" x="84" y="58.5" width="42" height="21"/>
+                        <rect key="frame" x="84" y="24" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -33,10 +33,10 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="eab-b6-5SH" firstAttribute="leading" secondItem="r0a-sN-CKZ" secondAttribute="trailing" constant="8" id="4JH-Qk-aN8"/>
-                    <constraint firstItem="eab-b6-5SH" firstAttribute="centerY" secondItem="r0a-sN-CKZ" secondAttribute="centerY" id="FPO-j9-zi8"/>
                     <constraint firstItem="r0a-sN-CKZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Obe-Uj-Nrh"/>
                     <constraint firstAttribute="bottom" secondItem="r0a-sN-CKZ" secondAttribute="bottom" constant="24" id="Zze-9T-HXz"/>
                     <constraint firstItem="r0a-sN-CKZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="dpI-tl-uMp"/>
+                    <constraint firstItem="eab-b6-5SH" firstAttribute="top" secondItem="r0a-sN-CKZ" secondAttribute="top" id="hZP-mr-zR5"/>
                     <constraint firstItem="r0a-sN-CKZ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="w57-kW-QSK"/>
                 </constraints>
             </tableViewCellContentView>

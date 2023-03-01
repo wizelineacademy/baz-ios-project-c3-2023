@@ -37,6 +37,13 @@ final class HomeViewController: UIViewController {
         executeMovieService(endPointService: .getTrending)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UILabel.appearance(whenContainedInInstancesOf:[UISegmentedControl.self]).numberOfLines = 0
+        segmentedMovies.selectedSegmentIndex = 1
+        segmentedMovies.selectedSegmentIndex = 0
+    }
+    
     @objc func updateCount() {
         counter += 1
         UserDefaults.standard.set(counter, forKey: "contador")

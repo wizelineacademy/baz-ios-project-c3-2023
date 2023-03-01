@@ -15,6 +15,13 @@ class ReviewCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        avatarImage.contentMode = .scaleAspectFill
+        avatarImage.layer.cornerRadius = avatarImage.frame.width / 2
+        avatarImage.layer.masksToBounds = true
+        avatarImage.clipsToBounds = true
+        self.contentView.layer.cornerRadius = 8
+        self.contentView.layer.masksToBounds = true
+        self.contentView.clipsToBounds = true
     }
     
     override func prepareForReuse() {
