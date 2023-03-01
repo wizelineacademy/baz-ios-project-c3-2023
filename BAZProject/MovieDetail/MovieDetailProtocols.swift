@@ -20,7 +20,6 @@ protocol MovieDetailInteractorInputProtocol {
     
     // MARK: Functions
     func fetchModel(with movie: Movie)
-    
 }
 
 //MARK: - Presenter

@@ -9,7 +9,7 @@ import Foundation
 
 class ListMoviesPresenter {
     //MARK: - Properties
-    var view: ListMoviesViewInputProtocol?
+    weak var view: ListMoviesViewInputProtocol?
     var interactor: ListMoviesInteractorInputProtocol?
     var router: ListMoviesRouterProtocol?
     
@@ -32,7 +32,6 @@ extension ListMoviesPresenter: ListMoviesViewOutputProtocol {
     }
     
     func goToNextViewController(with model: Movie) {
-        print("llego al presenter ")
         router?.goToNextViewController(with: model)
     }
     
@@ -42,7 +41,7 @@ extension ListMoviesPresenter: ListMoviesViewOutputProtocol {
 }
 
 
-extension ListMoviesPresenter: ListMoviesInteractorOutputProtocol{
+extension ListMoviesPresenter: ListMoviesInteractorOutputProtocol {
     func presentView(model: [AllMovieTypes]) {
         view?.loadView(from: model)
     }

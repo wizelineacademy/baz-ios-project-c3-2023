@@ -12,16 +12,20 @@ class CastCollectionViewCell: UICollectionViewCell {
     //MARK: - IBOutlets
     @IBOutlet weak var lblRealName: UILabel!
     @IBOutlet weak var lblMovieName: UILabel!
-    @IBOutlet weak var imgCast: UIImageView!
+    @IBOutlet weak var imgCast: UIImageView! {
+        didSet{
+            imgCast.layer.cornerRadius = imgCast.frame.width / 2
+        }
+    }
     //MARK: - Properties
     static var identifier = "CastCollectionViewCell"
     
     //MARK: - Functions
-    static func nib() -> UINib{
+    static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
     }
     
-    func configure(with model: Cast ){
+    func configure(with model: Cast ) {
         lblRealName.text = model.originalName
         lblMovieName.text = model.character
         if model.profilePath == nil{
@@ -44,7 +48,6 @@ class CastCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
 }

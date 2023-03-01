@@ -15,11 +15,13 @@ class MovieDetailView: UIViewController {
     var presenter: MovieDetailViewOutputProtocol?
     var movie: Movie?
     var movieDetail: MovieDetail?
+    let defaults = UserDefaults.standard
     
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let movie = movie else {return}
+        guard let movie = movie else { return }
+        NotificationCenter.default.post(name: .didViewDetail, object: self, userInfo: ["contador" : getCounter(for: "contador")])
         presenter?.fetchModel(with: movie)
         setupView()
     }
@@ -34,6 +36,14 @@ class MovieDetailView: UIViewController {
         tblDetailsMovie.register(SimilarMovieTableViewCell.nib() , forCellReuseIdentifier: SimilarMovieTableViewCell.identifier)
         tblDetailsMovie.register(ReviewsTableViewCell.nib(), forCellReuseIdentifier: ReviewsTableViewCell.identifier)
        }
+    
+    private func getCounter(for key: String) -> Int {
+        var counter = defaults.integer(forKey: key)
+        counter += 1
+        defaults.set(counter, forKey: key)
+        return counter
+    }
+
 }
 
 //MARK: - Extensions
@@ -47,7 +57,8 @@ extension MovieDetailView: MovieDetailViewIntputProtocol {
 }
 
 //MARK: - UITableViewDetegate and DataSource
-extension MovieDetailView: UITableViewDelegate {}
+extension MovieDetailView: UITableViewDelegate {
+}
 extension MovieDetailView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         1
@@ -58,7 +69,7 @@ extension MovieDetailView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section{
+        switch section {
         case 1:
             return "Reseña"
         case 2:
@@ -89,24 +100,42 @@ extension MovieDetailView: UITableViewDataSource {
             cell.configure(with: movieDetail?.credits.cast ?? [])
             return cell
         case 3:
+            if self.movieDetail?.similarMovies.results.count ?? 0 <= 0 {
+                return noInformationCell()
+            }
             guard let cell: SimilarMovieTableViewCell = tblDetailsMovie.dequeueReusableCell(withIdentifier: SimilarMovieTableViewCell.identifier, for: indexPath) as? SimilarMovieTableViewCell else { return UITableViewCell() }
             cell.configure(with: self.movieDetail?.similarMovies.results ?? [])
             return cell
         case 4:
+            if self.movieDetail?.recomendtions.results.count ?? 0 <= 0 {
+                return noInformationCell()
+            }
             guard let cell: SimilarMovieTableViewCell = tblDetailsMovie.dequeueReusableCell(withIdentifier: SimilarMovieTableViewCell.identifier, for: indexPath) as? SimilarMovieTableViewCell else { return UITableViewCell() }
             cell.configure(with: self.movieDetail?.recomendtions.results ?? [])
             return cell
         case 5:
+            if self.movieDetail?.reviews.results.count ?? 0 <= 0 {
+                return noInformationCell()
+            }
             guard let cellReviews: ReviewsTableViewCell = tblDetailsMovie.dequeueReusableCell(withIdentifier: ReviewsTableViewCell.identifier, for: indexPath) as? ReviewsTableViewCell else  { return UITableViewCell() }
             cellReviews.configure(with: self.movieDetail?.reviews.results ??  [])
             return cellReviews
         default:
-            return UITableViewCell()
+            return noInformationCell()
         }
     }
     
+    private func noInformationCell() -> UITableViewCell {
+        let cellEmpty = UITableViewCell()
+        var content = cellEmpty.defaultContentConfiguration()
+        content.text = "Sin información por el momento"
+        content.textProperties.font = UIFont.systemFont(ofSize: 10.0)
+        cellEmpty.contentConfiguration = content
+        return cellEmpty
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.section{
+        switch indexPath.section {
         case 0:
             return 300.0
         case 1:
@@ -114,14 +143,13 @@ extension MovieDetailView: UITableViewDataSource {
         case 2:
             return 120.0
         case 3:
-            return 250.0
+            return (movieDetail?.similarMovies.results.count ?? 0) < 1 ? 40.0 : 250.0
         case 4:
-            return 250.0
+            return (movieDetail?.recomendtions.results.count ?? 0) < 1 ? 40.0 :250.0
         case 5:
-            return 200.0
+            return (movieDetail?.reviews.results.count ?? 0) < 1 ? 40.0 :200.0
         default:
             return 50.0
         }
     }
-    
 }

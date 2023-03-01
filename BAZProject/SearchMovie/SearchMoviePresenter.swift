@@ -9,7 +9,7 @@ import Foundation
 
 class SearchMoviePresenter {
     //MARK: - Properties
-    var view: SearchViewInputProtocol?
+    weak var view: SearchViewInputProtocol?
     var interactor: SearchInteractorInputProtocol?
     var router: SearchRouterProtocol?
     
@@ -29,8 +29,7 @@ extension SearchMoviePresenter: SearchViewOutputProtocol {
         interactor?.fetchModel(with: query)
     }
     
-    func goToMovieDetail(with movie: Movie){
-        print("Detalle de pelicula \(movie)")
+    func goToMovieDetail(with movie: Movie) {
         router?.goToMovieDetail(with: movie)
     }
 }

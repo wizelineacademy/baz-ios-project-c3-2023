@@ -33,7 +33,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jnb-5j-qaD">
-                        <rect key="frame" x="132" y="43" width="298" height="168"/>
+                        <rect key="frame" x="132" y="43" width="298" height="12"/>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="10"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -41,7 +41,6 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="Jnb-5j-qaD" firstAttribute="trailing" secondItem="ikO-tl-2IQ" secondAttribute="trailing" id="0hZ-Gg-poR"/>
-                    <constraint firstItem="Jnb-5j-qaD" firstAttribute="bottom" secondItem="y1O-iR-aTd" secondAttribute="bottom" id="1N3-iv-CJg"/>
                     <constraint firstItem="ikO-tl-2IQ" firstAttribute="top" secondItem="y1O-iR-aTd" secondAttribute="top" id="C1k-r0-Bz5"/>
                     <constraint firstAttribute="bottom" secondItem="y1O-iR-aTd" secondAttribute="bottom" constant="4" id="DG6-nK-mXK"/>
                     <constraint firstItem="ikO-tl-2IQ" firstAttribute="leading" secondItem="y1O-iR-aTd" secondAttribute="trailing" constant="8" id="U2s-Dm-3rB"/>

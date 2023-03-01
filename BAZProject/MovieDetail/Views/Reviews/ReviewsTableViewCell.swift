@@ -53,9 +53,9 @@ extension ReviewsTableViewCell: UICollectionViewDataSource {
     }
 }
 
-extension ReviewsTableViewCell : UICollectionViewDelegateFlowLayout{
+extension ReviewsTableViewCell : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 500, height: 150)
+        return CGSize(width: 350 , height: 150)
     }
 }
 

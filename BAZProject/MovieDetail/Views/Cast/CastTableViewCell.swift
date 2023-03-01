@@ -46,25 +46,25 @@ class CastTableViewCell: UITableViewCell {
 
 //MARK: -Extensions
 
-extension CastTableViewCell : UICollectionViewDelegate{
+extension CastTableViewCell : UICollectionViewDelegate {
     
 }
 
-extension CastTableViewCell : UICollectionViewDataSource{
+extension CastTableViewCell : UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return models.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CastCollectionViewCell.identifier, for: indexPath) as! CastCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CastCollectionViewCell.identifier, for: indexPath) as? CastCollectionViewCell else { return UICollectionViewCell() }
         let cast = models[indexPath.row]
         cell.configure(with: cast)
         return cell
     }
 }
 
-extension CastTableViewCell : UICollectionViewDelegateFlowLayout{
+extension CastTableViewCell : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 200, height: 100)
     }

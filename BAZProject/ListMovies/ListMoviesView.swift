@@ -8,11 +8,18 @@
 import UIKit
 
 class ListMoviesView: UIViewController {
-
-//MARK: - IBOutlets
-    @IBOutlet weak var tblMovies: UITableView!
     
-//MARK: - Properties
+    //MARK: - IBOutlets
+    @IBOutlet weak var tblMovies: UITableView!
+    @IBOutlet weak var lblViewedMovies: UILabel! {
+        didSet {
+            lblViewedMovies.backgroundColor = .black
+            lblViewedMovies.textColor = .white
+            lblViewedMovies.layer.masksToBounds = true
+            lblViewedMovies.layer.cornerRadius = 5.0
+        }
+    }
+    //MARK: - Properties
     var presenter: ListMoviesViewOutputProtocol?
     var arrMovies: [AllMovieTypes] = []
     lazy var btnSearch : UIBarButtonItem = {
@@ -21,8 +28,8 @@ class ListMoviesView: UIViewController {
         rightBarButton.tintColor = .darkText
         return rightBarButton
     }()
-
-//MARK: - LifeCycle
+    
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.fetchModel()
@@ -32,21 +39,38 @@ class ListMoviesView: UIViewController {
         tblMovies.register(MovieTableViewCell.nib(), forCellReuseIdentifier: MovieTableViewCell.identifier)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        lblViewedMovies.text = "Visitas \n\(UserDefaults.standard.integer(forKey: "contador"))"
+        NotificationCenter.default.addObserver(self, selector: #selector(didViewDetail(_:)) , name: .didViewDetail, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: .didViewDetail, object: nil)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         navigationItem.rightBarButtonItem = btnSearch
     }
-                                                                   
- //MARK: - Functions
-@objc func didTapButtonSearch() {
-    presenter?.goToSearchViewController()
-}
-
+    
+    //MARK: - Functions
+    @objc func didTapButtonSearch() {
+        presenter?.goToSearchViewController()
+    }
+    
+    @objc func didViewDetail(_ notification: Notification) {
+        if let data = notification.userInfo as? [String: Int] {
+                self.lblViewedMovies.text = "\(data["contador"] ?? 0)"
+        }
+    }
+    
 }
 
 //MARK: - Extensions
 extension ListMoviesView: ListMoviesViewInputProtocol {
-  
+    
     func loadView(from model: [AllMovieTypes]) {
         arrMovies = model
         DispatchQueue.main.async {
@@ -85,13 +109,12 @@ extension ListMoviesView : UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 270.0
-    }    
+    }
 }
 
 extension ListMoviesView: MovieTableViewCellDelegate {
     func onSelected(movie: Movie) {
         presenter?.goToNextViewController(with: movie)
-        print("Mostrar la vista Detail con esta información \(movie)")
     }
     
     
