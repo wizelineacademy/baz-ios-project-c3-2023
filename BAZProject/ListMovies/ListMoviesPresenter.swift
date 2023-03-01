@@ -24,7 +24,6 @@ class ListMoviesPresenter {
 }
 
 //MARK: - Extension
-
 extension ListMoviesPresenter: ListMoviesViewOutputProtocol {
     
     func fetchModel() {
@@ -40,11 +39,10 @@ extension ListMoviesPresenter: ListMoviesViewOutputProtocol {
     }
 }
 
-
 extension ListMoviesPresenter: ListMoviesInteractorOutputProtocol {
+    
     func presentView(model: [AllMovieTypes]) {
         view?.loadView(from: model)
     }
-    
     
 }

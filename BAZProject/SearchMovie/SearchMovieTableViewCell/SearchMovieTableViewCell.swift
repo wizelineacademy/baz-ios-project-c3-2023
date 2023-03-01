@@ -27,7 +27,7 @@ class SearchMovieTableViewCell: UITableViewCell {
         self.lblMovieReview.text = model.overview
         if model.posterPath == nil {
             self.imgMoviePoster.image = UIImage(named: "poster")
-        }else{
+        } else {
             if let url = URL(string: model.posterImagefullPath) {
                 getData(from: url) { data, response, error in
                     guard let data = data, error == nil else { return }

@@ -8,6 +8,7 @@
 import UIKit
 
 class MovieDetailView: UIViewController {
+    
     //MARK: - IBOutlets
     @IBOutlet weak var tblDetailsMovie: UITableView!
     

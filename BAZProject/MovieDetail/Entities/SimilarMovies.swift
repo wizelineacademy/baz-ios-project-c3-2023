@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct SimilarMovie: Codable{
+struct SimilarMovie: Codable {
     let id: Int
     let backdropPath: String?
     let originalLanguage: String
@@ -25,7 +25,7 @@ struct SimilarMovie: Codable{
         return "https://image.tmdb.org/t/p/w200\(posterPath ?? "")"
     }
     
-    enum CodingKeys: String, CodingKey{
+    enum CodingKeys: String, CodingKey {
         case id
         case backdropPath = "backdrop_path"
         case originalLanguage = "original_language"
@@ -47,7 +47,7 @@ struct SimilarMovies: Codable {
     let totalPages: Int
     let totalResults : Int
     
-    enum CodingKeys: String, CodingKey{
+    enum CodingKeys: String, CodingKey {
         case page
         case results
         case totalPages = "total_pages"

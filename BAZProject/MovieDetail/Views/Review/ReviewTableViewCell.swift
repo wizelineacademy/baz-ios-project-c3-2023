@@ -20,7 +20,7 @@ class ReviewTableViewCell: UITableViewCell {
         return UINib(nibName: identifier, bundle: nil)
     }
     
-    func configure(with text: String){
+    func configure(with text: String) {
         self.lblReview.text = text
     }
     

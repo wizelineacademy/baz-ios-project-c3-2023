@@ -20,10 +20,10 @@ class PosterTableViewCell: UITableViewCell {
         return UINib(nibName: identifier , bundle: nil)
     }
     
-    func configure(with path: String){
-        if path.isEmpty{
+    func configure(with path: String) {
+        if path.isEmpty {
             imgPoster.image = UIImage(named: "poster")
-        }else{
+        } else {
             if let url = URL(string: path) {
                 getData(from: url) { data, response, error in
                     guard let data = data, error == nil else { return }

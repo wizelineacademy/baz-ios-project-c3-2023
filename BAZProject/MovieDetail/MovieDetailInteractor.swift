@@ -32,7 +32,6 @@ class MovieDetailInteractor {
     
     //MARK: - Properties
     var presenter: MovieDetailInteractorOutputProtocol?
-    
     private let apiKey: String     = "?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
     private let rootURL:String     = "https://api.themoviedb.org/3"
     private let extraParams:String = "&language=es&region=MX&page=1"
@@ -60,7 +59,6 @@ class MovieDetailInteractor {
             }
         }.resume()
     }
-    
     
     func getSimilarMovies(forIdMovie idMovie:Int, completion: @escaping (SimilarMovies) -> Void ) {
         guard let url = URL(string: createURL(forMovieDetail: .similar, idMovie: idMovie)) else { return }
@@ -163,5 +161,4 @@ extension MovieDetailInteractor: MovieDetailInteractorInputProtocol {
         }
         
     }
-
 }

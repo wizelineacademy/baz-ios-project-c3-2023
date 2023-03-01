@@ -79,12 +79,12 @@ extension ListMoviesView: ListMoviesViewInputProtocol {
     }
 }
 
-
-extension ListMoviesView : UITableViewDelegate{
+extension ListMoviesView : UITableViewDelegate {
     
 }
 
-extension ListMoviesView : UITableViewDataSource{
+extension ListMoviesView : UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         1
     }
@@ -106,16 +106,15 @@ extension ListMoviesView : UITableViewDataSource{
         return cell
     }
     
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 270.0
     }
 }
 
 extension ListMoviesView: MovieTableViewCellDelegate {
+    
     func onSelected(movie: Movie) {
         presenter?.goToNextViewController(with: movie)
     }
-    
     
 }

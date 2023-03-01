@@ -23,7 +23,8 @@ class MovieCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.imgMoviePoster.layer.cornerRadius = 5.0    }
+        self.imgMoviePoster.layer.cornerRadius = 5.0
+    }
     
     override func prepareForReuse() {
         self.imgMoviePoster.image = UIImage()

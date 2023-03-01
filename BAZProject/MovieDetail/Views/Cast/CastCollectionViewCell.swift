@@ -28,7 +28,7 @@ class CastCollectionViewCell: UICollectionViewCell {
     func configure(with model: Cast ) {
         lblRealName.text = model.originalName
         lblMovieName.text = model.character
-        if model.profilePath == nil{
+        if model.profilePath == nil {
             self.imgCast.image = UIImage(named: "poster")
         }else{
             if let url = URL(string: model.fullProfilePath) {

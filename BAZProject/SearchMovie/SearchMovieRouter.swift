@@ -23,7 +23,6 @@ class SearchMovieRouter {
         view.presenter = presenter
         interactor.presenter = presenter
         router.viewController = view
-        
         return view
     }
     
