@@ -74,7 +74,7 @@ extension CarruselMovieTableViewCell: UICollectionViewDelegateFlowLayout {
         let collectionViewWidth = collectionView.bounds.width
         let spaceBetweenCells = flowLayout.minimumInteritemSpacing
         let adjustedWidth = (collectionViewWidth - (spaceBetweenCells * numberOfItems - 1) - sectionInsets.left - sectionInsets.right)/numberOfItems
-        let height: CGFloat = 180
+        let height: CGFloat = 200
         return CGSize(width: adjustedWidth, height: height)
     }
     

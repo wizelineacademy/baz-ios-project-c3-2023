@@ -67,6 +67,7 @@ final class DetailMovieViewController: UIViewController {
         }
     }
     
+    /// this method configure the table view and register the cells
     private func setupTable(){
         tblDetailMovie.delegate = self
         tblDetailMovie.dataSource = self
@@ -75,8 +76,8 @@ final class DetailMovieViewController: UIViewController {
         tblDetailMovie.register(ReviewsTableViewCell.nib, forCellReuseIdentifier: ReviewsTableViewCell.identifier)
         tblDetailMovie.register(ActorCarruselTableViewCell.nib, forCellReuseIdentifier: ActorCarruselTableViewCell.identifier)
     }
-    /// this methode executes the movie api for recommendation from an Id Movie
-    func executeRecomendations(){
+    /// this method executes the movie api for recommendation from an Id Movie
+    private func executeRecomendations(){
         movieAPI.getMovies(endpoint: .getRecommendations(id: movie?.id ?? 0)) { result in
             switch result {
             case .success(let response):
@@ -89,7 +90,7 @@ final class DetailMovieViewController: UIViewController {
     }
     
     /// this methode executes the movie api for similar from an Id Movie
-    func executeSimilarMovies(){
+    private func executeSimilarMovies(){
         movieAPI.getMovies(endpoint: .getSimilars(id: movie?.id ?? 0)) { result in
             switch result {
             case .success(let response):
@@ -102,7 +103,7 @@ final class DetailMovieViewController: UIViewController {
     }
     
     /// this methode executes the movie api for `Review` from an Id Movie
-    func executeReviews(){
+    private func executeReviews(){
         movieAPI.getReviews(endpoint: .getReviews(id: movie?.id ?? 0)) { result in
             switch result {
             case .success(let response):
@@ -115,7 +116,7 @@ final class DetailMovieViewController: UIViewController {
     }
     
     /// this methode executes the movie api for `Cast`  from an Id Movie
-    func executeCast(){
+    private func executeCast(){
         movieAPI.getCast(endpoint: .getCredits(id: movie?.id ?? 0)) { result in
             switch result {
             case .success(let response):
