@@ -44,10 +44,12 @@ final class HomeViewController: UIViewController {
         }
         addObservers()
         movieTopSlider.initTimer()
+        nowPlayingSlider.initTimer()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         movieTopSlider.stopTimmer()
+        nowPlayingSlider.stopTimmer()
         stopLoading()
     }
 
