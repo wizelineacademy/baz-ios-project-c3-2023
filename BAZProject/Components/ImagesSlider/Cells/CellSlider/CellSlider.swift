@@ -19,7 +19,10 @@ final class CellSlider: UICollectionViewCell {
         super.awakeFromNib()
     }
 
-    func setData(imageUrl: String) {
+    func setData(imageUrl: String, imageContentMode: ContentMode? = nil) {
+        if let imageContentMode = imageContentMode {
+            photoImageView.contentMode = imageContentMode
+        }
         photoImageView.loadImage(id: imageUrl)
     }
 }

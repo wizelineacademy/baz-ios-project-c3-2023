@@ -89,14 +89,14 @@ final class HomeViewController: UIViewController {
 extension HomeViewController: HomeViewProtocol {
     func updateView(data: [NowPlayingResult]) {
         nowPlaying = data
-        var cellMovieType = [CellMovieType]()
+        var posterUrlString: [String] = []
         data.forEach { movie in
-            if let bac = movie.backdropPath {
-                cellMovieType.append(CellMovieType(imageUrlString: Endpoint.img(idImage: bac, sizeImage: .w500).urlString, title: movie.title ?? ""))
+            if let poster = movie.posterPath {
+                posterUrlString.append(poster)
             }
         }
 
-        nowPlayingSlider.setUp(cellMovieType)
+        nowPlayingSlider.setUp(imageUrlArray: posterUrlString, imageContentMode: .scaleAspectFit)
         nowPlayingSlider.delegate = self
     }
 

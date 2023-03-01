@@ -37,6 +37,7 @@ final class ImageSlider: CustomView {
     private let numberIncrementPage: Int = LocalizedConstants.imageSliderIncrementShowImage
     private let minimunSpacingForSection: Double = LocalizedConstants.imageSliderMinimunSpacingForSection
     private var scrolledRight: Bool = false
+    private var imageContentMode: ContentMode?
 
     @IBOutlet weak private var slidePageControl: UIPageControl!
     @IBOutlet weak private var imageCollection: UICollectionView!
@@ -45,8 +46,9 @@ final class ImageSlider: CustomView {
         super.awakeFromNib()
     }
 
-    func setUp(imageUrlArray: [String]) {
+    func setUp(imageUrlArray: [String], imageContentMode: ContentMode? = nil) {
         cellType = .cellSlider
+        self.imageContentMode = imageContentMode
         guaranteeMainThread {
             self.imageUrlArray = imageUrlArray
             self.initRegister()
@@ -180,7 +182,7 @@ final class ImageSlider: CustomView {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellSlider.identifier,
                                                          for: indexPath) as? CellSlider,
             let imageUrl: String = getImageUrl(indexPath.row) {
-            cell.setData(imageUrl: Endpoint.img(idImage: imageUrl, sizeImage: .w500).urlString)
+            cell.setData(imageUrl: Endpoint.img(idImage: imageUrl, sizeImage: .w500).urlString, imageContentMode: imageContentMode)
             return cell
         }
         return UICollectionViewCell()
