@@ -8,5 +8,5 @@
 import UIKit
 
 class MoviesTableViewController: UITableView {
-    
+//    var myMovies: [Movie]
 }

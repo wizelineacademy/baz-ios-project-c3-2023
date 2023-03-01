@@ -15,3 +15,11 @@ func getMovieDetails(view: UIViewController, movie: Movie, movieImage: UIImage) 
     view.navigationController?.pushViewController(viewController, animated: true)
     
 }
+
+func getGenres(genres: [genres]) -> String {
+    var genresString = ""
+    for genre in genres {
+        genresString += "\(genre) "
+    }
+    return genresString
+}

@@ -20,8 +20,9 @@ class PopularMovieViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let typeOfMovies: RequestType = .popular
         DispatchQueue.global().async { [weak self] in
-            self?.movies = self?.movieApi.getMovies(ofType: .popular) ?? []
+            self?.movies = self?.movieApi.getMovies(ofType: typeOfMovies) ?? []
             guard let myMovies =  self?.movies else { return }
             for movie in myMovies {
                 let urlString = movie.posterPath
