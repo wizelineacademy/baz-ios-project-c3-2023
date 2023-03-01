@@ -128,8 +128,14 @@ extension HomeViewController: HomeViewProtocol {
 }
 
 extension HomeViewController: ImageSliderDelegate {
-    func indexDidSelect(_ index: Int) {
-        guard let id = movieTopRated?[index].id as? Int else { return }
-        presenter?.willShowDetail(of: DetailType(mediaType: .movie, idMedia: id))
+    func indexDidSelect(_ index: Int, object: ImageSlider) {
+        if object == movieTopSlider {
+            guard let id = movieTopRated?[index].id as? Int else { return }
+            presenter?.willShowDetail(of: DetailType(mediaType: .movie, idMedia: id))
+
+        } else if object == nowPlayingSlider {
+            guard let id = nowPlaying?[index].id as? Int else { return }
+            presenter?.willShowDetail(of: DetailType(mediaType: .movie, idMedia: id))
+        }
     }
 }

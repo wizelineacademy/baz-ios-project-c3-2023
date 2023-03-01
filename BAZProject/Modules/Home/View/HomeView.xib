@@ -21,32 +21,58 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0wS-aa-dMa" customClass="ImageSlider" customModule="BAZProject" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="59" width="393" height="170"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3q2-9h-K1g">
+                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TxY-cz-fTF">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="470"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0wS-aa-dMa" customClass="ImageSlider" customModule="BAZProject" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="170"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="170" id="aiy-uS-PpS"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MXL-gf-HkA" customClass="ImageSlider" customModule="BAZProject" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="170" width="393" height="300"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="300" id="xUV-wU-Po7"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="0wS-aa-dMa" firstAttribute="top" secondItem="TxY-cz-fTF" secondAttribute="top" id="4of-hs-faG"/>
+                                <constraint firstAttribute="trailing" secondItem="MXL-gf-HkA" secondAttribute="trailing" id="6EB-zf-L0b"/>
+                                <constraint firstAttribute="trailing" secondItem="0wS-aa-dMa" secondAttribute="trailing" id="9xB-mo-pvq"/>
+                                <constraint firstItem="MXL-gf-HkA" firstAttribute="top" secondItem="0wS-aa-dMa" secondAttribute="bottom" id="M7d-zP-aqb"/>
+                                <constraint firstItem="0wS-aa-dMa" firstAttribute="leading" secondItem="TxY-cz-fTF" secondAttribute="leading" id="Pg1-1T-lYF"/>
+                                <constraint firstItem="MXL-gf-HkA" firstAttribute="top" secondItem="0wS-aa-dMa" secondAttribute="bottom" id="eXz-kO-qo0"/>
+                                <constraint firstAttribute="bottom" secondItem="MXL-gf-HkA" secondAttribute="bottom" id="tr5-Ra-FBd"/>
+                                <constraint firstItem="MXL-gf-HkA" firstAttribute="leading" secondItem="TxY-cz-fTF" secondAttribute="leading" id="xvG-st-M4J"/>
+                            </constraints>
+                        </view>
+                    </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="170" id="aiy-uS-PpS"/>
+                        <constraint firstItem="TxY-cz-fTF" firstAttribute="centerX" secondItem="3q2-9h-K1g" secondAttribute="centerX" id="2fa-3L-X9q"/>
+                        <constraint firstItem="TxY-cz-fTF" firstAttribute="top" secondItem="3q2-9h-K1g" secondAttribute="top" id="Jso-BF-Uvo"/>
+                        <constraint firstAttribute="bottom" secondItem="TxY-cz-fTF" secondAttribute="bottom" id="ORn-ho-m5o"/>
+                        <constraint firstAttribute="trailing" secondItem="TxY-cz-fTF" secondAttribute="trailing" id="Ydb-yw-ahy"/>
+                        <constraint firstItem="TxY-cz-fTF" firstAttribute="leading" secondItem="3q2-9h-K1g" secondAttribute="leading" id="jB7-cs-BDW"/>
                     </constraints>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MXL-gf-HkA" customClass="ImageSlider" customModule="BAZProject" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="245" width="393" height="300"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="300" id="xUV-wU-Po7"/>
-                    </constraints>
-                </view>
+                </scrollView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" name="BackGround"/>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="MXL-gf-HkA" secondAttribute="trailing" id="D7a-mD-cp4"/>
-                <constraint firstItem="0wS-aa-dMa" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="DS3-bx-4Ce"/>
-                <constraint firstItem="0wS-aa-dMa" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Ngl-gC-tCZ"/>
-                <constraint firstItem="MXL-gf-HkA" firstAttribute="top" secondItem="0wS-aa-dMa" secondAttribute="bottom" constant="16" id="h3X-XU-ReY"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="0wS-aa-dMa" secondAttribute="trailing" id="lZg-yy-Ek1"/>
-                <constraint firstItem="MXL-gf-HkA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="xkr-0J-brb"/>
+                <constraint firstItem="3q2-9h-K1g" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="15s-3r-t9Z"/>
+                <constraint firstItem="3q2-9h-K1g" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="98w-bX-fq7"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="3q2-9h-K1g" secondAttribute="trailing" id="Lmx-6P-MR1"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="3q2-9h-K1g" secondAttribute="bottom" id="tbv-wB-5dt"/>
             </constraints>
-            <point key="canvasLocation" x="138" y="20"/>
+            <point key="canvasLocation" x="136.64122137404578" y="19.718309859154932"/>
         </view>
     </objects>
     <resources>

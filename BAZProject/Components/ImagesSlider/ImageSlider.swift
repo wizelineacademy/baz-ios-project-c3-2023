@@ -12,7 +12,7 @@ private enum CellType {
 }
 
 protocol ImageSliderDelegate: AnyObject {
-    func indexDidSelect(_ index: Int)
+    func indexDidSelect(_ index: Int, object: ImageSlider)
 }
 
 final class ImageSlider: CustomView {
@@ -215,7 +215,7 @@ extension ImageSlider: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 extension ImageSlider: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.indexDidSelect(indexPath.row)
+        delegate?.indexDidSelect(indexPath.row, object: self)
     }
 }
 
