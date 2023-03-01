@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="movieTopSlider" destination="0wS-aa-dMa" id="zVG-sw-Hjw"/>
                 <outlet property="nowPlayingSlider" destination="MXL-gf-HkA" id="Adx-Lj-J8K"/>
+                <outlet property="titleNowPlayingLabel" destination="EFd-Jb-msT" id="TEA-Ok-X50"/>
                 <outlet property="view" destination="iN0-l3-epB" id="mDx-vc-Dp8"/>
             </connections>
         </placeholder>
@@ -25,7 +26,7 @@
                     <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TxY-cz-fTF">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="470"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="574"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0wS-aa-dMa" customClass="ImageSlider" customModule="BAZProject" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="170"/>
@@ -34,24 +35,32 @@
                                         <constraint firstAttribute="height" constant="170" id="aiy-uS-PpS"/>
                                     </constraints>
                                 </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title now playing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EFd-Jb-msT">
+                                    <rect key="frame" x="16" y="186" width="361" height="30"/>
+                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="25"/>
+                                    <color key="textColor" name="SecondaryColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MXL-gf-HkA" customClass="ImageSlider" customModule="BAZProject" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="170" width="393" height="300"/>
+                                    <rect key="frame" x="0.0" y="224" width="393" height="350"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="300" id="xUV-wU-Po7"/>
+                                        <constraint firstAttribute="height" constant="350" id="xUV-wU-Po7"/>
                                     </constraints>
                                 </view>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="0wS-aa-dMa" firstAttribute="top" secondItem="TxY-cz-fTF" secondAttribute="top" id="4of-hs-faG"/>
+                                <constraint firstItem="MXL-gf-HkA" firstAttribute="top" secondItem="EFd-Jb-msT" secondAttribute="bottom" constant="8" id="5QR-CS-lLy"/>
                                 <constraint firstAttribute="trailing" secondItem="MXL-gf-HkA" secondAttribute="trailing" id="6EB-zf-L0b"/>
                                 <constraint firstAttribute="trailing" secondItem="0wS-aa-dMa" secondAttribute="trailing" id="9xB-mo-pvq"/>
-                                <constraint firstItem="MXL-gf-HkA" firstAttribute="top" secondItem="0wS-aa-dMa" secondAttribute="bottom" id="M7d-zP-aqb"/>
+                                <constraint firstItem="EFd-Jb-msT" firstAttribute="leading" secondItem="TxY-cz-fTF" secondAttribute="leading" constant="16" id="Eme-AJ-DRm"/>
                                 <constraint firstItem="0wS-aa-dMa" firstAttribute="leading" secondItem="TxY-cz-fTF" secondAttribute="leading" id="Pg1-1T-lYF"/>
-                                <constraint firstItem="MXL-gf-HkA" firstAttribute="top" secondItem="0wS-aa-dMa" secondAttribute="bottom" id="eXz-kO-qo0"/>
+                                <constraint firstItem="EFd-Jb-msT" firstAttribute="top" secondItem="0wS-aa-dMa" secondAttribute="bottom" constant="16" id="seq-76-5RC"/>
                                 <constraint firstAttribute="bottom" secondItem="MXL-gf-HkA" secondAttribute="bottom" id="tr5-Ra-FBd"/>
                                 <constraint firstItem="MXL-gf-HkA" firstAttribute="leading" secondItem="TxY-cz-fTF" secondAttribute="leading" id="xvG-st-M4J"/>
+                                <constraint firstAttribute="trailing" secondItem="EFd-Jb-msT" secondAttribute="trailing" constant="16" id="ywZ-9Z-Mna"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -78,6 +87,9 @@
     <resources>
         <namedColor name="BackGround">
             <color red="0.37099999189376831" green="0.37099999189376831" blue="0.37099999189376831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="SecondaryColor">
+            <color red="0.41999998688697815" green="0.68199998140335083" blue="0.42399999499320984" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

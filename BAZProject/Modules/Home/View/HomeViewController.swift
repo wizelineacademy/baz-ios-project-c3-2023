@@ -16,6 +16,11 @@ final class HomeViewController: UIViewController {
     // MARK: - Declaration IBOutlets
     @IBOutlet weak private var movieTopSlider: ImageSlider!
     @IBOutlet weak private var nowPlayingSlider: ImageSlider!
+    @IBOutlet weak private var titleNowPlayingLabel: UILabel! {
+        didSet {
+            titleNowPlayingLabel.text = .homeTitleNowPlaying
+        }
+    }
 
     // MARK: - Protocol properties
     var presenter: HomePresenterProtocol?

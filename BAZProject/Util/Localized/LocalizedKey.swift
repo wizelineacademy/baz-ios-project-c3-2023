@@ -36,6 +36,7 @@ extension String {
     static let homeXibIdentifier = "HomeView"
     static let homeTitle = "Inicio"
     static let homeNameIconTabBar = "house"
+    static let homeTitleNowPlaying = "En cines"
 
     // MARK: - Trending
     static let trendingXibIdentifier = "TrendingView"
