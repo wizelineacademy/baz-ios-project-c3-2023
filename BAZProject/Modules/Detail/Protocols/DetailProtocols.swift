@@ -27,12 +27,14 @@ protocol DetailPresenterProtocol: AnyObject {
     func willFetchMedia(detailType: DetailType)
     func willFetchReview(of idMovie: String)
     func willFetchSimilarMovie(of idMovie: String)
+    func willShowDetail(of detailType: DetailType)
 }
 
 protocol DetailRouterProtocol: AnyObject {
     var view: DetailViewProtocol? { get set }
     static func createModule(detailType: DetailType) -> UIViewController
     func showViewError(_ errorType: ErrorType)
+    func showDetail(of detailType: DetailType)
 }
 
 protocol DetailInteractorOutputProtocol: AnyObject {

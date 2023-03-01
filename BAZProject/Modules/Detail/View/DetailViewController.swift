@@ -245,8 +245,8 @@ extension DetailViewController: DetailViewProtocol {
 
 extension DetailViewController: ImageSliderDelegate {
     func indexDidSelect(_ index: Int, object: ImageSlider) {
-        if object == similarMoviesSlider {
-
+        if object == similarMoviesSlider, let id = similarMovies[index].id {
+            presenter?.willShowDetail(of: DetailType(mediaType: .movie, idMedia: id))
         }
     }
 }

@@ -63,6 +63,10 @@ extension DetailPresenter: DetailPresenterProtocol {
     func willFetchSimilarMovie(of idMovie: String) {
         interactor?.fetchSimilarMovie(of: idMovie)
     }
+
+    func willShowDetail(of detailType: DetailType) {
+        router?.showDetail(of: detailType)
+    }
 }
 
 extension DetailPresenter: DetailInteractorOutputProtocol {
