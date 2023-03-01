@@ -48,6 +48,12 @@ final class DetailViewController: UIViewController {
             showAllBottom.addShadow(.white)
         }
     }
+    @IBOutlet weak var titleSimilarMoviesLabel: UILabel! {
+        didSet {
+            titleSimilarMoviesLabel.text = .detailTitleSimilarMovies
+        }
+    }
+    @IBOutlet weak private var uiViewContainerSimilarMovie: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
