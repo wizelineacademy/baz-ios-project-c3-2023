@@ -13,7 +13,7 @@ struct TrendingModel {
     var backdropPath: String
 
     init(with data: MovieResult) {
-        self.id = data.id ?? 0
+        self.id = data.id ?? .zero
         self.mediaTitle = data.title ?? ""
         self.backdropPath = data.backdropPath ?? ""
     }
