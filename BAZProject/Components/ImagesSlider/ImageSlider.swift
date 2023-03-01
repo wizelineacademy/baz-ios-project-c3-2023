@@ -11,6 +11,10 @@ private enum CellType {
     case cellSlider, cellMovieTop
 }
 
+protocol ImageSliderDelegate: AnyObject {
+    func indexDidSelect(_ index: Int)
+}
+
 final class ImageSlider: CustomView {
 
     static let  identifier: String = .imageSliderXibIdentifier
@@ -18,6 +22,8 @@ final class ImageSlider: CustomView {
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
     }
+
+    var delegate: ImageSliderDelegate?
 
     // MARK: - Private methods
     private var imageUrlArray: [String]?
@@ -200,6 +206,13 @@ extension ImageSlider: UICollectionViewDataSource {
                         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
         return getUICollectionViewCell(of: indexPath, in: collectionView)
+    }
+}
+
+// MARK: - UICollectionViewDelegate
+extension ImageSlider: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.indexDidSelect(indexPath.row)
     }
 }
 
