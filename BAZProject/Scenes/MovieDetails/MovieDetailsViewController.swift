@@ -122,16 +122,19 @@ class MovieDetailsViewController: UIViewController {
         scrollViewContainer.addArrangedSubview(section)
     }
     
-    private func addCastViewToView(cast: [Cast]) {
+    private func addCastViewToView(cast: [CastSearch]) {
         let section = InfoSection()
+        section.heightAnchor.constraint(equalToConstant: view.frame.height / 3).isActive = true
         let carruselCollection = CarruselCollectionView(direction: .horizontal)
-        let manager = CarruselCollectionManager()
+        let manager = CarruselCollectionManager<CastSearch>()
         manager.setupCollection(collection: carruselCollection, delegate: self)
         
         section.title = "Cast"
         section.setContentView(view: carruselCollection)
         
         scrollViewContainer.addArrangedSubview(section)
+        manager.dataCollection = cast
+
     }
     
     private func addMoviesSectionView(moviesSection: MoviesSectionView) {
@@ -171,17 +174,19 @@ extension MovieDetailsViewController: MovieDetailsDisplayLogic {
     }
     
     func displayCast(viewModel: MovieDetails.FetchCast.ViewModel) {
-        addCastViewToView(cast: viewModel.cast)
-        interactor?.fetchSimilarMovies(request: MovieDetails.FetchSimilarMovies.Request(idMovie: viewModel.idMovie))
+        DispatchQueue.main.async {
+            self.addCastViewToView(cast: viewModel.cast)
+            self.interactor?.fetchSimilarMovies(request: MovieDetails.FetchSimilarMovies.Request(idMovie: viewModel.idMovie))
+        }
+
     }
 }
 
 extension MovieDetailsViewController: CarruselCollectionDelegate {
-    func displayedLastItem() {
+    func didTap(element: CarruselCollectionItemProperties) {
         
     }
-    
-    func didTap(movie: MovieSearch) {
+    func displayedLastItem() {
         
     }
 }

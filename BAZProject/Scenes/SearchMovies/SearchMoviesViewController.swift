@@ -29,7 +29,7 @@ class SearchMoviesViewController: UIViewController {
         view.placeholder = "Search"
         return view
     }()
-    let manager = CarruselCollectionManager()
+    let manager = CarruselCollectionManager<MovieSearch>()
     let collectionView = CarruselCollectionView(direction: .vertical)
     var carruselCollectionDelegate: CarruselCollectionDelegate?
     
@@ -125,8 +125,8 @@ extension SearchMoviesViewController: UISearchBarDelegate {
 }
 
 extension SearchMoviesViewController: CarruselCollectionDelegate {
-    func didTap(movie: MovieSearch) {
-        router?.routeToMovieDetails(movie: movie)
+    func didTap(element: CarruselCollectionItemProperties) {
+        router?.routeToMovieDetails(movie: element as! MovieSearch)
     }
     
     func displayedLastItem() {

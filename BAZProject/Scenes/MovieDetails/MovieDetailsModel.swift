@@ -16,7 +16,6 @@ enum MovieDetails {
             var id: Int
             var title: String
             var imageURL: String
-            var backdropURL: String
             var overview: String
         }
     }
@@ -59,7 +58,7 @@ enum MovieDetails {
         }
         struct ViewModel {
             var idMovie: Int
-            var cast: [Cast]
+            var cast: [CastSearch]
         }
     }
 }

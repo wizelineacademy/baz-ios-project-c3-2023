@@ -29,7 +29,7 @@ class MoviesSectionView: UIView {
     @IBOutlet weak var carruselMoviesView: UIView!
     
     // MARK: Properties
-    var manager: CarruselCollectionManager!
+    var manager: CarruselCollectionManager<MovieSearch>!
     let typeSection: fetchMoviesTypes
     let carruselCollection = CarruselCollectionView(direction: .horizontal)
     var delegate: MoviesSectionDelegate?
@@ -82,8 +82,8 @@ extension MoviesSectionView: CarruselCollectionDelegate {
         
     }
     
-    func didTap(movie: MovieSearch) {
-        delegate?.didTapItemCollection(movie: movie)
+    func didTap(element: CarruselCollectionItemProperties) {
+        delegate?.didTapItemCollection(movie: element as! MovieSearch)
     }
 }
 

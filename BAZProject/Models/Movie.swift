@@ -74,12 +74,11 @@ struct Movie: MovieProperties, Decodable {
     }
 }
 
-struct MovieSearch {
+struct MovieSearch: CarruselCollectionItemProperties {
     var id: Int
     var imageURL: String
-    var title: String
-    var backdropURL: String
-    var overview: String
+    var name: String
+    var description: String
 }
 
 

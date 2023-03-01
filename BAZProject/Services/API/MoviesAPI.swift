@@ -76,6 +76,10 @@ class MoviesAPI: MovieServicesProtocol {
             
             do {
                 let casts = try JSONDecoder().decode(CastResponse.self, from: data).cast
+                guard let casts = casts else {
+                    completionHandler([], .emptyData)
+                    return
+                }
                 completionHandler(casts, nil)
             } catch {
                 completionHandler([], .decodeError)
@@ -145,6 +149,7 @@ enum fetchMoviesTypes {
 enum MovieServiceError: Error {
     case fetchError
     case decodeError
+    case emptyData
     
     var description: String {
         switch self {
@@ -152,6 +157,8 @@ enum MovieServiceError: Error {
             return "Error al obtener respuesta de Peliculas"
         case .decodeError:
             return "Error al decodificar respuesta"
+        case .emptyData:
+            return "No se encontraron datos"
         }
     }
 }

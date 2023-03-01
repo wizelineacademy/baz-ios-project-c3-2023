@@ -66,6 +66,8 @@ class MovieDetailsInteractor: MovieDetailsBusinessLogic, MovieDetailsDataStore {
                 
             }
             let response = MovieDetails.FetchCast.Response(idMovie: request.idMovie, cast: cast)
+            
+            self.presenter?.presentFechedCast(response: response)
         }
     }
 }
