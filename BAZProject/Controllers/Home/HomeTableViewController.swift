@@ -48,7 +48,7 @@ class HomeTableViewController: UITableViewController {
         getCategory(category: MovieAPICategory.upcoming)
     }
     
-    func getCategory(category: MovieAPICategory){
+    func getCategory(category: MovieAPICategory) {
         let category = category
         let categoryURL = MovieCategoryURLRequestFactory(category: category)
         let sessionFetcher = MovieAPI.URLSessionFetcher(urlRequestFactory: categoryURL, decodableResultAdapter: JSONDecoderResultAdapter())

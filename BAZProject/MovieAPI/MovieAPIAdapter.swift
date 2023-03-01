@@ -18,7 +18,7 @@ class JSONDecoderResultAdapter: DecodableResultAdapter {
     init() { }
     
     func mapToResult<T>(with data: Data) -> (T?, Error?) where T : Decodable {
-        guard let movieResult = try? JSONDecoder().decode(T.self, from: data) else{
+        guard let movieResult = try? JSONDecoder().decode(T.self, from: data) else {
             return (nil, MovieAPIError())
         }
         return (movieResult, nil)
