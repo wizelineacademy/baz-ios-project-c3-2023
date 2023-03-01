@@ -42,4 +42,12 @@ extension HomeRouter: HomeRouterProtocol {
             view.navigationController?.pushViewController(errorPageVC, animated: false)
         }
     }
+
+    func showDetail(of detailType: DetailType) {
+        guard let view = self.view as? UIViewController else { return }
+        view.guaranteeMainThread {
+            view.navigationController?.pushViewController(DetailRouter.createModule(detailType: detailType),
+                                                          animated: false)
+        }
+    }
 }

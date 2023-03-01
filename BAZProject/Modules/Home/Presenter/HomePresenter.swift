@@ -18,6 +18,10 @@ extension HomePresenter: HomePresenterProtocol {
     func willFetchMovieTopRated() {
         interactor?.fetchMovieTopRated()
     }
+
+    func showDetail(of detailType: DetailType) {
+        router?.showDetail(of: detailType)
+    }
 }
 
 extension HomePresenter: HomeInteractorOutputProtocol {

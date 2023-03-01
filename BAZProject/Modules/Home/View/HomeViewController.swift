@@ -111,6 +111,7 @@ extension HomeViewController: HomeViewProtocol {
 
 extension HomeViewController: ImageSliderDelegate {
     func indexDidSelect(_ index: Int) {
-        self.navigationController?.pushViewController(DetailRouter.createModule(detailType: DetailType(mediaType: .movie, idMedia: movieTopRated?[index].id ?? 1)), animated: false)
+        guard let id = movieTopRated?[index].id as? Int else { return }
+        presenter?.showDetail(of: DetailType(mediaType: .movie, idMedia: id))
     }
 }

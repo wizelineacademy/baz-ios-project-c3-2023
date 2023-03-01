@@ -23,6 +23,7 @@ protocol HomePresenterProtocol: AnyObject {
     var interactor: HomeInteractorInputProtocol? { get set }
 
     func willFetchMovieTopRated()
+    func showDetail(of detailType: DetailType)
 }
 
 // MARK: Interactor Input (Presenter -> Interactor)
@@ -59,4 +60,5 @@ protocol HomeRouterProtocol: AnyObject {
     var view: HomeViewProtocol? { get set }
     static func createModule() -> UIViewController
     func showViewError(_ errorType: ErrorType)
+    func showDetail(of detailType: DetailType)
 }

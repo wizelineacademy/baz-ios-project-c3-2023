@@ -1,4 +1,4 @@
-//  Detail+Extension.swift
+//  Detail+UITableExtension.swift
 //  BAZProject
 //
 //  Created by Gerardo Bautista Castañeda on 27/02/23.

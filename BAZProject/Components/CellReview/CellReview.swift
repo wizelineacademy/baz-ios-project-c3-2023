@@ -58,9 +58,10 @@ final class CellReview: UITableViewCell {
 
     func setData(with reviewType: ReviewType) {
         titleLabel.text = reviewType.title
-        let photoUrlString: String = Endpoint.img(idImage: reviewType.urlPhoto,
-                                                  sizeImage: .w500).urlString
-        photoImageView.loadImage(id: photoUrlString)
+        if !reviewType.urlPhoto.isEmpty {
+            let photoUrlString: String = Endpoint.img(idImage: reviewType.urlPhoto, sizeImage: .w500).urlString
+            photoImageView.loadImage(id: photoUrlString)
+        }
         rateLabel.text = reviewType.rate.description
         dateLabel.text = "\(String.cellReviewWriteOn) \(reviewType.date.getDateFormatted())"
         descriptionLabel.text = reviewType.content
