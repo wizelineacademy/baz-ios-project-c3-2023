@@ -24,6 +24,9 @@
 		C891908A29A68C990007DAB3 /* MoviesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C891908929A68C990007DAB3 /* MoviesTableViewController.swift */; };
 		C891908C29A7BB690007DAB3 /* PopularMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C891908B29A7BB690007DAB3 /* PopularMovieViewController.swift */; };
 		C891908F29AE888B0007DAB3 /* Cast.swift in Sources */ = {isa = PBXBuildFile; fileRef = C891908E29AE888B0007DAB3 /* Cast.swift */; };
+		C894138C29AFC6EF00FD0B41 /* CastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C894138B29AFC6EF00FD0B41 /* CastCollectionViewCell.swift */; };
+		C89413A629AFD6A700FD0B41 /* SimilarsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89413A529AFD6A700FD0B41 /* SimilarsCollectionViewCell.swift */; };
+		C89413A829AFE09600FD0B41 /* RecommendationsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89413A729AFE09600FD0B41 /* RecommendationsCollectionViewCell.swift */; };
 		C89E3E64299E8313001B9F6B /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89E3E63299E8313001B9F6B /* SearchView.swift */; };
 		C89E3E68299E8C24001B9F6B /* MovieCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89E3E66299E8C24001B9F6B /* MovieCollectionCell.swift */; };
 		C89E3E69299E8C24001B9F6B /* MovieCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C89E3E67299E8C24001B9F6B /* MovieCollectionCell.xib */; };
@@ -50,6 +53,9 @@
 		C891908929A68C990007DAB3 /* MoviesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesTableViewController.swift; sourceTree = "<group>"; };
 		C891908B29A7BB690007DAB3 /* PopularMovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMovieViewController.swift; sourceTree = "<group>"; };
 		C891908E29AE888B0007DAB3 /* Cast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cast.swift; sourceTree = "<group>"; };
+		C894138B29AFC6EF00FD0B41 /* CastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastCollectionViewCell.swift; sourceTree = "<group>"; };
+		C89413A529AFD6A700FD0B41 /* SimilarsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarsCollectionViewCell.swift; sourceTree = "<group>"; };
+		C89413A729AFE09600FD0B41 /* RecommendationsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationsCollectionViewCell.swift; sourceTree = "<group>"; };
 		C89E3E63299E8313001B9F6B /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		C89E3E66299E8C24001B9F6B /* MovieCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionCell.swift; sourceTree = "<group>"; };
 		C89E3E67299E8C24001B9F6B /* MovieCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieCollectionCell.xib; sourceTree = "<group>"; };
@@ -128,6 +134,7 @@
 			children = (
 				C8085BF3298B19FA00AA94E3 /* MovieDetails.storyboard */,
 				C8085BF5298B1A0D00AA94E3 /* MovieDetailsViewController.swift */,
+				C891909029AFC3930007DAB3 /* CollectionViewCells */,
 			);
 			path = MovieDetail;
 			sourceTree = "<group>";
@@ -142,11 +149,21 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		C891909029AFC3930007DAB3 /* CollectionViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				C894138B29AFC6EF00FD0B41 /* CastCollectionViewCell.swift */,
+				C89413A529AFD6A700FD0B41 /* SimilarsCollectionViewCell.swift */,
+				C89413A729AFE09600FD0B41 /* RecommendationsCollectionViewCell.swift */,
+			);
+			path = CollectionViewCells;
+			sourceTree = "<group>";
+		};
 		C89E3E62299E826F001B9F6B /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				C89E3E65299E8BF7001B9F6B /* MovieCollectionCell */,
 				C89E3E63299E8313001B9F6B /* SearchView.swift */,
+				C89E3E65299E8BF7001B9F6B /* MovieCollectionCell */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -187,7 +204,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1340;
+				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
 					C30893A928A2F42B004B1860 = {
@@ -237,9 +254,11 @@
 			files = (
 				C891908A29A68C990007DAB3 /* MoviesTableViewController.swift in Sources */,
 				C89E3E68299E8C24001B9F6B /* MovieCollectionCell.swift in Sources */,
+				C89413A629AFD6A700FD0B41 /* SimilarsCollectionViewCell.swift in Sources */,
 				C891908F29AE888B0007DAB3 /* Cast.swift in Sources */,
 				C89E3E64299E8313001B9F6B /* SearchView.swift in Sources */,
 				C30893C428A2F845004B1860 /* TrendingViewController.swift in Sources */,
+				C89413A829AFE09600FD0B41 /* RecommendationsCollectionViewCell.swift in Sources */,
 				C891908C29A7BB690007DAB3 /* PopularMovieViewController.swift in Sources */,
 				C8885AC0298AEC9A00D78936 /* TopRatedViewController.swift in Sources */,
 				C8085BF6298B1A0D00AA94E3 /* MovieDetailsViewController.swift in Sources */,
@@ -247,6 +266,7 @@
 				C30893B028A2F42B004B1860 /* SceneDelegate.swift in Sources */,
 				C30893E228A425E1004B1860 /* MovieAPI.swift in Sources */,
 				C8885ABC298ACC1100D78936 /* Strings.swift in Sources */,
+				C894138C29AFC6EF00FD0B41 /* CastCollectionViewCell.swift in Sources */,
 				C30893E328A425E1004B1860 /* Movie.swift in Sources */,
 				C89E3E9329A048E7001B9F6B /* Functions.swift in Sources */,
 			);
@@ -395,6 +415,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JQGL8XMPH2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BAZProject/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -423,6 +444,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JQGL8XMPH2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BAZProject/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
