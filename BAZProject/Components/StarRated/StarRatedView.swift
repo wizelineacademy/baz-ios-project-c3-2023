@@ -14,6 +14,7 @@ import UIKit
 ///
 final class StarRatedView: CustomView {
     static let identifier: String = .starRatedXibIdentifier
+
     /// This function allows to get the UINib of the cell.
     /// Way to call StarRatedView.nib()
     static func nib() -> UINib {
