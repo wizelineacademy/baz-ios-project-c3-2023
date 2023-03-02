@@ -25,9 +25,17 @@ extension HomeInteractor: HomeInteractorInputProtocol {
     func fetchNowPlaying() {
         dataManager?.requestNowPlaying(Endpoint.nowPlaying.urlString)
     }
+
+    func fetchUpcomingMovies() {
+        dataManager?.requestUpcomingMovies(Endpoint.upcoming.urlString)
+    }
 }
 
 extension HomeInteractor: HomeDataManagerOutputProtocol {
+    func handleGetUpcomingMovies(_ result: [UpcomingModelResult]) {
+        presenter?.onReceivedUpcomingMovies(result)
+    }
+
     func handleGetPopularMovies(_ result: [PopularMoviesModelResult]) {
         presenter?.onReceivedPopularMovies(result)
     }

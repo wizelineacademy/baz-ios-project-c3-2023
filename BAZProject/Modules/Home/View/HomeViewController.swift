@@ -82,6 +82,7 @@ final class HomeViewController: UIViewController {
         presenter?.willFetchMovieTopRated()
         presenter?.willFetchNowPlaying()
         presenter?.willFetchPopularMovies()
+        presenter?.willFetchUpcomingMovies()
     }
 
     private func addObservers() {
@@ -99,6 +100,10 @@ final class HomeViewController: UIViewController {
 }
 
 extension HomeViewController: HomeViewProtocol {
+    func updateView(data: [UpcomingModelResult]) {
+        
+    }
+
     func updateView(data: [PopularMoviesModelResult]) {
         popularMovies = data
         var posterUrlString: [String] = []

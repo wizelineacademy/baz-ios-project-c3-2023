@@ -30,6 +30,10 @@ extension HomePresenter: HomePresenterProtocol {
     func willFetchPopularMovies() {
         interactor?.fetchPopularMovies()
     }
+
+    func willFetchUpcomingMovies() {
+        interactor?.fetchUpcomingMovies()
+    }
 }
 
 extension HomePresenter: HomeInteractorOutputProtocol {
@@ -46,6 +50,12 @@ extension HomePresenter: HomeInteractorOutputProtocol {
     }
 
     func onReceivedPopularMovies(_ result: [PopularMoviesModelResult]) {
+        view?.setErrorGettingData(false)
+        view?.updateView(data: result)
+        view?.stopLoading()
+    }
+
+    func onReceivedUpcomingMovies(_ result: [UpcomingModelResult]) {
         view?.setErrorGettingData(false)
         view?.updateView(data: result)
         view?.stopLoading()

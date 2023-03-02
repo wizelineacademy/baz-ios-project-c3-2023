@@ -35,6 +35,7 @@ enum Endpoint {
     case nowPlaying
     case similarMovie(idMovie: String)
     case poularMovies
+    case upcoming
 }
 
 extension Endpoint {
@@ -62,6 +63,8 @@ extension Endpoint {
             return "\(BaseUrl.apiWithEndPoint(endPoint: similarUrlString).url)"
         case .poularMovies:
             return BaseUrl.apiWithEndPoint(endPoint: .apiKeyEndPointPopularMovies).url
+        case .upcoming:
+            return BaseUrl.apiWithEndPoint(endPoint: .apiKeyEndPointUpcomingMovies).url
         }
     }
 }

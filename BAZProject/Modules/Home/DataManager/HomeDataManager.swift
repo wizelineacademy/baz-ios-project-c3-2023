@@ -58,4 +58,18 @@ extension HomeDataManager: HomeDataManagerInputProtocol {
             }
         }
     }
+
+    func requestUpcomingMovies(_ urlString: String) {
+        typealias ResponseProviderNowPlaying = Result<UpcomingModelResponse, Error>
+        let request: URLRequest = RequestType(strUrl: urlString, method: .GET).getRequest()
+        providerNetworking.sendRequest(request) { [weak self] (result: ResponseProviderNowPlaying) in
+            guard let self = self else { return }
+            switch result {
+            case .success(let data):
+                self.interactor?.handleGetUpcomingMovies(data.results ?? [])
+            case .failure(let error):
+                self.interactor?.handleErrorService(error)
+            }
+        }
+    }
 }

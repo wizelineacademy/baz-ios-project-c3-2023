@@ -14,6 +14,7 @@ protocol HomeViewProtocol: AnyObject {
     func updateView(data: [MovieTopRatedResult])
     func updateView(data: [NowPlayingResult])
     func updateView(data: [PopularMoviesModelResult])
+    func updateView(data: [UpcomingModelResult])
     func stopLoading()
     func setErrorGettingData(_ status: Bool)
 }
@@ -27,6 +28,7 @@ protocol HomePresenterProtocol: AnyObject {
     func willFetchMovieTopRated()
     func willFetchNowPlaying()
     func willFetchPopularMovies()
+    func willFetchUpcomingMovies()
     func willShowDetail(of detailType: DetailType)
 }
 
@@ -35,6 +37,7 @@ protocol HomeInteractorOutputProtocol: AnyObject {
     func onReceivedNowPlaying(_ result: [NowPlayingResult])
     func onReceivedMovieTopRated(_ result: [MovieTopRatedResult])
     func onReceivedPopularMovies(_ result: [PopularMoviesModelResult])
+    func onReceivedUpcomingMovies(_ result: [UpcomingModelResult])
     func showViewError(_ error: Error)
 }
 
@@ -45,6 +48,7 @@ protocol HomeInteractorInputProtocol: AnyObject {
     func fetchMovieTopRated()
     func fetchNowPlaying()
     func fetchPopularMovies()
+    func fetchUpcomingMovies()
 }
 
 // MARK: Interactor Input (Interactor -> DataManager)
@@ -56,6 +60,7 @@ protocol HomeDataManagerInputProtocol: AnyObject {
     ///   - urlString: The url which returns [MovieTopRatedResult].
     func requestMovieTopRated(_ urlString: String)
     func requestNowPlaying(_ urlString: String)
+    func requestUpcomingMovies(_ urlString: String)
     func requestPopularMovies(_ urlString: String)
 }
 
@@ -64,6 +69,7 @@ protocol HomeDataManagerOutputProtocol: AnyObject {
     func handleGetMovieTopRated(_ result: [MovieTopRatedResult])
     func handleGetNowPlaying(_ result: [NowPlayingResult])
     func handleGetPopularMovies(_ result: [PopularMoviesModelResult])
+    func handleGetUpcomingMovies(_ result: [UpcomingModelResult])
     func handleErrorService(_ error: Error)
 }
 
