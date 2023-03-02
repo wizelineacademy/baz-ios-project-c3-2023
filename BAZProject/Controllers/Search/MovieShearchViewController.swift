@@ -9,6 +9,8 @@ import UIKit
 
 class MovieShearchViewController: UIViewController {
     
+    // MARK: properties
+    
     @IBOutlet weak var movieSearcher: UISearchBar!
     @IBOutlet weak var keyworkTable: UITableView!
     @IBOutlet weak var noResults: UILabel!
@@ -22,6 +24,8 @@ class MovieShearchViewController: UIViewController {
         }
     }
     
+    // MARK: View lifecycle
+    
     override func viewWillAppear(_ animated: Bool) {
         movieSearcher.searchTextField.becomeFirstResponder()
     }
@@ -30,6 +34,8 @@ class MovieShearchViewController: UIViewController {
         super.viewDidLoad()
         movieSearcher.searchTextField.delegate = self
     }
+    
+    // MARK: Methods
     
     func searchMovies(from text: String) {
         movieApi.searchKeywords(textEncoded: text) { keywords, error in
@@ -69,8 +75,10 @@ class MovieShearchViewController: UIViewController {
      }
      
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-         let keywordCell =  tableView.dequeueReusableCell(withIdentifier: "keywordCell", for: indexPath)
-         keywordCell.textLabel?.text = keywordsToShow?[indexPath.row].name
+         let keywordCell =  tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.identifier,
+                                                          for: indexPath) as? SearchTableViewCell
+         keywordCell?.textLabel?.text = keywordsToShow?[indexPath.row].name
+         guard let keywordCell = keywordCell else { return SearchTableViewCell() }
          return keywordCell
       }
  }
@@ -82,7 +90,7 @@ class MovieShearchViewController: UIViewController {
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
          let keywordSelected = keywordsToShow?[indexPath.row]
          tableView.deselectRow(at: indexPath, animated: true)
-         performSegue(withIdentifier: "searchToCatolog", sender: keywordSelected)
+         performSegue(withIdentifier: segueToCatalog, sender: keywordSelected)
      }
      
  }
@@ -133,7 +141,7 @@ class MovieShearchViewController: UIViewController {
                text != "" else { return true }
          movieSearcher.resignFirstResponder()
          let keywordSelected = MovieKeyword(id: 0, name: text)
-         performSegue(withIdentifier: "searchToCatolog", sender: keywordSelected)
+         performSegue(withIdentifier: segueToCatalog, sender: keywordSelected)
          return true
      }
  }

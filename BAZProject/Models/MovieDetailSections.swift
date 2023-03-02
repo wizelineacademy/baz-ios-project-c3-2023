@@ -15,11 +15,11 @@ enum MovieDetailSections: Int {
     var title: String {
         switch self {
         case .cast:
-            return "Elenco"
+            return NSLocalizedString("MDS.cast", comment: "section title")
         case .similar:
-            return "Peliculas similares"
+            return NSLocalizedString("MDS.similarMovies", comment: "section title")
         case .recommendation:
-            return "Peliculas recomendadas"
+            return NSLocalizedString("MDS.recomendationMovies", comment: "section title")
         }
     }
 }

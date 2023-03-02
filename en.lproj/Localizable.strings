@@ -9,3 +9,17 @@
 "MovieDetailPVC.authorUserName" = "anonymous";
 "MSCVC.resultText" = "We did not find anything related to";
 "MSCVC.resultTextComplement" = "\nRemember that you can search by keyword or title";
+"MDVPC.noOverview" = "Sorry, we don't have a review available for this movie.";
+"MDVPC.noReviews" = "AThere is no comment for this movie.";
+"MDVPC.noAuthorName" = "Anonymous";
+"MDVPC.noReviews" = "There is no comment for this movie.";
+"MDVPC.backButtonTitle" = "";
+"MDVPC.navbarTitle" = "movie CLUB";
+"MDS.cast" = "Cast";
+"MDS.similarMovies" = "Similar movies";
+"MDS.recomendationMovies" = "Recommended movies";
+"CategoryName.trending" = "Trending";
+"CategoryName.nowPlaying" = "Now playing";
+"CategoryName.popular" = "Popular";
+"CategoryName.topRated" = "Top Rated";
+"CategoryName.upcoming" = "Upcoming";

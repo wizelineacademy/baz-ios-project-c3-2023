@@ -9,11 +9,14 @@ import UIKit
 
 class MovieSearchCatalogViewController: UIViewController {
     
+    // MARK: properties
+    
     @IBOutlet weak var searchMovieCollection: UICollectionView!
     @IBOutlet weak var resultText: UILabel!
     
-    let resultTextTitle = NSLocalizedString("MSCVC.resultText", comment: "texTitle")
-    let resultTextComplement = NSLocalizedString("MSCVC.resultTextComplement", comment: "textComplement")
+    let resultTextTitle = NSLocalizedString("MSCVC.resultText", comment: "text")
+    let resultTextComplement = NSLocalizedString("MSCVC.resultTextComplement", comment: "text")
+    private let defaultPoster = UIImage(named: "poster")
     var keywordToSearch: MovieKeyword?
     var movieApi = MovieAPI()
     var moviesToShow: [Movie]? {
@@ -21,6 +24,8 @@ class MovieSearchCatalogViewController: UIViewController {
             searchMovieCollection.reloadData()
         }
     }
+    
+    // MARK: View lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,8 +36,12 @@ class MovieSearchCatalogViewController: UIViewController {
         }
     }
     
+    // MARK: Methods
+    
     func registerCollectionCell() {
-        searchMovieCollection.register(UINib(nibName: "MovieGalleryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MovieGallery")
+        searchMovieCollection.register(
+            UINib(nibName: MovieGalleryCollectionViewCell.nibIdentifier, bundle: nil),
+            forCellWithReuseIdentifier: MovieGalleryCollectionViewCell.identifier)
     }
     
     func cellFlowlayout() {
@@ -87,13 +96,15 @@ extension MovieSearchCatalogViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieGallery", for: indexPath) as? MovieGalleryCollectionViewCell
+        let collectionCell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: MovieGalleryCollectionViewCell.identifier ,
+            for: indexPath) as? MovieGalleryCollectionViewCell
         collectionCell?.movieTitle.text = moviesToShow?[indexPath.row].title
         collectionCell?.voteAvarage.text = moviesToShow?[indexPath.row].averageStars
         if let partialURLImage =  moviesToShow?[indexPath.row].posterPath {
             collectionCell?.movieImage.fetchImage(with: partialURLImage)
         } else {
-            collectionCell?.movieImage.image = UIImage(named: "poster")
+            collectionCell?.movieImage.image = defaultPoster
         }
         guard let collectionCell = collectionCell else { return MovieGalleryCollectionViewCell() }
         return collectionCell
