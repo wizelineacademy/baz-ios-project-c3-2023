@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ActorCarruselTableViewCell: UITableViewCell {
+final class ActorCarruselTableViewCell: UITableViewCell {
 
     @IBOutlet weak var castCollectionView: UICollectionView!
     var casts: [Cast] = []
@@ -23,13 +23,15 @@ class ActorCarruselTableViewCell: UITableViewCell {
         setUpCollection()
     }
 
-    func setUpCollection(){
+    ///This method configure the collection view and register the cells
+    private func setUpCollection(){
         castCollectionView.dataSource = self
         castCollectionView.delegate = self
         castCollectionView.register(ActorCollectionViewCell.nib, forCellWithReuseIdentifier: ActorCollectionViewCell.identifier)
     }
     
-    
+    ///This method fill the info of the view for cell
+    /// - Parameter for: recibes the `Array` of type `Review`
     func setInfo(for casts: [Cast]){
         self.casts = casts
         self.castCollectionView.reloadData()

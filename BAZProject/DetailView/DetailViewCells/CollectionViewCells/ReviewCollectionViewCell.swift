@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ReviewCollectionViewCell: UICollectionViewCell {
+final class ReviewCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var content: UILabel!
     @IBOutlet weak var nameAuthor: UILabel!
@@ -29,7 +29,8 @@ class ReviewCollectionViewCell: UICollectionViewCell {
         nameAuthor.text = nil
         avatarImage.image = nil
     }
-    
+    ///This methodo fill the info of the view for cell
+    /// - Parameter for: recibes the `Review`
     func setInfo(for review: Review){
         avatarImage.loadImage(urlString: "https://image.tmdb.org/t/p/w500\(review.authorDetails.avatarPath ?? "")")
         nameAuthor.text = review.author

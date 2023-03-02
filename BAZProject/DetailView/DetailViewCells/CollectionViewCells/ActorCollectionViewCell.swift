@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ActorCollectionViewCell: UICollectionViewCell {
+final class ActorCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var actorShadowView: UIView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -18,7 +18,7 @@ class ActorCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         setupImageView()
     }
-    
+    ///This Method  change the aspect of actorImageView and actorShadowView
     private func setupImageView() {
         // Made the image like a circle.
         actorImageView.contentMode = .scaleAspectFill
@@ -43,6 +43,8 @@ class ActorCollectionViewCell: UICollectionViewCell {
         actorImageView.image = nil
     }
     
+    ///This methodo fill the info of the view for cell
+    /// - Parameter cast: recibes the `Cast`
     func setup(cast: Cast) {
         nameLabel.text = cast.name
         characterLabel.text = cast.character

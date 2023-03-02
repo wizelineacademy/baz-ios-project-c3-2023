@@ -9,10 +9,10 @@ import UIKit
 final class HomeViewController: UIViewController {
     var movieAPI: MovieAPI?
    
-    var movies: [Movie] = []
-    var searchMovies: [Movie] = []
-    var searchResultsController: SearchMovieController?
-    var counter: Int = 0
+    private var movies: [Movie] = []
+    private var searchMovies: [Movie] = []
+    private var searchResultsController: SearchMovieController?
+    private var counter: Int = 0
     @IBOutlet weak var segmentedMovies: UISegmentedControl!
     @IBOutlet weak var tblMovies: UITableView!
     
@@ -44,12 +44,14 @@ final class HomeViewController: UIViewController {
         segmentedMovies.selectedSegmentIndex = 0
     }
     
+    /// This method is used to update a counter and is called for the Notification
     @objc func updateCount() {
         counter += 1
         UserDefaults.standard.set(counter, forKey: "contador")
         debugPrint("Notification \(counter)")
     }
     
+    ///This method fill the info for section in the segment
     private func configureSegmented(){
         segmentedMovies.removeAllSegments()
         for (index, item) in SegmentedMovies.allCases.enumerated() {
@@ -57,6 +59,7 @@ final class HomeViewController: UIViewController {
         }
         segmentedMovies.selectedSegmentIndex = 0
     }
+    
     
     @IBAction func segmentedControl(_ segmentedControl: UISegmentedControl) {
         let enumSegmented = SegmentedMovies.init(rawValue: segmentedControl.selectedSegmentIndex) ?? .popular

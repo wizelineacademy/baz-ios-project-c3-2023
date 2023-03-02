@@ -22,13 +22,15 @@ final class ReviewsTableViewCell: UITableViewCell {
         setUpCollection()
     }
 
-    func setUpCollection(){
+    ///This methodo configure the collection view and register the cells
+    private func setUpCollection(){
         reviewCollection.dataSource = self
         reviewCollection.delegate = self
         reviewCollection.register(ReviewCollectionViewCell.nib, forCellWithReuseIdentifier: ReviewCollectionViewCell.identifier)
     }
     
-    
+    ///This method fill the info of the view for cell
+    /// - Parameter for: recibes the  `Array` of type`Review`
     func setInfo(for reviews: [Review]){
         self.reviews = reviews
         self.reviewCollection.reloadData()

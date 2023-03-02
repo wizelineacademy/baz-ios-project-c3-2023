@@ -41,13 +41,13 @@ final class DetailMovieViewController: UIViewController {
     private var reviews: [Review]?
     private var casts: [Cast]?
     private var contador: Int?
+    private var similarCounter: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.post(name: .contadorReviews, object: nil)
         contador = UserDefaults.standard.integer(forKey: "contador")
         self.title = "Detail Movie: \(contador ?? 0)👀 "
-
         setupTable()
     }
     
@@ -63,7 +63,6 @@ final class DetailMovieViewController: UIViewController {
         executeCast()
         group.notify(queue: .main) {
             self.tblDetailMovie.reloadData()
-            print("Se cargaron")
         }
     }
     
@@ -78,53 +77,53 @@ final class DetailMovieViewController: UIViewController {
     }
     /// this method executes the movie api for recommendation from an Id Movie
     private func executeRecomendations(){
-        movieAPI.getMovies(endpoint: .getRecommendations(id: movie?.id ?? 0)) { result in
+        movieAPI.getMovies(endpoint: .getRecommendations(id: movie?.id ?? 0)) {[weak self] result in
             switch result {
             case .success(let response):
-                self.similarMovies = response.results ?? []
+                self?.similarMovies = response.results ?? []
             case .failure(let error):
                 print(error)
             }
-            self.group.leave()
+            self?.group.leave()
         }
     }
     
     /// this methode executes the movie api for similar from an Id Movie
     private func executeSimilarMovies(){
-        movieAPI.getMovies(endpoint: .getSimilars(id: movie?.id ?? 0)) { result in
+        movieAPI.getMovies(endpoint: .getSimilars(id: movie?.id ?? 0)) {[weak self] result in
             switch result {
             case .success(let response):
-                self.recomendationsMovies = response.results ?? []
+                self?.recomendationsMovies = response.results ?? []
             case .failure(let error):
                 print(error)
             }
-            self.group.leave()
+            self?.group.leave()
         }
     }
     
     /// this methode executes the movie api for `Review` from an Id Movie
     private func executeReviews(){
-        movieAPI.getReviews(endpoint: .getReviews(id: movie?.id ?? 0)) { result in
+        movieAPI.getReviews(endpoint: .getReviews(id: movie?.id ?? 0)) {[weak self] result in
             switch result {
             case .success(let response):
-                self.reviews = response.results ?? []
+                self?.reviews = response.results ?? []
             case .failure(let error):
                 print(error)
             }
-            self.group.leave()
+            self?.group.leave()
         }
     }
     
     /// this methode executes the movie api for `Cast`  from an Id Movie
     private func executeCast(){
-        movieAPI.getCast(endpoint: .getCredits(id: movie?.id ?? 0)) { result in
+        movieAPI.getCast(endpoint: .getCredits(id: movie?.id ?? 0)) {[weak self] result in
             switch result {
             case .success(let response):
-                self.casts = response.cast ?? []
+                self?.casts = response.cast ?? []
             case .failure(let error):
                 print(error)
             }
-            self.group.leave()
+            self?.group.leave()
         }
     }
 }
@@ -138,6 +137,7 @@ extension DetailMovieViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionsDetailMovie = SectionsDetailMovie.init(rawValue: section) ?? .header
+        //Each section return one cell, but depends if his type array data is greather than 0 an is using ternary operator
         switch sectionsDetailMovie {
         case .header:
             return 1
