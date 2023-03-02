@@ -40,7 +40,7 @@ final class TrendingRouter: TrendingRouterProtocol {
         }
     }
 
-    func showDetail(of idMovie: String){
+    func showDetail(of idMovie: String) {
         guard let view = self.view as? UIViewController else { return }
         view.guaranteeMainThread {
             let detailView: UIViewController = DetailRouter.createModule(of: idMovie)

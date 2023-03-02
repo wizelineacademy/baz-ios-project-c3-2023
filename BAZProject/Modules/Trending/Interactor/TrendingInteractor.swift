@@ -17,6 +17,10 @@ extension TrendingInteractor: TrendingInteractorInputProtocol {
         dataManager?.requestTrendingMedia(Endpoint.trending(mediaType: mediaType, timeWindow: timeWindow).urlString)
     }
 
+    func fetchNextTrendingMedia(mediaType: MediaType, timeWindow: TimeWindowType, page: Int) {
+        dataManager?.requestNextTrendingMedia(Endpoint.nextTrendingMovie(mediaType: mediaType, timeWindow: timeWindow, page: page).urlString)
+    }
+
     func fetchSearchMovie(with keyword: String) {
         dataManager?.requestSearchMovie(Endpoint.searchMovie(byKeywork: keyword).urlString)
     }
@@ -25,6 +29,10 @@ extension TrendingInteractor: TrendingInteractorInputProtocol {
 extension TrendingInteractor: TrendingDataManagerOutputProtocol {
     func handleGetTrendingMedia(_ data: MovieResponse) {
         presenter?.onReceivedTrendingMedia(result: data)
+    }
+
+    func handleGetNextTrendingMedia(_ data: MovieResponse) {
+        presenter?.onReceivedNextTrendingMedia(result: data)
     }
 
     func handleGetSearchMovie(_ data: MovieResponse) {

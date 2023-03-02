@@ -37,6 +37,7 @@ enum Endpoint {
     case poularMovies
     case upcoming
     case recomendations(idMovie: String)
+    case nextTrendingMovie(mediaType: MediaType, timeWindow: TimeWindowType, page: Int)
 }
 
 extension Endpoint {
@@ -69,6 +70,9 @@ extension Endpoint {
         case .recomendations(idMovie: let idMovie):
             let recomendationsUrlString: String = "\(String.apiKeyEndPointMovie)/\(idMovie)/\(String.apiKeyEndPointRecomendations)"
             return "\(BaseUrl.apiWithEndPoint(endPoint: recomendationsUrlString).url)"
+        case .nextTrendingMovie(mediaType: let mediaType, timeWindow: let timeWindow, page: let page):
+            let url: String = "\(String.apiKeyEndPointTrending)/\(mediaType.rawValue)/\(timeWindow.rawValue)"
+            return "\(BaseUrl.apiWithEndPoint(endPoint: url).url)&page=\(page)"
         }
     }
 }

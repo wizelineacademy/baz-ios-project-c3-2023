@@ -82,7 +82,8 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
     }
 
     func getTableTitle() -> String {
-        return mediaType.getMediaTypeTitle()
+        guard let presenter = presenter else { return "" }
+        return "\(mediaType.getMediaTypeTitle()) - Página \(presenter.getCurrentPage()) de \(presenter.getTotalPages())"
     }
 
     func getDataCount() -> Int {
@@ -210,7 +211,7 @@ extension TrendingViewController: UIScrollViewDelegate {
         let scrollPositionY: Double = scrollView.contentOffset.y
         if isMoreDataLoading && (scrollPositionY > scrollOffsetThreshold) || (scrollPositionY < 0) {
             self.showAlertLoader()
-            self.getData()
+            presenter?.willFetchNextTrendingMedia(mediaType: mediaType, timeWindow: timeWindowType)
         } else {
             isMoreDataLoading = true
         }

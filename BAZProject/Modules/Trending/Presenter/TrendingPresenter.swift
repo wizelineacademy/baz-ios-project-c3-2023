@@ -15,13 +15,26 @@ class TrendingPresenter {
     var data: [TrendingModel] = []
     var isFetchInProgress: Bool = false
     var totalDataCount: Int?
-    var currentPage: Int?
+    var currentPage: Int = .zero
     var totalPages: Int?
 }
 
 extension TrendingPresenter: TrendingPresenterProtocol {
+    func getCurrentPage() -> Int {
+        return currentPage
+    }
+
+    func getTotalPages() -> Int {
+        return totalPages ?? .zero
+    }
+
     func willFetchTrendingMedia(mediaType: MediaType, timeWindow: TimeWindowType) {
         interactor?.fetchTrendingMedia(mediaType: mediaType, timeWindow: timeWindow)
+    }
+
+    func willFetchNextTrendingMedia(mediaType: MediaType, timeWindow: TimeWindowType) {
+        currentPage += 1
+        interactor?.fetchNextTrendingMedia(mediaType: mediaType, timeWindow: timeWindow, page: currentPage)
     }
 
     func willFetchSearchMovie(by keyword: String) {
@@ -45,7 +58,20 @@ extension TrendingPresenter: TrendingInteractorOutputProtocol {
     func onReceivedTrendingMedia(result: MovieResponse) {
         view?.setErrorGettingData(false)
         self.data = []
-        currentPage = result.page
+        currentPage = result.page ?? currentPage
+        totalPages = result.totalPages
+        result.results?.forEach({ movie in
+            data.append(TrendingModel(with: movie))
+        })
+        totalDataCount = data.count
+        view?.updateView()
+        view?.stopLoading()
+    }
+
+    func onReceivedNextTrendingMedia(result: MovieResponse) {
+        view?.setErrorGettingData(false)
+        currentPage = result.page ?? currentPage
+        totalPages = result.totalPages
         result.results?.forEach({ movie in
             data.append(TrendingModel(with: movie))
         })
@@ -57,7 +83,8 @@ extension TrendingPresenter: TrendingInteractorOutputProtocol {
     func onReceivedSearchMovie(data: MovieResponse) {
         view?.setErrorGettingData(false)
         self.data = []
-        currentPage = data.page
+        currentPage = data.page ?? currentPage
+        totalPages = data.totalPages
         data.results?.forEach({ movie in
             self.data.append(TrendingModel(with: movie))
         })
