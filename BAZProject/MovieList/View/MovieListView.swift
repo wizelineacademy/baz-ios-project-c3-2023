@@ -19,10 +19,13 @@ final class MovieListView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTable()
+        output?.didLoadView()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        output?.didLoadView()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        guard let data = tableViewDataSource?.data else { return }
+        output?.lookForUpdates(in: data)
     }
     
     //MARK: - Settings methods
@@ -36,8 +39,13 @@ final class MovieListView: UIViewController {
 
 //MARK: - TableViewDelegate
 extension MovieListView: MLTableViewOutputProtocol {
+    /**
+     Call the output methods to send the selected movie
+     - Parameters:
+        - indexPath: a IndexPath object
+     */
     func didSelect(indexPath: IndexPath) {
-        guard let movie = tableViewDataSource?.movies[indexPath.row] else { return }
+        guard let movie = tableViewDataSource?.data.movies[indexPath.row] else { return }
         self.output?.didSelect(movie)
     }
 }
@@ -54,13 +62,30 @@ extension MovieListView: MLViewInputProtocol {
     }
     
     /**
-     Sets the list of received movies the needs to display
+     Sets the data of received movies that needs to be displayed
+     
+     If MoviesList object has an array of rows to insert and/or to update, the table view show them in animated way
+     
      - Parameters:
-        - movies: a Movie array
+        - data: a MoviesList object
      */
-    func setMovies(_ movies: [Movie]) {
-        self.tableViewDataSource?.movies = movies
-        self.movieListTbv.reloadData()
+    func setMovies(with data: MoviesList) {
+        self.tableViewDataSource?.data = data
+        
+        self.movieListTbv.beginUpdates()
+        if let rowsToInsert = data.rowsToInsert, !rowsToInsert.isEmpty {
+            self.movieListTbv.insertRows(at: rowsToInsert, with: .middle)
+        }
+        
+        if let rowsToUpdate = data.rowsToUpdate, !rowsToUpdate.isEmpty {
+            self.movieListTbv.reloadRows(at: rowsToUpdate, with: .fade)
+        }
+        self.movieListTbv.endUpdates()
+        self.movieListTbv.layoutIfNeeded()
+        
+        self.movieListTbv.tableFooterView = data.nextPage != nil ?
+            MoreMoviesView.getView(delegate: self) :
+            nil
     }
     
     /**
@@ -73,5 +98,15 @@ extension MovieListView: MLViewInputProtocol {
         let defaultAction = UIAlertAction(title: "Aceptar", style: .default)
         alert.addAction(defaultAction)
         self.present(alert, animated: true)
+    }
+}
+
+extension MovieListView: MoreMoviesDelegate {
+    /**
+     Call the output methods to send the current data and request more movies
+     */
+    func didSelectMoreMovies() {
+        guard let data = self.tableViewDataSource?.data else { return }
+        self.output?.fetchMoreMovies(with: data)
     }
 }

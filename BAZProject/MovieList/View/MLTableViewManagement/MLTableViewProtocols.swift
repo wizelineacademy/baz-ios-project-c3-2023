@@ -8,7 +8,13 @@
 import UIKit
 
 protocol MLTableViewDataSource: UITableViewDataSource {
-    var movies: [Movie] { get set }
+    var data: MoviesList { get set }
+}
+
+extension MLTableViewDataSource {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        UITableView.automaticDimension
+    }
 }
 
 protocol MLTableViewDelegate: UITableViewDelegate {

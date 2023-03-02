@@ -33,7 +33,7 @@ final class MovieSearchProvider: WSRequestProtocol, MSProviderProtocol {
         
         let url = baseURL.appendingPathComponent("/search/movie")
         let request = URLRequest(url: url)
-        fetch(request: request) { (result: Result<MoviesList, Error>) in
+        fetch(request: request) { (result: Result<PagedMovies, Error>) in
             switch result {
             case .success(let data):
                 completion(.success(data.movies))

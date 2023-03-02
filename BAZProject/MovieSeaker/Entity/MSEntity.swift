@@ -15,6 +15,7 @@ struct MSEntity {
 enum MSError: Error {
     case emptyText
     case invalidURL
+    case invalidPage
 }
 
 extension MSError: LocalizedError {
@@ -22,6 +23,7 @@ extension MSError: LocalizedError {
         switch self {
         case .emptyText: return "Escribe una palabra en el campo de busqueda."
         case .invalidURL: return "URL invalida"
+        case .invalidPage: return "La Pagina no existe"
         }
     }
 }

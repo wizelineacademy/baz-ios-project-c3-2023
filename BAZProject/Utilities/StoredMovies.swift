@@ -28,8 +28,8 @@ final class StoredMovies {
                 let removedMovie = storedMovies.remove(at: movieIndex)
                 movie.movieSeenCount = 1 + (removedMovie.movieSeenCount ?? 0)
             }
-            storedMovies.append(movie)
-            movieList.movies = storedMovies
+            movieList.movies = [movie]
+            movieList.movies.append(contentsOf: storedMovies)
         }
         let data = try? JSONEncoder().encode(movieList)
         UserDefaults.standard.set(data, forKey: storedMoviesKey)
@@ -45,5 +45,10 @@ final class StoredMovies {
             return result
         }
         return nil
+    }
+    
+    /** Set nil the stored data in user defaults */
+    static func restoreDB() {
+        UserDefaults.standard.set(nil, forKey: storedMoviesKey)
     }
 }

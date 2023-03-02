@@ -11,5 +11,5 @@ protocol MLProviderProtocol: AnyObject {
     var viewTitle: String { get }
     var iconName: String { get }
     
-    func getMovies(completion: @escaping (Result<[Movie], Error>) -> Void)
+    func update(moviesData: MoviesList, completion: @escaping (Result<MoviesList, Error>) -> Void)
 }
