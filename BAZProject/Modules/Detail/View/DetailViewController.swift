@@ -215,7 +215,7 @@ extension DetailViewController: DetailViewProtocol {
     func updateView(data: [SimilarMovieModelResult]) {
         if data.isEmpty {
             guaranteeMainThread {
-                self.similarMoviesSlider.isHidden = true
+                self.uiViewContainerSimilarMovie.isHidden = true
             }
             return
         }
