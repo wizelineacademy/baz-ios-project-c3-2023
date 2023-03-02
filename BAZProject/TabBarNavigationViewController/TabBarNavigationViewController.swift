@@ -12,6 +12,8 @@ class TabBarNavigationViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupVCs()
+        self.tabBar.unselectedItemTintColor = UIColor.white
+        self.tabBar.tintColor = UIColor.orange
     }
     
     /**

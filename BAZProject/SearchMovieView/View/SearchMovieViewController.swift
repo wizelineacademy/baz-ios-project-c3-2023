@@ -7,30 +7,53 @@
 
 import UIKit
 
-final class SearchMovieViewController: UIViewController {
+final class SearchMovieViewController: UIViewController, SearchView {
     
     @IBOutlet weak var tfWordSearch: UITextField!
     @IBOutlet weak var collectionViewSearch: UICollectionView!
     @IBOutlet weak var viewConatinerSearch: UIView!
     
     let NUMBER_ONE = 1
-    var moviesSearch: [Movie] = []
-    let movieApi = MovieAPI()
+    var moviesSearch: [Movie] = [] {
+        didSet{
+            DispatchQueue.main.async { [weak self] in
+                self?.collectionViewSearch.reloadData()
+            }
+        }
+    }
+    let notificationCenter = NotificationCenter.default
+    var viewModel: SearchMovieViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUINavigation()
+        viewModel = SearchMovieViewModel(view: self)
         addGestureKeyboard()
         registerCollectionViewCell()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        addNotificationObserver()
+        setUINavigation()
         setUISearchView()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        notificationCenter.removeObserver(self)
+    }
+    
+    /**
+     Add center notification name CountMoviesNotification to ViewController
+     */
+    private func addNotificationObserver() {
+        let notificationName = Notification.Name("CountMoviesNotification")
+        notificationCenter.addObserver(self, selector: #selector(countMovies(_:)), name: notificationName, object: nil)
     }
     
     private func setUINavigation() {
         self.title = "Search movie"
+        self.tabBarController?.tabBar.isHidden = false
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
@@ -60,11 +83,13 @@ final class SearchMovieViewController: UIViewController {
     }
     
     @IBAction func onTapSearchButton(_ sender: Any) {
-        movieApi.getMoviesSearch(queryMovie: tfWordSearch.text ?? "") { movies in
-            self.moviesSearch = movies ?? []
-            self.view.endEditing(true)
-            self.collectionViewSearch.reloadData()
-        }
+        viewModel?.fetchSearchMovies(query: tfWordSearch.text ?? "")
+        self.view.endEditing(true)
+        self.collectionViewSearch.reloadData()
+    }
+    
+    @objc func countMovies(_ sender: Any) {
+        HomeMoviesViewController.countMoviesUser += 1
     }
 }
 
@@ -87,6 +112,7 @@ extension SearchMovieViewController: UICollectionViewDelegate, UICollectionViewD
         cell.imgMovie.contentMode = .scaleAspectFill
         cell.delegate = self
         cell.idMovie = moviesSearch[indexPath.row].id ?? 0
+        cell.addGestureImg()
         cell.layer.cornerRadius = 10
         
         return cell
@@ -108,7 +134,7 @@ extension SearchMovieViewController: UICollectionViewDelegate, UICollectionViewD
 }
 
 extension SearchMovieViewController: TapGestureImgMovieProtocol {
-    func tapGestureImgMovie(idMovie: Int?) {
+    func tapGestureImgMovie(idMovie: Int?, typeMovieList: TypeMovieList?) {
         let module = DetailsMovieViewController()
         module.specificMovie = moviesSearch.first(where: { $0.id == idMovie
         })

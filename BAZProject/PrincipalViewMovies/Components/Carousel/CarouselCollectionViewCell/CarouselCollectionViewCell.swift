@@ -8,23 +8,23 @@
 import UIKit
 
 protocol TapGestureImgMovieProtocol: AnyObject {
-    func tapGestureImgMovie(idMovie: Int?)
+    func tapGestureImgMovie(idMovie: Int?, typeMovieList: TypeMovieList?)
 }
 
 final class CarouselCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var imgMovie: UIImageView!
     
+    ///Delegate for tap image and push movie detail
     weak var delegate: TapGestureImgMovieProtocol?
     var idMovie: Int = 0
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        addGestureImg()
     }
     
     /**
-     add gesture image collectionViewCell
+     add gesture image collectionViewCell only for SearchMovieViewController, this Controller use protocols
      */
     func addGestureImg() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onClickedImage(_:)))
@@ -33,6 +33,6 @@ final class CarouselCollectionViewCell: UICollectionViewCell {
     }
     
     @objc func onClickedImage(_ senderAny: Any) {
-        delegate?.tapGestureImgMovie(idMovie: idMovie)
+        delegate?.tapGestureImgMovie(idMovie: idMovie, typeMovieList: nil)
     }
 }

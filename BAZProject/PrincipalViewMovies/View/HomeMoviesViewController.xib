@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeMoviesViewController" customModule="BAZProject" customModuleProvider="target">
             <connections>
+                <outlet property="lblNumberShowMovies" destination="qWE-AJ-bam" id="nMX-n4-bUv"/>
                 <outlet property="scrollConatiner" destination="7zX-aU-Rig" id="OgT-EQ-rvH"/>
                 <outlet property="stackVerticalContainer" destination="2ei-at-Kfb" id="Cqg-zy-M8N"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -29,37 +30,18 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8gu-Gk-pY9">
                             <rect key="frame" x="0.0" y="0.0" width="393" height="80"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Aua-hc-eI5">
-                                    <rect key="frame" x="32" y="0.0" width="329" height="80"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popular" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q9l-lZ-Nxs">
-                                            <rect key="frame" x="0.0" y="30" width="61.333333333333336" height="20.333333333333329"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Now" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VSz-1S-Igc">
-                                            <rect key="frame" x="117.33333333333336" y="30" width="35.666666666666671" height="20.333333333333329"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recommended" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C65-Ky-DGo">
-                                            <rect key="frame" x="209" y="30" width="120" height="20.333333333333329"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                            <color key="textColor" systemColor="systemOrangeColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </stackView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Peliculas visualizadas: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qWE-AJ-bam">
+                                    <rect key="frame" x="10" y="30" width="183" height="20.333333333333329"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" systemColor="systemOrangeColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="80" id="07o-bh-4Gk"/>
-                                <constraint firstAttribute="trailing" secondItem="Aua-hc-eI5" secondAttribute="trailing" constant="32" id="GcB-8l-z1O"/>
-                                <constraint firstItem="Aua-hc-eI5" firstAttribute="top" secondItem="8gu-Gk-pY9" secondAttribute="top" id="L83-06-GMj"/>
-                                <constraint firstItem="Aua-hc-eI5" firstAttribute="leading" secondItem="8gu-Gk-pY9" secondAttribute="leading" constant="32" id="WuL-KF-DPp"/>
-                                <constraint firstAttribute="bottom" secondItem="Aua-hc-eI5" secondAttribute="bottom" id="XJT-jd-M6G"/>
+                                <constraint firstItem="qWE-AJ-bam" firstAttribute="leading" secondItem="8gu-Gk-pY9" secondAttribute="leading" constant="10" id="fqs-h1-YmY"/>
+                                <constraint firstItem="qWE-AJ-bam" firstAttribute="centerY" secondItem="8gu-Gk-pY9" secondAttribute="centerY" id="sLl-BV-LEW"/>
                             </constraints>
                         </view>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7zX-aU-Rig">
@@ -126,7 +108,7 @@
     </objects>
     <resources>
         <namedColor name="DarkStar">
-            <color red="0.066000000000000003" green="0.035000000000000003" blue="0.10000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.065999999642372131" green="0.035000000149011612" blue="0.10000000149011612" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

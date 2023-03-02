@@ -17,7 +17,14 @@ final class CarouselTypeMovie: UIView {
     @IBOutlet weak var collectionCarouselMovies: UICollectionView!
     @IBOutlet weak var lblTitleMoview: UILabel!
     
-    var moviesType: [Movie] = []
+    var moviesType: [Movie] = [] {
+        didSet {
+            DispatchQueue.main.async { [weak self] in
+                self?.collectionCarouselMovies.reloadData()
+            }
+        }
+    }
+    var typeMovieListCarousel: TypeMovieList?
     weak var delegate: TapGestureImgMovieProtocol?
     
     override init(frame: CGRect) {
@@ -30,6 +37,9 @@ final class CarouselTypeMovie: UIView {
         setUIForView()
     }
     
+    /**
+     Set UI for first time when is instantiated this view
+     */
     private func setUIForView() {
         let bundleCustomCarouselView = Bundle(for: CarouselTypeMovie.self)
         let view = UINib(nibName: "CarouselTypeMovie",
@@ -57,6 +67,10 @@ final class CarouselTypeMovie: UIView {
         collectionCarouselMovies.register(UINib(nibName: "CarouselCollectionViewCell", bundle: bundle), forCellWithReuseIdentifier: "CarouselCollectionViewCell")
     }
     
+    /**
+     Obtains number items for carousel for show un moviews home
+     - Returns: numbers of items for carousel
+     */
     private func getNumberItemsCarousel() -> Int {
         moviesType.count > 5 ? 5 : moviesType.count
     }
@@ -79,8 +93,6 @@ extension CarouselTypeMovie: UICollectionViewDelegate, UICollectionViewDelegateF
         if let urlString = url { cell.imgMovie.load(url: urlString) }
         
         cell.imgMovie.contentMode = .scaleAspectFill
-        cell.delegate = self
-        cell.idMovie = moviesType[indexPath.row].id ?? 0
         cell.layer.cornerRadius = 10
         
         return cell
@@ -90,10 +102,9 @@ extension CarouselTypeMovie: UICollectionViewDelegate, UICollectionViewDelegateF
 
         return CGSize(width: UtilsMoviesApp.shared.WIDTH_CELL, height: collectionView.frame.size.height)
     }
-}
-
-extension CarouselTypeMovie: TapGestureImgMovieProtocol {
-    func tapGestureImgMovie(idMovie: Int?) {
-        delegate?.tapGestureImgMovie(idMovie: idMovie)
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        ///  Notify when collection view cell is selected for push to details movie
+        delegate?.tapGestureImgMovie(idMovie: moviesType[indexPath.row].id, typeMovieList: typeMovieListCarousel)
     }
 }

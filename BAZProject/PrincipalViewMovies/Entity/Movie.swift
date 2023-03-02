@@ -49,10 +49,38 @@ struct Movie: Decodable {
  */
 enum TypeMovieList: String {
     case popularity = "popular"
-    case nowPlaying = "now_playing"
-    case latest = "latest"
+    case topRated = "top_rated"
+    case upcoming = "upcoming"
     
-    func getOptionMovie() -> String{
+    func getOptionMovie() -> String {
         return self.rawValue
     }
+
+    func getIndexTypeMovie() -> Int {
+        switch self {
+        case .popularity:
+            return 0
+        case .topRated:
+            return 1
+        case .upcoming:
+            return 2
+        }
+    }
+
+    func getNameCarousel() -> String {
+        switch self {
+        case .popularity:
+            return "Popular+"
+        case .topRated:
+            return "Now playing+"
+        case .upcoming:
+            return "Upcoming+"
+        }
+    }
+}
+
+struct SectionMovie {
+    let title: String
+    let typeSection: TypeMovieList
+    let movies: [Movie]
 }
