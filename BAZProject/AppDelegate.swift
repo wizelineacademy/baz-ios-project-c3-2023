@@ -22,11 +22,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     @objc func notificate() {
         guard (AppDelegate.counter[AppDelegate.movieID] != nil) else {
             AppDelegate.counter[AppDelegate.movieID] = 1
-            print(AppDelegate.counter)
+            debugPrint(AppDelegate.counter)
             return
         }
         AppDelegate.counter[AppDelegate.movieID]! += 1
-        print(AppDelegate.counter)
+        debugPrint(AppDelegate.counter)
         
     }
 
