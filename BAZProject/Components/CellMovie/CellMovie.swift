@@ -38,6 +38,8 @@ class CellMovie: UITableViewCell {
         lblTitle.text = title
         if let imageUrl = imageUrl {
             photoImageView.loadImage(id: imageUrl)
+        } else {
+            photoImageView.image = LocalizedConstants.commonImageDefault
         }
     }
 

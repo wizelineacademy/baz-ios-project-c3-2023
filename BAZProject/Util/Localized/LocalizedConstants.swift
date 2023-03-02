@@ -47,6 +47,7 @@ enum LocalizedConstants {
                                                             height: commonSizeIcon)
     static let commonHeightHeader: Int = 40
     static let commonSpacingInY: Int = 5
+    static let commonImageDefault: UIImage = UIImage(named: "poster") ?? UIImage()
 
     // MARK: - Notification Center
     static let notificationCenterNameShowDetail: String = "showDetail"
