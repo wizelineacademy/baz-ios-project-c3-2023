@@ -16,6 +16,7 @@ final class HomeViewController: UIViewController {
     // MARK: - Declaration IBOutlets
     @IBOutlet weak private var movieTopSlider: ImageSlider!
     @IBOutlet weak private var nowPlayingSlider: ImageSlider!
+    @IBOutlet weak var popularImageSlider: ImageSlider!
     @IBOutlet weak private var titleNowPlayingLabel: UILabel! {
         didSet {
             titleNowPlayingLabel.text = .homeTitleNowPlaying
@@ -26,6 +27,7 @@ final class HomeViewController: UIViewController {
     var presenter: HomePresenterProtocol?
     var movieTopRated: [MovieTopRatedResult]?
     var nowPlaying: [NowPlayingResult]?
+    var popularMovies: [PopularMoviesModelResult]?
 
     // MARK: - Private properties
     private var errorGetData: Bool = false
@@ -50,11 +52,13 @@ final class HomeViewController: UIViewController {
         addObservers()
         movieTopSlider.initTimer()
         nowPlayingSlider.initTimer()
+        popularImageSlider.initTimer()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         movieTopSlider.stopTimmer()
         nowPlayingSlider.stopTimmer()
+        popularImageSlider.initTimer()
         stopLoading()
     }
 
@@ -77,6 +81,7 @@ final class HomeViewController: UIViewController {
     private func getData() {
         presenter?.willFetchMovieTopRated()
         presenter?.willFetchNowPlaying()
+        presenter?.willFetchPopularMovies()
     }
 
     private func addObservers() {
@@ -95,7 +100,16 @@ final class HomeViewController: UIViewController {
 
 extension HomeViewController: HomeViewProtocol {
     func updateView(data: [PopularMoviesModelResult]) {
-        
+        popularMovies = data
+        var posterUrlString: [String] = []
+        data.forEach { movie in
+            if let poster = movie.posterPath {
+                posterUrlString.append(poster)
+            }
+        }
+
+        popularImageSlider.setUp(imageUrlArray: posterUrlString, imageContentMode: .scaleAspectFit)
+        popularImageSlider.delegate = self
     }
 
     func updateView(data: [NowPlayingResult]) {
@@ -144,6 +158,9 @@ extension HomeViewController: ImageSliderDelegate {
 
         } else if object == nowPlayingSlider {
             guard let id = nowPlaying?[index].id as? Int else { return }
+            presenter?.willShowDetail(of: DetailType(mediaType: .movie, idMedia: id))
+        } else if object == popularImageSlider {
+            guard let id = popularMovies?[index].id as? Int else { return }
             presenter?.willShowDetail(of: DetailType(mediaType: .movie, idMedia: id))
         }
     }
