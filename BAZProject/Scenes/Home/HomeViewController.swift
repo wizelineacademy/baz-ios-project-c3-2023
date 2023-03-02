@@ -101,11 +101,14 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: HomeDisplayLogic {
     func displaySectionViews(viewModel: Home.GetMoviesSection.ViewModel) {
-        viewModel.displayedSections.forEach { section in
+        viewModel.displayedSections.enumerated().forEach { (index, section) in
             let moviesSectionView = MoviesSectionView(typeSection: section)
+            
             moviesSectionView.delegate = self
             addMoviesSectionView(moviesSectionView: moviesSectionView)
             moviesViews.append(moviesSectionView)
+            moviesSectionView.isHidden = index == 0 ? true : false
+            
             interactor?.fetchMoviesBySection(request: Home.FetchMoviesBySection.Request(section: section))
         }
     }
@@ -119,8 +122,8 @@ extension HomeViewController: HomeDisplayLogic {
     }
     
     func displayMoviesWatched(viewModel: Home.SaveMovieWatched.ViewModel) {
-//        addMoviesSectionView(moviesSectionView: moviesWatchedView)
-//        moviesWatchedView.model = viewModel.movies
+        moviesViews[0].model = viewModel.movies
+        moviesViews[0].isHidden = false
     }
 }
 

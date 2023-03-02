@@ -37,7 +37,7 @@ class HomeInteractor: HomeBusinessLogic {
     }
     
     func getMoviesSection() {
-        let sections: [fetchMoviesTypes] = [.popular, .nowPlaying, .topRated, .trending, .upComing]
+        let sections: [fetchMoviesTypes] = [.watched, .popular, .nowPlaying, .topRated, .trending, .upComing]
         presenter?.presentMovieSections(response: Home.GetMoviesSection.Response(sections: sections))
     }
     
