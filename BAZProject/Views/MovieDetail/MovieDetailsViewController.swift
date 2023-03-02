@@ -34,6 +34,7 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var recommendedCollectionView: UICollectionView!
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         guard let myMovie = myMovie else { return }
         self.navigationItem.title = myMovie.title
@@ -52,6 +53,7 @@ class MovieDetailsViewController: UIViewController {
         getSimilars()
         getRecommended()
     }
+    
     func getCast(){
         DispatchQueue.global().async { [weak self] in
             self?.casting = self?.movieApi.getCasting() ?? []
@@ -66,6 +68,7 @@ class MovieDetailsViewController: UIViewController {
             }
         }
     }
+    
     func getSimilars(){
         DispatchQueue.global().async { [weak self] in
             self?.similarMovies = self?.movieApi.getMovies(ofType: .similar) ?? []
@@ -75,12 +78,12 @@ class MovieDetailsViewController: UIViewController {
                 guard let myURL = URL(string: urlString) else { return }
                 self?.similarImages.append(self?.movieApi.downloadImage(from: myURL) ?? UIImage())
                 DispatchQueue.main.async {
-                    print(self?.similarImages)
                     self?.similarsCollectionView.reloadData()
                 }
             }
         }
     }
+    
     func getRecommended(){
         DispatchQueue.global().async { [weak self] in
             self?.recomendedMovies = self?.movieApi.getMovies(ofType: .recommended) ?? []
@@ -143,15 +146,18 @@ extension MovieDetailsViewController: UICollectionViewDelegate, UICollectionView
             case similarsCollectionView:
                 myMovie = similarMovies[indexPath.row]
                 myImage = similarImages[indexPath.row]
+                goToDetails()
             case recommendedCollectionView:
                 myMovie = recomendedMovies[indexPath.row]
                 myImage = recomendedImages[indexPath.row]
+                goToDetails()
             default: break
         }
+    }
+    func goToDetails(){
         guard let myMovie = myMovie else{ return }
         getMovieDetails(view: self, movie: myMovie , movieImage: myImage ?? UIImage())
     }
-    
 }
 
 // MARK: - CollectionView Configuration
@@ -159,7 +165,9 @@ extension MovieDetailsViewController: UICollectionViewDelegateFlowLayout {
 //    CellSize
     func collectionView( _ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath ) -> CGSize {
 
-        return CGSize(width: view.frame.width, height: view.frame.height)
+//        return CGSize(width: view.frame.width, height: view.frame.height)
+        return CGSize(width: view.frame.width, height: collectionViewLayout.collectionView?.frame.height ?? view.frame.height )
+
     }
 }
 
