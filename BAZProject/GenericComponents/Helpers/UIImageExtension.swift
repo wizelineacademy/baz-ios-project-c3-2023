@@ -16,8 +16,10 @@ extension UIImageView {
         - urlStr: The url of the remote image
      */
     func loadImage(urlStr: String) {
+        self.addSkeletonAnimation()
         image = UIImage()
         if let img = imageCache.object(forKey: NSString(string: urlStr)) {
+            self.removeSkeletonAnimation()
             image = img
             return
         }
@@ -31,6 +33,7 @@ extension UIImageView {
                 DispatchQueue.main.async {
                     guard let data = data, let tempImg = UIImage(data: data) else { return }
 
+                    self.removeSkeletonAnimation()
                     self.alpha = 0.3;
                     self.image = tempImg
 
