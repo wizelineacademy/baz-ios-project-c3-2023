@@ -8,14 +8,19 @@ import UIKit
 
 class TrendingViewController: UITableViewController {
 
-    var movies: [Movie] = []
     let movieApi = MovieAPI()
-    var images: [UIImage] = []
     var movieImage = UIImage()
+    var images: [UIImage] = []
+    var movies: [Movie] = []
     let tableHeight: CGFloat = 150
 
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        getTrendingMovies()
+    }
+    
+    func getTrendingMovies() {
         DispatchQueue.global().async { [weak self] in
             self?.movies = self?.movieApi.getMovies(ofType: .trending) ?? []
             guard let myMovies =  self?.movies else { return }
@@ -32,7 +37,6 @@ class TrendingViewController: UITableViewController {
 }
 
 // MARK: - TableView's DataSource
-
 extension TrendingViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -42,10 +46,10 @@ extension TrendingViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         tableView.dequeueReusableCell(withIdentifier: "TrendingTableViewCell")!
     }
+    
 }
 
 // MARK: - TableView's Delegate
-
 extension TrendingViewController {
 
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -62,4 +66,5 @@ extension TrendingViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         tableHeight
     }
+    
 }

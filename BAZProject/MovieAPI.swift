@@ -6,7 +6,6 @@
 
 import UIKit
 
-
 class MovieAPI {
     
     private let apiKey: String = "?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a&language=en-US"
@@ -62,10 +61,9 @@ class MovieAPI {
         }
         
         return movies
-        
     }
         
-/// This function an Image from a UrlString.
+/// This function get an Image from a UrlString.
 ///
 /// ```
 /// downloadImage(from: "https://imageURL/myImageName.jpg")
@@ -80,8 +78,19 @@ class MovieAPI {
     func downloadImage (from url: URL) -> UIImage {
         guard let data = try? Data(contentsOf: url) else { return UIImage() }
         guard  let image = UIImage (data: data) else { return UIImage() }
+        
         return image
     }
+    
+/// This function make a peticion to the MovieAPI to get an array of `Casting`
+///
+/// ```
+/// movieApi.movieID = myMovieID
+/// getCasting()
+/// ```
+///
+/// - Returns: `[Casting]`
+///
     
     func getCasting() -> [Casting] {
         let myURL = myUrls.moviePath.rawValue + String(movieID) + RequestType.casting.rawValue + apiKey

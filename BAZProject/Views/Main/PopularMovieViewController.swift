@@ -9,17 +9,20 @@ import UIKit
 
 class PopularMovieViewController: UIViewController{
     
-    var movies: [Movie] = []
     let movieApi = MovieAPI()
+    var movies: [Movie] = []
     var images: [UIImage] = []
     let tableHeight: CGFloat = 150
 
     @IBOutlet weak var moviesTable: MoviesTableViewController!
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        getMovies()
+    }
+    
+    func getMovies() {
         let typeOfMovies: RequestType = .popular
         DispatchQueue.global().async { [weak self] in
             self?.movies = self?.movieApi.getMovies(ofType: typeOfMovies) ?? []
@@ -33,13 +36,10 @@ class PopularMovieViewController: UIViewController{
                 }
             }
         }
-        
-        self.moviesTable.reloadData()
     }
 }
 
-
-    // MARK: - TableView's DataSource
+// MARK: - TableView's DataSource
 extension PopularMovieViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -51,7 +51,7 @@ extension PopularMovieViewController: UITableViewDataSource{
     }
 }
 
-    // MARK: - TableView's Delegate
+// MARK: - TableView's Delegate
 extension PopularMovieViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

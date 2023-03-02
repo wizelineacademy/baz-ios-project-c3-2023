@@ -8,19 +8,19 @@ import UIKit
 
 class MovieDetailsViewController: UIViewController {
     
+    let movieApi = MovieAPI()
     var myMovie: Movie?
     var myImage: UIImage?
     var movies: [Movie] = []
+    var images: [UIImage] = []
     var casting: [Casting] = []
     var castingImages: [UIImage] = []
-    let movieApi = MovieAPI()
-    var images: [UIImage] = []
-    let tableHeight: CGFloat = 200
-    var itemsPerRow: CGFloat = 1
     var similarMovies: [Movie] = []
     var similarImages: [UIImage] = []
     var recomendedMovies: [Movie] = []
     var recomendedImages: [UIImage] = []
+    let tableHeight: CGFloat = 200
+    var itemsPerRow: CGFloat = 1
     
     private let sectionInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
 
@@ -34,27 +34,32 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var recommendedCollectionView: UICollectionView!
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        guard let myMovie = myMovie else { return }
-        self.navigationItem.title = myMovie.title
+        
         castCollectionView.delegate = self
         castCollectionView.dataSource = self
         similarsCollectionView.delegate = self
         similarsCollectionView.dataSource = self
         recommendedCollectionView.delegate = self
         recommendedCollectionView.dataSource = self
-        lblMovieTitle.text = myMovie.title
-        lblDescription.text = myMovie.overview
-        lblGenres.text = getGenres(genres: myMovie.genresArray).replacingOccurrences(of: "_", with: "-")
-        imgMovie.image = myImage
-        movieApi.movieID = myMovie.id
+        
+        setUp()
         getCast()
         getSimilars()
         getRecommended()
     }
     
-    func getCast(){
+    func setUp() {
+        guard let myMovie = myMovie else { return }
+        self.navigationItem.title = myMovie.title
+        lblMovieTitle.text = myMovie.title
+        lblDescription.text = myMovie.overview
+        lblGenres.text = getGenres(genres: myMovie.genresArray)
+        imgMovie.image = myImage
+        movieApi.movieID = myMovie.id
+    }
+    
+    func getCast() {
         DispatchQueue.global().async { [weak self] in
             self?.casting = self?.movieApi.getCasting() ?? []
             guard let casting =  self?.casting else { return }
@@ -69,7 +74,7 @@ class MovieDetailsViewController: UIViewController {
         }
     }
     
-    func getSimilars(){
+    func getSimilars() {
         DispatchQueue.global().async { [weak self] in
             self?.similarMovies = self?.movieApi.getMovies(ofType: .similar) ?? []
             guard let myMovies =  self?.similarMovies else { return }
@@ -84,7 +89,7 @@ class MovieDetailsViewController: UIViewController {
         }
     }
     
-    func getRecommended(){
+    func getRecommended() {
         DispatchQueue.global().async { [weak self] in
             self?.recomendedMovies = self?.movieApi.getMovies(ofType: .recommended) ?? []
             guard let myMovies =  self?.recomendedMovies else { return }
@@ -100,11 +105,11 @@ class MovieDetailsViewController: UIViewController {
     }
 }
 
-    // MARK: - CollectionView DataSource
+// MARK: - CollectionView DataSource
 extension MovieDetailsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch collectionView{
+        switch collectionView {
             case castCollectionView:
                 return castingImages.count
             case similarsCollectionView:
@@ -114,7 +119,7 @@ extension MovieDetailsViewController: UICollectionViewDelegate, UICollectionView
             default: return 0
         }
     }
-//    CellConfiguration
+// CellConfiguration
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         switch collectionView {
@@ -139,10 +144,10 @@ extension MovieDetailsViewController: UICollectionViewDelegate, UICollectionView
         }
         return UICollectionViewCell()
     }
-//    SelectItem
+// SelectItem
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        switch collectionView{
+        switch collectionView {
             case similarsCollectionView:
                 myMovie = similarMovies[indexPath.row]
                 myImage = similarImages[indexPath.row]
@@ -154,7 +159,7 @@ extension MovieDetailsViewController: UICollectionViewDelegate, UICollectionView
             default: break
         }
     }
-    func goToDetails(){
+    func goToDetails() {
         guard let myMovie = myMovie else{ return }
         getMovieDetails(view: self, movie: myMovie , movieImage: myImage ?? UIImage())
     }
@@ -162,11 +167,10 @@ extension MovieDetailsViewController: UICollectionViewDelegate, UICollectionView
 
 // MARK: - CollectionView Configuration
 extension MovieDetailsViewController: UICollectionViewDelegateFlowLayout {
-//    CellSize
+// CellSize
     func collectionView( _ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath ) -> CGSize {
 
-//        return CGSize(width: view.frame.width, height: view.frame.height)
-        return CGSize(width: view.frame.width, height: collectionViewLayout.collectionView?.frame.height ?? view.frame.height )
+        return CGSize(width: view.frame.width, height: collectionViewLayout.collectionView?.frame.height ?? 120 )
 
     }
 }

@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="1107"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="tHA-jX-mhF">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="724"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="637.33333333333337"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KlZ-Yu-aHx">
                                                 <rect key="frame" x="76" y="0.0" width="241" height="48.333333333333336"/>
@@ -30,7 +30,7 @@
                                                     <constraint firstAttribute="height" constant="260" id="POV-Am-tZH"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k0b-4a-71C">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k0b-4a-71C">
                                                 <rect key="frame" x="4" y="64.333333333333329" width="385" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="NjS-Qg-tpw"/>
@@ -39,7 +39,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cwE-hR-0Mh">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genres" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cwE-hR-0Mh">
                                                 <rect key="frame" x="4" y="101.33333333333334" width="385" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="LF8-Fv-lrP"/>
@@ -48,7 +48,7 @@
                                                 <color key="textColor" systemColor="linkColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aij-8j-syH">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aij-8j-syH">
                                                 <rect key="frame" x="4" y="138.33333333333334" width="385" height="100"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="fz2-GG-qYj"/>
@@ -67,7 +67,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <collectionView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xbb-J5-xdd">
-                                                <rect key="frame" x="4" y="291.33333333333331" width="385" height="82"/>
+                                                <rect key="frame" x="4" y="291.33333333333331" width="385" height="72.666666666666686"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="130" id="tJM-gg-CLz"/>
@@ -80,7 +80,7 @@
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CastCustomCell" id="gkU-hL-xHZ" customClass="CastCollectionViewCell" customModule="BAZProject" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="-15.666666666666666" width="132" height="113"/>
+                                                        <rect key="frame" x="0.0" y="-20" width="132" height="113"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="c4o-Jz-eff">
                                                             <rect key="frame" x="0.0" y="0.0" width="132" height="113"/>
@@ -116,7 +116,7 @@
                                                 </cells>
                                             </collectionView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Similars" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="axP-2Z-YQh">
-                                                <rect key="frame" x="4" y="389.33333333333331" width="385" height="21"/>
+                                                <rect key="frame" x="4" y="380" width="385" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="SQ7-QC-9fe"/>
                                                 </constraints>
@@ -125,7 +125,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5ll-n7-y3N">
-                                                <rect key="frame" x="4" y="426.33333333333331" width="385" height="133.33333333333331"/>
+                                                <rect key="frame" x="4" y="417" width="385" height="118"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="130" id="WVa-0o-EVA"/>
@@ -138,7 +138,7 @@
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SimilarsCustomCell" id="7vb-VF-86G" customClass="SimilarsCollectionViewCell" customModule="BAZProject" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="1.6666666666666667" width="133" height="130"/>
+                                                        <rect key="frame" x="0.0" y="-6" width="133" height="130"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="BU4-Qd-mSx">
                                                             <rect key="frame" x="0.0" y="0.0" width="133" height="130"/>
@@ -166,7 +166,7 @@
                                                 </cells>
                                             </collectionView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recommended" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JOY-eV-IMq">
-                                                <rect key="frame" x="4" y="575.66666666666663" width="385" height="21"/>
+                                                <rect key="frame" x="4" y="551" width="385" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="3pP-hU-VA5"/>
                                                 </constraints>
@@ -175,7 +175,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QlZ-Zn-Te2">
-                                                <rect key="frame" x="4" y="612.66666666666663" width="385" height="111.33333333333337"/>
+                                                <rect key="frame" x="4" y="588" width="385" height="49.333333333333371"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="120" id="3ld-ds-T2R"/>
@@ -188,7 +188,7 @@
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RecommendationCustomCell" id="cz0-ED-bVf" customClass="RecommendationsCollectionViewCell" customModule="BAZProject" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="-10.666666666666666" width="115" height="133"/>
+                                                        <rect key="frame" x="0.0" y="-41.666666666666664" width="115" height="133"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Jja-vj-YSR">
                                                             <rect key="frame" x="0.0" y="0.0" width="115" height="133"/>

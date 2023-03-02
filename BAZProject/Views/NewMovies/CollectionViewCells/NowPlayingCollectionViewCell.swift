@@ -11,4 +11,5 @@ class NowPlayingCollectionViewCell: UICollectionViewCell {
     let identifier = "NowPlayingCustomCell"
     
     @IBOutlet weak var nowPlayingImage: UIImageView!
+    
 }

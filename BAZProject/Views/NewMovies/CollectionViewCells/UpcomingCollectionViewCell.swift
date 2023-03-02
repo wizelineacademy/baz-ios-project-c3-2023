@@ -11,4 +11,5 @@ class UpcomingCollectionViewCell: UICollectionViewCell {
     let identifier = "UpcomingCustomCell"
     
     @IBOutlet weak var upcomingImage: UIImageView!
+    
 }

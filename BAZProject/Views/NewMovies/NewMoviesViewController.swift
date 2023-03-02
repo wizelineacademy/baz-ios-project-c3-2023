@@ -9,31 +9,31 @@ import UIKit
 
 class NewMoviesViewController: UIViewController {
     
+    let movieApi = MovieAPI()
     var myMovie: Movie?
     var myImage: UIImage?
-    let movieApi = MovieAPI()
-    var nowPlayingImages: [UIImage] = []
     var nowPlayingMovies = [Movie]()
-    var upcomingImages: [UIImage] = []
+    var nowPlayingImages: [UIImage] = []
     var upcomingMovies = [Movie]()
+    var upcomingImages: [UIImage] = []
 
     @IBOutlet weak var nowPlayingCollectionView: UICollectionView!
-    
     @IBOutlet weak var upcomingCollectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         nowPlayingCollectionView.delegate = self
         nowPlayingCollectionView.dataSource = self
-        
         upcomingCollectionView.delegate = self
         upcomingCollectionView.dataSource = self
         
         getNowPlayingMovies()
         getUpcomingMovies()
-       
+    
     }
     
-    func getNowPlayingMovies(){
+    func getNowPlayingMovies() {
         DispatchQueue.global().async { [weak self] in
             self?.nowPlayingMovies = self?.movieApi.getMovies(ofType: .nowPlaying) ?? []
             guard let myMovies =  self?.nowPlayingMovies else { return }
@@ -41,15 +41,15 @@ class NewMoviesViewController: UIViewController {
                 let urlString = movie.posterPath
                 guard let myURL = URL(string: urlString) else { return }
                 self?.nowPlayingImages.append(self?.movieApi.downloadImage(from: myURL) ?? UIImage())
+                
                 DispatchQueue.main.async {
                     self?.nowPlayingCollectionView.reloadData()
-
                 }
             }
         }
     }
     
-    func getUpcomingMovies(){
+    func getUpcomingMovies() {
         DispatchQueue.global().async { [weak self] in
             self?.upcomingMovies = self?.movieApi.getMovies(ofType: .upcoming) ?? []
             guard let myMovies =  self?.upcomingMovies else { return }
@@ -67,9 +67,9 @@ class NewMoviesViewController: UIViewController {
 }
 
 
-    // MARK: - CollectionView DataSource
+// MARK: - CollectionView DataSource
 extension NewMoviesViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    
+// Number of Items
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
             case nowPlayingCollectionView:
@@ -80,29 +80,28 @@ extension NewMoviesViewController: UICollectionViewDelegate, UICollectionViewDat
         }
     }
     
-        //    CellConfiguration
+// CellConfiguration
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         switch collectionView {
             case nowPlayingCollectionView:
                 if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NowPlayingCollectionViewCell().identifier, for: indexPath) as? NowPlayingCollectionViewCell {
-                    cell.nowPlayingImage.image = self.nowPlayingImages[indexPath.row]
-                    return cell
+                        cell.nowPlayingImage.image = self.nowPlayingImages[indexPath.row]
+                        return cell
                 }
             case upcomingCollectionView:
-
                 if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UpcomingCollectionViewCell().identifier, for: indexPath) as? UpcomingCollectionViewCell {
-                    cell.upcomingImage.image = self.upcomingImages[indexPath.row]
-                    return cell
+                        cell.upcomingImage.image = self.upcomingImages[indexPath.row]
+                        return cell
                 }
             default: return UICollectionViewCell()
         }
         return UICollectionViewCell()
     }
-        //    SelectItem
+// SelectItem
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        switch collectionView{
+        switch collectionView {
             case nowPlayingCollectionView:
                 myMovie = nowPlayingMovies[indexPath.row]
                 myImage = nowPlayingImages[indexPath.row]
@@ -117,9 +116,9 @@ extension NewMoviesViewController: UICollectionViewDelegate, UICollectionViewDat
     
 }
 
-    // MARK: - CollectionView Configuration
+// MARK: - CollectionView Configuration
 extension NewMoviesViewController: UICollectionViewDelegateFlowLayout {
-        //    CellSize
+// CellSize
     func collectionView( _ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath ) -> CGSize {
         
         return CGSize(width: view.frame.width / 5, height: 115)

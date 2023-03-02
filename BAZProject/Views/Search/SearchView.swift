@@ -8,13 +8,12 @@
 import UIKit
 
 class SearchView: UIViewController {
-  
-    let itemsPerRow: CGFloat = 3
-    var moviesArray : [Movie] = []
-    var movies: [Movie] = []
-    var images: [UIImage] = []
-    var movieImage = UIImage()
+    
     let movieApi = MovieAPI()
+    var movieImage = UIImage()
+    var images: [UIImage] = []
+    var moviesArray : [Movie] = []
+    let itemsPerRow: CGFloat = 3
     
     private let sectionInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
     
@@ -53,14 +52,14 @@ class SearchView: UIViewController {
 
 // MARK: - CollectionView DataSource
 extension SearchView: UICollectionViewDelegate, UICollectionViewDataSource {
-//    SectionsConfigurations
+// SectionsConfigurations
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         images.count
     }
-//    CellConfiguration
+// CellConfiguration
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCollectionCell().identifier, for: indexPath) as? MovieCollectionCell {
             cell.imgMovie.image = self.images[indexPath.row]
@@ -68,16 +67,15 @@ extension SearchView: UICollectionViewDelegate, UICollectionViewDataSource {
         }
         return MovieCollectionCell()
     }
-//    SelectItem
+// SelectItem
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         getMovieDetails(view: self, movie: moviesArray[indexPath.row], movieImage: images[indexPath.row])
     }
-    
 }
 
 // MARK: - CollectionView Configuration
 extension SearchView: UICollectionViewDelegateFlowLayout {
-//    CellSize
+// CellSize
     func collectionView( _ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath ) -> CGSize {
 
         let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
@@ -86,15 +84,15 @@ extension SearchView: UICollectionViewDelegateFlowLayout {
         
         return CGSize(width: widthPerItem, height: widthPerItem * 1.5)
     }
-//    SpacingForSection
+// SpacingForSection
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         0.0
     }
-//    SectionInsets
+// SectionInsets
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int ) -> UIEdgeInsets {
         sectionInsets
     }
-//    LineSpacing
+// LineSpacing
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int ) -> CGFloat {
         4.0
     }
