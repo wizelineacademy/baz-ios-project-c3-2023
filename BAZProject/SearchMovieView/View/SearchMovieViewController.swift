@@ -87,6 +87,7 @@ extension SearchMovieViewController: UICollectionViewDelegate, UICollectionViewD
         cell.imgMovie.contentMode = .scaleAspectFill
         cell.delegate = self
         cell.idMovie = moviesSearch[indexPath.row].id ?? 0
+        cell.addGestureImg()
         cell.layer.cornerRadius = 10
         
         return cell
@@ -108,7 +109,7 @@ extension SearchMovieViewController: UICollectionViewDelegate, UICollectionViewD
 }
 
 extension SearchMovieViewController: TapGestureImgMovieProtocol {
-    func tapGestureImgMovie(idMovie: Int?) {
+    func tapGestureImgMovie(idMovie: Int?, typeMovieList: TypeMovieList?) {
         let module = DetailsMovieViewController()
         module.specificMovie = moviesSearch.first(where: { $0.id == idMovie
         })

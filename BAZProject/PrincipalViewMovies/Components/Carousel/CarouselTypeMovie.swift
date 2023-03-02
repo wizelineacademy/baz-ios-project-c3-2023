@@ -18,6 +18,7 @@ final class CarouselTypeMovie: UIView {
     @IBOutlet weak var lblTitleMoview: UILabel!
     
     var moviesType: [Movie] = []
+    var typeMovieListCarousel: TypeMovieList?
     weak var delegate: TapGestureImgMovieProtocol?
     
     override init(frame: CGRect) {
@@ -79,8 +80,6 @@ extension CarouselTypeMovie: UICollectionViewDelegate, UICollectionViewDelegateF
         if let urlString = url { cell.imgMovie.load(url: urlString) }
         
         cell.imgMovie.contentMode = .scaleAspectFill
-        cell.delegate = self
-        cell.idMovie = moviesType[indexPath.row].id ?? 0
         cell.layer.cornerRadius = 10
         
         return cell
@@ -90,10 +89,8 @@ extension CarouselTypeMovie: UICollectionViewDelegate, UICollectionViewDelegateF
 
         return CGSize(width: UtilsMoviesApp.shared.WIDTH_CELL, height: collectionView.frame.size.height)
     }
-}
-
-extension CarouselTypeMovie: TapGestureImgMovieProtocol {
-    func tapGestureImgMovie(idMovie: Int?) {
-        delegate?.tapGestureImgMovie(idMovie: idMovie)
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.tapGestureImgMovie(idMovie: moviesType[indexPath.row].id, typeMovieList: typeMovieListCarousel)
     }
 }

@@ -25,6 +25,8 @@ final class DetailsMovieViewController: UIViewController {
         loadValuesDetails()
         loadLabelOverview()
         viewLabelsAdded()
+        self.tabBarController?.tabBar.isHidden = true
+        self.navigationController?.navigationBar.tintColor = .orange
     }
     
     private func setUIBanner() {
