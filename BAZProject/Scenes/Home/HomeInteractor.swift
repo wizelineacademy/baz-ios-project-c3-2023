@@ -59,9 +59,7 @@ class HomeInteractor: HomeBusinessLogic {
     }
     
     func subscribeMovieWatchObserver() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            NotificationCenter.default.addObserver(self, selector: #selector(self.listenMovieWatchObserver(_:)), name: NSNotification.Name("movie.watch"), object: nil)
-        }
+        NotificationCenter.default.addObserver(self, selector: #selector(self.listenMovieWatchObserver(_:)), name: NSNotification.Name("movie.watch"), object: nil)
     }
     
     @objc func listenMovieWatchObserver(_ notification: Notification) {

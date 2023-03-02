@@ -13,7 +13,7 @@ protocol MoviesBySectionPresentationLogic: AnyObject {
 }
 
 class MoviesBySectionPresenter: MoviesBySectionPresentationLogic {
-    var viewController: MoviesBySectionDisplayLogic?
+    weak var viewController: MoviesBySectionDisplayLogic?
     
     func presentView(response: MoviesBySection.LoadView.Response) {
    

@@ -49,7 +49,7 @@ class MovieDetailsInteractor: MovieDetailsBusinessLogic, MovieDetailsDataStore {
     }
     
     func fetchRecommendMovies(request: MovieDetails.FetchRecommendMovies.Request) {
-        moviesWorker.getMoviesByType(.byRecommendationMovie(id: request.idMovie)) { movies, messageError in
+        moviesWorker.getMoviesByType(.byRecommendationMovie(id: request.idMovie)) { [weak self] movies, messageError in
             
             if let messageError = messageError {
                 
@@ -57,7 +57,7 @@ class MovieDetailsInteractor: MovieDetailsBusinessLogic, MovieDetailsDataStore {
             
             let response = MovieDetails.FetchRecommendMovies.Response(idMovie: request.idMovie, movies: movies)
             
-            self.presenter?.presentFechedRecommendMovies(response: response)
+            self?.presenter?.presentFechedRecommendMovies(response: response)
         }
     }
     

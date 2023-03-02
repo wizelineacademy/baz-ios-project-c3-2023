@@ -175,10 +175,10 @@ extension MovieDetailsViewController: MovieDetailsDisplayLogic {
     
     func displaySimilarMovies(viewModel: MovieDetails.FetchSimilarMovies.ViewModel) {
         if viewModel.movies.count != 0 {
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
                 let moviesSectionView = MoviesSectionView(typeSection: .bySimilarMovie(id: viewModel.idMovie))
                 moviesSectionView.delegate = self
-                self.addMoviesSectionView(moviesSection: moviesSectionView)
+                self?.addMoviesSectionView(moviesSection: moviesSectionView)
                 moviesSectionView.model = viewModel.movies
             }
         }
@@ -188,26 +188,26 @@ extension MovieDetailsViewController: MovieDetailsDisplayLogic {
     
     func displayRecommendMovies(viewModel: MovieDetails.FetchRecommendMovies.ViewModel) {
         if viewModel.movies.count != 0 {
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
                 let moviesSectionView = MoviesSectionView(typeSection: .byRecommendationMovie(id: viewModel.idMovie))
                 moviesSectionView.delegate = self
-                self.addMoviesSectionView(moviesSection: moviesSectionView)
+                self?.addMoviesSectionView(moviesSection: moviesSectionView)
                 moviesSectionView.model = viewModel.movies
             }
         }
     }
     
     func displayCast(viewModel: MovieDetails.FetchCast.ViewModel) {
-        DispatchQueue.main.async {
-            self.addCastViewToView(cast: viewModel.cast)
+        DispatchQueue.main.async { [weak self] in
+            self?.addCastViewToView(cast: viewModel.cast)
         }
         interactor?.fetchReview(request: MovieDetails.FetchReview.Request(idMovie: viewModel.idMovie))
     }
     
     func displayReview(viewModel: MovieDetails.FetchReview.ViewModel) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
             if let review = viewModel.review {
-                self.addReviewsViewToView(review: review)
+                self?.addReviewsViewToView(review: review)
             }
         }
         interactor?.fetchSimilarMovies(request: MovieDetails.FetchSimilarMovies.Request(idMovie: viewModel.idMovie))

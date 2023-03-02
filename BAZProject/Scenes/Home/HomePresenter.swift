@@ -21,12 +21,12 @@ class HomePresenter: HomePresentationLogic {
     weak var viewController: HomeDisplayLogic?
     
     func presentFechedMoviesForSection(response: Home.FetchMoviesBySection.Response) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
             let displayedMoviesBySection = response.movies.map { movie in
                 return MovieSearch(id: movie.id ?? -1, imageURL: movie.posterPath ?? "", name: movie.title ?? "", description: movie.overview ?? "")
             }
             
-            self.viewController?.displayFetchedMoives(viewModel: Home.FetchMoviesBySection.ViewModel(displayedMovies: Home.FetchMoviesBySection.ViewModel.SectionWithMovies(section: response.section, movies: displayedMoviesBySection)))
+            self?.viewController?.displayFetchedMoives(viewModel: Home.FetchMoviesBySection.ViewModel(displayedMovies: Home.FetchMoviesBySection.ViewModel.SectionWithMovies(section: response.section, movies: displayedMoviesBySection)))
         }
     }
     

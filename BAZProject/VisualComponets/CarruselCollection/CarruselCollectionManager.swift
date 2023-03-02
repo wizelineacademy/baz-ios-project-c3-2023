@@ -22,8 +22,8 @@ class CarruselCollectionManager<Data: CarruselCollectionItemProperties>: NSObjec
     
     var dataCollection: [Data]? {
         didSet {
-            DispatchQueue.main.async {
-                self.collection?.reloadData()
+            DispatchQueue.main.async { [weak self] in
+                self?.collection?.reloadData()
             }
         }
     }
