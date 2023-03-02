@@ -36,7 +36,6 @@
 		CD54A8ED2992BDF6004F8774 /* SearchMoviePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD54A8EC2992BDF6004F8774 /* SearchMoviePresenter.swift */; };
 		CD54A8EF2992BE00004F8774 /* SearchMovieProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD54A8EE2992BE00004F8774 /* SearchMovieProtocols.swift */; };
 		CD54A8F12992BE06004F8774 /* SearchMovieRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD54A8F02992BE06004F8774 /* SearchMovieRouter.swift */; };
-		CD54A8FA29935C0F004F8774 /* Keyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD54A8F929935C0F004F8774 /* Keyword.swift */; };
 		CD54A8FC29936242004F8774 /* SearchMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD54A8FB29936242004F8774 /* SearchMovie.swift */; };
 		CD54A90729956046004F8774 /* GenericCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD54A90529956046004F8774 /* GenericCollectionViewCell.swift */; };
 		CD54A90829956046004F8774 /* GenericCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD54A90629956046004F8774 /* GenericCollectionViewCell.xib */; };
@@ -108,7 +107,6 @@
 		CD54A8EC2992BDF6004F8774 /* SearchMoviePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviePresenter.swift; sourceTree = "<group>"; };
 		CD54A8EE2992BE00004F8774 /* SearchMovieProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieProtocols.swift; sourceTree = "<group>"; };
 		CD54A8F02992BE06004F8774 /* SearchMovieRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieRouter.swift; sourceTree = "<group>"; };
-		CD54A8F929935C0F004F8774 /* Keyword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyword.swift; sourceTree = "<group>"; };
 		CD54A8FB29936242004F8774 /* SearchMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovie.swift; sourceTree = "<group>"; };
 		CD54A90529956046004F8774 /* GenericCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericCollectionViewCell.swift; sourceTree = "<group>"; };
 		CD54A90629956046004F8774 /* GenericCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenericCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -186,7 +184,6 @@
 				C30893E128A425E1004B1860 /* Movie.swift */,
 				CD3BB2CA299CA53C0078C0FB /* Reviews.swift */,
 				CD54A90B29956CBA004F8774 /* MovieCredits.swift */,
-				CD54A8F929935C0F004F8774 /* Keyword.swift */,
 				C30893B628A2F42D004B1860 /* Assets.xcassets */,
 				C30893BB28A2F42D004B1860 /* Info.plist */,
 			);
@@ -523,7 +520,6 @@
 				CDE6AC0C298B7EB100D6DB5C /* MainInteractor.swift in Sources */,
 				CDE6AC04298B71E900D6DB5C /* MainRouter.swift in Sources */,
 				CD4EDDDF29A1B4270006C742 /* FavoriteMoviePresenter.swift in Sources */,
-				CD54A8FA29935C0F004F8774 /* Keyword.swift in Sources */,
 				CDE6AC21298C04D000D6DB5C /* MovieDetailRouter.swift in Sources */,
 				C30893AE28A2F42B004B1860 /* AppDelegate.swift in Sources */,
 				CDE6AC19298C04A000D6DB5C /* MovieDetailViewController.swift in Sources */,

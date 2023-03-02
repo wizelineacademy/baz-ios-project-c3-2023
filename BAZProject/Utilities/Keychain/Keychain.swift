@@ -42,9 +42,6 @@ final class KeychainHelper {
 
         let status = SecItemAdd(query, nil)
 
-        if status != errSecSuccess {
-            debugPrint("Error: \(status)")
-        }
     }
 
     /**    func to make read data in Keychain
