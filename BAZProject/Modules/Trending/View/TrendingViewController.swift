@@ -14,7 +14,7 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
     }
     @IBOutlet weak private var filterTimeSegmentedControl: UISegmentedControl!
     @IBOutlet weak private var moviesTableView: UITableView!
-
+//
     static let identifier: String = .trendingXibIdentifier
 
     // MARK: - Protocol properties
@@ -207,16 +207,14 @@ extension TrendingViewController: UIScrollViewDelegate {
             loadingMoreView?.frame = getUIFrame()
             loadingMoreView?.startAnimating()
             isMoreDataLoading = true
-            self.showAlertLoader()
-            presenter?.willFetchNextTrendingMedia(mediaType: mediaType, timeWindow: timeWindowType)
         }
     }
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let scrollPositionY: Double = scrollView.contentOffset.y
-        if isMoreDataLoading && (scrollPositionY > scrollOffsetThreshold) || (scrollPositionY < 0) {
+        if isMoreDataLoading && (scrollPositionY > scrollOffsetThreshold) || (scrollPositionY < .zero) {
             self.showAlertLoader()
-            getData()
+            presenter?.willFetchNextTrendingMedia(mediaType: mediaType, timeWindow: timeWindowType)
         } else {
             isMoreDataLoading = true
         }
