@@ -14,6 +14,7 @@
         <scene sceneID="6us-hv-43n">
             <objects>
                 <tabBarController id="AmD-HI-UXs" sceneMemberID="viewController">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GU8-yx-jeK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -22,7 +23,10 @@
                     <connections>
                         <segue destination="DF1-ZG-ayL" kind="relationship" relationship="viewControllers" id="5Rs-jK-EFi"/>
                         <segue destination="2F0-mi-MoW" kind="relationship" relationship="viewControllers" id="bYg-Gv-ARj"/>
-                        <segue destination="tLz-38-7dK" kind="relationship" relationship="viewControllers" id="Jdg-Ze-Yro"/>
+                        <segue destination="G3H-Q9-yAJ" kind="relationship" relationship="viewControllers" id="Etm-1U-grS"/>
+                        <segue destination="P5I-bf-KIk" kind="relationship" relationship="viewControllers" id="utD-Hz-zbW"/>
+                        <segue destination="GDb-dm-aF3" kind="relationship" relationship="viewControllers" id="qek-6v-KCt"/>
+                        <segue destination="tLz-38-7dK" kind="relationship" relationship="viewControllers" id="iLR-kt-JOB"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vZs-3s-K8D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -33,7 +37,7 @@
         <scene sceneID="Jof-f8-uDg">
             <objects>
                 <tableViewController storyboardIdentifier="TrendingView" title="Trending Movies" id="DF1-ZG-ayL" customClass="TrendingView" customModule="BAZProject" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="7Ys-l1-YLU">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" id="7Ys-l1-YLU">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -68,6 +72,7 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Trending" image="chart.line.uptrend.xyaxis.circle.fill" catalog="system" id="g6Q-u2-bk6"/>
                     <navigationItem key="navigationItem" title="Trending Movies" id="8E9-i5-K0G"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Inw-fF-zPA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -77,7 +82,7 @@
         <!--Top Rated Movies-->
         <scene sceneID="nQq-wL-Cw9">
             <objects>
-                <tableViewController storyboardIdentifier="TopRatedView" id="2F0-mi-MoW" userLabel="Top Rated Movies" customClass="TopRatedView" customModule="BAZProject" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="TopRatedView" title="Top Rated Movies" id="2F0-mi-MoW" userLabel="Top Rated Movies" customClass="TopRatedView" customModule="BAZProject" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="IsG-H1-0ps">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -111,7 +116,8 @@
                             <outlet property="delegate" destination="2F0-mi-MoW" id="tov-kH-vTx"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Top Rated" image="star.circle.fill" catalog="system" id="F1I-8X-PjL" userLabel="Top Rated"/>
+                    <tabBarItem key="tabBarItem" title="Top Rated" image="hand.thumbsup.circle.fill" catalog="system" id="F1I-8X-PjL" userLabel="Top Rated"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jib-hJ-z3h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -126,7 +132,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="B0G-JK-7oC">
-                                <rect key="frame" x="0.0" y="104" width="414" height="709"/>
+                                <rect key="frame" x="0.0" y="148" width="414" height="665"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bOp-MP-aae">
                                     <size key="itemSize" width="400" height="90"/>
@@ -154,7 +160,7 @@
                                 </cells>
                             </collectionView>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="MNd-4J-Yar">
-                                <rect key="frame" x="0.0" y="48" width="414" height="56"/>
+                                <rect key="frame" x="0.0" y="92" width="414" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="tLz-38-7dK" id="34e-f8-saB"/>
@@ -182,6 +188,51 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W92-OI-cQw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1006" y="986"/>
+        </scene>
+        <!--Popular Movies-->
+        <scene sceneID="wXs-J4-fdq">
+            <objects>
+                <tableViewController storyboardIdentifier="PopularViewController" title="Popular Movies" id="G3H-Q9-yAJ" userLabel="Popular Movies" customClass="PopularViewController" customModule="BAZProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="dd8-kH-Nyn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PopularTableViewCell" textLabel="B9X-Ad-y4k" imageView="dep-ca-sK1" style="IBUITableViewCellStyleDefault" id="lTv-PI-DCg">
+                                <rect key="frame" x="0.0" y="50" width="414" height="80"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lTv-PI-DCg" id="sdb-y8-IO3">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="B9X-Ad-y4k">
+                                            <rect key="frame" x="62.25" y="0.0" width="331.75" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="photo" catalog="system" id="dep-ca-sK1">
+                                            <rect key="frame" x="16.75" y="28" width="30.5" height="24"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="G3H-Q9-yAJ" id="gw8-FJ-bbd"/>
+                            <outlet property="delegate" destination="G3H-Q9-yAJ" id="vkO-mw-lrY"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Popular" image="star.circle.fill" catalog="system" id="xVL-A8-soR"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vy1-kL-8Zf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1878" y="-449"/>
         </scene>
     </scenes>
     <resources>
