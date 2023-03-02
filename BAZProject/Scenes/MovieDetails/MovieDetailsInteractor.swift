@@ -42,7 +42,7 @@ class MovieDetailsInteractor: MovieDetailsBusinessLogic, MovieDetailsDataStore {
     func fetchSimilarMovies(request: MovieDetails.FetchSimilarMovies.Request) {
         moviesWorker.getMoviesByType(.bySimilarMovie(id: request.idMovie)) { [weak self] movies, messageError in
             if let messageError = messageError {
-                
+                self?.presenter?.presentErrorMessage(response: MovieDetails.ErrorDisplay.Response(message: messageError))
             }
             self?.presenter?.presentFechedSimilarMovies(response: MovieDetails.FetchSimilarMovies.Response(idMovie: request.idMovie, movies: movies))
         }
@@ -52,7 +52,7 @@ class MovieDetailsInteractor: MovieDetailsBusinessLogic, MovieDetailsDataStore {
         moviesWorker.getMoviesByType(.byRecommendationMovie(id: request.idMovie)) { [weak self] movies, messageError in
             
             if let messageError = messageError {
-                
+                self?.presenter?.presentErrorMessage(response: MovieDetails.ErrorDisplay.Response(message: messageError))
             }
             
             let response = MovieDetails.FetchRecommendMovies.Response(idMovie: request.idMovie, movies: movies)
@@ -62,25 +62,25 @@ class MovieDetailsInteractor: MovieDetailsBusinessLogic, MovieDetailsDataStore {
     }
     
     func fetchCast(request: MovieDetails.FetchCast.Request) {
-        moviesWorker.getCastsByMovieId(request.idMovie) { cast, messageError in
+        moviesWorker.getCastsByMovieId(request.idMovie) { [weak self] cast, messageError in
             if let messageError = messageError {
-                
+                self?.presenter?.presentErrorMessage(response: MovieDetails.ErrorDisplay.Response(message: messageError))
             }
             let response = MovieDetails.FetchCast.Response(idMovie: request.idMovie, cast: Array(cast.prefix(10)))
             
-            self.presenter?.presentFechedCast(response: response)
+            self?.presenter?.presentFechedCast(response: response)
         }
     }
     
     func fetchReview(request: MovieDetails.FetchReview.Request) {
-        moviesWorker.getReviewsByMovieId(request.idMovie) { reviews, messageError in
+        moviesWorker.getReviewsByMovieId(request.idMovie) { [weak self] reviews, messageError in
             if let messageError = messageError {
-                
+                self?.presenter?.presentErrorMessage(response: MovieDetails.ErrorDisplay.Response(message: messageError))
             }
             
             let response = MovieDetails.FetchReview.Response(idMovie: request.idMovie, review: reviews.first)
             
-            self.presenter?.presentFetchedReview(response: response)
+            self?.presenter?.presentFetchedReview(response: response)
         }
     }
     

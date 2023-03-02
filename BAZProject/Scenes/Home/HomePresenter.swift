@@ -11,7 +11,7 @@ import UIKit
 protocol HomePresentationLogic: AnyObject {
     func presentFechedMoviesForSection(response: Home.FetchMoviesBySection.Response)
     func presentMovieSections(response: Home.GetMoviesSection.Response)
-    func presentErrorMessage(error: Home.FetchMoviesBySection.Error)
+    func presentErrorMessage(response: Home.ErrorFetch.Response)
     func presentMoviesWatched(response: Home.SaveMovieWatched.Response)
 }
 
@@ -30,8 +30,10 @@ class HomePresenter: HomePresentationLogic {
         }
     }
     
-    func presentErrorMessage(error: Home.FetchMoviesBySection.Error) {
+    func presentErrorMessage(response: Home.ErrorFetch.Response) {
+        let viewModel = Home.ErrorFetch.ViewModel(message: response.message)
         
+        viewController?.displayAlertError(viewModel: viewModel)
     }
     
     func presentMovieSections(response: Home.GetMoviesSection.Response) {

@@ -17,9 +17,6 @@ enum Home {
             var section: fetchMoviesTypes
             var movies: [Movie]
         }
-        struct Error {
-            var message: String
-        }
         struct ViewModel {
             struct SectionWithMovies {
                 var section: fetchMoviesTypes
@@ -47,6 +44,16 @@ enum Home {
         }
         struct ViewModel {
             var movies: [MovieSearch]
+        }
+    }
+    
+    enum ErrorFetch {
+        struct Response {
+            var message: String
+        }
+        
+        struct ViewModel {
+            var message: String
         }
     }
 }

@@ -13,6 +13,7 @@ protocol MovieDetailsPresentationLogic {
     func presentFechedRecommendMovies(response: MovieDetails.FetchRecommendMovies.Response)
     func presentFechedCast(response: MovieDetails.FetchCast.Response)
     func presentFetchedReview(response: MovieDetails.FetchReview.Response)
+    func presentErrorMessage(response: MovieDetails.ErrorDisplay.Response)
 }
 
 class MovieDetailsPresenter: MovieDetailsPresentationLogic {
@@ -61,5 +62,10 @@ class MovieDetailsPresenter: MovieDetailsPresentationLogic {
         let viewModel = MovieDetails.FetchReview.ViewModel(idMovie: response.idMovie, review: response.review)
         
         viewController?.displayReview(viewModel: viewModel)
+    }
+    
+    func presentErrorMessage(response: MovieDetails.ErrorDisplay.Response) {
+        let viewModel = MovieDetails.ErrorDisplay.ViewModel(message: response.message)
+        viewController?.displayAlertError(viewModel: viewModel)
     }
 }

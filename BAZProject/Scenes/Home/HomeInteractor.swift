@@ -31,8 +31,8 @@ class HomeInteractor: HomeBusinessLogic {
             guard let self = self else {
                 return
             }
-            if let message = message {
-                self.presenter?.presentErrorMessage(error: Home.FetchMoviesBySection.Error(message: message))
+            if let message = message, request.section != .watched {
+                self.presenter?.presentErrorMessage(response: Home.ErrorFetch.Response(message: message))
             }
             self.presenter?.presentFechedMoviesForSection(response: Home.FetchMoviesBySection.Response(section: request.section, movies: movies))
         }

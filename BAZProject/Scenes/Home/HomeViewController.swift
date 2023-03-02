@@ -12,6 +12,7 @@ protocol HomeDisplayLogic: AnyObject {
     func displayFetchedMoives(viewModel: Home.FetchMoviesBySection.ViewModel)
     func displaySectionViews(viewModel: Home.GetMoviesSection.ViewModel)
     func displayMoviesWatched(viewModel: Home.SaveMovieWatched.ViewModel)
+    func displayAlertError(viewModel: Home.ErrorFetch.ViewModel)
 }
 
 class HomeViewController: UIViewController {
@@ -114,6 +115,19 @@ extension HomeViewController: HomeDisplayLogic {
     func displayMoviesWatched(viewModel: Home.SaveMovieWatched.ViewModel) {
         moviesViews[0].model = viewModel.movies
         moviesViews[0].isHidden = false
+    }
+    
+    func displayAlertError(viewModel: Home.ErrorFetch.ViewModel) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Fetch Error", message: viewModel.message, preferredStyle: .alert)
+            let acceptAction = UIAlertAction(title: "Ok", style: .default) { [weak self] _ in
+                self?.dismiss(animated: true)
+            }
+            
+            alert.addAction(acceptAction)
+            
+            self.present(alert, animated: true)
+        }
     }
 }
 

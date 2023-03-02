@@ -14,6 +14,7 @@ protocol MovieDetailsDisplayLogic: AnyObject {
     func displayRecommendMovies(viewModel: MovieDetails.FetchRecommendMovies.ViewModel)
     func displayCast(viewModel: MovieDetails.FetchCast.ViewModel)
     func displayReview(viewModel: MovieDetails.FetchReview.ViewModel)
+    func displayAlertError(viewModel: MovieDetails.ErrorDisplay.ViewModel)
 }
 
 class MovieDetailsViewController: UIViewController {
@@ -211,6 +212,19 @@ extension MovieDetailsViewController: MovieDetailsDisplayLogic {
             }
         }
         interactor?.fetchSimilarMovies(request: MovieDetails.FetchSimilarMovies.Request(idMovie: viewModel.idMovie))
+    }
+    
+    func displayAlertError(viewModel: MovieDetails.ErrorDisplay.ViewModel) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Fetch Error", message: viewModel.message, preferredStyle: .alert)
+            let acceptAction = UIAlertAction(title: "Ok", style: .default) { [weak self] _ in
+                self?.dismiss(animated: true)
+            }
+            
+            alert.addAction(acceptAction)
+            
+            self.present(alert, animated: true)
+        }
     }
 }
 

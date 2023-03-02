@@ -78,4 +78,14 @@ enum MovieDetails {
             var movie: MovieSearch
         }
     }
+
+    enum ErrorDisplay {
+        struct Response {
+            var message: String
+        }
+        
+        struct ViewModel {
+            var message: String
+        }
+    }
 }
