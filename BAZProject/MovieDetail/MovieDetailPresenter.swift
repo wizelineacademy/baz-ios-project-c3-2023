@@ -33,7 +33,7 @@ extension MovieDetailPresenter: MovieDetailViewOutputProtocol {
 
 extension MovieDetailPresenter: MovieDetailInteractorOutputProtocol {
     
-    func presentView(model: MovieDetail) {
+    func presentView(model: [MovieDetailType]) {
         view?.loadView(from: model)
     }
 }

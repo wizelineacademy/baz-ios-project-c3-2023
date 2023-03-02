@@ -141,21 +141,26 @@ class MovieDetailInteractor {
 extension MovieDetailInteractor: MovieDetailInteractorInputProtocol {
     
     func fetchModel(with movie: Movie) {
-        var movieModel: MovieDetail?
+        var movieModel: [MovieDetailType] = [MovieDetailType.moviePoster(movie),MovieDetailType.movieReview(movie)]
         let movieId = movie.id ?? 0
         getCredits(forIdMovie: movieId) { credits in
+            if !credits.cast.isEmpty {
+                movieModel.append(MovieDetailType.credits(credits))
+            }
             self.getSimilarMovies(forIdMovie: movieId) { similarMovies in
+                if !similarMovies.results.isEmpty {
+                    movieModel.append(MovieDetailType.similarMovies(similarMovies))
+                }
                 self.getRecomendation(forIdMovie: movieId) { recomendationMovies in
-                    self.getReviews(forIdMovie: movieId) { reviews in
-                        movieModel = MovieDetail(movie: movie,
-                                                 credits: credits,
-                                                 reviews: reviews,
-                                                 similarMovies: similarMovies,
-                                                 recomendtions: recomendationMovies)
-                        guard let model = movieModel else { return }
-                        self.presenter?.presentView(model: model)
+                    if !recomendationMovies.results.isEmpty {
+                        movieModel.append(MovieDetailType.recomendations(recomendationMovies))
                     }
-                    
+                    self.getReviews(forIdMovie: movieId) { reviews in
+                        if !reviews.results.isEmpty {
+                            movieModel.append(MovieDetailType.reviews(reviews))
+                        }
+                        self.presenter?.presentView(model: movieModel)
+                    }
                 }
             }
         }

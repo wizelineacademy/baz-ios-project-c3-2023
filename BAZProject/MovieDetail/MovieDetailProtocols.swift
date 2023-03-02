@@ -11,7 +11,7 @@ import Foundation
 protocol MovieDetailViewIntputProtocol: AnyObject {
     var presenter: MovieDetailViewOutputProtocol? { get }
     //MARK: - Functions
-    func loadView(from model:MovieDetail)
+    func loadView(from model: [MovieDetailType])
 }
 
 //MARK: - Interactor
@@ -33,7 +33,7 @@ protocol MovieDetailViewOutputProtocol {
 }
 
 protocol MovieDetailInteractorOutputProtocol: AnyObject {
-    func presentView(model: MovieDetail)
+    func presentView(model: [MovieDetailType])
 }
 
 //MARK: - Router

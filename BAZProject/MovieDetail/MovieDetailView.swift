@@ -15,7 +15,7 @@ class MovieDetailView: UIViewController {
     //MARK: - Properties
     var presenter: MovieDetailViewOutputProtocol?
     var movie: Movie?
-    var movieDetail: MovieDetail?
+    var movieDetail: [MovieDetailType] = []
     let defaults = UserDefaults.standard
     
     //MARK: - LifeCycle
@@ -36,7 +36,7 @@ class MovieDetailView: UIViewController {
         tblDetailsMovie.register(CastTableViewCell.nib(), forCellReuseIdentifier: CastTableViewCell.identifier)
         tblDetailsMovie.register(SimilarMovieTableViewCell.nib() , forCellReuseIdentifier: SimilarMovieTableViewCell.identifier)
         tblDetailsMovie.register(ReviewsTableViewCell.nib(), forCellReuseIdentifier: ReviewsTableViewCell.identifier)
-       }
+    }
     
     private func getCounter(for key: String) -> Int {
         var counter = defaults.integer(forKey: key)
@@ -44,12 +44,12 @@ class MovieDetailView: UIViewController {
         defaults.set(counter, forKey: key)
         return counter
     }
-
+    
 }
 
 //MARK: - Extensions
 extension MovieDetailView: MovieDetailViewIntputProtocol {
-    func loadView(from model: MovieDetail) {
+    func loadView(from model: [MovieDetailType]) {
         self.movieDetail = model
         DispatchQueue.main.async {
             self.tblDetailsMovie.reloadData()
@@ -66,91 +66,48 @@ extension MovieDetailView: UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        6
+        self.movieDetail.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 1:
-            return "Reseña"
-        case 2:
-            return "Reparto"
-        case 3:
-            return "Peliculas Similares"
-        case 4:
-            return "Peliculas Recomendadas"
-        case 5:
-            return "Reseñas de la película"
-        default:
-            return ""
-        }
+        movieDetail[section].getTitle()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case 0:
+
+        switch movieDetail[indexPath.section] {
+        case .moviePoster:
             guard let cell: PosterTableViewCell = tblDetailsMovie.dequeueReusableCell(withIdentifier: PosterTableViewCell.identifier, for: indexPath) as? PosterTableViewCell else { return UITableViewCell() }
             cell.configure(with: movie?.posterImagefullPath ?? "")
             return cell
-        case 1:
+        case .movieReview:
             guard let cell: ReviewTableViewCell = tblDetailsMovie.dequeueReusableCell(withIdentifier: ReviewTableViewCell.identifier, for: indexPath) as? ReviewTableViewCell else { return UITableViewCell() }
             cell.configure(with: movie?.overview ?? "")
             return cell
-        case 2:
-            guard let cell: CastTableViewCell = tblDetailsMovie.dequeueReusableCell(withIdentifier: CastTableViewCell.identifier, for: indexPath) as? CastTableViewCell else { return UITableViewCell() }
-            cell.configure(with: movieDetail?.credits.cast ?? [])
+        case .credits:
+            guard let cell: CastTableViewCell = tblDetailsMovie.dequeueReusableCell(withIdentifier: CastTableViewCell.identifier, for: indexPath) as? CastTableViewCell,
+                  let cast:Credits = movieDetail[indexPath.section].value() as? Credits else { return UITableViewCell() }
+            cell.configure(with: cast.cast)
             return cell
-        case 3:
-            if self.movieDetail?.similarMovies.results.count ?? 0 <= 0 {
-                return noInformationCell()
-            }
-            guard let cell: SimilarMovieTableViewCell = tblDetailsMovie.dequeueReusableCell(withIdentifier: SimilarMovieTableViewCell.identifier, for: indexPath) as? SimilarMovieTableViewCell else { return UITableViewCell() }
-            cell.configure(with: self.movieDetail?.similarMovies.results ?? [])
-            return cell
-        case 4:
-            if self.movieDetail?.recomendtions.results.count ?? 0 <= 0 {
-                return noInformationCell()
-            }
-            guard let cell: SimilarMovieTableViewCell = tblDetailsMovie.dequeueReusableCell(withIdentifier: SimilarMovieTableViewCell.identifier, for: indexPath) as? SimilarMovieTableViewCell else { return UITableViewCell() }
-            cell.configure(with: self.movieDetail?.recomendtions.results ?? [])
-            return cell
-        case 5:
-            if self.movieDetail?.reviews.results.count ?? 0 <= 0 {
-                return noInformationCell()
-            }
-            guard let cellReviews: ReviewsTableViewCell = tblDetailsMovie.dequeueReusableCell(withIdentifier: ReviewsTableViewCell.identifier, for: indexPath) as? ReviewsTableViewCell else  { return UITableViewCell() }
-            cellReviews.configure(with: self.movieDetail?.reviews.results ??  [])
+        case .reviews:
+            guard let cellReviews: ReviewsTableViewCell = tblDetailsMovie.dequeueReusableCell(withIdentifier: ReviewsTableViewCell.identifier, for: indexPath) as? ReviewsTableViewCell,
+                  let reviews = movieDetail[indexPath.section].value() as? Reviews else { return UITableViewCell() }
+            cellReviews.configure(with: reviews.results)
             return cellReviews
-        default:
-            return noInformationCell()
+        case .similarMovies:
+            guard let cell: SimilarMovieTableViewCell = tblDetailsMovie.dequeueReusableCell(withIdentifier: SimilarMovieTableViewCell.identifier, for: indexPath) as? SimilarMovieTableViewCell,
+                  let similarMovies = movieDetail[indexPath.section].value() as? SimilarMovies else { return UITableViewCell() }
+            cell.configure(with: similarMovies.results)
+            return cell
+        case .recomendations:
+            guard let cell: SimilarMovieTableViewCell = tblDetailsMovie.dequeueReusableCell(withIdentifier: SimilarMovieTableViewCell.identifier, for: indexPath) as? SimilarMovieTableViewCell,
+                  let recomendations = movieDetail[indexPath.section].value() as? SimilarMovies else { return UITableViewCell() }
+            cell.configure(with: recomendations.results)
+            return cell
         }
-    }
-    
-    private func noInformationCell() -> UITableViewCell {
-        let cellEmpty = UITableViewCell()
-        var content = cellEmpty.defaultContentConfiguration()
-        content.text = "Sin información por el momento"
-        content.textProperties.font = UIFont.systemFont(ofSize: 10.0)
-        cellEmpty.contentConfiguration = content
-        return cellEmpty
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.section {
-        case 0:
-            return 300.0
-        case 1:
-            return 200.0
-        case 2:
-            return 120.0
-        case 3:
-            return (movieDetail?.similarMovies.results.count ?? 0) < 1 ? 40.0 : 250.0
-        case 4:
-            return (movieDetail?.recomendtions.results.count ?? 0) < 1 ? 40.0 :250.0
-        case 5:
-            return (movieDetail?.reviews.results.count ?? 0) < 1 ? 40.0 :200.0
-        default:
-            return 50.0
-        }
+        self.movieDetail[indexPath.section].getHeight()
     }
 }
