@@ -108,6 +108,7 @@ extension HomeViewController: HomeDisplayLogic {
             addMoviesSectionView(moviesSectionView: moviesSectionView)
             moviesViews.append(moviesSectionView)
             moviesSectionView.isHidden = index == 0 ? true : false
+            moviesSectionView.showSeeMore = index == 0 ? false : true
             
             interactor?.fetchMoviesBySection(request: Home.FetchMoviesBySection.Request(section: section))
         }

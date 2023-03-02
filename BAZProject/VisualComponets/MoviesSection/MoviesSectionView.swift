@@ -26,6 +26,7 @@ class MoviesSectionView: UIView {
             titleSectionMovies.text = typeSection.title
         }
     }
+    @IBOutlet weak var showSeeMoreButton: UIButton! 
     @IBOutlet weak var carruselMoviesView: UIView!
     
     // MARK: Properties
@@ -33,6 +34,11 @@ class MoviesSectionView: UIView {
     let typeSection: fetchMoviesTypes
     let carruselCollection = CarruselCollectionView(direction: .horizontal)
     var delegate: MoviesSectionDelegate?
+    var showSeeMore: Bool {
+        didSet {
+            showSeeMoreButton.isHidden = !showSeeMore
+        }
+    }
 
     var model: [MovieSearch]? {
         didSet {
@@ -46,7 +52,8 @@ class MoviesSectionView: UIView {
         }
     }
     
-    init(typeSection: fetchMoviesTypes) {
+    init(typeSection: fetchMoviesTypes, showSeeMore: Bool = true) {
+        self.showSeeMore = showSeeMore
         self.typeSection = typeSection
         super.init(frame: .zero)
         self.configurateView()

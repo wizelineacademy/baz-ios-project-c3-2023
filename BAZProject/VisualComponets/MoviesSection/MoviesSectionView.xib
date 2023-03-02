@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MoviesSectionView" customModule="BAZProject" customModuleProvider="target">
             <connections>
                 <outlet property="carruselMoviesView" destination="gXS-O8-Mz6" id="q8t-oA-7Xw"/>
+                <outlet property="showSeeMoreButton" destination="xHw-1B-I00" id="a1c-WS-keO"/>
                 <outlet property="titleSectionMovies" destination="pgq-Ds-A9g" id="Iw0-pl-dEf"/>
             </connections>
         </placeholder>
