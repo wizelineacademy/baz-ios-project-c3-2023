@@ -45,7 +45,7 @@ extension String {
 
     // MARK: - Trending
     static let trendingXibIdentifier = "TrendingView"
-    static let trendingTitle = "Trending"
+    static let trendingTitle = "Búscar"
     static let trendingTitleUpdateTable = "Actualizando.."
     static let trendingTitleFilterTime = "Filtrar por:"
     static let trendingFilterByTimeTitles = ["📆Día", "🗓Semana"]
