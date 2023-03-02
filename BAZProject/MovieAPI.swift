@@ -152,4 +152,27 @@ class MovieAPI {
             }
         }
     }
+    
+    /// Get the detail from the API movies and parse the data to a dictionary array of type RecentMovie
+    ///
+    /// - Parameter url: detailMovie api url
+    /// - Parameter completion: Escaping closure that escapes the recentMovie dictionary array or a nil
+    /// - Returns: escaping closure with the dictionary array of type RecentMovie, if the parse fails, can return nil
+    func getRecent(for url: URL, completion: @escaping (RecentMovie?) -> Void) {
+        DispatchQueue.global(qos: .background).async {
+            if let data = try? Data(contentsOf: url),
+               let json = try? JSONSerialization.jsonObject(with: data) as? NSDictionary {
+                do {
+                    let detailMovieData = try JSONSerialization.data(withJSONObject: json, options: [])
+                    let detailMovieDecode = try? JSONDecoder().decode(RecentMovie.self, from: detailMovieData)
+                    let detailMovie = detailMovieDecode
+                    completion(detailMovie)
+                } catch {
+                    completion(nil)
+                }
+            } else {
+                completion(nil)
+            }
+        }
+    }
 }

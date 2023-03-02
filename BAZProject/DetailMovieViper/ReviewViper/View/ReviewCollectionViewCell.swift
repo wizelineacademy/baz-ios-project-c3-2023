@@ -15,10 +15,11 @@ class ReviewCollectionViewCell: UICollectionViewCell {
         DispatchQueue.main.async {
             self.nameReviewLabel.text = " \(name ?? "")"
             self.reviewTextView.text = review
+            self.addShadowToReview()
         }
     }
     
-    func addShadow(){
+    func addShadowToReview(){
         self.layer.borderWidth = 5.0
         self.layer.borderColor = UIColor.clear.cgColor
         self.layer.masksToBounds = true

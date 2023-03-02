@@ -20,7 +20,10 @@ class DetailMovieInteractor: DetailMovieInteractorInputProtocol {
 }
 
 extension DetailMovieInteractor: DetailMovieRemoteDataManagerOutputProtocol {
-
+    func pushNotDetails() {
+        presenter?.pushNotDetails()
+    }
+    
     func pushDetailMovie(detailMovie: DetailMovie) {
         presenter?.pushDetailMovie(detailMovie: detailMovie)
     }

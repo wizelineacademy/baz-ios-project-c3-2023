@@ -38,7 +38,7 @@ class HomeMoviesRouter: HomeMoviesRouterProtocol {
     func goToDetails(from view: HomeMoviesViewProtocol, idMovie: Int) {
         let newDetailView = DetailMovieRouter.createDetailMovieModule(idMovie: idMovie)
         
-        if let newView = view as? UIViewController{
+        if let newView = view as? UIViewController {
             newView.present(newDetailView, animated: true)
         }
     }
@@ -46,8 +46,16 @@ class HomeMoviesRouter: HomeMoviesRouterProtocol {
     func goToSearch(from view: HomeMoviesViewProtocol) {
         let newSearchView = SearchMovieRouter.createSearchMovieModule()
         
-        if let newView = view as? UIViewController{
+        if let newView = view as? UIViewController {
             newView.navigationController?.pushViewController(newSearchView, animated: true)
+        }
+    }
+    
+    func goToRecent(from view: HomeMoviesViewProtocol, idMovies: [Int]) {
+        let newRecentView = RecentMovieRouter.createRecentMovieModule(idMovies: idMovies)
+        
+        if let newView = view as? UIViewController {
+            newView.navigationController?.pushViewController(newRecentView, animated: true)
         }
     }
     

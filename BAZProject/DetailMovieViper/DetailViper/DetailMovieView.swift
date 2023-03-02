@@ -60,14 +60,15 @@ extension DetailMovieView:UITableViewDelegate{
     }
         
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        self.nameMovieLabel.isHidden = indexPath.row == 0
-        self.degradeImageView.isHidden = indexPath.row == 0
-        self.genresMovieLabel.isHidden = indexPath.row == 0
+        if tableView.isDragging {
+            self.nameMovieLabel.isHidden = indexPath.row == 0
+            self.degradeImageView.isHidden = indexPath.row == 0
+            self.genresMovieLabel.isHidden = indexPath.row == 0
+        }
     }
 }
 
 extension DetailMovieView: DetailMovieViewProtocol {
-  
     func setupDetailsView() {
         DispatchQueue.main.async {
             self.presenter?.getDetailImage(completion: { detailImage in
@@ -92,6 +93,15 @@ extension DetailMovieView: DetailMovieViewProtocol {
     func reloadView() {
         DispatchQueue.main.async {
             self.detailTableViewCell.reloadData()
+        }
+    }
+    
+    func showNotDetailsAlert() {
+        DispatchQueue.main.async {
+            self.dismiss(animated: true)
+            let alert = UIAlertController(title: "Not Found Movie", message: "The movie haven´t found", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
     }
 }

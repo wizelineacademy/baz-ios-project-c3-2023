@@ -9,7 +9,7 @@
 import UIKit
 
 class HomeMoviesPresenter: HomeMoviesPresenterProtocol  {
-   
+ 
     // MARK: Properties
     weak var view: HomeMoviesViewProtocol?
     var interactor: HomeMoviesInteractorInputProtocol?
@@ -21,18 +21,39 @@ class HomeMoviesPresenter: HomeMoviesPresenterProtocol  {
     var toShowMovies: [Movie] = []
     var recentViews: [Int] = []
 
+    /// Call the setup observers and get the first consume for the initial view
     func viewDidLoad() {
+        setupObserver()
         interactor?.getTrendingMovies()
     }
     
+    /// Setup the observers for the recent view movies
     func setupObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(addRecentView), name: NSNotification.Name("RecentViewMovie"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(addRecentMovie), name: NSNotification.Name("RecentViewMovie"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(deleteRecentMovie), name: NSNotification.Name("DeleteRecentMovie"), object: nil)
     }
     
-    @objc func addRecentView(_ notification: Notification) {
+    /// Function for the observer to add the recent movie
+    ///
+    /// - Parameter notification: the notification coming from the observer
+    @objc func addRecentMovie(_ notification: Notification) {
         let info = notification.object as? [String:Int]
         if let idMovie = info?["idMovie"] {
-            recentViews.append(idMovie)
+            recentViews.removeAll(where: { $0 == idMovie })
+            recentViews.insert(idMovie, at: 0)
+        }
+    }
+    
+    /// Function for the observer for delete the RecentMovie
+    ///
+    /// - Parameter notification: the notification coming from the observer
+    @objc func deleteRecentMovie(_ notification: Notification) {
+        let info = notification.object as? [String:Int]
+        if let idMovie = info?["idMovie"] {
+            recentViews.removeAll(where: { $0 == idMovie })
+            if recentViews.isEmpty {
+                view?.poopToRoot()
+            }
         }
     }
     
@@ -80,7 +101,7 @@ class HomeMoviesPresenter: HomeMoviesPresenterProtocol  {
         }
     }
     
-    /// Get an image from the MovieApi class using the index of the movies array and return and UIImage
+    /// Get an image from the ImageProvider singleton using the index of the movies array and return and UIImage
     ///
     /// - Parameter index: Index of the array categoryMovies for get the string url image
     /// - Parameter completion: Escaping closure that escapes a UIImage or a nil
@@ -156,7 +177,14 @@ class HomeMoviesPresenter: HomeMoviesPresenterProtocol  {
         }
     }
     
-   
+    /// Go to initial the router recentController and present the view
+    func goToRecent() {
+        if let view = view, recentViews.count > 0 {
+            router?.goToRecent(from: view, idMovies: recentViews)
+        } else {
+            view?.showNotRecentAlert()
+        }
+    }
 }
 
 

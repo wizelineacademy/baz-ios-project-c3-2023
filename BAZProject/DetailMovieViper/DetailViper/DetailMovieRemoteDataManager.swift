@@ -17,7 +17,10 @@ class DetailMovieRemoteDataManager:DetailMovieRemoteDataManagerInputProtocol {
     func getDetails(idMovie: Int) {
         if let url = URLBuilder.getUrl(urlType: .details(idMovie)){
             movieApi.getDetails(for: url) { [weak self] detailMovie in
-                guard let detailMovie = detailMovie else { return }
+                guard let detailMovie = detailMovie else {
+                    self?.remoteRequestHandler?.pushNotDetails()
+                    return
+                }
                 self?.remoteRequestHandler?.pushDetailMovie(detailMovie: detailMovie)
             }
         }

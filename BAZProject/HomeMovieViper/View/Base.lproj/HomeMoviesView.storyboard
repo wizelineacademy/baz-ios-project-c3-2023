@@ -72,8 +72,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Movies" id="WhG-gT-S6I">
-                        <barButtonItem key="leftBarButtonItem" style="done" systemItem="bookmarks" id="jNi-eB-OaW">
+                        <barButtonItem key="leftBarButtonItem" image="timer" catalog="system" style="done" id="jNi-eB-OaW">
                             <color key="tintColor" systemColor="labelColor"/>
+                            <connections>
+                                <action selector="didSelectRecentButton:" destination="xsT-Cm-LUD" id="quA-gy-Mnq"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="search" id="6Jw-jj-qME">
                             <color key="tintColor" systemColor="labelColor"/>
@@ -111,6 +114,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="timer" catalog="system" width="128" height="123"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

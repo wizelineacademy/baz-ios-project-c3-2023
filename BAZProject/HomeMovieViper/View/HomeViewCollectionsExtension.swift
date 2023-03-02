@@ -78,7 +78,7 @@ extension HomeMoviesView: UICollectionViewDelegateFlowLayout{
         if collectionView == self.categoriesMoviesCollectionView{
             return CGSize(width: 200, height: 120)
         } else {
-            return CGSize(width: 120, height: 240)
+            return CGSize(width: 110, height: 220)
         }
     }
 }

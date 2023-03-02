@@ -24,35 +24,39 @@ class DetailMoviePresenter: DetailMoviePresenterProtocol  {
     var tableViewSize: Int = 170
     var detailName: String = ""
     let group = DispatchGroup()
-    private var cellArray: [CellTypes] = []
+    private var cellArray: [CollectionTypes] = []
     
     
     init(idMovie: Int) {
         self.idMovie = idMovie
-        NotificationCenter.default.post(name: NSNotification.Name("RecentViewMovie"), object: ["idMovie": idMovie])
     }
     
     
-    /// Call all the presenters for initial the consume of all details 
-    ///
+    /// Call the interactor for init the consume of the detail of the movie
     func viewDidLoad() {
-        setupDispatchGroup()
         interactor?.getDetails(idMovie: idMovie)
+    }
+    
+    /// Call all the presenters of the diferentes types of details and setup the dispatchGroup
+    func getAllDetails() {
+        setupDispatchGroup()
         presenterRecommendation?.getRecommendation(idMovie: idMovie)
         presenterSimilar?.getSimilar(idMovie: idMovie)
         presenterReview?.getReview(idMovie: idMovie)
         presenterCast?.getCast(idMovie: idMovie)
     }
     
+    /// Setup the dispatch group and add a notify when the group end
     func setupDispatchGroup() {
         group.enter()
         group.enter()
         group.enter()
         group.enter()
-        group.enter()
-        group.notify(queue: .main) {
-            self.cellArray.reverse()
-            self.view?.reloadView()
+        group.notify(queue: .main) { [weak self] in
+            self?.cellArray.sort { cellOne, cellTwo in
+                cellOne.position < cellTwo.position
+            }
+            self?.view?.reloadView()
         }
     }
     
@@ -80,6 +84,9 @@ class DetailMoviePresenter: DetailMoviePresenterProtocol  {
         return cellArray.count + 1
     }
     
+    /// Get the genres of the movie depending of the number of genres coming in the api
+    ///
+    /// - Returns: String that includes the genres and the runtime of the movie in minutes
     func getGenres() -> String {
         switch self.detailsMovie?.genres?.count {
         case 1:
@@ -91,8 +98,10 @@ class DetailMoviePresenter: DetailMoviePresenterProtocol  {
         }
     }
     
-  
-    
+    /// Get the tableCell
+    ///
+    /// - Parameter indexPath: Integer that represents the current cell in tableView
+    /// - Returns: Integer that representes the collection count
     func getTableCell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "DetailsTableViewCell") as? DetailsTableViewCell else { return UITableViewCell() }
@@ -144,18 +153,13 @@ class DetailMoviePresenter: DetailMoviePresenterProtocol  {
                 nameLabel.text = "Cast"
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CastCollectionViewCell", for: indexPath) as? CastCollectionViewCell else { return UICollectionViewCell() }
                 presenterCast?.getCastImage(index: indexPath.row, completion: { castImage in
-                    cell.setupCastImage(castImage: castImage)
-                    DispatchQueue.main.async {
-                        cell.nameLabel.text = self.presenterCast?.getCast(index: indexPath.row).name ?? ""
-                        cell.characterLabel.text = self.presenterCast?.getCast(index: indexPath.row).character ?? ""
-                    }
+                    cell.setupCastCell(castImage: castImage, name: self.presenterCast?.getCast(index: indexPath.row).name ?? "", character: self.presenterCast?.getCast(index: indexPath.row).character ?? "")
                 })
                 return cell
             case .review:
                 nameLabel.text = "Review"
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ReviewCollectionViewCell", for: indexPath) as? ReviewCollectionViewCell else { return UICollectionViewCell() }
                 cell.setupReviewCell(name: presenterReview?.getReview(index: indexPath.row).author, review: presenterReview?.getReview(index: indexPath.row).content, date: presenterReview?.getReview(index: indexPath.row).created_at)
-                cell.addShadow()
                 return cell
             case .similar:
                 nameLabel.text = "Similar"
@@ -179,7 +183,6 @@ class DetailMoviePresenter: DetailMoviePresenterProtocol  {
     /// - Parameter indexPath: indexPath that represents the indexPath of the collectionView
     /// - Returns: cgsize of the collectionViewCell
     func getTableSize(indexPath: Int) -> CGSize {
-        
         switch cellArray[indexPath - 1] {
             case .cast:
                 return CGSize(width: 100, height: 130)
@@ -195,13 +198,17 @@ class DetailMoviePresenter: DetailMoviePresenterProtocol  {
 }
 
 extension DetailMoviePresenter: DetailMovieInteractorOutputProtocol {
-  
+    
     func pushDetailMovie(detailMovie: DetailMovie) {
         self.detailsMovie = detailMovie
         view?.setupDetailsView()
-        group.leave()
+        NotificationCenter.default.post(name: NSNotification.Name("RecentViewMovie"), object: ["idMovie": idMovie])
+        getAllDetails()
     }
   
+    func pushNotDetails() {
+        view?.showNotDetailsAlert()
+    }
 }
 
 extension DetailMoviePresenter: DetailMovieCastProtocol {
@@ -248,6 +255,18 @@ extension DetailMoviePresenter: DetailMovieRecommendationProtocol {
     }
 }
 
-enum CellTypes {
+enum CollectionTypes {
     case cast, review, similar, recommendation
+    var position: Int {
+        switch self {
+        case .cast:
+            return 0
+        case .review:
+            return 1
+        case .similar:
+            return 2
+        case .recommendation:
+            return 3
+        }
+    }
 }

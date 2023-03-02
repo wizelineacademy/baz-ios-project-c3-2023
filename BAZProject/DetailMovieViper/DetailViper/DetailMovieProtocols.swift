@@ -14,6 +14,7 @@ protocol DetailMovieViewProtocol: AnyObject {
     var presenter: DetailMoviePresenterProtocol? { get set }
     func setupDetailsView()
     func reloadView()
+    func showNotDetailsAlert()
 }
 
 protocol DetailMovieRouterProtocol: AnyObject {
@@ -44,21 +45,25 @@ protocol DetailMoviePresenterProtocol: AnyObject {
 }
 
 protocol DetailMovieCastProtocol: AnyObject {
+    // CASPRESENTER -> PRESENTER
     func informSuccesfulPresenterCast()
     func informErrorPresenterCast()
 }
 
 protocol DetailMovieReviewProtocol: AnyObject {
+    // REVIEWPRESENTER -> PRESENTER
     func informSuccesfulPresenterReview()
     func informErrorPresenterReview()
 }
 
 protocol DetailMovieSimilarProtocol: AnyObject {
+    // SIMILARPRESENTER -> PRESENTER
     func informSuccesfulPresenterSimilar()
     func informErrorPresenterSimilar()
 }
 
 protocol DetailMovieRecommendationProtocol: AnyObject {
+    // RECOMMENDATIONPRESENTER -> PRESENTER
     func informSuccesfulPresenterRecommendation()
     func informErrorPresenterRecommendation()
 }
@@ -66,6 +71,7 @@ protocol DetailMovieRecommendationProtocol: AnyObject {
 protocol DetailMovieInteractorOutputProtocol: AnyObject {
     // INTERACTOR -> PRESENTER
     func pushDetailMovie(detailMovie: DetailMovie)
+    func pushNotDetails()
 }
 
 protocol DetailMovieInteractorInputProtocol: AnyObject {
@@ -87,5 +93,6 @@ protocol DetailMovieRemoteDataManagerOutputProtocol: AnyObject {
     // REMOTEDATAMANAGER -> INTERACTOR
     
     func pushDetailMovie(detailMovie: DetailMovie)
+    func pushNotDetails()
 }
 
