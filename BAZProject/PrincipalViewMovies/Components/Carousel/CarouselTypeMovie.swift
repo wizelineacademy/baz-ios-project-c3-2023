@@ -17,7 +17,13 @@ final class CarouselTypeMovie: UIView {
     @IBOutlet weak var collectionCarouselMovies: UICollectionView!
     @IBOutlet weak var lblTitleMoview: UILabel!
     
-    var moviesType: [Movie] = []
+    var moviesType: [Movie] = [] {
+        didSet {
+            DispatchQueue.main.async { [weak self] in
+                self?.collectionCarouselMovies.reloadData()
+            }
+        }
+    }
     var typeMovieListCarousel: TypeMovieList?
     weak var delegate: TapGestureImgMovieProtocol?
     

@@ -8,10 +8,10 @@ import Foundation
 import UIKit
 
 final class MovieAPI {
-
+    
     private let apiKey: String = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
     let urlBase: String = "https://api.themoviedb.org/3"
-
+    
     
     /**
      obtains array movies from Api
@@ -19,14 +19,25 @@ final class MovieAPI {
      - Returns: An array type Movie
      */
     
-    func getMovies(typeMovie: TypeMovieList, completion: @escaping(([Movie]?) -> Void)){
-        guard let url = URL(string: "\(urlBase)/movie/\(typeMovie.getOptionMovie())?api_key=\(apiKey)&page=1"),
-              let data = try? Data(contentsOf: url),
-              let responseMovies = try? JSONDecoder().decode(ReponseMovies.self, from: data)
-        else {
-            return completion(nil)
+    func getMovies(typeMovie: TypeMovieList, completion: @escaping(([Movie]?) -> Void)) {
+        guard let url = URL(string: "\(urlBase)/movie/\(typeMovie.getOptionMovie())?api_key=\(apiKey)&page=1") else{
+            return
         }
-        completion(responseMovies.results)
+        let task = URLSession.shared.dataTask(with: url) {
+            data, response, error in
+            if let data = data{
+                do{
+                    let results = try JSONDecoder().decode(ReponseMovies.self, from: data)
+                    completion(results.results)
+                }catch{
+                    completion(nil)
+                }
+                
+            } else {
+                completion(nil)
+            }
+        }
+        task.resume()
     }
     
     /**

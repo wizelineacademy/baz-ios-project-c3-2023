@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class HomeMoviesViewController: UIViewController {
+final class HomeMoviesViewController: UIViewController, PricipalView {
     
     //    MARK: Outlets
     @IBOutlet weak var viewContainerTopLbls: UIView!
@@ -16,11 +16,17 @@ final class HomeMoviesViewController: UIViewController {
     @IBOutlet weak var lblNumberShowMovies: UILabel!
     
     //    MARK: Vars and Constants
-    var moviesPopular: [Movie] = []
-    var moviesNowPlaying: [Movie] = []
-    var moviesLatest: [Movie] = []
+    var moviesPopular: [Movie] = [] {
+        didSet { corouselsSections[0].moviesType = moviesPopular }
+    }
+    var moviesNowPlaying: [Movie] = [] {
+        didSet { corouselsSections[1].moviesType = moviesNowPlaying }
+    }
+    var moviesLatest: [Movie] = [] {
+        didSet { corouselsSections[2].moviesType = moviesLatest }
+    }
     var movie: Movie? = nil
-    let viewModel = PrincipalViewModel()
+    var viewModel: PrincipalViewModel?
     let bannerView: BannerMovieView = BannerMovieView()
     let notificationCenter = NotificationCenter.default
     static var countMoviesUser: Int = 0
@@ -40,12 +46,15 @@ final class HomeMoviesViewController: UIViewController {
         setUINavigation()
         setupUITrendingView()
         setDelegatesCarousels()
+        viewModel = PrincipalViewModel(view: self)
+        viewModel?.fetchMovies(with: .popularity)
+        viewModel?.fetchMovies(with: .topRated)
+        viewModel?.fetchMovies(with: .upcoming)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
-        fetchMoviewsForTypeMovie()
         setUICarousels()
         setUIBanner()
         addNotificationObserver()
@@ -87,33 +96,20 @@ final class HomeMoviesViewController: UIViewController {
         }
     }
     
-    /**
-     Consume MovieApi for each type movie and get array specific movies from fetchMovies()
-     */
-    private func fetchMoviewsForTypeMovie() {
-        moviesPopular = viewModel.fetchMovies(with: .popularity)
-        moviesNowPlaying = viewModel.fetchMovies(with: .topRated)
-        moviesLatest = viewModel.fetchMovies(with: .upcoming)
-    }
-    
     private func setUICarousels() {
         corouselsSections.enumerated().forEach { (index, carousel) in
             switch index {
             case TypeMovieList.popularity.getIndexTypeMovie():
                 carousel.lblTitleMoview.text = TypeMovieList.popularity.getNameCarousel()
-                carousel.moviesType = moviesPopular
                 carousel.typeMovieListCarousel = .popularity
             case TypeMovieList.topRated.getIndexTypeMovie():
                 carousel.lblTitleMoview.text = TypeMovieList.topRated.getNameCarousel()
-                carousel.moviesType = moviesNowPlaying
                 carousel.typeMovieListCarousel = .topRated
             case TypeMovieList.upcoming.getIndexTypeMovie():
                 carousel.lblTitleMoview.text = TypeMovieList.upcoming.getNameCarousel()
-                carousel.moviesType = moviesLatest
                 carousel.typeMovieListCarousel = .upcoming
             default:
                 carousel.lblTitleMoview.text = TypeMovieList.popularity.getNameCarousel()
-                carousel.moviesType = moviesPopular
                 carousel.typeMovieListCarousel = .popularity
             }
             carousel.collectionCarouselMovies.reloadData()
