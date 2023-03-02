@@ -11,7 +11,7 @@ final class DetailViewController: UIViewController {
     static let identifier: String = .detailXibIdentifier
     // MARK: - Protocol properties
     var presenter: DetailPresenterProtocol?
-    var detailType: DetailType?
+    var idMovie: String?
 
     // MARK: - Private properties
     private var reviews: [ReviewResult] = []
@@ -152,16 +152,16 @@ final class DetailViewController: UIViewController {
     }
 
     private func getData() {
-        if let detailType = detailType {
-            presenter?.willFetchMedia(detailType: detailType)
-            presenter?.willFetchReview(of: detailType.idMedia.description)
-            presenter?.willFetchSimilarMovie(of: detailType.idMedia.description)
-            presenter?.willFetchMovieRecomendation(of: detailType.idMedia.description)
+        if let idMovie = idMovie {
+            presenter?.willFetchMovie(of: idMovie)
+            presenter?.willFetchReview(of: idMovie)
+            presenter?.willFetchSimilarMovie(of: idMovie)
+            presenter?.willFetchMovieRecomendation(of: idMovie)
         }
     }
 
     private func postIdMedia() {
-        if let id = detailType?.idMedia as? Int {
+        if let id = idMovie as? Int {
             NotificationCenter.default.post(name: .notificacionCenterNameShowDetail,
                                             object: self,
                                             userInfo: [LocalizedConstants.notificationCenterNameParamId: String(id)])
@@ -281,9 +281,9 @@ extension DetailViewController: DetailViewProtocol {
 extension DetailViewController: ImageSliderDelegate {
     func indexDidSelect(_ index: Int, object: ImageSlider) {
         if object == similarMoviesSlider, let id = similarMovies[index].id {
-            presenter?.willShowDetail(of: DetailType(mediaType: .movie, idMedia: id))
+            presenter?.willShowDetail(of: id.description)
         } else if object == movieRecomendationsSlider, let id = movieRecomendations[index].id {
-            presenter?.willShowDetail(of: DetailType(mediaType: .movie, idMedia: id))
+            presenter?.willShowDetail(of: id.description)
         }
     }
 }

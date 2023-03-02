@@ -50,9 +50,9 @@ extension DetailPresenter: DetailPresenterProtocol {
         return errorGetData
     }
 
-    func willFetchMedia(detailType: DetailType) {
+    func willFetchMovie(of idMovie: String) {
         setLoading()
-        interactor?.fetchMedia(detailType: detailType)
+        interactor?.fetchMovie(of: idMovie)
     }
 
     func willFetchReview(of idMovie: String) {
@@ -68,8 +68,8 @@ extension DetailPresenter: DetailPresenterProtocol {
         interactor?.fetchMovieRecomendation(of: idMovie)
     }
 
-    func willShowDetail(of detailType: DetailType) {
-        router?.showDetail(of: detailType)
+    func willShowDetail(of idMovie: String) {
+        router?.showDetail(of: idMovie)
     }
 }
 

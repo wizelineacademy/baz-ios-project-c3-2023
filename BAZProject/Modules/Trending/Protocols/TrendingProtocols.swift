@@ -27,7 +27,7 @@ protocol TrendingPresenterProtocol: AnyObject {
     var data: [TrendingModel] { get set }
 
     func willFetchTrendingMedia(mediaType: MediaType, timeWindow: TimeWindowType)
-    func willShowDetail(of detailType: DetailType)
+    func willShowDetail(of idMovie: String)
     func willShowAlertLoading(with alertType: ErrorType)
     func willHideAlertLoading()
     func willFetchSearchMovie(by keyword: String)
@@ -39,7 +39,7 @@ protocol TrendingRouterProtocol: AnyObject {
 
     static func createModule() -> UIViewController
     func showViewError(_ errorType: ErrorType)
-    func showDetail(of detailType: DetailType)
+    func showDetail(of idMovie: String)
     func showAlertLoading(with alertType: ErrorType)
     func hideAlertLoading()
 }

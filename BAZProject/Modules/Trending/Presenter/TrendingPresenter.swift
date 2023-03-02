@@ -36,8 +36,8 @@ extension TrendingPresenter: TrendingPresenterProtocol {
         router?.hideAlertLoading()
     }
 
-    func willShowDetail(of detailType: DetailType) {
-        router?.showDetail(of: detailType)
+    func willShowDetail(of idMovie: String) {
+        router?.showDetail(of: idMovie)
     }
 }
 

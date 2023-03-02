@@ -29,7 +29,7 @@ protocol HomePresenterProtocol: AnyObject {
     func willFetchNowPlaying()
     func willFetchPopularMovies()
     func willFetchUpcomingMovies()
-    func willShowDetail(of detailType: DetailType)
+    func willShowDetail(of idMovie: String)
 }
 
 // MARK: Interactor Input (Presenter -> Interactor)
@@ -78,5 +78,5 @@ protocol HomeRouterProtocol: AnyObject {
     var view: HomeViewProtocol? { get set }
     static func createModule() -> UIViewController
     func showViewError(_ errorType: ErrorType)
-    func showDetail(of detailType: DetailType)
+    func showDetail(of idMovie: String)
 }

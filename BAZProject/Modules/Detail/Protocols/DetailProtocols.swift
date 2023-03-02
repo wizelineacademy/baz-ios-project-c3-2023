@@ -9,7 +9,7 @@ import UIKit
 
 protocol DetailViewProtocol: AnyObject {
     var presenter: DetailPresenterProtocol? { get set }
-    var detailType: DetailType? { get set }
+    var idMovie: String? { get set }
 
     func updateView(data: MovieDetailResult)
     func updateView(data: [ReviewResult])
@@ -25,18 +25,18 @@ protocol DetailPresenterProtocol: AnyObject {
 
     func isLoading() -> Bool
     func errorGettingData() -> Bool
-    func willFetchMedia(detailType: DetailType)
+    func willFetchMovie(of idMovie: String)
     func willFetchReview(of idMovie: String)
     func willFetchSimilarMovie(of idMovie: String)
     func willFetchMovieRecomendation(of idMovie: String)
-    func willShowDetail(of detailType: DetailType)
+    func willShowDetail(of idMovie: String)
 }
 
 protocol DetailRouterProtocol: AnyObject {
     var view: DetailViewProtocol? { get set }
-    static func createModule(detailType: DetailType) -> UIViewController
+    static func createModule(of idMovie: String) -> UIViewController
     func showViewError(_ errorType: ErrorType)
-    func showDetail(of detailType: DetailType)
+    func showDetail(of idMovie: String)
 }
 
 protocol DetailInteractorOutputProtocol: AnyObject {
@@ -51,7 +51,7 @@ protocol DetailInteractorInputProtocol: AnyObject {
     var presenter: DetailInteractorOutputProtocol? { get set }
     var dataManager: DetailDataManagerInputProtocol? { get set }
 
-    func fetchMedia(detailType: DetailType)
+    func fetchMovie(of idMovie: String)
     func fetchReview(of idMovie: String)
     func fetchSimilarMovie(of idMovie: String)
     func fetchMovieRecomendation(of idMovie: String)
@@ -64,7 +64,7 @@ protocol DetailDataManagerInputProtocol: AnyObject {
     /// This method will request for media type.
     /// - Parameters:
     ///   - urlString: The url which returns the media of movie, person, o tv.
-    func requestMedia(_ urlString: String)
+    func requestMovie(_ urlString: String)
 
     /// This method will request for Review.
     /// - Parameters:
@@ -77,7 +77,7 @@ protocol DetailDataManagerInputProtocol: AnyObject {
 
 // DataManager > Interactor
 protocol DetailDataManagerOutputProtocol: AnyObject {
-    func handleGetMediaMovie(_ result: MovieDetailResult)
+    func handleGetMovie(_ result: MovieDetailResult)
     func handleGetReview(_ result: [ReviewResult])
     func handleGetSimilarMovie(_ result: [SimilarMovieModelResult])
     func handleGetMovieRecomendation(_ result: [RecomendationMovieModelResult])

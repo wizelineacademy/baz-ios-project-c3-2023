@@ -23,8 +23,8 @@ extension HomePresenter: HomePresenterProtocol {
         interactor?.fetchNowPlaying()
     }
 
-    func willShowDetail(of detailType: DetailType) {
-        router?.showDetail(of: detailType)
+    func willShowDetail(of idMovie: String) {
+        router?.showDetail(of: idMovie)
     }
 
     func willFetchPopularMovies() {

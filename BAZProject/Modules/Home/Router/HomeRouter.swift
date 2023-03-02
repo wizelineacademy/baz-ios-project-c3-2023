@@ -43,10 +43,10 @@ extension HomeRouter: HomeRouterProtocol {
         }
     }
 
-    func showDetail(of detailType: DetailType) {
+    func showDetail(of idMovie: String) {
         guard let view = self.view as? UIViewController else { return }
         view.guaranteeMainThread {
-            view.navigationController?.pushViewController(DetailRouter.createModule(detailType: detailType),
+            view.navigationController?.pushViewController(DetailRouter.createModule(of: idMovie),
                                                           animated: false)
         }
     }

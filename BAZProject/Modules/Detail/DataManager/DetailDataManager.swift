@@ -17,14 +17,14 @@ final class DetailDataManager {
 }
 
 extension DetailDataManager: DetailDataManagerInputProtocol {
-    func requestMedia(_ urlString: String) {
+    func requestMovie(_ urlString: String) {
         typealias ResponseProvider = Result<MovieDetailResult, Error>
         let request: URLRequest = RequestType(strUrl: urlString, method: .GET).getRequest()
         providerNetworking.sendRequest(request) { [weak self] (result: ResponseProvider) in
             switch result {
             case .success(var movie):
                 movie.decrypt()
-                self?.interactor?.handleGetMediaMovie(movie)
+                self?.interactor?.handleGetMovie(movie)
             case .failure(let error):
                 self?.interactor?.handleErrorService(error)
             }

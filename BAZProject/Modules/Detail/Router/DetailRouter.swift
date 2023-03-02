@@ -10,7 +10,7 @@ import UIKit
 final class DetailRouter: DetailRouterProtocol {
     weak var view: DetailViewProtocol?
 
-    static func createModule(detailType: DetailType) -> UIViewController {
+    static func createModule(of idMovie: String) -> UIViewController {
         let view: DetailViewProtocol = DetailViewController(
             nibName: DetailViewController.identifier,
             bundle: nil)
@@ -22,7 +22,7 @@ final class DetailRouter: DetailRouterProtocol {
 
         router.view = view
         view.presenter = presenter
-        view.detailType = detailType
+        view.idMovie = idMovie
         interactor.dataManager = dataManager
         interactor.presenter = presenter
         dataManager.interactor = interactor
@@ -42,10 +42,10 @@ final class DetailRouter: DetailRouterProtocol {
         }
     }
 
-    func showDetail(of detailType: DetailType) {
+    func showDetail(of idMovie: String) {
         guard let view = self.view as? UIViewController else { return }
         view.guaranteeMainThread {
-            view.navigationController?.pushViewController(DetailRouter.createModule(detailType: detailType),
+            view.navigationController?.pushViewController(DetailRouter.createModule(of: idMovie),
                                                           animated: false)
         }
     }

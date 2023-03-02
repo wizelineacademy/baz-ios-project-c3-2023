@@ -182,17 +182,17 @@ extension HomeViewController: ImageSliderDelegate {
     func indexDidSelect(_ index: Int, object: ImageSlider) {
         if object == movieTopSlider {
             guard let id = movieTopRated?[index].id as? Int else { return }
-            presenter?.willShowDetail(of: DetailType(mediaType: .movie, idMedia: id))
+            presenter?.willShowDetail(of: id.description)
 
         } else if object == nowPlayingSlider {
             guard let id = nowPlaying?[index].id as? Int else { return }
-            presenter?.willShowDetail(of: DetailType(mediaType: .movie, idMedia: id))
+            presenter?.willShowDetail(of: id.description)
         } else if object == popularImageSlider {
             guard let id = popularMovies?[index].id as? Int else { return }
-            presenter?.willShowDetail(of: DetailType(mediaType: .movie, idMedia: id))
+            presenter?.willShowDetail(of: id.description)
         } else if object == upcomingMoviesSlider {
             guard let id = upcomingMovies?[index].id as? Int else { return }
-            presenter?.willShowDetail(of: DetailType(mediaType: .movie, idMedia: id))
+            presenter?.willShowDetail(of: id.description)
         }
     }
 }

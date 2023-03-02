@@ -104,7 +104,6 @@
 		D2F08D3E299C3980009BA149 /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F08D3D299C3980009BA149 /* DetailPresenter.swift */; };
 		D2F08D41299C399B009BA149 /* DetailProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F08D40299C399B009BA149 /* DetailProtocols.swift */; };
 		D2F08D44299C39C8009BA149 /* DetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F08D43299C39C8009BA149 /* DetailRouter.swift */; };
-		D2F08D46299C46A1009BA149 /* DetailType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F08D45299C46A1009BA149 /* DetailType.swift */; };
 		D2F3477229806F2700EFDB62 /* CellMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F3477129806F2700EFDB62 /* CellMovie.swift */; };
 		D2F3477429806F4E00EFDB62 /* CellMovie.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2F3477329806F4E00EFDB62 /* CellMovie.xib */; };
 		D2F954D2298B0C0200F4CB4B /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F954D1298B0C0200F4CB4B /* UIViewController+Extension.swift */; };
@@ -221,7 +220,6 @@
 		D2F08D3D299C3980009BA149 /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
 		D2F08D40299C399B009BA149 /* DetailProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProtocols.swift; sourceTree = "<group>"; };
 		D2F08D43299C39C8009BA149 /* DetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRouter.swift; sourceTree = "<group>"; };
-		D2F08D45299C46A1009BA149 /* DetailType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailType.swift; sourceTree = "<group>"; };
 		D2F3477129806F2700EFDB62 /* CellMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellMovie.swift; sourceTree = "<group>"; };
 		D2F3477329806F4E00EFDB62 /* CellMovie.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellMovie.xib; sourceTree = "<group>"; };
 		D2F954D1298B0C0200F4CB4B /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
@@ -785,7 +783,6 @@
 		D2F08D3B299C396B009BA149 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				D2F08D45299C46A1009BA149 /* DetailType.swift */,
 				D2D916DA299C8199009E0BE2 /* MovieDetail.swift */,
 				D2A9CB0129B00856008B47DD /* SimilarMovieModel.swift */,
 				D212C8FF29B1083500746D59 /* RecomendationMovieModel.swift */,
@@ -1128,7 +1125,6 @@
 				D2F08D41299C399B009BA149 /* DetailProtocols.swift in Sources */,
 				D2C85AA129A338EC00EB8663 /* StarRatedView.swift in Sources */,
 				D215C5002980EF9500D5670F /* ErrorPageViewController.swift in Sources */,
-				D2F08D46299C46A1009BA149 /* DetailType.swift in Sources */,
 				D2475E2329A28A0C004949D9 /* MovieTopRated.swift in Sources */,
 				D2CFEC1B29831CFC0024D226 /* TrendingInteractor.swift in Sources */,
 				D29F2C522987168E004B96D1 /* LaunchScreenViewController.swift in Sources */,
