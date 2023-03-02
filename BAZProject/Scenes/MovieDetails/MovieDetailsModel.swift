@@ -72,4 +72,10 @@ enum MovieDetails {
             var review: Review?
         }
     }
+    
+    enum PostMovieWatchNotification {
+        struct Request {
+            var movie: MovieSearch
+        }
+    }
 }

@@ -32,6 +32,9 @@ class MovieDetailsInteractor: MovieDetailsBusinessLogic, MovieDetailsDataStore {
         guard let movie = movie else {
             return 
         }
+        
+        postMovieWatchObserver(request: MovieDetails.PostMovieWatchNotification.Request(movie: movie))
+        
         let response = MovieDetails.LoadView.Response(movie: movie)
         presenter?.presentLoadView(response: response)
     }
@@ -79,5 +82,9 @@ class MovieDetailsInteractor: MovieDetailsBusinessLogic, MovieDetailsDataStore {
             
             self.presenter?.presentFetchedReview(response: response)
         }
+    }
+    
+    private func postMovieWatchObserver(request: MovieDetails.PostMovieWatchNotification.Request) {
+        NotificationCenter.default.post(name: NSNotification.Name("movie.watch"), object: request.movie)
     }
 }

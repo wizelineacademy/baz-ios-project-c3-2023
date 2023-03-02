@@ -162,16 +162,11 @@ class MovieDetailsViewController: UIViewController {
         
         return descriptionView
     }
-    
-    private func postMovieWatchObserver(movie: MovieSearch) {
-        NotificationCenter.default.post(name: NSNotification.Name("movie.watch"), object: movie)
-    }
 }
 
 extension MovieDetailsViewController: MovieDetailsDisplayLogic {
 
     func displayView(viewModel: MovieDetails.LoadView.ViewModel) {
-        postMovieWatchObserver(movie: viewModel.movie)
         posterImageView.byURL(path: viewModel.movie.imageURL)
         addOverviewSection(description: viewModel.movie.description)
         interactor?.fetchCast(request: MovieDetails.FetchCast.Request(idMovie: viewModel.movie.id))

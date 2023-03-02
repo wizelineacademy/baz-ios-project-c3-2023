@@ -10,8 +10,10 @@ import UIKit
 
 protocol HomeBusinessLogic: AnyObject {
     func fetchMoviesBySection(request: Home.FetchMoviesBySection.Request)
-    func getMoviesSection()
     func saveMovieWatched(request: Home.SaveMovieWatched.Request)
+    func getMoviesSection()
+    func subscribeMovieWatchObserver()
+    
 }
 
 
@@ -42,20 +44,31 @@ class HomeInteractor: HomeBusinessLogic {
     }
     
     func saveMovieWatched(request: Home.SaveMovieWatched.Request) {
-        
         if moviesWatched.count == 0 || (moviesWatched.count < 10 && !isDuplicateMovieById(movieToEvaluate: request.movie)){
             moviesWatched.append(request.movie)
         } else if moviesWatched.count >= 10 && !isDuplicateMovieById(movieToEvaluate: request.movie) {
             moviesWatched.remove(at: 0)
             moviesWatched.append(request.movie)
         }
-
         let response = Home.SaveMovieWatched.Response(movies: moviesWatched)
         presenter?.presentMoviesWatched(response: response)
     }
     
     private func isDuplicateMovieById(movieToEvaluate: MovieSearch) -> Bool {
         moviesWatched.filter { $0.id == movieToEvaluate.id }.count > 0
+    }
+    
+    func subscribeMovieWatchObserver() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            NotificationCenter.default.addObserver(self, selector: #selector(self.listenMovieWatchObserver(_:)), name: NSNotification.Name("movie.watch"), object: nil)
+        }
+    }
+    
+    @objc func listenMovieWatchObserver(_ notification: Notification) {
+        if let movie = notification.object as? MovieSearch {
+            let request = Home.SaveMovieWatched.Request(movie: movie)
+            saveMovieWatched(request: request)
+        }
     }
 }
 
