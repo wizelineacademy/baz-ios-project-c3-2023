@@ -53,4 +53,13 @@ enum TimeWindowType: String {
             return 1
         }
     }
+
+    func getWindowType(row: Int) -> TimeWindowType {
+        switch row {
+        case 0:
+            return .day
+        default:
+            return .week
+        }
+    }
 }

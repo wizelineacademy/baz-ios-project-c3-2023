@@ -44,6 +44,7 @@ extension TrendingPresenter: TrendingPresenterProtocol {
 extension TrendingPresenter: TrendingInteractorOutputProtocol {
     func onReceivedTrendingMedia(result: MovieResponse) {
         view?.setErrorGettingData(false)
+        self.data = []
         currentPage = result.page
         result.results?.forEach({ movie in
             data.append(TrendingModel(with: movie))

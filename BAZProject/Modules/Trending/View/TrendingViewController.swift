@@ -22,7 +22,7 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
 
     // MARK: - Private properties
     let mediaType: MediaType = .movie
-    private let timeWindowType: TimeWindowType = .day
+    private var timeWindowType: TimeWindowType = .day
     private var errorGetData: Bool = false
     private var refreshControl: UIRefreshControl?
     private var loadingMoreView: InfiniteScrollActivityView?
@@ -55,7 +55,9 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
     }
 
     @IBAction private func switchedFilterTimeSegmented(_ sender: Any) {
-        // TODO: add logic in switched
+        timeWindowType = timeWindowType.getWindowType(row: filterTimeSegmentedControl.selectedSegmentIndex)
+        showLoader()
+        callService()
     }
 
     func updateView() {
