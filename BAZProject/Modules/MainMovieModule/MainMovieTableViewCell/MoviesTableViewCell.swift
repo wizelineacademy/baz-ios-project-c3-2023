@@ -62,7 +62,7 @@ extension MoviesTableViewCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let data = data {
-            return data.results.count
+            return Int(data.results.count / 3)
         }
         return 0
     }

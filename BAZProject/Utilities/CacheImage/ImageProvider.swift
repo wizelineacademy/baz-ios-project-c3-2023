@@ -18,7 +18,6 @@ final class ImageProvider {
      */
     public func fetchImage(from urlImage: String, completion: @escaping (UIImage?) -> Void) {
         if let image = cache.object(forKey: "image") {
-            debugPrint("Use cache")
             completion(image)
             return
         }
@@ -27,7 +26,6 @@ final class ImageProvider {
         }
 
         let task = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
-            debugPrint("Fetch from service")
             guard let data = data, error == nil else {
                 completion(nil)
                 return

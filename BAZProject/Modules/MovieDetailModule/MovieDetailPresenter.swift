@@ -8,7 +8,7 @@
 import UIKit
 
 final class MovieDetailPresenter: NSObject {
-    var view: MovieDetailViewProtocol?
+    weak var view: MovieDetailViewProtocol?
     var interactor: MovieDetailInterceptorInputProtocol?
     var isFavorite: Bool = false
     let imageProvider = ImageProvider.shared

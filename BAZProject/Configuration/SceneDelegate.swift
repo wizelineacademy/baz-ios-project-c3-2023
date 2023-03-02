@@ -9,6 +9,10 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    
+    func addTonavigationController(viewController: [UIViewController]) {
+        
+    }
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
@@ -23,6 +27,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let watchedMovieView = WatchedMovieRouter.createModule()
         watchedMovieView.tabBarItem.image = UIImage(systemName: "clock.fill")
         watchedMovieView.title = "Vistas"
+        
+        addTonavigationController(viewController: [favoriteMovieView,homeView,watchedMovieView])
         
         let tabBar = UITabBarController()
         tabBar.viewControllers = [homeView, favoriteMovieView, watchedMovieView]

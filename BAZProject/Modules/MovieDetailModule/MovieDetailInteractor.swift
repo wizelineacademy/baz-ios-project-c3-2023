@@ -8,7 +8,7 @@
 import Foundation
 
 final class MovieDetailInteractor {
-    var presenter: MovieDetailInteractorOutputProtocol?
+    weak var presenter: MovieDetailInteractorOutputProtocol?
     
     var movieApiData: DataHelper = DataHelper()
     var data: Movie?

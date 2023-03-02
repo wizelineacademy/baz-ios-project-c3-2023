@@ -8,7 +8,7 @@
 import UIKit
 
 final class MainPresenter: NSObject {
-    var view: MainViewProtocol?
+    weak var view: MainViewProtocol?
     var interactor: MainInteractorInputProtocol?
     let dispatchGroup = DispatchGroup()
     
