@@ -62,6 +62,7 @@ final class TrendingRouter: TrendingRouterProtocol {
             self.alert?.dismiss(animated: true) {
                 view.guaranteeMainThread {
                     view.navigationController?.navigationItem.searchController?.searchBar.becomeFirstResponder()
+                    self.alert = nil
                 }
             }
         }

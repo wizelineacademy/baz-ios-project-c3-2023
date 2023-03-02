@@ -67,6 +67,7 @@ final class DetailViewController: UIViewController {
         super.viewDidLoad()
         initRegister()
         getData()
+        postIdMedia()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -82,7 +83,6 @@ final class DetailViewController: UIViewController {
         }
 
         navigationController?.navigationBar.prefersLargeTitles = false
-        postIdMedia()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -161,11 +161,8 @@ final class DetailViewController: UIViewController {
     }
 
     private func postIdMedia() {
-        if let id = idMovie as? Int {
-            NotificationCenter.default.post(name: .notificacionCenterNameShowDetail,
-                                            object: self,
-                                            userInfo: [LocalizedConstants.notificationCenterNameParamId: String(id)])
-        }
+        NotificationCenter.default.post(name: .notificacionCenterNameShowDetail,
+                                        object: self)
     }
 
     private func reloadTableView() {

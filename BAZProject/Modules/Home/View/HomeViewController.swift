@@ -33,6 +33,11 @@ final class HomeViewController: UIViewController {
             upcomingMoviesTitleLabel.text = .homeTitleUpcoming
         }
     }
+    @IBOutlet weak private var moviesShowLabel: UILabel! {
+        didSet {
+            moviesShowLabel.text = "\(String.homeTitleMoviesShow) \(totalMoviesShow)"
+        }
+    }
 
     // MARK: - Protocol properties
     var presenter: HomePresenterProtocol?
@@ -44,12 +49,18 @@ final class HomeViewController: UIViewController {
     // MARK: - Private properties
     private var errorGetData: Bool = false
     private var isLoading: Bool = true
+    private var totalMoviesShow: Int = .zero {
+        didSet {
+            moviesShowLabel.text = "\(String.homeTitleMoviesShow) \(totalMoviesShow)"
+        }
+    }
 
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         getData()
         hideSearchBar()
+        addObservers()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -61,7 +72,7 @@ final class HomeViewController: UIViewController {
         if errorGetData {
             callService()
         }
-        addObservers()
+
         movieTopSlider.initTimer()
         nowPlayingSlider.initTimer()
         popularImageSlider.initTimer()
@@ -101,15 +112,13 @@ final class HomeViewController: UIViewController {
 
     private func addObservers() {
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(changeIconEyeInCell),
+                                               selector: #selector(aumentMovieShow),
                                                name: .notificacionCenterNameShowDetail,
                                                object: nil)
     }
 
-    @objc private func changeIconEyeInCell(_ notification: Notification) {
-        let nameParameter: String = LocalizedConstants.notificationCenterNameParamId
-        guard let id = notification.userInfo?[nameParameter] as? String else { return }
-        print("Se a llamado a prueba", id)
+    @objc private func aumentMovieShow(_ notification: Notification) {
+        totalMoviesShow += 1
     }
 }
 

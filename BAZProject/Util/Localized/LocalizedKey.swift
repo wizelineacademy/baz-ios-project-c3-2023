@@ -42,6 +42,7 @@ extension String {
     static let homeTitleNowPlaying = "En cines:"
     static let homeTitlePopularMovies = "Populares:"
     static let homeTitleUpcoming = "Próximos estrenos:"
+    static let homeTitleMoviesShow = "Películas visualizadas al momento:"
 
     // MARK: - Trending
     static let trendingXibIdentifier = "TrendingView"
