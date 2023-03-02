@@ -14,6 +14,10 @@ final class HomeInteractor {
 }
 
 extension HomeInteractor: HomeInteractorInputProtocol {
+    func fetchPopularMovies() {
+        dataManager?.requestPopularMovies(Endpoint.poularMovies.urlString)
+    }
+
     func fetchMovieTopRated() {
         dataManager?.requestMovieTopRated(Endpoint.topRated.urlString)
     }
@@ -24,6 +28,10 @@ extension HomeInteractor: HomeInteractorInputProtocol {
 }
 
 extension HomeInteractor: HomeDataManagerOutputProtocol {
+    func handleGetPopularMovies(_ result: [PopularMoviesModelResult]) {
+        presenter?.onReceivedPopularMovies(result)
+    }
+
     func handleGetMovieTopRated(_ result: [MovieTopRatedResult]) {
         presenter?.onReceivedMovieTopRated(result)
     }

@@ -26,6 +26,10 @@ extension HomePresenter: HomePresenterProtocol {
     func willShowDetail(of detailType: DetailType) {
         router?.showDetail(of: detailType)
     }
+
+    func willFetchPopularMovies() {
+        interactor?.fetchPopularMovies()
+    }
 }
 
 extension HomePresenter: HomeInteractorOutputProtocol {
@@ -36,6 +40,12 @@ extension HomePresenter: HomeInteractorOutputProtocol {
     }
 
     func onReceivedNowPlaying(_ result: [NowPlayingResult]) {
+        view?.setErrorGettingData(false)
+        view?.updateView(data: result)
+        view?.stopLoading()
+    }
+
+    func onReceivedPopularMovies(_ result: [PopularMoviesModelResult]) {
         view?.setErrorGettingData(false)
         view?.updateView(data: result)
         view?.stopLoading()

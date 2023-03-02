@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -26,7 +27,7 @@
                     <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TxY-cz-fTF">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="574"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="746.33333333333337"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0wS-aa-dMa" customClass="ImageSlider" customModule="BAZProject" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="170"/>
@@ -48,6 +49,19 @@
                                         <constraint firstAttribute="height" constant="350" id="xUV-wU-Po7"/>
                                     </constraints>
                                 </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Popular movies" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SzU-wg-zgB">
+                                    <rect key="frame" x="16" y="590" width="361" height="20.333333333333371"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XYw-Z7-2Iv">
+                                    <rect key="frame" x="0.0" y="618.33333333333337" width="393" height="128"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="128" id="bjL-Xa-Atm"/>
+                                    </constraints>
+                                </view>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
@@ -55,10 +69,16 @@
                                 <constraint firstItem="MXL-gf-HkA" firstAttribute="top" secondItem="EFd-Jb-msT" secondAttribute="bottom" constant="8" id="5QR-CS-lLy"/>
                                 <constraint firstAttribute="trailing" secondItem="MXL-gf-HkA" secondAttribute="trailing" id="6EB-zf-L0b"/>
                                 <constraint firstAttribute="trailing" secondItem="0wS-aa-dMa" secondAttribute="trailing" id="9xB-mo-pvq"/>
+                                <constraint firstAttribute="bottom" secondItem="XYw-Z7-2Iv" secondAttribute="bottom" id="CuE-dz-PeY"/>
                                 <constraint firstItem="EFd-Jb-msT" firstAttribute="leading" secondItem="TxY-cz-fTF" secondAttribute="leading" constant="16" id="Eme-AJ-DRm"/>
+                                <constraint firstAttribute="trailing" secondItem="SzU-wg-zgB" secondAttribute="trailing" constant="16" id="KZo-cL-W9c"/>
                                 <constraint firstItem="0wS-aa-dMa" firstAttribute="leading" secondItem="TxY-cz-fTF" secondAttribute="leading" id="Pg1-1T-lYF"/>
+                                <constraint firstItem="SzU-wg-zgB" firstAttribute="leading" secondItem="TxY-cz-fTF" secondAttribute="leading" constant="16" id="QV3-gP-O6L"/>
+                                <constraint firstItem="SzU-wg-zgB" firstAttribute="top" secondItem="MXL-gf-HkA" secondAttribute="bottom" constant="16" id="emr-Ds-VN0"/>
+                                <constraint firstItem="XYw-Z7-2Iv" firstAttribute="leading" secondItem="TxY-cz-fTF" secondAttribute="leading" id="lXU-Bc-6qf"/>
+                                <constraint firstItem="XYw-Z7-2Iv" firstAttribute="top" secondItem="SzU-wg-zgB" secondAttribute="bottom" constant="8" id="mQ7-fs-OGv"/>
+                                <constraint firstAttribute="trailing" secondItem="XYw-Z7-2Iv" secondAttribute="trailing" id="op5-rX-BbT"/>
                                 <constraint firstItem="EFd-Jb-msT" firstAttribute="top" secondItem="0wS-aa-dMa" secondAttribute="bottom" constant="16" id="seq-76-5RC"/>
-                                <constraint firstAttribute="bottom" secondItem="MXL-gf-HkA" secondAttribute="bottom" id="tr5-Ra-FBd"/>
                                 <constraint firstItem="MXL-gf-HkA" firstAttribute="leading" secondItem="TxY-cz-fTF" secondAttribute="leading" id="xvG-st-M4J"/>
                                 <constraint firstAttribute="trailing" secondItem="EFd-Jb-msT" secondAttribute="trailing" constant="16" id="ywZ-9Z-Mna"/>
                             </constraints>
@@ -91,5 +111,8 @@
         <namedColor name="SecondaryColor">
             <color red="0.41999998688697815" green="0.68199998140335083" blue="0.42399999499320984" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

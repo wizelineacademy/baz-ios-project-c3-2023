@@ -34,6 +34,7 @@ enum Endpoint {
     case searchMovie(byKeywork: String)
     case nowPlaying
     case similarMovie(idMovie: String)
+    case poularMovies
 }
 
 extension Endpoint {
@@ -59,6 +60,8 @@ extension Endpoint {
         case .similarMovie(idMovie: let movie):
             let similarUrlString: String = "\(String.apiKeyEndPointMovie)/\(movie)/similar"
             return "\(BaseUrl.apiWithEndPoint(endPoint: similarUrlString).url)"
+        case .poularMovies:
+            return BaseUrl.apiWithEndPoint(endPoint: .apiKeyEndPointPopularMovies).url
         }
     }
 }

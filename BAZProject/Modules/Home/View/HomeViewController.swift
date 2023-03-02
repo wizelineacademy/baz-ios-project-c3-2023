@@ -94,6 +94,10 @@ final class HomeViewController: UIViewController {
 }
 
 extension HomeViewController: HomeViewProtocol {
+    func updateView(data: [PopularMoviesModelResult]) {
+        
+    }
+
     func updateView(data: [NowPlayingResult]) {
         nowPlaying = data
         var posterUrlString: [String] = []
