@@ -62,6 +62,7 @@ final class DetailViewController: UIViewController {
     }
     @IBOutlet weak var uiViewContainerMovieRecomendations: UIView!
     @IBOutlet weak private var uiViewContainerSimilarMovie: UIView!
+    @IBOutlet weak var starRatedView: StarRatedView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -262,9 +263,16 @@ extension DetailViewController: DetailViewProtocol {
             showImageSlider()
             setupView(imageUrlArray: data)
         }
+
+        var voteAverage: Int = .zero
+        if let vote = data.voteAverage {
+            voteAverage = Int(floor(vote / LocalizedConstants.cellMovieDivisorNumberHeight))
+        }
+
         guaranteeMainThread {
             self.titleLabelText.text = data.title
             self.descriptionLabel.text = data.overview
+            self.starRatedView.setData(selectedRate: voteAverage)
         }
     }
 

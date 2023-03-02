@@ -21,7 +21,7 @@ final class StarRatedView: CustomView {
     private var selectedRate: Int = LocalizedConstants.starRatedInitSection
     private var numberStars: Int = LocalizedConstants.starRatedInitSection
 
-    func setData(numberStars: Int, selectedRate: Int) {
+    func setData(selectedRate: Int, numberStars: Int = LocalizedConstants.starRatedNumberStars) {
         guaranteeMainThread {
             self.setupView()
             self.numberStars = numberStars
@@ -29,7 +29,7 @@ final class StarRatedView: CustomView {
             if numberStars >= selectedRate {
                 self.createStars()
             }
-            if selectedRate != 0 {
+            if selectedRate != .zero {
                 self.changeStateStarRate()
             }
         }
