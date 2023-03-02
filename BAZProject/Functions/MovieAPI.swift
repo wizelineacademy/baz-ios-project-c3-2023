@@ -56,7 +56,7 @@ class MovieAPI {
                let originalTitle = result.object(forKey: "original_title") as? String,
                let overview = result.object(forKey: "overview") as? String,
                let genres = result.object(forKey: "genre_ids") as? [Int] {
-                self.movies.append(Movie(id: id, originalTitle: originalTitle, title: title, overview: overview, posterPath: posterPath, genre_ids: genres))
+                self.movies.append(Movie(id: id, originalTitle: originalTitle, title: title, overview: overview, posterPath: posterPath, genre_ids: genres, vote_average: result.object(forKey: "vote_average") as? Int))
             }
         }
         

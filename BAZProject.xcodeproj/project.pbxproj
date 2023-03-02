@@ -106,6 +106,7 @@
 				C89413B229B10FCB00FD0B41 /* Extras */,
 				C30893AF28A2F42B004B1860 /* SceneDelegate.swift */,
 				C30893AD28A2F42B004B1860 /* AppDelegate.swift */,
+				C30893BB28A2F42D004B1860 /* Info.plist */,
 			);
 			path = BAZProject;
 			sourceTree = "<group>";
@@ -195,7 +196,6 @@
 			isa = PBXGroup;
 			children = (
 				C8885ABD298AE98900D78936 /* Assets.xcassets */,
-				C30893BB28A2F42D004B1860 /* Info.plist */,
 			);
 			path = Extras;
 			sourceTree = "<group>";

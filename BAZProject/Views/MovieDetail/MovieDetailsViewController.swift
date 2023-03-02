@@ -53,6 +53,9 @@ class MovieDetailsViewController: UIViewController {
         guard let myMovie = myMovie else { return }
         self.navigationItem.title = myMovie.title
         lblMovieTitle.text = myMovie.title
+        if myMovie.vote_average != nil {
+            lblMovieTitle.text? += "\nRating: "  + String(myMovie.vote_average ?? 0)
+        }
         lblDescription.text = myMovie.overview
         lblGenres.text = getGenres(genres: myMovie.genresArray)
         imgMovie.image = myImage
