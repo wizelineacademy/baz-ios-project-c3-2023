@@ -1,23 +1,81 @@
 //
-//  TrendingTableViewCell.swift
+//  ratedTableViewCell.swift
 //  MovieBucket
 //
-//  Created by Brenda Paola Lara Moreno on 02/03/23.
+//  Created by Brenda Paola Lara Moreno on 01/03/23.
 //
 
 import UIKit
 
 class TrendingTableViewCell: UITableViewCell {
-
+    
+    @IBOutlet weak var trendingCollectionView: UICollectionView!
+    
+    let movieApi = MovieAPI()
+    var movies: [Movie] = []
+    var imagesMovies: [UIImage] = []
+    var view: UIViewController?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        configCollectionView()
+        setUpCell()
+        
+        movieApi.getMovies { [weak self] movies in
+            self?.movies = movies
+            DispatchQueue.main.async {
+                self?.trendingCollectionView.reloadData()
+            }
+        }
     }
+    
+    func configCollectionView(){
+        trendingCollectionView.dataSource = self
+        trendingCollectionView.delegate = self
+        trendingCollectionView.register(UINib(nibName: "MovieCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "movieCell")
+    }
+    
+    func setUpCell() {
+        let configureCell = UICollectionViewFlowLayout()
+        configureCell.scrollDirection = .horizontal
+        configureCell.itemSize =  CGSize(width: 110, height: 200)
+        trendingCollectionView.setCollectionViewLayout(configureCell, animated: false)
+    }
+}
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+//MARK: CollectionView's DataSource
 
-        // Configure the view for the selected state
+extension TrendingTableViewCell: UICollectionViewDataSource{
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as? MovieCollectionViewCell
+        else { return UICollectionViewCell() }
+        
+        movieApi.getImageMovie(urlString: "https://image.tmdb.org/t/p/w500\(movies[indexPath.row].poster_path)") { imageMovie in
+            cell.setupCollectionCell(image: imageMovie ?? UIImage(), title: self.movies[indexPath.row].title)
+        }
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return movies.count
     }
     
 }
+
+//MARK: CollectionView's Delegate
+extension TrendingTableViewCell: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let destination = storyboard.instantiateViewController(withIdentifier: "DetailMovieViewController") as? DetailMovieViewController else {
+            return
+        }
+        destination.movie = movies[indexPath.row]
+        view?.navigationController?.pushViewController(destination, animated: true)
+    }
+    
+    
+}
+
+

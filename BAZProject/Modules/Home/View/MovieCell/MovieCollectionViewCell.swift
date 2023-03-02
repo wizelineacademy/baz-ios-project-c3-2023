@@ -14,15 +14,14 @@ class MovieCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
-    func setupCell(image: UIImage, title: String){
+    func setupCollectionCell(image: UIImage, title: String){
         DispatchQueue.main.async {
             self.imageMovie.image = image
             self.nameMovie.text = title
             self.imageMovie.clipsToBounds = true
-            self.imageMovie.layer.cornerRadius = 25
+            self.imageMovie.layer.cornerRadius = 60
         }
     }
 

@@ -10,6 +10,7 @@ import UIKit
 
 class SearchViewController: UITableViewController {
     
+    // The search bar used to enter search terms.
     @IBOutlet weak var searchBarMovies: UISearchBar!{
         didSet{
             searchBarMovies.returnKeyType = .done
@@ -38,27 +39,25 @@ class SearchViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+        // Configure table view
         configTableview()
-        let movieApi = MovieAPI()
         
-        movies = movieApi.getMovies()
        tableView.reloadData()
         searchBarMovies.delegate = self
        
-        
         func configTableview(){
             tableView.register(UINib(nibName: "HomeTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "Home")
         }
     }
-
 }
 
 // MARK: - TableView's DataSource
-
 extension SearchViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        movies.count
+        return movies.count
     }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Home") as? HomeTableViewCell else { return UITableViewCell() }
         movieApi.getImageMovie(urlString: "https://image.tmdb.org/t/p/w500\(movies[indexPath.row].poster_path)") { imageMovie in
@@ -67,8 +66,6 @@ extension SearchViewController {
         return cell
     }
 }
-
-
 // MARK: - TableView's Delegate
 extension SearchViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -84,29 +81,34 @@ extension SearchViewController {
             return 120.0
     }
 }
-
 // MARK: - Search Bar's Delegate
 
-extension SearchViewController: UISearchBarDelegate{
+extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText == ""{
+        if searchText == "" {
+//            movies = movieApi.getMovies()
+            movieApi.getMovies { movies in
+                self.movies = movies
+            }
             self.tableView.reloadData()
+        } else {
+            searchBar.showsCancelButton = true
+            movieApi.searchMovies(query: searchText) { [weak self] (movies, error) in
+                guard let self = self else { return }
+                if let error = error {
+                    print("Error searching movies: \(error.localizedDescription)")
+                } else if let movies = movies {
+                    self.movies = movies
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                }
+            }
         }
-        searchBar.showsCancelButton = true
-        movies = movies.filter({ movie in
-            return movie.title.contains(searchText)
-        })
-        self.tableView.reloadData()
-    }
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        movies = movieApi.getMovies()
-        searchBar.text?.removeAll()
-        self.tableView.reloadData()
-        searchBar.showsCancelButton = false
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        movies = movieApi.getMovies()
-        self.tableView.reloadData()
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text?.removeAll()
+        searchBar.showsCancelButton = false
     }
 }

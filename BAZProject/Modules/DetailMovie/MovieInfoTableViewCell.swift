@@ -8,16 +8,37 @@
 import UIKit
 
 class MovieInfoTableViewCell: UITableViewCell {
-
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var sectionName: UILabel!
+    
+    let movieApi = MovieAPI()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
+    func configCollectionView(){
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(UINib(nibName: "CastCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "castCell")
+    }
 }
+
+extension MovieInfoTableViewCell: UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "castCell", for: indexPath) as? CastCollectionViewCell
+        else { return UICollectionViewCell() }
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
+    }
+}
+
+
+extension MovieInfoTableViewCell: UICollectionViewDelegate{
+}
+
+

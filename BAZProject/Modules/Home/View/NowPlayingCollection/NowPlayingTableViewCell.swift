@@ -1,5 +1,5 @@
 //
-//  ratedTableViewCell.swift
+// NowPlayingTableViewCell.swift
 //  MovieBucket
 //
 //  Created by Brenda Paola Lara Moreno on 01/03/23.
@@ -7,72 +7,70 @@
 
 import UIKit
 
-class ratedTableViewCell: UITableViewCell {
-    
-    @IBOutlet weak var ratedCollectionView: UICollectionView!
+class NowPlayingTableViewCell: UITableViewCell {
+    @IBOutlet weak var nowPlayingCollectionView: UICollectionView!
     
     let movieApi = MovieAPI()
-    var movies: [Movie] = []
-    var ratedMovies: [Movie] = []
     var imagesMovies: [UIImage] = []
     var view: UIViewController?
+    var nowPlayingmovies: [Movie] = []
     
     override func awakeFromNib() {
         super.awakeFromNib()
         configCollectionView()
         setUpCell()
         
-        movieApi.getRatedMovies { [weak self] ratedMovies in
-            self?.ratedMovies = ratedMovies
+        movieApi.getNowPlayingMovies { [weak self] nowPlayingmovies in
+            self?.nowPlayingmovies = nowPlayingmovies
             DispatchQueue.main.async {
-                self?.ratedCollectionView.reloadData()
+                self?.nowPlayingCollectionView.reloadData()
             }
-        }    }
+        }
+    }
     
     func configCollectionView(){
-        ratedCollectionView.dataSource = self
-        ratedCollectionView.delegate = self
-        ratedCollectionView.register(UINib(nibName: "MovieCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "movieCell")
+        nowPlayingCollectionView.dataSource = self
+        nowPlayingCollectionView.delegate = self
+        nowPlayingCollectionView.register(UINib(nibName: "MovieCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "movieCell")
     }
     
     func setUpCell() {
         let configureCell = UICollectionViewFlowLayout()
         configureCell.scrollDirection = .horizontal
-        configureCell.itemSize =  CGSize(width: 210, height: 300)
-        ratedCollectionView.setCollectionViewLayout(configureCell, animated: false)
+        configureCell.itemSize =  CGSize(width: 110, height: 200)
+        nowPlayingCollectionView.setCollectionViewLayout(configureCell, animated: false)
     }
 }
 
-//MARK: CollectionView's DataSource
+//MARK: - CollectionView's DataSource
 
-extension ratedTableViewCell: UICollectionViewDataSource{
+extension NowPlayingTableViewCell: UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as? MovieCollectionViewCell
         else { return UICollectionViewCell() }
         
-        movieApi.getImageMovie(urlString: "https://image.tmdb.org/t/p/w500\(ratedMovies[indexPath.row].poster_path)") { imageMovie in
-            cell.setupCollectionCell(image: imageMovie ?? UIImage(), title: self.ratedMovies[indexPath.row].title)
+        movieApi.getImageMovie(urlString: "https://image.tmdb.org/t/p/w500\(nowPlayingmovies[indexPath.row].poster_path)") { imageMovie in
+            cell.setupCollectionCell(image: imageMovie ?? UIImage(), title: self.nowPlayingmovies[indexPath.row].title)
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("cantidad de peliculas\(movies.count)")
-        return ratedMovies.count
+        return nowPlayingmovies.count
     }
     
 }
 
-//MARK: CollectionView's Delegate
-extension ratedTableViewCell: UICollectionViewDelegate {
+// MARK: - CollectionView's Delegate
+extension NowPlayingTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let destination = storyboard.instantiateViewController(withIdentifier: "DetailMovieViewController") as? DetailMovieViewController else {
             return
         }
-        destination.movie = ratedMovies[indexPath.row]
+        destination.movie = nowPlayingmovies[indexPath.row]
         view?.navigationController?.pushViewController(destination, animated: true)
     }
     
