@@ -167,7 +167,8 @@ extension HomeViewController: HomeViewProtocol {
         var cellMovieType = [CellMovieType]()
         data.forEach { movie in
             if let bac = movie.backdropPath {
-                cellMovieType.append(CellMovieType(imageUrlString: Endpoint.img(idImage: bac, sizeImage: .w500).urlString, title: movie.title ?? ""))
+                let imageUrlString: String = Endpoint.img(idImage: bac, sizeImage: .w500).urlString
+                cellMovieType.append(CellMovieType(imageUrlString: imageUrlString, title: movie.title ?? ""))
             }
         }
 

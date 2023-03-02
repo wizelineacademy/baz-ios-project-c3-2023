@@ -68,7 +68,8 @@ extension Endpoint {
         case .upcoming:
             return BaseUrl.apiWithEndPoint(endPoint: .apiKeyEndPointUpcomingMovies).url
         case .recomendations(idMovie: let idMovie):
-            let recomendationsUrlString: String = "\(String.apiKeyEndPointMovie)/\(idMovie)/\(String.apiKeyEndPointRecomendations)"
+            let endPointMovie: String = String.apiKeyEndPointMovie
+            let recomendationsUrlString: String = "\(endPointMovie)/\(idMovie)/\(String.apiKeyEndPointRecomendations)"
             return "\(BaseUrl.apiWithEndPoint(endPoint: recomendationsUrlString).url)"
         case .nextTrendingMovie(mediaType: let mediaType, timeWindow: let timeWindow, page: let page):
             let url: String = "\(String.apiKeyEndPointTrending)/\(mediaType.rawValue)/\(timeWindow.rawValue)"

@@ -182,7 +182,9 @@ final class ImageSlider: CustomView {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellSlider.identifier,
                                                          for: indexPath) as? CellSlider,
             let imageUrl: String = getImageUrl(indexPath.row) {
-            cell.setData(imageUrl: Endpoint.img(idImage: imageUrl, sizeImage: .w500).urlString, imageContentMode: imageContentMode)
+            let imageUrlString: String = Endpoint.img(idImage: imageUrl,
+                                                      sizeImage: .w500).urlString
+            cell.setData(imageUrl: imageUrlString, imageContentMode: imageContentMode)
             return cell
         }
         return UICollectionViewCell()

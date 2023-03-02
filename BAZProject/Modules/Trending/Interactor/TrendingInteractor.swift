@@ -14,11 +14,17 @@ class TrendingInteractor {
 
 extension TrendingInteractor: TrendingInteractorInputProtocol {
     func fetchTrendingMedia(mediaType: MediaType, timeWindow: TimeWindowType, page: Int) {
-        dataManager?.requestTrendingMedia(Endpoint.trending(mediaType: mediaType, timeWindow: timeWindow, page: page).urlString)
+        let trendingUrlString: String = Endpoint.trending(mediaType: mediaType,
+                                                          timeWindow: timeWindow,
+                                                          page: page).urlString
+        dataManager?.requestTrendingMedia(trendingUrlString)
     }
 
     func fetchNextTrendingMedia(mediaType: MediaType, timeWindow: TimeWindowType, page: Int) {
-        dataManager?.requestNextTrendingMedia(Endpoint.nextTrendingMovie(mediaType: mediaType, timeWindow: timeWindow, page: page).urlString)
+        let nextMovieUrlString: String = Endpoint.nextTrendingMovie(mediaType: mediaType,
+                                                                            timeWindow: timeWindow,
+                                                                            page: page).urlString
+        dataManager?.requestNextTrendingMedia(nextMovieUrlString)
     }
 
     func fetchSearchMovie(with keyword: String) {
