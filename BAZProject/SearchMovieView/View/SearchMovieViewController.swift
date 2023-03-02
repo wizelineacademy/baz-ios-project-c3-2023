@@ -15,7 +15,7 @@ final class SearchMovieViewController: UIViewController {
     
     let NUMBER_ONE = 1
     var moviesSearch: [Movie] = []
-    let movieApi = MovieAPI()
+    let viewModel = SearchMovieViewModel()
     let notificationCenter = NotificationCenter.default
     
     override func viewDidLoad() {
@@ -76,11 +76,9 @@ final class SearchMovieViewController: UIViewController {
     }
     
     @IBAction func onTapSearchButton(_ sender: Any) {
-        movieApi.getMoviesSearch(queryMovie: tfWordSearch.text ?? "") { movies in
-            self.moviesSearch = movies ?? []
-            self.view.endEditing(true)
-            self.collectionViewSearch.reloadData()
-        }
+        moviesSearch = viewModel.fetchSearchMovies(query: tfWordSearch.text ?? "")
+        self.view.endEditing(true)
+        self.collectionViewSearch.reloadData()
     }
     
     @objc func countMovies(_ sender: Any) {

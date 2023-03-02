@@ -20,7 +20,7 @@ final class HomeMoviesViewController: UIViewController {
     var moviesNowPlaying: [Movie] = []
     var moviesLatest: [Movie] = []
     var movie: Movie? = nil
-    let movieApi = MovieAPI()
+    let viewModel = PrincipalViewModel()
     let bannerView: BannerMovieView = BannerMovieView()
     let notificationCenter = NotificationCenter.default
     static var countMoviesUser: Int = 0
@@ -87,27 +87,13 @@ final class HomeMoviesViewController: UIViewController {
         }
     }
     
-    /// Obtains an array specific movies
-    private func fetchMovies(with type: TypeMovieList) {
-        movieApi.getMovies(typeMovie: type, completion: { moviesArray in
-            switch type {
-            case .popularity:
-                self.moviesPopular = moviesArray ?? []
-            case .topRated:
-                self.moviesNowPlaying = moviesArray ?? []
-            case .upcoming:
-                self.moviesLatest = moviesArray ?? []
-            }
-        })
-    }
-    
     /**
      Consume MovieApi for each type movie and get array specific movies from fetchMovies()
      */
     private func fetchMoviewsForTypeMovie() {
-        fetchMovies(with: .popularity)
-        fetchMovies(with: .topRated)
-        fetchMovies(with: .upcoming)
+        moviesPopular = viewModel.fetchMovies(with: .popularity)
+        moviesNowPlaying = viewModel.fetchMovies(with: .topRated)
+        moviesLatest = viewModel.fetchMovies(with: .upcoming)
     }
     
     private func setUICarousels() {

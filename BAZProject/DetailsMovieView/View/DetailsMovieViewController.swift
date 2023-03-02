@@ -13,7 +13,7 @@ final class DetailsMovieViewController: UIViewController {
     @IBOutlet weak var imgMovie: UIImageView!
     
     var specificMovie: Movie? = nil
-    let movieApi = MovieAPI()
+    let viewModel = DetailsMovieViewModel()
     var detailsMovie: MovieDetail? = nil
     let labelsMovieView: LabelsMovie = LabelsMovie()
     let notificationName = Notification.Name("CountMoviesNotification")
@@ -56,9 +56,10 @@ final class DetailsMovieViewController: UIViewController {
     }
     
     private func fetchDetailsMovie() {
-        movieApi.getDetailMovie(idMovie: specificMovie?.id ?? 0) { details in
-            self.detailsMovie = details
+        guard let details = viewModel.fetchDetailMovie(idMovie: specificMovie?.id ?? 0) else {
+            return
         }
+        detailsMovie = details
     }
     
     private func loadValuesDetails() {
