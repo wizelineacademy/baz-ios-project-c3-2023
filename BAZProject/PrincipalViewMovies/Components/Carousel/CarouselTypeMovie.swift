@@ -31,6 +31,9 @@ final class CarouselTypeMovie: UIView {
         setUIForView()
     }
     
+    /**
+     Set UI for first time when is instantiated this view
+     */
     private func setUIForView() {
         let bundleCustomCarouselView = Bundle(for: CarouselTypeMovie.self)
         let view = UINib(nibName: "CarouselTypeMovie",
@@ -58,6 +61,10 @@ final class CarouselTypeMovie: UIView {
         collectionCarouselMovies.register(UINib(nibName: "CarouselCollectionViewCell", bundle: bundle), forCellWithReuseIdentifier: "CarouselCollectionViewCell")
     }
     
+    /**
+     Obtains number items for carousel for show un moviews home
+     - Returns: numbers of items for carousel
+     */
     private func getNumberItemsCarousel() -> Int {
         moviesType.count > 5 ? 5 : moviesType.count
     }
@@ -91,6 +98,7 @@ extension CarouselTypeMovie: UICollectionViewDelegate, UICollectionViewDelegateF
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        ///  Notify when collection view cell is selected for push to details movie
         delegate?.tapGestureImgMovie(idMovie: moviesType[indexPath.row].id, typeMovieList: typeMovieListCarousel)
     }
 }

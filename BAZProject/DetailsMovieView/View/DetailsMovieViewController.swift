@@ -16,15 +16,33 @@ final class DetailsMovieViewController: UIViewController {
     let movieApi = MovieAPI()
     var detailsMovie: MovieDetail? = nil
     let labelsMovieView: LabelsMovie = LabelsMovie()
+    let notificationName = Notification.Name("CountMoviesNotification")
+    let notificationCenter = NotificationCenter.default
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = specificMovie?.title
         setUIBanner()
         fetchDetailsMovie()
+        viewLabelsAdded()
+        centerNotifCreated()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setUINavigation()
         loadValuesDetails()
         loadLabelOverview()
-        viewLabelsAdded()
+    }
+    
+    /**
+     Create center notification name CountMoviesNotification to ViewController
+     */
+    private func centerNotifCreated() {
+        notificationCenter.post(name: notificationName, object: nil, userInfo: nil)
+    }
+    
+    private func setUINavigation() {
         self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.navigationBar.tintColor = .orange
     }
@@ -47,6 +65,8 @@ final class DetailsMovieViewController: UIViewController {
         labelsMovieView.lblIsAdult.isHidden = !(detailsMovie?.adult ?? true)
         labelsMovieView.lblStatus.text = "Status: \(detailsMovie?.status ?? "")"
         labelsMovieView.lblLanguage.text = "Language \(detailsMovie?.originalLanguage ?? "")"
+        labelsMovieView.lblStatus.textColor = .orange
+        labelsMovieView.lblLanguage.textColor = .orange
     }
     
     private func loadLabelOverview() {
@@ -56,7 +76,6 @@ final class DetailsMovieViewController: UIViewController {
         lblOverview.text = specificMovie?.overView ?? ""
         lblOverview.textColor = .white
         stackVerticalContainer.addArrangedSubview(lblOverview)
-        
     }
     
     private func viewLabelsAdded() {

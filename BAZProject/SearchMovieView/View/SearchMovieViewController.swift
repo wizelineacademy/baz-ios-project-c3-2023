@@ -16,21 +16,37 @@ final class SearchMovieViewController: UIViewController {
     let NUMBER_ONE = 1
     var moviesSearch: [Movie] = []
     let movieApi = MovieAPI()
+    let notificationCenter = NotificationCenter.default
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUINavigation()
         addGestureKeyboard()
         registerCollectionViewCell()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        addNotificationObserver()
+        setUINavigation()
         setUISearchView()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        notificationCenter.removeObserver(self)
+    }
+    
+    /**
+     Add center notification name CountMoviesNotification to ViewController
+     */
+    private func addNotificationObserver() {
+        let notificationName = Notification.Name("CountMoviesNotification")
+        notificationCenter.addObserver(self, selector: #selector(countMovies(_:)), name: notificationName, object: nil)
     }
     
     private func setUINavigation() {
         self.title = "Search movie"
+        self.tabBarController?.tabBar.isHidden = false
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
@@ -65,6 +81,10 @@ final class SearchMovieViewController: UIViewController {
             self.view.endEditing(true)
             self.collectionViewSearch.reloadData()
         }
+    }
+    
+    @objc func countMovies(_ sender: Any) {
+        HomeMoviesViewController.countMoviesUser += 1
     }
 }
 

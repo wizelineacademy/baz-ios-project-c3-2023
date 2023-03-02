@@ -13,6 +13,7 @@ final class HomeMoviesViewController: UIViewController {
     @IBOutlet weak var viewContainerTopLbls: UIView!
     @IBOutlet weak var scrollConatiner: UIScrollView!
     @IBOutlet weak var stackVerticalContainer: UIStackView!
+    @IBOutlet weak var lblNumberShowMovies: UILabel!
     
     //    MARK: Vars and Constants
     var moviesPopular: [Movie] = []
@@ -21,6 +22,8 @@ final class HomeMoviesViewController: UIViewController {
     var movie: Movie? = nil
     let movieApi = MovieAPI()
     let bannerView: BannerMovieView = BannerMovieView()
+    let notificationCenter = NotificationCenter.default
+    static var countMoviesUser: Int = 0
     
     /**
      this constant sets the order carousel sections
@@ -34,19 +37,38 @@ final class HomeMoviesViewController: UIViewController {
     //    MARK: Life cycle VC
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Movies+"
-        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
-        self.navigationController?.navigationBar.titleTextAttributes = textAttributes
-        
+        setUINavigation()
         setupUITrendingView()
         setDelegatesCarousels()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fetchMoviesHome()
+        self.tabBarController?.tabBar.isHidden = false
+        fetchMoviewsForTypeMovie()
         setUICarousels()
         setUIBanner()
+        addNotificationObserver()
+        lblNumberShowMovies.text = "Peliculas visualizadas: \(HomeMoviesViewController.countMoviesUser)"
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        notificationCenter.removeObserver(self)
+    }
+    
+    /**
+     Add center notification name CountMoviesNotification to ViewController
+     */
+    private func addNotificationObserver() {
+        let notificationName = Notification.Name("CountMoviesNotification")
+        notificationCenter.addObserver(self, selector: #selector(countMovies(_:)), name: notificationName, object: nil)
+    }
+    
+    private func setUINavigation() {
+        self.title = "Movies+"
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
     
     private func setDelegatesCarousels() {
@@ -65,29 +87,27 @@ final class HomeMoviesViewController: UIViewController {
         }
     }
     
-    private func fetchMoviesHome() {
-        fetchMoviesPopularity()
-        fetchMoviesNowPaying()
-        fetchMoviesLatest()
-    }
-    
-    private func fetchMoviesPopularity() {
-        fetchMovies(with: .popularity)
-    }
-    
-    private func fetchMoviesNowPaying() {
-        fetchMovies(with: .topRated)
-    }
-    
-    private func fetchMoviesLatest() {
-        fetchMovies(with: .upcoming)
-    }
-    
     /// Obtains an array specific movies
     private func fetchMovies(with type: TypeMovieList) {
         movieApi.getMovies(typeMovie: type, completion: { moviesArray in
-            self.moviesPopular = moviesArray ?? []
+            switch type {
+            case .popularity:
+                self.moviesPopular = moviesArray ?? []
+            case .topRated:
+                self.moviesNowPlaying = moviesArray ?? []
+            case .upcoming:
+                self.moviesLatest = moviesArray ?? []
+            }
         })
+    }
+    
+    /**
+     Consume MovieApi for each type movie and get array specific movies from fetchMovies()
+     */
+    private func fetchMoviewsForTypeMovie() {
+        fetchMovies(with: .popularity)
+        fetchMovies(with: .topRated)
+        fetchMovies(with: .upcoming)
     }
     
     private func setUICarousels() {
@@ -119,6 +139,11 @@ final class HomeMoviesViewController: UIViewController {
         if let urlString = url { bannerView.imageBanner.load(url: urlString) }
         bannerView.imageBanner.contentMode = .scaleAspectFill
         bannerView.viewContainer.backgroundColor = UIColor(named: "DarkStar")
+    }
+    
+    @objc func countMovies(_ sender: Any) {
+        HomeMoviesViewController.countMoviesUser += 1
+        lblNumberShowMovies.text = "Peliculas visualizadas: \(HomeMoviesViewController.countMoviesUser)"
     }
 }
 
