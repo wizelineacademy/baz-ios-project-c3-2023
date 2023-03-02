@@ -7,20 +7,19 @@
 
 import UIKit
 
-/**
- This class allows create an generic cell for an empty state; way of use: create a UIView and assign it the 'CellEmptyState' class; call the setData method to set the cell, example: 'setData(message: "404 - No data")'
-
- :conditions: the available methods are:
- * func setData(message: String)
- * func nib()
- */
+/// This class allows create an generic cell for an empty state.
+/// Way of use: create a UIView and assign it the 'CellEmptyState' class.
+/// Call the setData method to set the cell, example: 'setData(message: "404 - No data")'
+///
+/// :conditions: the available methods are:
+/// * func setData(message: String)
+/// * func nib()
 
 class CellEmptyState: UITableViewCell {
     static let  identifier: String = .cellEmptyStateXibIdentifier
-    /**
-     This function allows to get the UINib of the cell.
-     Way to call CellEmptyState.nib()
-     */
+
+     /// This function allows to get the UINib of the cell.
+     /// Way to call CellEmptyState.nib()
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
     }
@@ -31,11 +30,9 @@ class CellEmptyState: UITableViewCell {
         super.awakeFromNib()
     }
 
-    /**
-     This function allows to configure the cell, indicating the 'message'.
-
-     :param: message String indicating the name param message (example: setData(message: "404 - No data"))
-     */
+    /// This function allows to configure the cell, indicating the 'message'.
+    ///
+    /// :param: message String indicating the name param message (example: setData(message: "404 - No data"))
     func setData(message: String) {
         guaranteeMainThread {
             self.messageLabel.text = message
