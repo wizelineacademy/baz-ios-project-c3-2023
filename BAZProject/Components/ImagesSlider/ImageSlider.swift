@@ -23,7 +23,7 @@ final class ImageSlider: CustomView {
         return UINib(nibName: identifier, bundle: nil)
     }
 
-    var delegate: ImageSliderDelegate?
+    weak var delegate: ImageSliderDelegate?
 
     // MARK: - Private methods
     private var imageUrlArray: [String]?
