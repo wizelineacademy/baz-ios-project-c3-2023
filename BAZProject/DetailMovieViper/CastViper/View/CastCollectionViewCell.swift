@@ -13,8 +13,7 @@ class CastCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var characterLabel: UILabel!
     
-    
-    func setupCastCell(castImage: UIImage?, name: String, character: String){
+    func setupCastCell(castImage: UIImage?, name: String, character: String) {
         DispatchQueue.main.async {
             self.nameLabel.text = name
             self.characterLabel.text = character

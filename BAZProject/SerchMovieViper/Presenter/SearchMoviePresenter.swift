@@ -25,7 +25,7 @@ class SearchMoviePresenter: SearchMoviePresenterProtocol {
     /// - Parameter searchTerm: String that represents the searched string of the user
     func setSearching(isSearching: Bool, searchTerm: String) {
         self.isSearching = isSearching
-        if self.isSearching{
+        if self.isSearching {
             interactor?.getKeyword(keyword: searchTerm)
         } else {
             interactor?.getSearched(searchTerm: searchTerm)
@@ -101,7 +101,7 @@ class SearchMoviePresenter: SearchMoviePresenterProtocol {
             interactor?.getSearched(searchTerm: keywords[indexPath.row].name ?? "")
         } else {
             tableView.deselectRow(at: indexPath, animated: false)
-            if let view = view{
+            if let view = view {
                 self.router?.goToDetails(from: view, idMovie: searchedMovies[indexPath.row].id)
             }
         }

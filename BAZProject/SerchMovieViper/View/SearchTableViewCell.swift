@@ -13,11 +13,11 @@ class SearchTableViewCell: UITableViewCell {
     @IBOutlet weak var nameMovieLabel: UILabel!
     @IBOutlet weak var searchedContentView: UIView!
         
-    func setupCell(image: UIImage?, name: String){
+    func setupCell(image: UIImage?, name: String) {
         DispatchQueue.main.async {
             self.movieImageview.clipsToBounds = true
             self.movieImageview.layer.cornerRadius = 15.0
-            if let image = image{
+            if let image = image {
                 self.movieImageview.image = image
             } else {
                 self.movieImageview.image = UIImage(named: "poster")

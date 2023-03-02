@@ -94,7 +94,7 @@ class HomeMoviesPresenter: HomeMoviesPresenterProtocol  {
     /// - Parameter completion: Escaping closure that escapes a UIImage or a nil
     /// - Returns: escaping closure with the UIImage type, if the parse fails, can return nil
     func getImage(index: Int, completion: @escaping (UIImage?) -> Void) {
-        if let urlImage = self.toShowMovies[index].poster_path{
+        if let urlImage = self.toShowMovies[index].poster_path {
             ImageProvider.shared.getImage(for: urlImage) { movieImage in
                 completion(movieImage)
             }
@@ -119,7 +119,7 @@ class HomeMoviesPresenter: HomeMoviesPresenterProtocol  {
     /// - Parameter index: Index of the array categoryMovies for get the string name
     /// - Returns: name of the cell in string format
     func getCategorieTitle(index: Int) -> String {
-        switch index{
+        switch index {
             case 0:
                 return "Trending"
             case 1:

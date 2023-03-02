@@ -31,7 +31,7 @@ class DetailMovieView: UIViewController {
         presenter?.viewDidLoad()
     }
     
-    func setupDetailTableView(){
+    func setupDetailTableView() {
         detailTableViewCell.separatorColor = .label
         detailTableViewCell.dataSource = self
         detailTableViewCell.delegate = self

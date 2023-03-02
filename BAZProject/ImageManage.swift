@@ -18,7 +18,7 @@ extension UIImageView {
 }
 
 extension UIView {
-    func addShadow(){
+    func addShadow() {
         self.layer.borderWidth = 5.0
         self.layer.borderColor = UIColor.clear.cgColor
         self.layer.masksToBounds = true

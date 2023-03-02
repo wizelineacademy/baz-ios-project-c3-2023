@@ -67,7 +67,7 @@ class MovieAPI {
             if let data = try? Data(contentsOf: url),
                let json = try? JSONSerialization.jsonObject(with: data) as? NSDictionary,
                let results = json.object(forKey: "results") as? [NSDictionary], results.count > 0{
-                do{
+                do {
                     let reviewsData = try JSONSerialization.data(withJSONObject: results, options: [])
                     let reviewsDecode = try? JSONDecoder().decode([Reviews].self, from: reviewsData)
                     let reviews = reviewsDecode
@@ -91,7 +91,7 @@ class MovieAPI {
             if let data = try? Data(contentsOf: url),
                let json = try? JSONSerialization.jsonObject(with: data) as? NSDictionary,
                let results = json.object(forKey: "cast") as? [NSDictionary], results.count > 0{
-                do{
+                do {
                     let castData = try JSONSerialization.data(withJSONObject: results, options: [])
                     let castDecode = try? JSONDecoder().decode([Cast].self, from: castData)
                     let cast = castDecode
