@@ -13,8 +13,11 @@ class MainTabBarRouter {
         let mainTabBar = UITabBarController()
         let trendingView = TrendingRouter.createTrendingModule()
         let topRatedView = TopRatedRouter.createTopRatedModule()
+        let popularView = PopularRouter.createPopularModule()
         let searchingViewController = SearchingRouter.createSearchingModule()
-        mainTabBar.viewControllers = [trendingView, topRatedView, searchingViewController]
+        let nowPlayingViewController = NowPlayingRouter.createNowPlayingModule()
+        let upcomingViewController = UpcomingRouter.createUpcomingModule()
+        mainTabBar.viewControllers = [trendingView, topRatedView, popularView, searchingViewController, nowPlayingViewController, upcomingViewController]
         MainTabBarRouter.addMoviesShownObserver()
         return mainTabBar
     }
