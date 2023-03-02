@@ -12,6 +12,8 @@ class SearchTableViewCell: UITableViewCell {
     @IBOutlet weak var keyword: UILabel!
     @IBOutlet weak var icon: UIImageView!
     
+    static let identifier = "keywordCell"
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

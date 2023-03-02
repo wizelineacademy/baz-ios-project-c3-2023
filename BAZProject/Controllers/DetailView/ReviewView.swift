@@ -16,8 +16,12 @@ class ReviewView: UIView {
     @IBOutlet weak var noReview: UILabel!
     @IBOutlet weak var sectionLayer: UIView!
     
+    static let nibIdentifier = "ReviewView"
+    
     class func initReviewView() -> UIView {
-        guard let review = Bundle.main.loadNibNamed("ReviewView", owner: self, options: nil)?.first as? ReviewView else { return UIView() }
+        guard let review = Bundle.main.loadNibNamed(ReviewView.nibIdentifier,
+                                                    owner: self,
+                                                    options: nil)?.first as? ReviewView else { return UIView() }
         review.sectionLayer.layer.cornerRadius = 15
         review.sectionLayer.layer.maskedCorners = [.layerMaxXMinYCorner]
         return review

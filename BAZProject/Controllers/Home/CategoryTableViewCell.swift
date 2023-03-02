@@ -13,25 +13,35 @@ protocol CategoryTableCellDelegate: AnyObject {
 
 class CategoryTableViewCell: UITableViewCell {
     
+    // MARK: properties
+    
     @IBOutlet weak var collectionToCarrucel: UICollectionView!
     
+    static let identifier = "CategoryTableViewCell"
+    let defaultPoster = UIImage(named: "poster")
+    weak var categoryTableCellDelegate: CategoryTableCellDelegate?
     var moviesToShow: [Movie] = [] {
         didSet {
             collectionToCarrucel.reloadData()
         }
     }
-    weak var categoryTableCellDelegate: CategoryTableCellDelegate?
 
+    // MARK: View lifecycle
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 
+    // MARK: Methods
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
     func setCollectionView() {
-        collectionToCarrucel.register(UINib(nibName: "MovieGalleryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MovieGallery")
+        collectionToCarrucel.register(
+            UINib(nibName: MovieGalleryCollectionViewCell.nibIdentifier, bundle: nil),
+            forCellWithReuseIdentifier: MovieGalleryCollectionViewCell.identifier)
         setDelegates()
         setFlowLayout()
     }
@@ -66,7 +76,7 @@ extension CategoryTableViewCell: UICollectionViewDataSource {
         if let partialURLImage =  moviesToShow[indexPath.row].posterPath {
             collectionCell?.movieImage.fetchImage(with: partialURLImage)
         } else {
-            collectionCell?.movieImage.image = UIImage(named: "poster")
+            collectionCell?.movieImage.image = defaultPoster
         }
         guard let collectionCell = collectionCell else { return MovieGalleryCollectionViewCell() }
         return collectionCell
@@ -78,7 +88,8 @@ extension CategoryTableViewCell: UICollectionViewDataSource {
 extension CategoryTableViewCell: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        categoryTableCellDelegate?.didSelectMovie(movieId: moviesToShow[indexPath.row].id, indexRow: indexPath.row)
+        categoryTableCellDelegate?.didSelectMovie(movieId: moviesToShow[indexPath.row].id,
+                                                  indexRow: indexPath.row)
     }
     
 }

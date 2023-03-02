@@ -13,6 +13,9 @@ class MovieGalleryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var movieTitle: UILabel!
     @IBOutlet weak var voteAvarage: UILabel!
     
+    static let nibIdentifier = "MovieGalleryCollectionViewCell"
+    static let identifier = "MovieGallery"
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

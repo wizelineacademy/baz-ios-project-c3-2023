@@ -9,6 +9,8 @@ import UIKit
 
 class HomeTableViewController: UITableViewController {
     
+    // MARK: properties
+    
     let notificationDetail = Notification.Name(rawValue: deltailMovieSeen)
     let movieApi = MovieAPI()
     var heightRowTable: CGFloat = 250
@@ -21,14 +23,19 @@ class HomeTableViewController: UITableViewController {
         .upcoming: [],
     ]
     
+    // MARK: View lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         createObserver()
         getMovies()
     }
     
+    // MARK: Methods
+    
     func createObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(reload), name: notificationDetail, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reload),
+                                               name: notificationDetail, object: nil)
     }
     
     @objc
@@ -51,7 +58,9 @@ class HomeTableViewController: UITableViewController {
     func getCategory(category: MovieAPICategory) {
         let category = category
         let categoryURL = MovieCategoryURLRequestFactory(category: category)
-        let sessionFetcher = MovieAPI.URLSessionFetcher(urlRequestFactory: categoryURL, decodableResultAdapter: JSONDecoderResultAdapter())
+        let sessionFetcher = MovieAPI.URLSessionFetcher(
+            urlRequestFactory: categoryURL,
+            decodableResultAdapter: JSONDecoderResultAdapter())
         
         sessionFetcher.fetchData() { [weak self] (movieResult: MovieAPIResult?, error: Error?) in
             if let movieResult = movieResult {
@@ -93,7 +102,8 @@ extension HomeTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTableViewCell", for: indexPath) as? CategoryTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: CategoryTableViewCell.identifier,
+                                                 for: indexPath) as? CategoryTableViewCell
         cell?.setCollectionView()
         cell?.categoryTableCellDelegate = self
         switch indexPath.section {

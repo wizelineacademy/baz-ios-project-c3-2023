@@ -13,6 +13,9 @@ class ReviewTableViewCell: UITableViewCell {
     @IBOutlet weak var authorUsername: UILabel!
     @IBOutlet weak var reviewRating: UILabel!
     
+    static let nibIdentifier = "ReviewTableViewCell"
+    static let identifier = "reviewCell"
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

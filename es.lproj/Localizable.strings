@@ -9,4 +9,17 @@
 "MovieDetailPVC.authorUserName" = "Anónimo";
 "MSCVC.resultText" = "No encontramos nada relacionado con";
 "MSCVC.resultTextComplement" = "\nRecuerda que puedes buscar por palabra clave o título";
+"MDVPC.noOverview" = "Lo sentimos, aún no tenemos una reseña disponible para esta pelicula.";
+"MDVPC.noAuthorName" = "Anónimo";
+"MDVPC.noReviews" = "Aún no hay comentario para esta pelicula.";
+"MDVPC.backButtonTitle" = " ";
+"MDVPC.navbarTitle" = "movie CLUB";
+"MDS.cast" = "Elenco";
+"MDS.similarMovies" = "Peliculas similares";
+"MDS.recomendationMovies" = "Peliculas recomendadas";
+"CategoryName.trending" = "Tendencias" ;
+"CategoryName.nowPlaying" = "Lo más visto" ;
+"CategoryName.popular" = "Populares" ;
+"CategoryName.topRated" = "Mejor valorado" ;
+"CategoryName.upcoming" = "Próximamente" ;
 

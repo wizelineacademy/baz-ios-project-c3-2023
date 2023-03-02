@@ -19,8 +19,10 @@ class TopDetailView: UIView {
     @IBOutlet weak var imageLayer: UIView!
     @IBOutlet weak var titleLayer: UIView!
     
+    static let nibIdentifier = "TopDetailView"
+    
     class func intitTopDetail(movie: Movie?) -> UIView {
-        guard let topDetail = Bundle.main.loadNibNamed("TopDetailView", owner: self, options: nil)?.first as? TopDetailView, let movie = movie else { return UIView() }
+        guard let topDetail = Bundle.main.loadNibNamed(TopDetailView.nibIdentifier, owner: self, options: nil)?.first as? TopDetailView, let movie = movie else { return UIView() }
         topDetail.title.text =  movie.title
         topDetail.topInfoView.layer.cornerRadius = 20
         topDetail.imageLayer.layer.cornerRadius = 15

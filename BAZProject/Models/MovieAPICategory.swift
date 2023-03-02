@@ -32,15 +32,15 @@ enum MovieAPICategory: Int {
     var categoryName: String {
         switch self {
         case .trending:
-            return "Trending"
+            return NSLocalizedString("CategoryName.trending", comment: "section title")
         case .nowPlaying:
-            return "Now playing"
+            return NSLocalizedString("CategoryName.nowPlaying", comment: "section title")
         case .popular:
-            return "Popular"
+            return NSLocalizedString("CategoryName.popular", comment: "section title")
         case .topRated:
-            return "Top Rated"
+            return NSLocalizedString("CategoryName.topRated", comment: "section title")
         case .upcoming:
-            return "Upcoming"
+            return NSLocalizedString("CategoryName.upcoming", comment: "section title")
         }
     }
     
