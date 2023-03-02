@@ -42,9 +42,20 @@ class HomeInteractor: HomeBusinessLogic {
     }
     
     func saveMovieWatched(request: Home.SaveMovieWatched.Request) {
-        moviesWatched.append(request.movie)
+        
+        if moviesWatched.count == 0 || (moviesWatched.count < 10 && !isDuplicateMovieById(movieToEvaluate: request.movie)){
+            moviesWatched.append(request.movie)
+        } else if moviesWatched.count >= 10 && !isDuplicateMovieById(movieToEvaluate: request.movie) {
+            moviesWatched.remove(at: 0)
+            moviesWatched.append(request.movie)
+        }
+
         let response = Home.SaveMovieWatched.Response(movies: moviesWatched)
         presenter?.presentMoviesWatched(response: response)
+    }
+    
+    private func isDuplicateMovieById(movieToEvaluate: MovieSearch) -> Bool {
+        moviesWatched.filter { $0.id == movieToEvaluate.id }.count > 0
     }
 }
 
