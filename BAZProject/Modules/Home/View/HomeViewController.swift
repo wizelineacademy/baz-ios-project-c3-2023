@@ -17,9 +17,20 @@ final class HomeViewController: UIViewController {
     @IBOutlet weak private var movieTopSlider: ImageSlider!
     @IBOutlet weak private var nowPlayingSlider: ImageSlider!
     @IBOutlet weak var popularImageSlider: ImageSlider!
+    @IBOutlet weak var upcomingMoviesSlider: ImageSlider!
     @IBOutlet weak private var titleNowPlayingLabel: UILabel! {
         didSet {
             titleNowPlayingLabel.text = .homeTitleNowPlaying
+        }
+    }
+    @IBOutlet weak var titlePopularMoviesLabel: UILabel! {
+        didSet {
+            titlePopularMoviesLabel.text = .homeTitlePopularMovies
+        }
+    }
+    @IBOutlet weak var upcomingMoviesTitleLabel: UILabel! {
+        didSet {
+            upcomingMoviesTitleLabel.text = .homeTitleUpcoming
         }
     }
 
@@ -28,6 +39,7 @@ final class HomeViewController: UIViewController {
     var movieTopRated: [MovieTopRatedResult]?
     var nowPlaying: [NowPlayingResult]?
     var popularMovies: [PopularMoviesModelResult]?
+    var upcomingMovies: [UpcomingModelResult]?
 
     // MARK: - Private properties
     private var errorGetData: Bool = false
@@ -53,12 +65,14 @@ final class HomeViewController: UIViewController {
         movieTopSlider.initTimer()
         nowPlayingSlider.initTimer()
         popularImageSlider.initTimer()
+        upcomingMoviesSlider.initTimer()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         movieTopSlider.stopTimmer()
         nowPlayingSlider.stopTimmer()
-        popularImageSlider.initTimer()
+        popularImageSlider.stopTimmer()
+        upcomingMoviesSlider.stopTimmer()
         stopLoading()
     }
 
@@ -101,7 +115,16 @@ final class HomeViewController: UIViewController {
 
 extension HomeViewController: HomeViewProtocol {
     func updateView(data: [UpcomingModelResult]) {
-        
+        upcomingMovies = data
+        var posterUrlString: [String] = []
+        data.forEach { movie in
+            if let poster = movie.posterPath {
+                posterUrlString.append(poster)
+            }
+        }
+
+        upcomingMoviesSlider.setUp(imageUrlArray: posterUrlString, imageContentMode: .scaleAspectFit)
+        upcomingMoviesSlider.delegate = self
     }
 
     func updateView(data: [PopularMoviesModelResult]) {
@@ -166,6 +189,9 @@ extension HomeViewController: ImageSliderDelegate {
             presenter?.willShowDetail(of: DetailType(mediaType: .movie, idMedia: id))
         } else if object == popularImageSlider {
             guard let id = popularMovies?[index].id as? Int else { return }
+            presenter?.willShowDetail(of: DetailType(mediaType: .movie, idMedia: id))
+        } else if object == upcomingMoviesSlider {
+            guard let id = upcomingMovies?[index].id as? Int else { return }
             presenter?.willShowDetail(of: DetailType(mediaType: .movie, idMedia: id))
         }
     }

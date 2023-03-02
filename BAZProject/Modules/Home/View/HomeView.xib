@@ -15,6 +15,9 @@
                 <outlet property="nowPlayingSlider" destination="MXL-gf-HkA" id="Adx-Lj-J8K"/>
                 <outlet property="popularImageSlider" destination="XYw-Z7-2Iv" id="XuI-Sv-CMF"/>
                 <outlet property="titleNowPlayingLabel" destination="EFd-Jb-msT" id="TEA-Ok-X50"/>
+                <outlet property="titlePopularMoviesLabel" destination="SzU-wg-zgB" id="tit-9v-i6A"/>
+                <outlet property="upcomingMoviesSlider" destination="53f-I5-A1m" id="Rxc-ye-IEO"/>
+                <outlet property="upcomingMoviesTitleLabel" destination="ej7-z9-103" id="IOc-O3-UXe"/>
                 <outlet property="view" destination="iN0-l3-epB" id="mDx-vc-Dp8"/>
             </connections>
         </placeholder>
@@ -27,7 +30,7 @@
                     <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TxY-cz-fTF">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="978"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="1438"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0wS-aa-dMa" customClass="ImageSlider" customModule="BAZProject" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="170"/>
@@ -37,29 +40,42 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title now playing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EFd-Jb-msT">
-                                    <rect key="frame" x="16" y="186" width="361" height="30"/>
+                                    <rect key="frame" x="16" y="202" width="361" height="30"/>
                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="25"/>
                                     <color key="textColor" name="SecondaryColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MXL-gf-HkA" customClass="ImageSlider" customModule="BAZProject" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="224" width="393" height="350"/>
+                                    <rect key="frame" x="0.0" y="240" width="393" height="350"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="350" id="xUV-wU-Po7"/>
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Popular movies" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SzU-wg-zgB">
-                                    <rect key="frame" x="16" y="590" width="361" height="30"/>
+                                    <rect key="frame" x="16" y="622" width="357" height="30"/>
                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="25"/>
                                     <color key="textColor" name="SecondaryColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XYw-Z7-2Iv" customClass="ImageSlider" customModule="BAZProject" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="628" width="393" height="350"/>
+                                    <rect key="frame" x="0.0" y="660" width="393" height="350"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="350" id="bjL-Xa-Atm"/>
+                                    </constraints>
+                                </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title upcoming Movies" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ej7-z9-103">
+                                    <rect key="frame" x="16" y="1042" width="361" height="30"/>
+                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="25"/>
+                                    <color key="textColor" name="SecondaryColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="53f-I5-A1m" customClass="ImageSlider" customModule="BAZProject" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="1088" width="393" height="350"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="350" id="yCa-tS-7mP"/>
                                     </constraints>
                                 </view>
                             </subviews>
@@ -69,16 +85,22 @@
                                 <constraint firstItem="MXL-gf-HkA" firstAttribute="top" secondItem="EFd-Jb-msT" secondAttribute="bottom" constant="8" id="5QR-CS-lLy"/>
                                 <constraint firstAttribute="trailing" secondItem="MXL-gf-HkA" secondAttribute="trailing" id="6EB-zf-L0b"/>
                                 <constraint firstAttribute="trailing" secondItem="0wS-aa-dMa" secondAttribute="trailing" id="9xB-mo-pvq"/>
-                                <constraint firstAttribute="bottom" secondItem="XYw-Z7-2Iv" secondAttribute="bottom" id="CuE-dz-PeY"/>
                                 <constraint firstItem="EFd-Jb-msT" firstAttribute="leading" secondItem="TxY-cz-fTF" secondAttribute="leading" constant="16" id="Eme-AJ-DRm"/>
-                                <constraint firstAttribute="trailing" secondItem="SzU-wg-zgB" secondAttribute="trailing" constant="16" id="KZo-cL-W9c"/>
+                                <constraint firstItem="53f-I5-A1m" firstAttribute="leading" secondItem="TxY-cz-fTF" secondAttribute="leading" id="GCf-l5-Iyv"/>
+                                <constraint firstAttribute="trailing" secondItem="SzU-wg-zgB" secondAttribute="trailing" constant="20" id="KZo-cL-W9c"/>
                                 <constraint firstItem="0wS-aa-dMa" firstAttribute="leading" secondItem="TxY-cz-fTF" secondAttribute="leading" id="Pg1-1T-lYF"/>
+                                <constraint firstAttribute="bottom" secondItem="53f-I5-A1m" secondAttribute="bottom" id="QU0-d9-9kV"/>
                                 <constraint firstItem="SzU-wg-zgB" firstAttribute="leading" secondItem="TxY-cz-fTF" secondAttribute="leading" constant="16" id="QV3-gP-O6L"/>
-                                <constraint firstItem="SzU-wg-zgB" firstAttribute="top" secondItem="MXL-gf-HkA" secondAttribute="bottom" constant="16" id="emr-Ds-VN0"/>
+                                <constraint firstAttribute="trailing" secondItem="ej7-z9-103" secondAttribute="trailing" constant="16" id="R2A-gf-H9y"/>
+                                <constraint firstAttribute="trailing" secondItem="53f-I5-A1m" secondAttribute="trailing" id="WHz-GR-0jD"/>
+                                <constraint firstItem="ej7-z9-103" firstAttribute="top" secondItem="XYw-Z7-2Iv" secondAttribute="bottom" constant="32" id="c17-21-XRf"/>
+                                <constraint firstItem="ej7-z9-103" firstAttribute="leading" secondItem="TxY-cz-fTF" secondAttribute="leading" constant="16" id="c26-2C-dT7"/>
+                                <constraint firstItem="53f-I5-A1m" firstAttribute="top" secondItem="ej7-z9-103" secondAttribute="bottom" constant="16" id="dXt-Tc-CJj"/>
+                                <constraint firstItem="SzU-wg-zgB" firstAttribute="top" secondItem="MXL-gf-HkA" secondAttribute="bottom" constant="32" id="emr-Ds-VN0"/>
                                 <constraint firstItem="XYw-Z7-2Iv" firstAttribute="leading" secondItem="TxY-cz-fTF" secondAttribute="leading" id="lXU-Bc-6qf"/>
                                 <constraint firstItem="XYw-Z7-2Iv" firstAttribute="top" secondItem="SzU-wg-zgB" secondAttribute="bottom" constant="8" id="mQ7-fs-OGv"/>
                                 <constraint firstAttribute="trailing" secondItem="XYw-Z7-2Iv" secondAttribute="trailing" id="op5-rX-BbT"/>
-                                <constraint firstItem="EFd-Jb-msT" firstAttribute="top" secondItem="0wS-aa-dMa" secondAttribute="bottom" constant="16" id="seq-76-5RC"/>
+                                <constraint firstItem="EFd-Jb-msT" firstAttribute="top" secondItem="0wS-aa-dMa" secondAttribute="bottom" constant="32" id="seq-76-5RC"/>
                                 <constraint firstItem="MXL-gf-HkA" firstAttribute="leading" secondItem="TxY-cz-fTF" secondAttribute="leading" id="xvG-st-M4J"/>
                                 <constraint firstAttribute="trailing" secondItem="EFd-Jb-msT" secondAttribute="trailing" constant="16" id="ywZ-9Z-Mna"/>
                             </constraints>
