@@ -25,6 +25,7 @@ extension String {
     static let apiKeyEndPointNowPlaying = "/movie/now_playing"
     static let apiKeyEndPointPopularMovies = "/movie/popular"
     static let apiKeyEndPointUpcomingMovies = "/movie/popular"
+    static let apiKeyEndPointRecomendations = "/recommendations"
     static let theMovieDbEndBaseUrl = "?api_key=\(apiKeyTheMovieDb)&language=\(apiLang)&region=\(apiRegion)"
     static let theMovieDbAppendImages = "&append_to_response=images&include_image_language=\(apiLang),null"
 

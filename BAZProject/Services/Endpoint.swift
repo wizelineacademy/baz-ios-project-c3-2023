@@ -36,6 +36,7 @@ enum Endpoint {
     case similarMovie(idMovie: String)
     case poularMovies
     case upcoming
+    case recomendations(idMovie: String)
 }
 
 extension Endpoint {
@@ -65,6 +66,9 @@ extension Endpoint {
             return BaseUrl.apiWithEndPoint(endPoint: .apiKeyEndPointPopularMovies).url
         case .upcoming:
             return BaseUrl.apiWithEndPoint(endPoint: .apiKeyEndPointUpcomingMovies).url
+        case .recomendations(idMovie: let idMovie):
+            let recomendationsUrlString: String = "\(String.apiKeyEndPointMovie)/\(idMovie)/\(String.apiKeyEndPointRecomendations)"
+            return "\(BaseUrl.apiWithEndPoint(endPoint: recomendationsUrlString).url)"
         }
     }
 }

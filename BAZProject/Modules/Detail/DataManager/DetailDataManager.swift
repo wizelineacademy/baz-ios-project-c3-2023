@@ -56,4 +56,17 @@ extension DetailDataManager: DetailDataManagerInputProtocol {
             }
         }
     }
+
+    func requestMovieRecomendation(_ urlString: String) {
+        typealias ResponseProvider = Result<RecomendationMovieModelResponse, Error>
+        let request: URLRequest = RequestType(strUrl: urlString, method: .GET).getRequest()
+        providerNetworking.sendRequest(request) { [weak self] (result: ResponseProvider) in
+            switch result {
+            case .success(let data):
+                self?.interactor?.handleGetMovieRecomendation(data.results ?? [])
+            case .failure(let error):
+                self?.interactor?.handleErrorService(error)
+            }
+        }
+    }
 }

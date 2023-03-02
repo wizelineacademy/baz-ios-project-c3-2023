@@ -24,6 +24,7 @@
 		D2073EB12989986A006A577A /* ErrorPageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2073EB02989986A006A577A /* ErrorPageInteractor.swift */; };
 		D20AECCB299AA93E00292C76 /* InfiniteScrollActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20AECCA299AA93E00292C76 /* InfiniteScrollActivityView.swift */; };
 		D2108DB5298C106D0000873F /* LocalizedConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2108DB4298C106D0000873F /* LocalizedConstants.swift */; };
+		D212C90029B1083500746D59 /* RecomendationMovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D212C8FF29B1083500746D59 /* RecomendationMovieModel.swift */; };
 		D215C4FE2980EF1000D5670F /* ErrorPageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D215C4FD2980EF1000D5670F /* ErrorPageView.xib */; };
 		D215C5002980EF9500D5670F /* ErrorPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D215C4FF2980EF9500D5670F /* ErrorPageViewController.swift */; };
 		D215D20329843EC000582CB5 /* TrendingDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D215D20229843EC000582CB5 /* TrendingDataManager.swift */; };
@@ -139,6 +140,7 @@
 		D2073EB02989986A006A577A /* ErrorPageInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPageInteractor.swift; sourceTree = "<group>"; };
 		D20AECCA299AA93E00292C76 /* InfiniteScrollActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollActivityView.swift; sourceTree = "<group>"; };
 		D2108DB4298C106D0000873F /* LocalizedConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedConstants.swift; sourceTree = "<group>"; };
+		D212C8FF29B1083500746D59 /* RecomendationMovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecomendationMovieModel.swift; sourceTree = "<group>"; };
 		D215C4FD2980EF1000D5670F /* ErrorPageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorPageView.xib; sourceTree = "<group>"; };
 		D215C4FF2980EF9500D5670F /* ErrorPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPageViewController.swift; sourceTree = "<group>"; };
 		D215D20229843EC000582CB5 /* TrendingDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingDataManager.swift; sourceTree = "<group>"; };
@@ -786,6 +788,7 @@
 				D2F08D45299C46A1009BA149 /* DetailType.swift */,
 				D2D916DA299C8199009E0BE2 /* MovieDetail.swift */,
 				D2A9CB0129B00856008B47DD /* SimilarMovieModel.swift */,
+				D212C8FF29B1083500746D59 /* RecomendationMovieModel.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1119,6 +1122,7 @@
 				D20AECCB299AA93E00292C76 /* InfiniteScrollActivityView.swift in Sources */,
 				D2BD77D929AD8F2600F9B7A6 /* Detail+UITableExtension.swift in Sources */,
 				D2073EA629898C22006A577A /* ErrorPageProtocols.swift in Sources */,
+				D212C90029B1083500746D59 /* RecomendationMovieModel.swift in Sources */,
 				D2D916DB299C8199009E0BE2 /* MovieDetail.swift in Sources */,
 				D2C6648829A9A9AC008996A2 /* ReviewViewController.swift in Sources */,
 				D2F08D41299C399B009BA149 /* DetailProtocols.swift in Sources */,

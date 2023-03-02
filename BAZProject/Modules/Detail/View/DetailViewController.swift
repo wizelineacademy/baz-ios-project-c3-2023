@@ -147,6 +147,7 @@ final class DetailViewController: UIViewController {
             presenter?.willFetchMedia(detailType: detailType)
             presenter?.willFetchReview(of: detailType.idMedia.description)
             presenter?.willFetchSimilarMovie(of: detailType.idMedia.description)
+            presenter?.willFetchMovieRecomendation(of: detailType.idMedia.description)
         }
     }
 
@@ -203,6 +204,10 @@ final class DetailViewController: UIViewController {
 }
 
 extension DetailViewController: DetailViewProtocol {
+    func updateView(data: [RecomendationMovieModelResult]) {
+        
+    }
+
     func updateView(data: [ReviewResult]) {
         saveData(with: data)
         guaranteeMainThread {

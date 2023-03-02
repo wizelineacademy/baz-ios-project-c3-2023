@@ -23,6 +23,10 @@ extension DetailInteractor: DetailInteractorInputProtocol {
     func fetchSimilarMovie(of idMovie: String) {
         dataManager?.requestSimilarMovie(Endpoint.similarMovie(idMovie: idMovie).urlString)
     }
+
+    func fetchMovieRecomendation(of idMovie: String) {
+        dataManager?.requestMovieRecomendation(Endpoint.recomendations(idMovie: idMovie).urlString)
+    }
 }
 
 extension DetailInteractor: DetailDataManagerOutputProtocol {
@@ -36,6 +40,10 @@ extension DetailInteractor: DetailDataManagerOutputProtocol {
 
     func handleGetSimilarMovie(_ result: [SimilarMovieModelResult]) {
         presenter?.onReceivedReview(result)
+    }
+
+    func handleGetMovieRecomendation(_ result: [RecomendationMovieModelResult]) {
+        presenter?.onReceivedMovieRecomendation(result)
     }
 
     func handleErrorService(_ error: Error) {
