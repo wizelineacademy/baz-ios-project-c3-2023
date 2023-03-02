@@ -47,12 +47,21 @@ class MovieDetailsViewController: UIViewController {
         getCast()
         getSimilars()
         getRecommended()
+        notificateMovie()
+    }
+    
+    func notificateMovie() {
         guard let id = myMovie?.id else { return }
         AppDelegate.movieID = id
         NotificationCenter.default.post(name: .IncrementCount, object: nil)
+        guard let contador = AppDelegate.counter[AppDelegate.movieID] else { return }
 
+        if contador >= 3 {
+            let alert = UIAlertController(title: "! Ojo ¡", message: "Has visto esta pelicula \(String(contador)) veces", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Aceptar", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
-    
     func setUp() {
         guard let myMovie = myMovie else { return }
         self.navigationItem.title = myMovie.title

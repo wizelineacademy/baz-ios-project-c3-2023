@@ -9,7 +9,7 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var counter: [Int:Int] = [:]
+    static var counter: [Int:Int] = [:]
     static var movieID: Int = 0
    
     
@@ -20,13 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     @objc func notificate() {
-        guard (counter[AppDelegate.movieID] != nil) else {
-            counter[AppDelegate.movieID] = 1
-            print(counter)
+        guard (AppDelegate.counter[AppDelegate.movieID] != nil) else {
+            AppDelegate.counter[AppDelegate.movieID] = 1
+            print(AppDelegate.counter)
             return
         }
-        counter[AppDelegate.movieID]! += 1
-        print(counter)
+        AppDelegate.counter[AppDelegate.movieID]! += 1
+        print(AppDelegate.counter)
         
     }
 
