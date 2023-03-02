@@ -48,7 +48,6 @@ extension String {
     static let trendingTitle = "Trending"
     static let trendingTitleUpdateTable = "Actualizando.."
     static let trendingTitleFilterTime = "Filtrar por:"
-    static let trendingFilterTitles = ["🍿Pelis", "📺TV", "👀🔝", "Todo"]
     static let trendingFilterByTimeTitles = ["📆Día", "🗓Semana"]
     static let trendingNameIconTabBar = "magnifyingglass"
 

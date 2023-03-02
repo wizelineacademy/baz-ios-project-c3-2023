@@ -116,18 +116,11 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
         NotificationCenter.default.removeObserver(self, name: .notificacionCenterNameShowDetail, object: nil)
     }
 
-    private func setupFilterSegmentedControl() {
-        filterSegmentedControl.removeAllSegments()
-        filterTimeSegmentedControl.removeAllSegments()
+    private func setupFilterSegmentedControl() {        filterTimeSegmentedControl.removeAllSegments()
         setStyleSegmentedControls()
-
-        String.trendingFilterTitles.enumerated().forEach { title in
-            filterSegmentedControl.insertSegment(withTitle: title.element, at: title.offset, animated: true)
-        }
         String.trendingFilterByTimeTitles.enumerated().forEach { title in
             filterTimeSegmentedControl.insertSegment(withTitle: title.element, at: title.offset, animated: true)
         }
-        filterSegmentedControl.selectedSegmentIndex = mediaType.getRawValue()
         filterTimeSegmentedControl.selectedSegmentIndex = timeWindowType.getRawValue()
     }
 
@@ -136,9 +129,7 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
             NSAttributedString.Key.font: LocalizedConstants.commonSubTitleFont,
             NSAttributedString.Key.foregroundColor: UIColor.white]
         let titleTextAttributesSelected = [NSAttributedString.Key.foregroundColor: UIColor.black]
-        filterSegmentedControl.setTitleTextAttributes(titleTextAttributes, for: .normal)
         filterTimeSegmentedControl.setTitleTextAttributes(titleTextAttributes, for: .normal)
-        filterSegmentedControl.setTitleTextAttributes(titleTextAttributesSelected, for: .selected)
         filterTimeSegmentedControl.setTitleTextAttributes(titleTextAttributesSelected, for: .selected)
     }
 
