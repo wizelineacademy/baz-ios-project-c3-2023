@@ -61,4 +61,18 @@ enum MovieDetails {
             var cast: [CastSearch]
         }
     }
+    
+    enum FetchReview {
+        struct Request {
+            var idMovie: Int
+        }
+        struct Response {
+            var idMovie: Int
+            var review: Review?
+        }
+        struct ViewModel {
+            var idMovie: Int
+            var review: Review?
+        }
+    }
 }

@@ -13,6 +13,7 @@ protocol MovieDetailsDisplayLogic: AnyObject {
     func displaySimilarMovies(viewModel: MovieDetails.FetchSimilarMovies.ViewModel)
     func displayRecommendMovies(viewModel: MovieDetails.FetchRecommendMovies.ViewModel)
     func displayCast(viewModel: MovieDetails.FetchCast.ViewModel)
+    func displayReview(viewModel: MovieDetails.FetchReview.ViewModel)
 }
 
 class MovieDetailsViewController: UIViewController {
@@ -140,6 +141,27 @@ class MovieDetailsViewController: UIViewController {
         moviesSection.heightAnchor.constraint(equalToConstant: view.frame.height / 3).isActive = true
         scrollViewContainer.addArrangedSubview(moviesSection)
     }
+    
+    private func addReviewsViewToView(review: Review) {
+        let section = InfoSection()
+        
+        section.title = "Review"
+        let view = createReviewView(review: review)
+        section.setContentView(view: view)
+
+        scrollViewContainer.addArrangedSubview(section)
+    }
+    
+    private func createReviewView(review: Review) -> UITextView {
+        let descriptionView = UITextView()
+    
+        descriptionView.isScrollEnabled = false
+        descriptionView.isEditable = false
+        
+        descriptionView.text = "\(review.content ?? "") \n\n by: \(review.author?.capitalized ?? "")"
+        
+        return descriptionView
+    }
 }
 
 extension MovieDetailsViewController: MovieDetailsDisplayLogic {
@@ -148,6 +170,7 @@ extension MovieDetailsViewController: MovieDetailsDisplayLogic {
         posterImageView.byURL(path: viewModel.imageURL)
         addOverviewSection(description: viewModel.overview)
         interactor?.fetchCast(request: MovieDetails.FetchCast.Request(idMovie: viewModel.id))
+        
     }
     
     func displaySimilarMovies(viewModel: MovieDetails.FetchSimilarMovies.ViewModel) {
@@ -177,9 +200,17 @@ extension MovieDetailsViewController: MovieDetailsDisplayLogic {
     func displayCast(viewModel: MovieDetails.FetchCast.ViewModel) {
         DispatchQueue.main.async {
             self.addCastViewToView(cast: viewModel.cast)
+            self.interactor?.fetchReview(request: MovieDetails.FetchReview.Request(idMovie: viewModel.idMovie))
+        }
+    }
+    
+    func displayReview(viewModel: MovieDetails.FetchReview.ViewModel) {
+        DispatchQueue.main.async {
+            if let review = viewModel.review {
+                self.addReviewsViewToView(review: review)
+            }
             self.interactor?.fetchSimilarMovies(request: MovieDetails.FetchSimilarMovies.Request(idMovie: viewModel.idMovie))
         }
-
     }
 }
 

@@ -72,7 +72,8 @@ class InfoSection: UIView {
             view.topAnchor.constraint(equalTo: contentView.topAnchor),
             view.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            view.widthAnchor.constraint(equalTo: contentView.widthAnchor)
         ])
     }
 }

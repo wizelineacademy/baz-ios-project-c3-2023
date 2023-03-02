@@ -12,6 +12,7 @@ protocol MovieDetailsBusinessLogic: AnyObject {
     func fetchSimilarMovies(request: MovieDetails.FetchSimilarMovies.Request)
     func fetchRecommendMovies(request: MovieDetails.FetchRecommendMovies.Request)
     func fetchCast(request: MovieDetails.FetchCast.Request)
+    func fetchReview(request: MovieDetails.FetchReview.Request)
 }
 
 protocol MovieDetailsDataStore: AnyObject {
@@ -65,9 +66,21 @@ class MovieDetailsInteractor: MovieDetailsBusinessLogic, MovieDetailsDataStore {
             if let messageError = messageError {
                 
             }
-            let response = MovieDetails.FetchCast.Response(idMovie: request.idMovie, cast: cast)
+            let response = MovieDetails.FetchCast.Response(idMovie: request.idMovie, cast: Array(cast.prefix(10)))
             
             self.presenter?.presentFechedCast(response: response)
+        }
+    }
+    
+    func fetchReview(request: MovieDetails.FetchReview.Request) {
+        moviesWorker.getReviewsByMovieId(request.idMovie) { reviews, messageError in
+            if let messageError = messageError {
+                
+            }
+            
+            let response = MovieDetails.FetchReview.Response(idMovie: request.idMovie, review: reviews.first)
+            
+            self.presenter?.presentFetchedReview(response: response)
         }
     }
 }
