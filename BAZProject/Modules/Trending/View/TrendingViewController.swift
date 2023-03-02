@@ -207,6 +207,7 @@ extension TrendingViewController: UIScrollViewDelegate {
             loadingMoreView?.frame = getUIFrame()
             loadingMoreView?.startAnimating()
             isMoreDataLoading = true
+            self.showAlertLoader()
             presenter?.willFetchNextTrendingMedia(mediaType: mediaType, timeWindow: timeWindowType)
         }
     }
