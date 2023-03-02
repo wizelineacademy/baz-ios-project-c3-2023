@@ -13,7 +13,7 @@ class RecentMovieRouter: RecentMovieRouterProtocol {
     class func createRecentMovieModule(idMovies: [Int]) -> UIViewController {
         let viewController = mainStoryboard.instantiateViewController(withIdentifier: "RecentMovieView")
         if let view = viewController as? RecentMovieView {
-            let presenter: RecentMoviePresenterProtocol & RecentMovieInteractorOutputProtocol = RecentMoviePresenter()
+            let presenter: RecentMoviePresenterProtocol & RecentMovieInteractorOutputProtocol = RecentMoviePresenter(idMovies: idMovies)
             let interactor: RecentMovieInteractorInputProtocol & RecentMovieRemoteDataManagerOutputProtocol = RecentMovieInteractor()
             let remoteDataManager: RecentMovieRemoteDataManagerInputProtocol = RecentMovieRemoteDataManager()
             let router: RecentMovieRouterProtocol = RecentMovieRouter()
@@ -22,7 +22,6 @@ class RecentMovieRouter: RecentMovieRouterProtocol {
             presenter.view = view
             presenter.router = router
             presenter.interactor = interactor
-            presenter.idMovies = idMovies
             interactor.presenter = presenter
             interactor.remoteDatamanager = remoteDataManager
             remoteDataManager.remoteRequestHandler = interactor

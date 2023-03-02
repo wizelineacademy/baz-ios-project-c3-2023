@@ -44,28 +44,10 @@ protocol DetailMoviePresenterProtocol: AnyObject {
     func getCell(collectionView: UICollectionView, indexPath: IndexPath, indexPathTable: Int, nameLabel: UILabel) -> UICollectionViewCell
 }
 
-protocol DetailMovieCastProtocol: AnyObject {
-    // CASPRESENTER -> PRESENTER
-    func informSuccesfulPresenterCast()
-    func informErrorPresenterCast()
-}
-
-protocol DetailMovieReviewProtocol: AnyObject {
-    // REVIEWPRESENTER -> PRESENTER
-    func informSuccesfulPresenterReview()
-    func informErrorPresenterReview()
-}
-
-protocol DetailMovieSimilarProtocol: AnyObject {
-    // SIMILARPRESENTER -> PRESENTER
-    func informSuccesfulPresenterSimilar()
-    func informErrorPresenterSimilar()
-}
-
-protocol DetailMovieRecommendationProtocol: AnyObject {
-    // RECOMMENDATIONPRESENTER -> PRESENTER
-    func informSuccesfulPresenterRecommendation()
-    func informErrorPresenterRecommendation()
+protocol DetailMovieCellPresenterProtocol: AnyObject {
+    // COLLECTIONSPRESENTER -> PRESENTER
+    func informSuccesfulPresenter(collectionType: CollectionTypes)
+    func informErrorPresenter()
 }
 
 protocol DetailMovieInteractorOutputProtocol: AnyObject {
@@ -91,7 +73,6 @@ protocol DetailMovieRemoteDataManagerInputProtocol: AnyObject {
 
 protocol DetailMovieRemoteDataManagerOutputProtocol: AnyObject {
     // REMOTEDATAMANAGER -> INTERACTOR
-    
     func pushDetailMovie(detailMovie: DetailMovie)
     func pushNotDetails()
 }

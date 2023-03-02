@@ -8,7 +8,7 @@
 import UIKit
 
 protocol DetailMovieCastPresenterProtocol: AnyObject {
-    var presenterMain: DetailMovieCastProtocol? { get set }
+    var presenterMain: DetailMovieCellPresenterProtocol? { get set }
     var interactor: DetailMovieCastInteractorInputProtocol? { get set }
     
     func getCast(idMovie: Int)

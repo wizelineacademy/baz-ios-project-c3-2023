@@ -9,7 +9,7 @@ import UIKit
 
 class DetailMovieSimilarPresenter: DetailMovieSimilarPresenterProtocol {
   
-    var presenterMain: DetailMovieSimilarProtocol?
+    var presenterMain: DetailMovieCellPresenterProtocol?
     var interactor: DetailMovieSimilarInteractorInputProtocol?
     var similar: [Movie] = []
     private let movieApi : MovieAPI = MovieAPI()
@@ -50,11 +50,11 @@ class DetailMovieSimilarPresenter: DetailMovieSimilarPresenterProtocol {
 
 extension DetailMovieSimilarPresenter: DetailMovieSimilarInteractorOutputProtocol {
     func pushNotSimilar() {
-        presenterMain?.informErrorPresenterSimilar()
+        presenterMain?.informErrorPresenter()
     }
     
     func pushSimilar(similar: [Movie]) {
         self.similar = similar
-        presenterMain?.informSuccesfulPresenterSimilar()
+        presenterMain?.informSuccesfulPresenter(collectionType: .similar)
     }
 }

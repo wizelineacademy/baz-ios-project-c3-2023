@@ -8,7 +8,7 @@
 import Foundation
 
 protocol DetailMovieReviewPresenterProtocol: AnyObject {
-    var presenterMain: DetailMovieReviewProtocol? { get set }
+    var presenterMain: DetailMovieCellPresenterProtocol? { get set }
     var interactor: DetailMovieReviewInteractorInputProtocol? { get set }
     
     func getReview(idMovie: Int)

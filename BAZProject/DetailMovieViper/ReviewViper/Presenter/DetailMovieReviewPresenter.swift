@@ -9,7 +9,7 @@ import Foundation
 
 class DetailMovieReviewPresenter: DetailMovieReviewPresenterProtocol {
     
-    var presenterMain: DetailMovieReviewProtocol?
+    var presenterMain: DetailMovieCellPresenterProtocol?
     var interactor: DetailMovieReviewInteractorInputProtocol?
     var review: [Reviews] = []
     
@@ -40,11 +40,11 @@ class DetailMovieReviewPresenter: DetailMovieReviewPresenterProtocol {
 
 extension DetailMovieReviewPresenter: DetailMovieReviewInteractorOutputProtocol {
     func pushNotReview() {
-        presenterMain?.informErrorPresenterReview()
+        presenterMain?.informErrorPresenter()
     }
     
     func pushReview(review: [Reviews]) {
         self.review = review
-        presenterMain?.informSuccesfulPresenterReview()
+        presenterMain?.informSuccesfulPresenter(collectionType: .review)
     }
 }

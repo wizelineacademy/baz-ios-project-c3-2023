@@ -8,7 +8,7 @@
 import UIKit
 
 protocol DetailMovieRecommendationPresenterProtocol: AnyObject {
-    var presenterMain: DetailMovieRecommendationProtocol? { get set }
+    var presenterMain: DetailMovieCellPresenterProtocol? { get set }
     var interactor: DetailMovieRecommendationInteractorInputProtocol? { get set }
     
     func getRecommendation(idMovie: Int)

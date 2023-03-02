@@ -25,7 +25,6 @@ protocol RecentMoviePresenterProtocol: AnyObject {
     var view: RecentMovieViewProtocol? { get set }
     var interactor: RecentMovieInteractorInputProtocol? { get set }
     var router: RecentMovieRouterProtocol? { get set }
-    var idMovies: [Int]? { get set }
     
     func viewDidLoad()
     func getRecentCount() -> Int
@@ -35,7 +34,7 @@ protocol RecentMoviePresenterProtocol: AnyObject {
 
 protocol RecentMovieInteractorOutputProtocol: AnyObject {
     // INTERACTOR -> PRESENTER
-    func pushRecentMovie(recentMovie: RecentMovie)
+    func pushRecentMovie(recentMovie: [RecentMovie])
 }
 
 protocol RecentMovieInteractorInputProtocol: AnyObject {
@@ -43,7 +42,7 @@ protocol RecentMovieInteractorInputProtocol: AnyObject {
     var presenter: RecentMovieInteractorOutputProtocol? { get set }
     var remoteDatamanager: RecentMovieRemoteDataManagerInputProtocol? { get set }
     
-    func getMovies(idMovies: [Int]?)
+    func getMovies(idMovies: [Int])
 }
 
 protocol RecentMovieRemoteDataManagerInputProtocol: AnyObject {

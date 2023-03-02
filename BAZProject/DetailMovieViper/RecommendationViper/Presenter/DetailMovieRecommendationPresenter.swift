@@ -9,7 +9,7 @@ import UIKit
 
 class DetailMovieRecommendationPresenter: DetailMovieRecommendationPresenterProtocol {
     
-    var presenterMain: DetailMovieRecommendationProtocol?
+    var presenterMain: DetailMovieCellPresenterProtocol?
     var interactor: DetailMovieRecommendationInteractorInputProtocol?
     var recommendation: [Movie] = []
     private let movieApi : MovieAPI = MovieAPI()
@@ -50,11 +50,11 @@ class DetailMovieRecommendationPresenter: DetailMovieRecommendationPresenterProt
 
 extension DetailMovieRecommendationPresenter: DetailMovieRecommendationInteractorOutputProtocol {
     func pushNotRecommendation() {
-        presenterMain?.informErrorPresenterRecommendation()
+        presenterMain?.informErrorPresenter()
     }
     
     func pushRecommendation(recommendation: [Movie]) {
         self.recommendation = recommendation
-        presenterMain?.informSuccesfulPresenterRecommendation()
+        presenterMain?.informSuccesfulPresenter(collectionType: .recommendation)
     }
 }

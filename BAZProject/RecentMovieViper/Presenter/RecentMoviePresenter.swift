@@ -14,9 +14,12 @@ class RecentMoviePresenter: RecentMoviePresenterProtocol  {
     weak var view: RecentMovieViewProtocol?
     var interactor: RecentMovieInteractorInputProtocol?
     var router: RecentMovieRouterProtocol?
-    var idMovies: [Int]?
+    var idMovies: [Int]
     var recentMovies: [RecentMovie] = []
     
+    init(idMovies: [Int]) {
+        self.idMovies = idMovies
+    }
     /// Call the interactor for get the movies of the array coming in the HomeRouter
     func viewDidLoad() {
         interactor?.getMovies(idMovies: idMovies)
@@ -55,8 +58,8 @@ class RecentMoviePresenter: RecentMoviePresenterProtocol  {
 }
 
 extension RecentMoviePresenter: RecentMovieInteractorOutputProtocol {
-    func pushRecentMovie(recentMovie: RecentMovie) {
-        recentMovies.insert(recentMovie, at: 0)
+    func pushRecentMovie(recentMovie: [RecentMovie]) {
+        recentMovies = recentMovie
         view?.reloadView()
     }
 }

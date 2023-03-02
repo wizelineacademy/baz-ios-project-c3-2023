@@ -52,8 +52,6 @@ extension RecentMovieView: UITableViewDelegate {
 
 extension RecentMovieView: RecentMovieViewProtocol {
     func reloadView() {
-        DispatchQueue.main.async {
-            self.recentMoviesTableView.reloadData()
-        }
+        self.recentMoviesTableView.reloadData()
     }
 }

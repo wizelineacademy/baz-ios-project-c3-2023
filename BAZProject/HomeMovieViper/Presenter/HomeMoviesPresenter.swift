@@ -38,8 +38,7 @@ class HomeMoviesPresenter: HomeMoviesPresenterProtocol  {
     /// - Parameter notification: the notification coming from the observer
     @objc func addRecentMovie(_ notification: Notification) {
         let info = notification.object as? [String:Int]
-        if let idMovie = info?["idMovie"] {
-            recentViews.removeAll(where: { $0 == idMovie })
+        if let idMovie = info?["idMovie"], !recentViews.contains(where: { $0 == idMovie }) {
             recentViews.insert(idMovie, at: 0)
         }
     }

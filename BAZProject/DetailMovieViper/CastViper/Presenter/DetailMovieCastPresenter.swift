@@ -9,7 +9,7 @@ import UIKit
 
 class DetailMovieCastPresenter: DetailMovieCastPresenterProtocol {
 
-    var presenterMain: DetailMovieCastProtocol?
+    var presenterMain: DetailMovieCellPresenterProtocol?
     var interactor: DetailMovieCastInteractorInputProtocol?
     var cast: [Cast] = []
     private let movieApi : MovieAPI = MovieAPI()
@@ -50,11 +50,11 @@ class DetailMovieCastPresenter: DetailMovieCastPresenterProtocol {
 
 extension DetailMovieCastPresenter: DetailMovieCastInteractorOutputProtocol {
     func pushNotCast() {
-        presenterMain?.informErrorPresenterCast()
+        presenterMain?.informErrorPresenter()
     }
     
     func pushCast(cast: [Cast]) {
         self.cast = cast
-        presenterMain?.informSuccesfulPresenterCast()
+        presenterMain?.informSuccesfulPresenter(collectionType: .cast)
     }
 }

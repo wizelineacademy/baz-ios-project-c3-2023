@@ -14,7 +14,7 @@ class DetailMovieRouter: DetailMovieRouterProtocol {
     class func createDetailMovieModule(idMovie: Int) -> UIViewController {
         let viewController = mainStoryboard.instantiateViewController(withIdentifier: "DetailMovieView")
         if let view = viewController as? DetailMovieView {
-            let presenter: DetailMoviePresenterProtocol & DetailMovieInteractorOutputProtocol & DetailMovieCastProtocol & DetailMovieReviewProtocol & DetailMovieSimilarProtocol & DetailMovieRecommendationProtocol = DetailMoviePresenter(idMovie: idMovie)
+            let presenter: DetailMoviePresenterProtocol & DetailMovieInteractorOutputProtocol & DetailMovieCellPresenterProtocol = DetailMoviePresenter(idMovie: idMovie)
             let presenterCast: DetailMovieCastPresenterProtocol & DetailMovieCastInteractorOutputProtocol = DetailMovieCastPresenter()
             let presenterReview: DetailMovieReviewPresenterProtocol & DetailMovieReviewInteractorOutputProtocol = DetailMovieReviewPresenter()
             let presenterSimilar: DetailMovieSimilarPresenterProtocol & DetailMovieSimilarInteractorOutputProtocol = DetailMovieSimilarPresenter()

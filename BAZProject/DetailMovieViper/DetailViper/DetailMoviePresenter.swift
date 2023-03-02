@@ -48,10 +48,7 @@ class DetailMoviePresenter: DetailMoviePresenterProtocol  {
     
     /// Setup the dispatch group and add a notify when the group end
     func setupDispatchGroup() {
-        group.enter()
-        group.enter()
-        group.enter()
-        group.enter()
+        CollectionTypes.allCases.forEach { _ in group.enter() }
         group.notify(queue: .main) { [weak self] in
             self?.cellArray.sort { cellOne, cellTwo in
                 cellOne.position < cellTwo.position
@@ -211,51 +208,18 @@ extension DetailMoviePresenter: DetailMovieInteractorOutputProtocol {
     }
 }
 
-extension DetailMoviePresenter: DetailMovieCastProtocol {
-    func informErrorPresenterCast() {
+extension DetailMoviePresenter: DetailMovieCellPresenterProtocol {
+    func informErrorPresenter() {
         group.leave()
     }
     
-    func informSuccesfulPresenterCast() {
-        cellArray.append(.cast)
+    func informSuccesfulPresenter(collectionType: CollectionTypes) {
+        cellArray.append(collectionType)
         group.leave()
     }
 }
 
-extension DetailMoviePresenter: DetailMovieReviewProtocol {
-    func informErrorPresenterReview() {
-        group.leave()
-    }
-    
-    func informSuccesfulPresenterReview() {
-        cellArray.append(.review)
-        group.leave()
-    }
-}
-
-extension DetailMoviePresenter: DetailMovieSimilarProtocol {
-    func informErrorPresenterSimilar() {
-        group.leave()
-    }
-    
-    func informSuccesfulPresenterSimilar() {
-        cellArray.append(.similar)
-        group.leave()
-    }
-}
-
-extension DetailMoviePresenter: DetailMovieRecommendationProtocol {
-    func informErrorPresenterRecommendation() {
-        group.leave()
-    }
-    
-    func informSuccesfulPresenterRecommendation() {
-        cellArray.append(.recommendation)
-        group.leave()
-    }
-}
-
-enum CollectionTypes {
+enum CollectionTypes: CaseIterable {
     case cast, review, similar, recommendation
     var position: Int {
         switch self {
