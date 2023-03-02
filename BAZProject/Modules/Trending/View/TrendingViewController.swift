@@ -56,6 +56,9 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
 
     @IBAction private func switchedFilterTimeSegmented(_ sender: Any) {
         timeWindowType = timeWindowType.getWindowType(row: filterTimeSegmentedControl.selectedSegmentIndex)
+        presenter?.resetCurrentPages()
+        presenter?.resetData()
+        updateView()
         showLoader()
         callService()
     }
@@ -204,6 +207,7 @@ extension TrendingViewController: UIScrollViewDelegate {
             loadingMoreView?.frame = getUIFrame()
             loadingMoreView?.startAnimating()
             isMoreDataLoading = true
+            presenter?.willFetchNextTrendingMedia(mediaType: mediaType, timeWindow: timeWindowType)
         }
     }
 
@@ -211,7 +215,7 @@ extension TrendingViewController: UIScrollViewDelegate {
         let scrollPositionY: Double = scrollView.contentOffset.y
         if isMoreDataLoading && (scrollPositionY > scrollOffsetThreshold) || (scrollPositionY < 0) {
             self.showAlertLoader()
-            presenter?.willFetchNextTrendingMedia(mediaType: mediaType, timeWindow: timeWindowType)
+            getData()
         } else {
             isMoreDataLoading = true
         }

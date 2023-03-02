@@ -15,7 +15,7 @@ class TrendingPresenter {
     var data: [TrendingModel] = []
     var isFetchInProgress: Bool = false
     var totalDataCount: Int?
-    var currentPage: Int = .zero
+    var currentPage: Int = LocalizedConstants.trendingFirstPage
     var totalPages: Int?
 }
 
@@ -28,12 +28,23 @@ extension TrendingPresenter: TrendingPresenterProtocol {
         return totalPages ?? .zero
     }
 
+    func resetCurrentPages() {
+        currentPage = LocalizedConstants.trendingFirstPage
+    }
+
+    func resetData() {
+        data = []
+        totalPages = .zero
+        totalDataCount = .zero
+    }
+
     func willFetchTrendingMedia(mediaType: MediaType, timeWindow: TimeWindowType) {
-        interactor?.fetchTrendingMedia(mediaType: mediaType, timeWindow: timeWindow)
+        interactor?.fetchTrendingMedia(mediaType: mediaType, timeWindow: timeWindow, page: currentPage)
     }
 
     func willFetchNextTrendingMedia(mediaType: MediaType, timeWindow: TimeWindowType) {
         currentPage += 1
+        if currentPage > totalPages ?? currentPage { return }
         interactor?.fetchNextTrendingMedia(mediaType: mediaType, timeWindow: timeWindow, page: currentPage)
     }
 
@@ -70,8 +81,6 @@ extension TrendingPresenter: TrendingInteractorOutputProtocol {
 
     func onReceivedNextTrendingMedia(result: MovieResponse) {
         view?.setErrorGettingData(false)
-        currentPage = result.page ?? currentPage
-        totalPages = result.totalPages
         result.results?.forEach({ movie in
             data.append(TrendingModel(with: movie))
         })

@@ -82,6 +82,7 @@ enum LocalizedConstants {
 
     // MARK: - Trending
     static let trendingFirstSubview: Int = 0
+    static let trendingFirstPage: Int = 1
 
     // MARK: - ImageSlider
     static let imageSliderTimeInterval: Double = 2.0

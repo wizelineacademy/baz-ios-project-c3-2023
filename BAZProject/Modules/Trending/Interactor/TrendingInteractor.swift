@@ -13,8 +13,8 @@ class TrendingInteractor {
 }
 
 extension TrendingInteractor: TrendingInteractorInputProtocol {
-    func fetchTrendingMedia(mediaType: MediaType, timeWindow: TimeWindowType) {
-        dataManager?.requestTrendingMedia(Endpoint.trending(mediaType: mediaType, timeWindow: timeWindow).urlString)
+    func fetchTrendingMedia(mediaType: MediaType, timeWindow: TimeWindowType, page: Int) {
+        dataManager?.requestTrendingMedia(Endpoint.trending(mediaType: mediaType, timeWindow: timeWindow, page: page).urlString)
     }
 
     func fetchNextTrendingMedia(mediaType: MediaType, timeWindow: TimeWindowType, page: Int) {

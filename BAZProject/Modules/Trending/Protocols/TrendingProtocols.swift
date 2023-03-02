@@ -28,6 +28,8 @@ protocol TrendingPresenterProtocol: AnyObject {
 
     func getCurrentPage() -> Int
     func getTotalPages() -> Int
+    func resetCurrentPages()
+    func resetData()
     func willFetchTrendingMedia(mediaType: MediaType, timeWindow: TimeWindowType)
     func willFetchNextTrendingMedia(mediaType: MediaType, timeWindow: TimeWindowType)
     func willShowDetail(of idMovie: String)
@@ -61,7 +63,7 @@ protocol TrendingInteractorInputProtocol: AnyObject {
     var dataManager: TrendingDataManagerInputProtocol? { get set }
 
     func fetchNextTrendingMedia(mediaType: MediaType, timeWindow: TimeWindowType, page: Int)
-    func fetchTrendingMedia(mediaType: MediaType, timeWindow: TimeWindowType)
+    func fetchTrendingMedia(mediaType: MediaType, timeWindow: TimeWindowType, page: Int)
     func fetchSearchMovie(with keyword: String)
 }
 

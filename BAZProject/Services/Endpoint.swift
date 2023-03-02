@@ -27,7 +27,7 @@ enum BaseUrl {
 enum Endpoint {
 
     case img(idImage: String, sizeImage: SizeImageType)
-    case trending(mediaType: MediaType, timeWindow: TimeWindowType)
+    case trending(mediaType: MediaType, timeWindow: TimeWindowType, page: Int)
     case detail(idMovie: String)
     case topRated
     case reviews(idMovie: String)
@@ -45,9 +45,9 @@ extension Endpoint {
         switch self {
         case .img(idImage: let id, sizeImage: let size):
             return "\(BaseUrl.images(sizeImage: size).url)/\(id)"
-        case .trending(mediaType: let media, timeWindow: let time):
+        case .trending(mediaType: let media, timeWindow: let time, page: let page):
             let url: String = "\(String.apiKeyEndPointTrending)/\(media.rawValue)/\(time.rawValue)"
-            return BaseUrl.apiWithEndPoint(endPoint: url).url
+            return "\(BaseUrl.apiWithEndPoint(endPoint: url).url)&page=\(page)"
         case .detail(idMovie: let movie):
             return "\(BaseUrl.api.url)/movie/\(movie)\(String.theMovieDbEndBaseUrl)\(String.theMovieDbAppendImages)"
         case .topRated:
