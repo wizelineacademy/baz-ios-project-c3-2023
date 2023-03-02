@@ -22,20 +22,32 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ZZA-TZ-SjV">
-                    <rect key="frame" x="0.0" y="49" width="414" height="297.5"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0DZ-jL-eyi">
+                    <rect key="frame" x="0.0" y="48" width="414" height="350"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ZZA-TZ-SjV">
+                            <rect key="frame" x="103.5" y="21" width="207" height="308"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="ZZA-TZ-SjV" secondAttribute="height" multiplier="2:3" id="QQb-3w-z8z"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="300" id="Btw-7Y-YdH"/>
+                        <constraint firstAttribute="height" constant="350" id="Acy-qL-urT"/>
+                        <constraint firstItem="ZZA-TZ-SjV" firstAttribute="width" secondItem="0DZ-jL-eyi" secondAttribute="width" multiplier="1/2" id="Ea5-Qu-cTB"/>
+                        <constraint firstItem="ZZA-TZ-SjV" firstAttribute="centerX" secondItem="0DZ-jL-eyi" secondAttribute="centerX" id="Wr4-Pa-t0l"/>
+                        <constraint firstItem="ZZA-TZ-SjV" firstAttribute="centerY" secondItem="0DZ-jL-eyi" secondAttribute="centerY" id="uo9-Rg-Gv0"/>
                     </constraints>
-                </imageView>
+                </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nombre de película" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iAq-P7-FL6">
-                    <rect key="frame" x="16" y="364" width="382" height="29"/>
+                    <rect key="frame" x="16" y="414" width="382" height="29"/>
                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcU-fr-n8z">
-                    <rect key="frame" x="16" y="409" width="382" height="61"/>
+                    <rect key="frame" x="16" y="459" width="382" height="61"/>
                     <string key="text">Descripción de la película película película película película película película película película película película película película película película película </string>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -45,14 +57,14 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="ZZA-TZ-SjV" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="2gP-ee-l6a"/>
                 <constraint firstItem="iAq-P7-FL6" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="GEO-4S-rKo"/>
-                <constraint firstItem="iAq-P7-FL6" firstAttribute="top" secondItem="ZZA-TZ-SjV" secondAttribute="bottom" constant="16" id="Md0-pW-AYF"/>
-                <constraint firstItem="ZZA-TZ-SjV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="N3F-KW-2jl"/>
+                <constraint firstItem="iAq-P7-FL6" firstAttribute="top" secondItem="0DZ-jL-eyi" secondAttribute="bottom" constant="16" id="Md0-pW-AYF"/>
                 <constraint firstItem="lcU-fr-n8z" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="N3t-hT-xlW"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="0DZ-jL-eyi" secondAttribute="trailing" id="NvE-Zn-YmF"/>
+                <constraint firstItem="0DZ-jL-eyi" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="U8O-yZ-8gW"/>
                 <constraint firstItem="lcU-fr-n8z" firstAttribute="top" secondItem="iAq-P7-FL6" secondAttribute="bottom" constant="16" id="gpT-KQ-L9x"/>
                 <constraint firstItem="iAq-P7-FL6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="lok-EY-MQW"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ZZA-TZ-SjV" secondAttribute="trailing" id="po0-eY-QDp"/>
+                <constraint firstItem="0DZ-jL-eyi" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="rCw-j7-y4O"/>
                 <constraint firstItem="lcU-fr-n8z" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="wQC-kO-GTg"/>
             </constraints>
             <point key="canvasLocation" x="6" y="21"/>

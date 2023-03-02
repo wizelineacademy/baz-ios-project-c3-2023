@@ -4,7 +4,9 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,7 +22,7 @@
                     <connections>
                         <segue destination="DF1-ZG-ayL" kind="relationship" relationship="viewControllers" id="5Rs-jK-EFi"/>
                         <segue destination="2F0-mi-MoW" kind="relationship" relationship="viewControllers" id="bYg-Gv-ARj"/>
-                        <segue destination="Fht-6b-mlS" kind="relationship" relationship="viewControllers" id="E0Y-nV-i2U"/>
+                        <segue destination="tLz-38-7dK" kind="relationship" relationship="viewControllers" id="Jdg-Ze-Yro"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vZs-3s-K8D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -115,57 +117,69 @@
             </objects>
             <point key="canvasLocation" x="1006" y="269"/>
         </scene>
-        <!--Searching-->
-        <scene sceneID="ugI-ZB-EIl">
+        <!--Search-->
+        <scene sceneID="9sL-PL-9kh">
             <objects>
-                <tableViewController storyboardIdentifier="SearchingViewController" id="Fht-6b-mlS" userLabel="Searching" customClass="SearchingViewController" customModule="BAZProject" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="AJK-h6-6RK">
+                <viewController storyboardIdentifier="SearchingViewController" id="tLz-38-7dK" userLabel="Search" customClass="SearchingViewController" customModule="BAZProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3PE-WQ-IRt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="B0G-JK-7oC">
+                                <rect key="frame" x="0.0" y="104" width="414" height="709"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bOp-MP-aae">
+                                    <size key="itemSize" width="400" height="90"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="3bE-Hi-e9W" customClass="SearchingResultCollectionViewCell" customModule="BAZProject" customModuleProvider="target">
+                                        <rect key="frame" x="7" y="0.0" width="400" height="90"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="qzW-vu-6YK">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="90"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="pnW-Vp-f5f">
+                                        <rect key="frame" x="7" y="100" width="400" height="90"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="pRD-xC-LQd">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="90"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="MNd-4J-Yar">
+                                <rect key="frame" x="0.0" y="48" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="tLz-38-7dK" id="34e-f8-saB"/>
+                                </connections>
+                            </searchBar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Ou6-vZ-jiE"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="yFQ-QS-vxr">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <outlet property="delegate" destination="Fht-6b-mlS" id="QI1-fU-bZv"/>
-                            </connections>
-                        </searchBar>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchingResultsTableViewCell" textLabel="Wp7-1j-Bl0" imageView="Ui5-ba-JdX" style="IBUITableViewCellStyleDefault" id="oGz-Jw-gcn">
-                                <rect key="frame" x="0.0" y="94" width="414" height="80"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oGz-Jw-gcn" id="y1w-te-OWS">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Wp7-1j-Bl0">
-                                            <rect key="frame" x="62.25" y="0.0" width="331.75" height="80"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="photo" catalog="system" id="Ui5-ba-JdX">
-                                            <rect key="frame" x="16.75" y="28" width="30.5" height="24"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
-                                        </imageView>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="Fht-6b-mlS" id="536-Jg-Zmm"/>
-                            <outlet property="delegate" destination="Fht-6b-mlS" id="6zd-IX-2rw"/>
-                        </connections>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass.circle.fill" catalog="system" id="Gts-Bx-ur3" userLabel="Search"/>
+                        <constraints>
+                            <constraint firstItem="B0G-JK-7oC" firstAttribute="top" secondItem="MNd-4J-Yar" secondAttribute="bottom" id="DcV-bH-rJd"/>
+                            <constraint firstItem="Ou6-vZ-jiE" firstAttribute="trailing" secondItem="B0G-JK-7oC" secondAttribute="trailing" id="MRC-s7-ZxY"/>
+                            <constraint firstItem="Ou6-vZ-jiE" firstAttribute="bottom" secondItem="B0G-JK-7oC" secondAttribute="bottom" id="SBP-RU-4Vx"/>
+                            <constraint firstItem="MNd-4J-Yar" firstAttribute="leading" secondItem="Ou6-vZ-jiE" secondAttribute="leading" id="dzC-Le-y4e"/>
+                            <constraint firstItem="MNd-4J-Yar" firstAttribute="top" secondItem="Ou6-vZ-jiE" secondAttribute="top" id="fKI-2d-HFQ"/>
+                            <constraint firstItem="B0G-JK-7oC" firstAttribute="leading" secondItem="Ou6-vZ-jiE" secondAttribute="leading" id="k94-CM-fg3"/>
+                            <constraint firstItem="MNd-4J-Yar" firstAttribute="trailing" secondItem="Ou6-vZ-jiE" secondAttribute="trailing" id="s3J-ZI-AAh"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass.circle.fill" catalog="system" selectedImage="magnifyingglass.circle.fill" id="nLt-it-ljJ"/>
                     <connections>
-                        <outlet property="searchBar" destination="yFQ-QS-vxr" id="zha-72-Ra2"/>
+                        <outlet property="ResultsCollectionView" destination="B0G-JK-7oC" id="d6E-Iz-m41"/>
+                        <outlet property="searchBar" destination="MNd-4J-Yar" id="qvG-SA-TPY"/>
                     </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KYS-b1-lGB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W92-OI-cQw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1006" y="986"/>
         </scene>
