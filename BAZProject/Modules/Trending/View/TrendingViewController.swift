@@ -12,7 +12,6 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
             titleFilterLabel.text = .trendingTitleFilterTime
         }
     }
-    @IBOutlet weak private var filterSegmentedControl: UISegmentedControl!
     @IBOutlet weak private var filterTimeSegmentedControl: UISegmentedControl!
     @IBOutlet weak private var moviesTableView: UITableView!
 
@@ -53,10 +52,6 @@ final class TrendingViewController: UIViewController, TrendingViewProtocol {
         super.viewDidDisappear(animated)
         removeObservers()
         stopLoading()
-    }
-
-    @IBAction private func switchedFilterSegmented(_ sender: Any) {
-        // TODO: add logic in switched
     }
 
     @IBAction private func switchedFilterTimeSegmented(_ sender: Any) {
