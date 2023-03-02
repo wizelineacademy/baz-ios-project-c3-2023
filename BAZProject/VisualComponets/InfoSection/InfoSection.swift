@@ -46,6 +46,9 @@ class InfoSection: UIView {
         addContentViewToView()
     }
     
+    /**
+    Agrega label de titulo en la vista
+    */
     private func addLabelToView() {
         addSubview(titleLabel)
         NSLayoutConstraint.activate([
@@ -55,6 +58,9 @@ class InfoSection: UIView {
         ])
     }
     
+    /**
+    Agrega un UIView para contenido en la vista
+    */
     private func addContentViewToView() {
         addSubview(contentView)
         NSLayoutConstraint.activate([
@@ -65,6 +71,11 @@ class InfoSection: UIView {
         ])
     }
     
+    /**
+    Setea un UIView dentro del contentView
+    - Parameters:
+        - view: View que quiere ser agregada como contenido
+    */
     public func setContentView(view: UIView) {
         contentView.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false

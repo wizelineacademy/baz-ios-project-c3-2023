@@ -9,6 +9,11 @@ import Foundation
 import UIKit
 
 extension UIImageView {
+    /**
+    Obtiene imagen dado una path
+     - parameters:
+        - path: url de la imagen tipo String
+    */
     func byURL(path: String) {
         let worker = MoviesWorker(movieService: MoviesAPI())
         self.isHidden = false
