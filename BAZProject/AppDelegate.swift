@@ -13,6 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        NotificationCenter.default.addObserver(self, selector: #selector(didTrackDetailMovie(_:)), name: NSNotification.Name(MovieConstants.notificationName), object: nil)
         return true
     }
 
@@ -30,6 +31,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
-
+    func applicationWillTerminate(_ application: UIApplication) {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name(MovieConstants.notificationName), object: nil)
+    }
+    
+    @objc private func didTrackDetailMovie(_ notification: Notification) {
+        let oldCountMovies = UserDefaults.standard.integer(forKey: MovieConstants.viewsForDetailtMoviesKey)
+        UserDefaults.standard.set(oldCountMovies+1, forKey: MovieConstants.viewsForDetailtMoviesKey)
+    }
 }
 

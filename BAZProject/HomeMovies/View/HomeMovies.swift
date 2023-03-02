@@ -23,6 +23,8 @@ class HomeMoviesView: UIViewController {
     var toolBar = UIToolbar()
     var picker  = UIPickerView()
     let categoryPickerData: [MovieCategory] = [.trending, .nowPlaying, .popular, .topRated, .upcoming]
+    var limitControlCell: Int = 0
+    var foundResults: Bool = true
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -41,6 +43,8 @@ class HomeMoviesView: UIViewController {
 
         collectionHomeMovie.register(UINib(nibName: MovieCollectionCell.cellIdentifier, bundle: Bundle(for: MovieCollectionCell.self)),
                                      forCellWithReuseIdentifier: MovieCollectionCell.cellIdentifier)
+        collectionHomeMovie.register(EmptyMoviesCollectionCell.self, forCellWithReuseIdentifier: EmptyMoviesCollectionCell.cellIdentifier)
+
         self.collectionHomeMovie.delegate = self
         self.collectionHomeMovie.dataSource = self
         hideKeyboardWhenTappedAround()
