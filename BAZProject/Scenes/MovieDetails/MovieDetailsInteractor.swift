@@ -38,13 +38,10 @@ class MovieDetailsInteractor: MovieDetailsBusinessLogic, MovieDetailsDataStore {
     
     func fetchSimilarMovies(request: MovieDetails.FetchSimilarMovies.Request) {
         moviesWorker.getMoviesByType(.bySimilarMovie(id: request.idMovie)) { [weak self] movies, messageError in
-            guard let self = self else {
-                return
-            }
             if let messageError = messageError {
                 
             }
-            self.presenter?.presentFechedSimilarMovies(response: MovieDetails.FetchSimilarMovies.Response(idMovie: request.idMovie, movies: movies))
+            self?.presenter?.presentFechedSimilarMovies(response: MovieDetails.FetchSimilarMovies.Response(idMovie: request.idMovie, movies: movies))
         }
     }
     

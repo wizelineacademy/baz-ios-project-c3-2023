@@ -162,14 +162,19 @@ class MovieDetailsViewController: UIViewController {
         
         return descriptionView
     }
+    
+    private func postMovieWatchObserver(movie: MovieSearch) {
+        NotificationCenter.default.post(name: NSNotification.Name("movie.watch"), object: movie)
+    }
 }
 
 extension MovieDetailsViewController: MovieDetailsDisplayLogic {
 
     func displayView(viewModel: MovieDetails.LoadView.ViewModel) {
-        posterImageView.byURL(path: viewModel.imageURL)
-        addOverviewSection(description: viewModel.overview)
-        interactor?.fetchCast(request: MovieDetails.FetchCast.Request(idMovie: viewModel.id))
+        postMovieWatchObserver(movie: viewModel.movie)
+        posterImageView.byURL(path: viewModel.movie.imageURL)
+        addOverviewSection(description: viewModel.movie.description)
+        interactor?.fetchCast(request: MovieDetails.FetchCast.Request(idMovie: viewModel.movie.id))
         
     }
     
@@ -200,8 +205,8 @@ extension MovieDetailsViewController: MovieDetailsDisplayLogic {
     func displayCast(viewModel: MovieDetails.FetchCast.ViewModel) {
         DispatchQueue.main.async {
             self.addCastViewToView(cast: viewModel.cast)
-            self.interactor?.fetchReview(request: MovieDetails.FetchReview.Request(idMovie: viewModel.idMovie))
         }
+        interactor?.fetchReview(request: MovieDetails.FetchReview.Request(idMovie: viewModel.idMovie))
     }
     
     func displayReview(viewModel: MovieDetails.FetchReview.ViewModel) {
@@ -209,8 +214,8 @@ extension MovieDetailsViewController: MovieDetailsDisplayLogic {
             if let review = viewModel.review {
                 self.addReviewsViewToView(review: review)
             }
-            self.interactor?.fetchSimilarMovies(request: MovieDetails.FetchSimilarMovies.Request(idMovie: viewModel.idMovie))
         }
+        interactor?.fetchSimilarMovies(request: MovieDetails.FetchSimilarMovies.Request(idMovie: viewModel.idMovie))
     }
 }
 

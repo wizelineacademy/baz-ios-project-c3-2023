@@ -21,7 +21,7 @@ class MovieDetailsPresenter: MovieDetailsPresentationLogic {
     weak var viewController: MovieDetailsDisplayLogic?
     
     func presentLoadView(response: MovieDetails.LoadView.Response) {
-        let viewModel = MovieDetails.LoadView.ViewModel(id: response.movie.id, title: response.movie.name, imageURL: response.movie.imageURL, overview: response.movie.description)
+        let viewModel = MovieDetails.LoadView.ViewModel(movie: response.movie)
         viewController?.displayView(viewModel: viewModel)
     }
     

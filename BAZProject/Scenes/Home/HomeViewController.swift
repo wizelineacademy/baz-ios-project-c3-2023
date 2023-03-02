@@ -46,6 +46,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         addScrollViewToView()
         interactor?.getMoviesSection()
+        subscribeMovieWatchObserver()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -82,6 +83,16 @@ class HomeViewController: UIViewController {
         scrollViewContainer.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
         scrollViewContainer.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
         scrollViewContainer.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
+    }
+    
+    private func subscribeMovieWatchObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(listenMovieWatchObserver(_:)), name: NSNotification.Name("movie.watch"), object: nil)
+    }
+    
+    @objc func listenMovieWatchObserver(_ notification: Notification) {
+        if let movie = notification.object as? MovieSearch {
+            print(movie)
+        }
     }
 }
 

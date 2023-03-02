@@ -13,10 +13,7 @@ enum MovieDetails {
             var movie: MovieSearch
         }
         struct ViewModel {
-            var id: Int
-            var title: String
-            var imageURL: String
-            var overview: String
+            var movie: MovieSearch
         }
     }
     
