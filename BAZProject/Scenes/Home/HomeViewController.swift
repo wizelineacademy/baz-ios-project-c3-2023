@@ -11,6 +11,7 @@ import UIKit
 protocol HomeDisplayLogic: AnyObject {
     func displayFetchedMoives(viewModel: Home.FetchMoviesBySection.ViewModel)
     func displaySectionViews(viewModel: Home.GetMoviesSection.ViewModel)
+    func displayMoviesWatched(viewModel: Home.SaveMovieWatched.ViewModel)
 }
 
 class HomeViewController: UIViewController {
@@ -34,6 +35,7 @@ class HomeViewController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
+    var moviesViews: [MoviesSectionView] = []
     
     // MARK: Init
     required init?(coder: NSCoder) {
@@ -91,23 +93,34 @@ class HomeViewController: UIViewController {
     
     @objc func listenMovieWatchObserver(_ notification: Notification) {
         if let movie = notification.object as? MovieSearch {
-            print(movie)
+            let request = Home.SaveMovieWatched.Request(movie: movie)
+            interactor?.saveMovieWatched(request: request)
         }
     }
 }
 
 extension HomeViewController: HomeDisplayLogic {
-    func displayFetchedMoives(viewModel: Home.FetchMoviesBySection.ViewModel) {
-        let moviesSectionView = MoviesSectionView(typeSection: viewModel.displayedMovies.section)
-        moviesSectionView.delegate = self
-        addMoviesSectionView(moviesSectionView: moviesSectionView)
-        moviesSectionView.model = viewModel.displayedMovies.movies
-    }
-    
     func displaySectionViews(viewModel: Home.GetMoviesSection.ViewModel) {
         viewModel.displayedSections.forEach { section in
+            let moviesSectionView = MoviesSectionView(typeSection: section)
+            moviesSectionView.delegate = self
+            addMoviesSectionView(moviesSectionView: moviesSectionView)
+            moviesViews.append(moviesSectionView)
             interactor?.fetchMoviesBySection(request: Home.FetchMoviesBySection.Request(section: section))
         }
+    }
+    
+    func displayFetchedMoives(viewModel: Home.FetchMoviesBySection.ViewModel) {
+        moviesViews.forEach { moviesView in
+            if moviesView.typeSection == viewModel.displayedMovies.section {
+                moviesView.model = viewModel.displayedMovies.movies
+            }
+        }
+    }
+    
+    func displayMoviesWatched(viewModel: Home.SaveMovieWatched.ViewModel) {
+//        addMoviesSectionView(moviesSectionView: moviesWatchedView)
+//        moviesWatchedView.model = viewModel.movies
     }
 }
 

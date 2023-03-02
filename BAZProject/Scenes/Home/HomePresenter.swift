@@ -12,6 +12,7 @@ protocol HomePresentationLogic: AnyObject {
     func presentFechedMoviesForSection(response: Home.FetchMoviesBySection.Response)
     func presentMovieSections(response: Home.GetMoviesSection.Response)
     func presentErrorMessage(error: Home.FetchMoviesBySection.Error)
+    func presentMoviesWatched(response: Home.SaveMovieWatched.Response)
 }
 
 class HomePresenter: HomePresentationLogic {
@@ -35,5 +36,10 @@ class HomePresenter: HomePresentationLogic {
     
     func presentMovieSections(response: Home.GetMoviesSection.Response) {
         viewController?.displaySectionViews(viewModel: Home.GetMoviesSection.ViewModel(displayedSections: response.sections))
+    }
+    
+    func presentMoviesWatched(response: Home.SaveMovieWatched.Response) {
+        let viewModel = Home.SaveMovieWatched.ViewModel(movies: response.movies)
+        viewController?.displayMoviesWatched(viewModel: viewModel)
     }
 }

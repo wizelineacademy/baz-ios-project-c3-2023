@@ -10,7 +10,7 @@ import Foundation
 /// Endpoint defines the URL endpoint that is used to consume services from https://api.themoviedb.org/3
 /// 
 enum Endpoint {
-    case trending, nowPlaying, popular, topRated, upComing, byKeyword(String), bySearch(String), bySimilarMovie(id: Int), byRecommendationMovie(id: Int), movieReviews(id: Int), castByMovie(id: Int)
+    case trending, nowPlaying, popular, topRated, upComing, byKeyword(String), bySearch(String), bySimilarMovie(id: Int), byRecommendationMovie(id: Int), movieReviews(id: Int), castByMovie(id: Int), watched
     
     var url: String {
         switch self {
@@ -36,6 +36,8 @@ enum Endpoint {
             return "/movie/\(id)/reviews"
         case .castByMovie(let id):
             return "/movie/\(id)/credits"
+        default :
+            return ""
         }
     }
     

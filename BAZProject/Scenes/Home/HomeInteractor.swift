@@ -11,6 +11,7 @@ import UIKit
 protocol HomeBusinessLogic: AnyObject {
     func fetchMoviesBySection(request: Home.FetchMoviesBySection.Request)
     func getMoviesSection()
+    func saveMovieWatched(request: Home.SaveMovieWatched.Request)
 }
 
 
@@ -18,6 +19,7 @@ class HomeInteractor: HomeBusinessLogic {
     
     // MARK: Properties
     let moviesWorker = MoviesWorker(movieService: MoviesAPI())
+    var moviesWatched: [MovieSearch] = UserDefaults.standard.object(forKey: "moviesWatched") as? [MovieSearch] ?? []
     
     // MARK: Properties VIP
     var presenter: HomePresentationLogic?
@@ -37,6 +39,12 @@ class HomeInteractor: HomeBusinessLogic {
     func getMoviesSection() {
         let sections: [fetchMoviesTypes] = [.popular, .nowPlaying, .topRated, .trending, .upComing]
         presenter?.presentMovieSections(response: Home.GetMoviesSection.Response(sections: sections))
+    }
+    
+    func saveMovieWatched(request: Home.SaveMovieWatched.Request) {
+        moviesWatched.append(request.movie)
+        let response = Home.SaveMovieWatched.Response(movies: moviesWatched)
+        presenter?.presentMoviesWatched(response: response)
     }
 }
 

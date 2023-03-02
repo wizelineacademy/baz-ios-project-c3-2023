@@ -96,8 +96,8 @@ class MoviesAPI: MovieServicesProtocol {
 }
 
 /// fetchMoviesTypes defines the type to fetch movies based on their type
-enum fetchMoviesTypes {
-    case trending, nowPlaying, popular, topRated, upComing, byKeyword(String), bySearch(String), bySimilarMovie(id: Int), byRecommendationMovie(id: Int)
+enum fetchMoviesTypes: Equatable {
+    case trending, nowPlaying, popular, topRated, upComing, byKeyword(String), bySearch(String), bySimilarMovie(id: Int), byRecommendationMovie(id: Int), watched
     
     var endpoint: Endpoint {
         switch self {
@@ -119,6 +119,8 @@ enum fetchMoviesTypes {
             return Endpoint.bySimilarMovie(id: id)
         case .byRecommendationMovie(let id):
             return Endpoint.byRecommendationMovie(id: id)
+        case .watched:
+            return Endpoint.watched
         }
     }
     
@@ -142,6 +144,8 @@ enum fetchMoviesTypes {
             return "Similar Movies"
         case .byRecommendationMovie(_):
             return "Recommendation Movies"
+        case .watched:
+            return "Movies Watched"
         }
     }
 }

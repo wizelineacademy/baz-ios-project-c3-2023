@@ -37,4 +37,16 @@ enum Home {
             var displayedSections: [fetchMoviesTypes]
         }
     }
+    
+    enum SaveMovieWatched {
+        struct Request {
+            var movie: MovieSearch
+        }
+        struct Response {
+            var movies: [MovieSearch]
+        }
+        struct ViewModel {
+            var movies: [MovieSearch]
+        }
+    }
 }
