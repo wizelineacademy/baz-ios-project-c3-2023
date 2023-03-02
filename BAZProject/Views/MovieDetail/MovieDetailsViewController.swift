@@ -47,6 +47,10 @@ class MovieDetailsViewController: UIViewController {
         getCast()
         getSimilars()
         getRecommended()
+        guard let id = myMovie?.id else { return }
+        AppDelegate.movieID = id
+        NotificationCenter.default.post(name: .IncrementCount, object: nil)
+
     }
     
     func setUp() {

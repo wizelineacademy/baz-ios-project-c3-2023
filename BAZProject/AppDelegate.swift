@@ -9,11 +9,25 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
+    var counter: [Int:Int] = [:]
+    static var movieID: Int = 0
+   
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        NotificationCenter.default.addObserver(self, selector: #selector(notificate), name: .IncrementCount, object: nil)
         return true
+    }
+    
+    @objc func notificate() {
+        guard (counter[AppDelegate.movieID] != nil) else {
+            counter[AppDelegate.movieID] = 1
+            print(counter)
+            return
+        }
+        counter[AppDelegate.movieID]! += 1
+        print(counter)
+        
     }
 
     // MARK: UISceneSession Lifecycle
