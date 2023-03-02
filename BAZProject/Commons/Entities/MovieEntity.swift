@@ -5,7 +5,7 @@
 //  Created by 1029187 on 27/01/23.
 //
 
-import Foundation
+import UIKit
 
 struct Movie: Codable {
     let id: Int?
@@ -24,5 +24,13 @@ struct Movie: Codable {
         case releaseDate = "release_date"
         case voteAverage = "vote_average"
         case voteCount = "vote_count"
+    }
+    
+    func getImage(completion: @escaping(UIImage?) -> Void) {
+        if let posterPath = self.posterPath, let imageURL = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)") {
+            imageURL.toImage() { image in
+                completion(image)
+            }
+        }
     }
 }
