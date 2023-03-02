@@ -17,11 +17,13 @@ final class DetailViewController: UIViewController {
     private var reviews: [ReviewResult] = []
     private var firstReview: [ReviewResult] = []
     private var similarMovies: [SimilarMovieModelResult] = []
+    private var movieRecomendations: [RecomendationMovieModelResult] = []
 
     var heightCells: [Int: CGFloat] = [:]
 
     @IBOutlet weak private var backdropPathSlider: ImageSlider!
     @IBOutlet weak private var similarMoviesSlider: ImageSlider!
+    @IBOutlet weak var movieRecomendationsSlider: ImageSlider!
     @IBOutlet weak private var titleLabelText: UILabel! {
         didSet {
             titleLabelText.addShadow()
@@ -53,6 +55,12 @@ final class DetailViewController: UIViewController {
             titleSimilarMoviesLabel.text = .detailTitleSimilarMovies
         }
     }
+    @IBOutlet weak var titleMovieRecomendationsLabel: UILabel! {
+        didSet {
+            titleMovieRecomendationsLabel.text = .detailTitleMovieRecomendations
+        }
+    }
+    @IBOutlet weak var uiViewContainerMovieRecomendations: UIView!
     @IBOutlet weak private var uiViewContainerSimilarMovie: UIView!
 
     override func viewDidLoad() {
@@ -81,6 +89,7 @@ final class DetailViewController: UIViewController {
         super.viewWillDisappear(animated)
         backdropPathSlider.stopTimmer()
         similarMoviesSlider.stopTimmer()
+        movieRecomendationsSlider.stopTimmer()
         navigationController?.navigationBar.prefersLargeTitles = true
         stopLoading()
     }
@@ -205,7 +214,22 @@ final class DetailViewController: UIViewController {
 
 extension DetailViewController: DetailViewProtocol {
     func updateView(data: [RecomendationMovieModelResult]) {
-        
+        if data.isEmpty {
+            guaranteeMainThread {
+                self.uiViewContainerMovieRecomendations.isHidden = true
+            }
+            return
+        }
+        movieRecomendations = data
+        var posterUrlString: [String] = []
+        data.forEach { movie in
+            if let poster = movie.posterPath {
+                posterUrlString.append(poster)
+            }
+        }
+
+        movieRecomendationsSlider.setUp(imageUrlArray: posterUrlString, imageContentMode: .scaleAspectFit)
+        movieRecomendationsSlider.delegate = self
     }
 
     func updateView(data: [ReviewResult]) {
@@ -257,6 +281,8 @@ extension DetailViewController: DetailViewProtocol {
 extension DetailViewController: ImageSliderDelegate {
     func indexDidSelect(_ index: Int, object: ImageSlider) {
         if object == similarMoviesSlider, let id = similarMovies[index].id {
+            presenter?.willShowDetail(of: DetailType(mediaType: .movie, idMedia: id))
+        } else if object == movieRecomendationsSlider, let id = movieRecomendations[index].id {
             presenter?.willShowDetail(of: DetailType(mediaType: .movie, idMedia: id))
         }
     }

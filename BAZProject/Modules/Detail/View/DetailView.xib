@@ -14,13 +14,16 @@
                 <outlet property="backdropPathSlider" destination="0FR-aM-gL9" id="Xdg-Rf-KHY"/>
                 <outlet property="descriptionLabel" destination="nCs-z8-UA1" id="Y1E-sj-83c"/>
                 <outlet property="heightReviewTableView" destination="BN2-HW-ADa" id="alC-pN-L23"/>
+                <outlet property="movieRecomendationsSlider" destination="hpE-QZ-06j" id="eo1-IL-qs2"/>
                 <outlet property="reviewsTableView" destination="tur-a0-G72" id="92w-m7-zEb"/>
                 <outlet property="showAllBottom" destination="Yub-qX-oyt" id="TOL-Be-dmV"/>
                 <outlet property="showAllTop" destination="Poy-XM-9WR" id="Qak-nY-qCe"/>
                 <outlet property="similarMoviesSlider" destination="Vy1-yX-CQQ" id="Wqz-3I-a6R"/>
                 <outlet property="titleLabelText" destination="ZjG-S9-3Je" id="hYq-y0-zY4"/>
+                <outlet property="titleMovieRecomendationsLabel" destination="dBM-dg-ETq" id="mjw-aq-JVF"/>
                 <outlet property="titleReviewsLabel" destination="fRn-qb-c4i" id="n3l-7E-7zL"/>
                 <outlet property="titleSimilarMoviesLabel" destination="kmO-Nh-r9Y" id="XrX-Bd-NAK"/>
+                <outlet property="uiViewContainerMovieRecomendations" destination="Am7-9s-vUZ" id="9ZD-Tm-eLR"/>
                 <outlet property="uiViewContainerSimilarMovie" destination="bEU-sv-hmS" id="3Uv-JM-BAc"/>
                 <outlet property="view" destination="iN0-l3-epB" id="1vn-VC-947"/>
             </connections>
@@ -34,10 +37,10 @@
                     <rect key="frame" x="0.0" y="59" width="375" height="608"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Wf-Zx-fFC">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="1040.6666666666667"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="1404.6666666666667"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="fPl-am-mRz">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="1040.6666666666667"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="1404.6666666666667"/>
                                     <subviews>
                                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0FR-aM-gL9" customClass="ImageSlider" customModule="BAZProject" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="-170" width="375" height="170"/>
@@ -101,8 +104,36 @@
                                                 <constraint firstItem="Vy1-yX-CQQ" firstAttribute="top" secondItem="kmO-Nh-r9Y" secondAttribute="bottom" constant="8" id="pz9-D0-U5h"/>
                                             </constraints>
                                         </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Am7-9s-vUZ">
+                                            <rect key="frame" x="0.0" y="838" width="375" height="364"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Recomendations" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBM-dg-ETq">
+                                                    <rect key="frame" x="16" y="16" width="343" height="40"/>
+                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="20"/>
+                                                    <color key="textColor" name="SecondaryColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hpE-QZ-06j" customClass="ImageSlider" customModule="BAZProject" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="64" width="375" height="300"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="300" id="Qn6-RF-Zfg"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="hpE-QZ-06j" secondAttribute="trailing" id="1Ku-eW-boK"/>
+                                                <constraint firstItem="hpE-QZ-06j" firstAttribute="top" secondItem="dBM-dg-ETq" secondAttribute="bottom" constant="8" id="9NN-hR-CHR"/>
+                                                <constraint firstItem="dBM-dg-ETq" firstAttribute="leading" secondItem="Am7-9s-vUZ" secondAttribute="leading" constant="16" id="YvW-zO-grh"/>
+                                                <constraint firstItem="hpE-QZ-06j" firstAttribute="leading" secondItem="Am7-9s-vUZ" secondAttribute="leading" id="eVr-Mt-fhg"/>
+                                                <constraint firstAttribute="trailing" secondItem="dBM-dg-ETq" secondAttribute="trailing" constant="16" id="t0G-Sy-5ok"/>
+                                                <constraint firstItem="dBM-dg-ETq" firstAttribute="top" secondItem="Am7-9s-vUZ" secondAttribute="top" constant="16" id="wcu-ty-7yp"/>
+                                                <constraint firstAttribute="bottom" secondItem="hpE-QZ-06j" secondAttribute="bottom" id="zel-kf-gce"/>
+                                            </constraints>
+                                        </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jIG-ce-XNx" userLabel="Reviews">
-                                            <rect key="frame" x="0.0" y="838" width="375" height="202.66666666666674"/>
+                                            <rect key="frame" x="0.0" y="1202" width="375" height="202.66666666666674"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fRn-qb-c4i">
                                                     <rect key="frame" x="16" y="15.999999999999998" width="33" height="20.333333333333329"/>
@@ -111,7 +142,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <tableView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tur-a0-G72">
-                                                    <rect key="frame" x="16" y="44.333333333333371" width="343" height="100"/>
+                                                    <rect key="frame" x="16" y="44.333333333333258" width="343" height="100"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="100" id="BN2-HW-ADa"/>
@@ -178,7 +209,7 @@
                 <constraint firstItem="fCe-CL-cKA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="lR1-0F-uKu"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="123" y="21"/>
+            <point key="canvasLocation" x="122.90076335877862" y="20.774647887323944"/>
         </view>
     </objects>
     <resources>
