@@ -24,12 +24,15 @@ final class CarruselMovieTableViewCell: UITableViewCell {
         setUpCollection()
     }
 
-    func setUpCollection(){
+    ///This method configure the collection view and register the cells
+    private func setUpCollection(){
         movieCollection.dataSource = self
         movieCollection.delegate = self
         movieCollection.register(SearchMovieViewCollectioCell.nib, forCellWithReuseIdentifier: SearchMovieViewCollectioCell.identifier)
     }
     
+    ///This method fill the info of the view for cell
+    /// - Parameter for: recibes the  `Array` of type`Review`
     func setInfo(for movies: [Movie]){
         self.movies = movies
         self.movieCollection.reloadData()
