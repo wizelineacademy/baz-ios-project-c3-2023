@@ -7,15 +7,22 @@
 
 import Foundation
 
+protocol SearchView {
+    var moviesSearch: [Movie] { get set }
+}
+
 final class SearchMovieViewModel {
     
     let movieApi = MovieAPI()
+    var view: SearchView
     
-    func fetchSearchMovies(query text: String) -> [Movie] {
-        var moviesSearch: [Movie] = []
-        movieApi.getMoviesSearch(queryMovie: text) { movies in
-            moviesSearch = movies ?? []
+    init(view: SearchView) {
+        self.view = view
+    }
+    
+    func fetchSearchMovies(query text: String) {
+        movieApi.getMoviesSearch(queryMovie: text) { [weak self] moviesSearchResponse in
+            self?.view.moviesSearch = moviesSearchResponse ?? []
         }
-        return moviesSearch
     }
 }

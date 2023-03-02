@@ -47,13 +47,25 @@ final class MovieAPI {
      */
     
     func getDetailMovie(idMovie: Int, completion: @escaping((MovieDetail?) -> Void)) {
-        guard let url = URL(string: "\(urlBase)/movie/\(idMovie))?api_key=\(apiKey)"),
-              let data = try? Data(contentsOf: url),
-              let responseDetailMovie = try? JSONDecoder().decode(MovieDetail.self, from: data)
-        else {
-            return completion(nil)
+        guard let url = URL(string: "\(urlBase)/movie/\(idMovie))?api_key=\(apiKey)") else{
+            return
         }
-        completion(responseDetailMovie)
+        
+        let task = URLSession.shared.dataTask(with: url) {
+            data, response, error in
+            if let data = data{
+                do{
+                    let result = try JSONDecoder().decode(MovieDetail.self, from: data)
+                    completion(result)
+                }catch{
+                    completion(nil)
+                }
+                
+            } else {
+                completion(nil)
+            }
+        }
+        task.resume()
     }
     
     /**
@@ -62,14 +74,27 @@ final class MovieAPI {
      - Returns: An array type Movie
      */
     
-    func getMoviesSearch(queryMovie: String, completion: @escaping(([Movie]?) -> Void)) {
-        guard let url = URL(string: "\(urlBase)/search/movie?api_key=\(apiKey)&query=\(queryMovie)"),
-              let data = try? Data(contentsOf: url),
-              let responseMovies = try? JSONDecoder().decode(ReponseMovies.self, from: data)
-        else {
-            return completion(nil)
+    func getMoviesSearch(queryMovie: String, completion: @escaping(([Movie]?) -> Void)) {        
+        guard let url = URL(string: "\(urlBase)/search/movie?api_key=\(apiKey)&query=\(queryMovie)") else{
+            return
         }
-        completion(responseMovies.results)
+        
+        let task = URLSession.shared.dataTask(with: url) {
+            data, response, error in
+            if let data = data{
+                do{
+                    let result = try JSONDecoder().decode(ReponseMovies.self, from: data)
+                    completion(result.results)
+                }catch{
+                    completion(nil)
+                }
+                
+            } else {
+                completion(nil)
+            }
+        }
+        task.resume()
+        
     }
 }
 

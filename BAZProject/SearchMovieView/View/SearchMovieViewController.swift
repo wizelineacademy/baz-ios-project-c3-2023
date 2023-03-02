@@ -7,19 +7,26 @@
 
 import UIKit
 
-final class SearchMovieViewController: UIViewController {
+final class SearchMovieViewController: UIViewController, SearchView {
     
     @IBOutlet weak var tfWordSearch: UITextField!
     @IBOutlet weak var collectionViewSearch: UICollectionView!
     @IBOutlet weak var viewConatinerSearch: UIView!
     
     let NUMBER_ONE = 1
-    var moviesSearch: [Movie] = []
-    let viewModel = SearchMovieViewModel()
+    var moviesSearch: [Movie] = [] {
+        didSet{
+            DispatchQueue.main.async { [weak self] in
+                self?.collectionViewSearch.reloadData()
+            }
+        }
+    }
     let notificationCenter = NotificationCenter.default
+    var viewModel: SearchMovieViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel = SearchMovieViewModel(view: self)
         addGestureKeyboard()
         registerCollectionViewCell()
     }
@@ -76,7 +83,7 @@ final class SearchMovieViewController: UIViewController {
     }
     
     @IBAction func onTapSearchButton(_ sender: Any) {
-        moviesSearch = viewModel.fetchSearchMovies(query: tfWordSearch.text ?? "")
+        viewModel?.fetchSearchMovies(query: tfWordSearch.text ?? "")
         self.view.endEditing(true)
         self.collectionViewSearch.reloadData()
     }

@@ -7,13 +7,19 @@
 
 import UIKit
 
-final class DetailsMovieViewController: UIViewController {
+final class DetailsMovieViewController: UIViewController, DetailsView {
+    
+    var movieDetail: MovieDetail? = nil {
+        didSet {
+            detailsMovie = movieDetail
+        }
+    }
 
     @IBOutlet weak var stackVerticalContainer: UIStackView!
     @IBOutlet weak var imgMovie: UIImageView!
     
     var specificMovie: Movie? = nil
-    let viewModel = DetailsMovieViewModel()
+    let viewModel: DetailsMovieViewModel? = nil
     var detailsMovie: MovieDetail? = nil
     let labelsMovieView: LabelsMovie = LabelsMovie()
     let notificationName = Notification.Name("CountMoviesNotification")
@@ -23,7 +29,8 @@ final class DetailsMovieViewController: UIViewController {
         super.viewDidLoad()
         self.title = specificMovie?.title
         setUIBanner()
-        fetchDetailsMovie()
+        viewModel?.view = self
+        viewModel?.fetchDetailMovie(idMovie: specificMovie?.id ?? 0)
         viewLabelsAdded()
         centerNotifCreated()
     }
@@ -53,13 +60,6 @@ final class DetailsMovieViewController: UIViewController {
         imgMovie.contentMode = .scaleAspectFill
         imgMovie.layer.cornerRadius = 20
         imgMovie.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-    }
-    
-    private func fetchDetailsMovie() {
-        guard let details = viewModel.fetchDetailMovie(idMovie: specificMovie?.id ?? 0) else {
-            return
-        }
-        detailsMovie = details
     }
     
     private func loadValuesDetails() {

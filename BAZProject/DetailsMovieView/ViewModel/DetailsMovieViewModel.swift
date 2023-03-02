@@ -7,16 +7,22 @@
 
 import Foundation
 
+protocol DetailsView {
+    var movieDetail: MovieDetail? { get set }
+}
+
 final class DetailsMovieViewModel {
     
     let movieApi = MovieAPI()
+    var view: DetailsView?
     
-    func fetchDetailMovie(idMovie: Int) -> MovieDetail? {
-        
-        var detailsMovie: MovieDetail? = nil
-        movieApi.getDetailMovie(idMovie: idMovie) { details in
-            detailsMovie = details
+    init(view: DetailsView?) {
+        self.view = view
+    }
+    
+    func fetchDetailMovie(idMovie: Int) {
+        movieApi.getDetailMovie(idMovie: idMovie) { [weak self] details in
+            self?.view?.movieDetail = details
         }
-        return detailsMovie
     }
 }
