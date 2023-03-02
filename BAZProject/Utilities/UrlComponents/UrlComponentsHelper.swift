@@ -7,7 +7,7 @@
 
 import Foundation
 
-class URLComponentsHelper {
+fincal class URLComponentsHelper {
     
     /**    func to make Url
      - Parameter path: endpoint of URLApi

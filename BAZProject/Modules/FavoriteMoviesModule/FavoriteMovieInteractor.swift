@@ -7,7 +7,7 @@
 
 import Foundation
 
-class FavoriteMovieInteractor {
+final class FavoriteMovieInteractor {
     var presenter: FavoriteMovieInteractorOutputProtocol?
     var getDataMovies: [Movie]?
     var getIdMovies: [Int]?

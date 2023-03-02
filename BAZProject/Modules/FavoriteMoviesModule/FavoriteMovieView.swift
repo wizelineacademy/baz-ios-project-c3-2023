@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FavoriteMovieView: UIViewController {
+final class FavoriteMovieView: UIViewController {
     var presenter: FavoriteMoviePresenterProtocol?
     @IBOutlet weak var tableView: UITableView!
     

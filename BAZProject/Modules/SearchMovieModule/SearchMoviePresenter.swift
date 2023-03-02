@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchMoviePresenter: NSObject {
+final class SearchMoviePresenter: NSObject {
     weak var view: SearchMovieViewProtocol?
     var interceptor: SearchMovieInterceptorInputProtocol?
     var timer: Timer?

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WatchedMovieInteractor {
+final class WatchedMovieInteractor {
     var presenter: WatchedMovieInteractorOutputProtocols?
     var getDataMovies: [Movie]?
     var getIdMovies: [Int]?

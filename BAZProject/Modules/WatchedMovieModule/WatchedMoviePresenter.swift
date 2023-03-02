@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WatchedMoviePresenter: NSObject, WatchedMovieInteractorOutputProtocols {
+final class WatchedMoviePresenter: NSObject, WatchedMovieInteractorOutputProtocols {
     var view: WatchedMovieViewProtocols?
     var interactor: WatchedMovieInteractorInputProtocols?
     let dispatchGroup = DispatchGroup()

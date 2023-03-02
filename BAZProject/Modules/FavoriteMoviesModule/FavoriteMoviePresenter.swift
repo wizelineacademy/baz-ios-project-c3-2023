@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FavoriteMoviePresenter: NSObject {
+final class FavoriteMoviePresenter: NSObject {
     weak var view: FavoriteMovieViewProtocol?
     var interactor: FavoriteMovieInteractorInputProtocol?
     let imageProvider = ImageProvider.shared

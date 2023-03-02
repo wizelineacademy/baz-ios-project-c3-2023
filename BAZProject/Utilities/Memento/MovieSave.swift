@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - CareTaker
-public class SaveMovies {
+public final class SaveMovies {
     
     enum TypeMovieSave: String {
     case watchedMovies

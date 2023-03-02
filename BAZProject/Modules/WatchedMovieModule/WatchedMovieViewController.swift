@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WatchedMovieViewController: UIViewController, WatchedMovieViewProtocols {
+final class WatchedMovieViewController: UIViewController, WatchedMovieViewProtocols {
     @IBOutlet weak var tableView: UITableView!
     var presenter: WatchedMoviePresenterProtocols?
 
