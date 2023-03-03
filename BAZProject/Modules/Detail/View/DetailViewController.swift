@@ -285,10 +285,14 @@ extension DetailViewController: DetailViewProtocol {
 
 extension DetailViewController: ImageSliderDelegate {
     func indexDidSelect(_ index: Int, object: ImageSlider) {
-        if object.isEqual(similarMoviesSlider), let id = similarMovies[index].id {
-            presenter?.willShowDetail(of: id.description)
-        } else if object.isEqual(movieRecomendationsSlider), let id = movieRecomendations[index].id {
-            presenter?.willShowDetail(of: id.description)
+        var idMovie: Int = .zero
+        if object.isEqual(similarMoviesSlider),
+           let id = similarMovies[index].id {
+            idMovie = id
+        } else if object.isEqual(movieRecomendationsSlider),
+                  let id = movieRecomendations[index].id {
+            idMovie = id
         }
+        presenter?.willShowDetail(of: idMovie.description)
     }
 }
