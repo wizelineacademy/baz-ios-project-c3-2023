@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reviewTableCell" rowHeight="270" id="S0l-nA-bOv" customClass="ReviewTableViewCell" customModule="MovieBucket" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="406" height="270"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="S0l-nA-bOv" id="Eoi-bR-emy">
+                <rect key="frame" x="0.0" y="0.0" width="406" height="270"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="    Reviews" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ibw-AB-PR4">
+                        <rect key="frame" x="0.0" y="0.0" width="406" height="30"/>
+                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="Nqd-1d-YoN"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="19"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="PAa-ML-dGe">
+                        <rect key="frame" x="0.0" y="30" width="406" height="240"/>
+                        <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="PAa-ML-dGe" secondAttribute="height" multiplier="203:120" id="7IX-mW-acK"/>
+                        </constraints>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="O7b-o2-inw">
+                            <size key="itemSize" width="128" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="PAa-ML-dGe" firstAttribute="top" secondItem="Ibw-AB-PR4" secondAttribute="bottom" id="8nn-23-iQ3"/>
+                    <constraint firstItem="PAa-ML-dGe" firstAttribute="leading" secondItem="Eoi-bR-emy" secondAttribute="leading" id="NxB-Rj-XLc"/>
+                    <constraint firstItem="Ibw-AB-PR4" firstAttribute="leading" secondItem="Eoi-bR-emy" secondAttribute="leading" id="TLR-mZ-ovz"/>
+                    <constraint firstAttribute="bottom" secondItem="PAa-ML-dGe" secondAttribute="bottom" id="Wih-ub-4IS"/>
+                    <constraint firstItem="Ibw-AB-PR4" firstAttribute="top" secondItem="Eoi-bR-emy" secondAttribute="top" id="e73-jj-fds"/>
+                    <constraint firstAttribute="trailing" secondItem="Ibw-AB-PR4" secondAttribute="trailing" id="hSY-Vy-SKe"/>
+                    <constraint firstAttribute="trailing" secondItem="PAa-ML-dGe" secondAttribute="trailing" id="mOw-gl-ai1"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="eSl-3R-lTz"/>
+            <connections>
+                <outlet property="reviewCollectionView" destination="PAa-ML-dGe" id="pze-K4-Up8"/>
+            </connections>
+            <point key="canvasLocation" x="-13.740458015267174" y="83.802816901408448"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="secondarySystemGroupedBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

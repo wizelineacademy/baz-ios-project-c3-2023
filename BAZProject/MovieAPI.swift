@@ -249,26 +249,70 @@ class MovieAPI {
     ///
     /// - Parameter idMovie: The ID of the movie to retrieve the cast for.
     /// - Returns: An array of `Cast` objects, or an empty array if an error occurs.
-    func getMovieCast(idMovie: Int) -> [Cast]{
-        guard let url = URL(string: "\(urlBase)/3/movie/\(idMovie)/credits?api_key=\(apiKey)&language=es&region=MX&page=1"),
-              let data = try? Data(contentsOf: url),
-              let json = try? JSONSerialization.jsonObject(with: data) as? NSDictionary,
-              let results = json.object(forKey: "results") as? [NSDictionary]
+    func getMovieCast(idMovie: Int, completion: @escaping ([Cast]) -> Void) {
+        guard let url = URL(string: "\(urlBase)/3/movie/\(idMovie)/credits?api_key=\(apiKey)&language=es&region=MX&page=1")
         else {
-            return []
+            completion([])
+            return
         }
-        
-        var castMovie: [Cast] = []
-        
-        for result in results {
-            if let name = result.object(forKey: "name") as? String,
-               let profile_path = result.object(forKey: "profile_path") as? String,
-               let character = result.object(forKey: "character") as? String {
-                castMovie.append(Cast(name: name, profile_path: profile_path, character: character))
+        let session = URLSession.shared
+        let task = session.dataTask(with: url) { (data, response, error) in
+            guard let data = data,
+                  let json = try? JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary,
+                  let results = json.object(forKey: "cast") as? [NSDictionary]
+            else {
+                completion([])
+                return
+            }
+
+            var castMovie: [Cast] = []
+
+            for result in results {
+                if let name = result.object(forKey: "name") as? String,
+                   let profile_path = result.object(forKey: "profile_path") as? String,
+                   let character = result.object(forKey: "character") as? String {
+                    castMovie.append(Cast(name: name, profile_path: profile_path, character: character))
+                }
+            }
+            DispatchQueue.main.async {
+                completion(castMovie)
             }
         }
-        return castMovie
+        task.resume()
     }
+    
+    func getReviews(idMovie: Int, completion: @escaping ([Reviews]) -> Void) {
+        guard let url = URL(string: "\(urlBase)/3/movie/\(idMovie)/reviews?api_key=\(apiKey)")
+        else {
+            completion([])
+            return
+        }
+        let session = URLSession.shared
+        let task = session.dataTask(with: url) { (data, response, error) in
+            guard let data = data,
+                  let json = try? JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary,
+                  let results = json.object(forKey: "results") as? [NSDictionary]
+            else {
+                completion([])
+                return
+            }
+
+            var reviewMovie: [Reviews] = []
+
+            for result in results {
+                if let author = result.object(forKey: "author") as? String,
+                   let content = result.object(forKey: "content") as? String,
+                   let created_at = result.object(forKey: "created_at") as? String {
+                    reviewMovie.append(Reviews(author: author, content: content, created_at: created_at))
+                }
+            }
+            DispatchQueue.main.async {
+                completion(reviewMovie)
+            }
+        }
+        task.resume()
+    }
+
 }
 
 

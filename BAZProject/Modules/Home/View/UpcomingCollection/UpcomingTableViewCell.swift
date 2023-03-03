@@ -14,7 +14,7 @@ class UpcomingTableViewCell: UITableViewCell {
     let movieApi = MovieAPI()
     var upcomingMovies: [Movie] = []
     var imagesMovies: [UIImage] = []
-    var view: UIViewController?
+    weak var view: UIViewController?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,7 +26,9 @@ class UpcomingTableViewCell: UITableViewCell {
             DispatchQueue.main.async {
                 self?.upcomingCollectionView.reloadData()
             }
-        }    }
+        }
+        
+    }
     
     func configCollectionView(){
         upcomingCollectionView.dataSource = self
@@ -68,7 +70,7 @@ extension UpcomingTableViewCell: UICollectionViewDataSource{
 extension UpcomingTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let destination = storyboard.instantiateViewController(withIdentifier: "DetailMovieViewController") as? DetailMovieViewController else {
+        guard let destination = storyboard.instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController else {
             return
         }
         destination.movie = upcomingMovies[indexPath.row]

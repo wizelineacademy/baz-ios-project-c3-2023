@@ -11,13 +11,12 @@ struct Movie: Codable {
     let title: String
     let poster_path: String
     let overview: String
-//    var cast: [Cast] = []
-//    var reviews: [Reviews] = []
 
      var urlImage: String{
         return "https://image.tmdb.org/t/p/w500/\(poster_path)"
     }
 }
+
 struct Cast: Codable {
     let name: String?
     let profile_path: String?

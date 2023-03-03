@@ -12,8 +12,6 @@ class HomeViewController: UIViewController {
  
     @IBOutlet weak var tableView: UITableView!
     
-    let navBar = UINavigationBar()
-    
     let movieApi = MovieAPI()
     var movies: [Movie] = []
     var ratedMovies: [Movie] = []
@@ -89,13 +87,7 @@ extension HomeViewController: UITableViewDataSource {
              return UITableViewCell()
              
          }
-       
-             
-             
-         
     }
-    
-    
 }
 
 

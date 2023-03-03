@@ -15,7 +15,7 @@ class ratedTableViewCell: UITableViewCell {
     var movies: [Movie] = []
     var ratedMovies: [Movie] = []
     var imagesMovies: [UIImage] = []
-    var view: UIViewController?
+    weak var view: UIViewController?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -69,7 +69,7 @@ extension ratedTableViewCell: UICollectionViewDataSource{
 extension ratedTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let destination = storyboard.instantiateViewController(withIdentifier: "DetailMovieViewController") as? DetailMovieViewController else {
+        guard let destination = storyboard.instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController else {
             return
         }
         destination.movie = ratedMovies[indexPath.row]

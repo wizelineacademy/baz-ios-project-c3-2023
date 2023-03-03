@@ -12,8 +12,8 @@ class NowPlayingTableViewCell: UITableViewCell {
     
     let movieApi = MovieAPI()
     var imagesMovies: [UIImage] = []
-    var view: UIViewController?
     var nowPlayingmovies: [Movie] = []
+    weak var view: UIViewController?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -67,7 +67,7 @@ extension NowPlayingTableViewCell: UICollectionViewDataSource{
 extension NowPlayingTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let destination = storyboard.instantiateViewController(withIdentifier: "DetailMovieViewController") as? DetailMovieViewController else {
+        guard let destination = storyboard.instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController else {
             return
         }
         destination.movie = nowPlayingmovies[indexPath.row]

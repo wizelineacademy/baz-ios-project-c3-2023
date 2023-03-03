@@ -14,7 +14,7 @@ class PopularTableViewCell: UITableViewCell {
     let movieApi = MovieAPI()
     var popularMovies: [Movie] = []
     var imagesMovies: [UIImage] = []
-    var view: UIViewController?
+    weak var view: UIViewController?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -68,7 +68,7 @@ extension PopularTableViewCell: UICollectionViewDataSource{
 extension PopularTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let destination = storyboard.instantiateViewController(withIdentifier: "DetailMovieViewController") as? DetailMovieViewController else {
+        guard let destination = storyboard.instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController else {
             return
         }
         destination.movie = popularMovies[indexPath.row]

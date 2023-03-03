@@ -21,7 +21,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
             self.imageMovie.image = image
             self.nameMovie.text = title
             self.imageMovie.clipsToBounds = true
-            self.imageMovie.layer.cornerRadius = 60
+            self.imageMovie.layer.cornerRadius = 50
         }
     }
 

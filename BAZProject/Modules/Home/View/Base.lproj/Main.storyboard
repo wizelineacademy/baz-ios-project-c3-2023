@@ -184,6 +184,58 @@
             </objects>
             <point key="canvasLocation" x="496" y="-1181"/>
         </scene>
+        <!--Details View Controller-->
+        <scene sceneID="X4J-mc-ceu">
+            <objects>
+                <viewController storyboardIdentifier="DetailsViewController" id="BFN-di-b6x" customClass="DetailsViewController" customModule="MovieBucket" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aAx-nj-AAq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="alpha Movie Bucket" translatesAutoresizingMaskIntoConstraints="NO" id="JTv-VK-TjQ">
+                                <rect key="frame" x="0.0" y="48" width="414" height="89"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="89" id="xD0-st-8Jb"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="poster" translatesAutoresizingMaskIntoConstraints="NO" id="VfD-Vt-Zic">
+                                <rect key="frame" x="0.0" y="135" width="414" height="433"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="WkY-qw-SPi">
+                                <rect key="frame" x="0.0" y="567" width="414" height="329"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="329" id="anK-NR-2NL"/>
+                                </constraints>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Z3v-1v-mqh"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="VfD-Vt-Zic" firstAttribute="leading" secondItem="Z3v-1v-mqh" secondAttribute="leading" id="43U-9a-Ww4"/>
+                            <constraint firstItem="WkY-qw-SPi" firstAttribute="top" secondItem="VfD-Vt-Zic" secondAttribute="bottom" constant="-1" id="8NH-3k-v9j"/>
+                            <constraint firstItem="VfD-Vt-Zic" firstAttribute="top" secondItem="JTv-VK-TjQ" secondAttribute="bottom" constant="-2" id="9Nr-m2-0bm"/>
+                            <constraint firstItem="JTv-VK-TjQ" firstAttribute="top" secondItem="Z3v-1v-mqh" secondAttribute="top" id="Ayb-5D-lHh"/>
+                            <constraint firstItem="JTv-VK-TjQ" firstAttribute="leading" secondItem="Z3v-1v-mqh" secondAttribute="leading" id="KIP-ua-gT6"/>
+                            <constraint firstAttribute="bottom" secondItem="WkY-qw-SPi" secondAttribute="bottom" id="NaG-dD-APt"/>
+                            <constraint firstItem="Z3v-1v-mqh" firstAttribute="trailing" secondItem="JTv-VK-TjQ" secondAttribute="trailing" id="S8S-tt-F9g"/>
+                            <constraint firstItem="WkY-qw-SPi" firstAttribute="trailing" secondItem="Z3v-1v-mqh" secondAttribute="trailing" id="TVT-DW-hfL"/>
+                            <constraint firstItem="WkY-qw-SPi" firstAttribute="leading" secondItem="Z3v-1v-mqh" secondAttribute="leading" id="mF2-tM-A0z"/>
+                            <constraint firstItem="JTv-VK-TjQ" firstAttribute="centerX" secondItem="aAx-nj-AAq" secondAttribute="centerX" id="qSl-XG-9fa"/>
+                            <constraint firstItem="VfD-Vt-Zic" firstAttribute="trailing" secondItem="Z3v-1v-mqh" secondAttribute="trailing" id="rcb-pW-kKI"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="detailTableView" destination="WkY-qw-SPi" id="Qiz-OV-ok4"/>
+                        <outlet property="imageMovie" destination="VfD-Vt-Zic" id="H1g-IV-uPQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m2W-Wv-30n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1308.6956521739132" y="-318.08035714285711"/>
+        </scene>
         <!--Search-->
         <scene sceneID="cSd-H1-J0L">
             <objects>
