@@ -125,7 +125,7 @@ class MovieAPI {
     }
     
     func getUpcomingMovies(completion: @escaping ([Movie]) -> Void) {
-        guard let url = URL(string: "\(urlBase)/3/movie/upcoming?api_key=\(apiKey)&language=es&region=MX&page=1") else {
+        guard let url = URL(string: "\(urlBase)/3/movie/upcoming?api_key=\(apiKey)&language=es") else {
             completion([])
             return
         }
@@ -194,9 +194,7 @@ class MovieAPI {
         
         task.resume()
     }
-    
-    
-    
+
 // MARK: -  Get image Movies
     /// Get an image for a given movie using its URL.
     /// - Parameters:
@@ -312,7 +310,78 @@ class MovieAPI {
         }
         task.resume()
     }
+    
+    func getSimilarMovies(idMovie: Int, completion: @escaping ([Movie]) -> Void) {
+        guard let url = URL(string: "\(urlBase)/3/movie/\(idMovie)/similar?api_key=\(apiKey)")
+        else {
+            completion([])
+            return
+        }
+        let session = URLSession.shared
+        let task = session.dataTask(with: url) { (data, response, error) in
+            guard let data = data,
+                  let json = try? JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary,
+                  let results = json.object(forKey: "results") as? [NSDictionary]
+            else {
+                completion([])
+                return
+            }
+
+            var simMovie: [Movie] = []
+
+            for result in results {
+                if let id = result.object(forKey: "id") as? Int,
+                   let title = result.object(forKey: "title") as? String,
+                   let overview = result.object(forKey: "overview") as? String,
+                   let poster_path = result.object(forKey: "poster_path") as? String {
+                    simMovie.append(Movie(id: id, title: title, poster_path: poster_path, overview: overview))
+                }
+            }
+            DispatchQueue.main.async {
+                completion(simMovie)
+            }
+        }
+        task.resume()
+    }
+    
+    func getRecommendationsMovies(idMovie: Int, completion: @escaping ([Movie]) -> Void) {
+        guard let url = URL(string: "\(urlBase)/3/movie/\(idMovie)/recommendations?api_key=\(apiKey)")
+        else {
+            completion([])
+            return
+        }
+        let session = URLSession.shared
+        let task = session.dataTask(with: url) { (data, response, error) in
+            guard let data = data,
+                  let json = try? JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary,
+                  let results = json.object(forKey: "results") as? [NSDictionary]
+            else {
+                completion([])
+                return
+            }
+
+            var simMovie: [Movie] = []
+
+            for result in results {
+                if let id = result.object(forKey: "id") as? Int,
+                   let title = result.object(forKey: "title") as? String,
+                   let overview = result.object(forKey: "overview") as? String,
+                   let poster_path = result.object(forKey: "poster_path") as? String {
+                    simMovie.append(Movie(id: id, title: title, poster_path: poster_path, overview: overview))
+                }
+            }
+            DispatchQueue.main.async {
+                completion(simMovie)
+            }
+        }
+        task.resume()
+    }
 
 }
+
+
+
+
+
 
 

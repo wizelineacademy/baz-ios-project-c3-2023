@@ -53,6 +53,7 @@ extension ReviewTableViewCell: UICollectionViewDataSource{
         
         let reviewAtIndex = review[indexPath.row]
         cell.setUpReviews(authorLabel: " Autor:  \(reviewAtIndex.author ?? "")", reviewLabel: reviewAtIndex.content ?? "", createdLabel: " Fecha de Creacion: \(reviewAtIndex.created_at ?? "")")
+        cell.layer.masksToBounds = false
         cell.addShadow()
         return cell
     }

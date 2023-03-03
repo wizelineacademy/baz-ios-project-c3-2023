@@ -1,82 +1,83 @@
 //
-//  upcomingTableViewCell.swift
+//  RecommendationsTableViewCell.swift
 //  MovieBucket
 //
-//  Created by Brenda Paola Lara Moreno on 02/03/23.
+//  Created by Brenda Paola Lara Moreno on 03/03/23.
 //
 
 import UIKit
 
-class UpcomingTableViewCell: UITableViewCell {
+class RecommendationsTableViewCell: UITableViewCell {
+
     
-    @IBOutlet weak var upcomingCollectionView: UICollectionView!
+    @IBOutlet weak var recomCollectionView: UICollectionView!
     
     let movieApi = MovieAPI()
-    var upcomingMovies: [Movie] = []
+    var recommendationsMovie: [Movie] = []
     var imagesMovies: [UIImage] = []
+    var idMovie: Int = 0
     weak var view: UIViewController?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         configCollectionView()
         setUpCell()
-        
-        movieApi.getUpcomingMovies { [weak self] upcomingMovies in
-            self?.upcomingMovies = upcomingMovies
+        }
+    func loadView() {
+        movieApi.getRecommendationsMovies(idMovie: idMovie) { [weak self] recommendationsMovie in
+            self?.recommendationsMovie = recommendationsMovie
             DispatchQueue.main.async {
-                self?.upcomingCollectionView.reloadData()
+                self?.recomCollectionView.reloadData()
             }
         }
-        
+    
     }
     
     func configCollectionView(){
-        upcomingCollectionView.dataSource = self
-        upcomingCollectionView.delegate = self
-        upcomingCollectionView.register(UINib(nibName: "MovieCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "movieCell")
+        recomCollectionView.dataSource = self
+        recomCollectionView.delegate = self
+        recomCollectionView.register(UINib(nibName: "MovieCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "movieCell")
     }
     
     func setUpCell() {
         let configureCell = UICollectionViewFlowLayout()
         configureCell.scrollDirection = .horizontal
         configureCell.itemSize =  CGSize(width: 110, height: 200)
-        upcomingCollectionView.setCollectionViewLayout(configureCell, animated: false)
+        recomCollectionView.setCollectionViewLayout(configureCell, animated: false)
     }
 }
 
 //MARK: CollectionView's DataSource
 
-extension UpcomingTableViewCell: UICollectionViewDataSource{
+extension RecommendationsTableViewCell: UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as? MovieCollectionViewCell
         else { return UICollectionViewCell() }
         
-        movieApi.getImageMovie(urlString: "https://image.tmdb.org/t/p/w500\(upcomingMovies[indexPath.row].poster_path)") { imageMovie in
-            cell.setupCollectionCell(image: imageMovie ?? UIImage(), title: self.upcomingMovies[indexPath.row].title)
+        movieApi.getImageMovie(urlString: "https://image.tmdb.org/t/p/w500\(recommendationsMovie[indexPath.row].poster_path)") { imageMovie in
+            cell.setupCollectionCell(image: imageMovie ?? UIImage(), title: self.recommendationsMovie[indexPath.row].title)
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return upcomingMovies.count
+        return recommendationsMovie.count
     }
     
 }
 
 //MARK: CollectionView's Delegate
-extension UpcomingTableViewCell: UICollectionViewDelegate {
+extension RecommendationsTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let destination = storyboard.instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController else {
             return
         }
-        destination.movie = upcomingMovies[indexPath.row]
+        destination.movie = recommendationsMovie[indexPath.row]
         view?.navigationController?.pushViewController(destination, animated: true)
     }
     
     
 }
-
-

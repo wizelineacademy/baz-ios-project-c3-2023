@@ -6,6 +6,9 @@
 
 import Foundation
 
+///This structs represents a movie object with its properties.
+
+
 struct Movie: Codable {
     let id: Int
     let title: String
