@@ -30,7 +30,8 @@ final class StarRatedView: CustomView {
     private var selectedRate: Int = LocalizedConstants.starRatedInitSection
     private var numberStars: Int = LocalizedConstants.starRatedInitSection
 
-    /// This function allows you to configure the view, where you must indicate the selectedRate parameter and optionally numberStars.
+    /// This function allows you to configure the view, where you must
+    /// indicate the selectedRate parameter and optionally numberStars.
     ///
     /// :param: selectedRate Int indicating the number of stars selected
     ///         numberStars Int indicating the number of stars to draw (optional parameter)

@@ -28,9 +28,10 @@ final class CellSlider: UICollectionViewCell {
         super.awakeFromNib()
     }
 
-    /// This function allows you to configure the cell, where you must indicate the imageUrl parameter and optionally imageContentMode.
+    /// This function allows you to configure the cell, where you must indicate
+    /// 7the imageUrl parameter and optionally imageContentMode.
     ///
-    /// :param: imageUrl String indicating the url string of image
+    /// :param: imageUrl String indicating the 8 string of image
     ///         numberStars Int indicating the ContentMode of image (optional parameter)
     func setData(imageUrl: String, imageContentMode: ContentMode? = nil) {
         setContentMode(to: imageContentMode)

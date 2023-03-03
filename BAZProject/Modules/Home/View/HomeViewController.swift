@@ -190,18 +190,13 @@ extension HomeViewController: HomeViewProtocol {
 
 extension HomeViewController: ImageSliderDelegate {
     func indexDidSelect(_ index: Int, object: ImageSlider) {
-        if object == movieTopSlider {
-            guard let id = movieTopRated?[index].id as? Int else { return }
+        if object.isEqual(movieTopSlider), let id = movieTopRated?[index].id as? Int {
             presenter?.willShowDetail(of: id.description)
-
-        } else if object == nowPlayingSlider {
-            guard let id = nowPlaying?[index].id as? Int else { return }
+        } else if object.isEqual(nowPlayingSlider), let id = nowPlaying?[index].id as? Int {
             presenter?.willShowDetail(of: id.description)
-        } else if object == popularImageSlider {
-            guard let id = popularMovies?[index].id as? Int else { return }
+        } else if object.isEqual(popularImageSlider), let id = popularMovies?[index].id as? Int {
             presenter?.willShowDetail(of: id.description)
-        } else if object == upcomingMoviesSlider {
-            guard let id = upcomingMovies?[index].id as? Int else { return }
+        } else if object.isEqual(upcomingMoviesSlider), let id = upcomingMovies?[index].id as? Int {
             presenter?.willShowDetail(of: id.description)
         }
     }
