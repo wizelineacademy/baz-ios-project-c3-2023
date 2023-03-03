@@ -118,7 +118,7 @@ final class HomeViewController: UIViewController {
     }
 
     @objc private func aumentMovieShow(_ notification: Notification) {
-        totalMoviesShow += 1
+        totalMoviesShow += LocalizedConstants.commonIncrementNumber
     }
 }
 
@@ -190,14 +190,20 @@ extension HomeViewController: HomeViewProtocol {
 
 extension HomeViewController: ImageSliderDelegate {
     func indexDidSelect(_ index: Int, object: ImageSlider) {
-        if object.isEqual(movieTopSlider), let id = movieTopRated?[index].id as? Int {
-            presenter?.willShowDetail(of: id.description)
-        } else if object.isEqual(nowPlayingSlider), let id = nowPlaying?[index].id as? Int {
-            presenter?.willShowDetail(of: id.description)
-        } else if object.isEqual(popularImageSlider), let id = popularMovies?[index].id as? Int {
-            presenter?.willShowDetail(of: id.description)
-        } else if object.isEqual(upcomingMoviesSlider), let id = upcomingMovies?[index].id as? Int {
-            presenter?.willShowDetail(of: id.description)
+        var idMovie: Int = .zero
+        if object.isEqual(movieTopSlider),
+           let id = movieTopRated?[index].id as? Int {
+            idMovie = id
+        } else if object.isEqual(nowPlayingSlider),
+                  let id = nowPlaying?[index].id as? Int {
+            idMovie = id
+        } else if object.isEqual(popularImageSlider),
+                  let id = popularMovies?[index].id as? Int {
+            idMovie = id
+        } else if object.isEqual(upcomingMoviesSlider),
+                  let id = upcomingMovies?[index].id as? Int {
+            idMovie = id
         }
+        presenter?.willShowDetail(of: idMovie.description)
     }
 }

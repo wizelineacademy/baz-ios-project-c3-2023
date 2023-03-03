@@ -17,7 +17,7 @@ extension ReviewViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView: UIView = getSectionHeaderForTableView(titleString: "Reviews",
+        let headerView: UIView = getSectionHeaderForTableView(titleString: .reviewTitleTable,
                                                               width: Int(tableView.bounds.width))
         return headerView
     }

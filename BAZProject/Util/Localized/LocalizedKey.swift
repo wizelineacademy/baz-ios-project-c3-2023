@@ -54,6 +54,7 @@ extension String {
 
     // MARK: - Review
     static let reviewXibIdentifier = "ReviewView"
+    static let reviewTitleTable = "Reseñas"
 
     // MARK: - Main
     static let mainPlaceholderSearchBar = "Buscar.."
