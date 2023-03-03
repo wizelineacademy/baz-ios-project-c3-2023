@@ -9,6 +9,19 @@ import UIKit
 
 class MovieDetailPViewController: UIViewController {
     
+    // MARK: properties
+    
+    let defaultPoster = UIImage(named: "poster")
+    let noOverview = NSLocalizedString("MDVPC.noOverview", comment: "text")
+    let noReviews = NSLocalizedString("MDVPC.noReviews", comment: "text")
+    let noAuthorName = NSLocalizedString("MDVPC.noAuthorName", comment: "text")
+    let backButton = NSLocalizedString("MDVPC.backButtonTitle", comment: "title")
+    let navbarTitle = NSLocalizedString("MDVPC.navbarTitle", comment: "title")
+    let castWidth = 120
+    let castHeight = 180
+    let galleryWidth = 130
+    let galleryHeight = 220
+    let recomendationCollectionTag = 3
     var heightRowTable: CGFloat = 82
     var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -53,17 +66,28 @@ class MovieDetailPViewController: UIViewController {
         }
     }
     
+    // MARK: View lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        notificationToCounter()
         configNavBar()
         setUpView()
         services()
     }
     
+    // MARK: Methods
+    
+    func notificationToCounter() {
+        let notificationDetail = Notification.Name(rawValue: deltailMovieSeen)
+        NotificationCenter.default.post(name: notificationDetail, object: nil)
+    }
+    
     func configNavBar() {
-        let backButton = UIBarButtonItem()
-        backButton.title = ""
-        navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+        let backButtonItem = UIBarButtonItem()
+        backButtonItem.title = backButton
+        navigationController?.navigationBar.topItem?.backBarButtonItem = backButtonItem
+        self.title = navbarTitle
     }
     
     func setUpView() {
@@ -92,7 +116,7 @@ class MovieDetailPViewController: UIViewController {
                 self.topDetail?.releseDate.text = detail.releaseDate
                 self.topDetail?.genre.text = detail.listGenres
                 if (detail.overview == nil) || detail.overview == "" {
-                    self.topDetail?.overview.text = "Lo sentimos, aún no tenemos una reseña disponible para esta pelicula."
+                    self.topDetail?.overview.text = self.noOverview
                 } else {
                     self.topDetail?.overview.text = detail.overview
                 }
@@ -149,7 +173,7 @@ class MovieDetailPViewController: UIViewController {
                reviews.count > 0 {
                 self.movieReviews =  reviews
             } else {
-                self.reviewView?.noReview.text = "Aún no hay comentario para esta pelicula."
+                self.reviewView?.noReview.text = self.noReviews
             }
         }
     }
@@ -180,9 +204,12 @@ class MovieDetailPViewController: UIViewController {
     
     func createCastView() {
         castView = CastView.initCastView() as? CastView
-        castView?.castCollection.register(UINib(nibName: "MovieCastCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "movieCastPhoto")
+        castView?.castCollection.register(
+            UINib(nibName: MovieCastCollectionViewCell.nibIdentifier, bundle: nil),
+            forCellWithReuseIdentifier: MovieCastCollectionViewCell.identifier)
         castView?.castCollection.dataSource = self
-        let flowLayout = cellFlowlayout(size: CGSize(width: 120, height: 180))
+        castView?.sectionTitle.text = MovieDetailSections.cast.title
+        let flowLayout = cellFlowlayout(size: CGSize(width: castWidth, height: castHeight))
         castView?.castCollection.setCollectionViewLayout(flowLayout, animated: false)
         guard let castView = castView else { return }
         stack.addArrangedSubview(castView)
@@ -190,11 +217,13 @@ class MovieDetailPViewController: UIViewController {
     
     func createSimilarMovies() {
         similarMoviesView = MovieListView.initMovieCollection() as? MovieListView
-        similarMoviesView?.movieCollection.register(UINib(nibName: "MovieGalleryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MovieGallery")
+        similarMoviesView?.movieCollection.register(
+            UINib(nibName: MovieGalleryCollectionViewCell.nibIdentifier, bundle: nil),
+            forCellWithReuseIdentifier: MovieGalleryCollectionViewCell.identifier)
         similarMoviesView?.movieCollection.delegate = self
         similarMoviesView?.movieCollection.dataSource = self
         similarMoviesView?.sectionTitle.text = MovieDetailSections.similar.title
-        let flowLayout = cellFlowlayout(size: CGSize(width: 130, height: 220))
+        let flowLayout = cellFlowlayout(size: CGSize(width: galleryWidth, height: galleryHeight))
         similarMoviesView?.movieCollection.setCollectionViewLayout(flowLayout, animated: false)
         guard let similarMoviesView = similarMoviesView else { return }
         stack.addArrangedSubview(similarMoviesView)
@@ -202,12 +231,14 @@ class MovieDetailPViewController: UIViewController {
     
     func createRecommendation() {
         recommendationView = MovieListView.initMovieCollection() as? MovieListView
-        recommendationView?.movieCollection.register(UINib(nibName: "MovieGalleryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MovieGallery")
+        recommendationView?.movieCollection.register(
+            UINib(nibName: MovieGalleryCollectionViewCell.nibIdentifier, bundle: nil),
+            forCellWithReuseIdentifier: MovieGalleryCollectionViewCell.identifier)
         recommendationView?.movieCollection.delegate = self
         recommendationView?.movieCollection.dataSource =  self
-        recommendationView?.movieCollection.tag = 3
+        recommendationView?.movieCollection.tag = recomendationCollectionTag
         recommendationView?.sectionTitle.text = MovieDetailSections.recommendation.title
-        let flowLayout = cellFlowlayout(size: CGSize(width: 130, height: 220))
+        let flowLayout = cellFlowlayout(size: CGSize(width: galleryWidth, height: galleryHeight))
         recommendationView?.movieCollection.setCollectionViewLayout(flowLayout, animated: false)
         guard let recommendationView = recommendationView else { return }
         stack.addArrangedSubview(recommendationView)
@@ -215,7 +246,9 @@ class MovieDetailPViewController: UIViewController {
     
     func createReviewView() {
         reviewView =  ReviewView.initReviewView() as? ReviewView
-        reviewView?.reviewTable.register(UINib(nibName: "ReviewTableViewCell", bundle: nil), forCellReuseIdentifier: "reviewCell")
+        reviewView?.reviewTable.register(
+            UINib(nibName: ReviewTableViewCell.nibIdentifier, bundle: nil),
+            forCellReuseIdentifier: ReviewTableViewCell.identifier)
         reviewView?.reviewTable.delegate = self
         reviewView?.reviewTable.dataSource = self
         reviewView?.movieTitle.text = movieToShowDetail?.title
@@ -262,34 +295,40 @@ extension MovieDetailPViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch collectionView.tag {
         case MovieDetailSections.cast.rawValue:
-            let castCell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCastPhoto", for: indexPath) as? MovieCastCollectionViewCell
+            let castCell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: MovieCastCollectionViewCell.identifier ,
+                for: indexPath) as? MovieCastCollectionViewCell
             castCell?.castName.text = movieCast?[indexPath.row].nameAndCharacter
             if let partialURLImage =  movieCast?[indexPath.row].profilePath {
                 castCell?.castPhoto.fetchImage(with: partialURLImage)
             } else {
-                castCell?.castPhoto.image = UIImage(named: "person")
+                castCell?.castPhoto.image = defaultPoster
             }
             guard let castCell = castCell else { return MovieCastCollectionViewCell() }
             return castCell
         case MovieDetailSections.similar.rawValue:
-            let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieGallery", for: indexPath) as? MovieGalleryCollectionViewCell
+            let collectionCell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: MovieGalleryCollectionViewCell.identifier,
+                for: indexPath) as? MovieGalleryCollectionViewCell
             collectionCell?.movieTitle.text = similarMovies?[indexPath.row].title
             collectionCell?.voteAvarage.text = similarMovies?[indexPath.row].averageStars
             if let partialURLImage =  similarMovies?[indexPath.row].posterPath {
                 collectionCell?.movieImage.fetchImage(with: partialURLImage)
             } else {
-                collectionCell?.movieImage.image = UIImage(named: "poster")
+                collectionCell?.movieImage.image = defaultPoster
             }
             guard let collectionCell = collectionCell else { return MovieGalleryCollectionViewCell() }
             return collectionCell
         case MovieDetailSections.recommendation.rawValue:
-            let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieGallery", for: indexPath) as? MovieGalleryCollectionViewCell
+            let collectionCell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: MovieGalleryCollectionViewCell.identifier,
+                for: indexPath) as? MovieGalleryCollectionViewCell
             collectionCell?.movieTitle.text = recommendationMovies?[indexPath.row].title
             collectionCell?.voteAvarage.text = recommendationMovies?[indexPath.row].averageStars
             if let partialURLImage =  recommendationMovies?[indexPath.row].posterPath {
                 collectionCell?.movieImage.fetchImage(with: partialURLImage)
             } else {
-                collectionCell?.movieImage.image = UIImage(named: "poster")
+                collectionCell?.movieImage.image = defaultPoster
             }
             guard let collectionCell = collectionCell else { return MovieGalleryCollectionViewCell() }
             return collectionCell
@@ -323,12 +362,14 @@ extension MovieDetailPViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let reviewCell = tableView.dequeueReusableCell(withIdentifier: "reviewCell", for: indexPath) as? ReviewTableViewCell else { return UITableViewCell() }
+        guard let reviewCell = tableView.dequeueReusableCell(
+            withIdentifier: ReviewTableViewCell.identifier,
+            for: indexPath) as? ReviewTableViewCell else { return UITableViewCell() }
         if let username = movieReviews?[indexPath.row].authorDetail.name,
                !username.isEmpty {
             reviewCell.authorUsername.text = username
         } else {
-            reviewCell.authorUsername.text = "Anónimo"
+            reviewCell.authorUsername.text = noAuthorName
         }
         reviewCell.reviewRating.text = movieReviews?[indexPath.row].authorDetail.averageStars
         return reviewCell

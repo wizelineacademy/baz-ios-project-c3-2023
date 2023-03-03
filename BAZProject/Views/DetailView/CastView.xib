@@ -76,6 +76,8 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="castCollection" destination="oe4-DN-HdA" id="dsf-qo-obc"/>
+                <outlet property="sectionLayer" destination="H4C-eh-llp" id="z57-3b-7wS"/>
+                <outlet property="sectionTitle" destination="EYv-U0-5Gl" id="ZFo-UR-73J"/>
             </connections>
             <point key="canvasLocation" x="139" y="114"/>
         </view>

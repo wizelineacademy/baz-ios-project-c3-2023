@@ -77,6 +77,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="movieCollection" destination="hds-1b-xqh" id="Hcp-Ld-4y0"/>
+                <outlet property="sectionLayer" destination="t0m-KH-Fso" id="GwW-MF-uHi"/>
                 <outlet property="sectionTitle" destination="pAz-yB-59K" id="PTt-gp-lB7"/>
             </connections>
             <point key="canvasLocation" x="138.75" y="113.02816901408451"/>

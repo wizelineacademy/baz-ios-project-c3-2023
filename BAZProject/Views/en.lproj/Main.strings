@@ -31,3 +31,9 @@
 
 /* Class = "UILabel"; text = "    "; ObjectID = "zvm-ak-R8I"; */
 "zvm-ak-R8I.text" = "    ";
+
+/* Class = "UILabel"; text = "    "; ObjectID = "SzD-7y-Zr9"; */
+"SzD-7y-Zr9.text" = "You've seen";
+
+/* Class = "UILabel"; text = "    "; ObjectID = "VY2-ek-iC9"; */
+"VY2-ek-iC9.text" = " movie details.";
