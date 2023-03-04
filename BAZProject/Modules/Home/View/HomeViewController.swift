@@ -9,17 +9,22 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
- 
+    @IBOutlet weak var watchedmovies: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     let movieApi = MovieAPI()
     var movies: [Movie] = []
     var ratedMovies: [Movie] = []
     var imagesMovies: [UIImage] = []
-
+   
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureNotification()
         configTableView()
+        getApiInfo()
+    }
+    
+    func getApiInfo(){
         movieApi.getMovies { movies in
             self.movies = movies
             DispatchQueue.main.async {
@@ -33,23 +38,28 @@ class HomeViewController: UIViewController {
             }
         }
     }
-
-
     
+    func configureNotification(){
+        NotificationCenter.default.addObserver(self, selector: #selector(actualizarContador), name: Notification.Name("DetallePeliculaMostrado"), object: nil)
+    }
+    
+    @objc func actualizarContador() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.peliculasVistas += 1
+        let peliculasVistas = appDelegate.peliculasVistas
+        watchedmovies.text = "\(peliculasVistas)"
+        print("Películas vistas:\(peliculasVistas)")
+    }
+
     func configTableView(){
         tableView.dataSource = self
-//        tableView.delegate = self
         tableView.register(UINib(nibName: "ratedTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "ratedCell")
         tableView.register(UINib(nibName: "TrendingTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "trendingCell")
         tableView.register(UINib(nibName: "NowPlayingTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "nowPlayingCell")
         tableView.register(UINib(nibName: "PopularTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "popularCell")
         tableView.register(UINib(nibName: "UpcomingTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "upcomingCell")
-
-
     }
 }
-
-
 // MARK: - TableView's DataSource
 
 extension HomeViewController: UITableViewDataSource {

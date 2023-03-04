@@ -66,6 +66,18 @@
                                 <rect key="frame" x="0.0" y="172" width="414" height="724"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M2t-lj-ZDh">
+                                <rect key="frame" x="348" y="119" width="44" height="31"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Watched movies" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tcl-Yf-Pfg">
+                                <rect key="frame" x="336" y="92" width="69" height="47"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="10"/>
+                                <color key="textColor" red="0.98039215800000001" green="0.87450981139999995" blue="0.64313727620000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DY9-zx-TX5"/>
                         <color key="backgroundColor" systemColor="labelColor"/>
@@ -73,21 +85,30 @@
                             <constraint firstItem="9ct-if-4XR" firstAttribute="leading" secondItem="DY9-zx-TX5" secondAttribute="leading" constant="7" id="6Z1-QH-0EY"/>
                             <constraint firstItem="DY9-zx-TX5" firstAttribute="trailing" secondItem="9ct-if-4XR" secondAttribute="trailing" constant="7" id="CZ0-pP-aGM"/>
                             <constraint firstAttribute="bottom" secondItem="prH-1a-uF1" secondAttribute="bottom" id="Cqd-UP-kl2"/>
+                            <constraint firstItem="DY9-zx-TX5" firstAttribute="trailing" secondItem="M2t-lj-ZDh" secondAttribute="trailing" constant="22" id="EQB-1O-IcC"/>
+                            <constraint firstItem="prH-1a-uF1" firstAttribute="top" secondItem="Tcl-Yf-Pfg" secondAttribute="bottom" constant="33" id="Hor-Cb-b8m"/>
+                            <constraint firstItem="prH-1a-uF1" firstAttribute="top" secondItem="M2t-lj-ZDh" secondAttribute="bottom" constant="22" id="L7q-o1-1te"/>
                             <constraint firstItem="prH-1a-uF1" firstAttribute="trailing" secondItem="DY9-zx-TX5" secondAttribute="trailing" id="LDg-mo-GLU"/>
+                            <constraint firstItem="M2t-lj-ZDh" firstAttribute="leading" secondItem="DY9-zx-TX5" secondAttribute="leading" constant="348" id="LEc-o2-of0"/>
+                            <constraint firstItem="Tcl-Yf-Pfg" firstAttribute="leading" secondItem="DY9-zx-TX5" secondAttribute="leading" constant="336" id="NFE-ks-RLA"/>
+                            <constraint firstItem="M2t-lj-ZDh" firstAttribute="top" secondItem="DY9-zx-TX5" secondAttribute="top" constant="27" id="WDd-LU-FXc"/>
                             <constraint firstItem="9ct-if-4XR" firstAttribute="top" secondItem="S1l-Jf-lbq" secondAttribute="topMargin" constant="-17" id="WS3-2h-kDG"/>
                             <constraint firstItem="prH-1a-uF1" firstAttribute="leading" secondItem="DY9-zx-TX5" secondAttribute="leading" id="aME-Ad-6JW"/>
+                            <constraint firstItem="Tcl-Yf-Pfg" firstAttribute="top" secondItem="S1l-Jf-lbq" secondAttribute="top" constant="92" id="euo-K8-c5S"/>
                             <constraint firstItem="9ct-if-4XR" firstAttribute="centerX" secondItem="S1l-Jf-lbq" secondAttribute="centerX" id="nvt-kL-QKq"/>
+                            <constraint firstItem="DY9-zx-TX5" firstAttribute="trailing" secondItem="Tcl-Yf-Pfg" secondAttribute="trailing" constant="9" id="qfw-AF-Hrf"/>
                             <constraint firstItem="prH-1a-uF1" firstAttribute="top" secondItem="9ct-if-4XR" secondAttribute="bottom" constant="8" symbolic="YES" id="vad-SW-AY2"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Ita-Z4-pjc"/>
                     <connections>
                         <outlet property="tableView" destination="prH-1a-uF1" id="Njj-hr-LfG"/>
+                        <outlet property="watchedmovies" destination="M2t-lj-ZDh" id="aF1-FU-YTD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="48w-gx-0Bv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="496" y="-1181"/>
+            <point key="canvasLocation" x="495.6521739130435" y="-1181.25"/>
         </scene>
         <!--Details View Controller-->
         <scene sceneID="X4J-mc-ceu">
