@@ -7,10 +7,16 @@
 
 import UIKit
 
-class MoreMoviesView: UIView {
+final class MoreMoviesView: UIView {
     
     weak var delegate: MoreMoviesDelegate?
     
+    /**
+     Creates a MoreMoviesView instance
+     - Parameters:
+        - delegate: a MoreMoviesDelegate object
+     - Returns: a UIView object
+     */
     static func getView(delegate: MoreMoviesDelegate?) -> UIView? {
         let nib = UINib(nibName: String(describing: MoreMoviesView.self), bundle: .main)
         guard let view = nib.instantiate(withOwner: nil).first as? MoreMoviesView else { return nil }

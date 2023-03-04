@@ -12,6 +12,8 @@ final class ImageCache {
     
     private let cache: NSCache = NSCache<NSString, UIImage>()
     
+    private init() { }
+    
     /// Returns and store in cache a UIImage object from the given URL
     /// - Parameters:
     ///   - url: a URL object that returns the expected image
