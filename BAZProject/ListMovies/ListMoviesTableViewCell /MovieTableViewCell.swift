@@ -13,9 +13,13 @@ protocol MovieTableViewCellDelegate: AnyObject {
 
 class MovieTableViewCell: UITableViewCell {
     
+//    MARK: - IBOutlets
     @IBOutlet weak var collectionMovieView: UICollectionView!
+    
+//    MARK: Properties
     weak var delegate: MovieTableViewCellDelegate?
     static let identifier = "MovieTableViewCell"
+    let sizeCell = CGSize(width: 150, height: 250)
     var models:[Movie] = []
     
     static func nib() -> UINib {
@@ -59,7 +63,7 @@ extension MovieTableViewCell : UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCollectionViewCell.identifier, for: indexPath) as! MovieCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCollectionViewCell.identifier, for: indexPath) as? MovieCollectionViewCell else { return UICollectionViewCell() }
         let movie = models[indexPath.row]
         cell.configure(withModel: movie)
         return cell
@@ -69,7 +73,7 @@ extension MovieTableViewCell : UICollectionViewDataSource {
 extension MovieTableViewCell : UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 150, height: 250)
+        return sizeCell
     }
     
 }

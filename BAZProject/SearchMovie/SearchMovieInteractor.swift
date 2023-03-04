@@ -10,7 +10,7 @@ import Foundation
 
 class SearchMovieInteractor {
     //MARK: - Properties
-    var presenter: SearchInteractorOutputProtocol?
+    weak var presenter: SearchInteractorOutputProtocol?
     private let apiKey: String     = "?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
     private let rootURL:String     = "https://api.themoviedb.org/3/search/movie"
     private let extraParams:String = "&language=es-MX"

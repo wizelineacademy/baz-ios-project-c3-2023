@@ -41,7 +41,10 @@ class ListMoviesView: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        lblViewedMovies.text = "Visitas \n\(UserDefaults.standard.integer(forKey: "contador"))"
+        lblViewedMovies.text = """
+                                Visitas
+                                \(UserDefaults.standard.integer(forKey: "contador"))
+                                """
         NotificationCenter.default.addObserver(self, selector: #selector(didViewDetail(_:)) , name: .didViewDetail, object: nil)
     }
     

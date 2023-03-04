@@ -23,6 +23,7 @@ class PosterTableViewCell: UITableViewCell {
     func configure(with path: String) {
         if path.isEmpty {
             imgPoster.image = UIImage(named: "poster")
+            imgPoster.contentMode = .scaleAspectFit
         } else {
             if let url = URL(string: path) {
                 getData(from: url) { data, response, error in

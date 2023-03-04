@@ -33,11 +33,15 @@ class MovieCollectionViewCell: UICollectionViewCell {
     
     public func configure(withModel model : Movie) {
         self.lblMovieTitle.text = model.title
-        if let url = URL(string: model.posterImagefullPath) {
-            getData(from: url) { data, response, error in
-                guard let data = data, error == nil else { return }
-                DispatchQueue.main.async {
-                    self.imgMoviePoster.image = UIImage(data: data)
+        if model.posterPath == nil {
+            self.imgMoviePoster.image = UIImage(named: "poster")
+        } else {
+            if let url = URL(string: model.posterImagefullPath) {
+                getData(from: url) { data, response, error in
+                    guard let data = data, error == nil else { return }
+                    DispatchQueue.main.async {
+                        self.imgMoviePoster.image = UIImage(data: data)
+                    }
                 }
             }
         }

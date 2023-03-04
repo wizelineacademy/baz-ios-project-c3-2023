@@ -24,7 +24,8 @@ struct Movie: Codable {
     let voteAverage: Double?
     let voteCount: Int?
     var posterImagefullPath: String {
-        return "https://image.tmdb.org/t/p/w500\(posterPath ?? "")"
+        guard let posterPath = posterPath else { return "" }
+        return "https://image.tmdb.org/t/p/w500\(posterPath)"
     }
     
     enum CodingKeys: String, CodingKey {

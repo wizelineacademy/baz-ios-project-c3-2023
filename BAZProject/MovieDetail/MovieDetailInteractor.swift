@@ -31,7 +31,7 @@ enum URLMovieDetails: String {
 class MovieDetailInteractor {
     
     //MARK: - Properties
-    var presenter: MovieDetailInteractorOutputProtocol?
+    weak var presenter: MovieDetailInteractorOutputProtocol?
     private let apiKey: String     = "?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
     private let rootURL:String     = "https://api.themoviedb.org/3"
     private let extraParams:String = "&language=es&region=MX&page=1"
@@ -43,18 +43,18 @@ class MovieDetailInteractor {
         URLSession.shared.dataTask(with: url) { data, response, error in
             if error == nil && data != nil {
                 let decoder = JSONDecoder()
-                do{
+                do {
                     let credits = try decoder.decode(Credits.self, from: data ?? Data())
                     completion(credits)
-                }catch let decodingError as DecodingError {
+                } catch let decodingError as DecodingError {
                     switch decodingError {
-                    case .typeMismatch(_, let c), .valueNotFound(_, let c), .keyNotFound(_, let c), .dataCorrupted(let c):
-                        debugPrint(c.debugDescription)
+                    case .typeMismatch(_, let context), .valueNotFound(_, let context), .keyNotFound(_, let context), .dataCorrupted(let context):
+                        debugPrint(context.debugDescription)
                     @unknown default:
                         debugPrint(decodingError.localizedDescription)
                     }
                 } catch {
-                    debugPrint(error.localizedDescription )
+                    debugPrint(error.localizedDescription)
                 }
             }
         }.resume()
@@ -65,18 +65,18 @@ class MovieDetailInteractor {
         URLSession.shared.dataTask(with: url) { data, response, error in
             if error == nil && data != nil {
                 let decoder = JSONDecoder()
-                do{
+                do {
                     let similarMovies = try decoder.decode(SimilarMovies.self, from: data ?? Data())
                     completion(similarMovies)
-                }catch let decodingError as DecodingError {
+                } catch let decodingError as DecodingError {
                     switch decodingError {
-                    case .typeMismatch(_, let c), .valueNotFound(_, let c), .keyNotFound(_, let c), .dataCorrupted(let c):
-                        debugPrint(c.debugDescription)
+                    case .typeMismatch(_, let context), .valueNotFound(_, let context), .keyNotFound(_, let context), .dataCorrupted(let context):
+                        debugPrint(context.debugDescription)
                     @unknown default:
                         debugPrint(decodingError.localizedDescription)
                     }
                 } catch {
-                    debugPrint(error.localizedDescription )
+                    debugPrint(error.localizedDescription)
                 }
             }
         }.resume()
@@ -87,18 +87,18 @@ class MovieDetailInteractor {
         URLSession.shared.dataTask(with: url) { data, response, error in
             if error == nil && data != nil {
                 let decoder = JSONDecoder()
-                do{
+                do {
                     let recomendationMovies = try decoder.decode(SimilarMovies.self, from: data ?? Data())
                     completion(recomendationMovies)
-                }catch let decodingError as DecodingError {
+                } catch let decodingError as DecodingError {
                     switch decodingError {
-                    case .typeMismatch(_, let c), .valueNotFound(_, let c), .keyNotFound(_, let c), .dataCorrupted(let c):
-                        debugPrint(c.debugDescription)
+                    case .typeMismatch(_, let context), .valueNotFound(_, let context), .keyNotFound(_, let context), .dataCorrupted(let context):
+                        debugPrint(context.debugDescription)
                     @unknown default:
                         debugPrint(decodingError.localizedDescription)
                     }
                 } catch {
-                    debugPrint(error.localizedDescription )
+                    debugPrint(error.localizedDescription)
                 }
             }
         }.resume()
@@ -109,18 +109,18 @@ class MovieDetailInteractor {
         URLSession.shared.dataTask(with: url) { data, response, error in
             if error == nil && data != nil {
                 let decoder = JSONDecoder()
-                do{
+                do {
                     let reviews = try decoder.decode(Reviews.self, from: data ?? Data())
                     completion(reviews)
-                }catch let decodingError as DecodingError {
+                } catch let decodingError as DecodingError {
                     switch decodingError {
-                    case .typeMismatch(_, let c), .valueNotFound(_, let c), .keyNotFound(_, let c), .dataCorrupted(let c):
-                        debugPrint(c.debugDescription)
+                    case .typeMismatch(_, let context), .valueNotFound(_, let context), .keyNotFound(_, let context), .dataCorrupted(let context):
+                        debugPrint(context.debugDescription)
                     @unknown default:
                         debugPrint(decodingError.localizedDescription)
                     }
                 } catch {
-                    debugPrint(error.localizedDescription )
+                    debugPrint(error.localizedDescription)
                 }
             }
         }.resume()
@@ -141,8 +141,10 @@ class MovieDetailInteractor {
 extension MovieDetailInteractor: MovieDetailInteractorInputProtocol {
     
     func fetchModel(with movie: Movie) {
+        
         var movieModel: [MovieDetailType] = [MovieDetailType.moviePoster(movie),MovieDetailType.movieReview(movie)]
         let movieId = movie.id ?? 0
+        
         getCredits(forIdMovie: movieId) { credits in
             if !credits.cast.isEmpty {
                 movieModel.append(MovieDetailType.credits(credits))

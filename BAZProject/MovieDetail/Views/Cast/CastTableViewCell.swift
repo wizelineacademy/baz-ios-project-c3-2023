@@ -15,6 +15,7 @@ class CastTableViewCell: UITableViewCell {
     //MARK: - Properties
     static let identifier = "CastTableViewCell"
     var models:[Cast] = []
+    let sizeOfCell = CGSize(width: 200, height: 100)
     
     //MARK: - Functions
     static func nib() -> UINib {
@@ -56,7 +57,8 @@ extension CastTableViewCell : UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CastCollectionViewCell.identifier, for: indexPath) as? CastCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CastCollectionViewCell.identifier, for: indexPath)
+                as? CastCollectionViewCell else { return UICollectionViewCell() }
         let cast = models[indexPath.row]
         cell.configure(with: cast)
         return cell
@@ -65,6 +67,6 @@ extension CastTableViewCell : UICollectionViewDataSource {
 
 extension CastTableViewCell : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 200, height: 100)
+        return sizeOfCell
     }
 }

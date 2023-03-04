@@ -38,7 +38,7 @@ class ListMoviesInteractor {
         private let rootURL:String     = "https://api.themoviedb.org/3"
         private let extraParams:String = "&language=es&region=MX&page=1"
         var allMoviesTypes: [AllMovieTypes] = []
-        var presenter: ListMoviesInteractorOutputProtocol?
+        weak var presenter: ListMoviesInteractorOutputProtocol?
 
 
     ///  Esta función permite traer un listado de peliculas dependiendo de los parametros de búsqueda.

@@ -29,7 +29,8 @@ class CastCollectionViewCell: UICollectionViewCell {
         lblRealName.text = model.originalName
         lblMovieName.text = model.character
         if model.profilePath == nil {
-            self.imgCast.image = UIImage(named: "poster")
+            self.imgCast.image = UIImage(systemName: "person.fill.questionmark")
+            self.imgCast.contentMode = .scaleAspectFit
         }else{
             if let url = URL(string: model.fullProfilePath) {
                 getData(from: url) { data, response, error in

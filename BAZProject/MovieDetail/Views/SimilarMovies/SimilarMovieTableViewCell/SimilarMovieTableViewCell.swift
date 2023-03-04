@@ -46,7 +46,8 @@ extension SimilarMovieTableViewCell: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell: SimilarMovieCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: SimilarMovieCollectionViewCell.identifier, for: indexPath) as? SimilarMovieCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SimilarMovieCollectionViewCell.identifier, for: indexPath)
+                as? SimilarMovieCollectionViewCell else { return UICollectionViewCell() }
         let similarMovie = model[indexPath.row]
         cell.configure(withModel: similarMovie)
         return cell

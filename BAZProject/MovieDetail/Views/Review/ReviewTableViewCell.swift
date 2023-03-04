@@ -21,7 +21,7 @@ class ReviewTableViewCell: UITableViewCell {
     }
     
     func configure(with text: String) {
-        self.lblReview.text = text
+        self.lblReview.text = text.isEmpty ? "Sin Reseña por el momento" : text
     }
     
     override func awakeFromNib() {
