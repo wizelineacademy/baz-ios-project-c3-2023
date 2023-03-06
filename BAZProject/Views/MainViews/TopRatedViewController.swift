@@ -9,14 +9,24 @@ import UIKit
 
 class TopRatedViewController: UITableViewController {
     
-    var movies: [Movie] = []
     let movieApi = MovieAPI()
-    var images: [UIImage] = []
     var movieImage = UIImage()
+    var images: [UIImage] = []
+    var movies: [Movie] = []
     let tableHeight: CGFloat = 150
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        getRatedMovies()
+    }
+/// This function make a peticion to the MovieAPI to get an array of TopRated `movies` and Images ready to show
+///
+/// ```
+/// getRatedMovies()
+/// ```
+///
+    func getRatedMovies() {
         DispatchQueue.global().async { [weak self] in
             self?.movies = self?.movieApi.getMovies(ofType: .topRated) ?? []
             guard let myMovies =  self?.movies else { return }
@@ -32,8 +42,7 @@ class TopRatedViewController: UITableViewController {
     }
 }
 
-    // MARK: - TableView's DataSource
-
+// MARK: - TableView's DataSource
 extension TopRatedViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -41,12 +50,12 @@ extension TopRatedViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        tableView.dequeueReusableCell(withIdentifier: "TrendingTableViewCell")!
+        tableView.dequeueReusableCell(withIdentifier: "TopRatedTableViewCell") ?? UITableViewCell()
     }
+    
 }
 
 // MARK: - TableView's Delegate
-
 extension TopRatedViewController {
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -63,4 +72,5 @@ extension TopRatedViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         tableHeight
     }
+    
 }

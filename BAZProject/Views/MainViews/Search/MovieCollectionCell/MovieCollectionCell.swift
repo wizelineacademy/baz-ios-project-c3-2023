@@ -8,10 +8,10 @@
 import UIKit
 
 class MovieCollectionCell: UICollectionViewCell {
-
-    @IBOutlet weak var imgMovie: UIImageView!
     
     let identifier = "miCelda"
+
+    @IBOutlet weak var imgMovie: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
