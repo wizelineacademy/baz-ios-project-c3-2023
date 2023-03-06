@@ -7,52 +7,99 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
-
-class HomeViewController: UICollectionViewController {
+class HomeViewController: UIViewController {
+    
+    @IBOutlet weak var watchedmovies: UILabel!
+    @IBOutlet weak var tableView: UITableView!
     
     let movieApi = MovieAPI()
     var movies: [Movie] = []
+    var ratedMovies: [Movie] = []
     var imagesMovies: [UIImage] = []
-
+   
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        configureNotification()
+        configTableView()
+        getApiInfo()
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    // MARK: UICollectionViewDataSource
-
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-
-
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        movies.count
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reuseIdentifier", for: indexPath)
     
-        // Configure the cell
+    func getApiInfo(){
+        movieApi.getMovies { movies in
+            self.movies = movies
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+        movieApi.getRatedMovies { ratedMovies in
+            self.ratedMovies = ratedMovies
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
     
-        return cell
+    func configureNotification(){
+        NotificationCenter.default.addObserver(self, selector: #selector(actualizarContador), name: Notification.Name("DetallePeliculaMostrado"), object: nil)
+    }
+    
+    @objc func actualizarContador() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.peliculasVistas += 1
+        let peliculasVistas = appDelegate.peliculasVistas
+        watchedmovies.text = "\(peliculasVistas)"
+        print("Películas vistas:\(peliculasVistas)")
     }
 
+    func configTableView(){
+        tableView.dataSource = self
+        tableView.register(UINib(nibName: "ratedTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "ratedCell")
+        tableView.register(UINib(nibName: "TrendingTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "trendingCell")
+        tableView.register(UINib(nibName: "NowPlayingTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "nowPlayingCell")
+        tableView.register(UINib(nibName: "PopularTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "popularCell")
+        tableView.register(UINib(nibName: "UpcomingTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "upcomingCell")
+    }
 }
+// MARK: - TableView's DataSource
+
+extension HomeViewController: UITableViewDataSource {
+    
+     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+       return 5
+    }
+    
+     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+         switch indexPath.row{
+         case 0:
+             guard let cell = tableView.dequeueReusableCell(withIdentifier: "ratedCell") as? ratedTableViewCell else { return UITableViewCell() }
+             cell.view = self
+             return cell
+             
+         case 1:
+             guard let cell = tableView.dequeueReusableCell(withIdentifier: "nowPlayingCell") as? NowPlayingTableViewCell else { return UITableViewCell() }
+             cell.view = self
+             return cell
+         case 2:
+             guard let cell = tableView.dequeueReusableCell(withIdentifier: "trendingCell") as? TrendingTableViewCell else { return UITableViewCell() }
+             cell.view = self
+             return cell
+         case 3:
+             guard let cell = tableView.dequeueReusableCell(withIdentifier: "popularCell") as? PopularTableViewCell else { return UITableViewCell() }
+             cell.view = self
+             return cell
+         case 4:
+             guard let cell = tableView.dequeueReusableCell(withIdentifier: "upcomingCell") as? UpcomingTableViewCell else { return UITableViewCell() }
+             cell.view = self
+             return cell
+             
+             
+         default:
+             return UITableViewCell()
+             
+         }
+    }
+}
+
 
 
 

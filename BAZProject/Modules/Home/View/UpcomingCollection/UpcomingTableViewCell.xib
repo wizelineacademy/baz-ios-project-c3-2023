@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="upcomingCell" rowHeight="270" id="2D1-eF-1jn" customClass="UpcomingTableViewCell" customModule="MovieBucket" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="406" height="270"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2D1-eF-1jn" id="DWZ-6y-f1q">
+                <rect key="frame" x="0.0" y="0.0" width="406" height="270"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   Upcoming" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J2F-tU-cpg">
+                        <rect key="frame" x="0.0" y="0.0" width="406" height="30"/>
+                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="ly1-vP-tIF"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="19"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="xhd-Le-Tcv">
+                        <rect key="frame" x="0.0" y="30" width="406" height="240"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="xhd-Le-Tcv" secondAttribute="height" multiplier="203:120" id="JLS-La-t5a"/>
+                        </constraints>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="EKe-Vt-1Kc">
+                            <size key="itemSize" width="128" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="J2F-tU-cpg" secondAttribute="trailing" id="2gb-Zy-VVK"/>
+                    <constraint firstAttribute="bottom" secondItem="xhd-Le-Tcv" secondAttribute="bottom" id="GIe-4g-spC"/>
+                    <constraint firstItem="xhd-Le-Tcv" firstAttribute="leading" secondItem="DWZ-6y-f1q" secondAttribute="leading" id="KxJ-wB-v58"/>
+                    <constraint firstItem="J2F-tU-cpg" firstAttribute="leading" secondItem="DWZ-6y-f1q" secondAttribute="leading" id="NSk-AN-Hom"/>
+                    <constraint firstItem="xhd-Le-Tcv" firstAttribute="top" secondItem="J2F-tU-cpg" secondAttribute="bottom" id="P8y-fV-a74"/>
+                    <constraint firstItem="J2F-tU-cpg" firstAttribute="top" secondItem="DWZ-6y-f1q" secondAttribute="top" id="UAR-Z0-46c"/>
+                    <constraint firstAttribute="trailing" secondItem="xhd-Le-Tcv" secondAttribute="trailing" id="sCt-zM-7kK"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="EN7-cQ-ft7"/>
+            <connections>
+                <outlet property="upcomingCollectionView" destination="xhd-Le-Tcv" id="1NY-oL-ose"/>
+            </connections>
+            <point key="canvasLocation" x="-157" y="84"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
