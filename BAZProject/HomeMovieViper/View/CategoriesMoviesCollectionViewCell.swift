@@ -41,7 +41,7 @@ class CategoriesMoviesCollectionViewCell: UICollectionViewCell {
             self.categoriesImageView.layer.cornerRadius = 8.0
             self.degradeImageview.clipsToBounds = true
             self.degradeImageview.layer.cornerRadius = 8.0
-            if let image = image{
+            if let image = image {
                 self.categoriesImageView.image = image
             } else {
                 self.categoriesImageView.image = UIImage(named: "poster")
@@ -60,7 +60,7 @@ class CategoriesMoviesCollectionViewCell: UICollectionViewCell {
         delegate?.didSelectCell(indexPath: self.indexPath ?? IndexPath(), cell: self)
     }
     
-    func setCellDeselected(){
+    func setCellDeselected() {
         self.degradeImageview.layer.borderColor = nil
         self.degradeImageview.layer.borderWidth = 0.0
         self.categoriesMovieTitleLabel.textColor = .white

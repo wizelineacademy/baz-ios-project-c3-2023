@@ -8,7 +8,7 @@
 import Foundation
 
 protocol DetailMovieReviewPresenterProtocol: AnyObject {
-    var presenterMain: DetailMovieReviewProtocol? { get set }
+    var presenterMain: DetailMovieCellPresenterProtocol? { get set }
     var interactor: DetailMovieReviewInteractorInputProtocol? { get set }
     
     func getReview(idMovie: Int)
@@ -18,6 +18,7 @@ protocol DetailMovieReviewPresenterProtocol: AnyObject {
 
 protocol DetailMovieReviewInteractorOutputProtocol: AnyObject {
     func pushReview(review: [Reviews])
+    func pushNotReview()
 }
 
 protocol DetailMovieReviewInteractorInputProtocol: AnyObject {
@@ -35,4 +36,5 @@ protocol DetailMovieReviewRemoteDataManagerInputProtocol: AnyObject {
 
 protocol DetailMovieReviewRemoteDataManagerOutputProtocol: AnyObject {
     func pushReview(review: [Reviews])
+    func pushNotReview()
 }

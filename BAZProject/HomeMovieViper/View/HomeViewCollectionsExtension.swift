@@ -9,9 +9,9 @@ import UIKit
 
 // MARK: - CollectionView's DataSource
 
-extension HomeMoviesView: UICollectionViewDataSource{
+extension HomeMoviesView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == self.categoriesMoviesCollectionView{
+        if collectionView == self.categoriesMoviesCollectionView {
             return presenter?.getCategoriesMoviesCount() ?? 0
         } else {
             return presenter?.getMoviesCount() ?? 0
@@ -43,7 +43,7 @@ extension HomeMoviesView: UICollectionViewDataSource{
 
 // MARK: - CollectionView's Delegate
 
-extension HomeMoviesView: UICollectionViewDelegate{
+extension HomeMoviesView: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         presenter?.goToDetails(index: indexPath.row)
@@ -55,6 +55,13 @@ extension HomeMoviesView: UICollectionViewDelegate{
                             bottom: insets,
                             right: insets)
     }
+    
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        if moviesCollectionView.isDragging {
+            categoriesMoviesCollectionView.scrollToItem(at: currentlySelected?.indexPath ?? IndexPath(), at: .centeredHorizontally, animated: true)
+        }
+    }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 2
@@ -65,13 +72,13 @@ extension HomeMoviesView: UICollectionViewDelegate{
     }
 }
 
-extension HomeMoviesView: UICollectionViewDelegateFlowLayout{
+extension HomeMoviesView: UICollectionViewDelegateFlowLayout {
     internal func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-        if collectionView == self.categoriesMoviesCollectionView{
+        if collectionView == self.categoriesMoviesCollectionView {
             return CGSize(width: 200, height: 120)
         } else {
-            return CGSize(width: 120, height: 240)
+            return CGSize(width: 110, height: 220)
         }
     }
 }

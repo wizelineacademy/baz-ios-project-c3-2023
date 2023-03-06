@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DetailMovie: Codable{
+struct DetailMovie: Codable {
     let id: Int
     let original_title: String?
     let backdrop_path: String?
@@ -17,18 +17,18 @@ struct DetailMovie: Codable{
     let genres: [GenresMovie]?
 }
 
-struct GenresMovie: Codable{
+struct GenresMovie: Codable {
     let id: Int
     let name: String?
 }
 
-struct Reviews: Codable{
+struct Reviews: Codable {
     let author: String?
     let content: String?
     let created_at: String?
 }
 
-struct Cast: Codable{
+struct Cast: Codable {
     let name: String?
     let profile_path: String?
     let character: String?

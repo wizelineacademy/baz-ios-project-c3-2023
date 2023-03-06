@@ -11,7 +11,7 @@ class MoviesCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var movieImageView: UIImageView!
     
-    func setupCell(image: UIImage?){
+    func setupCell(image: UIImage?) {
         DispatchQueue.main.async {
             self.movieImageView.clipsToBounds = true
             self.movieImageView.layer.cornerRadius = 15.0
@@ -20,7 +20,6 @@ class MoviesCollectionViewCell: UICollectionViewCell {
             } else {
                 self.movieImageView.image = UIImage(named: "poster")
             }
-           
         }
     }
 }

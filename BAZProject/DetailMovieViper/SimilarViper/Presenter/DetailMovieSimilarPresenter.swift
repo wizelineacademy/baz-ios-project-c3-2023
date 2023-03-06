@@ -9,7 +9,7 @@ import UIKit
 
 class DetailMovieSimilarPresenter: DetailMovieSimilarPresenterProtocol {
   
-    var presenterMain: DetailMovieSimilarProtocol?
+    var presenterMain: DetailMovieCellPresenterProtocol?
     var interactor: DetailMovieSimilarInteractorInputProtocol?
     var similar: [Movie] = []
     private let movieApi : MovieAPI = MovieAPI()
@@ -42,16 +42,19 @@ class DetailMovieSimilarPresenter: DetailMovieSimilarPresenterProtocol {
     /// - Parameter completion: Escaping closure that escapes a UIImage or a nil
     /// - Returns: escaping closure with the UIImage type, if the parse fails, can return nil
     func getSimilarImage(index: Int, completion: @escaping (UIImage?) -> Void) {
-        movieApi.getImage(for: similar[index].poster_path ?? "") { similarImage in
+        ImageProvider.shared.getImage(for: similar[index].poster_path ?? "") { similarImage in
             completion(similarImage)
         }
     }
 }
 
 extension DetailMovieSimilarPresenter: DetailMovieSimilarInteractorOutputProtocol {
-    func pushSimilar(similar: [Movie]) {
-        self.similar = similar
+    func pushNotSimilar() {
+        presenterMain?.informErrorPresenter()
     }
     
-    
+    func pushSimilar(similar: [Movie]) {
+        self.similar = similar
+        presenterMain?.informSuccesfulPresenter(collectionType: .similar)
+    }
 }

@@ -15,11 +15,12 @@ class DetailMovieRecommendationInteractor: DetailMovieRecommendationInteractorIn
     func getRecommendation(idMovie: Int) {
         remoteDataManager?.getRecommendation(idMovie: idMovie)
     }
-    
-    
 }
 
 extension DetailMovieRecommendationInteractor: DetailMovieRecommendationRemoteDataManagerOutputProtocol {
+    func pushNotRecommendation() {
+        presenter?.pushNotRecommendation()
+    }
     
     func pushRecommendation(recommendation: [Movie]) {
         presenter?.pushRecommendation(recommendation: recommendation)

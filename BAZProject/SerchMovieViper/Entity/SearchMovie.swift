@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct SearchMovie: Codable{
+struct SearchMovie: Codable {
     let id: Int
     let original_title: String?
     let backdrop_path: String?
 }
 
-struct Keyword: Codable{
+struct Keyword: Codable {
     let name: String?
 }

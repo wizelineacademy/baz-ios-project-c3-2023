@@ -11,7 +11,7 @@ class KeywordTableViewCell: UITableViewCell {
 
     @IBOutlet weak var keywordLabel: UILabel!
     
-    func setupCell(keyword: String){
+    func setupCell(keyword: String) {
         self.keywordLabel.text = keyword
     }
 }

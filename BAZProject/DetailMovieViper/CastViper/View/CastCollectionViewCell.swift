@@ -13,10 +13,10 @@ class CastCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var characterLabel: UILabel!
     
-    
-    func setupCastImage(castImage: UIImage?){
+    func setupCastCell(castImage: UIImage?, name: String, character: String) {
         DispatchQueue.main.async {
-            guard self.castImageView.image == nil else { return }
+            self.nameLabel.text = name
+            self.characterLabel.text = character
             self.castImageView.maskCircle(anyImage: self.castImageView.image ?? UIImage())
             if let castImage = castImage {
                 self.castImageView.image = castImage

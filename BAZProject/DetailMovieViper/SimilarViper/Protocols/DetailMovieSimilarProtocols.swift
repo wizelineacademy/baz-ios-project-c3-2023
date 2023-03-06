@@ -8,7 +8,7 @@
 import UIKit
 
 protocol DetailMovieSimilarPresenterProtocol: AnyObject {
-    var presenterMain: DetailMovieSimilarProtocol? { get set }
+    var presenterMain: DetailMovieCellPresenterProtocol? { get set }
     var interactor: DetailMovieSimilarInteractorInputProtocol? { get set }
     
     func getSimilar(idMovie: Int)
@@ -19,6 +19,7 @@ protocol DetailMovieSimilarPresenterProtocol: AnyObject {
 
 protocol DetailMovieSimilarInteractorOutputProtocol: AnyObject {
     func pushSimilar(similar: [Movie])
+    func pushNotSimilar()
 }
 
 protocol DetailMovieSimilarInteractorInputProtocol: AnyObject {
@@ -36,4 +37,5 @@ protocol DetailMovieSimilarRemoteDataManagerInputProtocol: AnyObject {
 
 protocol DetailMovieSimilarRemoteDataManagerOutputProtocol: AnyObject {
     func pushSimilar(similar: [Movie])
+    func pushNotSimilar()
 }

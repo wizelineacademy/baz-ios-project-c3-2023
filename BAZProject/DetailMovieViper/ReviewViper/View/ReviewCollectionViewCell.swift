@@ -11,14 +11,15 @@ class ReviewCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var nameReviewLabel: UILabel!
     @IBOutlet weak var reviewTextView: UITextView!
     
-    func setupReviewCell(name: String?, review: String?, date: String?){
+    func setupReviewCell(name: String?, review: String?, date: String?) {
         DispatchQueue.main.async {
             self.nameReviewLabel.text = " \(name ?? "")"
             self.reviewTextView.text = review
+            self.addShadowToReview()
         }
     }
     
-    func addShadow(){
+    func addShadowToReview() {
         self.layer.borderWidth = 5.0
         self.layer.borderColor = UIColor.clear.cgColor
         self.layer.masksToBounds = true

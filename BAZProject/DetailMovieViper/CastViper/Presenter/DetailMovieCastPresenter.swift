@@ -9,7 +9,7 @@ import UIKit
 
 class DetailMovieCastPresenter: DetailMovieCastPresenterProtocol {
 
-    var presenterMain: DetailMovieCastProtocol?
+    var presenterMain: DetailMovieCellPresenterProtocol?
     var interactor: DetailMovieCastInteractorInputProtocol?
     var cast: [Cast] = []
     private let movieApi : MovieAPI = MovieAPI()
@@ -42,16 +42,19 @@ class DetailMovieCastPresenter: DetailMovieCastPresenterProtocol {
     /// - Parameter completion: Escaping closure that escapes a UIImage or a nil
     /// - Returns: escaping closure with the UIImage type, if the parse fails, can return nil
     func getCastImage(index: Int, completion: @escaping (UIImage?) -> Void) {
-        movieApi.getImage(for: cast[index].profile_path ?? "") { castImage in
+        ImageProvider.shared.getImage(for: cast[index].profile_path ?? "") { castImage in
             completion(castImage)
         }
     }
 }
 
 extension DetailMovieCastPresenter: DetailMovieCastInteractorOutputProtocol {
+    func pushNotCast() {
+        presenterMain?.informErrorPresenter()
+    }
     
     func pushCast(cast: [Cast]) {
         self.cast = cast
-        presenterMain?.informSuccesfulPresenterCast()
+        presenterMain?.informSuccesfulPresenter(collectionType: .cast)
     }
 }

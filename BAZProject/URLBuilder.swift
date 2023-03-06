@@ -9,6 +9,11 @@ import Foundation
 
 class URLBuilder {
     
+    /// Get the url base of the enum URLType, construct the url and return it
+    ///
+    /// - Parameter urlType: enum based of the type of consumption
+    /// - Parameter searchTerm: Optional parameter for the keyword and search urls
+    /// - Returns: the build url base on the enum URLType given to the function
     static func getUrl(urlType: URLType, searchTerm: String? = nil) -> URL? {
         var components = URLComponents()
         components.scheme = "https"

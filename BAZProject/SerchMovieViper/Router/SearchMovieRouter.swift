@@ -39,7 +39,7 @@ class SearchMovieRouter: SearchMovieRouterProtocol {
     func goToDetails(from view: SearchMovieViewProtocol, idMovie: Int) {
         let newDetailView = DetailMovieRouter.createDetailMovieModule(idMovie: idMovie)
         
-        if let newView = view as? UIViewController{
+        if let newView = view as? UIViewController {
             newView.present(newDetailView, animated: true)
         }
     }

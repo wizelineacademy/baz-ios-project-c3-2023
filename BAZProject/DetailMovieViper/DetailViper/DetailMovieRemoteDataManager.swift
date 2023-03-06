@@ -12,13 +12,15 @@ class DetailMovieRemoteDataManager:DetailMovieRemoteDataManagerInputProtocol {
  
     var remoteRequestHandler: DetailMovieRemoteDataManagerOutputProtocol?
     
-    private let apiKey : String = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
     private let movieApi : MovieAPI = MovieAPI()
     
     func getDetails(idMovie: Int) {
-        if let url = URLBuilder.getUrl(urlType: .details(idMovie)){
+        if let url = URLBuilder.getUrl(urlType: .details(idMovie)) {
             movieApi.getDetails(for: url) { [weak self] detailMovie in
-                guard let detailMovie = detailMovie else { return }
+                guard let detailMovie = detailMovie else {
+                    self?.remoteRequestHandler?.pushNotDetails()
+                    return
+                }
                 self?.remoteRequestHandler?.pushDetailMovie(detailMovie: detailMovie)
             }
         }

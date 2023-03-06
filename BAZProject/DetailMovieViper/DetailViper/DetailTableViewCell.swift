@@ -25,7 +25,7 @@ class DetailTableViewCell: UITableViewCell{
         
     }
     
-    func setupDetailsCollectionView(){
+    func setupDetailsCollectionView() {
         DispatchQueue.main.async {
             self.detailCollectionView.reloadData()
         }

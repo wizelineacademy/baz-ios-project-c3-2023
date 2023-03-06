@@ -67,7 +67,7 @@ class MovieAPI {
             if let data = try? Data(contentsOf: url),
                let json = try? JSONSerialization.jsonObject(with: data) as? NSDictionary,
                let results = json.object(forKey: "results") as? [NSDictionary], results.count > 0{
-                do{
+                do {
                     let reviewsData = try JSONSerialization.data(withJSONObject: results, options: [])
                     let reviewsDecode = try? JSONDecoder().decode([Reviews].self, from: reviewsData)
                     let reviews = reviewsDecode
@@ -91,7 +91,7 @@ class MovieAPI {
             if let data = try? Data(contentsOf: url),
                let json = try? JSONSerialization.jsonObject(with: data) as? NSDictionary,
                let results = json.object(forKey: "cast") as? [NSDictionary], results.count > 0{
-                do{
+                do {
                     let castData = try JSONSerialization.data(withJSONObject: results, options: [])
                     let castDecode = try? JSONDecoder().decode([Cast].self, from: castData)
                     let cast = castDecode
@@ -153,18 +153,23 @@ class MovieAPI {
         }
     }
     
-    /// Get an image from the API movies and convert the url to an UIImage
+    /// Get the detail from the API movies and parse the data to a dictionary array of type RecentMovie
     ///
-    /// - Parameter url: Image url
-    /// - Parameter completion: Escaping closure that escapes a UIImage or a nil
-    /// - Returns: Escaping closure with the uiImage type, if the parse fails, can return nil
-    func getImage(for urlIdentifierImage: String, completion: @escaping (UIImage?) -> Void) {
-        let urlString = "https://image.tmdb.org/t/p/w500\(urlIdentifierImage)"
+    /// - Parameter url: detailMovie api url
+    /// - Parameter completion: Escaping closure that escapes the recentMovie dictionary array or a nil
+    /// - Returns: escaping closure with the dictionary array of type RecentMovie, if the parse fails, can return nil
+    func getRecent(for url: URL, completion: @escaping (RecentMovie?) -> Void) {
         DispatchQueue.global(qos: .background).async {
-            if let url = URL(string: urlString),
-               let data = try? Data(contentsOf: url),
-               let image: UIImage = UIImage(data: data) {
-                 completion(image)
+            if let data = try? Data(contentsOf: url),
+               let json = try? JSONSerialization.jsonObject(with: data) as? NSDictionary {
+                do {
+                    let detailMovieData = try JSONSerialization.data(withJSONObject: json, options: [])
+                    let detailMovieDecode = try? JSONDecoder().decode(RecentMovie.self, from: detailMovieData)
+                    let detailMovie = detailMovieDecode
+                    completion(detailMovie)
+                } catch {
+                    completion(nil)
+                }
             } else {
                 completion(nil)
             }

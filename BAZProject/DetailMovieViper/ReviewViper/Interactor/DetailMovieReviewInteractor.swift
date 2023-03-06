@@ -15,11 +15,12 @@ class DetailMovieReviewInteractor: DetailMovieReviewInteractorInputProtocol {
     func getReview(idMovie: Int) {
         remoteDataManager?.getReview(idMovie: idMovie)
     }
-    
-    
 }
 
 extension DetailMovieReviewInteractor: DetailMovieReviewRemoteDataManagerOutputProtocol {
+    func pushNotReview() {
+        presenter?.pushNotReview()
+    }
     
     func pushReview(review: [Reviews]) {
         presenter?.pushReview(review: review)

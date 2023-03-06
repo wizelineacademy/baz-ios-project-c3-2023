@@ -9,7 +9,7 @@ import UIKit
 
 class DetailMovieRecommendationPresenter: DetailMovieRecommendationPresenterProtocol {
     
-    var presenterMain: DetailMovieRecommendationProtocol?
+    var presenterMain: DetailMovieCellPresenterProtocol?
     var interactor: DetailMovieRecommendationInteractorInputProtocol?
     var recommendation: [Movie] = []
     private let movieApi : MovieAPI = MovieAPI()
@@ -42,16 +42,19 @@ class DetailMovieRecommendationPresenter: DetailMovieRecommendationPresenterProt
     /// - Parameter completion: Escaping closure that escapes a UIImage or a nil
     /// - Returns: escaping closure with the UIImage type, if the parse fails, can return nil
     func getRecommendationImage(index: Int, completion: @escaping (UIImage?) -> Void) {
-        movieApi.getImage(for: recommendation[index].poster_path ?? "") { recommendationImage in
+        ImageProvider.shared.getImage(for: recommendation[index].poster_path ?? "") { recommendationImage in
             completion(recommendationImage)
         }
     }
 }
 
 extension DetailMovieRecommendationPresenter: DetailMovieRecommendationInteractorOutputProtocol {
-    func pushRecommendation(recommendation: [Movie]) {
-        self.recommendation = recommendation
+    func pushNotRecommendation() {
+        presenterMain?.informErrorPresenter()
     }
     
-    
+    func pushRecommendation(recommendation: [Movie]) {
+        self.recommendation = recommendation
+        presenterMain?.informSuccesfulPresenter(collectionType: .recommendation)
+    }
 }

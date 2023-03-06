@@ -14,6 +14,8 @@ protocol HomeMoviesViewProtocol: AnyObject {
     
     func loadTrendingMovies()
     func loadMovies()
+    func showNotRecentAlert()
+    func poopToRoot()
 }
 
 protocol HomeMoviesRouterProtocol: AnyObject {
@@ -21,6 +23,7 @@ protocol HomeMoviesRouterProtocol: AnyObject {
     static func createHomeMoviesModule() -> UIViewController
     func goToDetails(from view: HomeMoviesViewProtocol, idMovie: Int)
     func goToSearch(from view: HomeMoviesViewProtocol)
+    func goToRecent(from view: HomeMoviesViewProtocol, idMovies: [Int])
 }
 
 protocol HomeMoviesPresenterProtocol: AnyObject {
@@ -40,6 +43,7 @@ protocol HomeMoviesPresenterProtocol: AnyObject {
     func getCategorieImage(index: Int,  completion: @escaping (UIImage?) -> Void)
     func goToDetails(index: Int)
     func goToSearch()
+    func goToRecent()
 }
 
 protocol HomeMoviesInteractorOutputProtocol: AnyObject {

@@ -54,10 +54,10 @@ class SearchMovieView: UIViewController {
     }
 }
 
-extension SearchMovieView: UITableViewDelegate{
+extension SearchMovieView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let searchedText = presenter?.getText(index: indexPath.row){
+        if let searchedText = presenter?.getText(index: indexPath.row) {
             movieSearchBar.text = searchedText
         }
         presenter?.tableSelected(tableView: tableView, indexPath: indexPath)
@@ -68,7 +68,7 @@ extension SearchMovieView: UITableViewDelegate{
     }
 }
 
-extension SearchMovieView: UITableViewDataSource{
+extension SearchMovieView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         presenter?.getTableViewCount() ?? 0
     }
@@ -77,7 +77,7 @@ extension SearchMovieView: UITableViewDataSource{
     }
 }
 
-extension SearchMovieView: UISearchBarDelegate{
+extension SearchMovieView: UISearchBarDelegate {
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -109,7 +109,7 @@ extension SearchMovieView: SearchMovieViewProtocol {
     func showAlert() {
         DispatchQueue.main.async {
             let alert = UIAlertController(title: "Error", message: "Movie not found", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
     }

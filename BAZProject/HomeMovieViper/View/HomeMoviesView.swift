@@ -53,10 +53,13 @@ class HomeMoviesView: UIViewController, CategoriesMoviesCellDelegate {
         presenter?.goToSearch()
     }
     
+    @IBAction func didSelectRecentButton(_ sender: Any) {
+        presenter?.goToRecent()
+    }
 }
 
 extension HomeMoviesView: HomeMoviesViewProtocol {
-  
+    
     func loadTrendingMovies() {
         DispatchQueue.main.async {
             self.categoriesMoviesCollectionView.reloadData()
@@ -69,6 +72,19 @@ extension HomeMoviesView: HomeMoviesViewProtocol {
         }
     }
     
+    func showNotRecentAlert() {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Not Recents", message: "You haven´t seen a movie yet", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func poopToRoot() {
+        DispatchQueue.main.async {
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+    }
 }
 
 
