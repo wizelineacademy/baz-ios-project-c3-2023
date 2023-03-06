@@ -28,9 +28,7 @@ struct Movie: Codable {
     
     func getImage(completion: @escaping(UIImage?) -> Void) {
         if let posterPath = self.posterPath, let imageURL = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)") {
-            imageURL.toImage() { image in
-                completion(image)
-            }
+            imageURL.toImage(completion: completion)
         }
     }
 }
