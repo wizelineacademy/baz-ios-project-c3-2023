@@ -112,6 +112,9 @@ enum Endpoint: String {
     
     case trendingMovies = "trending/movie/day"
     case topRatedMovies = "movie/top_rated"
+    case popularMovies = "movie/popular"
+    case nowPlayingMovies = "movie/now_playing"
+    case upcomingMovies = "movie/upcoming"
     case searchMovies = "search/movie"
     case movieDetail = "movie"
 }

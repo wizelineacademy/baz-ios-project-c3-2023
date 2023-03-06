@@ -28,6 +28,7 @@ protocol MovieDetailPresenterProtocol: AnyObject {
     var movieId: Int { get set }
     
     func notifyViewLoaded()
+    func notifyViewAppeared()
 }
 
 protocol MovieDetailInteractorOutputProtocol: AnyObject {
@@ -41,6 +42,7 @@ protocol MovieDetailInteractorInputProtocol: AnyObject {
     var remoteDatamanager: MovieDetailRemoteDataManagerInputProtocol? { get set }
     
     func fetchMovieDetail(of movieId: Int?)
+    func notifyMovieDetailShown()
 }
 
 protocol MovieDetailRemoteDataManagerInputProtocol: AnyObject {

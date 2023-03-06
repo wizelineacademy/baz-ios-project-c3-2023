@@ -23,6 +23,10 @@ extension MovieDetailPresenter: MovieDetailPresenterProtocol {
     func notifyViewLoaded() {
         self.interactor?.fetchMovieDetail(of: movieId)
     }
+    
+    func notifyViewAppeared() {
+        self.interactor?.notifyMovieDetailShown()
+    }
 }
 
 extension MovieDetailPresenter: MovieDetailInteractorOutputProtocol {
