@@ -12,18 +12,18 @@ typealias CollectionManager = UICollectionViewDelegate & UICollectionViewDataSou
 
 protocol CarruselCollectionDelegate: AnyObject {
     func displayedLastItem()
-    func didTap(movie: MovieSearch)
+    func didTap(element: CarruselCollectionItemProperties)
 }
 
-class CarruselCollectionManager: NSObject, CollectionManager {
+class CarruselCollectionManager<Data: CarruselCollectionItemProperties>: NSObject, CollectionManager {
     
     var collection: CarruselCollectionView?
     var carruselDelegate: CarruselCollectionDelegate?
     
-    var dataCollection: [MovieSearch]? {
+    var dataCollection: [Data]? {
         didSet {
-            DispatchQueue.main.async {
-                self.collection?.reloadData()
+            DispatchQueue.main.async { [weak self] in
+                self?.collection?.reloadData()
             }
         }
     }
@@ -54,7 +54,7 @@ class CarruselCollectionManager: NSObject, CollectionManager {
             fatalError()
         }
         cell.imageView?.byURL(path: dataCollection?[indexPath.row].imageURL ?? "")
-        cell.labelTitle?.text = dataCollection?[indexPath.row].title
+        cell.labelTitle?.text = dataCollection?[indexPath.row].name
         return cell
     }
     
@@ -82,6 +82,6 @@ class CarruselCollectionManager: NSObject, CollectionManager {
         guard let dataCollection = dataCollection else {
             return
         }
-        carruselDelegate?.didTap(movie: dataCollection[indexPath.row])
+        carruselDelegate?.didTap(element: dataCollection[indexPath.row])
     }
 }

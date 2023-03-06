@@ -11,6 +11,7 @@ protocol MovieServicesProtocol {
     var page: Int { get set }
     func fetchMovies(type: fetchMoviesTypes, nextPage: Bool, completionHandler: @escaping ([Movie], MovieServiceError?) -> Void)
     func fetchReviews(id: Int, completionHandler: @escaping([Review], MovieServiceError?) -> Void)
+    func fetchCastByMovie(id: Int, completionHandler: @escaping([Cast], MovieServiceError?) -> Void)
 }
 
 extension MovieServicesProtocol {
@@ -23,7 +24,7 @@ class MoviesAPI: MovieServicesProtocol {
     
     let urlBaseString = "https://api.themoviedb.org/3"
     let apiKey = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
-    let language = "es"
+    let language = "en"
     let region = "MX"
     var page: Int = 1
     
@@ -63,6 +64,28 @@ class MoviesAPI: MovieServicesProtocol {
             }
         }.resume()
     }
+    
+    func fetchCastByMovie(id: Int, completionHandler: @escaping ([Cast], MovieServiceError?) -> Void) {
+        let request = URLRequest(url: getURL(endpoint: .castByMovie(id: id)))
+        
+        sessionShared.dataTask(with: request) { data, error, response in
+            guard let data = data else {
+                completionHandler([], .fetchError)
+                return
+            }
+            
+            do {
+                let casts = try JSONDecoder().decode(CastResponse.self, from: data).cast
+                guard let casts = casts else {
+                    completionHandler([], .emptyData)
+                    return
+                }
+                completionHandler(casts, nil)
+            } catch {
+                completionHandler([], .decodeError)
+            }
+        }.resume()
+    }
 
     
     func getURL(endpoint: Endpoint, nextPage: Bool = false) -> URL {
@@ -73,8 +96,8 @@ class MoviesAPI: MovieServicesProtocol {
 }
 
 /// fetchMoviesTypes defines the type to fetch movies based on their type
-enum fetchMoviesTypes {
-    case trending, nowPlaying, popular, topRated, upComing, byKeyword(String), bySearch(String), bySimilarMovie(id: Int), byRecommendationMovie(id: Int)
+enum fetchMoviesTypes: Equatable {
+    case trending, nowPlaying, popular, topRated, upComing, byKeyword(String), bySearch(String), bySimilarMovie(id: Int), byRecommendationMovie(id: Int), watched
     
     var endpoint: Endpoint {
         switch self {
@@ -96,6 +119,8 @@ enum fetchMoviesTypes {
             return Endpoint.bySimilarMovie(id: id)
         case .byRecommendationMovie(let id):
             return Endpoint.byRecommendationMovie(id: id)
+        case .watched:
+            return Endpoint.watched
         }
     }
     
@@ -119,6 +144,8 @@ enum fetchMoviesTypes {
             return "Similar Movies"
         case .byRecommendationMovie(_):
             return "Recommendation Movies"
+        case .watched:
+            return "Movies Watched"
         }
     }
 }
@@ -126,6 +153,7 @@ enum fetchMoviesTypes {
 enum MovieServiceError: Error {
     case fetchError
     case decodeError
+    case emptyData
     
     var description: String {
         switch self {
@@ -133,6 +161,8 @@ enum MovieServiceError: Error {
             return "Error al obtener respuesta de Peliculas"
         case .decodeError:
             return "Error al decodificar respuesta"
+        case .emptyData:
+            return "No se encontraron datos"
         }
     }
 }

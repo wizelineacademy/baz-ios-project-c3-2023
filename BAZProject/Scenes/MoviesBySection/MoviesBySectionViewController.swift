@@ -24,7 +24,7 @@ class MoviesBySectionViewController: UIViewController {
     
     // MARK: Properties
     let moviesCollection: CarruselCollectionView = CarruselCollectionView(direction: .vertical)
-    let manager: CarruselCollectionManager = CarruselCollectionManager()
+    let manager: CarruselCollectionManager = CarruselCollectionManager<MovieSearch>()
     
     // MARK: Init
     required init?(coder: NSCoder) {
@@ -79,8 +79,8 @@ extension MoviesBySectionViewController: MoviesBySectionDisplayLogic {
 }
 
 extension MoviesBySectionViewController: CarruselCollectionDelegate {
-    func didTap(movie: MovieSearch) {
-        router?.routeToMovieDetails(movie: movie)
+    func didTap(element: CarruselCollectionItemProperties) {
+        router?.routeToMovieDetails(movie: element as! MovieSearch)
     }
     
     func displayedLastItem() {

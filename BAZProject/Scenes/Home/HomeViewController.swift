@@ -11,6 +11,8 @@ import UIKit
 protocol HomeDisplayLogic: AnyObject {
     func displayFetchedMoives(viewModel: Home.FetchMoviesBySection.ViewModel)
     func displaySectionViews(viewModel: Home.GetMoviesSection.ViewModel)
+    func displayMoviesWatched(viewModel: Home.SaveMovieWatched.ViewModel)
+    func displayAlertError(viewModel: Home.ErrorFetch.ViewModel)
 }
 
 class HomeViewController: UIViewController {
@@ -34,6 +36,7 @@ class HomeViewController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
+    var moviesViews: [MoviesSectionView] = []
     
     // MARK: Init
     required init?(coder: NSCoder) {
@@ -46,6 +49,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         addScrollViewToView()
         interactor?.getMoviesSection()
+        interactor?.subscribeMovieWatchObserver()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -86,16 +90,43 @@ class HomeViewController: UIViewController {
 }
 
 extension HomeViewController: HomeDisplayLogic {
-    func displayFetchedMoives(viewModel: Home.FetchMoviesBySection.ViewModel) {
-        let moviesSectionView = MoviesSectionView(typeSection: viewModel.displayedMovies.section, delegate: self)
-
-        addMoviesSectionView(moviesSectionView: moviesSectionView)
-        moviesSectionView.model = viewModel.displayedMovies.movies
+    func displaySectionViews(viewModel: Home.GetMoviesSection.ViewModel) {
+        viewModel.displayedSections.enumerated().forEach { (index, section) in
+            let moviesSectionView = MoviesSectionView(typeSection: section)
+            
+            moviesSectionView.delegate = self
+            addMoviesSectionView(moviesSectionView: moviesSectionView)
+            moviesViews.append(moviesSectionView)
+            moviesSectionView.isHidden = index == 0 ? true : false
+            moviesSectionView.showSeeMore = index == 0 ? false : true
+            
+            interactor?.fetchMoviesBySection(request: Home.FetchMoviesBySection.Request(section: section))
+        }
     }
     
-    func displaySectionViews(viewModel: Home.GetMoviesSection.ViewModel) {
-        viewModel.displayedSections.forEach { section in
-            interactor?.fetchMoviesBySection(request: Home.FetchMoviesBySection.Request(section: section))
+    func displayFetchedMoives(viewModel: Home.FetchMoviesBySection.ViewModel) {
+        moviesViews.forEach { moviesView in
+            if moviesView.typeSection == viewModel.displayedMovies.section {
+                moviesView.model = viewModel.displayedMovies.movies
+            }
+        }
+    }
+    
+    func displayMoviesWatched(viewModel: Home.SaveMovieWatched.ViewModel) {
+        moviesViews[0].model = viewModel.movies
+        moviesViews[0].isHidden = false
+    }
+    
+    func displayAlertError(viewModel: Home.ErrorFetch.ViewModel) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Fetch Error", message: viewModel.message, preferredStyle: .alert)
+            let acceptAction = UIAlertAction(title: "Ok", style: .default) { [weak self] _ in
+                self?.dismiss(animated: true)
+            }
+            
+            alert.addAction(acceptAction)
+            
+            self.present(alert, animated: true)
         }
     }
 }

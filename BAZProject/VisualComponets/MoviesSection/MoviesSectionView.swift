@@ -26,13 +26,19 @@ class MoviesSectionView: UIView {
             titleSectionMovies.text = typeSection.title
         }
     }
+    @IBOutlet weak var showSeeMoreButton: UIButton! 
     @IBOutlet weak var carruselMoviesView: UIView!
     
     // MARK: Properties
-    var manager: CarruselCollectionManager!
+    var manager: CarruselCollectionManager<MovieSearch>!
     let typeSection: fetchMoviesTypes
     let carruselCollection = CarruselCollectionView(direction: .horizontal)
     var delegate: MoviesSectionDelegate?
+    var showSeeMore: Bool {
+        didSet {
+            showSeeMoreButton.isHidden = !showSeeMore
+        }
+    }
 
     var model: [MovieSearch]? {
         didSet {
@@ -46,9 +52,9 @@ class MoviesSectionView: UIView {
         }
     }
     
-    init(typeSection: fetchMoviesTypes, delegate: MoviesSectionDelegate) {
+    init(typeSection: fetchMoviesTypes, showSeeMore: Bool = true) {
+        self.showSeeMore = showSeeMore
         self.typeSection = typeSection
-        self.delegate = delegate
         super.init(frame: .zero)
         self.configurateView()
     }
@@ -83,8 +89,8 @@ extension MoviesSectionView: CarruselCollectionDelegate {
         
     }
     
-    func didTap(movie: MovieSearch) {
-        delegate?.didTapItemCollection(movie: movie)
+    func didTap(element: CarruselCollectionItemProperties) {
+        delegate?.didTapItemCollection(movie: element as! MovieSearch)
     }
 }
 

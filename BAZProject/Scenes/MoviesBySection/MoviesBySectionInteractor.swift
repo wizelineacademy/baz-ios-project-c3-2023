@@ -37,9 +37,7 @@ class MoviesBySectionInteractor: MoviesBySectionBusinessLogic, MoviesBySectionDa
             guard let self = self else {
                 return
             }
-            if let message = messageError {
 
-            }
             self.presenter?.presentFetchedMovies(response: MoviesBySection.FetchMovies.Response(movies: movies))
         }
     }

@@ -11,7 +11,8 @@ import UIKit
 protocol HomePresentationLogic: AnyObject {
     func presentFechedMoviesForSection(response: Home.FetchMoviesBySection.Response)
     func presentMovieSections(response: Home.GetMoviesSection.Response)
-    func presentErrorMessage(error: Home.FetchMoviesBySection.Error)
+    func presentErrorMessage(response: Home.ErrorFetch.Response)
+    func presentMoviesWatched(response: Home.SaveMovieWatched.Response)
 }
 
 class HomePresenter: HomePresentationLogic {
@@ -20,20 +21,27 @@ class HomePresenter: HomePresentationLogic {
     weak var viewController: HomeDisplayLogic?
     
     func presentFechedMoviesForSection(response: Home.FetchMoviesBySection.Response) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
             let displayedMoviesBySection = response.movies.map { movie in
-                return MovieSearch(id: movie.id ?? -1, imageURL: movie.posterPath ?? "", title: movie.title ?? "")
+                return MovieSearch(id: movie.id ?? -1, imageURL: movie.posterPath ?? "", name: movie.title ?? "", description: movie.overview ?? "")
             }
             
-            self.viewController?.displayFetchedMoives(viewModel: Home.FetchMoviesBySection.ViewModel(displayedMovies: Home.FetchMoviesBySection.ViewModel.SectionWithMovies(section: response.section, movies: displayedMoviesBySection)))
+            self?.viewController?.displayFetchedMoives(viewModel: Home.FetchMoviesBySection.ViewModel(displayedMovies: Home.FetchMoviesBySection.ViewModel.SectionWithMovies(section: response.section, movies: displayedMoviesBySection)))
         }
     }
     
-    func presentErrorMessage(error: Home.FetchMoviesBySection.Error) {
+    func presentErrorMessage(response: Home.ErrorFetch.Response) {
+        let viewModel = Home.ErrorFetch.ViewModel(message: response.message)
         
+        viewController?.displayAlertError(viewModel: viewModel)
     }
     
     func presentMovieSections(response: Home.GetMoviesSection.Response) {
         viewController?.displaySectionViews(viewModel: Home.GetMoviesSection.ViewModel(displayedSections: response.sections))
+    }
+    
+    func presentMoviesWatched(response: Home.SaveMovieWatched.Response) {
+        let viewModel = Home.SaveMovieWatched.ViewModel(movies: response.movies)
+        viewController?.displayMoviesWatched(viewModel: viewModel)
     }
 }

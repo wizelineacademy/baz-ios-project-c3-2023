@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MoviesSectionView" customModule="BAZProject" customModuleProvider="target">
             <connections>
                 <outlet property="carruselMoviesView" destination="gXS-O8-Mz6" id="q8t-oA-7Xw"/>
+                <outlet property="showSeeMoreButton" destination="xHw-1B-I00" id="a1c-WS-keO"/>
                 <outlet property="titleSectionMovies" destination="pgq-Ds-A9g" id="Iw0-pl-dEf"/>
             </connections>
         </placeholder>
@@ -36,7 +37,7 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gXS-O8-Mz6">
-                    <rect key="frame" x="0.0" y="58.5" width="557" height="234.5"/>
+                    <rect key="frame" x="10" y="58.5" width="537" height="234.5"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
             </subviews>
@@ -48,9 +49,9 @@
                 <constraint firstAttribute="bottom" secondItem="gXS-O8-Mz6" secondAttribute="bottom" id="Kuo-8Q-Iun"/>
                 <constraint firstItem="xHw-1B-I00" firstAttribute="firstBaseline" secondItem="pgq-Ds-A9g" secondAttribute="firstBaseline" id="gQB-ek-7Dw"/>
                 <constraint firstItem="pgq-Ds-A9g" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="ipY-I1-RxA"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="gXS-O8-Mz6" secondAttribute="trailing" id="jAY-Ar-DzZ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="gXS-O8-Mz6" secondAttribute="trailing" constant="10" id="jAY-Ar-DzZ"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="xHw-1B-I00" secondAttribute="trailing" constant="10" id="loe-SN-JE9"/>
-                <constraint firstItem="gXS-O8-Mz6" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="uyQ-Ec-V4R"/>
+                <constraint firstItem="gXS-O8-Mz6" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="uyQ-Ec-V4R"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
