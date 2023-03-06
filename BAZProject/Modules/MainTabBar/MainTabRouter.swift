@@ -29,8 +29,8 @@ class MainTabBarRouter {
     
     @objc static func incrementMoviesShown() {
         var moviesShownCounter: Int = UserDefaults.standard.value(forKey: "moviesShownCounter") as? Int ?? 0
-            moviesShownCounter += 1
-            UserDefaults.standard.set(moviesShownCounter, forKey: "moviesShownCounter")
-            print("Movies shown: \(moviesShownCounter)")
+        moviesShownCounter += 1
+        UserDefaults.standard.set(moviesShownCounter, forKey: "moviesShownCounter")
+        print("Movies shown: \(moviesShownCounter)")
     }
 }
