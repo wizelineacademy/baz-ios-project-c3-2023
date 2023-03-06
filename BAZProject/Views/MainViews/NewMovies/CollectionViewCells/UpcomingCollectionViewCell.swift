@@ -8,7 +8,7 @@ import UIKit
 
 class UpcomingCollectionViewCell: UICollectionViewCell {
     
-    let identifier = "UpcomingCustomCell"
+    static let identifier = "UpcomingCustomCell"
     
     @IBOutlet weak var upcomingImage: UIImageView!
     

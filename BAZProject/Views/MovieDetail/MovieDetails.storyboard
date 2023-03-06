@@ -262,9 +262,12 @@
                     <connections>
                         <outlet property="castCollectionView" destination="xbb-J5-xdd" id="9jH-Nz-shX"/>
                         <outlet property="imgMovie" destination="KlZ-Yu-aHx" id="z1e-GW-v3S"/>
+                        <outlet property="lblCastTitle" destination="OQ8-8y-emJ" id="1iC-dX-0yA"/>
                         <outlet property="lblDescription" destination="Aij-8j-syH" id="Xde-HF-Wv6"/>
                         <outlet property="lblGenres" destination="cwE-hR-0Mh" id="wrJ-8f-pRC"/>
                         <outlet property="lblMovieTitle" destination="k0b-4a-71C" id="KUa-Ec-nTm"/>
+                        <outlet property="lblRecommendedTitle" destination="JOY-eV-IMq" id="1M3-qD-YKu"/>
+                        <outlet property="lblSimilarsTitle" destination="axP-2Z-YQh" id="m44-JQ-Ma6"/>
                         <outlet property="recommendedCollectionView" destination="QlZ-Zn-Te2" id="pOw-bi-6Fl"/>
                         <outlet property="similarsCollectionView" destination="5ll-n7-y3N" id="aNk-bj-wSQ"/>
                     </connections>

@@ -9,7 +9,7 @@ import UIKit
 
 class CastCollectionViewCell: UICollectionViewCell {
     
-    let identifier = "CastCustomCell"
+    static let identifier = "CastCustomCell"
 
     @IBOutlet weak var imgCast: UIImageView!
     @IBOutlet weak var lblCast: UILabel!

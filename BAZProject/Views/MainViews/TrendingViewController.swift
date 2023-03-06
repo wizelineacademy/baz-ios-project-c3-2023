@@ -20,6 +20,12 @@ class TrendingViewController: UITableViewController {
         getTrendingMovies()
     }
     
+/// This function make a peticion to the MovieAPI to get an array of Tranding `movies` and Images ready to show
+///
+/// ```
+/// getTrendingMovies()
+/// ```
+///
     func getTrendingMovies() {
         DispatchQueue.global().async { [weak self] in
             self?.movies = self?.movieApi.getMovies(ofType: .trending) ?? []

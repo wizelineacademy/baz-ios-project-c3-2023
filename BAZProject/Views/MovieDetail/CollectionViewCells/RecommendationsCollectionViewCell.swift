@@ -9,7 +9,7 @@ import UIKit
 
 class RecommendationsCollectionViewCell: UICollectionViewCell {
     
-    let identifier = "RecommendationCustomCell"
+    static let identifier = "RecommendationCustomCell"
     
     @IBOutlet weak var imgRecommendations: UIImageView!
     

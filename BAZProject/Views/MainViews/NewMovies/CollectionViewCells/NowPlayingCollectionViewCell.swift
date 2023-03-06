@@ -8,7 +8,7 @@ import UIKit
 
 class NowPlayingCollectionViewCell: UICollectionViewCell {
     
-    let identifier = "NowPlayingCustomCell"
+    static let identifier = "NowPlayingCustomCell"
     
     @IBOutlet weak var nowPlayingImage: UIImageView!
     

@@ -24,8 +24,9 @@ import UIKit
  */
 func getMovieDetails(view: UIViewController, movie: Movie, movieImage: UIImage) {
     
+    let identifier = viewControllers.details.rawValue
     let storyboard = UIStoryboard(name: storyboards.details.rawValue, bundle: nil)
-    let viewController = storyboard.instantiateViewController(withIdentifier: viewControllers.details.rawValue) as? MovieDetailsViewController ?? MovieDetailsViewController()
+    let viewController = storyboard.instantiateViewController(withIdentifier: identifier) as? MovieDetailsViewController ?? MovieDetailsViewController()
     viewController.myMovie = movie
     viewController.myImage = movieImage
     view.navigationController?.pushViewController(viewController, animated: true)

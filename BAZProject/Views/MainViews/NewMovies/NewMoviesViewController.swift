@@ -32,8 +32,13 @@ class NewMoviesViewController: UIViewController {
         getUpcomingMovies()
     
     }
-    
-    func getNowPlayingMovies() {
+/// This function make a peticion to the MovieAPI to get an array of Now Playing`movies` and Images ready to show
+///
+/// ```
+/// getNowPlayingMovies()
+/// ```
+///
+    private func getNowPlayingMovies() {
         DispatchQueue.global().async { [weak self] in
             self?.nowPlayingMovies = self?.movieApi.getMovies(ofType: .nowPlaying) ?? []
             guard let myMovies =  self?.nowPlayingMovies else { return }
@@ -48,8 +53,13 @@ class NewMoviesViewController: UIViewController {
             }
         }
     }
-    
-    func getUpcomingMovies() {
+/// This function make a peticion to the MovieAPI to get an array of Upcoming `movies` and Images ready to show
+///
+/// ```
+/// getUpcomingMovies()
+/// ```
+///
+    private func getUpcomingMovies() {
         DispatchQueue.global().async { [weak self] in
             self?.upcomingMovies = self?.movieApi.getMovies(ofType: .upcoming) ?? []
             guard let myMovies =  self?.upcomingMovies else { return }
@@ -65,8 +75,6 @@ class NewMoviesViewController: UIViewController {
         }
     }
 }
-
-
 // MARK: - CollectionView DataSource
 extension NewMoviesViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 // Number of Items
@@ -85,12 +93,14 @@ extension NewMoviesViewController: UICollectionViewDelegate, UICollectionViewDat
         
         switch collectionView {
             case nowPlayingCollectionView:
-                if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NowPlayingCollectionViewCell().identifier, for: indexPath) as? NowPlayingCollectionViewCell {
+                let identifier = NowPlayingCollectionViewCell.identifier
+                if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier , for: indexPath) as? NowPlayingCollectionViewCell {
                         cell.nowPlayingImage.image = self.nowPlayingImages[indexPath.row]
                         return cell
                 }
             case upcomingCollectionView:
-                if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UpcomingCollectionViewCell().identifier, for: indexPath) as? UpcomingCollectionViewCell {
+                let identifier = UpcomingCollectionViewCell.identifier
+                if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? UpcomingCollectionViewCell {
                         cell.upcomingImage.image = self.upcomingImages[indexPath.row]
                         return cell
                 }
@@ -98,7 +108,7 @@ extension NewMoviesViewController: UICollectionViewDelegate, UICollectionViewDat
         }
         return UICollectionViewCell()
     }
-// SelectItem
+// Action For Select Item
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         switch collectionView {
@@ -120,9 +130,6 @@ extension NewMoviesViewController: UICollectionViewDelegate, UICollectionViewDat
 extension NewMoviesViewController: UICollectionViewDelegateFlowLayout {
 // CellSize
     func collectionView( _ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath ) -> CGSize {
-        
         return CGSize(width: view.frame.width / 5, height: 115)
     }
 }
-
-

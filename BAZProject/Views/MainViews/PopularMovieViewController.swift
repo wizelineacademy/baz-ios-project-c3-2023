@@ -14,15 +14,20 @@ class PopularMovieViewController: UIViewController{
     var images: [UIImage] = []
     let tableHeight: CGFloat = 150
 
-    @IBOutlet weak var moviesTable: MoviesTableViewController!
+    @IBOutlet weak var moviesTable: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         getMovies()
     }
-    
-    func getMovies() {
+/// This function make a peticion to the MovieAPI to get an array of Popular `movies` and Images ready to show
+///
+/// ```
+/// getMovies()
+/// ```
+///
+    private func getMovies() {
         let typeOfMovies: RequestType = .popular
         DispatchQueue.global().async { [weak self] in
             self?.movies = self?.movieApi.getMovies(ofType: typeOfMovies) ?? []
@@ -47,7 +52,7 @@ extension PopularMovieViewController: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        tableView.dequeueReusableCell(withIdentifier: "MoviesTableViewCell")!
+        tableView.dequeueReusableCell(withIdentifier: "MoviesTableViewCell") ?? UITableViewCell()
     }
 }
 

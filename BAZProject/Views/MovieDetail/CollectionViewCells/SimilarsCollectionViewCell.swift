@@ -9,7 +9,7 @@ import UIKit
 
 class SimilarsCollectionViewCell: UICollectionViewCell {
     
-    let identifier = "SimilarsCustomCell"
+    static let identifier = "SimilarsCustomCell"
     
     @IBOutlet weak var imgSimilars: UIImageView!
  

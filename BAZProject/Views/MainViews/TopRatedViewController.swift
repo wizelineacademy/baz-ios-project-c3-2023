@@ -20,7 +20,12 @@ class TopRatedViewController: UITableViewController {
        
         getRatedMovies()
     }
-    
+/// This function make a peticion to the MovieAPI to get an array of TopRated `movies` and Images ready to show
+///
+/// ```
+/// getRatedMovies()
+/// ```
+///
     func getRatedMovies() {
         DispatchQueue.global().async { [weak self] in
             self?.movies = self?.movieApi.getMovies(ofType: .topRated) ?? []
@@ -45,7 +50,7 @@ extension TopRatedViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        tableView.dequeueReusableCell(withIdentifier: "TopRatedTableViewCell")!
+        tableView.dequeueReusableCell(withIdentifier: "TopRatedTableViewCell") ?? UITableViewCell()
     }
     
 }
