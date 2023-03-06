@@ -7,16 +7,16 @@
 
 import Foundation
 
-struct Review: Codable{
+struct Review: Codable {
     
-    let author: String
-    let content: String
-    let createdAt: String
-    let id: String
-    let updatedAt: String
-    let url: String
+    let author: String?
+    let content: String?
+    let createdAt: String?
+    let id: String?
+    let updatedAt: String?
+    let url: String?
     
-    enum CodingKeys : String, CodingKey{
+    enum CodingKeys : String, CodingKey {
         case author
         case content
         case createdAt = "created_at"
@@ -25,7 +25,6 @@ struct Review: Codable{
         case url
     }
 }
-
 
 struct Reviews: Codable {
     

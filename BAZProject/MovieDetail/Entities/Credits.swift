@@ -14,21 +14,24 @@ struct Credits: Codable {
 
 struct Cast: Codable {
     let id: Int
-    let knownForDepartment: String
-    let name: String
-    let originalName: String
+    let knownForDepartment: String?
+    let name: String?
+    let originalName: String?
     let popularity: Double
-    let profilePath: String
-    let castId: String
-    let character: String
-    let creditId: String
+    let profilePath: String?
+    let castId: Int
+    let character: String?
+    let creditId: String?
     let order: Int
+    var fullProfilePath : String {
+        return "https://image.tmdb.org/t/p/w200\(profilePath ?? "")"
+    }
     
     enum CodingKeys: String, CodingKey {
         case id
         case knownForDepartment = "known_for_department"
         case name
-        case originalName = "original_Name"
+        case originalName = "original_name"
         case popularity
         case profilePath = "profile_path"
         case castId = "cast_id"

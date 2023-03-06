@@ -20,8 +20,8 @@ class ReviewTableViewCell: UITableViewCell {
         return UINib(nibName: identifier, bundle: nil)
     }
     
-    func configure(with text: String){
-        self.lblReview.text = text
+    func configure(with text: String) {
+        self.lblReview.text = text.isEmpty ? "Sin Reseña por el momento" : text
     }
     
     override func awakeFromNib() {

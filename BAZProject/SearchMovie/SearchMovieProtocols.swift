@@ -38,4 +38,6 @@ protocol SearchInteractorOutputProtocol: AnyObject {
 }
 
 //MARK: - Router
-protocol SearchRouterProtocol {}
+protocol SearchRouterProtocol {
+    func goToMovieDetail(with model: Movie)
+}

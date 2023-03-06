@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ListMoviesView" customModule="BAZProject" customModuleProvider="target">
             <connections>
+                <outlet property="lblViewedMovies" destination="jLj-ab-aEg" id="EdV-Tq-yzh"/>
                 <outlet property="tblMovies" destination="262-BH-iZe" id="0tH-OH-3wl"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -23,10 +24,22 @@
                 <tableView clipsSubviews="YES" contentMode="scaleAspectFit" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="262-BH-iZe">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                 </tableView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Counter" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jLj-ab-aEg">
+                    <rect key="frame" x="358" y="60" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="jLj-ab-aEg" secondAttribute="height" multiplier="1:1" id="4rh-mW-hWH"/>
+                        <constraint firstAttribute="height" constant="40" id="rv7-ww-Oyd"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="jLj-ab-aEg" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="6dL-UV-Zsu"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="jLj-ab-aEg" secondAttribute="trailing" constant="16" id="8pC-Dl-5sa"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="262-BH-iZe" secondAttribute="trailing" id="IfN-P3-iXD"/>
                 <constraint firstItem="262-BH-iZe" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="aEh-Bv-cLb"/>
                 <constraint firstItem="262-BH-iZe" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="kzi-Gc-C2T"/>

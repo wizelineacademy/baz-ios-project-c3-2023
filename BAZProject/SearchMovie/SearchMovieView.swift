@@ -57,6 +57,7 @@ extension SearchMovieView: UITableViewDataSource {
 
 extension SearchMovieView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tblMovies.deselectRow(at: indexPath, animated: true)
         presenter?.goToMovieDetail(with: filterMovies[indexPath.row] )
     }
 }

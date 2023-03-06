@@ -8,6 +8,7 @@
 import UIKit
 
 class MovieDetailPresenter {
+    
     //MARK: - Properties
     weak var view: MovieDetailViewIntputProtocol?
     var interactor: MovieDetailInteractorInputProtocol?
@@ -20,21 +21,19 @@ class MovieDetailPresenter {
         self.interactor = interactor
         self.router = router
     }
-    
 }
 
 //MARK: - extension
 extension MovieDetailPresenter: MovieDetailViewOutputProtocol {
-    
-    func fetchModel() {
-        interactor?.fetchModel()
+   
+    func fetchModel(with movie: Movie) {
+        interactor?.fetchModel(with: movie)
     }
 }
 
 extension MovieDetailPresenter: MovieDetailInteractorOutputProtocol {
-    func presentView(model: Movie) {
+    
+    func presentView(model: [MovieDetailType]) {
         view?.loadView(from: model)
     }
-    
-    
 }

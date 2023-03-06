@@ -10,8 +10,7 @@ import UIKit
 
 class MovieDetailRouter {
     
-//MARK: - Properties
-    
+    //MARK: - Properties
     weak var viewController: UIViewController?
 
     //MARK: - Functions
@@ -34,7 +33,6 @@ class MovieDetailRouter {
 
 //MARK: - Extensions
 extension MovieDetailRouter: MovieDetailRouterProtocol {
-    
 }
 
 
