@@ -37,7 +37,8 @@ extension UIImageView {
         
         URLSession.shared.dataTask(with: url) { (data, _, error) in
             if let error = error {
-                print("Couldn't download image: ", error)
+                let image = UIImage(named: "poster")
+                self.image = image
                 return
             }
             

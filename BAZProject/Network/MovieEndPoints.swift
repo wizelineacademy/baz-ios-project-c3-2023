@@ -21,6 +21,7 @@ enum MovieServices {
     case getReviews(id: Int)
     case getSimilars(id: Int)
     case getRecommendations(id: Int)
+    case getCredits(id: Int)
 }
 
 extension MovieServices: Endpoint {
@@ -54,6 +55,8 @@ extension MovieServices: Endpoint {
             return "/3/movie/\(id)/similar"
         case .getRecommendations(let id):
             return "/3/movie/\(id)/recommendations"
+        case .getCredits(let id):
+            return "/3/movie/\(id)/credits"
         }
     }
     

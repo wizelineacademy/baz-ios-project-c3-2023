@@ -1,73 +1,66 @@
 //
-//  SearchMovieController.swift
+//  ActorCarruselTableViewCell.swift
 //  BAZProject
 //
-//  Created by Jonathan Hernandez Ramos on 16/02/23.
+//  Created by Jonathan Hernandez Ramos on 01/03/23.
 //
 
 import UIKit
 
-protocol SearchMovieControllerDelegate: AnyObject {
-    func selected(movie: Movie)
-}
+final class ActorCarruselTableViewCell: UITableViewCell {
 
-final class SearchMovieController: UIViewController {
-    weak var searchMovieControllerDelegate: SearchMovieControllerDelegate?
-    @IBOutlet weak var collectionMovieSearch: UICollectionView!
-    var movies: [Movie] = []
+    @IBOutlet weak var castCollectionView: UICollectionView!
+    var casts: [Cast] = []
+    
     private let sectionInsets = UIEdgeInsets(
         top: 50.0,
         left: 20.0,
         bottom: 50.0,
         right: 20.0)
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
         setUpCollection()
     }
+
+    ///This method configure the collection view and register the cells
+    private func setUpCollection(){
+        castCollectionView.dataSource = self
+        castCollectionView.delegate = self
+        castCollectionView.register(ActorCollectionViewCell.nib, forCellWithReuseIdentifier: ActorCollectionViewCell.identifier)
+    }
     
-    func setUpCollection(){
-        collectionMovieSearch.dataSource = self
-        collectionMovieSearch.delegate = self
-        collectionMovieSearch.register(SearchMovieViewCollectioCell.nib, forCellWithReuseIdentifier: SearchMovieViewCollectioCell.identifier)
+    ///This method fill the info of the view for cell
+    /// - Parameter for: recibes the `Array` of type `Review`
+    func setInfo(for casts: [Cast]){
+        self.casts = casts
+        self.castCollectionView.reloadData()
     }
 }
 
-
 // MARK: - UICollectionViewDataSource
-extension SearchMovieController: UICollectionViewDataSource {
+extension ActorCarruselTableViewCell: UICollectionViewDataSource {
 
     func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        return movies.count
+        return casts.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionMovieSearch.deselectItem(at: indexPath, animated: true)
-        
-        searchMovieControllerDelegate?.selected(movie: movies[indexPath.row])
-    }
-    
-    func collectionView(
-        _ collectionView: UICollectionView,
-        cellForItemAt indexPath: IndexPath
-    ) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: SearchMovieViewCollectioCell.identifier,
-            for: indexPath) as? SearchMovieViewCollectioCell else {return UICollectionViewCell()}
-        let movie = movies[indexPath.row]
-        cell.setInfo(for: movie)
-        
+            withReuseIdentifier: ActorCollectionViewCell.identifier,
+            for: indexPath) as? ActorCollectionViewCell else {return UICollectionViewCell()}
+        let cast = casts[indexPath.row]
+        cell.setup(cast: cast)
         return cell
     }
 }
 
 
 // MARK: - Collection View Flow Layout Delegate
-extension SearchMovieController: UICollectionViewDelegateFlowLayout {
+extension ActorCarruselTableViewCell: UICollectionViewDelegateFlowLayout {
     
     func collectionView(
         _ collectionView: UICollectionView,
@@ -78,11 +71,11 @@ extension SearchMovieController: UICollectionViewDelegateFlowLayout {
         guard let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout else {
             return .zero
         }
-        let numberOfItems: CGFloat = 3
+        let numberOfItems: CGFloat = 2.5
         let collectionViewWidth = collectionView.bounds.width
         let spaceBetweenCells = flowLayout.minimumInteritemSpacing
         let adjustedWidth = (collectionViewWidth - (spaceBetweenCells * numberOfItems - 1) - sectionInsets.left - sectionInsets.right)/numberOfItems
-        let height: CGFloat = 200
+        let height: CGFloat = 150
         return CGSize(width: adjustedWidth, height: height)
     }
     

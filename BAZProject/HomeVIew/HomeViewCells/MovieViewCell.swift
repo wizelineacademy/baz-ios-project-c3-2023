@@ -14,6 +14,10 @@ final class MovieViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        imageMovie.contentMode = .scaleAspectFill
+        imageMovie.layer.cornerRadius = 5
+        imageMovie.layer.masksToBounds = true
+        imageMovie.clipsToBounds = true
     }
     /// This method recive a  parameter of type `Movie` to fill the cell info
     ///  - Parameters:

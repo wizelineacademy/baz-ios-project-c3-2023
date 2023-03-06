@@ -7,6 +7,22 @@
 
 import Foundation
 
+struct Reviews: Decodable {
+    var id: Int?
+    var page: Int?
+    var results: [Review]?
+    var totalPages: Int?
+    var totalResults: Int?
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case page = "page"
+        case results = "results"
+        case totalPages = "total_pages"
+        case totalResults = "total_results"
+    }
+}
+
 struct Review: Decodable {
     let author: String
     let authorDetails: AuthorDetails
