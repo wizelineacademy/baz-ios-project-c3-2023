@@ -11,22 +11,23 @@ final class DetailPresenter {
     var router: DetailRouterProtocol?
     weak var view: DetailViewProtocol?
     var interactor: DetailInteractorInputProtocol?
-}
 
-extension DetailPresenter: DetailPresenterProtocol {
-    func willFetchMedia(detailType: DetailType) {
-        interactor?.fetchMedia(detailType: detailType)
-    }
-}
+    private var loading: Bool = false
+    private var errorGetData: Bool = false
 
-extension DetailPresenter: DetailInteractorOutputProtocol {
-    func onReceivedMedia(result: MovieDetailResult) {
-        view?.setErrorGettingData(false)
-        view?.updateView(data: result)
+    // MARK: - Private methods
+    private func stopLoading() {
+        errorGetData = false
+        loading = false
         view?.stopLoading()
     }
-    
-    func showViewError(_ error: Error) {
+
+    private func setLoading() {
+        loading = true
+        errorGetData = false
+    }
+
+    private func getErrorType(from error: Error) -> ErrorType {
         var errorModel: ErrorType
         if let fetchedError: ServiceError = error as? ServiceError {
             errorModel = ErrorType(serviceError: fetchedError)
@@ -36,7 +37,65 @@ extension DetailPresenter: DetailInteractorOutputProtocol {
         }
 
         errorModel.setTitleNavBar(.trendingTitle)
-        view?.setErrorGettingData(true)
-        router?.showViewError(errorModel)
+        return errorModel
+    }
+}
+
+extension DetailPresenter: DetailPresenterProtocol {
+    func isLoading() -> Bool {
+        loading
+    }
+
+    func errorGettingData() -> Bool {
+        return errorGetData
+    }
+
+    func willFetchMovie(of idMovie: String) {
+        setLoading()
+        interactor?.fetchMovie(of: idMovie)
+    }
+
+    func willFetchReview(of idMovie: String) {
+        setLoading()
+        interactor?.fetchReview(of: idMovie)
+    }
+
+    func willFetchSimilarMovie(of idMovie: String) {
+        interactor?.fetchSimilarMovie(of: idMovie)
+    }
+
+    func willFetchMovieRecomendation(of idMovie: String) {
+        interactor?.fetchMovieRecomendation(of: idMovie)
+    }
+
+    func willShowDetail(of idMovie: String) {
+        router?.showDetail(of: idMovie)
+    }
+}
+
+extension DetailPresenter: DetailInteractorOutputProtocol {
+    func onReceivedMedia(result: MovieDetailResult) {
+        view?.updateView(data: result)
+        stopLoading()
+    }
+
+    func onReceivedReview(_ result: [ReviewResult]) {
+        view?.updateView(data: result)
+        stopLoading()
+    }
+
+    func onReceivedReview(_ result: [SimilarMovieModelResult]) {
+        view?.updateView(data: result)
+        stopLoading()
+    }
+
+    func onReceivedMovieRecomendation(_ result: [RecomendationMovieModelResult]) {
+        view?.updateView(data: result)
+    }
+
+    func showViewError(_ error: Error) {
+        if errorGetData { return }
+        errorGetData = true
+        router?.showViewError(getErrorType(from: error))
     }
 }

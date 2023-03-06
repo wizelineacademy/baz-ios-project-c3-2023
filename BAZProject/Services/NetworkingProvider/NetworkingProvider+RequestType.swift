@@ -18,7 +18,7 @@ extension RequestType {
     func getRequest() -> URLRequest {
         var request: URLRequest
         let url: URL = URL(string: self.strUrl)!
-    
+
         request = URLRequest(url: url)
         request.httpMethod = self.method.getTypeResponse()
 
@@ -33,7 +33,7 @@ extension RequestType {
 
 enum MethodRequest {
     case GET, PUT, POST, DELETE
-    
+
     func getTypeResponse() -> String {
         switch self {
         case .GET:

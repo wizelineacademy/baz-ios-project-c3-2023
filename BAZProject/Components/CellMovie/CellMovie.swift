@@ -7,8 +7,11 @@
 
 import UIKit
 
+enum AccesoryType {
+    case eye, eyeFill
+}
+
 class CellMovie: UITableViewCell {
-    
     static let  identifier: String = .cellMovieXibIdentifier
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
@@ -16,22 +19,43 @@ class CellMovie: UITableViewCell {
 
     @IBOutlet weak private var photoImageView: UIImageView! {
         didSet {
-            photoImageView.layer.cornerRadius = photoImageView.bounds.height / LocalizedConstants.cellMovieDivisorNumberHeight
+            photoImageView.addRounding()
         }
     }
 
     @IBOutlet weak private var lblTitle: UILabel! {
         didSet {
-            lblTitle.addShadow()
+            lblTitle.textColor = LocalizedConstants.commonSecondaryColor
+            lblTitle.addShadow(.white)
         }
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    
-    func setData(title: String, imageUrl: String) {
+
+    func setData(title: String, imageUrl: String?) {
         lblTitle.text = title
-        photoImageView.loadImage(id: imageUrl)
+        if let imageUrl = imageUrl {
+            photoImageView.loadImage(id: imageUrl)
+        } else {
+            photoImageView.image = LocalizedConstants.commonImageDefault
+        }
+    }
+
+    func addAccessoryView(accesory: AccesoryType) {
+        var checkImage: UIImage
+        var color: UIColor
+        switch accesory {
+        case .eye:
+            checkImage = UIImage(systemName: "eye") ?? UIImage()
+            color = .white
+        case .eyeFill:
+            checkImage = UIImage(systemName: "eye.fill") ?? UIImage()
+            color = LocalizedConstants.commonSecondaryColor
+        }
+        let checkmark: UIImageView = UIImageView(image: checkImage)
+        checkmark.tintColor = color
+        self.accessoryView = checkmark
     }
 }

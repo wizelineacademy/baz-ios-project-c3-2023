@@ -15,4 +15,15 @@ extension String {
         mutableAttributedString.addAttribute(.font, value: LocalizedConstants.commonTitleFont, range: range)
         return mutableAttributedString
     }
+
+    func getDateFormatted() -> String {
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+
+        if let dateFormatted = dateFormatterGet.date(from: self) {
+                dateFormatterGet.dateFormat = "dd/MM/yyyy"
+                return dateFormatterGet.string(from: dateFormatted)
+        }
+        return ""
+    }
 }

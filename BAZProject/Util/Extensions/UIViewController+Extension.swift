@@ -13,15 +13,6 @@ enum UIImageType {
 }
 
 extension UIViewController {
-    
-    func guaranteeMainThread(_ work: @escaping () -> Void) {
-        if Thread.isMainThread {
-            work()
-        } else {
-            DispatchQueue.main.async(execute: work)
-        }
-    }
-    
     func getUIImage(for name: String, type: UIImageType) -> UIImage {
         var uiImage: UIImage?
         switch type {
@@ -31,5 +22,15 @@ extension UIViewController {
             uiImage = UIImage(named: name)
         }
         return uiImage ?? UIImage()
+    }
+
+    func addSearchBar() -> UISearchController {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = .mainPlaceholderSearchBar
+        searchController.searchBar.searchTextField.backgroundColor = .lightGray
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        return searchController
     }
 }

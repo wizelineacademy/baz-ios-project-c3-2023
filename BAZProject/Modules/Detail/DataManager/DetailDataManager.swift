@@ -10,22 +10,60 @@ import Foundation
 final class DetailDataManager {
     weak var interactor: DetailDataManagerOutputProtocol?
     let providerNetworking: NetworkingProviderProtocol
-    
+
     init(providerNetworking: NetworkingProviderProtocol) {
         self.providerNetworking = providerNetworking
     }
 }
 
 extension DetailDataManager: DetailDataManagerInputProtocol {
-
-    typealias ResponseProvider = Result<MovieDetailResult, Error>
-
-    func requestMedia(_ urlString: String) {
-        providerNetworking.sendRequest(RequestType(strUrl: urlString, method: .GET).getRequest()) { [weak self] (result: ResponseProvider) in
+    func requestMovie(_ urlString: String) {
+        typealias ResponseProvider = Result<MovieDetailResult, Error>
+        let request: URLRequest = RequestType(strUrl: urlString, method: .GET).getRequest()
+        providerNetworking.sendRequest(request) { [weak self] (result: ResponseProvider) in
             switch result {
             case .success(var movie):
                 movie.decrypt()
-                self?.interactor?.handleGetMediaMovie(movie)
+                self?.interactor?.handleGetMovie(movie)
+            case .failure(let error):
+                self?.interactor?.handleErrorService(error)
+            }
+        }
+    }
+
+    func requestReview(_ urlString: String) {
+        typealias ResponseProvider = Result<ReviewResponse, Error>
+        let request: URLRequest = RequestType(strUrl: urlString, method: .GET).getRequest()
+        providerNetworking.sendRequest(request) { [weak self] (result: ResponseProvider) in
+            switch result {
+            case .success(let data):
+                self?.interactor?.handleGetReview(data.results ?? [])
+            case .failure(let error):
+                self?.interactor?.handleErrorService(error)
+            }
+        }
+    }
+
+    func requestSimilarMovie(_ urlString: String) {
+        typealias ResponseProvider = Result<SimilarMovieModelResponse, Error>
+        let request: URLRequest = RequestType(strUrl: urlString, method: .GET).getRequest()
+        providerNetworking.sendRequest(request) { [weak self] (result: ResponseProvider) in
+            switch result {
+            case .success(let data):
+                self?.interactor?.handleGetSimilarMovie(data.results ?? [])
+            case .failure(let error):
+                self?.interactor?.handleErrorService(error)
+            }
+        }
+    }
+
+    func requestMovieRecomendation(_ urlString: String) {
+        typealias ResponseProvider = Result<RecomendationMovieModelResponse, Error>
+        let request: URLRequest = RequestType(strUrl: urlString, method: .GET).getRequest()
+        providerNetworking.sendRequest(request) { [weak self] (result: ResponseProvider) in
+            switch result {
+            case .success(let data):
+                self?.interactor?.handleGetMovieRecomendation(data.results ?? [])
             case .failure(let error):
                 self?.interactor?.handleErrorService(error)
             }

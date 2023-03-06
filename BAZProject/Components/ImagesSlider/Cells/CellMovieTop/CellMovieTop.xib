@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="aca-Cv-flF" customClass="CellMovieTop" customModule="BAZProject" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="187"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="EEu-6O-GVB">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="187"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CMM-10-dj1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="187"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iRr-ZL-2gq">
+                        <rect key="frame" x="8" y="132" width="359" height="39"/>
+                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="30"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                        <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <size key="shadowOffset" width="4" height="3"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="CMM-10-dj1" secondAttribute="bottom" id="0ZE-Tw-gyq"/>
+                    <constraint firstAttribute="bottom" secondItem="iRr-ZL-2gq" secondAttribute="bottom" constant="16" id="6jm-zO-Edm"/>
+                    <constraint firstAttribute="trailing" secondItem="iRr-ZL-2gq" secondAttribute="trailing" constant="8" id="Uwc-T4-csO"/>
+                    <constraint firstItem="CMM-10-dj1" firstAttribute="top" secondItem="EEu-6O-GVB" secondAttribute="top" id="WZZ-vV-9Mi"/>
+                    <constraint firstItem="CMM-10-dj1" firstAttribute="leading" secondItem="EEu-6O-GVB" secondAttribute="leading" id="cMX-W1-XUu"/>
+                    <constraint firstItem="iRr-ZL-2gq" firstAttribute="leading" secondItem="EEu-6O-GVB" secondAttribute="leading" constant="8" id="fap-ho-tPr"/>
+                    <constraint firstItem="iRr-ZL-2gq" firstAttribute="leading" secondItem="EEu-6O-GVB" secondAttribute="leading" constant="8" id="iC9-P7-e0H"/>
+                    <constraint firstAttribute="trailing" secondItem="iRr-ZL-2gq" secondAttribute="trailing" constant="8" id="weD-Sw-H3T"/>
+                    <constraint firstAttribute="trailing" secondItem="CMM-10-dj1" secondAttribute="trailing" id="y4N-KR-dKy"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <size key="customSize" width="375" height="187"/>
+            <connections>
+                <outlet property="photoImageView" destination="CMM-10-dj1" id="KGy-Rf-QzG"/>
+                <outlet property="titleLabel" destination="iRr-ZL-2gq" id="Oem-hD-or4"/>
+            </connections>
+            <point key="canvasLocation" x="429.7709923664122" y="11.619718309859156"/>
+        </collectionViewCell>
+    </objects>
+</document>

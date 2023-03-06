@@ -12,13 +12,11 @@ class TrendingDataManagerTest: XCTestCase {
     override func setUp() {
         super.setUp()
     }
-    
+
     override func tearDown() {
         super.tearDown()
     }
-    
-    func test() {
-        
-    }
+
+    func test() { }
 
 }

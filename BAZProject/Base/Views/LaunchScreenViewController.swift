@@ -8,19 +8,19 @@
 import UIKit
 
 final class LaunchScreenViewController: UIViewController {
-    
     @IBOutlet weak private var logoUIImageView: UIImageView! {
         didSet {
-            logoUIImageView.layer.cornerRadius = logoUIImageView.bounds.height / LocalizedConstants.launchScreenDivisorNumer
+            let cornerRadius: CGFloat = logoUIImageView.bounds.height / LocalizedConstants.launchScreenDivisorNumer
+            logoUIImageView.layer.cornerRadius = cornerRadius
             logoUIImageView.rotate()
         }
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         addAnimationLoader()
     }
-    
+
     // MARK: - Private methods
     fileprivate func addAnimationLoader() {
         UIView.transition(with: logoUIImageView,

@@ -9,14 +9,15 @@ import UIKit
 
 final class TrendingRouter: TrendingRouterProtocol {
     weak var view: TrendingViewProtocol?
-    
+    private var alert: UIAlertController?
+
     static func createModule() -> UIViewController {
         let view: TrendingViewProtocol = TrendingViewController(nibName: TrendingViewController.identifier, bundle: nil)
         let service: NetworkingProviderProtocol = NetworkingProviderService(session: URLSession.shared)
         let dataManager: TrendingDataManagerInputProtocol = TrendingDataManager(providerNetworking: service)
         let interactor: TrendingInteractorInputProtocol & TrendingDataManagerOutputProtocol = TrendingInteractor()
         let presenter: TrendingPresenterProtocol & TrendingInteractorOutputProtocol = TrendingPresenter()
-        
+
         let router: TrendingRouterProtocol = TrendingRouter()
         router.view = view
         view.presenter = presenter
@@ -26,32 +27,44 @@ final class TrendingRouter: TrendingRouterProtocol {
         presenter.view = view
         presenter.interactor = interactor
         presenter.router = router
-        
+
         guard let view = view as? UIViewController else { return UIViewController() }
         return view
     }
-    
+
     func showViewError(_ errorType: ErrorType) {
-        guaranteeMainThread {
-            guard let view = self.view as? UIViewController else { return }
+        guard let view = self.view as? UIViewController else { return }
+        view.guaranteeMainThread {
             let errorPageVC: UIViewController = ErrorPageRouter.createModule(errorType: errorType)
-            view.navigationController?.pushViewController(errorPageVC, animated: true)
+            view.navigationController?.pushViewController(errorPageVC, animated: false)
         }
     }
-    
-    func showDetail(of detailType: DetailType) {
-        guaranteeMainThread {
-            guard let view = self.view as? UIViewController else { return }
-            let detailView: UIViewController = DetailRouter.createModule(detailType: detailType)
-            view.navigationController?.pushViewController(detailView, animated: true)
+
+    func showDetail(of idMovie: String) {
+        guard let view = self.view as? UIViewController else { return }
+        view.guaranteeMainThread {
+            let detailView: UIViewController = DetailRouter.createModule(of: idMovie)
+            view.navigationController?.pushViewController(detailView, animated: false)
         }
     }
-    
-    private func guaranteeMainThread(_ work: @escaping () -> Void) {
-        if Thread.isMainThread {
-            work()
-        } else {
-            DispatchQueue.main.async(execute: work)
+
+    func showAlertLoading(with alertType: ErrorType) {
+        guard let view = self.view as? UIViewController else { return }
+        alert = view.getAlertLoading(with: alertType)
+        view.guaranteeMainThread {
+            view.navigationController?.present(self.alert ?? UIAlertController(), animated: true)
+        }
+    }
+
+    func hideAlertLoading() {
+        guard let view = self.view as? UIViewController else { return }
+        view.guaranteeMainThread {
+            self.alert?.dismiss(animated: true) {
+                view.guaranteeMainThread {
+                    view.navigationController?.navigationItem.searchController?.searchBar.becomeFirstResponder()
+                    self.alert = nil
+                }
+            }
         }
     }
 }

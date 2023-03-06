@@ -12,9 +12,8 @@ protocol ErrorPageViewProtocol {
 }
 
 class ErrorPageViewController: CustomView {
-    
     override var nameXIB: String {"ErrorPageView"}
-    
+
     @IBOutlet weak var imgErrorLogo: UIImageView! {
         didSet {
             if let icon = UIImage(named: .nameIcon404) {
@@ -22,7 +21,7 @@ class ErrorPageViewController: CustomView {
             }
         }
     }
-    
+
     weak var delegate: ErrorPageViewProtocol?
 
     @IBAction func reintent(_ sender: Any) {

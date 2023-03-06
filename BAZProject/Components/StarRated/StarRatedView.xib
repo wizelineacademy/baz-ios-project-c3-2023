@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StarRatedView" customModule="BAZProject" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="mPg-JF-zJR"/>
+                <outlet property="starsStackContainer" destination="fhp-51-uUg" id="Wnx-Ai-yZV"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="650" height="194"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="fhp-51-uUg">
+                    <rect key="frame" x="0.0" y="59" width="650" height="101"/>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="fhp-51-uUg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="I1c-Xz-w01"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="fhp-51-uUg" secondAttribute="bottom" id="UD4-xx-Mgu"/>
+                <constraint firstItem="fhp-51-uUg" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="tha-0n-Iui"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="fhp-51-uUg" secondAttribute="trailing" id="vRK-ft-Adc"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="305.34351145038164" y="297.18309859154931"/>
+        </view>
+    </objects>
+</document>

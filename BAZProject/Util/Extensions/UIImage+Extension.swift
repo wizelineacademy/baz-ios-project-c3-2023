@@ -8,25 +8,31 @@
 import UIKit
 
 extension UIImageView {
+
+    func addRounding() {
+        self.contentMode = .scaleAspectFill
+        let photoWidth: CGFloat = self.bounds.size.width
+        self.layer.cornerRadius = photoWidth / LocalizedConstants.cellMovieDivisorNumberHeight
+    }
+
     typealias ResponseProvider = Result<Data, Error>
-    
+
     func loadImage(id stringUrl: String) {
         self.addSkeletonAnimation()
         image = UIImage()
-        if let imageCache = getImageFromCache(strUrl: stringUrl) {
+        if let imageCache = CacheManager.shared.getImageFromCache(strUrl: stringUrl) {
             self.removeSkeletonAnimation()
             image = imageCache
             return
         }
-        
+
         guard URL(string: stringUrl) != nil else {
             self.addDefaultImage()
             return
         }
-        
         getImage(strUrl: stringUrl)
     }
-    
+
     func addAnimation(_ tempImg: UIImage) {
         guaranteeMainThread {
             self.alpha = LocalizedConstants.uiImageAlpha
@@ -36,29 +42,30 @@ extension UIImageView {
             }
         }
     }
-    
+
     // MARK: - Private methods
     private func getImage(strUrl: String) {
         let providerNetworking: NetworkingProviderProtocol = NetworkingProviderService(session: URLSession.shared)
-        providerNetworking.sendRequest(RequestType(strUrl: strUrl, method: .GET).getRequest()) { [weak self] (result: ResponseProvider) in
+        let request: URLRequest = RequestType(strUrl: strUrl, method: .GET).getRequest()
+        providerNetworking.sendRequest(request) { [weak self] (result: ResponseProvider) in
             self?.handleResponse(result, strUrl: strUrl)
         }
     }
-    
+
     private func addDefaultImage() {
         guaranteeMainThread {
             self.removeSkeletonAnimation()
             self.image = UIImage(named: LocalizedConstants.uiImageNameDefaultImage)
         }
     }
-    
+
     private func handleResponse(_ response: ResponseProvider, strUrl: String) {
         self.removeSkeletonAnimation()
         switch response {
         case .success(let data):
             guard let tempImg = UIImage(data: data) else { return }
             self.addAnimation(tempImg)
-            self.saveImageInCache(id: strUrl, image: tempImg)
+            CacheManager.shared.saveImageInCache(id: strUrl, image: tempImg)
         case .failure:
             self.addDefaultImage()
         }

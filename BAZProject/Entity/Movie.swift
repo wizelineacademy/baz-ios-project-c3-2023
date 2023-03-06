@@ -31,7 +31,7 @@ struct MovieResult: Codable {
     var video: Bool?
     var voteAverage: Double?
     var voteCount: Int?
-    
+
     enum CodingKeys: String, CodingKey {
         case adult
         case backdropPath = "backdrop_path"

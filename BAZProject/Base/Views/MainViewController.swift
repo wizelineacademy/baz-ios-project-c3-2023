@@ -8,66 +8,61 @@
 import UIKit
 
 final class MainViewController: UITabBarController {
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setStyleView()
         initializeViewControllers()
     }
-    
+
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         setTabBarStyle()
     }
-    
-    // MARK: - Private methods
 
+    // MARK: - Private methods
     fileprivate func setStyleView() {
-        view.backgroundColor = .systemBackground
-        tabBar.barTintColor = .systemBackground
-        tabBar.tintColor = .red
+        view.backgroundColor = LocalizedConstants.commonBackgroundColor
+        tabBar.barTintColor = LocalizedConstants.commonBackgroundColor
+        tabBar.tintColor = .white
         tabBar.layer.shadowRadius = LocalizedConstants.mainShadowRadius
-        tabBar.layer.shadowColor = UIColor.black.cgColor
+        tabBar.layer.shadowColor = UIColor.white.cgColor
         tabBar.layer.shadowOpacity = LocalizedConstants.mainShadowOpacity
     }
-    
+
     fileprivate func setTabBarStyle() {
-        tabBar.backgroundColor = .systemBackground
-        tabBar.tintColor = .red
-        tabBar.barTintColor = .red
+        tabBar.backgroundColor = LocalizedConstants.commonHeaderColor
+        tabBar.tintColor = .white
+        tabBar.barTintColor = .white
         tabBar.backgroundImage = UIImage()
         tabBar.shadowImage = UIImage()
     }
-    
+
     private func initializeViewControllers() {
-        var arrControllers:[UIViewController] = []
+        var arrControllers: [UIViewController] = []
+
+        arrControllers.append(createNavController(for: HomeRouter.createModule(),
+                                                  title: .homeTitle,
+                                                  image: getUIImage(for: .homeNameIconTabBar, type: .systemName)))
+
         arrControllers.append(createNavController(for: TrendingRouter.createModule(),
-                                                  title: .mainTitleView,
-                                                  image: getUIImage(for: .mainNameIconTabBar, type: .systemName)))
+                                                  title: .trendingTitle,
+                                                  image: getUIImage(for: .trendingNameIconTabBar, type: .systemName)))
+
         viewControllers = arrControllers
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.red], for:.selected)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white],
+                                                         for: .selected)
     }
-    
+
     private func createNavController(for rootViewController: UIViewController,
                                      title: String,
                                      image: UIImage) -> UIViewController {
         let navController = UINavigationController(rootViewController: rootViewController)
         navController.tabBarItem.title = title
         navController.tabBarItem.image = image
+        navController.navigationBar.tintColor = .white
+        navController.navigationBar.barTintColor = LocalizedConstants.commonBackgroundColor
         navController.navigationBar.prefersLargeTitles = true
-        
-        rootViewController.navigationItem.searchController = getUISearchController()
         rootViewController.navigationItem.title = title
-        
         return navController
-    }
-    
-    private func getUISearchController() -> UISearchController {
-        let searchController = UISearchController(searchResultsController: nil)
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = .mainPlaceholderSearchBar
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
-        return searchController
     }
 }

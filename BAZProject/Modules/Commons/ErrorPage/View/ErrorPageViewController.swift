@@ -8,7 +8,7 @@
 import UIKit
 
 final class ErrorPageViewController: UIViewController, ErrorPageViewProtocol {
-    
+
     @IBOutlet weak private var imgErrorLogo: UIImageView! {
         didSet {
             if let icon = UIImage(named: .nameIcon404) {
@@ -19,7 +19,7 @@ final class ErrorPageViewController: UIViewController, ErrorPageViewProtocol {
 
     @IBOutlet weak private var retryButton: UIButton! {
         didSet {
-            retryButton.titleLabel?.text = .retryTitleButton
+            retryButton.setTitle(.retryTitleButton, for: .normal)
         }
     }
 
@@ -35,12 +35,12 @@ final class ErrorPageViewController: UIViewController, ErrorPageViewProtocol {
     static let identifier: String = .errorPageXibIdentifier
     var presenter: ErrorPagePresenterProtocol?
     var errorType: ErrorType?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configView()
     }
-    
+
     @IBAction private func retry(_ sender: Any) {
         presenter?.closeThisInstance()
     }
@@ -54,7 +54,7 @@ final class ErrorPageViewController: UIViewController, ErrorPageViewProtocol {
             title = errorType.titleNavBar ?? ""
         }
     }
-    
+
     private func hideBackItem() {
         navigationItem.leftBarButtonItem = nil
         navigationItem.hidesBackButton = true

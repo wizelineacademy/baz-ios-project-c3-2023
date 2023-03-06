@@ -10,21 +10,46 @@ import UIKit
 final class TrendingDataManager {
     weak var interactor: TrendingDataManagerOutputProtocol?
     let providerNetworking: NetworkingProviderProtocol
-    
+
     init(providerNetworking: NetworkingProviderProtocol) {
         self.providerNetworking = providerNetworking
     }
 }
 
 extension TrendingDataManager: TrendingDataManagerInputProtocol {
-
-    typealias ResponseProvider = Result<MovieResponse, Error>
-
     func requestTrendingMedia(_ urlString: String) {
-        providerNetworking.sendRequest(RequestType(strUrl: urlString, method: .GET).getRequest()) { [weak self] (result: ResponseProvider) in
+        typealias ResponseProvider = Result<MovieResponse, Error>
+        let request: URLRequest = RequestType(strUrl: urlString, method: .GET).getRequest()
+        providerNetworking.sendRequest(request) { [weak self] (result: ResponseProvider) in
             switch result {
             case .success(let movie):
-                self?.interactor?.handleGetTrendingMedia(movie.results ?? [])
+                self?.interactor?.handleGetTrendingMedia(movie)
+            case .failure(let error):
+                self?.interactor?.handleErrorService(error)
+            }
+        }
+    }
+
+    func requestSearchMovie(_ urlString: String) {
+        typealias ResponseProvider = Result<MovieResponse, Error>
+        let request: URLRequest = RequestType(strUrl: urlString, method: .GET).getRequest()
+        providerNetworking.sendRequest(request) { [weak self] (result: ResponseProvider) in
+            switch result {
+            case .success(let movie):
+                self?.interactor?.handleGetSearchMovie(movie)
+            case .failure(let error):
+                self?.interactor?.handleErrorService(error)
+            }
+        }
+    }
+
+    func requestNextTrendingMedia(_ urlString: String) {
+        typealias ResponseProvider = Result<MovieResponse, Error>
+        let request: URLRequest = RequestType(strUrl: urlString, method: .GET).getRequest()
+        providerNetworking.sendRequest(request) { [weak self] (result: ResponseProvider) in
+            switch result {
+            case .success(let movie):
+                self?.interactor?.handleGetNextTrendingMedia(movie)
             case .failure(let error):
                 self?.interactor?.handleErrorService(error)
             }

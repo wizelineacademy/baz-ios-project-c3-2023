@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="BAZProject" customModuleProvider="target">
+            <connections>
+                <outlet property="movieTopSlider" destination="0wS-aa-dMa" id="zVG-sw-Hjw"/>
+                <outlet property="moviesShowLabel" destination="Vxv-Kf-WXK" id="PGL-gD-dUK"/>
+                <outlet property="nowPlayingSlider" destination="MXL-gf-HkA" id="Adx-Lj-J8K"/>
+                <outlet property="popularImageSlider" destination="XYw-Z7-2Iv" id="XuI-Sv-CMF"/>
+                <outlet property="titleNowPlayingLabel" destination="EFd-Jb-msT" id="TEA-Ok-X50"/>
+                <outlet property="titlePopularMoviesLabel" destination="SzU-wg-zgB" id="tit-9v-i6A"/>
+                <outlet property="upcomingMoviesSlider" destination="53f-I5-A1m" id="Rxc-ye-IEO"/>
+                <outlet property="upcomingMoviesTitleLabel" destination="ej7-z9-103" id="IOc-O3-UXe"/>
+                <outlet property="view" destination="iN0-l3-epB" id="mDx-vc-Dp8"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3q2-9h-K1g">
+                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TxY-cz-fTF">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="1494"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0wS-aa-dMa" customClass="ImageSlider" customModule="BAZProject" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="56" width="393" height="170"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="170" id="aiy-uS-PpS"/>
+                                    </constraints>
+                                </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title now playing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EFd-Jb-msT">
+                                    <rect key="frame" x="16" y="258" width="361" height="30"/>
+                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="25"/>
+                                    <color key="textColor" name="SecondaryColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MXL-gf-HkA" customClass="ImageSlider" customModule="BAZProject" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="296" width="393" height="350"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="350" id="xUV-wU-Po7"/>
+                                    </constraints>
+                                </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Popular movies" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SzU-wg-zgB">
+                                    <rect key="frame" x="16" y="678" width="357" height="30"/>
+                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="25"/>
+                                    <color key="textColor" name="SecondaryColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XYw-Z7-2Iv" customClass="ImageSlider" customModule="BAZProject" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="716" width="393" height="350"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="350" id="bjL-Xa-Atm"/>
+                                    </constraints>
+                                </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title upcoming Movies" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ej7-z9-103">
+                                    <rect key="frame" x="16" y="1098" width="361" height="30"/>
+                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="25"/>
+                                    <color key="textColor" name="SecondaryColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="53f-I5-A1m" customClass="ImageSlider" customModule="BAZProject" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="1144" width="393" height="350"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="350" id="yCa-tS-7mP"/>
+                                    </constraints>
+                                </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movies show" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vxv-Kf-WXK">
+                                    <rect key="frame" x="16" y="16" width="361" height="24"/>
+                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="20"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="Vxv-Kf-WXK" firstAttribute="leading" secondItem="TxY-cz-fTF" secondAttribute="leading" constant="16" id="2q6-4I-72J"/>
+                                <constraint firstItem="MXL-gf-HkA" firstAttribute="top" secondItem="EFd-Jb-msT" secondAttribute="bottom" constant="8" id="5QR-CS-lLy"/>
+                                <constraint firstAttribute="trailing" secondItem="MXL-gf-HkA" secondAttribute="trailing" id="6EB-zf-L0b"/>
+                                <constraint firstAttribute="trailing" secondItem="0wS-aa-dMa" secondAttribute="trailing" id="9xB-mo-pvq"/>
+                                <constraint firstItem="EFd-Jb-msT" firstAttribute="leading" secondItem="TxY-cz-fTF" secondAttribute="leading" constant="16" id="Eme-AJ-DRm"/>
+                                <constraint firstItem="53f-I5-A1m" firstAttribute="leading" secondItem="TxY-cz-fTF" secondAttribute="leading" id="GCf-l5-Iyv"/>
+                                <constraint firstAttribute="trailing" secondItem="SzU-wg-zgB" secondAttribute="trailing" constant="20" id="KZo-cL-W9c"/>
+                                <constraint firstItem="0wS-aa-dMa" firstAttribute="leading" secondItem="TxY-cz-fTF" secondAttribute="leading" id="Pg1-1T-lYF"/>
+                                <constraint firstAttribute="bottom" secondItem="53f-I5-A1m" secondAttribute="bottom" id="QU0-d9-9kV"/>
+                                <constraint firstItem="SzU-wg-zgB" firstAttribute="leading" secondItem="TxY-cz-fTF" secondAttribute="leading" constant="16" id="QV3-gP-O6L"/>
+                                <constraint firstAttribute="trailing" secondItem="ej7-z9-103" secondAttribute="trailing" constant="16" id="R2A-gf-H9y"/>
+                                <constraint firstAttribute="trailing" secondItem="Vxv-Kf-WXK" secondAttribute="trailing" constant="16" id="TeH-WT-KsM"/>
+                                <constraint firstAttribute="trailing" secondItem="53f-I5-A1m" secondAttribute="trailing" id="WHz-GR-0jD"/>
+                                <constraint firstItem="ej7-z9-103" firstAttribute="top" secondItem="XYw-Z7-2Iv" secondAttribute="bottom" constant="32" id="c17-21-XRf"/>
+                                <constraint firstItem="ej7-z9-103" firstAttribute="leading" secondItem="TxY-cz-fTF" secondAttribute="leading" constant="16" id="c26-2C-dT7"/>
+                                <constraint firstItem="53f-I5-A1m" firstAttribute="top" secondItem="ej7-z9-103" secondAttribute="bottom" constant="16" id="dXt-Tc-CJj"/>
+                                <constraint firstItem="SzU-wg-zgB" firstAttribute="top" secondItem="MXL-gf-HkA" secondAttribute="bottom" constant="32" id="emr-Ds-VN0"/>
+                                <constraint firstItem="0wS-aa-dMa" firstAttribute="top" secondItem="Vxv-Kf-WXK" secondAttribute="bottom" constant="16" id="jkA-ss-LJf"/>
+                                <constraint firstItem="Vxv-Kf-WXK" firstAttribute="top" secondItem="TxY-cz-fTF" secondAttribute="top" constant="16" id="lMu-ht-omG"/>
+                                <constraint firstItem="XYw-Z7-2Iv" firstAttribute="leading" secondItem="TxY-cz-fTF" secondAttribute="leading" id="lXU-Bc-6qf"/>
+                                <constraint firstItem="XYw-Z7-2Iv" firstAttribute="top" secondItem="SzU-wg-zgB" secondAttribute="bottom" constant="8" id="mQ7-fs-OGv"/>
+                                <constraint firstAttribute="trailing" secondItem="XYw-Z7-2Iv" secondAttribute="trailing" id="op5-rX-BbT"/>
+                                <constraint firstItem="EFd-Jb-msT" firstAttribute="top" secondItem="0wS-aa-dMa" secondAttribute="bottom" constant="32" id="seq-76-5RC"/>
+                                <constraint firstItem="MXL-gf-HkA" firstAttribute="leading" secondItem="TxY-cz-fTF" secondAttribute="leading" id="xvG-st-M4J"/>
+                                <constraint firstAttribute="trailing" secondItem="EFd-Jb-msT" secondAttribute="trailing" constant="16" id="ywZ-9Z-Mna"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="TxY-cz-fTF" firstAttribute="centerX" secondItem="3q2-9h-K1g" secondAttribute="centerX" id="2fa-3L-X9q"/>
+                        <constraint firstItem="TxY-cz-fTF" firstAttribute="top" secondItem="3q2-9h-K1g" secondAttribute="top" id="Jso-BF-Uvo"/>
+                        <constraint firstAttribute="bottom" secondItem="TxY-cz-fTF" secondAttribute="bottom" id="ORn-ho-m5o"/>
+                        <constraint firstAttribute="trailing" secondItem="TxY-cz-fTF" secondAttribute="trailing" id="Ydb-yw-ahy"/>
+                        <constraint firstItem="TxY-cz-fTF" firstAttribute="leading" secondItem="3q2-9h-K1g" secondAttribute="leading" id="jB7-cs-BDW"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" name="BackGround"/>
+            <constraints>
+                <constraint firstItem="3q2-9h-K1g" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="15s-3r-t9Z"/>
+                <constraint firstItem="3q2-9h-K1g" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="98w-bX-fq7"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="3q2-9h-K1g" secondAttribute="trailing" id="Lmx-6P-MR1"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="3q2-9h-K1g" secondAttribute="bottom" id="tbv-wB-5dt"/>
+            </constraints>
+            <point key="canvasLocation" x="136.64122137404578" y="19.718309859154932"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="BackGround">
+            <color red="0.37099999189376831" green="0.37099999189376831" blue="0.37099999189376831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="SecondaryColor">
+            <color red="0.41999998688697815" green="0.68199998140335083" blue="0.42399999499320984" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

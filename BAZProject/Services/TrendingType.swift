@@ -8,26 +8,31 @@
 import Foundation
 
 enum MediaType: String, Codable {
-    case all, movie, tv, person
-    
+    case all, movie, television, person
+
+    enum CodingKeys: String, CodingKey {
+        case all, movie, person
+        case television = "tv"
+    }
+
     func getMediaTypeTitle() -> String {
         switch self {
         case .all:
             return "Todos"
         case .movie:
             return "Peliculas"
-        case .tv:
+        case .television:
             return "Televisión"
         case .person:
             return "Personas"
         }
     }
-    
+
     func getRawValue() -> Int {
         switch self {
         case .movie:
             return 0
-        case .tv:
+        case .television:
             return 1
         case .person:
             return 2
@@ -39,13 +44,22 @@ enum MediaType: String, Codable {
 
 enum TimeWindowType: String {
     case day, week
-    
+
     func getRawValue() -> Int {
         switch self {
         case .day:
             return 0
         case .week:
             return 1
+        }
+    }
+
+    func getWindowType(row: Int) -> TimeWindowType {
+        switch row {
+        case 0:
+            return .day
+        default:
+            return .week
         }
     }
 }

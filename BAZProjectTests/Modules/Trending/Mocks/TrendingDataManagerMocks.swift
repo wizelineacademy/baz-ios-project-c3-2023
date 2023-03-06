@@ -18,7 +18,6 @@ final class TrendingDataManagerMocks {
 }
 
 extension TrendingDataManagerMocks: TrendingDataManagerInputProtocol {
-    
     func requestTrendingMedia(_ urlString: String) {
         calls.append(.requestTrendingMedia)
     }
@@ -26,8 +25,7 @@ extension TrendingDataManagerMocks: TrendingDataManagerInputProtocol {
     func handleGetTrendingMedia(_ result: [MovieResult]) {
         calls.append(.handleGetTrendingMedia)
     }
-    
+
     func handleErrorService(_ error: Error) {
     }
-      
 }
