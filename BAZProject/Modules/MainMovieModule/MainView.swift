@@ -8,7 +8,7 @@
 import UIKit
 
 final class MainView: UIViewController, MainViewProtocol {
-    var presenter: MainPresenterProtocol?
+    weak var presenter: MainPresenterProtocol?
     var movies: Movies?
     
     @IBOutlet weak var tableView: UITableView!

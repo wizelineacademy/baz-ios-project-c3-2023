@@ -8,9 +8,10 @@
 import UIKit
 
 final class MovieDetailPresenter: NSObject {
-    var view: MovieDetailViewProtocol?
+    weak var view: MovieDetailViewProtocol?
     var interactor: MovieDetailInterceptorInputProtocol?
     var isFavorite: Bool = false
+    let imageProvider = ImageProvider.shared
     
     private func registerResumeTableViewCells(tableView: UITableView) {
         let textFieldCell = UINib(nibName: "ResumeTableViewCell",
@@ -20,7 +21,7 @@ final class MovieDetailPresenter: NSObject {
     }
     
     private func registerCastTableViewCells(tableView: UITableView) {
-        let textFieldCell = UINib(nibName: "GenericTableViewCell",
+        let textFieldCell = UINib(nibName: "CastTableViewCell",
                                   bundle: nil)
         tableView.register(textFieldCell,
                            forCellReuseIdentifier: CastTableViewCell.reusableCell)
@@ -40,8 +41,12 @@ final class MovieDetailPresenter: NSObject {
 }
 
 extension MovieDetailPresenter: MovieDetailPresenterProtocol {
-    func saveMovie() {
-        interactor?.saveMovie()
+    func deleteToFavoriteMovie() {
+        interactor?.deleteToFavoriteMovie()
+    }
+    
+    func saveFavoriteMovie() {
+        interactor?.saveFavoriteMovie()
     }
     
     func goToMovieDetail(data: Movie) {
@@ -66,13 +71,13 @@ extension MovieDetailPresenter: MovieDetailPresenterProtocol {
     }
     
     private func pushObserver() {
-        NotificationCenter.default.post(name: .countMovieWatch, object: nil)
+        NotificationCenter.default.post(name: .countMovieWatch, object: ["idMovie": interactor?.data?.id])
     }
     
     private func getPosterImage(poster: UIImageView) {
         UIView.fillSkeletons(onView: poster)
         if let data = interactor?.data, let image = data.backdropPath{
-            MovieAPI.getImage(from: image , handler: { image in
+            imageProvider.fetchImage(from: image , completion: { image in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
                     UIView.removeSkeletons(onView: poster)
                     poster.image = image

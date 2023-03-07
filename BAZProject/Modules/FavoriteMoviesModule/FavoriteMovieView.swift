@@ -7,14 +7,33 @@
 
 import UIKit
 
-class FavoriteMovieView: UIViewController {
+final class FavoriteMovieView: UIViewController {
     var presenter: FavoriteMoviePresenterProtocol?
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Tus Favoritos"
+        presenter?.viewDidLoad(tableView: tableView)
+        setupUI()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter?.getFavoriteMovies()
+    }
+    
+    func setupUI() {
+        tableView.delegate = presenter?.getTableViewDelegate()
+        tableView.dataSource = presenter?.getTableViewDataSource()
     }
 }
 
 extension FavoriteMovieView: FavoriteMovieViewProtocol {
     
+    
+    func reloadData(){
+        tableView.reloadData()
+    }
 }

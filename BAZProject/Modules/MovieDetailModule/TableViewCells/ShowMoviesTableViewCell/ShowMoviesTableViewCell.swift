@@ -11,6 +11,7 @@ final class ShowMoviesTableViewCell: UITableViewCell {
     static let reusableCell = String(describing: ShowMoviesTableViewCell.self)
     var data: Movies?
     weak var delegate: MovieDetailPresenter?
+    let imageProvider = ImageProvider.shared
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -42,11 +43,9 @@ extension ShowMoviesTableViewCell: UICollectionViewDataSource {
             UIView.fillSkeletons(onView: cell)
             
             if let image = data.results[indexPath.row].posterPath {
-                MovieAPI.getImage(from: image, handler: { image in
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                imageProvider.fetchImage(from: image, completion: { image in
                         UIView.removeSkeletons(onView: cell)
                         cell.imageMovie.image = image
-                    }
                 })
             }
             return cell

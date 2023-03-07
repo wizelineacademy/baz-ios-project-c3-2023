@@ -10,6 +10,7 @@ import UIKit
 final class CastTableViewCell: UITableViewCell, UICollectionViewDelegateFlowLayout {
     static let reusableCell = String(describing: CastTableViewCell.self)
     var data: Credit?
+    let imageProvider = ImageProvider.shared
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -41,11 +42,9 @@ extension CastTableViewCell: UICollectionViewDataSource, UICollectionViewDelegat
             UIView.fillSkeletons(onView: cell)
             
             if let image = data.cast[indexPath.row].profilePath {
-                MovieAPI.getImage(from: image, handler: { image in
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                imageProvider.fetchImage(from: image, completion: { image in
                         UIView.removeSkeletons(onView: cell)
                         cell.imageMovie.image = image
-                    }
                 })
             }
             return cell

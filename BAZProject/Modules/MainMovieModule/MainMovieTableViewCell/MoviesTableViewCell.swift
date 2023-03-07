@@ -15,6 +15,7 @@ final class MoviesTableViewCell: UITableViewCell {
     
     weak var delegate: MoviesTableViewCellDelagete?
     var data: Movies?
+    let imageProvider = ImageProvider.shared
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -40,7 +41,7 @@ final class MoviesTableViewCell: UITableViewCell {
     }
     
     private func setImage(cell: GenericCollectionViewCell, image: String) {
-        MovieAPI.getImage(from: image) { image in
+        imageProvider.fetchImage(from: image) { image in
             UIView.removeSkeletons(onView: cell)
             cell.imageMovie.image = image
         }
@@ -61,7 +62,7 @@ extension MoviesTableViewCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let data = data {
-            return data.results.count
+            return Int(data.results.count / 3)
         }
         return 0
     }

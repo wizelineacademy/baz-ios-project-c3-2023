@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WatchedMovieRouter: RouterProtocols {
+final class WatchedMovieRouter: RouterProtocols {
     typealias Router = WatchedMovieRouter
     
     static func createModule() -> UIViewController {

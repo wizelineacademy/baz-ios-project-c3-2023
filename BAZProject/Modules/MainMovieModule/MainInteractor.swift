@@ -11,6 +11,7 @@ final class MainInteractor: MainInteractorInputProtocol {
     var presenter: MainInteractorOutputProtocol?
     var movieApiData: DataHelper = DataHelper()
     var countMovieWatched: Int = 0
+    let saveData: SaveMovies = SaveMovies()
     
     func getMoviesData(from api: URLApi, dispatchGroup: DispatchGroup?, completionHandler: @escaping () -> Void) {
         dispatchGroup?.enter()
@@ -19,6 +20,16 @@ final class MainInteractor: MainInteractorInputProtocol {
                 self?.movieApiData.getArrayDataMovie?[api] = movies
                 completionHandler()
             }
+        }
+    }
+    
+    func saveMovieWatched(idMovie: Int) {
+        do {
+            if !saveData.isSave(title: .watchedMovies, idMovie: idMovie) {
+                try saveData.save(idMovie, title: .watchedMovies)
+            }
+        } catch {
+            debugPrint("Error")
         }
     }
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchMovieRouter: RouterProtocols {
+final class SearchMovieRouter: RouterProtocols {
     typealias Router = SearchMovieRouter
     
     static func createModule() -> UIViewController {

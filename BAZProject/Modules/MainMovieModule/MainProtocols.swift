@@ -34,6 +34,7 @@ protocol MainInteractorInputProtocol: AnyObject {
     var countMovieWatched: Int { get set }
     
     func getMoviesData(from api: URLApi, dispatchGroup: DispatchGroup?, completionHandler: @escaping () -> Void)
+    func saveMovieWatched(idMovie: Int)
 }
 
 extension MainInteractorInputProtocol {

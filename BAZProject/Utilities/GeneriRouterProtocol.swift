@@ -25,13 +25,13 @@ protocol RouterCreateModuleWithDataProtocol: AnyObject {
 }
 
 protocol RouterPresentViewWithDataProtocol: AnyObject {
-    associatedtype Router where Router: RouterCreateModuleWithDataProtocol
+    associatedtype RouterWithData where RouterWithData: RouterCreateModuleWithDataProtocol
     func presentView<T>(from view: UIViewController, data: T)
 }
 
 extension RouterPresentViewWithDataProtocol {
     func presentView<T>(from view: UIViewController, data: T) {
-        let newView = Router.createModule(data: data)
+        let newView = RouterWithData.createModule(data: data)
         view.navigationController?.pushViewController(newView, animated: true)
     }
 }

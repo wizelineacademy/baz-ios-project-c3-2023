@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchMovieInteractor: SearchMovieInterceptorInputProtocol {
+final class SearchMovieInteractor: SearchMovieInterceptorInputProtocol {
     weak var presenter: SearchMovieInterceptorOutputProtocol?
     var movieApiData: DataHelper = DataHelper()
     

@@ -11,8 +11,6 @@ protocol MoviesTableViewCellDelagete: AnyObject {
     func didTapped(movie: Movie)
 }
 
-
-
 class GenericCollectionViewCell: UICollectionViewCell {
     static let reusableIdentifier = String(describing: GenericCollectionViewCell.self)
     
