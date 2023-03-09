@@ -9,6 +9,8 @@ import Foundation
 
 struct MovieAPI {
     
+    private init() {}
+    
     /**
      Regresa la URL base de The MovieDB API
      
@@ -33,5 +35,15 @@ struct MovieAPI {
         items.append(contentsOf: defaultItems)
         urlComponents.queryItems = items
         return urlComponents.url
+    }
+    /**
+     Regresa la URL base de las imagenes provistas por The MovieDB API
+     */
+    static var imageBaseURL: URL? {
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = "image.tmdb.org"
+        components.path = "/t/p"
+        return components.url
     }
 }

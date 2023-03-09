@@ -43,9 +43,12 @@ final class MLRouter {
 extension MLRouter: MLRouterProtocol {
     /**
      Show the next view controller with the detail of de received movie using the view's navigation controller
+     - Parameters:
+        - movie: a Movie object
      */
     func goNextViewController(with movie: Movie) {
-        let viewController = MDRouter.getEntry(with: movie)
+        let provider = MovieDetailProvider(movie: movie)
+        let viewController = MDRouter.getEntry(with: provider)
         self.view?.navigationController?.pushViewController(viewController, animated: true)
     }
 }

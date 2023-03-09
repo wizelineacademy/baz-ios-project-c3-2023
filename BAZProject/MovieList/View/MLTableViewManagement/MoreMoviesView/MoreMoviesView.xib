@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="ieh-qN-pX5" customClass="MoreMoviesView" customModule="BAZProject" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="345" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qn7-8Y-eXb">
+                    <rect key="frame" x="32" y="8" width="281" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="rye-OY-6ed"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Mas películas"/>
+                    <connections>
+                        <action selector="didSelectMoreMovies:" destination="ieh-qN-pX5" eventType="touchUpInside" id="eQR-Uh-aJi"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Qn7-8Y-eXb" firstAttribute="top" secondItem="ieh-qN-pX5" secondAttribute="top" constant="8" id="PyF-r0-r1m"/>
+                <constraint firstAttribute="trailing" secondItem="Qn7-8Y-eXb" secondAttribute="trailing" constant="32" id="T2o-Go-kq3"/>
+                <constraint firstItem="Qn7-8Y-eXb" firstAttribute="leading" secondItem="ieh-qN-pX5" secondAttribute="leading" constant="32" id="gpD-M3-EKk"/>
+                <constraint firstAttribute="bottom" secondItem="Qn7-8Y-eXb" secondAttribute="bottom" constant="8" id="vYJ-b4-X15"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="283.20610687022901" y="-522.88732394366195"/>
+        </view>
+    </objects>
+</document>

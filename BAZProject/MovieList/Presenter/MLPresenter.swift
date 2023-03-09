@@ -20,9 +20,19 @@ final class MLPresenter: MLPresenterProtocol {
 }
 
 extension MLPresenter: MLViewOutputProtocol {
-    /** Call an interactor method to fetch the needed data */
+    /** Call an interactor method to fetch the title for the view */
     func didLoadView() {
-        self.interactor.fetchMovies()
+        self.interactor.fetchViewTitle()
+    }
+    
+    /**
+     Call the interactor method to look for updates in the received data and makes the next page, the current page
+     - Parameters:
+        - data: a MovieList object
+     */
+    func lookForUpdates(in data: MoviesList) {
+        let moviesData = data.setNextPage(with: data.currentPage)
+        self.interactor.updateMovies(of: moviesData)
     }
     
     /**
@@ -32,6 +42,15 @@ extension MLPresenter: MLViewOutputProtocol {
      */
     func didSelect(_ movie: Movie) {
         self.router.goNextViewController(with: movie)
+    }
+    
+    /**
+     Fetch for the movies next page, calling the corresponding interactor method
+     - Parameters:
+        - data: a MovieList Object
+     */
+    func fetchMoreMovies(with data: MoviesList) {
+        self.interactor.updateMovies(of: data)
     }
 }
 
@@ -46,12 +65,12 @@ extension MLPresenter: MLInteractorOutputProtocol {
     }
     
     /**
-     Call a view method to configure the list of received movies
+     Call a view method to configure the received movies data
      - Parameters:
-        - movies:a Movie array
+        - data:a MovieList object
      */
-    func didFind(movies: [Movie]) {
-        self.view?.setMovies(movies)
+    func didFindMovies(_ data: MoviesList) {
+        self.view?.setMovies(with: data)
     }
     
     /**

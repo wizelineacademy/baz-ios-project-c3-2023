@@ -6,7 +6,7 @@
 
 import Foundation
 
-struct Movie: Decodable {
+struct Movie: Codable, GenericTableViewRow, GenericCollectionViewRow {
     let id: Int
     let title: String
     let isAdult: Bool
@@ -19,13 +19,25 @@ struct Movie: Decodable {
     let video: Bool
     let voteAverage: Double
     let voteCount: Int
+    var movieSeenCount: Int?
     
-    private let posterPath: String
+    var tableCellClass: any GenericTableViewCell.Type = MovieDetailTableViewCell.self
+    var collectionCellClass: any GenericCollectionViewCell.Type = MovieCollectionViewCell.self
+    
+    private let posterPath: String?
     private let backgroundImagePath: String?
     private let publishedDate: String
     
     var releaseDate: String? {
         publishedDate.convertDate(format: "yyyy-MM-dd", to: "dd MMMM yyyy")
+    }
+    
+    var timesSeen: String? {
+        if let movieSeenCount = movieSeenCount {
+            let subfix = movieSeenCount == 1 ? "vez" : "veces"
+            return "Vista \(movieSeenCount) \(subfix)"
+        }
+        return nil
     }
     
     /**
@@ -35,7 +47,8 @@ struct Movie: Decodable {
      - Returns: regresa la URL construida a partir de la URL base
      */
     func getPosterURL(size: ImageSize = .small) -> URL? {
-        self.baseURL?.appendingPathComponent("/w\(size.rawValue)\(self.posterPath)")
+        guard let posterPath = posterPath else { return nil }
+        return MovieAPI.imageBaseURL?.appendingPathComponent("/w\(size.rawValue)\(posterPath)")
     }
     
     /**
@@ -48,15 +61,7 @@ struct Movie: Decodable {
         guard let backgroundPath = self.backgroundImagePath else {
             return nil
         }
-        return self.baseURL?.appendingPathComponent("/w\(size.rawValue)\(backgroundPath)")
-    }
-    
-    private var baseURL: URL? {
-        var components = URLComponents()
-        components.scheme = "https"
-        components.host = "image.tmdb.org"
-        components.path = "/t/p"
-        return components.url
+        return MovieAPI.imageBaseURL?.appendingPathComponent("/w\(size.rawValue)\(backgroundPath)")
     }
     
     enum CodingKeys: String, CodingKey {
@@ -75,5 +80,29 @@ struct Movie: Decodable {
         case video = "video"
         case voteAverage = "vote_average"
         case voteCount = "vote_count"
+        case movieSeenCount
+    }
+}
+
+extension Movie: Equatable, Hashable {
+    /**
+     Makes this object hashable by id
+     - Parameters:
+        - hasher: a Hasher object
+     - Returns: the mixed hasher
+     */
+    func hash(into hasher: inout Hasher) {
+        return hasher.combine(id)
+    }
+    
+    /**
+     Makes this object equatable by the id
+     - Parameters:
+        - lhs: a left Movie object to compare
+        - rhs: a right Movie object to compare
+     - Returns: a boolean that indicates if both given objects are equals
+     */
+    static func == (lhs: Movie, rhs: Movie) -> Bool {
+        lhs.id == rhs.id
     }
 }

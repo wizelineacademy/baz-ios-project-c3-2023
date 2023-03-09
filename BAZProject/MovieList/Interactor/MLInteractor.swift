@@ -17,13 +17,23 @@ final class MLInteractor {
 }
 
 extension MLInteractor: MLInteractorInputProtocol {
-    /** Calls interactor output methods to configure the view title with the received string and get the movies from the provider methods */
-    func fetchMovies() {
+    /**
+     Call the output method to send the title for the view
+     */
+    func fetchViewTitle() {
         self.output?.set(title: provider.viewTitle)
-        self.provider.getMovies { [weak self] result in
+    }
+    
+    /**
+     Calls interactor output methods after get the movies from the provider methods.
+     - Parameters:
+        - data: a Movies List object
+     */
+    func updateMovies(of data: MoviesList) {
+        self.provider.update(moviesData: data) { [weak self] result in
             switch result {
-            case .success(let movies):
-                self?.output?.didFind(movies: movies)
+            case .success(let data):
+                self?.output?.didFindMovies(data)
             case .failure(let error):
                 self?.output?.didFind(error: error)
             }

@@ -8,25 +8,22 @@
 import UIKit
 
 final class MovieListDataSource: NSObject {
-    var movies: [Movie]
+    var data: MoviesList
     
-    init(movies: [Movie] = []) {
-        self.movies = movies
+    init(data: MoviesList = MoviesList()) {
+        self.data = data
     }
 }
 
 extension MovieListDataSource: MLTableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.movies.count
-    }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        UITableView.automaticDimension
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        self.data.movies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.identifier, for: indexPath)
-        let movie = movies[indexPath.row]
+        let movie = self.data.movies[indexPath.row]
         if let movieCell = cell as? MovieTableViewCell {
             movieCell.setupCell(with: movie)
         }

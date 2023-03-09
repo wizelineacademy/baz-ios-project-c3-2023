@@ -12,8 +12,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        NotificationCenter.default.addObserver(self, selector: #selector(saveSeenMovie), name: .seenMovie, object: nil)
+        
         return true
+    }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        NotificationCenter.default.removeObserver(self, name: .seenMovie, object: nil)
+    }
+    
+    /**
+     Manage the received notification
+     - Parameters:
+        - notification: a Notification object
+     */
+    @objc private func saveSeenMovie(_ notification: Notification) {
+        StoredMovies.saveMovie(with: notification)
     }
 
     // MARK: UISceneSession Lifecycle
