@@ -7,10 +7,17 @@
 
 import Foundation
 
-struct PagedMovies: Decodable {
+struct PagedMovies: Decodable, GenericTableViewRow {
+    
     let movies: [Movie]
     let totalPages: Int
     let page: Int
+    var detail: Detail?
+    var tableCellClass: any GenericTableViewCell.Type = SliderTableViewCell.self
+    
+    var id: Int {
+        detail?.order ?? 0
+    }
     
     enum CodingKeys: String, CodingKey {
         case movies = "results"
