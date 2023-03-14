@@ -11,9 +11,8 @@ class ratedTableViewCell: UITableViewCell {
     
     @IBOutlet weak var ratedCollectionView: UICollectionView!
     
-    let movieApi = MovieAPI()
-    var movies: [Movie] = []
-    var ratedMovies: [Movie] = []
+    private var ratedMovies: [Movie] = []
+    private let apiManager = MovieAPIManager()
     var imagesMovies: [UIImage] = []
     weak var view: UIViewController?
     
@@ -22,12 +21,9 @@ class ratedTableViewCell: UITableViewCell {
         configCollectionView()
         setUpCell()
         
-        movieApi.getRatedMovies { [weak self] ratedMovies in
-            self?.ratedMovies = ratedMovies
-            DispatchQueue.main.async {
-                self?.ratedCollectionView.reloadData()
-            }
-        }    }
+        apiManager.delegate = self
+        apiManager.getRatedMovies()
+    }
     
     func configCollectionView(){
         ratedCollectionView.dataSource = self
@@ -52,14 +48,14 @@ extension ratedTableViewCell: UICollectionViewDataSource{
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as? MovieCollectionViewCell
         else { return UICollectionViewCell() }
         
-        movieApi.getImageMovie(urlString: "https://image.tmdb.org/t/p/w500\(ratedMovies[indexPath.row].poster_path)") { imageMovie in
-            cell.setupCollectionCell(image: imageMovie ?? UIImage(), title: self.ratedMovies[indexPath.row].title)
+        apiManager.getImageMovie(profilePath: ratedMovies[indexPath.row].poster_path) { imageMovie in
+            cell.setupCollectionCell(image: imageMovie ?? UIImage(), title:  self.ratedMovies[indexPath.row].title)
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("cantidad de peliculas\(movies.count)")
+        print("cantidad de peliculas\(ratedMovies.count)")
         return ratedMovies.count
     }
     
@@ -75,8 +71,16 @@ extension ratedTableViewCell: UICollectionViewDelegate {
         destination.movie = ratedMovies[indexPath.row]
         view?.navigationController?.pushViewController(destination, animated: true)
     }
+}
+
+//MARK: - MovieAPIManagerDelegate
+extension ratedTableViewCell: MovieAPIManagerDelegate {
+    func didReceiveMovies<T: Codable>(_ movies: T) {
+        self.ratedMovies = movies as! [Movie]
+        DispatchQueue.main.async {
+            self.ratedCollectionView.reloadData()
+        }
+    }
     
     
 }
-
-

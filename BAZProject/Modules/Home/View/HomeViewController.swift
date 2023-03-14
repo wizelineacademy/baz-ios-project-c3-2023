@@ -9,49 +9,32 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    @IBOutlet weak var watchedmovies: UILabel!
+    @IBOutlet weak var watchedMoviesLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
-    let movieApi = MovieAPI()
-    var movies: [Movie] = []
+    let movieApiManager = MovieAPIManager()
     var ratedMovies: [Movie] = []
     var imagesMovies: [UIImage] = []
-   
+    
+    var watchedMoviesCounter = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNotification()
-        configTableView()
-        getApiInfo()
-    }
-    
-    func getApiInfo(){
-        movieApi.getMovies { movies in
-            self.movies = movies
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-        movieApi.getRatedMovies { ratedMovies in
-            self.ratedMovies = ratedMovies
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-    }
-    
-    func configureNotification(){
-        NotificationCenter.default.addObserver(self, selector: #selector(actualizarContador), name: Notification.Name("DetallePeliculaMostrado"), object: nil)
-    }
-    
-    @objc func actualizarContador() {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.peliculasVistas += 1
-        let peliculasVistas = appDelegate.peliculasVistas
-        watchedmovies.text = "\(peliculasVistas)"
-        print("Películas vistas:\(peliculasVistas)")
+        setUpTableView()
     }
 
-    func configTableView(){
+    func configureNotification(){
+        NotificationCenter.default.addObserver(self, selector: #selector(updateCounter), name: Notification.Name("MovieDetailShown"), object: nil)
+    }
+    
+    @objc func updateCounter() {
+        watchedMoviesCounter += 1
+        let watchedMovies = watchedMoviesCounter
+        watchedMoviesLabel.text = "\(watchedMovies)"
+    }
+
+    func setUpTableView(){
         tableView.dataSource = self
         tableView.register(UINib(nibName: "ratedTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "ratedCell")
         tableView.register(UINib(nibName: "TrendingTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "trendingCell")
@@ -61,9 +44,7 @@ class HomeViewController: UIViewController {
     }
 }
 // MARK: - TableView's DataSource
-
 extension HomeViewController: UITableViewDataSource {
-    
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        return 5
     }
@@ -91,15 +72,9 @@ extension HomeViewController: UITableViewDataSource {
              guard let cell = tableView.dequeueReusableCell(withIdentifier: "upcomingCell") as? UpcomingTableViewCell else { return UITableViewCell() }
              cell.view = self
              return cell
-             
-             
          default:
              return UITableViewCell()
              
          }
     }
 }
-
-
-
-

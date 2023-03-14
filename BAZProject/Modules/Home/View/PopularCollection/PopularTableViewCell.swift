@@ -10,25 +10,22 @@ import UIKit
 class PopularTableViewCell: UITableViewCell {
     
     @IBOutlet weak var popularCollectionView: UICollectionView!
-    
-    let movieApi = MovieAPI()
-    var popularMovies: [Movie] = []
+    private var popularMovies: [Movie] = []
+    private let apiManager = MovieAPIManager()
     var imagesMovies: [UIImage] = []
     weak var view: UIViewController?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        configCollectionView()
+        setUpCollectionView()
         setUpCell()
         
-        movieApi.getPopularMovies { [weak self] popularMovies in
-            self?.popularMovies = popularMovies
-            DispatchQueue.main.async {
-                self?.popularCollectionView.reloadData()
-            }
-        }    }
+        apiManager.delegate = self
+        apiManager.getPopularMovies()
+        
+    }
     
-    func configCollectionView(){
+    func setUpCollectionView(){
         popularCollectionView.dataSource = self
         popularCollectionView.delegate = self
         popularCollectionView.register(UINib(nibName: "MovieCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "movieCell")
@@ -42,29 +39,23 @@ class PopularTableViewCell: UITableViewCell {
     }
 }
 
-//MARK: CollectionView's DataSource
-
+//MARK: - CollectionView's DataSource
 extension PopularTableViewCell: UICollectionViewDataSource{
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as? MovieCollectionViewCell
         else { return UICollectionViewCell() }
-        
-        movieApi.getImageMovie(urlString: "https://image.tmdb.org/t/p/w500\(popularMovies[indexPath.row].poster_path)") { imageMovie in
-            cell.setupCollectionCell(image: imageMovie ?? UIImage(), title: self.popularMovies[indexPath.row].title)
+        apiManager.getImageMovie(profilePath: popularMovies[indexPath.row].poster_path) { imageMovie in
+            cell.setupCollectionCell(image: imageMovie ?? UIImage(), title:  self.popularMovies[indexPath.row].title)
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("cantidad de peliculas\(popularMovies.count)")
         return popularMovies.count
     }
-    
 }
 
-//MARK: CollectionView's Delegate
+//MARK: - CollectionView's Delegate
 extension PopularTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -74,8 +65,14 @@ extension PopularTableViewCell: UICollectionViewDelegate {
         destination.movie = popularMovies[indexPath.row]
         view?.navigationController?.pushViewController(destination, animated: true)
     }
-    
-    
 }
 
-
+//MARK: - MovieAPIManagerDelegate
+extension PopularTableViewCell: MovieAPIManagerDelegate {
+    func didReceiveMovies<T: Codable>(_ movies: T) {
+        self.popularMovies = movies as! [Movie]
+        DispatchQueue.main.async {
+            self.popularCollectionView.reloadData()
+        }
+    }
+}

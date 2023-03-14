@@ -8,8 +8,7 @@
 import UIKit
 class DetailsViewController: UIViewController {
     
-    let movieApi = MovieAPI()
-    var movies: [Movie] = []
+    private let apiManager = MovieAPIManager()
     
     @IBOutlet weak var imageMovie: UIImageView!
     @IBOutlet weak var detailTableView: UITableView!
@@ -18,17 +17,17 @@ class DetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configTableView()
-        imageMovieConfig()
+        setUpTableView()
+        setUpImageMovie()
         detailTableView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        NotificationCenter.default.post(name: Notification.Name("DetallePeliculaMostrado"), object: nil)
+        NotificationCenter.default.post(name: Notification.Name("MovieDetailShown"), object: nil)
     }
     
-    func imageMovieConfig(){
-        movieApi.getImageMovie(urlString: "https://image.tmdb.org/t/p/w500\(movie?.poster_path ?? "")") { imageMovie in
+    func setUpImageMovie(){
+        apiManager.getImageMovie(profilePath: movie?.poster_path) { imageMovie in
             self.setupImage(image: imageMovie ?? UIImage(), title: self.movie?.title ?? "")
         }
     }
@@ -39,7 +38,7 @@ class DetailsViewController: UIViewController {
         }
     }
     
-    func configTableView(){
+    func setUpTableView(){
         detailTableView.dataSource = self
         detailTableView.register(UINib(nibName: "CastTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "castTableCell")
         detailTableView.register(UINib(nibName: "ReviewTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "reviewTableCell")
@@ -93,5 +92,3 @@ extension DetailsViewController: UITableViewDataSource{
         }
     }
 }
-
-

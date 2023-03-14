@@ -9,8 +9,9 @@ import Foundation
 import UIKit
 
 class SearchViewController: UITableViewController {
+    var movies: [Movie] = []
+    private let apiManager = MovieAPIManager()
     
-    // The search bar used to enter search terms.
     @IBOutlet weak var searchBarMovies: UISearchBar!{
         didSet{
             searchBarMovies.returnKeyType = .done
@@ -24,8 +25,6 @@ class SearchViewController: UITableViewController {
                 searchBarMovies.searchTextField.layer.cornerRadius = 12
                 searchBarMovies.searchTextField.layer.borderColor = UIColor.lightGray.cgColor
                 searchBarMovies.searchTextField.backgroundColor = .white
-            } else {
-                // Fallback on earlier versions
             }
             searchBarMovies.placeholder = "¿Qué pelicula estás buscando?"
             searchBarMovies.searchBarStyle = .default
@@ -34,21 +33,16 @@ class SearchViewController: UITableViewController {
         }
     }
     
-    var movies: [Movie] = []
-    let movieApi = MovieAPI()
-
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        // Configure table view
-        configTableview()
+        setUpTableview()
         
-       tableView.reloadData()
+        tableView.reloadData()
         searchBarMovies.delegate = self
-       
-        func configTableview(){
-            tableView.register(UINib(nibName: "HomeTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "Home")
-        }
+    }
+    
+    func setUpTableview(){
+        tableView.register(UINib(nibName: "HomeTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "Home")
     }
 }
 
@@ -60,7 +54,7 @@ extension SearchViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Home") as? HomeTableViewCell else { return UITableViewCell() }
-        movieApi.getImageMovie(urlString: "https://image.tmdb.org/t/p/w500\(movies[indexPath.row].poster_path)") { imageMovie in
+        apiManager.getImageMovie(profilePath: movies[indexPath.row].poster_path) { imageMovie in
             cell.setupCell(image: imageMovie ?? UIImage(), title: self.movies[indexPath.row].title)
         }
         return cell
@@ -78,22 +72,18 @@ extension SearchViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            return 120.0
+        return 120.0
     }
 }
 // MARK: - Search Bar's Delegate
-
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText == "" {
-//            movies = movieApi.getMovies()
-            movieApi.getMovies { movies in
-                self.movies = movies
-            }
+            apiManager.getTrendingMovies()
             self.tableView.reloadData()
         } else {
             searchBar.showsCancelButton = true
-            movieApi.searchMovies(query: searchText) { [weak self] (movies, error) in
+            apiManager.searchMovies(query: searchText) { [weak self] (movies, error) in
                 guard let self = self else { return }
                 if let error = error {
                     print("Error searching movies: \(error.localizedDescription)")

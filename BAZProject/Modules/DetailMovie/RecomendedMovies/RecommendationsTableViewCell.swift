@@ -8,32 +8,25 @@
 import UIKit
 
 class RecommendationsTableViewCell: UITableViewCell {
-
-    
     @IBOutlet weak var recomCollectionView: UICollectionView!
     
-    let movieApi = MovieAPI()
     var recommendationsMovie: [Movie] = []
+    private let apiManager = MovieAPIManager()
     var imagesMovies: [UIImage] = []
     var idMovie: Int = 0
     weak var view: UIViewController?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        configCollectionView()
+        setUpCollectionView()
         setUpCell()
-        }
-    func loadView() {
-        movieApi.getRecommendationsMovies(idMovie: idMovie) { [weak self] recommendationsMovie in
-            self?.recommendationsMovie = recommendationsMovie
-            DispatchQueue.main.async {
-                self?.recomCollectionView.reloadData()
-            }
-        }
-    
+    }
+    func loadView(){
+        apiManager.delegate = self
+        apiManager.getRecommendationsMovies(idMovie: idMovie)
     }
     
-    func configCollectionView(){
+    func setUpCollectionView(){
         recomCollectionView.dataSource = self
         recomCollectionView.delegate = self
         recomCollectionView.register(UINib(nibName: "MovieCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "movieCell")
@@ -47,17 +40,15 @@ class RecommendationsTableViewCell: UITableViewCell {
     }
 }
 
-//MARK: CollectionView's DataSource
+//MARK: - CollectionView's DataSource
 
 extension RecommendationsTableViewCell: UICollectionViewDataSource{
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as? MovieCollectionViewCell
         else { return UICollectionViewCell() }
-        
-        movieApi.getImageMovie(urlString: "https://image.tmdb.org/t/p/w500\(recommendationsMovie[indexPath.row].poster_path)") { imageMovie in
-            cell.setupCollectionCell(image: imageMovie ?? UIImage(), title: self.recommendationsMovie[indexPath.row].title)
+        apiManager.getImageMovie(profilePath: recommendationsMovie[indexPath.row].poster_path) { imageMovie in
+            cell.setupCollectionCell(image: imageMovie ?? UIImage(), title: self.recommendationsMovie[indexPath.row].title )
         }
         return cell
     }
@@ -68,7 +59,7 @@ extension RecommendationsTableViewCell: UICollectionViewDataSource{
     
 }
 
-//MARK: CollectionView's Delegate
+//MARK: - CollectionView's Delegate
 extension RecommendationsTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -78,6 +69,15 @@ extension RecommendationsTableViewCell: UICollectionViewDelegate {
         destination.movie = recommendationsMovie[indexPath.row]
         view?.navigationController?.pushViewController(destination, animated: true)
     }
-    
+}
+
+//MARK: - MovieAPIManagerDelegate
+extension RecommendationsTableViewCell: MovieAPIManagerDelegate {
+    func didReceiveMovies<T: Codable>(_ movies: T) {
+        self.recommendationsMovie = movies as! [Movie]
+        DispatchQueue.main.async {
+            self.recomCollectionView.reloadData()
+        }
+    }
     
 }
