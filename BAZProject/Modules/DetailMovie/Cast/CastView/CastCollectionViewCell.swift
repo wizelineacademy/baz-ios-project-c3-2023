@@ -13,16 +13,6 @@ class CastCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var actorName: UILabel!
     @IBOutlet weak var characterName: UILabel!
     
-    let movieApi = MovieAPI()
-    var cast: [Cast] = []
-    var imageActor: [UIImage] = []
-    weak var view: UIViewController?
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
     func setupCell(image: UIImage, name: String, character: String){
         DispatchQueue.main.async {
             self.actorImage.image = image

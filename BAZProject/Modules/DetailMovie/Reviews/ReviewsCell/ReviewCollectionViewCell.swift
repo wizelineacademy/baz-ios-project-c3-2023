@@ -13,19 +13,11 @@ class ReviewCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var reviewLabel: UILabel!
     @IBOutlet weak var reviewText: UITextView!
     @IBOutlet weak var createdLabel: UILabel!
-    
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        // Initialization code
-    }
-    
+
     func setUpReviews(authorLabel: String, reviewLabel: String, createdLabel:String){
         self.authorLabel.text = authorLabel
         self.reviewText.text = reviewLabel
         self.createdLabel.text = createdLabel
-        
     }
 }
     

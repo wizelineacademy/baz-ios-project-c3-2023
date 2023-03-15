@@ -1,5 +1,5 @@
 //
-//  ratedTableViewCell.swift
+//  TrendingTableViewCell.swift
 //  MovieBucket
 //
 //  Created by Brenda Paola Lara Moreno on 01/03/23.
@@ -8,28 +8,24 @@
 import UIKit
 
 class TrendingTableViewCell: UITableViewCell {
-    
+
     @IBOutlet weak var trendingCollectionView: UICollectionView!
-    
-    let movieApi = MovieAPI()
-    var movies: [Movie] = []
+
+    private var movies: [Movie] = []
+    private let apiManager = MovieAPIManager()
     var imagesMovies: [UIImage] = []
     weak var view: UIViewController?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        configCollectionView()
+        setUpCollectionView()
         setUpCell()
         
-        movieApi.getMovies { [weak self] movies in
-            self?.movies = movies
-            DispatchQueue.main.async {
-                self?.trendingCollectionView.reloadData()
-            }
-        }
+        apiManager.delegate = self
+        apiManager.getTrendingMovies()
     }
     
-    func configCollectionView(){
+    func setUpCollectionView(){
         trendingCollectionView.dataSource = self
         trendingCollectionView.delegate = self
         trendingCollectionView.register(UINib(nibName: "MovieCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "movieCell")
@@ -43,17 +39,13 @@ class TrendingTableViewCell: UITableViewCell {
     }
 }
 
-//MARK: CollectionView's DataSource
-
+//MARK: - CollectionView's DataSource
 extension TrendingTableViewCell: UICollectionViewDataSource{
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as? MovieCollectionViewCell
         else { return UICollectionViewCell() }
-        
-        movieApi.getImageMovie(urlString: "https://image.tmdb.org/t/p/w500\(movies[indexPath.row].poster_path)") { imageMovie in
-            cell.setupCollectionCell(image: imageMovie ?? UIImage(), title: self.movies[indexPath.row].title)
+        apiManager.getImageMovie(profilePath: movies[indexPath.row].poster_path) { imageMovie in
+            cell.setupCollectionCell(image: imageMovie ?? UIImage(), title:  self.movies[indexPath.row].title)
         }
         return cell
     }
@@ -61,10 +53,9 @@ extension TrendingTableViewCell: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movies.count
     }
-    
 }
 
-//MARK: CollectionView's Delegate
+//MARK: - CollectionView's Delegate
 extension TrendingTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -74,8 +65,14 @@ extension TrendingTableViewCell: UICollectionViewDelegate {
         destination.movie = movies[indexPath.row]
         view?.navigationController?.pushViewController(destination, animated: true)
     }
-    
-    
 }
 
-
+//MARK: - MovieAPIManagerDelegate
+extension TrendingTableViewCell: MovieAPIManagerDelegate {
+    func didReceiveMovies<T: Codable>(_ movies: T) {
+        self.movies = movies as! [Movie]
+        DispatchQueue.main.async {
+            self.trendingCollectionView.reloadData()
+        }
+    }
+}

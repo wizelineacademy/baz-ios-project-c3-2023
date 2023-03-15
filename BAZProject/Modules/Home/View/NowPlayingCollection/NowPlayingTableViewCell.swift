@@ -10,25 +10,21 @@ import UIKit
 class NowPlayingTableViewCell: UITableViewCell {
     @IBOutlet weak var nowPlayingCollectionView: UICollectionView!
     
-    let movieApi = MovieAPI()
+    private var nowPlayingmovies: [Movie] = []
+    private let apiManager = MovieAPIManager()
     var imagesMovies: [UIImage] = []
-    var nowPlayingmovies: [Movie] = []
     weak var view: UIViewController?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        configCollectionView()
+        setUpCollectionView()
         setUpCell()
         
-        movieApi.getNowPlayingMovies { [weak self] nowPlayingmovies in
-            self?.nowPlayingmovies = nowPlayingmovies
-            DispatchQueue.main.async {
-                self?.nowPlayingCollectionView.reloadData()
-            }
-        }
+        apiManager.delegate = self
+        apiManager.getNowPlayingMovies()
     }
     
-    func configCollectionView(){
+    func setUpCollectionView(){
         nowPlayingCollectionView.dataSource = self
         nowPlayingCollectionView.delegate = self
         nowPlayingCollectionView.register(UINib(nibName: "MovieCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "movieCell")
@@ -43,16 +39,12 @@ class NowPlayingTableViewCell: UITableViewCell {
 }
 
 //MARK: - CollectionView's DataSource
-
 extension NowPlayingTableViewCell: UICollectionViewDataSource{
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as? MovieCollectionViewCell
         else { return UICollectionViewCell() }
-        
-        movieApi.getImageMovie(urlString: "https://image.tmdb.org/t/p/w500\(nowPlayingmovies[indexPath.row].poster_path)") { imageMovie in
-            cell.setupCollectionCell(image: imageMovie ?? UIImage(), title: self.nowPlayingmovies[indexPath.row].title)
+        apiManager.getImageMovie(profilePath: nowPlayingmovies[indexPath.row].poster_path) { imageMovie in
+            cell.setupCollectionCell(image: imageMovie ?? UIImage(), title:  self.nowPlayingmovies[indexPath.row].title)
         }
         return cell
     }
@@ -60,7 +52,6 @@ extension NowPlayingTableViewCell: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return nowPlayingmovies.count
     }
-    
 }
 
 // MARK: - CollectionView's Delegate
@@ -73,8 +64,14 @@ extension NowPlayingTableViewCell: UICollectionViewDelegate {
         destination.movie = nowPlayingmovies[indexPath.row]
         view?.navigationController?.pushViewController(destination, animated: true)
     }
-    
-    
 }
 
-
+//MARK: - MovieAPIManagerDelegate
+extension NowPlayingTableViewCell: MovieAPIManagerDelegate {
+    func didReceiveMovies<T: Codable>(_ movies: T) {
+        self.nowPlayingmovies = movies as! [Movie]
+        DispatchQueue.main.async {
+            self.nowPlayingCollectionView.reloadData()
+        }
+    }
+}

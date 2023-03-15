@@ -12,10 +12,6 @@ class MovieCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageMovie: UIImageView!
     @IBOutlet weak var nameMovie: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
     func setupCollectionCell(image: UIImage, title: String){
         DispatchQueue.main.async {
             self.imageMovie.image = image

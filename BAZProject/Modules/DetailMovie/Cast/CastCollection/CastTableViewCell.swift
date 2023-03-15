@@ -8,62 +8,61 @@
 import UIKit
 
 class CastTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var castCollectionView: UICollectionView!
     
-        let movieApi = MovieAPI()
-        var cast: [Cast] = []
-        var imageActor: [UIImage] = []
-        var idMovie: Int = 0
-        weak var view: UIViewController?
+    private let apiManager = MovieAPIManager()
+    var cast: [Cast] = []
+    var imageActor: [UIImage] = []
+    var idMovie: Int = 0
+    weak var view: UIViewController?
     
-        override func awakeFromNib() {
-            super.awakeFromNib()
-            configCollectionView()
-            setUpCell()
-        }
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setUpCollectionView()
+        setUpCell()
+    }
     
     func loadView() {
-        movieApi.getMovieCast(idMovie: idMovie) { [weak self] cast in
-            self?.cast = cast
-            DispatchQueue.main.async {
-                self?.castCollectionView.reloadData()
-            }
-        }
+        apiManager.delegate = self
+        apiManager.getMovieCast(idMovie: idMovie)
     }
-        
-        func configCollectionView(){
-            castCollectionView.dataSource = self
-            castCollectionView.register(UINib(nibName: "CastCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "castCell")
-        }
-        
-        func setUpCell() {
-            let configureCell = UICollectionViewFlowLayout()
-            configureCell.scrollDirection = .horizontal
-            configureCell.itemSize =  CGSize(width: 110, height: 200)
-            castCollectionView.setCollectionViewLayout(configureCell, animated: false)
-        }
+    
+    func setUpCollectionView(){
+        castCollectionView.dataSource = self
+        castCollectionView.register(UINib(nibName: "CastCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "castCell")
     }
+    
+    func setUpCell() {
+        let configureCell = UICollectionViewFlowLayout()
+        configureCell.scrollDirection = .horizontal
+        configureCell.itemSize =  CGSize(width: 110, height: 200)
+        castCollectionView.setCollectionViewLayout(configureCell, animated: false)
+    }
+}
 
 //MARK: - CollectionView's DataSource
 extension CastTableViewCell: UICollectionViewDataSource{
-        
-        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "castCell", for: indexPath) as? CastCollectionViewCell
-            else { return UICollectionViewCell() }
-            
-            movieApi.getImageMovie(urlString: "https://image.tmdb.org/t/p/w500\(cast[indexPath.row].profile_path ?? "")") { imageMovie in
-                cell.setupCell(image: imageMovie ?? UIImage(), name: self.cast[indexPath.row].name ?? "", character: self.cast[indexPath.row].character ?? "")
-            }
-            return cell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "castCell", for: indexPath) as? CastCollectionViewCell
+        else { return UICollectionViewCell() }
+        apiManager.getImageMovie(profilePath: cast[indexPath.row].profile_path) { imageMovie in
+            cell.setupCell(image: imageMovie ?? UIImage(), name: self.cast[indexPath.row].name ?? "", character: self.cast[indexPath.row].character ?? "")
         }
-        
-        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            return cast.count
-        }
-        
+        return cell
     }
-
     
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return cast.count
+    }
+}
 
-
+//MARK: - MovieAPIManagerDelegate
+extension CastTableViewCell: MovieAPIManagerDelegate {
+    func didReceiveMovies<T: Codable>(_ movies: T) {
+        self.cast = movies as! [Cast]
+        DispatchQueue.main.async {
+            self.castCollectionView.reloadData()
+        }
+    }
+}

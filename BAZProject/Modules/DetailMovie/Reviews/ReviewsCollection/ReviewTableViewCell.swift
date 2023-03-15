@@ -10,8 +10,7 @@ import UIKit
 class ReviewTableViewCell: UITableViewCell {
     
     @IBOutlet weak var reviewCollectionView: UICollectionView!
-    
-    let movieApi = MovieAPI()
+    private let apiManager = MovieAPIManager()
     var review: [Reviews] = []
     var imageActor: [UIImage] = []
     var idMovie: Int = 0
@@ -19,20 +18,16 @@ class ReviewTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        configCollectionView()
+        setUpCollectionView()
         setUpCell()
     }
     
     func loadView() {
-        movieApi.getReviews(idMovie: idMovie) { [weak self] review in
-            self?.review = review
-            DispatchQueue.main.async {
-                self?.reviewCollectionView.reloadData()
-            }
-        }
+        apiManager.delegate = self
+        apiManager.getReviewsMovies(idMovie: idMovie)
     }
     
-    func configCollectionView(){
+    func setUpCollectionView(){
         reviewCollectionView.dataSource = self
         reviewCollectionView.register(UINib(nibName: "ReviewCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "reviewCell")
     }
@@ -61,8 +56,6 @@ extension ReviewTableViewCell: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return review.count
     }
-    
-    
 }
 
 extension UIView {
@@ -71,6 +64,16 @@ extension UIView {
         self.layer.shadowOpacity = 0.5
         self.layer.shadowOffset = CGSize(width: 0, height: 2)
         self.layer.shadowRadius = 4
+    }
+}
+
+//MARK: - MovieAPIManagerDelegate
+extension ReviewTableViewCell: MovieAPIManagerDelegate {
+    func didReceiveMovies<T: Codable>(_ movies: T) {
+        self.review = movies as! [Reviews]
+        DispatchQueue.main.async {
+            self.reviewCollectionView.reloadData()
+        }
     }
 }
 
