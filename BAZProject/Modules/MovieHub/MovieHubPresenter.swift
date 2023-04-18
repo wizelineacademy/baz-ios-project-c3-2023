@@ -12,15 +12,33 @@ import UIKit
 
 class MovieHubPresenter: MovieHubPresenterProtocol {
     
+    func filterConfigurationByTitle(_ title: String) {
+        let filteredConfiguration = configuration.map { (section) -> CVMovieHubViewEntitySection in
+            let filteredMovies = section.availableMovies.filter { (movie) -> Bool in
+                return movie.title.lowercased().contains(title.lowercased())
+            }
+            return CVMovieHubViewEntitySection(sectionName: section.sectionName, availableMovies: filteredMovies)
+        }
+        self.filteredConfiguration = filteredConfiguration
+    }
+    
+    
+    func unfilterConfiguration() {
+        self.filteredConfiguration = self.configuration
+    }
+    
+    
     
     var configuration:[CVMovieHubViewEntitySection] = []
+    var filteredConfiguration:[CVMovieHubViewEntitySection] = []
     
     func onSectionsFetch(sections: [CVMovieHubViewEntitySection]) {
         self.configuration = sections
+        self.filteredConfiguration = sections
         self.view?.onSectionsFetch(sections: sections)
     }
-    
 
+    
     weak private var view: MovieHubViewProtocol?
     var interactor: MovieHubInteractorProtocol?
     private let router: MovieHubWireframeProtocol

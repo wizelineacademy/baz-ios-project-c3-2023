@@ -60,10 +60,9 @@ class MovieHubViewController: UIViewController, MovieHubViewProtocol {
         self.searchTextfield.layer.opacity = 0
         self.searchTextfield.transform = CGAffineTransform(translationX: UIScreen.main.bounds.width + 100, y: 0)
         self.searchTextfield.layer.opacity = 0
-        
+        self.searchTextfield.delegate = self
         // Register for keyboard hide notifications
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide), name: UIResponder.keyboardDidHideNotification, object: nil)
-
         // Handle keyboard hide event
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapGesture)
@@ -85,7 +84,18 @@ class MovieHubViewController: UIViewController, MovieHubViewProtocol {
     // Handle tap gesture event
     @objc func dismissKeyboard() {
         view.endEditing(true)
+        cancelSearch()
     }
+    
+    @objc func cancelSearch() {
+         self.searchTextfield.resignFirstResponder()
+         UIView.animate(withDuration: 0.3, animations: {
+             self.searchTextfield.transform = CGAffineTransform(translationX: UIScreen.main.bounds.width + 100, y: 0)
+             self.searchTextfield.layer.opacity = 0
+             self.labelHeaderView.transform = CGAffineTransform(translationX: 0, y: 0)
+         })
+        self.presenter?.unfilterConfiguration()
+     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -102,14 +112,14 @@ extension MovieHubViewController: UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CVMovieCollectionViewCell", for: indexPath) as! CVMovieCollectionViewCell
-        cell.section = self.presenter?.configuration[indexPath.section]
+        cell.section = self.presenter?.filteredConfiguration[indexPath.section]
         cell.parentVC = self
         return cell
     }
     
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return self.presenter?.configuration.count ?? 0
+        return self.presenter?.filteredConfiguration.count ?? 0
     }
     
     
@@ -136,6 +146,25 @@ extension MovieHubViewController: UICollectionViewDataSource, UICollectionViewDe
     }
     
     
-    
 }
 
+
+extension MovieHubViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let currentText = textField.text else {
+            self.presenter?.unfilterConfiguration()
+            self.updateDashboard()
+            return true
+        }
+     
+        let updatedText = (currentText as NSString).replacingCharacters(in: range, with: string)
+        if updatedText == "" {
+            self.presenter?.unfilterConfiguration()
+            self.updateDashboard()
+            return true
+        }
+        self.presenter?.filterConfigurationByTitle(updatedText)
+        self.updateDashboard()
+        return true
+    }
+}

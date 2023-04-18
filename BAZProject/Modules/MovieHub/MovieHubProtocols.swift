@@ -19,6 +19,9 @@ protocol MovieHubPresenterProtocol: AnyObject {
     func tryFetchSections()
     func onSectionsFetch(sections:[CVMovieHubViewEntitySection])
     var configuration:[CVMovieHubViewEntitySection] {get set}
+    func filterConfigurationByTitle(_ title: String)
+    func unfilterConfiguration()
+    var filteredConfiguration:[CVMovieHubViewEntitySection] {get set}
 }
 
 //MARK: Interactor -
